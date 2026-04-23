@@ -15,9 +15,7 @@ const sendButton = document.getElementById("chat-send-btn");
 const cancelButton = document.getElementById("chat-cancel-btn");
 const clearButton = document.getElementById("chat-clear-btn");
 const newChatButton = document.getElementById("chat-new-btn");
-const collapseButton = document.getElementById("chat-collapse-btn");
-const panel = document.getElementById("chat-panel");
-const logoSrc = "assets/logo.png";
+const logoSrc = "assets/skia-icon.png";
 
 const renderMessage = (message: SkiaMessage, streaming = false): HTMLDivElement | null => {
   if (!chatMessages) {
@@ -137,11 +135,4 @@ export const initializeChatPanel = (): void => {
     renderHistory();
   });
 
-  collapseButton?.addEventListener("click", () => {
-    panel?.classList.toggle("collapsed");
-    if (!panel || !collapseButton) {
-      return;
-    }
-    collapseButton.textContent = panel.classList.contains("collapsed") ? "▶" : "◀";
-  });
 };

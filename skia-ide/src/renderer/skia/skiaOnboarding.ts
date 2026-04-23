@@ -22,7 +22,7 @@ const buildOverlay = (): HTMLDivElement => {
   panel.style.textTransform = "uppercase";
   panel.style.letterSpacing = "0.1em";
   panel.innerHTML = `
-    <img src="public/logo.png" alt="SKIA" style="width: 120px; display: block; margin: 0 0 14px;" />
+    <img src="assets/skia-icon.png" alt="SKIA" style="width: 120px; display: block; margin: 0 0 14px;" />
     <p style="margin: 0 0 20px; color: #d4af37; text-transform: none; letter-spacing: 0.03em;">I am SKIA. I see your codebase. Let me understand your architecture.</p>
     <button id="skia-open-project-btn" style="padding: 8px 12px; background: #1a1100; color: #d4af37; border: 1px solid #d4af37; border-radius: 2px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.1em;">OPEN A PROJECT</button>
   `;

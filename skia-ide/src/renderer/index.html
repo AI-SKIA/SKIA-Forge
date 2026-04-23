@@ -3,33 +3,17 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SKIA IDE</title>
+    <title>SKIA FORGE</title>
+    <link rel="stylesheet" href="styles.css" />
 </head>
-
 <body>
-    <!-- SKIA HEADER -->
-    <div id="top-bar" class="skia-header">
-        <img src="public/logo.png" id="skia-header-logo" />
-        <div class="top-bar-right">
-            <button id="header-new-chat-btn">+ NEW CHAT</button>
-        </div>
-    </div>
-
-    <div id="app-root">
-        <!-- ACTIVITY BAR -->
-        <aside id="activity-bar">
-            <button class="activity-btn is-active" data-view="explorer" title="Explorer">EX</button>
-            <button class="activity-btn" data-view="search" title="Search">SR</button>
-            <button class="activity-btn" data-view="agent" title="Agent">AG</button>
-            <button class="activity-btn" data-view="forge" title="Forge">FG</button>
-            <button class="activity-btn" data-view="settings" title="Settings">ST</button>
-        </aside>
-
-        <!-- SKIA SIDEBAR -->
+    <div id="app-shell">
         <aside id="sidebar" class="skia-sidebar">
-            <img src="public/sidebar-logo.png" id="skia-sidebar-logo" />
+            <div id="sidebar-logo-wrap">
+                <img src="assets/logo.png" id="skia-sidebar-logo" alt="SKIA" />
+            </div>
             <nav id="skia-nav">
-                <div class="nav-item" data-view="explorer">EXPLORER</div>
+                <div class="nav-item is-active" data-view="explorer">EXPLORER</div>
                 <div class="nav-item" data-view="search">SEARCH</div>
                 <div class="nav-item" data-view="agent">AGENT</div>
                 <div class="nav-item" data-view="forge">FORGE</div>
@@ -37,65 +21,35 @@
             </nav>
         </aside>
 
-        <!-- DASHBOARD VIEW (HIDDEN BY DEFAULT) -->
-        <section id="dashboard-view" class="workspace-view hidden">
-            <img class="workspace-logo" src="public/logo.png" alt="SKIA" />
-            <h1>YOU CAN DO IT ALL — 112 AI CAPABILITIES, ONE PLATFORM —</h1>
-
-            <div class="workspace-grid">
-                <article class="workspace-card">CHAT ORCHESTRATION</article>
-                <article class="workspace-card">IMAGE + VIDEO FLOWS</article>
-                <article class="workspace-card">AUTONOMOUS AGENT RUNS</article>
-                <article class="workspace-card">SOVEREIGN CONTROL PLANE</article>
-            </div>
-
-            <div class="workspace-footer">
-                <div>One ecosystem. One universe. All SKIA.</div>
-                <div>© 2026 SKIA Singularity Continuum. The future is an understatement.</div>
-            </div>
-        </section>
-
-        <!-- SETTINGS VIEW (HIDDEN BY DEFAULT) -->
-        <section id="settings-view" class="workspace-view hidden"></section>
-
-        <!-- MAIN SKIA HYBRID LAYOUT -->
-        <main id="center-panel" class="skia-editor-shell">
-
-            <!-- LEFT: EXPLORER -->
-            <aside id="explorer-panel" class="panel explorer-panel">
-                <div class="panel-header">EXPLORER</div>
-                <div id="explorer-content"></div>
-            </aside>
-
-            <!-- VERTICAL SPLITTER -->
-            <div id="splitter-vertical" class="splitter vertical"></div>
-
-            <!-- CENTER: EDITOR -->
-            <section id="editor-panel" class="panel editor-panel">
-                <div id="editor-container"></div>
-            </section>
-
-            <!-- VERTICAL SPLITTER -->
-            <div id="splitter-chat" class="splitter vertical"></div>
-
-            <!-- RIGHT: CHAT -->
-            <aside id="chat-panel" class="panel chat-panel">
-                <div id="skia-chat-root"></div>
-            </aside>
-
-            <!-- HORIZONTAL SPLITTER -->
-            <div id="splitter-horizontal" class="splitter horizontal"></div>
-
-            <!-- BOTTOM: TERMINAL -->
-            <section id="terminal-panel" class="panel terminal-panel">
-                <div class="panel-header">TERMINAL</div>
-                <div id="terminal-content"></div>
-            </section>
-
+        <main id="center-panel">
+            <div id="editor-container"></div>
         </main>
+
+        <aside id="chat-panel">
+            <header class="chat-header">
+                <div class="chat-brand">
+                    <img src="assets/sidebar-logo.png" id="chat-logo" alt="SKIA" />
+                    <span>SKIA</span>
+                </div>
+                <button id="chat-new-btn">+ NEW CHAT</button>
+            </header>
+
+            <section id="chat-messages"></section>
+
+            <div id="chat-controls">
+                <textarea id="chat-input" placeholder="Ask SKIA anything..."></textarea>
+                <div class="chat-buttons">
+                    <button id="chat-clear-btn">CLEAR</button>
+                    <button id="chat-cancel-btn">CANCEL</button>
+                    <button id="chat-send-btn">SEND</button>
+                </div>
+                <div id="chat-tagline">One ecosystem. One universe. All SKIA.</div>
+            </div>
+        </aside>
     </div>
 
-    <!-- STATUS BAR -->
-    <footer id="status-bar" class="skia-statusbar"></footer>
+    <footer id="status-bar">
+        <span id="status-text">⬡ SKIA: SOVEREIGN</span>
+    </footer>
 </body>
 </html>

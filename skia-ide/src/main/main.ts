@@ -18,7 +18,7 @@ const createWindow = (): void => {
     height: 900,
     minWidth: 1000,
     minHeight: 600,
-    title: "SKIA IDE",
+    title: "SKIA FORGE",
     icon: iconPath,
     webPreferences: {
       nodeIntegration: false,

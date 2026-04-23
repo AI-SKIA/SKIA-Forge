@@ -2,78 +2,55 @@
 
 Last updated: 2026-04-23
 
-## 1. Backend Module Status
+## Current IDE shell status
 
-Backend runtime remains stable and unchanged under `src/`. Core Forge systems are active:
+- `skia-ide` builds successfully with `npm run build`.
+- Electron launches successfully with `npm start` (`electron dist/main/main.js`).
+- Renderer is now wired to a strict three-column sovereign layout + bottom status bar.
+- CSS is loaded through webpack via `index.ts` imports and applied to all shell surfaces.
+- Sidebar logo, gold nav system, Monaco center workspace, chat panel, and status text are all present in the renderer template and styled to the SKIA foundation.
 
-- Governance and control plane (`/api/forge/mode`, `/api/forge/governance`, `/api/forge/sovereign-posture`)
-- Context engine and retrieval (`/api/forge/context`, `/api/forge/context/retrieve`, embed index/search routes)
-- Agent planning/execution (`/api/forge/agent`, `/api/forge/agent/plan`, `/api/forge/agent/execute`)
-- Module health/status (`/api/forge/modules/status`)
-- Production/healing/architecture route groups mounted and reachable
+## Exact file list: `skia-ide/`
 
-Canonical backend source of truth stays `src/server.ts` and the Forge module tree under `src/forge/modules`.
+- `skia-ide/README.md`
+- `skia-ide/assets/skia-icon.png`
+- `skia-ide/package-lock.json`
+- `skia-ide/package.json`
+- `skia-ide/src/main/main.ts`
+- `skia-ide/src/main/preload.ts`
+- `skia-ide/src/renderer/editor/monacoSetup.ts`
+- `skia-ide/src/renderer/global.d.ts`
+- `skia-ide/src/renderer/index.html`
+- `skia-ide/src/renderer/index.ts`
+- `skia-ide/src/renderer/skia-dark.css`
+- `skia-ide/src/renderer/skia/skiaApiClient.ts`
+- `skia-ide/src/renderer/skia/skiaChatPanel.ts`
+- `skia-ide/src/renderer/skia/skiaCommands.ts`
+- `skia-ide/src/renderer/skia/skiaConfig.ts`
+- `skia-ide/src/renderer/skia/skiaOnboarding.ts`
+- `skia-ide/src/renderer/skia/skiaSessionStore.ts`
+- `skia-ide/src/renderer/skia/skiaStatusBar.ts`
+- `skia-ide/src/renderer/styles/app.css`
+- `skia-ide/src/renderer/styles/skia-dark.css`
+- `skia-ide/tsconfig.json`
+- `skia-ide/tsconfig.main.json`
+- `skia-ide/webpack.config.js`
 
-## 2. IDE Shell Status (`skia-ide/`)
+## What still needs to be built
 
-Electron + Monaco shell is running and buildable as a standalone desktop app.
+- Explorer/search/agent/forge/settings view content is still placeholder-only (nav state is visual).
+- Chat stream currently appends raw chunks and should be upgraded to structured stream frame parsing.
+- Workspace file tree/open/save integration is not yet implemented in renderer.
+- Add smoke/E2E checks for startup layout, stylesheet presence, and chat controls.
 
-Implemented:
+## Next session starting point
 
-- Electron main process with secure IPC (`skia:getConfig`, `skia:openFolder`, `skia:openFile`)
-- Monaco editor initialization and central workspace layout
-- SKIA API client with auth header support, request IDs, and retry on 5xx
-- Session store (chat history + workspace keying)
-- Chat panel with streaming, cancel, clear/new chat controls
-- Status bar polling Forge mode
-- First-launch onboarding with backend context trigger
-
-## 3. Sovereign Brand Application Status
-
-Brand source used: `docs/SKIA_BRAND_FOUNDATION.md`
-
-Completed brand alignment in `skia-ide`:
-
-- Palette aligned to sovereign dark/gold surfaces (`#0a0a0a`, `#120d00`, `#1a1100`, `#d4af37`, `#2a1f00`)
-- Navigation updated to canonical SKIA labels: `EXPLORER`, `SEARCH`, `AGENT`, `FORGE`, `SETTINGS`
-- Uppercase + spaced typography system applied to UI chrome
-- Chat surface updated to canonical message hierarchy (assistant left-gold border, user right-aligned muted gold)
-- Canonical logo `C:/SKIA-Forge/logo.png` integrated into sidebar header, chat header, onboarding, and SKIA message prefix
-- Removed decorative effects (no glow, no pulse, no rounded-soft UI language, no gradients)
-
-## 4. What Is Implemented vs Scaffolded
-
-Implemented now:
-
-- Branded shell structure and interactions for navigation/chat/onboarding/status
-- Backend route connectivity points required by the IDE shell
-- Build/start workflow functioning (`npm run build`, `npm start`)
-
-Scaffolded but still basic:
-
-- File explorer behavior (visual shell only, no full tree model yet)
-- Command palette command registry (minimal local registry, not yet wired to full UI command system)
-- Chat stream rendering is transport-complete but not yet parsing structured server event formats
-
-## 5. What Is Missing
-
-Still missing for production-grade IDE:
-
-- Real file-system workspace model and open/save file workflows in renderer
-- Typed contract layer for all Forge payload/response variants
-- Hardened stream protocol parsing (SSE/event framing, partial token protocol safety)
-- Monaco language/theme deep customization and token color parity with SKIA web surfaces
-- End-to-end error boundary and offline fallback UX for backend outages
-- Automated UI/E2E tests for shell flows (onboarding, chat stream, mode status polling)
-
-## 6. Next Session Starting Point
-
-1. Wire workspace/file model end-to-end:
-   - folder open -> tree render -> file read -> Monaco model open -> active file sync to session store.
-2. Upgrade chat transport robustness:
-   - parse structured stream frames and add deterministic completion/error states.
-3. Add first integration test slice:
-   - onboarding open project flow + status bar mode fetch + chat send/stream cancel.
-4. Lock brand consistency:
-   - run a pass on all renderer elements to ensure no non-foundation colors/shape rules remain.
+1. Implement workspace/file model wiring (open folder -> render tree -> open file in Monaco -> track active file).
+2. Harden chat streaming protocol handling with deterministic completion/error states.
+3. Add a startup verification test that asserts:
+   - primary background `#0a0a0a`
+   - sidebar width `240px`
+   - right panel width `360px`
+   - status bar height `28px`
+4. Add build-time check for brand token usage to prevent non-foundation colors from being introduced.
 
