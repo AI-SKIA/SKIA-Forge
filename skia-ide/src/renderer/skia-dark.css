@@ -1,0 +1,64 @@
+@import "./styles/skia-dark.css";
+
+:root {
+  --skia-text: var(--skia-text-primary);
+}
+
+/* PANEL LAYOUT */
+.skia-editor-shell {
+  display: grid;
+  grid-template-columns: 260px 6px 1fr 6px 380px;
+  grid-template-rows: 1fr 6px 220px;
+  height: 100%;
+  background: var(--skia-bg);
+}
+
+/* PANELS */
+.panel {
+  background: var(--skia-bg);
+  color: var(--skia-text);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.explorer-panel {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+  border-right: 1px solid var(--skia-border);
+}
+
+.editor-panel {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.chat-panel {
+  grid-column: 5;
+  grid-row: 1;
+  border-left: 1px solid var(--skia-border);
+}
+
+.terminal-panel {
+  grid-column: 1 / span 5;
+  grid-row: 3;
+  border-top: 1px solid var(--skia-border);
+}
+
+/* SPLITTERS */
+.splitter {
+  background: var(--skia-border);
+  transition: background 0.2s;
+}
+
+.splitter:hover {
+  background: var(--skia-gold);
+}
+
+.splitter.vertical {
+  cursor: col-resize;
+}
+
+.splitter.horizontal {
+  cursor: row-resize;
+}

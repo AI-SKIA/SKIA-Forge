@@ -1,0 +1,343 @@
+:root {
+  --skia-bg: #0a0a0a;
+  --skia-sidebar: #0a0a0a;
+  --skia-panel: #120d00;
+  --skia-panel-strong: #1a1100;
+  --skia-input: #0f0d00;
+  --skia-border: #2a1f00;
+  --skia-gold: #d4af37;
+  --skia-text-primary: #d4af37;
+  --skia-text-secondary: rgba(255, 215, 0, 0.55);
+  --skia-danger: #e05555;
+}
+
+body {
+  background: var(--skia-bg);
+  color: var(--skia-text-primary);
+  font-family: "Calibri", "Segoe UI", system-ui, sans-serif;
+  text-shadow: none;
+}
+
+#top-bar {
+  height: 34px;
+  background: var(--skia-bg);
+  border-bottom: 1px solid var(--skia-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 10px;
+}
+
+#skia-header-logo {
+  height: 28px;
+  margin-left: 12px;
+}
+
+#header-new-chat-btn {
+  background: var(--skia-panel-strong);
+  border: 1px solid var(--skia-gold);
+  color: var(--skia-gold);
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 10px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#title-logo {
+  width: 20px;
+  height: 20px;
+  object-fit: contain;
+}
+
+#title-text {
+  color: var(--skia-gold);
+  font-weight: 700;
+}
+
+.top-bar-right {
+  color: var(--skia-text-secondary);
+}
+
+#app-root {
+  display: flex;
+  height: calc(100vh - 62px);
+  width: 100vw;
+}
+
+#activity-bar {
+  width: 48px;
+  background: var(--skia-bg);
+  border-right: 1px solid var(--skia-border);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px 6px;
+}
+
+.activity-btn {
+  height: 30px;
+  background: #120d00;
+  border: 1px solid transparent;
+  color: var(--skia-text-secondary);
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 9px;
+}
+
+.activity-btn.is-active,
+.activity-btn:hover {
+  border-color: var(--skia-border);
+  color: var(--skia-gold);
+}
+
+#sidebar {
+  width: 240px;
+  background: var(--skia-sidebar);
+  border-right: 1px solid var(--skia-border);
+  display: flex;
+  flex-direction: column;
+}
+
+#skia-sidebar-logo {
+  width: 48px;
+  margin: 20px auto;
+  display: block;
+}
+
+#skia-nav {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0;
+}
+
+#skia-nav .nav-item {
+  padding: 10px 16px;
+  color: var(--skia-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+#skia-nav .nav-item:hover {
+  color: var(--skia-gold);
+}
+
+.chat-buttons button,
+#chat-new-btn,
+#chat-collapse-btn {
+  background: var(--skia-panel-strong);
+  color: var(--skia-gold);
+  border: 1px solid var(--skia-gold);
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 11px;
+  box-shadow: none;
+  outline: none;
+}
+
+#center-panel {
+  flex: 1;
+  background: var(--skia-bg);
+  min-width: 0;
+  position: relative;
+}
+
+#editor-container {
+  width: 100%;
+  height: 100%;
+  background: var(--skia-bg);
+  border: 1px solid var(--skia-border);
+  font-family: "Cascadia Code", "Fira Code", monospace;
+}
+
+#chat-panel {
+  width: 360px;
+  background: var(--skia-panel);
+  border-left: 1px solid var(--skia-border);
+  display: flex;
+  flex-direction: column;
+}
+
+#chat-panel.collapsed {
+  width: 44px;
+}
+
+#chat-panel.collapsed #chat-messages,
+#chat-panel.collapsed #chat-controls,
+#chat-panel.collapsed .chat-header span,
+#chat-panel.collapsed #chat-new-btn {
+  display: none;
+}
+
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--skia-border);
+  padding: 10px;
+  color: var(--skia-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--skia-panel);
+}
+
+.chat-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#chat-logo {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.chat-header-actions {
+  display: flex;
+  gap: 6px;
+}
+
+#chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chat-message {
+  border: 1px solid var(--skia-border);
+  border-radius: 2px;
+  padding: 8px 10px;
+  white-space: pre-wrap;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.chat-message.user {
+  color: var(--skia-text-secondary);
+  background: var(--skia-panel-strong);
+  margin-left: 24px;
+  text-align: right;
+}
+
+.chat-message.assistant {
+  color: var(--skia-gold);
+  background: var(--skia-panel);
+  border-left: 3px solid var(--skia-gold);
+  margin-right: 24px;
+}
+
+.chat-prefix {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-right: 6px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+#chat-controls {
+  border-top: 1px solid var(--skia-border);
+  padding: 10px;
+  background: var(--skia-panel);
+}
+
+#chat-input {
+  width: 100%;
+  min-height: 74px;
+  max-height: 180px;
+  resize: vertical;
+  padding: 8px;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  background: var(--skia-input);
+  color: var(--skia-text-primary);
+  text-transform: none;
+  letter-spacing: 0.04em;
+}
+
+#chat-input::placeholder {
+  color: var(--skia-text-secondary);
+}
+
+#chat-input:focus {
+  outline: none;
+  border-color: var(--skia-gold);
+}
+
+.chat-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+#chat-tagline {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 10px;
+  color: var(--skia-text-secondary);
+  letter-spacing: 0.08em;
+}
+
+#status-bar {
+  height: 28px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  background: var(--skia-panel);
+  border-top: 1px solid var(--skia-border);
+  color: var(--skia-gold);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0b0b09;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--skia-gold);
+  border-radius: 1px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--skia-gold);
+}
+
+.skia-sidebar {
+  background: var(--skia-bg);
+  border-right: 1px solid var(--skia-border);
+}
+
+.skia-header {
+  background: var(--skia-bg);
+  border-bottom: 1px solid var(--skia-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 42px;
+}

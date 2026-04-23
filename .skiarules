@@ -1,0 +1,26 @@
+project:
+  name: "skia-forge"
+  description: "SKIA architecture bootstrap project"
+  language: "TypeScript"
+
+governance:
+  default_mode: "adaptive"
+  approval_required_modules:
+    - "agent"
+    - "production"
+    - "healing"
+
+agent:
+  allowed_commands:
+    - "npm run build"
+    - "npm run typecheck"
+    - "npm run lint"
+  blocked_paths:
+    - ".env*"
+    - "secrets/"
+    - "node_modules/"
+  auto_approve:
+    - "read_file"
+    - "search_codebase"
+    - "search_text"
+    - "list_files"

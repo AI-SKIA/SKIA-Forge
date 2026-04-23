@@ -1,0 +1,7 @@
+# Exclude product surfaces not needed for brain integration.
+Skia-FULL/mobile/
+Skia-FULL/desktop/
+Skia-FULL/frontend/
+Skia-FULL/node_modules/
+Skia-FULL/**/.next/
+Skia-FULL/claw-code-main/
