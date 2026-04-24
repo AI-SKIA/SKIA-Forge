@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const webpack = require("webpack");
 
 module.exports = {
     mode: "development",
@@ -36,12 +37,17 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.DefinePlugin({
+            global: "globalThis"
+        }),
         new MiniCssExtractPlugin({
             filename: "styles.css"
         }),
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, "src/renderer/index.html"),
-            filename: "index.html"
+            filename: "index.html",
+            inject: false,
+            scriptLoading: "blocking"
         }),
         new CopyWebpackPlugin({
             patterns: [
@@ -49,17 +55,14 @@ module.exports = {
                     from: path.resolve(__dirname, "node_modules/monaco-editor/min/vs"),
                     to: "vs"
                 },
-                // Copy logo.png from repo root
                 {
                     from: path.resolve(__dirname, "../logo.png"),
                     to: "assets/logo.png"
                 },
-                // Copy sidebar-logo.png from repo root
                 {
                     from: path.resolve(__dirname, "../sidebar-logo.png"),
                     to: "assets/sidebar-logo.png"
                 },
-                // Copy assets folder if it exists
                 {
                     from: path.resolve(__dirname, "assets"),
                     to: "assets",

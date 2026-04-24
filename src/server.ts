@@ -1033,7 +1033,9 @@ app.post("/api/forge/agent", async (req, res) => {
   try {
     const access = await enforceForgeModuleAccess(req, res, "agent");
     if (!access) return;
-    const instruction = String(req.body?.instruction ?? req.body?.query ?? "");
+    const instruction = String(
+      req.body?.instruction ?? req.body?.query ?? req.body?.message ?? ""
+    );
     if (!instruction.trim()) return res.status(400).json({ error: "instruction is required" });
     const upstream = await skiaFullAdapter.intelligence(instruction, "agent", pickSkiaHeaders(req));
     return res.json(upstream);

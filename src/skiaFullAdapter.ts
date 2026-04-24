@@ -50,11 +50,15 @@ export class SkiaFullAdapter {
     passthroughHeaders?: Record<string, string>
   ): Promise<Record<string, unknown>> {
     // Primary evolved brain path from SKIA-FULL runtime.
-    return this.postJson("/api/skia/chat", {
-      message: query,
-      mode: category ?? "general",
-      source: "skia-forge"
-    }, passthroughHeaders);
+    return this.postJson(
+      "/api/skia/chat",
+      {
+        messages: [{ role: "user", content: query }],
+        mode: category ?? "general",
+        source: "skia-forge"
+      },
+      passthroughHeaders
+    );
   }
 
   async search(query: string, passthroughHeaders?: Record<string, string>): Promise<SkiaFullSearchResult> {
@@ -170,7 +174,12 @@ export class SkiaFullAdapter {
       path: string;
       body?: Record<string, unknown>;
     }> = [
-      { name: "skia.chat", method: "POST", path: "/api/skia/chat", body: { message: "probe" } },
+      {
+        name: "skia.chat",
+        method: "POST",
+        path: "/api/skia/chat",
+        body: { messages: [{ role: "user", content: "probe" }] }
+      },
       {
         name: "meta.route",
         method: "POST",

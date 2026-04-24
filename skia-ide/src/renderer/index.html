@@ -22,7 +22,36 @@
         </aside>
 
         <main id="center-panel">
-            <div id="editor-container"></div>
+            <div id="editor-container" class="center-view active"></div>
+
+            <div id="view-search" class="center-view">
+                <div class="view-header">SEARCH</div>
+                <input id="search-input" type="text" placeholder="Search files and symbols..." />
+                <div id="search-results"></div>
+            </div>
+
+            <div id="view-agent" class="center-view">
+                <div class="view-header">AGENT</div>
+                <input id="agent-task-input" type="text" placeholder="Describe a task for SKIA..." />
+                <button id="agent-run-btn">RUN TASK</button>
+                <div id="agent-log"></div>
+            </div>
+
+            <div id="view-forge" class="center-view">
+                <div class="view-header">FORGE CONTROL PLANE</div>
+                <div id="forge-mode"></div>
+                <div id="forge-governance"></div>
+                <div id="forge-modules"></div>
+            </div>
+
+            <div id="view-settings" class="center-view">
+                <div class="view-header">SETTINGS</div>
+                <label>BACKEND URL</label>
+                <input id="settings-backend-url" type="text" />
+                <label>AUTH TOKEN</label>
+                <input id="settings-auth-token" type="text" />
+                <button id="settings-save-btn">SAVE</button>
+            </div>
         </main>
 
         <aside id="chat-panel">
@@ -51,5 +80,7 @@
     <footer id="status-bar">
         <span id="status-text">⬡ SKIA: SOVEREIGN</span>
     </footer>
+
+    <script src="bundle.js"></script>
 </body>
 </html>
