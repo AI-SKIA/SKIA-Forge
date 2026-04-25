@@ -75,6 +75,15 @@ export const getContext = (payload: Json): Promise<Json> =>
 export const getModulesStatus = (): Promise<Json> =>
     fetchJsonWithRetry("/api/forge/modules/status", { method: "GET" });
 
+export const getArchitectureHealth = (): Promise<Json> =>
+    fetchJsonWithRetry("/api/forge/architecture/health", { method: "GET" });
+
+export const runSkiaReview = (payload: { message: string }): Promise<Json> =>
+    fetchJsonWithRetry("/api/forge/skia-review", {
+        method: "POST",
+        body: JSON.stringify(payload)
+    });
+
 const integrationChatResponseText = (json: Json): string => {
     if (typeof json.response === "string") return json.response;
     if (typeof json.content === "string") return json.content;
@@ -130,4 +139,38 @@ export const sendChatStream = async (
     }
 
     onChunk(text);
+};
+
+export const sendSseChatStream = async (
+    payload: { message: string; qualityThreshold?: number; maxOutputTokens?: number },
+    onFrame: (frame: string) => void,
+    signal?: AbortSignal
+): Promise<void> => {
+    const url = `${getBackendUrl()}/api/chat/stream`;
+    const res = await withTimeout(url, {
+        method: "POST",
+        headers: headers(),
+        body: JSON.stringify({
+            prompt: payload.message,
+            qualityThreshold: payload.qualityThreshold ?? 0.8,
+            maxOutputTokens: payload.maxOutputTokens ?? 4096
+        }),
+        signal
+    });
+    if (!res.ok || !res.body) throw new Error(`SSE stream failed (${res.status})`);
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder("utf8");
+    let buffer = "";
+    while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        buffer += decoder.decode(value, { stream: true });
+        const parts = buffer.split("\n\n");
+        buffer = parts.pop() ?? "";
+        for (const part of parts) {
+            const line = part.split("\n").find((x) => x.startsWith("data: "));
+            if (!line) continue;
+            onFrame(line.slice("data: ".length));
+        }
+    }
 };

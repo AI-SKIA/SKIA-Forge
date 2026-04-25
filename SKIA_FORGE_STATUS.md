@@ -1,6 +1,11 @@
 # SKIA Forge Status
 
-Last updated: 2026-04-23
+Last updated: 2026-04-24
+
+## Phase 0 integration (intelligence layer in `C:\Skia-FULL`)
+
+- The model/reasoning/multimodal/eval work package lives in the **Skia-FULL** monorepo: `REASONING_ENGINE_MODE`, `src/services/AdaptiveThinkingEngine.ts`, `TreeOfThoughtService.ts`, `MoERouterService.ts`, `POST /api/multimodal/analyze`, and `src/services/EvalRunnerService.ts` (see `exports/ROADMAP_PHASE_STATUS.md`).
+- Forge’s own agent runtime under `src/forge/` is **independent** today; when `MoERouterService` and related services reach a stable **`active`** milestone in Skia-FULL, Forge will route its outbound intelligence calls through the same public/login API surface (never a browser-direct hop to the internal `backend:4000` host).
 
 ## Current IDE shell status
 

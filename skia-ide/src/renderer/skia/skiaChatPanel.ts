@@ -1,4 +1,4 @@
-import { sendChatStream } from "./skiaApiClient";
+import { runSkiaReview, sendChatStream, sendSseChatStream } from "./skiaApiClient";
 import {
     addMessage,
     clearHistory,
@@ -8,6 +8,14 @@ import {
 
 let activeController: AbortController | null = null;
 const logoSrc = "assets/sidebar-logo.png";
+type StreamFrameType =
+    | "section_start"
+    | "content"
+    | "section_end"
+    | "quality_score"
+    | "correction"
+    | "verification_log";
+type StreamFrame = { type: StreamFrameType; payload: string };
 
 const renderMessage = (
     chatMessages: HTMLElement,
@@ -69,31 +77,103 @@ const send = async (
     const textNode = assistantNode.querySelector(".chat-message-text") as HTMLDivElement | null;
 
     activeController = new AbortController();
+    const verificationPanel = document.createElement("details");
+    verificationPanel.style.marginTop = "8px";
+    verificationPanel.style.border = "1px solid #5f4f1f";
+    verificationPanel.style.padding = "6px";
+    const summary = document.createElement("summary");
+    summary.textContent = "Verification Log";
+    verificationPanel.appendChild(summary);
+    const logBody = document.createElement("pre");
+    logBody.style.whiteSpace = "pre-wrap";
+    logBody.style.margin = "6px 0 0";
+    verificationPanel.appendChild(logBody);
+    assistantNode.appendChild(verificationPanel);
 
     try {
-        await sendChatStream(
-            { message: content },
-            (chunk) => {
-                assistantMessage.content += chunk;
-                if (textNode) {
-                    textNode.textContent = assistantMessage.content || "...";
-                }
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            },
-            activeController.signal
-        );
+        if (content.startsWith("/skia-review")) {
+            const reviewPayload = content.replace("/skia-review", "").trim() || "Run full SKIA review.";
+            const review = await runSkiaReview({ message: reviewPayload });
+            assistantMessage.content = JSON.stringify(review, null, 2);
+            if (textNode) textNode.textContent = assistantMessage.content;
+        } else {
+            await sendSseChatStream(
+                { message: content, qualityThreshold: 0.8, maxOutputTokens: 4096 },
+                (frameRaw) => {
+                    const frame = parseFrame(frameRaw);
+                    if (!frame) return;
+                    applyStreamFrame(frame, assistantMessage, textNode, logBody);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                },
+                activeController.signal
+            );
+        }
 
         assistantNode.classList.remove("stream-cursor");
         addMessage(assistantMessage);
     } catch (error) {
-        assistantNode.classList.remove("stream-cursor");
-        if (textNode) {
-            textNode.textContent =
-                error instanceof Error ? `Error: ${error.message}` : "Error reaching SKIA backend.";
+        // Fallback path for environments that still use non-SSE response shapes.
+        try {
+            await sendChatStream(
+                { message: content },
+                (chunk) => {
+                    assistantMessage.content += chunk;
+                    if (textNode) textNode.textContent = assistantMessage.content || "...";
+                },
+                activeController.signal || undefined
+            );
+            addMessage(assistantMessage);
+        } catch {
+            assistantNode.classList.remove("stream-cursor");
+            if (textNode) {
+                textNode.textContent =
+                    error instanceof Error ? `Error: ${error.message}` : "Error reaching SKIA backend.";
+            }
         }
     } finally {
+        assistantNode.classList.remove("stream-cursor");
         activeController = null;
     }
+};
+
+const parseFrame = (frameRaw: string): StreamFrame | null => {
+    try {
+        const parsed = JSON.parse(frameRaw) as Partial<StreamFrame>;
+        if (!parsed || typeof parsed.type !== "string" || typeof parsed.payload !== "string") return null;
+        return parsed as StreamFrame;
+    } catch {
+        return null;
+    }
+};
+
+const applyStreamFrame = (
+    frame: StreamFrame,
+    assistantMessage: SkiaMessage,
+    textNode: HTMLDivElement | null,
+    verificationBody: HTMLPreElement
+): void => {
+    switch (frame.type) {
+        case "section_start":
+            assistantMessage.content += `\n\n## ${frame.payload}\n`;
+            break;
+        case "content":
+            assistantMessage.content += frame.payload;
+            break;
+        case "section_end":
+            assistantMessage.content += `\n\n-- ${frame.payload} complete --\n`;
+            break;
+        case "quality_score":
+            verificationBody.textContent += `\n[quality_score]\n${frame.payload}\n`;
+            break;
+        case "verification_log":
+            verificationBody.textContent += `\n[verification_log]\n${frame.payload}\n`;
+            break;
+        case "correction":
+            assistantMessage.content += `\n\`\`\`diff\n- pending output segment\n+ ${frame.payload}\n\`\`\`\n`;
+            verificationBody.textContent += `\n[correction]\n${frame.payload}\n`;
+            break;
+    }
+    if (textNode) textNode.textContent = assistantMessage.content || "...";
 };
 
 export const initializeChatPanel = (): void => {

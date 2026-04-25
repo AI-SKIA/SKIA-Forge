@@ -33,12 +33,12 @@ const styles = StyleSheet.create({
   logoText: {
     fontSize: 44,
     fontWeight: 'bold',
-    color: '#FFD700',
+    color: '#d4af37', // SKIA luxury gold (align with web :root --skia-gold)
     letterSpacing: 10,
   },
   tagline: {
     fontSize: 12,
-    color: 'rgba(255,215,0,0.55)',
+    color: 'rgba(212,175,55,0.55)', // --skia-gold @ ~55% opacity
     letterSpacing: 3,
     marginTop: 2,
     marginBottom: 14,

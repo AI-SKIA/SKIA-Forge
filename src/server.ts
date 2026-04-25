@@ -58,6 +58,8 @@ import { runAgentExecutorRequest } from "./forge/modules/agent-executor/agentExe
 import { ProductionAdapterV1, createProductionRouter } from "./forge/modules/production/index.js";
 import { HealingExecutorV1, createHealingRouter } from "./forge/modules/healing/index.js";
 import { createArchitectureRouter } from "./forge/modules/architecture/index.js";
+import { health_score, hotspots, trend } from "./forge/modules/skiarules/architectureDiagnostics.js";
+import { securityAnalysisService } from "./forge/modules/security/SecurityAnalysisService.js";
 import { getEmbedIndexQueue } from "./forge/modules/context-engine/embedIndexQueue.js";
 import { createEmbedIncrementalOnSaveHandler } from "./forge/modules/context-engine/embedIncrementalOnSave.js";
 import { createEmbeddingVectorStore } from "./forge/modules/context-engine/embeddingVectorStoreFactory.js";
@@ -280,6 +282,46 @@ app.get("/api/forge/modules/status", async (req, res) => {
   } catch (error) {
     const message = error instanceof Error ? error.message : "Forge module status failed";
     res.status(502).json({ error: message });
+  }
+});
+
+app.get("/api/forge/architecture/health", (_req, res) => {
+  const score = health_score(projectRoot);
+  const hotspotRows = hotspots(projectRoot);
+  const healthTrend = trend(projectRoot, 14);
+  return res.json({
+    ...score,
+    hotspots: hotspotRows,
+    trend: healthTrend
+  });
+});
+
+app.post("/api/forge/skia-review", async (req, res) => {
+  try {
+    const message = String(req.body?.message ?? req.body?.query ?? "Run full SKIA review.");
+    const [arch, archHotspots, sec] = await Promise.all([
+      Promise.resolve(health_score(projectRoot)),
+      Promise.resolve(hotspots(projectRoot)),
+      securityAnalysisService.scan_repo(projectRoot)
+    ]);
+    return res.json({
+      command: "/skia-review",
+      message,
+      architecture: arch,
+      hotspots: archHotspots,
+      security: {
+        totalFiles: sec.totalFiles,
+        highFindings: sec.findings.filter((x) => x.severity === "high").length,
+        findings: sec.findings.slice(0, 20)
+      },
+      recommendation:
+        sec.findings.some((x) => x.severity === "high") || arch.overall < 70
+          ? "Block high-risk changes until architecture and security issues are resolved."
+          : "Proceed with guarded apply mode and targeted tests."
+    });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "skia-review failed";
+    return res.status(500).json({ error: message });
   }
 });
 

@@ -10,6 +10,23 @@ export type WorkGraphV1 = {
   governanceWarnings: string[];
 };
 
+export type WorkGraphSnapshot = {
+  graphId: string;
+  nodeCount: number;
+  edgeCount: number;
+  criticalPath: string[];
+  parallelGroups: string[][];
+  generatedAt: string;
+};
+const graphRegistry = new Map<string, WorkGraphV1>();
+
+function resolveGraph(graphOrId: string | WorkGraphV1): WorkGraphV1 {
+  if (typeof graphOrId !== "string") return graphOrId;
+  const g = graphRegistry.get(graphOrId);
+  if (!g) throw new Error(`Unknown graphId: ${graphOrId}`);
+  return g;
+}
+
 function buildAdj(ids: string[], edges: Array<{ from: string; to: string }>): Map<string, string[]> {
   const m = new Map<string, string[]>();
   for (const id of ids) m.set(id, []);
@@ -132,7 +149,7 @@ export async function buildWorkGraph(projectRoot: string): Promise<WorkGraphV1> 
     }
     parallelGroups.push(group);
   }
-  return {
+  const graph = {
     nodes,
     edges: dedup,
     stronglyConnectedComponents: scc,
@@ -140,5 +157,38 @@ export async function buildWorkGraph(projectRoot: string): Promise<WorkGraphV1> 
     criticalPath,
     parallelGroups,
     governanceWarnings: warnings
+  };
+  graphRegistry.set(projectRoot, graph);
+  return graph;
+}
+
+export function critical_path(graphOrId: string | WorkGraphV1): WorkItemV1[] {
+  const graph = resolveGraph(graphOrId);
+  const byId = new Map(graph.nodes.map((n) => [n.id, n]));
+  return graph.criticalPath.map((id) => byId.get(id)).filter((n): n is WorkItemV1 => Boolean(n));
+}
+
+export function parallelize(graphOrId: string | WorkGraphV1): WorkItemV1[][] {
+  const graph = resolveGraph(graphOrId);
+  const byId = new Map(graph.nodes.map((n) => [n.id, n]));
+  return graph.parallelGroups.map((g) => g.map((id) => byId.get(id)).filter((n): n is WorkItemV1 => Boolean(n)));
+}
+
+export function impact_score(graphOrId: string | WorkGraphV1, taskId: string): number {
+  const graph = resolveGraph(graphOrId);
+  const out = graph.edges.filter((e) => e.to === taskId).length;
+  const risk = graph.nodes.find((n) => n.id === taskId)?.sdlcSignals.risk ?? 0;
+  return out * 10 + risk;
+}
+
+export function visualize(graphId: string): WorkGraphSnapshot {
+  const graph = resolveGraph(graphId);
+  return {
+    graphId,
+    nodeCount: graph.nodes.length,
+    edgeCount: graph.edges.length,
+    criticalPath: graph.criticalPath,
+    parallelGroups: graph.parallelGroups,
+    generatedAt: new Date().toISOString(),
   };
 }

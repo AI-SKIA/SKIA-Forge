@@ -10,3 +10,5 @@ export { runPackageValidation, buildValidationPlan } from "./packageValidation.j
 export { computeFileMutationDiffPreview } from "./fileMutationPreview.js";
 export { formatLineDiff } from "./lineDiff.js";
 export { toposortPlanStepIds, orderActionsForPlan, assertActionDependentsCovered } from "./planOrder.js";
+export { MultiAgentCoordinator } from "./MultiAgentCoordinator.js";
+export { AgentCheckpointService } from "./AgentCheckpointService.js";

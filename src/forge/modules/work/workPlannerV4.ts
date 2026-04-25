@@ -3,6 +3,8 @@ import type { WorkImpactV1 } from "./workImpact.js";
 import type { WorkSlaDriftV1 } from "./workSlaDrift.js";
 import type { WorkGovernanceStatusV1 } from "./workGovernance.js";
 import type { SdlcInsightsBundleV2 } from "../sdlc/sdlcInsights.js";
+import { promises as fs } from "node:fs";
+import path from "node:path";
 
 export type WorkPlanV4Task = {
   id: string;
@@ -24,6 +26,36 @@ export type WorkPlanV4 = {
   slaDriftWarnings: string[];
   impactSummary: string[];
 };
+
+export type CheckpointId = string;
+export type TaskBudget = {
+  estimatedTokens: number;
+  estimatedMs: number;
+  estimatedSteps: number;
+  confidenceScore: number;
+};
+
+type FileChangeLogEntry = {
+  path: string;
+  previousContent?: string;
+  deleted?: boolean;
+};
+
+type PlannerCheckpointState = {
+  taskId: string;
+  createdAt: string;
+  history?: unknown[];
+  reasoningTrace?: unknown;
+  toolCallLog?: unknown[];
+  fileChangeLog?: FileChangeLogEntry[];
+};
+
+const checkpointStore = new Map<string, PlannerCheckpointState>();
+const checkpointDir = path.join(process.cwd(), ".skia", "checkpoints");
+
+async function ensureCheckpointDir(): Promise<void> {
+  await fs.mkdir(checkpointDir, { recursive: true });
+}
 
 export function buildWorkPlanV4(input: {
   workItem: WorkItemV1;
@@ -82,5 +114,66 @@ export function buildWorkPlanV4(input: {
       `dependency upstream=${input.impact.dependencyImpact.upstream.length} downstream=${input.impact.dependencyImpact.downstream.length}`,
       `forecastedRegressionImpact=${input.impact.forecastedRegressionImpact}`
     ]
+  };
+}
+
+export async function checkpoint(taskId: string, state?: unknown): Promise<CheckpointId> {
+  const id = `${taskId}-${Date.now()}`;
+  const typed = (state || {}) as PlannerCheckpointState;
+  const payload: PlannerCheckpointState = {
+    taskId,
+    createdAt: new Date().toISOString(),
+    history: typed.history || [],
+    reasoningTrace: typed.reasoningTrace ?? null,
+    toolCallLog: typed.toolCallLog || [],
+    fileChangeLog: typed.fileChangeLog || [],
+  };
+  checkpointStore.set(id, payload);
+  await ensureCheckpointDir();
+  await fs.writeFile(path.join(checkpointDir, `${id}.json`), JSON.stringify(payload, null, 2), "utf8");
+  return id;
+}
+
+export async function resume(checkpointId: string): Promise<unknown> {
+  const mem = checkpointStore.get(checkpointId);
+  if (mem) return mem;
+  try {
+    await ensureCheckpointDir();
+    const raw = await fs.readFile(path.join(checkpointDir, `${checkpointId}.json`), "utf8");
+    const parsed = JSON.parse(raw) as PlannerCheckpointState;
+    checkpointStore.set(checkpointId, parsed);
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+export async function rollback(taskId: string, checkpointId: string): Promise<void> {
+  const state = (await resume(checkpointId)) as PlannerCheckpointState | null;
+  if (!state || !checkpointId.startsWith(taskId)) return;
+  const changes = state.fileChangeLog || [];
+  for (const change of changes) {
+    if (!change.path) continue;
+    if (change.deleted) {
+      await fs.rm(change.path, { force: true });
+      continue;
+    }
+    await fs.mkdir(path.dirname(change.path), { recursive: true });
+    await fs.writeFile(change.path, change.previousContent ?? "", "utf8");
+  }
+  checkpointStore.delete(checkpointId);
+}
+
+export async function estimateBudget(task: { title: string; detail?: string }): Promise<TaskBudget> {
+  const chars = `${task.title} ${task.detail || ''}`.length;
+  const estimatedSteps = Math.max(1, Math.ceil(chars / 180));
+  const estimatedTokens = Math.max(256, Math.ceil(chars / 3));
+  const estimatedMs = Math.max(500, chars * 4);
+  const confidenceScore = Number(Math.max(0.4, Math.min(0.95, 1 - estimatedSteps * 0.04)).toFixed(3));
+  return {
+    estimatedTokens,
+    estimatedMs,
+    estimatedSteps,
+    confidenceScore,
   };
 }
