@@ -285,10 +285,10 @@ app.get("/api/forge/modules/status", async (req, res) => {
   }
 });
 
-app.get("/api/forge/architecture/health", (_req, res) => {
+app.get("/api/forge/architecture/health", async (_req, res) => {
   const score = health_score(projectRoot);
   const hotspotRows = hotspots(projectRoot);
-  const healthTrend = trend(projectRoot, 14);
+  const healthTrend = await trend(projectRoot, 14);
   return res.json({
     ...score,
     hotspots: hotspotRows,

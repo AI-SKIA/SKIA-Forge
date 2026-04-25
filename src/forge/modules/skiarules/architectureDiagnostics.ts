@@ -1,4 +1,5 @@
 import path from "node:path";
+import fs from "node:fs/promises";
 import { checkArchitectureImports, type ArchitectureViolation } from "./architectureEnforcer.js";
 import { extractImportSpecifiers } from "./importExtract.js";
 import type { SkiarulesConfig } from "./skiarulesTypes.js";
@@ -176,6 +177,31 @@ export type HotspotFile = {
   score: number;
 };
 
+const BASELINE_FILE = path.join(".skia", "architecture-baseline-v1.json");
+
+async function readBaselineOverall(repo: string): Promise<number | null> {
+  const roots = new Set<string>();
+  if (repo.trim()) {
+    roots.add(path.isAbsolute(repo) ? repo : path.resolve(process.cwd(), repo));
+  }
+  roots.add(process.cwd());
+  for (const root of roots) {
+    try {
+      const raw = await fs.readFile(path.join(root, BASELINE_FILE), "utf8");
+      const parsed = JSON.parse(raw) as { nodes?: Array<{ couplingScore?: number }> };
+      const scores = (parsed.nodes || [])
+        .map((x) => Number(x.couplingScore))
+        .filter((n) => Number.isFinite(n));
+      if (!scores.length) continue;
+      const avgCoupling = scores.reduce((sum, score) => sum + score, 0) / scores.length;
+      return Math.max(0, Math.min(100, Math.round(100 - avgCoupling * 5)));
+    } catch {
+      continue;
+    }
+  }
+  return null;
+}
+
 export function health_score(repo: string): ArchitectureHealthScore {
   const repoWeight = Math.max(0, Math.min(12, repo.length % 13));
   const coupling = Math.max(40, 78 - repoWeight);
@@ -194,9 +220,9 @@ export function health_score(repo: string): ArchitectureHealthScore {
   };
 }
 
-export function trend(repo: string, days: number): HealthTrend {
+export async function trend(repo: string, days: number): Promise<HealthTrend> {
   const safeDays = Math.max(1, Math.min(days, 60));
-  const base = health_score(repo).overall;
+  const base = (await readBaselineOverall(repo)) ?? health_score(repo).overall;
   const points = Array.from({ length: safeDays }).map((_, idx) => {
     const d = new Date();
     d.setDate(d.getDate() - (safeDays - idx - 1));
