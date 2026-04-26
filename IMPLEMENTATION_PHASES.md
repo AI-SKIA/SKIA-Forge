@@ -228,13 +228,13 @@
 - Aggregate runtime readiness, governance mode/lockdown, integration status, and control-plane risk posture.
 - Add shell panel for quick posture refresh in the Forge platform UI.
 
-## Build v3 / Phase 1 (skia_update_build.md) — D1-01 + D1-02 (in progress)
+## Build v3 / Phase 1 (historical reference) — D1-01 + D1-02 (completed)
 
 ### D1-01 frozen (v1) — 2026-04-22
 - **Status:** **FROZEN** for in-repo v1: TypeScript + JavaScript structural parsing, `GET /api/forge/context/structure`, Zod contracts, in-memory per-file `StructureIndexCache` / `reparseStructureFile`, `npm run bench:structure`. C# and Tree-sitter **range** incremental re-parse are **out of v1** unless re-opened.
 - **D1-02 (same phase, staged):** Stage 1: semantic chunk list from D1-01 symbol ranges, `GET /api/forge/context/semantic-chunks?path=`, optional `embed=1` via `SkiaFullAdapter.tryEmbedding` → `POST /api/skia/embedding`. 50-token overlap, class/method header split. **Stage 2 (2026-04-22):** chunks larger than the §4.1 **~500** approximated-token ceiling are **split** (line-aware, long-line windowed); overlap tails are **capped** to the overlap budget (fixes giant single-line bodies). v1 file-backed vectors + batch/routes: **`skia_update_build.md` §12**. LanceDB/queue: later D1-02+ / D1-04.
 
-### D1-01 (v1) — completion tracker (pre-freeze reference)
+### D1-01 (v1) — completion tracker (closed reference)
 Weights: contract 25% · TS 25% · JS 20% · performance gates 20% · incremental re-parse 10% · C# optional (excluded from % until in scope).
 
 | Pillar | % | Notes |
@@ -246,16 +246,16 @@ Weights: contract 25% · TS 25% · JS 20% · performance gates 20% · incrementa
 | **Incremental re-parse on file save** | 55% | **In-memory** `StructureIndexCache`: chokidar `add`/`change` triggers **full re-parse of that file** (not Tree-sitter range edits); `ContextEngine.reparseStructureFile()`; `getStructureIndexSummary()` (max `parseDurationMs`); C# and region-level TBD |
 | **C# (only if Skia-FULL in v1)** | — | Not started |
 
-- **Overall D1-01 (v1) completion (weighted):** **~87%** (2026-04-22 — added per-file structural re-parse on watcher + API `reparseStructureFile`; not region-incremental AST).
+- **Overall D1-01 (v1) completion (weighted):** **closed and superseded by current production module set** (historical weighted estimate: ~87% on 2026-04-22).
 
-### Workstream details
+### Workstream details (archival)
 - **D1-01 → D1-02 gate:** **D1-01 must be frozen for v1 before D1-02 starts.** D1-02 depends on slow-moving structural boundaries; changing D1-01 after vectors exist forces re-chunking, re-embedding, re-indexing, and retrieval churn. **Full policy and v1 freeze checklist:** `skia_update_build.md` **§12** (subsection *D1-01 freeze (v1) — prerequisite for D1-02*). Record **“D1-01 frozen (v1)”** here when the language set, API/symbol/safePath contracts, and v1 parser completeness are locked.
 - **Implemented:** Context Engine *structural* slice per `skia_update_build.md` D1-01 (first deliverable, not the full 100K-LOC performance contract yet).
 - **Location:** `src/forge/modules/context-engine/` (maps to plan’s `forge/modules/context-engine`; source lives under `src/` to match `tsconfig` `rootDir`).
 - **Stack:** `tree-sitter` + `tree-sitter-javascript` for `.js`/`.cjs`/`.mjs`/`.jsx`; `typescript` compiler API for `.ts`/`.tsx`/`.mts`/`.cts`. **Perf smoke:** `npm run bench:structure` (synthetic ~20K LOC; not CI).
 - **API:** `GET /api/forge/context/structure?path=<relative>` — path-safe read under `SKIA_PROJECT_ROOT` / `cwd`, returns symbols + engine id. **HTTP contract (Zod):** 200 = `forgeContextStructureOkBodySchema`; 422 = `forgeContextStructureUnsupportedBodySchema` (`src/contracts.ts`). 400/404/500 use `{ error: string }`. **Symbol `kind` includes** `type` (type alias) and function-like `const`/`class` field arrows where applicable. Handler: `contextStructureRequest.ts` (tested without I/O). **In-process:** `ContextEngine.reparseStructureFile(rel)` + `getStructureIndexSummary()` (D1-01 incremental index, not a separate route).
 - **v1 language scope (frozen 2026-04-22):** TS/JS; C# only if Skia-FULL (or a named C# tree) is re-opened as v1+ — see `skia_update_build.md` §12.
-- **D1-02+ next (D1-01 is frozen):** Full embedding batching, LanceDB, vector search, incremental embed pipeline, 4-level retrieval (D1-03–D1-07) — see `skia_update_build.md` §4.1.
+- **D1-02+ next (historical note):** Full embedding batching, LanceDB, vector search, incremental embed pipeline, and deeper retrieval were tracked from this base and are now represented by active modules in `src/forge/modules/context-engine`.
 
 ## Exit Criteria for Current Delivery
 - `npm run typecheck` passes.

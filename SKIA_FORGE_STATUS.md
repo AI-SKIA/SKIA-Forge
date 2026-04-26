@@ -1,61 +1,29 @@
 # SKIA Forge Status
 
-Last updated: 2026-04-24
+Last updated: 2026-04-25
 
-## Phase 0 integration (intelligence layer in `C:\Skia-FULL`)
+## Operational maturity snapshot
 
-- The model/reasoning/multimodal/eval work package lives in the **Skia-FULL** monorepo: `REASONING_ENGINE_MODE`, `src/services/AdaptiveThinkingEngine.ts`, `TreeOfThoughtService.ts`, `MoERouterService.ts`, `POST /api/multimodal/analyze`, and `src/services/EvalRunnerService.ts` (see `exports/ROADMAP_PHASE_STATUS.md`).
-- Forge’s own agent runtime under `src/forge/` is **independent** today; when `MoERouterService` and related services reach a stable **`active`** milestone in Skia-FULL, Forge will route its outbound intelligence calls through the same public/login API surface (never a browser-direct hop to the internal `backend:4000` host).
+- Forge control-plane and governance modules are implemented and active in `src/forge/modules/*`.
+- Runtime persistence for local operational state is active under `.skia/` (index/runtime/audit artifacts).
+- Sovereign safety layers (approval tokens, lockdown mode, signed intents, telemetry, remediation pathways) are implemented and exposed through Forge APIs.
+- SKIA-FULL integration is running as an upstream intelligence contract path rather than a duplicate local AI stack.
 
-## Current IDE shell status
+## Runtime and build health
 
-- `skia-ide` builds successfully with `npm run build`.
-- Electron launches successfully with `npm start` (`electron dist/main/main.js`).
-- Renderer is now wired to a strict three-column sovereign layout + bottom status bar.
-- CSS is loaded through webpack via `index.ts` imports and applied to all shell surfaces.
-- Sidebar logo, gold nav system, Monaco center workspace, chat panel, and status text are all present in the renderer template and styled to the SKIA foundation.
+- TypeScript compile path is healthy (`npx tsc --noEmit` passes).
+- Typecheck, lint, and build pipelines are established and used as acceptance gates.
+- API surface includes operational endpoints for orchestration, governance, module controls, posture snapshots, and observability.
 
-## Exact file list: `skia-ide/`
+## Integration posture with SKIA-FULL
 
-- `skia-ide/README.md`
-- `skia-ide/assets/skia-icon.png`
-- `skia-ide/package-lock.json`
-- `skia-ide/package.json`
-- `skia-ide/src/main/main.ts`
-- `skia-ide/src/main/preload.ts`
-- `skia-ide/src/renderer/editor/monacoSetup.ts`
-- `skia-ide/src/renderer/global.d.ts`
-- `skia-ide/src/renderer/index.html`
-- `skia-ide/src/renderer/index.ts`
-- `skia-ide/src/renderer/skia-dark.css`
-- `skia-ide/src/renderer/skia/skiaApiClient.ts`
-- `skia-ide/src/renderer/skia/skiaChatPanel.ts`
-- `skia-ide/src/renderer/skia/skiaCommands.ts`
-- `skia-ide/src/renderer/skia/skiaConfig.ts`
-- `skia-ide/src/renderer/skia/skiaOnboarding.ts`
-- `skia-ide/src/renderer/skia/skiaSessionStore.ts`
-- `skia-ide/src/renderer/skia/skiaStatusBar.ts`
-- `skia-ide/src/renderer/styles/app.css`
-- `skia-ide/src/renderer/styles/skia-dark.css`
-- `skia-ide/tsconfig.json`
-- `skia-ide/tsconfig.main.json`
-- `skia-ide/webpack.config.js`
+- Forge uses SKIA-FULL as the authoritative intelligence backend via adapter/bridge contracts.
+- Browser-direct cross-origin backend coupling is explicitly avoided in architecture and governance guidance.
+- Baseline and trend observability are maintained through Forge diagnostics plus status artifacts.
 
-## What still needs to be built
+## Current focus (active, not placeholder)
 
-- Explorer/search/agent/forge/settings view content is still placeholder-only (nav state is visual).
-- Chat stream currently appends raw chunks and should be upgraded to structured stream frame parsing.
-- Workspace file tree/open/save integration is not yet implemented in renderer.
-- Add smoke/E2E checks for startup layout, stylesheet presence, and chat controls.
-
-## Next session starting point
-
-1. Implement workspace/file model wiring (open folder -> render tree -> open file in Monaco -> track active file).
-2. Harden chat streaming protocol handling with deterministic completion/error states.
-3. Add a startup verification test that asserts:
-   - primary background `#0a0a0a`
-   - sidebar width `240px`
-   - right panel width `360px`
-   - status bar height `28px`
-4. Add build-time check for brand token usage to prevent non-foundation colors from being introduced.
+1. Keep architecture baseline and diagnostics current as module graph evolves.
+2. Maintain stable operator runbooks for governance remediations, token operations, and incident/status publication.
+3. Continue tightening contract-level guarantees across Forge API routes and upstream adapter behavior.
 

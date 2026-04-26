@@ -141,3 +141,6 @@ vite.config.ts.timestamp-*
 
 # SKIA local artifacts
 .skia/
+.skia/index.json
+.skia/agent-log.json
+.skia/runtime-state.json
