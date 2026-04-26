@@ -18,7 +18,7 @@ const SKIP_DIRS = new Set(['node_modules', '.git', 'dist', 'build', '.next']);
 
 export class SecurityAnalysisService {
   async scan(file: string): Promise<SecurityReport> {
-    let content = '';
+    let content: string;
     try {
       content = await fs.readFile(file, 'utf8');
     } catch {

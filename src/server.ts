@@ -32,6 +32,8 @@ import { SkiaFullAdapter } from "./skiaFullAdapter.js";
 import { buildProbeReport } from "./integrationReport.js";
 import { runForgeOrchestration } from "./forgeOrchestrator.js";
 import { renderForgePlatformHtml } from "./forgePlatformUi.js";
+import { renderDownloadHtml } from "./downloadUi.js";
+import { renderOgImageSvg } from "./ogImage.js";
 import { buildForgeModuleHealth } from "./forgeModuleHealth.js";
 import { ForgeModuleName, isForgeModuleName, runForgeModule } from "./forgeModuleExecutor.js";
 import { evaluateForgeModuleAccess, SovereignExecutionMode } from "./forgeGovernance.js";
@@ -813,6 +815,28 @@ app.post("/index/rebuild", async (_req, res, next) => {
 
 app.get("/chat", (_req, res) => {
   res.type("html").send(renderChatHtml());
+});
+
+app.get("/", (_req, res) => {
+  const releaseBase =
+    process.env.SKIA_IDE_RELEASE_BASE_URL ??
+    "https://github.com/AI-SKIA/skia/releases/latest/download";
+  res.type("html").send(renderDownloadHtml(releaseBase));
+});
+
+app.get("/download", (_req, res) => {
+  const releaseBase =
+    process.env.SKIA_IDE_RELEASE_BASE_URL ??
+    "https://github.com/AI-SKIA/skia/releases/latest/download";
+  res.type("html").send(renderDownloadHtml(releaseBase));
+});
+
+app.get("/favicon.png", (_req, res) => {
+  res.sendFile(path.join(projectRoot, "public", "skia-forge-favicon.png"));
+});
+
+app.get("/og/skia-forge-preview.svg", (_req, res) => {
+  res.type("image/svg+xml").send(renderOgImageSvg());
 });
 
 app.get("/forge/platform", (_req, res) => {

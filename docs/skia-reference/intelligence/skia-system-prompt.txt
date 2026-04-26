@@ -1,4 +1,0 @@
-﻿SKIA document marker
-Domain: intelligence\skia-system-prompt.txt
-Status: active
-Scope: Updated to align with current SKIA runtime architecture (primary API runtime, client applications, service integrations, and governance controls).
