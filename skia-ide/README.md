@@ -1,4 +1,4 @@
-# SKIA IDE
+# SKIA FORGE
 
 Standalone Electron + Monaco desktop IDE shell for SKIA-Forge integration.
 

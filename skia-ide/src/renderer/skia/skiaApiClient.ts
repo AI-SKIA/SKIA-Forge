@@ -1,6 +1,12 @@
 import { getAuthToken, getBackendUrl, getTimeout } from "./skiaConfig";
 
 type Json = Record<string, unknown>;
+export class SkiaOfflineError extends Error {
+    constructor() {
+        super("SKIA backend offline");
+        this.name = "SkiaOfflineError";
+    }
+}
 
 const requestId = (): string =>
     `skia-${Date.now()}-${Math.random().toString(16).slice(2, 10)}`;
@@ -24,9 +30,22 @@ const withTimeout = async (
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), getTimeout());
     try {
-        return await fetch(input, { ...init, signal: controller.signal });
+        return await skiaFetch(input, { ...init, signal: controller.signal });
+    } catch (error) {
+        if (error instanceof SkiaOfflineError) {
+            throw error;
+        }
+        throw new SkiaOfflineError();
     } finally {
         clearTimeout(timeout);
+    }
+};
+
+const skiaFetch = async (input: RequestInfo | URL, init?: RequestInit): Promise<Response> => {
+    try {
+        return await fetch(input, init);
+    } catch {
+        throw new SkiaOfflineError();
     }
 };
 
@@ -35,10 +54,18 @@ const fetchJsonWithRetry = async (path: string, init?: RequestInit): Promise<Jso
     let tries = 0;
     while (tries < 3) {
         tries += 1;
-        const res = await withTimeout(url, {
-            ...init,
-            headers: { ...headers(), ...(init?.headers ?? {}) }
-        });
+        let res: Response;
+        try {
+            res = await withTimeout(url, {
+                ...init,
+                headers: { ...headers(), ...(init?.headers ?? {}) }
+            });
+        } catch (error) {
+            if (error instanceof SkiaOfflineError) {
+                throw error;
+            }
+            throw new SkiaOfflineError();
+        }
         if (res.ok) return (await res.json()) as Json;
         if (res.status < 500 || tries >= 3) {
             throw new Error(`Request failed (${res.status}) ${path}`);
@@ -48,14 +75,32 @@ const fetchJsonWithRetry = async (path: string, init?: RequestInit): Promise<Jso
     throw new Error(`Request failed after retries: ${path}`);
 };
 
-export const healthCheck = (): Promise<Json> =>
-    fetchJsonWithRetry("/live", { method: "GET" });
+export const healthCheck = async (): Promise<Json | null> => {
+    try {
+        return await fetchJsonWithRetry("/live", { method: "GET" });
+    } catch (error) {
+        if (error instanceof SkiaOfflineError) return null;
+        throw error;
+    }
+};
 
-export const getMode = (): Promise<Json> =>
-    fetchJsonWithRetry("/api/forge/mode", { method: "GET" });
+export const getMode = async (): Promise<Json | null> => {
+    try {
+        return await fetchJsonWithRetry("/api/forge/mode", { method: "GET" });
+    } catch (error) {
+        if (error instanceof SkiaOfflineError) return null;
+        throw error;
+    }
+};
 
-export const getGovernance = (): Promise<Json> =>
-    fetchJsonWithRetry("/api/forge/governance", { method: "GET" });
+export const getGovernance = async (): Promise<Json | null> => {
+    try {
+        return await fetchJsonWithRetry("/api/forge/governance", { method: "GET" });
+    } catch (error) {
+        if (error instanceof SkiaOfflineError) return null;
+        throw error;
+    }
+};
 
 export const getSovereignPosture = (): Promise<Json> =>
     fetchJsonWithRetry("/api/forge/sovereign-posture", { method: "GET" });
@@ -72,11 +117,23 @@ export const getContext = (payload: Json): Promise<Json> =>
         body: JSON.stringify(payload)
     });
 
-export const getModulesStatus = (): Promise<Json> =>
-    fetchJsonWithRetry("/api/forge/modules/status", { method: "GET" });
+export const getModulesStatus = async (): Promise<Json | null> => {
+    try {
+        return await fetchJsonWithRetry("/api/forge/modules/status", { method: "GET" });
+    } catch (error) {
+        if (error instanceof SkiaOfflineError) return null;
+        throw error;
+    }
+};
 
-export const getArchitectureHealth = (): Promise<Json> =>
-    fetchJsonWithRetry("/api/forge/architecture/health", { method: "GET" });
+export const getArchitectureHealth = async (): Promise<Json | null> => {
+    try {
+        return await fetchJsonWithRetry("/api/forge/architecture/health", { method: "GET" });
+    } catch (error) {
+        if (error instanceof SkiaOfflineError) return null;
+        throw error;
+    }
+};
 
 export const runSkiaReview = (payload: { message: string }): Promise<Json> =>
     fetchJsonWithRetry("/api/forge/skia-review", {

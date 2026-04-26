@@ -1,4 +1,5 @@
-import { runSkiaReview, sendChatStream, sendSseChatStream } from "./skiaApiClient";
+import { runSkiaReview } from "./skiaApiClient";
+import { getAuthToken, getLoggedInUser, isAuthenticated, logout } from "./skiaAuthPanel";
 import {
     addMessage,
     clearHistory,
@@ -8,6 +9,7 @@ import {
 
 let activeController: AbortController | null = null;
 const logoSrc = "assets/sidebar-logo.png";
+const CHAT_API_URL = "https://api.skia.ca/api/skia/chat";
 type StreamFrameType =
     | "section_start"
     | "content"
@@ -61,6 +63,23 @@ const send = async (
 
     const content = chatInput.value.trim();
     if (!content) return;
+    if (!isAuthenticated()) {
+        renderMessage(chatMessages, {
+            role: "assistant",
+            content: "Please sign in to use SKIA",
+            timestamp: Date.now()
+        });
+        return;
+    }
+    const token = getAuthToken();
+    if (!token) {
+        renderMessage(chatMessages, {
+            role: "assistant",
+            content: "Please sign in to use SKIA",
+            timestamp: Date.now()
+        });
+        return;
+    }
 
     const userMessage: SkiaMessage = { role: "user", content, timestamp: Date.now() };
     addMessage(userMessage);
@@ -97,38 +116,77 @@ const send = async (
             assistantMessage.content = JSON.stringify(review, null, 2);
             if (textNode) textNode.textContent = assistantMessage.content;
         } else {
-            await sendSseChatStream(
-                { message: content, qualityThreshold: 0.8, maxOutputTokens: 4096 },
-                (frameRaw) => {
-                    const frame = parseFrame(frameRaw);
-                    if (!frame) return;
-                    applyStreamFrame(frame, assistantMessage, textNode, logBody);
-                    chatMessages.scrollTop = chatMessages.scrollHeight;
+            const user = getLoggedInUser();
+            const messagesPayload = getHistory()
+                .filter((m) => m.role === "user" || m.role === "assistant")
+                .map((m) => ({ role: m.role, content: m.content }));
+            const formData = new FormData();
+            formData.append("messages", JSON.stringify(messagesPayload));
+            formData.append("is_guest", "false");
+            formData.append("style", "Sovereign");
+            formData.append("includeReasoning", "false");
+            formData.append("responseDepth", "Balanced");
+            if (user?.email) formData.append("user_email", user.email);
+
+            const response = await fetch(CHAT_API_URL, {
+                method: "POST",
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                    Origin: "https://skia.ca"
                 },
-                activeController.signal
-            );
+                body: formData,
+                signal: activeController.signal
+            });
+
+            if (response.status === 401 || response.status === 403) {
+                logout();
+                throw new Error("Session expired. Please sign in again.");
+            }
+            if (!response.ok) {
+                throw new Error(`Server returned ${response.status}`);
+            }
+
+            const contentType = response.headers.get("content-type") || "";
+            if (contentType.includes("text/event-stream") && response.body) {
+                const reader = response.body.getReader();
+                const decoder = new TextDecoder("utf8");
+                let buffer = "";
+                while (true) {
+                    const { done, value } = await reader.read();
+                    if (done) break;
+                    buffer += decoder.decode(value, { stream: true });
+                    const frames = buffer.split("\n\n");
+                    buffer = frames.pop() ?? "";
+                    for (const chunk of frames) {
+                        const line = chunk
+                            .split("\n")
+                            .find((entry) => entry.startsWith("data: "));
+                        if (!line) continue;
+                        const frame = parseFrame(line.slice("data: ".length));
+                        if (frame) {
+                            applyStreamFrame(frame, assistantMessage, textNode, logBody);
+                        } else {
+                            assistantMessage.content += line.slice("data: ".length);
+                            if (textNode) textNode.textContent = assistantMessage.content || "...";
+                        }
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }
+                }
+            } else {
+                const data = (await response.json()) as Record<string, unknown>;
+                const reply = typeof data.response === "string" ? data.response : "";
+                assistantMessage.content = reply || "I couldn't get a response from SKIA.";
+                if (textNode) textNode.textContent = assistantMessage.content;
+            }
         }
 
         assistantNode.classList.remove("stream-cursor");
         addMessage(assistantMessage);
     } catch (error) {
-        // Fallback path for environments that still use non-SSE response shapes.
-        try {
-            await sendChatStream(
-                { message: content },
-                (chunk) => {
-                    assistantMessage.content += chunk;
-                    if (textNode) textNode.textContent = assistantMessage.content || "...";
-                },
-                activeController.signal || undefined
-            );
-            addMessage(assistantMessage);
-        } catch {
-            assistantNode.classList.remove("stream-cursor");
-            if (textNode) {
-                textNode.textContent =
-                    error instanceof Error ? `Error: ${error.message}` : "Error reaching SKIA backend.";
-            }
+        assistantNode.classList.remove("stream-cursor");
+        if (textNode) {
+            textNode.textContent =
+                error instanceof Error ? `Error: ${error.message}` : "Error reaching SKIA backend.";
         }
     } finally {
         assistantNode.classList.remove("stream-cursor");

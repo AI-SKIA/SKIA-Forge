@@ -7,7 +7,7 @@ type RuntimeConfig = {
 let cache: RuntimeConfig | null = null;
 
 const defaults: RuntimeConfig = {
-  backendUrl: "http://127.0.0.1:3000",
+  backendUrl: "https://api.skia.ca",
   authToken: "",
   timeout: 10000
 };

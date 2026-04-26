@@ -83,7 +83,39 @@ test("D1-11: failure then model returns valid JSON → second attempt", async ()
   assert.ok(n >= 1, "one SKIA call");
 });
 
-test("D1-11: 3 failed validations + model → max_retries", { skip: "slow" }, async () => {});
+test("D1-11: 3 failed validations + model → max_retries", async () => {
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), "sc4-"));
+  await fs.writeFile(
+    path.join(root, "package.json"),
+    JSON.stringify({ scripts: { test: "exit 1" } }),
+    "utf8"
+  );
+  let n = 0;
+  const skia = {
+    getStatus: () => ({ enabled: true }),
+    intelligence: async () => {
+      n++;
+      return {
+        message: JSON.stringify({
+          plan: {
+            title: "P3",
+            steps: [{ id: "s1", title: "S", detail: "" }]
+          },
+          steps: [{ stepId: "s1", tool: "list_files", input: { pattern: "*.ts" } }]
+        })
+      };
+    }
+  } as unknown as SkiaFullAdapter;
+  const r = await runAgentSelfCorrectingExecute(
+    root,
+    baseBody("a.ts") as any,
+    { skia, goalText: "g" }
+  );
+  const body = r.body as { attempts: unknown[]; finalStatus: string };
+  assert.equal(body.finalStatus, "max_retries");
+  assert.equal(body.attempts.length, 4);
+  assert.ok(n >= 3, "model should be consulted on retries");
+});
 
 test("D1-11: model parse error → finalStatus", async () => {
   const root = await fs.mkdtemp(path.join(os.tmpdir(), "sc3-"));

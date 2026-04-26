@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SKIA FORGE Documentation</title>
+  <style>
+    :root {
+      --bg: #0d0d0d;
+      --card: #161616;
+      --border: #2a2a2a;
+      --gold: #c9922a;
+      --text: #e8d5a3;
+      --muted: #b8a06a;
+      --code-bg: #1e1e1e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.45;
+    }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    h1 {
+      margin: 0;
+      color: var(--gold);
+      font-size: 28px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .subtitle {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 14px;
+      letter-spacing: 0.04em;
+    }
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+      margin-top: 18px;
+    }
+    h2 {
+      margin: 0 0 10px;
+      color: var(--gold);
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    ul { margin: 0; padding-left: 20px; }
+    li { margin: 6px 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    th, td {
+      border-bottom: 1px solid var(--border);
+      padding: 10px 12px;
+      text-align: left;
+      font-size: 13px;
+    }
+    th {
+      color: var(--gold);
+      background: #141414;
+      letter-spacing: 0.06em;
+    }
+    tr:last-child td { border-bottom: none; }
+    a { color: var(--gold); }
+    code {
+      background: var(--code-bg);
+      color: var(--gold);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: Consolas, "JetBrains Mono", monospace;
+      font-size: 12px;
+    }
+    .report-btn {
+      padding: 10px 20px;
+      border: 1px solid #c9922a;
+      color: #c9922a;
+      background: transparent;
+      display: inline-block;
+      margin-top: 12px;
+      text-decoration: none;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>⬡ SKIA FORGE</h1>
+    <div class="subtitle">Documentation</div>
+
+    <section>
+      <h2>Getting Started</h2>
+      <ul>
+        <li>Install dependencies with <code>npm install</code></li>
+        <li>Build renderer/main with <code>npm run build</code></li>
+        <li>Start desktop app with <code>npm start</code></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Keyboard Shortcuts</h2>
+      <table>
+        <thead>
+          <tr><th>Action</th><th>Shortcut</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Open File</td><td>Ctrl+O</td></tr>
+          <tr><td>Open Folder</td><td>Ctrl+K Ctrl+O</td></tr>
+          <tr><td>Save</td><td>Ctrl+S</td></tr>
+          <tr><td>Find</td><td>Ctrl+F</td></tr>
+          <tr><td>Toggle Terminal</td><td>Ctrl+`</td></tr>
+          <tr><td>Toggle Developer Tools</td><td>Ctrl+Shift+I</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Connecting a Backend</h2>
+      <ul>
+        <li>Open Settings and set Backend URL + Auth Token</li>
+        <li>Use Run &gt; Start SKIA Backend to launch local backend</li>
+        <li>Status bar shows connection state in real time</li>
+      </ul>
+    </section>
+
+    <section id="report">
+      <h2>Report an Issue</h2>
+      <p>To report abuse, bugs, or security concerns with SKIA FORGE:</p>
+      <a class="report-btn" href="mailto:support@skia.dev">Email support@skia.dev</a>
+      <p>For open source issues, visit the project repository and open a GitHub issue.</p>
+    </section>
+  </main>
+</body>
+</html>

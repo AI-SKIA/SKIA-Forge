@@ -1,7 +1,7 @@
 {
   "name": "skia-ide",
   "version": "0.1.0",
-  "description": "SKIA IDE — Sovereign AI-Powered Development Environment",
+  "description": "SKIA FORGE — Sovereign AI-Powered Development Environment",
   "main": "dist/main/main.js",
   "scripts": {
     "start": "electron dist/main/main.js",

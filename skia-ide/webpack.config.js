@@ -56,16 +56,21 @@ module.exports = {
                     to: "vs"
                 },
                 {
-                    from: path.resolve(__dirname, "../logo.png"),
+                    from: path.resolve(__dirname, "assets/logo.png"),
                     to: "assets/logo.png"
                 },
                 {
-                    from: path.resolve(__dirname, "../sidebar-logo.png"),
+                    from: path.resolve(__dirname, "assets/sidebar-logo.png"),
                     to: "assets/sidebar-logo.png"
                 },
                 {
                     from: path.resolve(__dirname, "assets"),
                     to: "assets",
+                    noErrorOnMissing: true
+                },
+                {
+                    from: path.resolve(__dirname, "src/renderer/docs"),
+                    to: "docs",
                     noErrorOnMissing: true
                 }
             ]

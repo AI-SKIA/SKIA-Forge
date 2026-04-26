@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SKIA FORGE</title>
     <link rel="stylesheet" href="styles.css" />
+    <script src="vs/loader.js"></script>
+    <script>
+      require.config({ paths: { vs: 'vs' } });
+    </script>
 </head>
 <body>
     <div id="app-shell">
@@ -19,6 +23,7 @@
                 <div class="nav-item" data-view="forge">FORGE</div>
                 <div class="nav-item" data-view="settings">SETTINGS</div>
             </nav>
+            <div id="explorer-tree"></div>
         </aside>
 
         <main id="center-panel">
@@ -45,12 +50,99 @@
             </div>
 
             <div id="view-settings" class="center-view">
-                <div class="view-header">SETTINGS</div>
-                <label>BACKEND URL</label>
-                <input id="settings-backend-url" type="text" />
-                <label>AUTH TOKEN</label>
-                <input id="settings-auth-token" type="text" />
-                <button id="settings-save-btn">SAVE</button>
+              <div class="view-header">SETTINGS</div>
+
+              <div class="settings-group">
+                <div class="settings-label">APPEARANCE</div>
+                <div class="settings-row">
+                  <span>Theme</span>
+                  <span class="settings-value">SKIA Dark (Default)</span>
+                </div>
+                <div class="settings-row">
+                  <span>Font Size</span>
+                  <div class="settings-controls">
+                    <button id="font-decrease">−</button>
+                    <span id="font-size-display">13px</span>
+                    <button id="font-increase">+</button>
+                  </div>
+                </div>
+                <div class="settings-row">
+                  <span>Minimap</span>
+                  <button id="toggle-minimap" class="settings-toggle">ON</button>
+                </div>
+                <div class="settings-row">
+                  <span>Word Wrap</span>
+                  <button id="toggle-wordwrap" class="settings-toggle">OFF</button>
+                </div>
+              </div>
+
+              <div class="settings-group">
+                <div class="settings-label">EDITOR</div>
+                <div class="settings-row">
+                  <span>Tab Size</span>
+                  <select id="tab-size-select" class="settings-select">
+                    <option value="2">2 spaces</option>
+                    <option value="4" selected>4 spaces</option>
+                  </select>
+                </div>
+                <div class="settings-row">
+                  <span>Auto Save</span>
+                  <button id="toggle-autosave" class="settings-toggle">OFF</button>
+                </div>
+              </div>
+
+              <div class="settings-group">
+                <div class="settings-label">SKIA CONNECTION</div>
+                <div class="settings-row">
+                  <span>Status</span>
+                  <span id="connection-status-display"
+                    class="settings-value">Disconnected</span>
+                </div>
+                <div class="settings-row">
+                  <span>Backend URL</span>
+                  <input id="settings-backend-url"
+                    type="text"
+                    class="settings-input"
+                    placeholder="https://api.skia.ca" />
+                </div>
+                <div class="settings-row">
+                  <span>Auth Token</span>
+                  <input id="settings-auth-token"
+                    type="password"
+                    class="settings-input"
+                    placeholder="••••••••" />
+                </div>
+                <button id="settings-save-btn"
+                  class="settings-save">SAVE CONNECTION</button>
+                <button id="open-docs-btn" class="settings-save" style="margin-top:12px">OPEN DOCUMENTATION</button>
+              </div>
+
+              <div class="settings-group">
+                <div class="settings-label">ABOUT</div>
+                <div class="settings-row">
+                  <span>Version</span>
+                  <span class="settings-value">0.1.0</span>
+                </div>
+                <div class="settings-row">
+                  <span>Build</span>
+                  <span class="settings-value">Sovereign Intelligence</span>
+                </div>
+              </div>
+            </div>
+
+            <div id="terminal-panel" style="display:none">
+              <div id="terminal-header">
+                <span>TERMINAL</span>
+                <button id="terminal-close">×</button>
+              </div>
+              <div id="terminal-output"></div>
+              <div id="terminal-input-row">
+                <span class="terminal-prompt">❯</span>
+                <input id="terminal-input"
+                  type="text"
+                  placeholder="Enter command..."
+                  spellcheck="false" />
+              </div>
             </div>
         </main>
 
@@ -66,13 +158,16 @@
             <section id="chat-messages"></section>
 
             <div id="chat-controls">
-                <textarea id="chat-input" placeholder="Ask SKIA anything..."></textarea>
+                <textarea id="chat-input"
+                  placeholder="Ask SKIA anything..."></textarea>
                 <div class="chat-buttons">
                     <button id="chat-clear-btn">CLEAR</button>
                     <button id="chat-cancel-btn">CANCEL</button>
                     <button id="chat-send-btn">SEND</button>
                 </div>
-                <div id="chat-tagline">One ecosystem. One universe. All SKIA.</div>
+                <div id="chat-tagline">
+                  One ecosystem. One universe. All SKIA.
+                </div>
             </div>
         </aside>
     </div>

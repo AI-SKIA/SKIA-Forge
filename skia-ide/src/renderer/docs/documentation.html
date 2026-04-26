@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SKIA FORGE - Documentation</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --gold: #d4af37;
+      --text: #c9b37a;
+      --border: #2a1f00;
+      --panel: #120d00;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.45;
+    }
+    main { max-width: 980px; margin: 0 auto; padding: 24px; }
+    h1, h2 { color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; }
+    h1 { font-size: 24px; margin: 0 0 16px; }
+    h2 { font-size: 14px; margin: 24px 0 10px; }
+    section {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      padding: 14px;
+      margin-bottom: 12px;
+    }
+    ul { margin: 0; padding-left: 18px; }
+    li { margin: 6px 0; }
+    table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 8px;
+      font-size: 12px;
+      text-align: left;
+    }
+    th { color: var(--gold); background: #140f00; }
+    footer {
+      margin-top: 28px;
+      border-top: 1px solid var(--border);
+      padding-top: 12px;
+      color: rgba(212, 175, 55, 0.7);
+      letter-spacing: 0.05em;
+    }
+    code { color: var(--gold); }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>SKIA FORGE - Documentation</h1>
+
+    <section><h2>Getting Started</h2><ul><li>Install dependencies with <code>npm install</code>.</li><li>Build with <code>npm run build</code>.</li><li>Launch with <code>npm start</code>.</li></ul></section>
+    <section><h2>Explorer</h2><ul><li>Use File > Open Folder to load a workspace.</li><li>Browse the recursive file tree in the left panel.</li><li>Click a file to open it in the editor.</li></ul></section>
+    <section><h2>Editor</h2><ul><li>Monaco editor with SKIA dark styling.</li><li>Menu shortcuts trigger editor actions.</li><li>Language detection by extension for common file types.</li></ul></section>
+    <section><h2>Search</h2><ul><li>Switch to Search view to find text across files.</li><li>Use Find in Files from the Edit menu.</li></ul></section>
+    <section><h2>Agent</h2><ul><li>Describe a task in the Agent input.</li><li>Run task from view controls or menu command.</li></ul></section>
+    <section><h2>Forge</h2><ul><li>Control plane view for mode and governance context.</li><li>Displays backend module status telemetry.</li></ul></section>
+    <section><h2>Settings</h2><ul><li>Configure backend URL.</li><li>Configure auth token.</li></ul></section>
+    <section><h2>Chat Panel</h2><ul><li>Ask SKIA anything from the chat panel.</li><li>Use New Chat and Clear controls as needed.</li></ul></section>
+
+    <section>
+      <h2>Keyboard Shortcuts</h2>
+      <table>
+        <thead><tr><th>Action</th><th>Shortcut</th></tr></thead>
+        <tbody>
+          <tr><td>New File</td><td>Ctrl+N</td></tr>
+          <tr><td>New Window</td><td>Ctrl+Shift+N</td></tr>
+          <tr><td>Open File</td><td>Ctrl+O</td></tr>
+          <tr><td>Open Folder</td><td>Ctrl+K Ctrl+O</td></tr>
+          <tr><td>Save</td><td>Ctrl+S</td></tr>
+          <tr><td>Save As</td><td>Ctrl+Shift+S</td></tr>
+          <tr><td>Save All</td><td>Ctrl+K S</td></tr>
+          <tr><td>Close Editor</td><td>Ctrl+F4</td></tr>
+          <tr><td>Close Window</td><td>Alt+F4 / Ctrl+W</td></tr>
+          <tr><td>Undo / Redo</td><td>Ctrl+Z / Ctrl+Shift+Z</td></tr>
+          <tr><td>Cut / Copy / Paste</td><td>Ctrl+X / Ctrl+C / Ctrl+V</td></tr>
+          <tr><td>Select All</td><td>Ctrl+A</td></tr>
+          <tr><td>Find / Replace</td><td>Ctrl+F / Ctrl+H</td></tr>
+          <tr><td>Find in Files</td><td>Ctrl+Shift+F</td></tr>
+          <tr><td>Toggle Line Comment</td><td>Ctrl+/</td></tr>
+          <tr><td>Toggle Block Comment</td><td>Ctrl+Shift+A</td></tr>
+          <tr><td>Expand / Shrink Selection</td><td>Shift+Alt+Right / Shift+Alt+Left</td></tr>
+          <tr><td>Copy Line Up / Down</td><td>Shift+Alt+Up / Shift+Alt+Down</td></tr>
+          <tr><td>Move Line Up / Down</td><td>Alt+Up / Alt+Down</td></tr>
+          <tr><td>Add Cursor Above / Below</td><td>Ctrl+Alt+Up / Ctrl+Alt+Down</td></tr>
+          <tr><td>Explorer / Agent / Forge / Settings</td><td>Ctrl+Shift+E / Ctrl+Shift+A / Ctrl+Shift+G / Ctrl+,</td></tr>
+          <tr><td>Zoom In / Out / Reset</td><td>Ctrl+= / Ctrl+- / Ctrl+0</td></tr>
+          <tr><td>Full Screen</td><td>F11</td></tr>
+          <tr><td>Toggle Dev Tools</td><td>Ctrl+Shift+I</td></tr>
+          <tr><td>Minimize</td><td>Ctrl+M</td></tr>
+          <tr><td>Open Terminal</td><td>Ctrl+`</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>One ecosystem. One universe. All SKIA.</footer>
+  </main>
+</body>
+</html>
