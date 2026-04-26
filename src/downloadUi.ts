@@ -7,6 +7,11 @@ type DownloadPlatform = {
   file: string;
 };
 
+type ValueCard = {
+  title: string;
+  body: string;
+};
+
 const PLATFORMS: DownloadPlatform[] = [
   {
     id: "windows",
@@ -58,7 +63,35 @@ const PLATFORMS: DownloadPlatform[] = [
   }
 ];
 
+const VALUE_CARDS: ValueCard[] = [
+  {
+    title: "Frontier-Ready Intelligence Layer",
+    body: "SKIA Forge is built on a hardened intelligence stack validated across coding, tool use, reasoning, long context, vision, and multimodal workflows."
+  },
+  {
+    title: "Eval-Gated Reliability",
+    body: "Regression-sensitive CI gates and full test coverage protect quality, so intelligence regressions are blocked before release."
+  },
+  {
+    title: "Production-Grade Operations",
+    body: "Forge ships with health checks, governance telemetry, status surfaces, and deterministic routing controls designed for operational trust."
+  },
+  {
+    title: "One Intelligence Across Surfaces",
+    body: "Use Forge on web for API-powered execution, or install desktop for full local filesystem and terminal workflows."
+  }
+];
+
 export function renderDownloadHtml(releaseBase: string): string {
+  const valueCards = VALUE_CARDS.map(
+    (card) => `
+      <article class="value-card">
+        <h3 class="value-card-title">${card.title}</h3>
+        <p class="value-card-body">${card.body}</p>
+      </article>
+    `
+  ).join("");
+
   const cards = PLATFORMS.map(
     (p) => `
       <a id="${p.id}" class="download-card" data-file="${p.file}" href="${releaseBase}/${p.file}">
@@ -310,6 +343,75 @@ export function renderDownloadHtml(releaseBase: string): string {
       border-color: rgba(212,175,55,0.55);
     }
     .download-card--hidden { display: none; }
+    .value-section {
+      width: 100%;
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .value-card {
+      border: 1px solid rgba(212,175,55,0.24);
+      border-radius: 10px;
+      background: rgba(0,0,0,0.42);
+      padding: 14px;
+      min-height: 136px;
+    }
+    .value-card-title {
+      margin: 0 0 8px;
+      color: var(--skia-gold);
+      font-size: 12px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+    .value-card-body {
+      margin: 0;
+      font-family: Nunito, Arial, sans-serif;
+      color: var(--skia-text-soft);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .journey {
+      width: 100%;
+      border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 10px;
+      background: rgba(0,0,0,0.4);
+      padding: 12px 14px;
+      margin-top: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .journey-title {
+      margin: 0 0 2px;
+      color: var(--skia-gold);
+      font-size: 11px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+    .journey-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-family: Nunito, Arial, sans-serif;
+      color: var(--skia-text-soft);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .journey-step {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      border: 1px solid rgba(212,175,55,0.35);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--skia-gold);
+      font-size: 11px;
+      font-family: Orbitron, sans-serif;
+    }
     .download-card-icon {
       width: 28px;
       height: 28px;
@@ -499,14 +601,27 @@ export function renderDownloadHtml(releaseBase: string): string {
     <section class="feature-page-content">
       <img src="https://skia.ca/sidebar-logo.png" alt="SKIA" class="feature-page-logo" />
       <div class="feature-page-header">
-        <h1 class="feature-page-title">Download SKIA Forge</h1>
-        <p class="feature-page-subtitle">She Knows It All - available on every platform</p>
+        <h1 class="feature-page-title">SKIA Forge</h1>
+        <p class="feature-page-subtitle">She Knows It All - frontier-grade, eval-gated intelligence for real software delivery</p>
         <div class="hero-actions">
           <a class="feature-tab" href="/forge/app">Sign In</a>
           <a class="feature-tab" href="/forge/app">Register</a>
           <a class="feature-tab" href="/forge#windows">Download App</a>
         </div>
       </div>
+      <section class="value-section">${valueCards}</section>
+      <section class="journey">
+        <h2 class="journey-title">How Forge + SKIA Works</h2>
+        <div class="journey-row"><span class="journey-step">1</span><span>Sign in on web for immediate access, or install desktop for full local workflow control.</span></div>
+        <div class="journey-row"><span class="journey-step">2</span><span>Choose the right execution path: context, agent, SDLC, production, healing, and architecture.</span></div>
+        <div class="journey-row"><span class="journey-step">3</span><span>Get structured outputs designed for real use, not generic draft text.</span></div>
+      </section>
+      <section class="journey">
+        <h2 class="journey-title">Why Teams Choose SKIA</h2>
+        <div class="journey-row"><span class="journey-step">A</span><span>Benchmark-aligned quality on your critical dimensions: coding, tools, reasoning, long context, vision, and TTS.</span></div>
+        <div class="journey-row"><span class="journey-step">B</span><span>System-level maturity beyond model output: observability, routing invariants, health checks, and integration governance.</span></div>
+        <div class="journey-row"><span class="journey-step">C</span><span>Truth-based release distribution: only published installers are shown for download.</span></div>
+      </section>
       <div id="updateBanner" class="update-banner"></div>
       <div id="availabilityBanner" class="availability-banner"></div>
       <div class="download-grid">${cards}</div>
