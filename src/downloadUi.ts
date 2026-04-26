@@ -1,29 +1,72 @@
 type DownloadPlatform = {
+  id: string;
   name: string;
-  detail: string;
+  version: string;
+  icon: string;
+  hint: string;
   file: string;
-  badge: string;
 };
 
 const PLATFORMS: DownloadPlatform[] = [
-  { name: "Windows", detail: "Windows 10/11 x64", file: "SKIA-Desktop-windows-x64.exe", badge: ".exe" },
-  { name: "macOS (Intel)", detail: "macOS 11+ x64", file: "SKIA-Desktop-mac-x64.dmg", badge: ".dmg" },
-  { name: "macOS (Apple Silicon)", detail: "macOS 11+ arm64", file: "SKIA-Desktop-mac-arm64.dmg", badge: ".dmg" },
-  { name: "Linux (AppImage)", detail: "Ubuntu/Fedora/Arch", file: "SKIA-Desktop-linux-x64.AppImage", badge: ".AppImage" },
-  { name: "Linux (Debian)", detail: "Debian/Ubuntu", file: "SKIA-Desktop-linux-x64.deb", badge: ".deb" },
-  { name: "Linux (RPM)", detail: "RHEL/Fedora", file: "SKIA-Desktop-linux-x64.rpm", badge: ".rpm" }
+  {
+    id: "windows",
+    name: "Windows",
+    version: "Windows 10/11",
+    icon: "windows",
+    hint: "64-bit installer (.exe)",
+    file: "SKIA-Desktop-windows-x64.exe"
+  },
+  {
+    id: "mac-intel",
+    name: "macOS (Intel)",
+    version: "macOS 11+",
+    icon: "apple",
+    hint: "Intel x64",
+    file: "SKIA-Desktop-mac-x64.dmg"
+  },
+  {
+    id: "mac-arm",
+    name: "macOS (Apple Silicon)",
+    version: "macOS 11+ M1/M2/M3",
+    icon: "apple",
+    hint: "Apple Silicon (M1/M2/M3)",
+    file: "SKIA-Desktop-mac-arm64.dmg"
+  },
+  {
+    id: "linux-appimage",
+    name: "Linux",
+    version: "Ubuntu, Fedora, Arch",
+    icon: "linux",
+    hint: "AppImage (any distro)",
+    file: "SKIA-Desktop-linux-x64.AppImage"
+  },
+  {
+    id: "linux-deb",
+    name: "Linux (.deb)",
+    version: "Ubuntu / Debian",
+    icon: "linux",
+    hint: "Deb package",
+    file: "SKIA-Desktop-linux-x64.deb"
+  },
+  {
+    id: "linux-rpm",
+    name: "Linux (.rpm)",
+    version: "Fedora / RHEL",
+    icon: "linux",
+    hint: "RPM package",
+    file: "SKIA-Desktop-linux-x64.rpm"
+  }
 ];
 
 export function renderDownloadHtml(releaseBase: string): string {
   const cards = PLATFORMS.map(
     (p) => `
-      <a class="card" href="${releaseBase}/${p.file}">
-        <div class="card-top">
-          <div class="platform">${p.name}</div>
-          <span class="badge">${p.badge}</span>
-        </div>
-        <div class="detail">${p.detail}</div>
-        <div class="action">Download ${p.file}</div>
+      <a id="${p.id}" class="download-card" href="${releaseBase}/${p.file}">
+        <div class="download-card-icon ${p.icon}"></div>
+        <div class="download-card-name">${p.name}</div>
+        <div class="download-card-version">${p.version}</div>
+        <div class="download-card-hint">${p.hint}</div>
+        <div class="download-card-btn">Download</div>
       </a>
     `
   ).join("");
@@ -35,30 +78,30 @@ export function renderDownloadHtml(releaseBase: string): string {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/favicon.png" />
-  <title>SKIA Forge | The Sovereign AI Coding Platform</title>
+  <title>SKIA Forge | Download</title>
   <meta
     name="description"
-    content="SKIA Forge is the sovereign AI development platform: one intelligence across desktop, web, mobile, and voice with governed orchestration, structured outputs, and enterprise-ready controls."
+    content="Download SKIA Forge for Windows, macOS, and Linux. One sovereign intelligence across desktop, web, mobile, and voice."
   />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="SKIA Forge" />
-  <meta property="og:title" content="SKIA Forge | The Sovereign AI Coding Platform" />
+  <meta property="og:title" content="SKIA Forge | Download" />
   <meta
     property="og:description"
-    content="SKIA Forge is the sovereign AI development platform: one intelligence across desktop, web, mobile, and voice with governed orchestration, structured outputs, and enterprise-ready controls."
+    content="Download SKIA Forge for Windows, macOS, and Linux. One sovereign intelligence across desktop, web, mobile, and voice."
   />
-  <meta property="og:url" content="https://skia.ca/download" />
+  <meta property="og:url" content="https://skia.ca/forge" />
   <meta property="og:image" content="https://skia.ca/og/skia-forge-preview.svg" />
   <meta property="og:image:secure_url" content="https://skia.ca/og/skia-forge-preview.svg" />
   <meta property="og:image:type" content="image/svg+xml" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="SKIA Forge - The Sovereign AI Coding Platform" />
+  <meta property="og:image:alt" content="SKIA Forge Download" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="SKIA Forge | The Sovereign AI Coding Platform" />
+  <meta name="twitter:title" content="SKIA Forge | Download" />
   <meta
     name="twitter:description"
-    content="SKIA Forge is the sovereign AI development platform: one intelligence across desktop, web, mobile, and voice with governed orchestration, structured outputs, and enterprise-ready controls."
+    content="Download SKIA Forge for Windows, macOS, and Linux."
   />
   <meta name="twitter:image" content="https://skia.ca/og/skia-forge-preview.svg" />
   <style>
@@ -66,265 +109,21 @@ export function renderDownloadHtml(releaseBase: string): string {
     @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap');
 
     :root {
-      --skia-bg-primary: #0a0a0a;
-      --skia-bg-card: #111111;
       --skia-gold: #d4af37;
-      --skia-gold-muted: #a8892a;
-      --skia-line: rgba(212, 175, 55, 0.28);
-      --skia-text-soft: rgba(248, 239, 211, 0.86);
-      --skia-shadow-gold: 0 0 16px rgba(212, 175, 55, 0.14);
+      --skia-gold-muted: rgba(212,175,55,0.62);
+      --skia-bg: #080400;
+      --skia-card-bg: linear-gradient(135deg, rgba(15,8,0,0.95) 0%, rgba(25,14,0,0.95) 100%);
+      --skia-border: rgba(212,175,55,0.3);
+      --skia-text-soft: rgba(255,255,255,0.68);
     }
 
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      background:
-        radial-gradient(circle at 50% 8%, rgba(212, 175, 55, 0.2), rgba(10, 10, 10, 0) 36%),
-        radial-gradient(circle at 20% 72%, rgba(212, 175, 55, 0.08), rgba(10, 10, 10, 0) 34%),
-        var(--skia-bg-primary);
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,180,0,0.06) 0%, transparent 70%), var(--skia-bg);
       color: var(--skia-gold);
-      font-family: Orbitron, Segoe UI, Arial, sans-serif;
+      font-family: Orbitron, sans-serif;
       min-height: 100vh;
-    }
-
-    .wrap { max-width: 1120px; margin: 0 auto; padding: 28px 20px 58px; }
-    .top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 24px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--skia-line);
-    }
-    .brand {
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #f7e7b3;
-      text-shadow: var(--skia-shadow-gold);
-    }
-    .nav-left, .nav-right { display: flex; gap: 8px; flex-wrap: wrap; }
-    .nav-left a, .nav-right a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 36px;
-      padding: 9px 20px;
-      font-family: 'Orbitron', sans-serif;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(212,175,55,0.75);
-      text-decoration: none;
-      border: 1px solid transparent;
-      border-radius: 6px;
-      background: transparent;
-      transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-    .nav-left a:hover, .nav-right a:hover {
-      color: #d4af37;
-      background: rgba(212,175,55,0.07);
-      border-color: rgba(212,175,55,0.18);
-      box-shadow: 0 0 16px rgba(212,175,55,0.08);
-    }
-
-    .hero {
-      background:
-        linear-gradient(180deg, rgba(20, 15, 5, 0.92), rgba(8, 8, 8, 0.94));
-      border: 1px solid var(--skia-line);
-      box-shadow: var(--skia-shadow-gold);
-      padding: 30px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 72px;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(212,175,55,0), rgba(212,175,55,0.6), rgba(212,175,55,0));
-      pointer-events: none;
-    }
-    .hero::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      top: 132px;
-      width: 70%;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(212,175,55,0), rgba(212,175,55,0.42), rgba(212,175,55,0));
-      pointer-events: none;
-    }
-
-    .brand-stage {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin-bottom: 18px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid rgba(212, 175, 55, 0.18);
-    }
-    .brand-stage img {
-      width: 112px;
-      height: auto;
-      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.35));
-    }
-    .brand-stage .sig {
-      color: #f2dc9a;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-size: 12px;
-      text-shadow: var(--skia-shadow-gold);
-    }
-
-    h1 {
-      margin: 0 0 10px;
-      font-size: 38px;
-      line-height: 1.16;
-      color: #fff2c8;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-    }
-    p {
-      margin: 0;
-      color: var(--skia-text-soft);
-      line-height: 1.7;
-      font-size: 14px;
-      font-family: Nunito, Segoe UI, Arial, sans-serif;
-    }
-    .cta-row { margin-top: 18px; display: flex; gap: 10px; flex-wrap: wrap; }
-    .btn {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid #d4af37;
-      color: #d4af37;
-      background: linear-gradient(180deg, rgba(26, 15, 0, 0.88) 0%, rgba(13, 9, 0, 0.96) 100%);
-      padding: 12px 24px;
-      min-height: 50px;
-      text-decoration: none;
-      border-radius: 14px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 16px;
-      font-family: 'Orbitron', sans-serif;
-      transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-    }
-    .btn:hover {
-      background: linear-gradient(180deg, rgba(42, 24, 0, 0.94) 0%, rgba(18, 12, 0, 0.98) 100%);
-      border-color: #d4af37;
-      box-shadow: 0 0 18px rgba(212,175,55,0.18), inset 0 0 0 1px rgba(212,175,55,0.12);
-      transform: translateY(-1px);
-    }
-    .btn.primary {
-      background: rgba(212,175,55,0.1);
-      border-color: rgba(212,175,55,0.55);
-      box-shadow: 0 0 20px rgba(212,175,55,0.1), inset 0 0 12px rgba(212,175,55,0.04);
-    }
-
-    .links { margin-top: 14px; }
-    .links a {
-      color: var(--skia-gold);
-      text-decoration: none;
-      margin-right: 14px;
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .links a:hover { color: #f7e7b3; }
-
-    .grid {
-      margin-top: 22px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-      gap: 14px;
-    }
-    .card {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      background: linear-gradient(180deg, rgba(18, 14, 6, 0.86), rgba(10, 10, 10, 0.92));
-      border: 1px solid var(--skia-line);
-      border-radius: 0;
-      padding: 14px;
-      transition: border-color 120ms ease, box-shadow 120ms ease, transform 120ms ease;
-    }
-    .card:hover {
-      border-color: rgba(212, 175, 55, 0.72);
-      box-shadow: var(--skia-shadow-gold);
-      transform: translateY(-1px);
-    }
-    .card-top { display: flex; justify-content: space-between; align-items: center; }
-    .platform {
-      font-weight: 600;
-      color: #f7e7b3;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      font-size: 14px;
-    }
-    .badge {
-      font-size: 10px;
-      color: var(--skia-gold);
-      border: 1px solid var(--skia-line);
-      border-radius: 0;
-      padding: 3px 8px;
-      letter-spacing: 0.1em;
-    }
-    .detail {
-      margin-top: 8px;
-      color: var(--skia-text-soft);
-      font-size: 13px;
-      font-family: Nunito, Segoe UI, Arial, sans-serif;
-    }
-    .action {
-      margin-top: 12px;
-      color: var(--skia-gold);
-      font-size: 12px;
-      word-break: break-all;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .note {
-      margin-top: 16px;
-      font-size: 12px;
-      color: var(--skia-gold-muted);
-      letter-spacing: 0.07em;
-      text-transform: uppercase;
-    }
-    .nav-shell { display: flex; align-items: center; gap: 18px; }
-    .hero-shot {
-      margin-top: 18px;
-      border: 1px solid var(--skia-line);
-      border-radius: 0;
-      overflow: hidden;
-      background: rgba(15, 13, 0, 0.46);
-      color: var(--skia-text-soft);
-      padding: 14px;
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .footer-mark {
-      margin-top: 22px;
-      text-align: center;
-      color: #d4af37;
-      letter-spacing: 0.08em;
-      font-size: 13px;
-    }
-    .footer-copy {
-      margin-top: 4px;
-      text-align: center;
-      color: #ffffff;
-      font-size: 12px;
-      letter-spacing: 0.03em;
-      opacity: 0.72;
     }
 
     .pc-sidebar-backdrop {
@@ -356,8 +155,7 @@ export function renderDownloadHtml(releaseBase: string): string {
       cursor: pointer;
       box-shadow: 4px 0 20px rgba(212,175,55,0.15), inset -1px 0 0 rgba(212,175,55,0.08);
     }
-    .pc-sidebar-tab-icon { font-size: 20px; color: #d4af37; line-height: 1; }
-    .pc-sidebar-tab-text { display: none; }
+    .pc-sidebar-tab-icon { font-size: 20px; color: var(--skia-gold); line-height: 1; }
     .pc-sidebar {
       position: fixed;
       top: 0;
@@ -384,7 +182,7 @@ export function renderDownloadHtml(releaseBase: string): string {
     }
     .pc-sidebar-logo-img { width: 90px; filter: drop-shadow(0 0 12px rgba(212,175,55,0.3)); }
     .pc-sidebar-logo-tagline {
-      font-family: 'Orbitron', sans-serif;
+      font-family: Orbitron, sans-serif;
       font-size: 9px;
       letter-spacing: 3px;
       color: rgba(212,175,55,0.5);
@@ -409,27 +207,247 @@ export function renderDownloadHtml(releaseBase: string): string {
       justify-content: center;
       width: 100%;
       padding: 9px 20px;
-      font-family: 'Orbitron', sans-serif;
+      font-family: Orbitron, sans-serif;
       font-size: 11px;
+      font-weight: 400;
       letter-spacing: 2px;
       text-transform: uppercase;
       color: rgba(212,175,55,0.75);
       text-decoration: none;
       border: 1px solid transparent;
       border-radius: 6px;
-      transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+      background: transparent;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .pc-sidebar-btn::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 20%;
+      height: 60%;
+      width: 2px;
+      background: rgba(212,175,55,0);
+      border-radius: 2px;
+      transition: background 0.2s ease;
     }
     .pc-sidebar-btn:hover {
-      color: #d4af37;
+      color: var(--skia-gold);
       background: rgba(212,175,55,0.07);
       border-color: rgba(212,175,55,0.18);
       transform: translateX(3px);
       box-shadow: 0 0 16px rgba(212,175,55,0.08);
     }
+    .pc-sidebar-btn:hover::before { background: rgba(212,175,55,0.7); }
+
+    .wrap {
+      width: 100%;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 48px 24px 64px;
+    }
+    .feature-page-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .feature-page-logo {
+      width: 160px;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 24px rgba(212,175,55,0.4)) drop-shadow(0 0 48px rgba(212,175,55,0.15));
+    }
+    .feature-page-header { text-align: center; }
+    .feature-page-title {
+      margin: 0 0 6px;
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--skia-gold);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-shadow: 0 0 24px rgba(212,175,55,0.25);
+    }
+    .feature-page-subtitle {
+      margin: 0;
+      font-family: Nunito, Arial, sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 1px;
+    }
+
+    .download-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 8px;
+    }
+    .download-card {
+      padding: 18px;
+      border-radius: 10px;
+      background: var(--skia-card-bg);
+      border: 1px solid var(--skia-border);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .download-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(212,175,55,0.15);
+      border-color: rgba(212,175,55,0.55);
+    }
+    .download-card-icon {
+      width: 28px;
+      height: 28px;
+      border: 1px solid rgba(212,175,55,0.35);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 4px;
+      background: rgba(212,175,55,0.08);
+    }
+    .download-card-icon.windows::before { content: "W"; font-size: 12px; color: var(--skia-gold); }
+    .download-card-icon.apple::before { content: "A"; font-size: 12px; color: var(--skia-gold); }
+    .download-card-icon.linux::before { content: "L"; font-size: 12px; color: var(--skia-gold); }
+    .download-card-name {
+      font-size: 14px;
+      color: var(--skia-gold);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .download-card-version {
+      font-family: Nunito, Arial, sans-serif;
+      font-size: 12px;
+      color: rgba(212,175,55,0.65);
+    }
+    .download-card-hint {
+      font-family: Nunito, Arial, sans-serif;
+      font-size: 12px;
+      color: var(--skia-text-soft);
+    }
+    .download-card-btn {
+      margin-top: 8px;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--skia-gold);
+    }
+
+    .download-actions {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .feature-tab {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 18px;
+      border-radius: 6px;
+      border: 1px solid rgba(212,175,55,0.2);
+      background: transparent;
+      color: rgba(212,175,55,0.8);
+      text-decoration: none;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
+    }
+    .feature-tab:hover {
+      border-color: rgba(212,175,55,0.45);
+      color: var(--skia-gold);
+      background: rgba(212,175,55,0.08);
+    }
+
+    .download-instructions {
+      width: 100%;
+      margin-top: 6px;
+      border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 10px;
+      background: rgba(0,0,0,0.45);
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .download-instruction-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: Nunito, Arial, sans-serif;
+      color: var(--skia-text-soft);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .download-step {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      border: 1px solid rgba(212,175,55,0.35);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--skia-gold);
+      font-size: 11px;
+      font-family: Orbitron, sans-serif;
+    }
+
+    .update-banner {
+      width: 100%;
+      margin-top: 4px;
+      border: 1px solid rgba(212,175,55,0.35);
+      background: rgba(212,175,55,0.08);
+      color: #f7e7b3;
+      padding: 10px 12px;
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: none;
+    }
+    .update-banner strong { color: var(--skia-gold); }
+
+    .footer-mark {
+      margin-top: 38px;
+      text-align: center;
+      font-family: Orbitron, sans-serif;
+      color: rgba(212,175,55,1);
+      letter-spacing: 0.08em;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+    .footer-copy {
+      text-align: center;
+      font-family: Orbitron, sans-serif;
+      color: rgba(212,175,55,0.75);
+      font-size: 12px;
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+      font-size: 12px;
+    }
+    .footer-links a { color: var(--skia-gold); text-decoration: none; }
+    .footer-links .sep { color: rgba(212,175,55,0.4); }
 
     @media (max-width: 860px) {
-      .top, .nav-shell { flex-direction: column; align-items: flex-start; gap: 10px; }
-      h1 { font-size: 28px; }
+      .wrap { padding: 24px 16px 48px; }
+      .feature-page-title { font-size: 24px; }
       .pc-sidebar, .pc-sidebar-tab, .pc-sidebar-backdrop { display: none !important; }
     }
   </style>
@@ -438,64 +456,56 @@ export function renderDownloadHtml(releaseBase: string): string {
   <div id="pcSidebarBackdrop" class="pc-sidebar-backdrop"></div>
   <button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation">
     <span class="pc-sidebar-tab-icon">☰</span>
-    <span class="pc-sidebar-tab-text">MENU</span>
   </button>
-  <aside id="pcSidebar" class="pc-sidebar" aria-label="SKIA navigation">
+  <aside id="pcSidebar" class="pc-sidebar" aria-label="SKIA Forge navigation">
     <div class="pc-sidebar-logo">
       <img src="https://skia.ca/sidebar-logo.png" alt="SKIA" class="pc-sidebar-logo-img" />
       <span class="pc-sidebar-logo-tagline">She Knows It All</span>
     </div>
     <div class="pc-sidebar-divider"></div>
     <nav class="pc-sidebar-nav">
-      <a class="pc-sidebar-btn" href="/">Home</a>
-      <a class="pc-sidebar-btn" href="/forge/platform">Dashboard</a>
-      <a class="pc-sidebar-btn" href="https://skia.ca/chat">Chat</a>
-      <a class="pc-sidebar-btn" href="https://skia.ca/image">Image</a>
-      <a class="pc-sidebar-btn" href="https://skia.ca/video">Video</a>
-      <a class="pc-sidebar-btn" href="https://skia.ca/settings">Settings</a>
+      <a class="pc-sidebar-btn" href="/forge">Forge Home</a>
+      <a class="pc-sidebar-btn" href="/forge/platform">Product</a>
+      <a class="pc-sidebar-btn" href="/docs/ENTERPRISE_READINESS_CHECKLIST.md">Enterprise</a>
+      <a class="pc-sidebar-btn" href="/docs/PRICING_AND_PACKAGES.md">Pricing</a>
+      <a class="pc-sidebar-btn" href="/docs/README.md">Resources</a>
       <div class="pc-sidebar-divider"></div>
-      <a class="pc-sidebar-btn" href="https://skia.ca/login">Login</a>
-      <a class="pc-sidebar-btn" href="https://skia.ca/register">Register</a>
+      <a class="pc-sidebar-btn" href="/forge/app">Sign In</a>
+      <a class="pc-sidebar-btn" href="/forge/app">Register</a>
+      <a class="pc-sidebar-btn" href="/forge">Download IDE</a>
     </nav>
   </aside>
+
   <div class="wrap">
-    <div class="top">
-      <div class="brand">SKIA</div>
-      <div class="nav-shell">
-        <div class="nav-left">
-          <a href="/forge/platform">Product</a>
-          <a href="/docs/ENTERPRISE_READINESS_CHECKLIST.md">Enterprise</a>
-          <a href="/docs/PRICING_AND_PACKAGES.md">Pricing</a>
-          <a href="/docs/README.md">Resources</a>
-        </div>
-        <div class="nav-right">
-          <a href="https://skia.ca/login">Sign in</a>
-          <a href="https://skia.ca/register">Register</a>
-          <a href="/download">Download</a>
-        </div>
+    <section class="feature-page-content">
+      <img src="https://skia.ca/sidebar-logo.png" alt="SKIA" class="feature-page-logo" />
+      <div class="feature-page-header">
+        <h1 class="feature-page-title">Download SKIA Forge</h1>
+        <p class="feature-page-subtitle">She Knows It All - available on every platform</p>
       </div>
-    </div>
-    <section class="hero">
-      <div class="brand-stage">
-        <img src="https://skia.ca/sidebar-logo.png" alt="SKIA logo" />
-        <div class="sig">She Knows It All</div>
+      <div id="updateBanner" class="update-banner"></div>
+      <div class="download-grid">${cards}</div>
+      <div class="download-actions">
+        <a class="feature-tab" href="${releaseBase}/SHA256SUMS.txt">Download SHA256 checksums</a>
+        <a class="feature-tab" href="https://github.com/AI-SKIA/skia/releases/latest" target="_blank" rel="noreferrer">View release notes and assets</a>
       </div>
-      <h1>SKIA Forge: one sovereign intelligence for governed AI development.</h1>
-      <p>From desktop to web, SKIA delivers structured, production-grade output with orchestration, policy controls, and enterprise-ready reliability.</p>
-      <div class="cta-row">
-        <a class="btn primary" href="https://skia.ca/register">Get Started</a>
-        <a class="btn" href="https://skia.ca/login">Sign In</a>
-        <a class="btn" href="/download">Download IDE</a>
+      <div class="download-instructions">
+        <div class="download-instruction-row"><span class="download-step">1</span><span>Download the installer for your platform above.</span></div>
+        <div class="download-instruction-row"><span class="download-step">2</span><span>Run the installer and follow the setup flow.</span></div>
+        <div class="download-instruction-row"><span class="download-step">3</span><span>Open SKIA Forge and sign in with your account.</span></div>
+        <div class="download-instruction-row"><span class="download-step">4</span><span>Desktop clients check for updates automatically.</span></div>
+        <div class="download-instruction-row"><span class="download-step">5</span><span>Verify installer hash from SHA256SUMS before install.</span></div>
       </div>
-      <div class="links">
-        <a href="${releaseBase}/SHA256SUMS.txt">SHA256 checksums</a>
-        <a href="https://github.com/AI-SKIA/skia/releases/latest">Release notes</a>
-      </div>
-      <div class="hero-shot">SKIA Forge control-plane demo: governance modes, orchestration decisions, and integration probes available at <strong>/forge/platform</strong>.</div>
-      <div class="grid">${cards}</div>
-      <div class="note">Tip: verify installer hashes before distribution in enterprise environments.</div>
+
       <div class="footer-mark">One ecosystem. One universe. All SKIA.</div>
       <div class="footer-copy">© 2026 SKIA Singularity Continuum. The future is an understatement.</div>
+      <div class="footer-links">
+        <a href="/docs/README.md">Resources</a>
+        <span class="sep">|</span>
+        <a href="/docs/SECURITY_GUIDE.md">Security</a>
+        <span class="sep">|</span>
+        <a href="/docs/SUPPORT.md">Contact & Support</a>
+      </div>
     </section>
   </div>
   <script>
@@ -503,21 +513,39 @@ export function renderDownloadHtml(releaseBase: string): string {
       const sidebar = document.getElementById('pcSidebar');
       const tab = document.getElementById('pcSidebarTab');
       const backdrop = document.getElementById('pcSidebarBackdrop');
-      if (!sidebar || !tab || !backdrop) return;
-      const openSidebar = () => {
-        sidebar.classList.add('pc-sidebar--open');
-        backdrop.style.display = 'block';
-      };
-      const closeSidebar = () => {
-        sidebar.classList.remove('pc-sidebar--open');
-        backdrop.style.display = 'none';
-      };
-      tab.addEventListener('click', openSidebar);
-      backdrop.addEventListener('click', closeSidebar);
-      sidebar.addEventListener('click', (e) => {
-        const target = e.target;
-        if (target && target.tagName === 'A') closeSidebar();
-      });
+      if (sidebar && tab && backdrop) {
+        const openSidebar = () => {
+          sidebar.classList.add('pc-sidebar--open');
+          backdrop.style.display = 'block';
+        };
+        const closeSidebar = () => {
+          sidebar.classList.remove('pc-sidebar--open');
+          backdrop.style.display = 'none';
+        };
+        tab.addEventListener('click', openSidebar);
+        backdrop.addEventListener('click', closeSidebar);
+        sidebar.addEventListener('click', (e) => {
+          const target = e.target;
+          if (target && target.tagName === 'A') closeSidebar();
+        </div>
+        });
+      }
+
+      const updateBanner = document.getElementById('updateBanner');
+      fetch('/api/app/version-check', { cache: 'no-store' })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((payload) => {
+          if (!payload || !updateBanner) return;
+          if (!payload.updateAvailable || !payload.latestVersion) return;
+          updateBanner.innerHTML =
+            '<strong>Update available:</strong> v' +
+            String(payload.latestVersion).replace(/^v/i, '') +
+            ' (current v' +
+            String(payload.currentVersion).replace(/^v/i, '') +
+            '). Download the latest SKIA Forge installer below.';
+          updateBanner.style.display = 'block';
+        })
+        .catch(() => {});
     })();
   </script>
 </body>

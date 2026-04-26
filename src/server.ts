@@ -130,6 +130,61 @@ const runtimeState = {
   ready: false,
   shuttingDown: false
 };
+type ReleaseVersionCache = {
+  atMs: number;
+  latestVersion: string | null;
+};
+let releaseVersionCache: ReleaseVersionCache = { atMs: 0, latestVersion: null };
+
+function normalizeSemver(version: string): string {
+  return version.trim().replace(/^v/i, "");
+}
+
+function compareSemver(aRaw: string, bRaw: string): number {
+  const a = normalizeSemver(aRaw).split(".").map((part) => Number(part.replace(/\D.*/, "")) || 0);
+  const b = normalizeSemver(bRaw).split(".").map((part) => Number(part.replace(/\D.*/, "")) || 0);
+  const len = Math.max(a.length, b.length);
+  for (let i = 0; i < len; i += 1) {
+    const av = a[i] ?? 0;
+    const bv = b[i] ?? 0;
+    if (av > bv) return 1;
+    if (av < bv) return -1;
+  }
+  return 0;
+}
+
+async function fetchLatestForgeReleaseTag(timeoutMs = 3000): Promise<string | null> {
+  const now = Date.now();
+  if (now - releaseVersionCache.atMs < 300_000) {
+    return releaseVersionCache.latestVersion;
+  }
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch("https://api.github.com/repos/AI-SKIA/SKIA-Forge/releases/latest", {
+      headers: {
+        Accept: "application/vnd.github+json",
+        "User-Agent": "skia-forge-version-check"
+      },
+      signal: controller.signal
+    });
+    if (!response.ok) {
+      releaseVersionCache = { atMs: now, latestVersion: null };
+      return null;
+    }
+    const payload = (await response.json()) as { tag_name?: unknown };
+    const tag = typeof payload.tag_name === "string" ? payload.tag_name.trim() : "";
+    const latest = tag || null;
+    releaseVersionCache = { atMs: now, latestVersion: latest };
+    return latest;
+  } catch {
+    releaseVersionCache = { atMs: now, latestVersion: null };
+    return null;
+  } finally {
+    clearTimeout(timeout);
+  }
+}
 
 function persistAllState(): void {
   void persistRuntimeState(projectRoot, providerRouter, telemetry, {
@@ -217,6 +272,23 @@ app.get("/version", (_req, res) => {
   res.json({
     service: "skia-intelligence",
     version: process.env.npm_package_version ?? "0.0.0-dev"
+  });
+});
+
+app.get("/api/app/version-check", async (_req, res) => {
+  const currentVersion = process.env.npm_package_version ?? "0.0.0-dev";
+  const latestFromEnv = (process.env.SKIA_FORGE_LATEST_VERSION ?? "").trim();
+  const latestVersion = latestFromEnv || (await fetchLatestForgeReleaseTag()) || null;
+  const updateAvailable =
+    latestVersion != null &&
+    compareSemver(normalizeSemver(latestVersion), normalizeSemver(currentVersion)) > 0;
+
+  res.json({
+    app: "skia-forge",
+    currentVersion,
+    latestVersion,
+    updateAvailable,
+    source: latestFromEnv ? "env" : "github"
   });
 });
 
@@ -814,21 +886,32 @@ app.post("/index/rebuild", async (_req, res, next) => {
 });
 
 app.get("/chat", (_req, res) => {
-  res.type("html").send(renderChatHtml());
+  const releaseBase =
+    process.env.SKIA_IDE_RELEASE_BASE_URL ??
+    "https://github.com/AI-SKIA/skia/releases/latest/download";
+  res.type("html").send(renderChatHtml(releaseBase));
 });
 
 app.get("/", (_req, res) => {
+  res.redirect(302, "/forge");
+});
+
+app.get("/forge", (_req, res) => {
   const releaseBase =
     process.env.SKIA_IDE_RELEASE_BASE_URL ??
     "https://github.com/AI-SKIA/skia/releases/latest/download";
   res.type("html").send(renderDownloadHtml(releaseBase));
 });
 
-app.get("/download", (_req, res) => {
+app.get("/forge/app", (_req, res) => {
   const releaseBase =
     process.env.SKIA_IDE_RELEASE_BASE_URL ??
     "https://github.com/AI-SKIA/skia/releases/latest/download";
-  res.type("html").send(renderDownloadHtml(releaseBase));
+  res.type("html").send(renderChatHtml(releaseBase));
+});
+
+app.get("/download", (_req, res) => {
+  res.redirect(302, "/forge");
 });
 
 app.get("/favicon.png", (_req, res) => {

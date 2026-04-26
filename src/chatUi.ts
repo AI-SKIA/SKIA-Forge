@@ -1,12 +1,38 @@
-export function renderChatHtml(): string {
+export function renderChatHtml(releaseBase = "https://github.com/AI-SKIA/skia/releases/latest/download"): string {
   return `<!doctype html>
 <html>
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SKIA Chat Panel</title>
+  <title>SKIA Forge | Web IDE</title>
   <style>
     body { margin: 0; font-family: Calibri, Arial, sans-serif; background: #0a0a0a; color: #e8e8e8; }
+    .ide-download-app {
+      position: fixed;
+      top: 12px;
+      right: 12px;
+      z-index: 50;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 14px;
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      border-radius: 6px;
+      background: rgba(212, 175, 55, 0.08);
+      color: #d4af37;
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 11px;
+      font-weight: 600;
+      backdrop-filter: blur(3px);
+      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+    }
+    .ide-download-app:hover {
+      border-color: rgba(212, 175, 55, 0.75);
+      background: rgba(212, 175, 55, 0.18);
+      color: #f5dc85;
+    }
     .root { display: grid; grid-template-columns: 1fr 1fr; height: 100vh; }
     .panel { border-right: 1px solid #2a2a2a; padding: 14px; overflow: auto; }
     .panel:last-child { border-right: none; }
@@ -21,6 +47,7 @@ export function renderChatHtml(): string {
   </style>
 </head>
 <body>
+  <a class="ide-download-app" href="${releaseBase}/SKIA-Desktop-windows-x64.exe">Download App</a>
   <div class="root">
     <section class="panel">
       <h2>SKIA Chat</h2>
