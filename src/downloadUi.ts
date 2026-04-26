@@ -61,7 +61,7 @@ const PLATFORMS: DownloadPlatform[] = [
 export function renderDownloadHtml(releaseBase: string): string {
   const cards = PLATFORMS.map(
     (p) => `
-      <a id="${p.id}" class="download-card" href="${releaseBase}/${p.file}">
+      <a id="${p.id}" class="download-card" data-file="${p.file}" href="${releaseBase}/${p.file}">
         <div class="download-card-icon ${p.icon}"></div>
         <div class="download-card-name">${p.name}</div>
         <div class="download-card-version">${p.version}</div>
@@ -277,6 +277,13 @@ export function renderDownloadHtml(releaseBase: string): string {
       color: rgba(255,255,255,0.55);
       letter-spacing: 1px;
     }
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 12px;
+    }
 
     .download-grid {
       width: 100%;
@@ -302,6 +309,7 @@ export function renderDownloadHtml(releaseBase: string): string {
       box-shadow: 0 8px 32px rgba(212,175,55,0.15);
       border-color: rgba(212,175,55,0.55);
     }
+    .download-card--hidden { display: none; }
     .download-card-icon {
       width: 28px;
       height: 28px;
@@ -416,6 +424,17 @@ export function renderDownloadHtml(releaseBase: string): string {
       display: none;
     }
     .update-banner strong { color: var(--skia-gold); }
+    .availability-banner {
+      width: 100%;
+      border: 1px solid rgba(212,175,55,0.35);
+      background: rgba(212,175,55,0.08);
+      color: #f7e7b3;
+      padding: 10px 12px;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      display: none;
+    }
 
     .footer-mark {
       margin-top: 38px;
@@ -472,7 +491,7 @@ export function renderDownloadHtml(releaseBase: string): string {
       <div class="pc-sidebar-divider"></div>
       <a class="pc-sidebar-btn" href="/forge/app">Sign In</a>
       <a class="pc-sidebar-btn" href="/forge/app">Register</a>
-      <a class="pc-sidebar-btn" href="/forge">Download IDE</a>
+      <a class="pc-sidebar-btn" href="/forge#windows">Download IDE</a>
     </nav>
   </aside>
 
@@ -482,8 +501,14 @@ export function renderDownloadHtml(releaseBase: string): string {
       <div class="feature-page-header">
         <h1 class="feature-page-title">Download SKIA Forge</h1>
         <p class="feature-page-subtitle">She Knows It All - available on every platform</p>
+        <div class="hero-actions">
+          <a class="feature-tab" href="/forge/app">Sign In</a>
+          <a class="feature-tab" href="/forge/app">Register</a>
+          <a class="feature-tab" href="/forge#windows">Download App</a>
+        </div>
       </div>
       <div id="updateBanner" class="update-banner"></div>
+      <div id="availabilityBanner" class="availability-banner"></div>
       <div class="download-grid">${cards}</div>
       <div class="download-actions">
         <a class="feature-tab" href="${releaseBase}/SHA256SUMS.txt">Download SHA256 checksums</a>
@@ -527,11 +552,11 @@ export function renderDownloadHtml(releaseBase: string): string {
         sidebar.addEventListener('click', (e) => {
           const target = e.target;
           if (target && target.tagName === 'A') closeSidebar();
-        </div>
         });
       }
 
       const updateBanner = document.getElementById('updateBanner');
+      const availabilityBanner = document.getElementById('availabilityBanner');
       fetch('/api/app/version-check', { cache: 'no-store' })
         .then((r) => (r.ok ? r.json() : null))
         .then((payload) => {
@@ -546,6 +571,36 @@ export function renderDownloadHtml(releaseBase: string): string {
           updateBanner.style.display = 'block';
         })
         .catch(() => {});
+
+      const cards = Array.from(document.querySelectorAll('.download-card'));
+      fetch('/api/app/release-assets', { cache: 'no-store' })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((payload) => {
+          if (!payload) return;
+          const files = new Set(Array.isArray(payload.files) ? payload.files : []);
+          let visible = 0;
+          cards.forEach((card) => {
+            const file = card.getAttribute('data-file') || '';
+            const supported = files.has(file);
+            card.classList.toggle('download-card--hidden', !supported);
+            if (supported) visible += 1;
+          });
+          if (!availabilityBanner) return;
+          if (visible === 0) {
+            availabilityBanner.textContent = 'No installer assets are published yet. Publish a release first.';
+            availabilityBanner.style.display = 'block';
+            return;
+          }
+          availabilityBanner.textContent =
+            'Only currently published installers are shown (' + String(visible) + ' available).';
+          availabilityBanner.style.display = 'block';
+        })
+        .catch(() => {
+          cards.forEach((card) => card.classList.add('download-card--hidden'));
+          if (!availabilityBanner) return;
+          availabilityBanner.textContent = 'Installer availability check failed. No unverified downloads shown.';
+          availabilityBanner.style.display = 'block';
+        });
     })();
   </script>
 </body>

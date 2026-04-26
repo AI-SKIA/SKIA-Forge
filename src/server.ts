@@ -135,6 +135,12 @@ type ReleaseVersionCache = {
   latestVersion: string | null;
 };
 let releaseVersionCache: ReleaseVersionCache = { atMs: 0, latestVersion: null };
+type ReleaseAssetsCache = {
+  atMs: number;
+  latestVersion: string | null;
+  files: string[];
+};
+let releaseAssetsCache: ReleaseAssetsCache = { atMs: 0, latestVersion: null, files: [] };
 
 function normalizeSemver(version: string): string {
   return version.trim().replace(/^v/i, "");
@@ -181,6 +187,50 @@ async function fetchLatestForgeReleaseTag(timeoutMs = 3000): Promise<string | nu
   } catch {
     releaseVersionCache = { atMs: now, latestVersion: null };
     return null;
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
+async function fetchLatestForgeReleaseAssets(
+  timeoutMs = 4000
+): Promise<{ latestVersion: string | null; files: string[] }> {
+  const now = Date.now();
+  if (now - releaseAssetsCache.atMs < 300_000) {
+    return { latestVersion: releaseAssetsCache.latestVersion, files: releaseAssetsCache.files };
+  }
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch("https://api.github.com/repos/AI-SKIA/SKIA-Forge/releases/latest", {
+      headers: {
+        Accept: "application/vnd.github+json",
+        "User-Agent": "skia-forge-release-assets"
+      },
+      signal: controller.signal
+    });
+    if (!response.ok) {
+      releaseAssetsCache = { atMs: now, latestVersion: null, files: [] };
+      return { latestVersion: null, files: [] };
+    }
+    const payload = (await response.json()) as {
+      tag_name?: unknown;
+      assets?: Array<{ name?: unknown }>;
+    };
+    const latestVersion = typeof payload.tag_name === "string" && payload.tag_name.trim()
+      ? payload.tag_name.trim()
+      : null;
+    const files = Array.isArray(payload.assets)
+      ? payload.assets
+          .map((asset) => (typeof asset.name === "string" ? asset.name.trim() : ""))
+          .filter((name) => Boolean(name))
+      : [];
+    releaseAssetsCache = { atMs: now, latestVersion, files };
+    return { latestVersion, files };
+  } catch {
+    releaseAssetsCache = { atMs: now, latestVersion: null, files: [] };
+    return { latestVersion: null, files: [] };
   } finally {
     clearTimeout(timeout);
   }
@@ -289,6 +339,17 @@ app.get("/api/app/version-check", async (_req, res) => {
     latestVersion,
     updateAvailable,
     source: latestFromEnv ? "env" : "github"
+  });
+});
+
+app.get("/api/app/release-assets", async (_req, res) => {
+  const latestFromEnv = (process.env.SKIA_FORGE_LATEST_VERSION ?? "").trim() || null;
+  const { latestVersion, files } = await fetchLatestForgeReleaseAssets();
+  res.json({
+    app: "skia-forge",
+    latestVersion: latestFromEnv || latestVersion,
+    files,
+    source: latestFromEnv ? "env+github-assets" : "github"
   });
 });
 
@@ -903,11 +964,217 @@ app.get("/forge", (_req, res) => {
   res.type("html").send(renderDownloadHtml(releaseBase));
 });
 
+const skiaIdeRendererRoot = path.join(projectRoot, "skia-ide", "dist", "renderer");
+app.use("/forge/app", express.static(skiaIdeRendererRoot, { index: false }));
+
 app.get("/forge/app", (_req, res) => {
-  const releaseBase =
-    process.env.SKIA_IDE_RELEASE_BASE_URL ??
-    "https://github.com/AI-SKIA/skia/releases/latest/download";
-  res.type("html").send(renderChatHtml(releaseBase));
+  res.redirect(302, "/forge/app/");
+});
+
+app.get("/forge/app/", async (_req, res) => {
+  const indexPath = path.join(skiaIdeRendererRoot, "index.html");
+  try {
+    const html = await fs.readFile(indexPath, "utf8");
+    const browserShim = `
+<link rel="icon" type="image/png" href="/favicon.png" />
+<link rel="apple-touch-icon" href="/favicon.png" />
+<script>
+  (function () {
+    if (window.skiaElectron) return;
+    const webModeStatus = "WEB MODE: API features enabled | local desktop actions adapted";
+    const unsupported = "Desktop-only action is unavailable in browser mode.";
+    const listeners = {
+      backendLog: [],
+      statusUpdate: [],
+      menuAction: new Map()
+    };
+    const fileStore = new Map();
+    let activeWorkspaceRoot = "browser-workspace";
+
+    function fireStatus(text) {
+      listeners.statusUpdate.forEach(function (cb) {
+        try { cb(text); } catch {}
+      });
+    }
+    function fireBackendLog(line) {
+      listeners.backendLog.forEach(function (cb) {
+        try { cb(line); } catch {}
+      });
+    }
+    function basename(p) {
+      var parts = String(p || "").replace(/\\\\/g, "/").split("/");
+      return parts[parts.length - 1] || "file.txt";
+    }
+    function triggerDownload(name, text) {
+      var blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+      var url = URL.createObjectURL(blob);
+      var a = document.createElement("a");
+      a.href = url;
+      a.download = name || "skia-file.txt";
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
+    }
+    function pickFiles(opts) {
+      return new Promise(function (resolve) {
+        var input = document.createElement("input");
+        input.type = "file";
+        if (opts && opts.multiple) input.multiple = true;
+        if (opts && opts.directory) {
+          input.setAttribute("webkitdirectory", "");
+          input.setAttribute("directory", "");
+          input.multiple = true;
+        }
+        input.style.display = "none";
+        document.body.appendChild(input);
+        input.onchange = function () {
+          var arr = Array.from(input.files || []);
+          document.body.removeChild(input);
+          resolve(arr);
+        };
+        input.click();
+      });
+    }
+    function node(name, path, type) {
+      return { name: name, path: path, type: type, children: type === "directory" ? [] : undefined };
+    }
+    function buildTree(root) {
+      var rootNode = node(root, root, "directory");
+      var dirs = new Map();
+      dirs.set(root, rootNode);
+      Array.from(fileStore.keys()).forEach(function (fullPath) {
+        if (!String(fullPath).startsWith(root + "/")) return;
+        var rel = String(fullPath).slice((root + "/").length);
+        var parts = rel.split("/").filter(Boolean);
+        var parentPath = root;
+        var parent = dirs.get(parentPath);
+        for (var i = 0; i < parts.length; i += 1) {
+          var seg = parts[i];
+          var isLast = i === parts.length - 1;
+          var currentPath = parentPath + "/" + seg;
+          if (isLast) {
+            parent.children.push(node(seg, currentPath, "file"));
+          } else {
+            var existing = dirs.get(currentPath);
+            if (!existing) {
+              existing = node(seg, currentPath, "directory");
+              dirs.set(currentPath, existing);
+              parent.children.push(existing);
+            }
+            parent = existing;
+            parentPath = currentPath;
+          }
+        }
+      });
+      function sortNodes(items) {
+        items.sort(function (a, b) {
+          if (a.type !== b.type) return a.type === "directory" ? -1 : 1;
+          return a.name.localeCompare(b.name);
+        });
+        items.forEach(function (it) {
+          if (it.children) sortNodes(it.children);
+        });
+      }
+      sortNodes(rootNode.children);
+      return rootNode.children;
+    }
+
+    function registerMenuAction(channel, listener) {
+      if (!listeners.menuAction.has(channel)) listeners.menuAction.set(channel, []);
+      listeners.menuAction.get(channel).push(listener);
+      return function () {
+        var arr = listeners.menuAction.get(channel) || [];
+        listeners.menuAction.set(channel, arr.filter(function (x) { return x !== listener; }));
+      };
+    }
+
+    window.skiaElectron = {
+      getConfig: async function () {
+        return { backendUrl: window.location.origin, authToken: "", timeout: 15000 };
+      },
+      openFolder: async function () {
+        var files = await pickFiles({ directory: true });
+        if (!files.length) return null;
+        activeWorkspaceRoot = "browser-project";
+        fileStore.clear();
+        await Promise.all(files.map(async function (f) {
+          var rel = f.webkitRelativePath || f.name;
+          var content = await f.text();
+          fileStore.set(activeWorkspaceRoot + "/" + rel.replace(/\\\\/g, "/"), content);
+        }));
+        fireBackendLog("WEB MODE: imported " + String(files.length) + " file(s) from folder picker.");
+        fireStatus(webModeStatus);
+        return activeWorkspaceRoot;
+      },
+      openFile: async function () {
+        var files = await pickFiles({ multiple: false });
+        if (!files.length) return null;
+        var f = files[0];
+        var content = await f.text();
+        activeWorkspaceRoot = "browser-workspace";
+        var full = activeWorkspaceRoot + "/" + f.name;
+        fileStore.set(full, content);
+        fireBackendLog("WEB MODE: opened file " + f.name + ".");
+        fireStatus(webModeStatus);
+        return full;
+      },
+      saveFile: async function (filePath, content) {
+        if (!filePath) return false;
+        fileStore.set(String(filePath), String(content ?? ""));
+        triggerDownload(basename(filePath), String(content ?? ""));
+        fireBackendLog("WEB MODE: downloaded " + basename(filePath) + ".");
+        return true;
+      },
+      saveFileAs: async function (content) {
+        var name = window.prompt("Save as filename", "skia-file.txt");
+        if (!name) return null;
+        var full = activeWorkspaceRoot + "/" + name;
+        fileStore.set(full, String(content ?? ""));
+        triggerDownload(name, String(content ?? ""));
+        fireBackendLog("WEB MODE: downloaded " + name + ".");
+        return full;
+      },
+      readFileText: async function (filePath) {
+        if (!fileStore.has(String(filePath))) throw new Error("File not loaded in web workspace.");
+        return fileStore.get(String(filePath)) || "";
+      },
+      readDirectoryTree: async function (folderPath) {
+        return buildTree(String(folderPath || activeWorkspaceRoot));
+      },
+      onMenuAction: registerMenuAction,
+      onBackendLog: function (listener) {
+        listeners.backendLog.push(listener);
+        setTimeout(function () { try { listener("WEB MODE: desktop menu/IPC unavailable; using browser-safe flows."); } catch {} }, 0);
+        return function () {
+          listeners.backendLog = listeners.backendLog.filter(function (x) { return x !== listener; });
+        };
+      },
+      onStatusUpdate: function (listener) {
+        listeners.statusUpdate.push(listener);
+        setTimeout(function () { try { listener(webModeStatus); } catch {} }, 0);
+        return function () {
+          listeners.statusUpdate = listeners.statusUpdate.filter(function (x) { return x !== listener; });
+        };
+      },
+      runCommand: async function () { return { stdout: "", stderr: unsupported }; },
+      setAutoSave: function () {},
+      openDocs: function () { window.open("/docs/README.md", "_blank", "noopener"); },
+      getCookies: async function () { return []; },
+      openExternal: function (url) { if (typeof url === "string" && url) window.open(url, "_blank", "noopener"); }
+    };
+    fireStatus(webModeStatus);
+  })();
+</script>`;
+    const withShim = html.includes("</head>")
+      ? html.replace("</head>", `${browserShim}\n</head>`)
+      : `${browserShim}\n${html}`;
+    res.type("html").send(withShim);
+  } catch {
+    res.status(503).type("html").send(
+      "<!doctype html><html><body style='font-family:Arial;background:#080400;color:#d4af37;padding:24px'>SKIA IDE web assets are not built yet. Run <code>npm run build</code> in <code>skia-ide</code> first.</body></html>"
+    );
+  }
 });
 
 app.get("/download", (_req, res) => {
@@ -925,6 +1192,8 @@ app.get("/og/skia-forge-preview.svg", (_req, res) => {
 app.get("/forge/platform", (_req, res) => {
   res.type("html").send(renderForgePlatformHtml());
 });
+
+app.use("/docs", express.static(path.join(projectRoot, "docs")));
 
 app.post("/diff/preview", (req, res) => {
   const oldText = String(req.body?.oldText ?? "");

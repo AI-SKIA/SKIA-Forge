@@ -4,361 +4,338 @@ export function renderForgePlatformHtml(): string {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SKIA Forge Platform</title>
+  <title>SKIA Forge | Web IDE</title>
   <style>
     :root {
-      --bg: #0a0a0a;
-      --panel: #111111;
-      --line: #232323;
-      --text: #e8e8e8;
-      --muted: #9a9a9a;
+      --bg: #080400;
+      --panel: linear-gradient(135deg, rgba(15, 8, 0, 0.95) 0%, rgba(25, 14, 0, 0.95) 100%);
+      --line: rgba(212, 175, 55, 0.22);
+      --text: #f1e2ad;
+      --muted: rgba(255, 255, 255, 0.62);
       --gold: #d4af37;
     }
-    * { box-sizing: border-box; font-family: Calibri, Arial, sans-serif; font-weight: 400; }
-    body { margin: 0; background: var(--bg); color: var(--text); }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255, 180, 0, 0.06) 0%, transparent 70%), var(--bg);
+      color: var(--text);
+      font-family: Orbitron, Arial, sans-serif;
+      height: 100dvh;
+      overflow: hidden;
+    }
+
+    /* SKIA dashboard scrollbar style */
+    *::-webkit-scrollbar { width: 6px; height: 6px; }
+    *::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.35); }
+    *::-webkit-scrollbar-thumb {
+      background: rgba(212, 175, 55, 0.45);
+      border-radius: 4px;
+      border: 1px solid rgba(212, 175, 55, 0.25);
+    }
+    *::-webkit-scrollbar-thumb:hover { background: rgba(212, 175, 55, 0.75); }
+
     .topbar {
-      height: 44px; border-bottom: 1px solid var(--line); display: flex; align-items: center;
-      justify-content: space-between; padding: 0 12px; background: #0d0d0d;
+      height: 58px;
+      border-bottom: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      background: rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(4px);
     }
-    .brand { color: var(--gold); letter-spacing: 0.4px; }
-    .status { color: var(--muted); font-size: 13px; }
+    .brand { color: var(--gold); letter-spacing: 1px; font-size: 20px; }
+    .status { color: var(--muted); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
+    .download-btn {
+      text-decoration: none;
+      color: var(--gold);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      background: rgba(212, 175, 55, 0.08);
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .download-btn:hover {
+      background: rgba(212, 175, 55, 0.16);
+      border-color: rgba(212, 175, 55, 0.7);
+    }
+
     .root {
-      height: calc(100vh - 44px);
+      height: calc(100dvh - 58px);
       display: grid;
-      grid-template-columns: 280px 1fr 420px;
+      grid-template-columns: 280px 1fr;
     }
-    .left, .center, .right { border-right: 1px solid var(--line); }
-    .right { border-right: none; }
-    .left, .right { background: var(--panel); overflow: auto; }
-    .section-title { color: var(--gold); padding: 12px; border-bottom: 1px solid var(--line); }
-    .tree { padding: 10px 12px; color: var(--muted); font-size: 13px; line-height: 1.65; }
-    .tree .active { color: var(--text); }
-    .center {
-      display: grid; place-items: center; background: #0a0a0a;
+    .left { border-right: 1px solid var(--line); background: rgba(0, 0, 0, 0.4); overflow: auto; }
+    .main {
+      display: grid;
+      grid-template-rows: auto auto 1fr;
+      gap: 12px;
+      padding: 16px;
+      overflow: hidden;
     }
-    .logo-box {
-      width: 120px; height: 120px; border: 1px solid var(--line); transform: rotate(45deg);
-      display: grid; place-items: center; color: var(--gold); opacity: 0.9;
+    .section-title { color: var(--gold); padding: 12px; border-bottom: 1px solid var(--line); font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; }
+    .mod-list { padding: 10px; display: grid; gap: 8px; }
+    .mod-btn {
+      width: 100%;
+      text-align: left;
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid rgba(212, 175, 55, 0.16);
+      border-radius: 8px;
+      padding: 10px;
+      cursor: pointer;
+      font-family: Orbitron, Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 1px;
     }
-    .logo-box span { transform: rotate(-45deg); letter-spacing: 1px; }
-    .panel { padding: 12px; border-bottom: 1px solid var(--line); }
-    .health-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
-    .health-row { border: 1px solid #2b2b2b; border-radius: 6px; padding: 8px; font-size: 12px; }
-    .health-row .name { color: var(--text); }
-    .health-row .state { color: var(--muted); }
-    .input, .textarea {
-      width: 100%; background: #0f0f0f; border: 1px solid #2a2a2a; border-radius: 6px;
-      color: var(--text); padding: 10px;
+    .mod-btn:hover, .mod-btn.active {
+      color: var(--gold);
+      border-color: rgba(212, 175, 55, 0.55);
+      background: rgba(212, 175, 55, 0.08);
     }
-    .textarea { min-height: 110px; resize: vertical; }
+
+    .hero {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--panel);
+      padding: 14px;
+    }
+    .hero h1 {
+      margin: 0 0 6px;
+      font-size: 18px;
+      color: var(--gold);
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-family: Nunito, Arial, sans-serif;
+      font-size: 14px;
+    }
+
+    .composer {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.42);
+      padding: 12px;
+      display: grid;
+      gap: 8px;
+    }
+    .label {
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    .textarea {
+      width: 100%;
+      min-height: 110px;
+      resize: vertical;
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      border-radius: 8px;
+      color: #f5e8bc;
+      padding: 10px;
+      font-family: Nunito, Arial, sans-serif;
+      font-size: 14px;
+    }
+    .textarea:focus { outline: none; border-color: rgba(212, 175, 55, 0.6); }
+
+    .controls { display: flex; gap: 8px; flex-wrap: wrap; }
     .btn {
-      margin-top: 8px; padding: 9px 12px; border-radius: 6px; border: 1px solid #6a5a1f;
-      background: #18150a; color: var(--gold); cursor: pointer;
+      padding: 9px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      background: rgba(212, 175, 55, 0.08);
+      color: var(--gold);
+      cursor: pointer;
+      font-size: 11px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
     }
+    .btn:hover { border-color: rgba(212, 175, 55, 0.7); background: rgba(212, 175, 55, 0.16); }
+
+    .output {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 12px;
+      overflow: auto;
+      min-height: 220px;
+      white-space: pre-wrap;
+      font-family: Nunito, Arial, sans-serif;
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.86);
+      line-height: 1.55;
+    }
+
     .result {
-      margin-top: 10px; padding: 10px; border: 1px solid #2a2a2a; border-radius: 6px;
-      background: #0f0f0f; color: #cbcbcb; font-size: 13px; white-space: pre-wrap;
+      border: 1px solid rgba(212, 175, 55, 0.22);
+      border-radius: 8px;
+      padding: 10px;
+      background: rgba(0, 0, 0, 0.45);
+      color: var(--muted);
+      font-size: 12px;
+      white-space: pre-wrap;
+      max-height: 34vh;
+      overflow: auto;
     }
-    .module-controls { margin-top: 10px; display: grid; gap: 6px; }
-    .module-row {
-      display: grid; grid-template-columns: 1fr auto auto; align-items: center;
-      border: 1px solid #2b2b2b; border-radius: 6px; padding: 8px;
+
+    @media (max-width: 980px) {
+      .root { grid-template-columns: 1fr; }
+      .left { display: none; }
     }
-    .module-name { color: var(--text); font-size: 13px; }
-    .module-badge {
-      font-size: 11px; color: var(--muted); border: 1px solid #3a3a3a; border-radius: 14px; padding: 2px 8px;
-      margin-right: 6px;
+    @media (max-width: 560px) {
+      .status { display: none; }
+      .brand { font-size: 16px; }
+      .download-btn { font-size: 10px; padding: 7px 9px; }
     }
-    .module-run { padding: 5px 9px; font-size: 12px; }
-    .pill { display: inline-block; border: 1px solid #3a3a3a; color: var(--muted); padding: 2px 8px; border-radius: 20px; font-size: 12px; }
-    .mode-row { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: center; }
-    .checkline { margin-top: 8px; color: var(--muted); font-size: 12px; display: flex; gap: 6px; align-items: center; }
   </style>
 </head>
 <body>
   <div class="topbar">
-    <div class="brand">SKIA FORGE</div>
+    <div class="brand">SKIA FORGE IDE</div>
     <div class="status" id="integrationStatus">Integration: checking...</div>
+    <a class="download-btn" href="https://github.com/AI-SKIA/skia/releases/latest/download/SKIA-Desktop-windows-x64.exe">Download App</a>
   </div>
   <div class="root">
     <aside class="left">
-      <div class="section-title">Platform Modules</div>
-      <div class="tree">
-        <div class="active">forge/context</div>
-        <div class="active">forge/agent</div>
-        <div class="active">forge/sdlc</div>
-        <div class="active">forge/production</div>
-        <div class="active">forge/healing</div>
-        <div class="active">forge/architecture</div>
-        <div class="active">forge/orchestrate</div>
-        <div style="margin-top: 8px;">api/forge/context/structure?path=</div>
-        <div style="margin-top: 8px;">api/forge/context/semantic-chunks?path=</div>
-        <div style="margin-top: 8px;">api/forge/context/embed/stats</div>
-        <div style="margin-top: 8px;">api/forge/context/embed/index (POST JSON: path | paths, async?); auto re-embed on save: EMBED_INCREMENTAL_ON_SAVE=true</div>
-        <div style="margin-top: 8px;">api/forge/context/embed/queue (GET depth + limits)</div>
-        <div style="margin-top: 8px;">api/forge/context/embed/jobs/:jobId (GET status)</div>
-        <div style="margin-top: 8px;">api/forge/context/embed/search (POST: query, topK?, nprobes?, where?, …; 200: hybrid score = vector×structural×recency, candidateK + vectorScore/structural/recency per hit)</div>
-        <div style="margin-top: 8px;">api/forge/context/retrieve (POST: path, query?, maxTokens? ~8K; L1 file → L2 imports/deps → L3 hybrid search → L4 structure)</div>
-        <div style="margin-top: 8px;">api/forge/agent/plan (POST: goal, path, contextQuery?; D1-07 + SKIA chat → JSON plan v1)</div>
-        <div style="margin-top: 4px;">api/forge/agent/execute (POST: plan, steps, mode preview|apply, selfCorrect?; D1-10/11 tool registry, diff + approval, optional self-correct, audit)</div>
-        <div style="margin-top: 8px;">integration/skia-full/probe/report</div>
+      <div class="section-title">IDE Modules</div>
+      <div class="mod-list">
+        <button class="mod-btn active" data-module="agent">Agent</button>
+        <button class="mod-btn" data-module="context">Context</button>
+        <button class="mod-btn" data-module="sdlc">SDLC</button>
+        <button class="mod-btn" data-module="production">Production</button>
+        <button class="mod-btn" data-module="healing">Healing</button>
+        <button class="mod-btn" data-module="architecture">Architecture</button>
+        <button class="mod-btn" data-module="orchestrate">Lifecycle Orchestrate</button>
       </div>
     </aside>
-    <main class="center">
-      <div class="logo-box"><span>SKIA</span></div>
+    <main class="main">
+      <section class="hero">
+        <h1>Forge Web IDE</h1>
+        <p>Choose a module, write your prompt, and run it. Output appears below.</p>
+      </section>
+      <section class="composer">
+        <div class="label">Prompt</div>
+        <textarea id="prompt" class="textarea" placeholder="Describe what you want Forge to do..."></textarea>
+        <div class="controls">
+          <button class="btn" id="runModule">Run Selected Module</button>
+          <button class="btn" id="runOrchestration">Run Full Lifecycle</button>
+          <button class="btn" id="checkHealth">Check Module Health</button>
+        </div>
+      </section>
+      <section class="output" id="mainOutput">Ready.</section>
+      <div class="result" id="metaOutput">No diagnostics yet.</div>
     </main>
-    <aside class="right">
-      <div class="section-title">Module Health</div>
-      <div class="panel">
-        <button class="btn" id="refreshHealth">Refresh Health</button>
-        <div class="result" id="healthResult">No health data loaded.</div>
-      </div>
-      <div class="section-title">Governance Telemetry</div>
-      <div class="panel">
-        <button class="btn" id="refreshGovernanceTelemetry">Refresh Governance</button>
-        <div class="result" id="governanceTelemetryResult">No governance telemetry loaded.</div>
-      </div>
-      <div class="section-title">Approval Token Stats</div>
-      <div class="panel">
-        <button class="btn" id="refreshApprovalTokenStats">Refresh Tokens</button>
-        <div class="result" id="approvalTokenStatsResult">No approval token stats loaded.</div>
-      </div>
-      <div class="section-title">Intent Signature Status</div>
-      <div class="panel">
-        <button class="btn" id="refreshIntentStatus">Refresh Intents</button>
-        <input class="input" id="intentTs" placeholder="x-skia-intent-ts (ms epoch)" />
-        <input class="input" id="intentNonce" placeholder="x-skia-intent-nonce" />
-        <input class="input" id="intentSignature" placeholder="x-skia-intent-signature (hmac hex)" />
-        <div class="result" id="intentStatusResult">No intent signature status loaded.</div>
-      </div>
-      <div class="section-title">Sovereign Posture</div>
-      <div class="panel">
-        <button class="btn" id="refreshSovereignPosture">Refresh Posture</button>
-        <div class="result" id="sovereignPostureResult">No sovereign posture loaded.</div>
-      </div>
-      <div class="section-title">Control Plane</div>
-      <div class="panel">
-        <button class="btn" id="refreshControlPlane">Refresh Snapshot</button>
-        <button class="btn" id="applyAlignMode">Apply Align-Mode</button>
-        <button class="btn" id="applyRecommended">Apply Recommended</button>
-        <div class="result" id="controlPlaneAlerts">No control plane alerts.</div>
-        <div class="result" id="controlPlaneRecommendations">No recommendations yet.</div>
-        <div class="result" id="controlPlaneResult">No control plane snapshot loaded.</div>
-      </div>
-      <div class="section-title">Orchestrate Intent</div>
-      <div class="panel">
-        <div class="mode-row">
-          <select class="input" id="sovereignMode">
-            <option value="strict">strict</option>
-            <option value="adaptive" selected>adaptive</option>
-            <option value="autonomous">autonomous</option>
-          </select>
-          <button class="btn" id="saveMode">Set Mode</button>
-        </div>
-        <div class="mode-row">
-          <input class="input" id="approvalToken" placeholder="approval token (optional)" />
-          <select class="input" id="approvalPurpose">
-            <option value="any" selected>any</option>
-            <option value="module">module</option>
-            <option value="orchestration">orchestration</option>
-            <option value="remediation">remediation</option>
-          </select>
-          <button class="btn" id="issueApprovalToken">Issue Token</button>
-        </div>
-        <label class="checkline"><input type="checkbox" id="approvalToggle" /> explicit approval</label>
-        <textarea class="textarea" id="intent" placeholder="Describe the software objective..."></textarea>
-        <button class="btn" id="runOrchestration">Run Lifecycle</button>
-        <div class="module-controls" id="moduleControls"></div>
-        <div class="result" id="orchestrationResult">No orchestration executed.</div>
-      </div>
-      <div class="section-title">Probe Report</div>
-      <div class="panel">
-        <button class="btn" id="runProbe">Check Brain Contracts</button>
-        <button class="btn" id="runGovernancePreview">Preview Governance</button>
-        <div class="result" id="probeResult">No probe executed.</div>
-      </div>
-    </aside>
   </div>
   <script>
     const integrationStatus = document.getElementById("integrationStatus");
-    const orchestrationResult = document.getElementById("orchestrationResult");
-    const healthResult = document.getElementById("healthResult");
-    const governanceTelemetryResult = document.getElementById("governanceTelemetryResult");
-    const approvalTokenStatsResult = document.getElementById("approvalTokenStatsResult");
-    const intentStatusResult = document.getElementById("intentStatusResult");
-    const sovereignPostureResult = document.getElementById("sovereignPostureResult");
-    const controlPlaneAlerts = document.getElementById("controlPlaneAlerts");
-    const controlPlaneRecommendations = document.getElementById("controlPlaneRecommendations");
-    const controlPlaneResult = document.getElementById("controlPlaneResult");
-    const probeResult = document.getElementById("probeResult");
-    const moduleNames = ["context","agent","sdlc","production","healing","architecture"];
-    const moduleControls = document.getElementById("moduleControls");
-    function renderModuleControls() {
-      moduleControls.innerHTML = moduleNames.map((name) => (
-        '<div class="module-row">' +
-          '<div class="module-name">' + name + '</div>' +
-          '<div class="module-badge" id="badge-' + name + '">idle</div>' +
-          '<button class="btn module-run" data-module="' + name + '">Run</button>' +
-        '</div>'
-      )).join("");
-      moduleControls.querySelectorAll("button[data-module]").forEach((btn) => {
-        btn.addEventListener("click", async () => {
-          const module = btn.getAttribute("data-module");
-          const intent = document.getElementById("intent").value;
-          const mode = document.getElementById("sovereignMode").value;
-          const approved = document.getElementById("approvalToggle").checked;
-          const approvalToken = document.getElementById("approvalToken").value.trim();
-          const badge = document.getElementById("badge-" + module);
-          badge.textContent = "running";
-          const res = await fetch("/api/forge/module/" + module, {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({ query: intent, task: intent, mode, approved, approvalToken })
-          });
-          const data = await res.json();
-          badge.textContent = res.ok ? "ok" : "failed";
-          orchestrationResult.textContent = JSON.stringify(data, null, 2);
-        });
-      });
+    const mainOutput = document.getElementById("mainOutput");
+    const metaOutput = document.getElementById("metaOutput");
+    const moduleButtons = Array.from(document.querySelectorAll(".mod-btn"));
+    let activeModule = "agent";
+
+    function setActiveModule(next) {
+      activeModule = next;
+      moduleButtons.forEach((btn) => btn.classList.toggle("active", btn.dataset.module === next));
     }
+
+    moduleButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        setActiveModule(btn.dataset.module || "agent");
+      });
+    });
+
     async function refreshIntegration() {
       try {
-        const [integrationData, modeData, lockdownData] = await Promise.all([
-          fetch("/integration/skia-full").then(r => r.json()),
-          fetch("/api/forge/mode").then(r => r.json()),
-          fetch("/api/forge/lockdown").then(r => r.json())
+        const [integrationData, modeData] = await Promise.all([
+          fetch("/integration/skia-full").then((r) => r.json()),
+          fetch("/api/forge/mode").then((r) => r.json())
         ]);
-        document.getElementById("sovereignMode").value = modeData.mode || "adaptive";
         integrationStatus.textContent =
           "Integration: " + (integrationData.enabled ? "enabled" : "disabled") +
           " | brainOnly=" + String(integrationData.brainOnly) +
-          " | mode=" + String(modeData.mode || "adaptive") +
-          " | lockdown=" + String(lockdownData.enabled === true ? "on" : "off");
+          " | mode=" + String(modeData.mode || "adaptive");
       } catch {
         integrationStatus.textContent = "Integration: unavailable";
       }
     }
-    function signedIntentHeaders() {
-      const ts = document.getElementById("intentTs").value.trim();
-      const nonce = document.getElementById("intentNonce").value.trim();
-      const sig = document.getElementById("intentSignature").value.trim();
-      const headers = { "content-type": "application/json" };
-      if (ts) headers["x-skia-intent-ts"] = ts;
-      if (nonce) headers["x-skia-intent-nonce"] = nonce;
-      if (sig) headers["x-skia-intent-signature"] = sig;
-      return headers;
-    }
-    document.getElementById("runOrchestration").addEventListener("click", async () => {
-      const intent = document.getElementById("intent").value;
-      const mode = document.getElementById("sovereignMode").value;
-      const approved = document.getElementById("approvalToggle").checked;
-      const approvalToken = document.getElementById("approvalToken").value.trim();
-      const res = await fetch("/api/forge/orchestrate", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ intent, mode, approved, approvalToken })
-      });
-      const data = await res.json();
-      orchestrationResult.textContent = JSON.stringify(data, null, 2);
-    });
-    document.getElementById("saveMode").addEventListener("click", async () => {
-      const mode = document.getElementById("sovereignMode").value;
-      const res = await fetch("/api/forge/mode", {
-        method: "POST",
-        headers: signedIntentHeaders(),
-        body: JSON.stringify({ mode })
-      });
-      const data = await res.json();
-      integrationStatus.textContent = "Integration: enabled | brainOnly=true | mode=" + String(data.mode || mode);
-    });
-    document.getElementById("applyRecommended").insertAdjacentHTML("afterend", '<button class="btn" id="toggleLockdown">Toggle Lockdown</button>');
-    document.getElementById("toggleLockdown").addEventListener("click", async () => {
-      const approvalToken = document.getElementById("approvalToken").value.trim();
-      const approved = document.getElementById("approvalToggle").checked;
-      const current = await fetch("/api/forge/lockdown").then(r => r.json());
-      const data = await fetch("/api/forge/lockdown", {
-        method: "POST",
-        headers: signedIntentHeaders(),
-        body: JSON.stringify({ enabled: !current.enabled, approved, approvalToken })
-      }).then(r => r.json());
-      controlPlaneResult.textContent = JSON.stringify(data, null, 2);
-      await refreshIntegration();
-    });
-    document.getElementById("issueApprovalToken").addEventListener("click", async () => {
-      const purpose = document.getElementById("approvalPurpose").value;
-      const data = await fetch("/api/forge/approval-token", {
-        method: "POST",
-        headers: signedIntentHeaders(),
-        body: JSON.stringify({ purpose })
-      }).then(r => r.json());
-      if (typeof data.token === "string") {
-        document.getElementById("approvalToken").value = data.token;
+
+    async function runSelectedModule() {
+      const prompt = String(document.getElementById("prompt").value || "").trim();
+      if (!prompt) {
+        mainOutput.textContent = "Add a prompt first.";
+        return;
       }
-      controlPlaneResult.textContent = JSON.stringify(data, null, 2);
-    });
-    document.getElementById("runProbe").addEventListener("click", async () => {
-      const data = await fetch("/integration/skia-full/probe/report").then(r => r.json());
-      probeResult.textContent = JSON.stringify(data, null, 2);
-    });
-    document.getElementById("runGovernancePreview").addEventListener("click", async () => {
-      const mode = document.getElementById("sovereignMode").value;
-      const approved = document.getElementById("approvalToggle").checked;
-      const data = await fetch("/api/forge/orchestrate/preview", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify({ mode, approved, includeHealing: true })
-      }).then(r => r.json());
-      probeResult.textContent = JSON.stringify(data, null, 2);
-    });
-    document.getElementById("refreshHealth").addEventListener("click", async () => {
-      const data = await fetch("/api/forge/modules/status").then(r => r.json());
-      healthResult.textContent = JSON.stringify(data, null, 2);
-    });
-    document.getElementById("refreshGovernanceTelemetry").addEventListener("click", async () => {
-      const data = await fetch("/api/forge/governance/telemetry").then(r => r.json());
-      governanceTelemetryResult.textContent = JSON.stringify(data, null, 2);
-    });
-    document.getElementById("refreshApprovalTokenStats").addEventListener("click", async () => {
-      const data = await fetch("/api/forge/approval-token/stats").then(r => r.json());
-      approvalTokenStatsResult.textContent = JSON.stringify(data, null, 2);
-    });
-    document.getElementById("refreshIntentStatus").addEventListener("click", async () => {
-      const data = await fetch("/api/forge/governance/intents/status").then(r => r.json());
-      intentStatusResult.textContent = JSON.stringify(data, null, 2);
-    });
-    document.getElementById("refreshSovereignPosture").addEventListener("click", async () => {
-      const data = await fetch("/api/forge/sovereign-posture").then(r => r.json());
-      sovereignPostureResult.textContent = JSON.stringify(data, null, 2);
-    });
-    document.getElementById("refreshControlPlane").addEventListener("click", async () => {
-      const data = await fetch("/api/forge/control-plane").then(r => r.json());
-      controlPlaneAlerts.textContent = JSON.stringify(data.alerts || [], null, 2);
-      controlPlaneRecommendations.textContent = JSON.stringify(data.recommendations || [], null, 2);
-      controlPlaneResult.textContent = JSON.stringify(data, null, 2);
-    });
-    document.getElementById("applyAlignMode").addEventListener("click", async () => {
-      const approved = document.getElementById("approvalToggle").checked;
-      const approvalToken = document.getElementById("approvalToken").value.trim();
-      const data = await fetch("/api/forge/control-plane/remediate", {
-        method: "POST",
-        headers: signedIntentHeaders(),
-        body: JSON.stringify({ action: "align_mode", approved, approvalToken })
-      }).then(r => r.json());
-      controlPlaneResult.textContent = JSON.stringify(data, null, 2);
-      await refreshIntegration();
-    });
-    document.getElementById("applyRecommended").addEventListener("click", async () => {
-      const approved = document.getElementById("approvalToggle").checked;
-      const approvalToken = document.getElementById("approvalToken").value.trim();
-      const data = await fetch("/api/forge/control-plane/remediate/recommended", {
-        method: "POST",
-        headers: signedIntentHeaders(),
-        body: JSON.stringify({ approved, approvalToken })
-      }).then(r => r.json());
-      controlPlaneResult.textContent = JSON.stringify(data, null, 2);
-      await refreshIntegration();
-    });
-    renderModuleControls();
+      mainOutput.textContent = "Running " + activeModule + "...";
+      try {
+        if (activeModule === "orchestrate") {
+          const res = await fetch("/api/forge/orchestrate", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ intent: prompt, mode: "adaptive", approved: false })
+          });
+          const data = await res.json();
+          mainOutput.textContent = JSON.stringify(data, null, 2);
+          metaOutput.textContent = "Orchestration complete (" + res.status + ").";
+          return;
+        }
+
+        const res = await fetch("/api/forge/module/" + activeModule, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ query: prompt, task: prompt, mode: "adaptive", approved: false })
+        });
+        const data = await res.json();
+        mainOutput.textContent = JSON.stringify(data, null, 2);
+        metaOutput.textContent = "Module " + activeModule + " complete (" + res.status + ").";
+      } catch (error) {
+        mainOutput.textContent = "Request failed.";
+        metaOutput.textContent = String(error);
+      }
+    }
+
+    async function runOrchestration() {
+      const prompt = String(document.getElementById("prompt").value || "").trim();
+      if (!prompt) {
+        mainOutput.textContent = "Add a prompt first.";
+        return;
+      }
+      mainOutput.textContent = "Running lifecycle orchestration...";
+      try {
+        const res = await fetch("/api/forge/orchestrate", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ intent: prompt, mode: "adaptive", approved: false })
+        });
+        const data = await res.json();
+        mainOutput.textContent = JSON.stringify(data, null, 2);
+        metaOutput.textContent = "Lifecycle complete (" + res.status + ").";
+      } catch (error) {
+        mainOutput.textContent = "Lifecycle run failed.";
+        metaOutput.textContent = String(error);
+      }
+    }
+
+    async function checkHealth() {
+      metaOutput.textContent = "Checking health...";
+      try {
+        const data = await fetch("/api/forge/modules/status").then((r) => r.json());
+        metaOutput.textContent = JSON.stringify(data, null, 2);
+      } catch (error) {
+        metaOutput.textContent = String(error);
+      }
+    }
+
+    document.getElementById("runModule").addEventListener("click", runSelectedModule);
+    document.getElementById("runOrchestration").addEventListener("click", runOrchestration);
+    document.getElementById("checkHealth").addEventListener("click", checkHealth);
+
     refreshIntegration();
   </script>
 </body>
