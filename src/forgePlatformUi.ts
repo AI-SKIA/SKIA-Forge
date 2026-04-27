@@ -200,7 +200,7 @@ export function renderForgePlatformHtml(): string {
   <div class="topbar">
     <div class="brand">SKIA FORGE IDE</div>
     <div class="status" id="integrationStatus">Integration: checking...</div>
-    <a class="download-btn" href="https://github.com/AI-SKIA/skia/releases/latest/download/SKIA-Desktop-windows-x64.exe">Download App</a>
+    <a class="download-btn" href="https://github.com/AI-SKIA/skia/releases/latest" target="_blank" rel="noreferrer">Download App</a>
   </div>
   <div class="root">
     <aside class="left">

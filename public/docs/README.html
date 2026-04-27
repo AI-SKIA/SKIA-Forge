@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Documentation Index | SKIA Forge</title>
+  <link rel="icon" type="image/png" href="/favicon.png"/>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600&display=swap');
+  :root{
+    --gold:#d4af37;--gold-muted:rgba(212,175,55,0.62);--gold-dim:rgba(212,175,55,0.22);
+    --bg:#080400;--card-bg:rgba(15,8,0,0.95);--border:rgba(212,175,55,0.28);
+    --text-soft:rgba(255,255,255,0.72);--text-dim:rgba(255,255,255,0.38);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(255,180,0,0.07) 0%,transparent 65%),var(--bg);color:var(--gold);font-family:Orbitron,sans-serif;min-height:100vh;line-height:1.6;}
+  .pc-sidebar-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.55);backdrop-filter:blur(2px);z-index:199;cursor:pointer;display:none;}
+  .pc-sidebar-tab{position:fixed;top:50%;left:0;transform:translateY(-50%);z-index:200;display:flex;align-items:center;justify-content:center;width:36px;height:72px;background:linear-gradient(180deg,rgba(20,10,0,0.95) 0%,rgba(40,20,0,0.98) 50%,rgba(20,10,0,0.95) 100%);border:1px solid rgba(212,175,55,0.4);border-left:none;border-radius:0 10px 10px 0;cursor:pointer;box-shadow:4px 0 20px rgba(212,175,55,0.15);}
+  .pc-sidebar-tab-icon{font-size:20px;color:var(--gold);}
+  .pc-sidebar{position:fixed;top:0;left:0;width:260px;height:100vh;background:linear-gradient(180deg,rgba(12,6,0,0.98) 0%,rgba(20,10,0,0.99) 100%);border-right:1px solid rgba(212,175,55,0.25);z-index:201;transform:translateX(-100%);transition:transform 0.25s ease;display:flex;flex-direction:column;padding:24px 0 32px;}
+  .pc-sidebar--open{transform:translateX(0);}
+  .pc-sidebar-logo{display:flex;flex-direction:column;align-items:center;padding:0 20px 20px;}
+  .pc-sidebar-logo-img{width:52px;height:52px;border-radius:50%;object-fit:cover;}
+  .pc-sidebar-logo-tagline{font-size:10px;color:rgba(212,175,55,0.5);letter-spacing:0.12em;margin-top:8px;text-transform:uppercase;}
+  .pc-sidebar-divider{height:1px;background:rgba(212,175,55,0.18);margin:8px 16px;}
+  .pc-sidebar-nav{display:flex;flex-direction:column;gap:2px;padding:8px 12px;}
+  .pc-sidebar-btn{display:block;padding:10px 14px;border-radius:6px;color:rgba(212,175,55,0.85);text-decoration:none;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;transition:background 0.15s,color 0.15s;}
+  .pc-sidebar-btn:hover{background:rgba(212,175,55,0.1);color:#d4af37;}
+  .back-btn{position:fixed;top:24px;left:24px;z-index:100;display:flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--border);border-radius:6px;padding:8px 14px;background:rgba(0,0,0,0.6);transition:background 0.15s;}
+  .back-btn:hover{background:rgba(212,175,55,0.08);}
+  .wrap{max-width:820px;margin:0 auto;padding:80px 24px 80px;}
+  .doc-badge{display:inline-block;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-muted);border:1px solid var(--gold-dim);border-radius:4px;padding:3px 10px;margin-bottom:18px;}
+  .doc-title{font-size:28px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);line-height:1.15;margin-bottom:12px;}
+  .doc-desc{font-size:14px;color:var(--text-soft);font-family:Nunito,sans-serif;margin-bottom:36px;line-height:1.7;}
+  .doc-divider{height:1px;background:linear-gradient(90deg,var(--gold) 0%,transparent 100%);margin-bottom:36px;opacity:0.35;}
+  /* Content sections */
+  .section{margin-bottom:36px;}
+  .section-title{font-size:12px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+  .section-body{font-size:13px;color:var(--text-soft);font-family:Nunito,sans-serif;line-height:1.75;}
+  /* Items list */
+  .item-list{display:flex;flex-direction:column;gap:8px;}
+  .item{display:flex;gap:12px;align-items:flex-start;padding:12px 16px;background:rgba(212,175,55,0.04);border:1px solid rgba(212,175,55,0.15);border-radius:8px;}
+  .item-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:7px;}
+  .item-text{font-size:13px;color:var(--text-soft);font-family:Nunito,sans-serif;line-height:1.6;}
+  .item-text code{font-size:12px;color:var(--gold);background:rgba(212,175,55,0.1);padding:1px 6px;border-radius:4px;font-family:monospace;}
+  /* Cards grid */
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;}
+  .card{background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:18px 16px;}
+  .card-title{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+  .card-body{font-size:12px;color:var(--text-soft);font-family:Nunito,sans-serif;line-height:1.55;}
+  /* Code block */
+  .code-block{background:rgba(0,0,0,0.6);border:1px solid rgba(212,175,55,0.2);border-radius:8px;padding:14px 16px;font-family:monospace;font-size:12px;color:rgba(212,175,55,0.85);overflow-x:auto;margin:8px 0;}
+  /* Checklist */
+  .check-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .check-item{display:flex;gap:10px;align-items:flex-start;padding:11px 14px;background:rgba(212,175,55,0.04);border:1px solid rgba(212,175,55,0.15);border-radius:8px;}
+  .check-box{width:16px;height:16px;border:1px solid var(--gold-muted);border-radius:3px;flex-shrink:0;margin-top:1px;}
+  .check-text{font-size:12px;color:var(--text-soft);font-family:Nunito,sans-serif;line-height:1.5;}
+  /* Numbered steps */
+  .steps{display:flex;flex-direction:column;gap:8px;}
+  .step{display:flex;gap:14px;align-items:flex-start;padding:12px 16px;background:rgba(212,175,55,0.04);border:1px solid rgba(212,175,55,0.15);border-radius:8px;}
+  .step-num{font-size:11px;font-weight:800;color:var(--gold);min-width:20px;margin-top:1px;}
+  .step-text{font-size:13px;color:var(--text-soft);font-family:Nunito,sans-serif;line-height:1.6;}
+  .step-text code{font-size:12px;color:var(--gold);background:rgba(212,175,55,0.1);padding:1px 6px;border-radius:4px;font-family:monospace;}
+  /* Package cards */
+  .pkg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;}
+  .pkg-card{background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:20px 16px;}
+  .pkg-name{font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;}
+  .pkg-tag{font-size:10px;color:var(--gold-muted);margin-bottom:10px;font-family:Nunito,sans-serif;}
+  .pkg-body{font-size:12px;color:var(--text-soft);font-family:Nunito,sans-serif;line-height:1.6;}
+  /* Table */
+  .tbl{width:100%;border-collapse:collapse;font-size:12px;font-family:Nunito,sans-serif;}
+  .tbl th{background:rgba(212,175,55,0.12);color:var(--gold);font-family:Orbitron,sans-serif;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:10px 14px;text-align:left;border:1px solid var(--border);}
+  .tbl td{padding:10px 14px;border:1px solid rgba(212,175,55,0.1);color:var(--text-soft);vertical-align:top;}
+  .tbl tr:nth-child(even) td{background:rgba(212,175,55,0.03);}
+  .tbl code{font-size:11px;color:var(--gold);background:rgba(212,175,55,0.1);padding:1px 5px;border-radius:3px;}
+  /* SLA */
+  .sla-row{display:flex;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:8px;}
+  .sla-tier{min-width:70px;padding:12px 14px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;letter-spacing:0.1em;}
+  .sla-tier.p1{background:rgba(200,40,40,0.15);color:#f87171;}
+  .sla-tier.p2{background:rgba(212,140,40,0.15);color:#fbbf24;}
+  .sla-tier.p3{background:rgba(212,175,55,0.08);color:var(--gold);}
+  .sla-body{padding:12px 16px;background:var(--card-bg);flex:1;}
+  .sla-label{font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--gold);margin-bottom:3px;}
+  .sla-desc{font-size:12px;color:var(--text-soft);font-family:Nunito,sans-serif;}
+  /* Footer */
+  .doc-footer{margin-top:60px;padding-top:24px;border-top:1px solid var(--border);text-align:center;font-family:Orbitron,sans-serif;font-size:11px;line-height:1.8;}
+  .doc-footer .tagline{color:var(--gold);font-size:12px;margin-bottom:4px;}
+  .doc-footer .copy{color:var(--gold-muted);}
+  .doc-footer .links{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:8px;}
+  .doc-footer .links a{color:var(--gold);text-decoration:none;}
+  .doc-footer .links a:hover{text-decoration:underline;}
+  .doc-footer .links .sep{color:rgba(212,175,55,0.35);}
+  @media(max-width:680px){.wrap{padding:70px 16px 48px;}.doc-title{font-size:20px;}.check-grid{grid-template-columns:1fr;}.pkg-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div id="pcSidebarBackdrop" class="pc-sidebar-backdrop"></div>
+<button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation">
+  <span class="pc-sidebar-tab-icon">☰</span>
+</button>
+<aside id="pcSidebar" class="pc-sidebar">
+  <div class="pc-sidebar-logo">
+    <img src="https://skia.ca/sidebar-logo.png" alt="SKIA" class="pc-sidebar-logo-img" />
+    <span class="pc-sidebar-logo-tagline">She Knows It All</span>
+  </div>
+  <div class="pc-sidebar-divider"></div>
+  <nav class="pc-sidebar-nav">
+    <a class="pc-sidebar-btn" href="/forge">Forge Home</a>
+    <a class="pc-sidebar-btn" href="/resources">Resources</a>
+    <a class="pc-sidebar-btn" href="/security">Security</a>
+    <a class="pc-sidebar-btn" href="/contact">Contact & Support</a>
+    <div class="pc-sidebar-divider"></div>
+    <a class="pc-sidebar-btn" href="https://skia.ca/login?returnTo=/forge/app">Sign In</a>
+    <a class="pc-sidebar-btn" href="https://skia.ca/register?returnTo=/forge/app">Register</a>
+  </nav>
+</aside>
+
+<a href="/resources" class="back-btn">← Resources</a>
+<div class="wrap">
+  <div class="doc-badge">SKIA Forge Docs</div>
+  <h1 class="doc-title">Documentation Index</h1>
+  <p class="doc-desc">The complete product documentation set for SKIA Forge.</p>
+  <div class="doc-divider"></div>
+  <div class="section"><div class="section-title">All Documents</div><div class="section-body"><div class="card-grid"><a href="/docs/PRODUCT_MANUAL.html" style="text-decoration:none"><div class="card"><div class="card-title">Product Manual</div><div class="card-body" style="color:var(--gold-muted);font-size:11px;letter-spacing:0.05em">PRODUCT_MANUAL.html</div></div></a><a href="/docs/QUICKSTART.html" style="text-decoration:none"><div class="card"><div class="card-title">Quickstart</div><div class="card-body" style="color:var(--gold-muted);font-size:11px;letter-spacing:0.05em">QUICKSTART.html</div></div></a><a href="/docs/USER_GUIDE.html" style="text-decoration:none"><div class="card"><div class="card-title">User Guide</div><div class="card-body" style="color:var(--gold-muted);font-size:11px;letter-spacing:0.05em">USER_GUIDE.html</div></div></a><a href="/docs/DEVELOPER_GUIDE.html" style="text-decoration:none"><div class="card"><div class="card-title">Developer Guide</div><div class="card-body" style="color:var(--gold-muted);font-size:11px;letter-spacing:0.05em">DEVELOPER_GUIDE.html</div></div></a><a href="/docs/OPERATOR_MANUAL.html" style="text-decoration:none"><div class="card"><div class="card-title">Operator Manual</div><div class="card-body" style="color:var(--gold-muted);font-size:11px;letter-spacing:0.05em">OPERATOR_MANUAL.html</div></div></a><a href="/docs/API_REFERENCE.html" style="text-decoration:none"><div class="card"><div class="card-title">API Reference</div><div class="card-body" style="color:var(--gold-muted);font-size:11px;letter-spacing:0.05em">API_REFERENCE.html</div></div></a><a href="/docs/SECURITY_GUIDE.html" style="text-decoration:none"><div class="card"><div class="card-title">Security Guide</div><div class="card-body" style="color:var(--gold-muted);font-size:11px;letter-spacing:0.05em">SECURITY_GUIDE.html</div></div></a><a href="/docs/TROUBLESHOOTING.html" style="text-decoration:none"><div class="card"><div class="card-title">Troubleshooting</div><div class="card-body" style="color:var(--gold-muted);font-size:11px;letter-spacing:0.05em">TROUBLESHOOTING.html</div></div></a><a href="/docs/CHANGELOG.html" style="text-decoration:none"><div class="card"><div class="card-title">Changelog</div><div class="card-body" style="color:var(--gold-muted);font-size:11px;letter-spacing:0.05em">CHANGELOG.html</div></div></a><a href="/docs/SUPPORT.html" style="text-decoration:none"><div class="card"><div class="card-title">Support</div><div class="card-body" style="color:var(--gold-muted);font-size:11px;letter-spacing:0.05em">SUPPORT.html</div></div></a><a href="/docs/PRICING_AND_PACKAGES.html" style="text-decoration:none"><div class="card"><div class="card-title">Pricing & Packages</div><div class="card-body" style="color:var(--gold-muted);font-size:11px;letter-spacing:0.05em">PRICING_AND_PACKAGES.html</div></div></a><a href="/docs/ENTERPRISE_READINESS_CHECKLIST.html" style="text-decoration:none"><div class="card"><div class="card-title">Enterprise Readiness</div><div class="card-body" style="color:var(--gold-muted);font-size:11px;letter-spacing:0.05em">ENTERPRISE_READINESS_CHECKLIST.html</div></div></a></div></div></div>
+  
+<div class="doc-footer">
+  <div class="tagline">One ecosystem. One universe. All SKIA.</div>
+  <div class="copy">© 2026 SKIA Singularity Continuum. The future is an understatement.</div>
+  <div class="links">
+    <a href="/resources">Resources</a>
+    <span class="sep">|</span>
+    <a href="/security">Security</a>
+    <span class="sep">|</span>
+    <a href="/contact">Contact & Support</a>
+  </div>
+</div>
+
+</div>
+
+<script>
+(function(){
+  var sidebar=document.getElementById('pcSidebar');
+  var tab=document.getElementById('pcSidebarTab');
+  var backdrop=document.getElementById('pcSidebarBackdrop');
+  if(!sidebar||!tab||!backdrop)return;
+  var open=function(){sidebar.classList.add('pc-sidebar--open');backdrop.style.display='block';};
+  var close=function(){sidebar.classList.remove('pc-sidebar--open');backdrop.style.display='none';};
+  tab.addEventListener('click',open);
+  backdrop.addEventListener('click',close);
+  sidebar.addEventListener('click',function(e){if(e.target.tagName==='A')close();});
+})();
+</script>
+
+</body>
+</html>

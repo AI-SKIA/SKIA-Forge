@@ -1,4 +1,7 @@
 export function renderChatHtml(releaseBase = "https://github.com/AI-SKIA/skia/releases/latest/download"): string {
+  const releasePage = releaseBase.endsWith("/download")
+    ? releaseBase.slice(0, -"/download".length)
+    : "https://github.com/AI-SKIA/skia/releases/latest";
   return `<!doctype html>
 <html>
 <head>
@@ -47,7 +50,7 @@ export function renderChatHtml(releaseBase = "https://github.com/AI-SKIA/skia/re
   </style>
 </head>
 <body>
-  <a class="ide-download-app" href="${releaseBase}/SKIA-Desktop-windows-x64.exe">Download App</a>
+  <a class="ide-download-app" href="${releasePage}" target="_blank" rel="noreferrer">Download App</a>
   <div class="root">
     <section class="panel">
       <h2>SKIA Chat</h2>

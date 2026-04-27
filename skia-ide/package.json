@@ -1,12 +1,82 @@
 {
   "name": "skia-ide",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "SKIA FORGE — Sovereign AI-Powered Development Environment",
   "main": "dist/main/main.js",
   "scripts": {
     "start": "electron dist/main/main.js",
     "build": "tsc -p tsconfig.main.json && webpack --config webpack.config.js",
-    "dev": "concurrently \"tsc -p tsconfig.main.json --watch\" \"webpack --config webpack.config.js --watch\" \"wait-on dist/main/main.js && electron dist/main/main.js\""
+    "dev": "concurrently \"tsc -p tsconfig.main.json --watch\" \"webpack --config webpack.config.js --watch\" \"wait-on dist/main/main.js && electron dist/main/main.js\"",
+    "dist:win": "npm run build && electron-builder --win --publish never",
+    "dist:mac": "npm run build && electron-builder --mac --publish never",
+    "dist:linux": "npm run build && electron-builder --linux --publish never",
+    "dist:all": "npm run build && electron-builder --win --mac --linux --publish never"
+  },
+  "build": {
+    "appId": "ca.skia.forge",
+    "productName": "SKIA Forge",
+    "copyright": "© 2026 SKIA Singularity Continuum",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "dist/renderer/assets",
+        "to": "assets"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [ "x64" ]
+        }
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico",
+      "artifactName": "Skia-Forge-Setup-${version}-win-x64.exe"
+    },
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": [ "x64" ]
+        },
+        {
+          "target": "dmg",
+          "arch": [ "arm64" ]
+        }
+      ],
+      "icon": "assets/icon.icns",
+      "artifactName": "Skia-Forge-${version}-mac-${arch}.dmg",
+      "category": "public.app-category.developer-tools"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": [ "x64" ]
+        }
+      ],
+      "icon": "assets/icon.png",
+      "artifactName": "Skia-Forge-${version}-linux-x64.AppImage",
+      "category": "Development"
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "AI-SKIA",
+      "repo": "skia",
+      "releaseType": "release"
+    }
   },
   "dependencies": {
     "electron": "^30.0.0",
@@ -17,6 +87,7 @@
     "concurrently": "^8.2.2",
     "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^7.1.1",
+    "electron-builder": "^24.13.3",
     "html-webpack-plugin": "^5.6.0",
     "mini-css-extract-plugin": "^2.9.0",
     "ts-loader": "^9.5.1",

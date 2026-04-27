@@ -139,8 +139,9 @@ type ReleaseAssetsCache = {
   atMs: number;
   latestVersion: string | null;
   files: string[];
+  assets: Array<{ name: string; url: string }>;
 };
-let releaseAssetsCache: ReleaseAssetsCache = { atMs: 0, latestVersion: null, files: [] };
+let releaseAssetsCache: ReleaseAssetsCache = { atMs: 0, latestVersion: null, files: [], assets: [] };
 
 function normalizeSemver(version: string): string {
   return version.trim().replace(/^v/i, "");
@@ -168,7 +169,7 @@ async function fetchLatestForgeReleaseTag(timeoutMs = 3000): Promise<string | nu
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const response = await fetch("https://api.github.com/repos/AI-SKIA/SKIA-Forge/releases/latest", {
+    const response = await fetch("https://api.github.com/repos/AI-SKIA/skia/releases/latest", {
       headers: {
         Accept: "application/vnd.github+json",
         "User-Agent": "skia-forge-version-check"
@@ -194,16 +195,20 @@ async function fetchLatestForgeReleaseTag(timeoutMs = 3000): Promise<string | nu
 
 async function fetchLatestForgeReleaseAssets(
   timeoutMs = 4000
-): Promise<{ latestVersion: string | null; files: string[] }> {
+): Promise<{ latestVersion: string | null; files: string[]; assets: Array<{ name: string; url: string }> }> {
   const now = Date.now();
   if (now - releaseAssetsCache.atMs < 300_000) {
-    return { latestVersion: releaseAssetsCache.latestVersion, files: releaseAssetsCache.files };
+    return {
+      latestVersion: releaseAssetsCache.latestVersion,
+      files: releaseAssetsCache.files,
+      assets: releaseAssetsCache.assets
+    };
   }
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const response = await fetch("https://api.github.com/repos/AI-SKIA/SKIA-Forge/releases/latest", {
+    const response = await fetch("https://api.github.com/repos/AI-SKIA/skia/releases/latest", {
       headers: {
         Accept: "application/vnd.github+json",
         "User-Agent": "skia-forge-release-assets"
@@ -211,26 +216,30 @@ async function fetchLatestForgeReleaseAssets(
       signal: controller.signal
     });
     if (!response.ok) {
-      releaseAssetsCache = { atMs: now, latestVersion: null, files: [] };
-      return { latestVersion: null, files: [] };
+      releaseAssetsCache = { atMs: now, latestVersion: null, files: [], assets: [] };
+      return { latestVersion: null, files: [], assets: [] };
     }
     const payload = (await response.json()) as {
       tag_name?: unknown;
-      assets?: Array<{ name?: unknown }>;
+      assets?: Array<{ name?: unknown; browser_download_url?: unknown }>;
     };
     const latestVersion = typeof payload.tag_name === "string" && payload.tag_name.trim()
       ? payload.tag_name.trim()
       : null;
-    const files = Array.isArray(payload.assets)
+    const assets = Array.isArray(payload.assets)
       ? payload.assets
-          .map((asset) => (typeof asset.name === "string" ? asset.name.trim() : ""))
-          .filter((name) => Boolean(name))
+          .map((asset) => ({
+            name: typeof asset.name === "string" ? asset.name.trim() : "",
+            url: typeof asset.browser_download_url === "string" ? asset.browser_download_url.trim() : ""
+          }))
+          .filter((asset) => Boolean(asset.name) && Boolean(asset.url))
       : [];
-    releaseAssetsCache = { atMs: now, latestVersion, files };
-    return { latestVersion, files };
+    const files = assets.map((asset) => asset.name);
+    releaseAssetsCache = { atMs: now, latestVersion, files, assets };
+    return { latestVersion, files, assets };
   } catch {
-    releaseAssetsCache = { atMs: now, latestVersion: null, files: [] };
-    return { latestVersion: null, files: [] };
+    releaseAssetsCache = { atMs: now, latestVersion: null, files: [], assets: [] };
+    return { latestVersion: null, files: [], assets: [] };
   } finally {
     clearTimeout(timeout);
   }
@@ -344,11 +353,12 @@ app.get("/api/app/version-check", async (_req, res) => {
 
 app.get("/api/app/release-assets", async (_req, res) => {
   const latestFromEnv = (process.env.SKIA_FORGE_LATEST_VERSION ?? "").trim() || null;
-  const { latestVersion, files } = await fetchLatestForgeReleaseAssets();
+  const { latestVersion, files, assets } = await fetchLatestForgeReleaseAssets();
   res.json({
     app: "skia-forge",
     latestVersion: latestFromEnv || latestVersion,
     files,
+    assets,
     source: latestFromEnv ? "env+github-assets" : "github"
   });
 });
@@ -1193,7 +1203,22 @@ app.get("/forge/platform", (_req, res) => {
   res.type("html").send(renderForgePlatformHtml());
 });
 
+// Serve branded HTML doc pages (public/docs/) before raw markdown
+app.use("/docs", express.static(path.join(projectRoot, "public", "docs")));
+// Fallback: raw .md files
 app.use("/docs", express.static(path.join(projectRoot, "docs")));
+
+app.get("/resources", (_req, res) => {
+  res.sendFile(path.join(projectRoot, "public", "resources.html"));
+});
+
+app.get("/security", (_req, res) => {
+  res.sendFile(path.join(projectRoot, "public", "security.html"));
+});
+
+app.get("/contact", (_req, res) => {
+  res.sendFile(path.join(projectRoot, "public", "contact.html"));
+});
 
 app.post("/diff/preview", (req, res) => {
   const oldText = String(req.body?.oldText ?? "");

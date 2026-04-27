@@ -1,100 +1,84 @@
 type DownloadPlatform = {
-  id: string;
-  name: string;
-  version: string;
-  icon: string;
-  hint: string;
-  file: string;
+    id: string;
+    name: string;
+    version: string;
+    icon: string;
+    hint: string;
+    file: string;
 };
 
 type ValueCard = {
-  title: string;
-  body: string;
+    title: string;
+    body: string;
 };
 
 const PLATFORMS: DownloadPlatform[] = [
-  {
-    id: "windows",
-    name: "Windows",
-    version: "Windows 10/11",
-    icon: "windows",
-    hint: "64-bit installer (.exe)",
-    file: "SKIA-Desktop-windows-x64.exe"
-  },
-  {
-    id: "mac-intel",
-    name: "macOS (Intel)",
-    version: "macOS 11+",
-    icon: "apple",
-    hint: "Intel x64",
-    file: "SKIA-Desktop-mac-x64.dmg"
-  },
-  {
-    id: "mac-arm",
-    name: "macOS (Apple Silicon)",
-    version: "macOS 11+ M1/M2/M3",
-    icon: "apple",
-    hint: "Apple Silicon (M1/M2/M3)",
-    file: "SKIA-Desktop-mac-arm64.dmg"
-  },
-  {
-    id: "linux-appimage",
-    name: "Linux",
-    version: "Ubuntu, Fedora, Arch",
-    icon: "linux",
-    hint: "AppImage (any distro)",
-    file: "SKIA-Desktop-linux-x64.AppImage"
-  },
-  {
-    id: "linux-deb",
-    name: "Linux (.deb)",
-    version: "Ubuntu / Debian",
-    icon: "linux",
-    hint: "Deb package",
-    file: "SKIA-Desktop-linux-x64.deb"
-  },
-  {
-    id: "linux-rpm",
-    name: "Linux (.rpm)",
-    version: "Fedora / RHEL",
-    icon: "linux",
-    hint: "RPM package",
-    file: "SKIA-Desktop-linux-x64.rpm"
-  }
+    {
+        id: "windows",
+        name: "Windows",
+        version: "Windows 10/11",
+        icon: "windows",
+        hint: "64-bit installer (.exe)",
+        file: "Skia-Forge-Setup-1.0.0-win-x64.exe"
+    },
+    {
+        id: "mac-intel",
+        name: "macOS (Intel)",
+        version: "macOS 11+",
+        icon: "apple",
+        hint: "Intel x64",
+        file: "Skia-Forge-1.0.0-mac-x64.dmg"
+    },
+    {
+        id: "mac-arm",
+        name: "macOS (Apple Silicon)",
+        version: "macOS 11+ M1/M2/M3",
+        icon: "apple",
+        hint: "Apple Silicon (M1/M2/M3)",
+        file: "Skia-Forge-1.0.0-mac-arm64.dmg"
+    },
+    {
+        id: "linux-appimage",
+        name: "Linux",
+        version: "Ubuntu, Fedora, Arch",
+        icon: "linux",
+        hint: "AppImage (any distro)",
+        file: "Skia-Forge-1.0.0-linux-x64.AppImage"
+    }
 ];
 
 const VALUE_CARDS: ValueCard[] = [
-  {
-    title: "Frontier-Ready Intelligence Layer",
-    body: "SKIA Forge is built on a hardened intelligence stack validated across coding, tool use, reasoning, long context, vision, and multimodal workflows."
-  },
-  {
-    title: "Eval-Gated Reliability",
-    body: "Regression-sensitive CI gates and full test coverage protect quality, so intelligence regressions are blocked before release."
-  },
-  {
-    title: "Production-Grade Operations",
-    body: "Forge ships with health checks, governance telemetry, status surfaces, and deterministic routing controls designed for operational trust."
-  },
-  {
-    title: "One Intelligence Across Surfaces",
-    body: "Use Forge on web for API-powered execution, or install desktop for full local filesystem and terminal workflows."
-  }
+    {
+        title: "Frontier-Ready Intelligence Layer",
+        body: "SKIA Forge is built on a hardened intelligence stack validated across coding, tool use, reasoning, long context, vision, and multimodal workflows."
+    },
+    {
+        title: "Eval-Gated Reliability",
+        body: "Regression-sensitive CI gates and full test coverage protect quality, so intelligence regressions are blocked before release."
+    },
+    {
+        title: "Production-Grade Operations",
+        body: "Forge ships with health checks, governance telemetry, status surfaces, and deterministic routing controls designed for operational trust."
+    },
+    {
+        title: "One Intelligence Across Surfaces",
+        body: "Use Forge on web for API-powered execution, or install desktop for full local filesystem and terminal workflows."
+    }
 ];
 
 export function renderDownloadHtml(releaseBase: string): string {
-  const valueCards = VALUE_CARDS.map(
-    (card) => `
+    const valueCards = VALUE_CARDS.map(
+        (card) => `
       <article class="value-card">
         <h3 class="value-card-title">${card.title}</h3>
         <p class="value-card-body">${card.body}</p>
       </article>
     `
-  ).join("");
+    ).join("");
 
-  const cards = PLATFORMS.map(
-    (p) => `
-      <a id="${p.id}" class="download-card" data-file="${p.file}" href="${releaseBase}/${p.file}">
+    const cards = PLATFORMS.map(
+        (p) => `
+      <a id="${p.id}" class="download-card" data-file="${p.file}" href="https://github.com/AI-SKIA/skia/releases/latest" target="_blank" rel="noreferrer">
         <div class="download-card-icon ${p.icon}"></div>
         <div class="download-card-name">${p.name}</div>
         <div class="download-card-version">${p.version}</div>
@@ -102,9 +86,9 @@ export function renderDownloadHtml(releaseBase: string): string {
         <div class="download-card-btn">Download</div>
       </a>
     `
-  ).join("");
+    ).join("");
 
-  return `<!doctype html>
+    return `<!doctype html>
 <html>
 <head>
   <meta charset="utf-8" />
@@ -123,7 +107,7 @@ export function renderDownloadHtml(releaseBase: string): string {
     property="og:description"
     content="Download SKIA Forge for Windows, macOS, and Linux. One sovereign intelligence across desktop, web, mobile, and voice."
   />
-  <meta property="og:url" content="https://skia.ca/forge" />
+  <meta property="og:url" content="https://forge.skia.ca/forge" />
   <meta property="og:image" content="https://skia.ca/og/skia-forge-preview.svg" />
   <meta property="og:image:secure_url" content="https://skia.ca/og/skia-forge-preview.svg" />
   <meta property="og:image:type" content="image/svg+xml" />
@@ -193,339 +177,330 @@ export function renderDownloadHtml(releaseBase: string): string {
       position: fixed;
       top: 0;
       left: 0;
-      width: 280px;
-      height: 100dvh;
-      z-index: 200;
+      width: 260px;
+      height: 100vh;
+      background: linear-gradient(180deg, rgba(12,6,0,0.98) 0%, rgba(20,10,0,0.99) 100%);
+      border-right: 1px solid rgba(212,175,55,0.25);
+      z-index: 201;
+      transform: translateX(-100%);
+      transition: transform 0.25s ease;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
-      background: linear-gradient(160deg, rgba(8, 4, 0, 0.97) 0%, rgba(15, 8, 0, 0.98) 40%, rgba(10, 5, 0, 0.97) 100%);
-      border-right: 1px solid rgba(212,175,55,0.2);
-      box-shadow: 8px 0 48px rgba(0, 0, 0, 0.7), 2px 0 0 rgba(212,175,55,0.06);
-      transform: translateX(-100%);
-      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 24px 0 32px;
     }
     .pc-sidebar--open { transform: translateX(0); }
     .pc-sidebar-logo {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding: 48px 24px 24px 24px;
-      gap: 10px;
+      padding: 0 20px 20px;
     }
-    .pc-sidebar-logo-img { width: 90px; filter: drop-shadow(0 0 12px rgba(212,175,55,0.3)); }
+    .pc-sidebar-logo-img { width: 56px; height: 56px; border-radius: 50%; object-fit: cover; }
     .pc-sidebar-logo-tagline {
-      font-family: Orbitron, sans-serif;
-      font-size: 9px;
-      letter-spacing: 3px;
-      color: rgba(212,175,55,0.5);
+      font-size: 10px;
+      color: rgba(212,175,55,0.55);
+      letter-spacing: 0.12em;
+      margin-top: 8px;
       text-transform: uppercase;
     }
     .pc-sidebar-divider {
       height: 1px;
-      margin: 4px 24px 12px 24px;
-      background: linear-gradient(90deg, transparent 0%, rgba(212,175,55,0.25) 30%, rgba(212,175,55,0.25) 70%, transparent 100%);
-      flex-shrink: 0;
+      background: rgba(212,175,55,0.18);
+      margin: 8px 16px;
     }
     .pc-sidebar-nav {
       display: flex;
       flex-direction: column;
-      padding: 8px 20px;
-      gap: 4px;
-      flex: 1;
+      gap: 2px;
+      padding: 8px 12px;
     }
     .pc-sidebar-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      padding: 9px 20px;
-      font-family: Orbitron, sans-serif;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(212,175,55,0.75);
-      text-decoration: none;
-      border: 1px solid transparent;
+      display: block;
+      padding: 10px 14px;
       border-radius: 6px;
-      background: transparent;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .pc-sidebar-btn::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 20%;
-      height: 60%;
-      width: 2px;
-      background: rgba(212,175,55,0);
-      border-radius: 2px;
-      transition: background 0.2s ease;
+      color: rgba(212,175,55,0.85);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background 0.15s, color 0.15s;
     }
     .pc-sidebar-btn:hover {
-      color: var(--skia-gold);
-      background: rgba(212,175,55,0.07);
-      border-color: rgba(212,175,55,0.18);
-      transform: translateX(3px);
-      box-shadow: 0 0 16px rgba(212,175,55,0.08);
+      background: rgba(212,175,55,0.1);
+      color: #d4af37;
     }
-    .pc-sidebar-btn:hover::before { background: rgba(212,175,55,0.7); }
 
     .wrap {
-      width: 100%;
-      max-width: 760px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 48px 24px 64px;
+      padding: 48px 24px 72px;
     }
+
     .feature-page-content {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 16px;
     }
+
     .feature-page-logo {
-      width: 160px;
-      height: auto;
-      object-fit: contain;
-      filter: drop-shadow(0 0 24px rgba(212,175,55,0.4)) drop-shadow(0 0 48px rgba(212,175,55,0.15));
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 20px;
     }
-    .feature-page-header { text-align: center; }
+
+    .feature-page-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
     .feature-page-title {
-      margin: 0 0 6px;
-      font-size: 28px;
-      font-weight: 400;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
       color: var(--skia-gold);
-      letter-spacing: 3px;
+      margin: 0 0 10px;
       text-transform: uppercase;
-      text-shadow: 0 0 24px rgba(212,175,55,0.25);
     }
+
     .feature-page-subtitle {
-      margin: 0;
-      font-family: Nunito, Arial, sans-serif;
-      font-size: 14px;
-      color: rgba(255,255,255,0.55);
-      letter-spacing: 1px;
+      font-size: 13px;
+      color: var(--skia-text-soft);
+      letter-spacing: 0.05em;
+      margin: 0 0 24px;
+      font-family: Nunito, sans-serif;
     }
+
     .hero-actions {
       display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+      gap: 12px;
       justify-content: center;
-      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .feature-tab {
+      display: inline-block;
+      padding: 10px 22px;
+      border: 1px solid rgba(212,175,55,0.5);
+      border-radius: 6px;
+      color: var(--skia-gold);
+      text-decoration: none;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: rgba(212,175,55,0.06);
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .feature-tab:hover {
+      background: rgba(212,175,55,0.14);
+      border-color: rgba(212,175,55,0.8);
+    }
+    .feature-tab--primary {
+      background: rgba(212,175,55,0.18);
+      border-color: rgba(212,175,55,0.7);
+      font-weight: 600;
+    }
+
+    .value-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      width: 100%;
+      margin: 32px 0;
+    }
+
+    .value-card {
+      background: var(--skia-card-bg);
+      border: 1px solid var(--skia-border);
+      border-radius: 10px;
+      padding: 20px 18px;
+    }
+
+    .value-card-title {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--skia-gold);
+      margin: 0 0 10px;
+    }
+
+    .value-card-body {
+      font-size: 12px;
+      color: var(--skia-text-soft);
+      font-family: Nunito, sans-serif;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .journey {
+      width: 100%;
+      margin: 24px 0;
+    }
+
+    .journey-title {
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--skia-gold);
+      margin: 0 0 14px;
+    }
+
+    .journey-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 10px;
+      font-size: 12px;
+      color: var(--skia-text-soft);
+      font-family: Nunito, sans-serif;
+      line-height: 1.5;
+    }
+
+    .journey-step {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,175,55,0.5);
+      font-size: 11px;
+      color: var(--skia-gold);
+      font-family: Orbitron, sans-serif;
+      flex-shrink: 0;
     }
 
     .download-grid {
-      width: 100%;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 16px;
-      margin-top: 8px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      width: 100%;
+      margin: 24px 0 16px;
     }
+
     .download-card {
-      padding: 18px;
-      border-radius: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       background: var(--skia-card-bg);
       border: 1px solid var(--skia-border);
+      border-radius: 10px;
+      padding: 20px 14px 16px;
       text-decoration: none;
-      color: inherit;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
+      color: var(--skia-gold);
+      transition: border-color 0.15s, background 0.15s;
+      text-align: center;
     }
     .download-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 32px rgba(212,175,55,0.15);
-      border-color: rgba(212,175,55,0.55);
+      border-color: rgba(212,175,55,0.7);
+      background: linear-gradient(135deg, rgba(20,10,0,0.98) 0%, rgba(35,18,0,0.98) 100%);
     }
     .download-card--hidden { display: none; }
-    .value-section {
-      width: 100%;
-      margin-top: 12px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 14px;
-    }
-    .value-card {
-      border: 1px solid rgba(212,175,55,0.24);
-      border-radius: 10px;
-      background: rgba(0,0,0,0.42);
-      padding: 14px;
-      min-height: 136px;
-    }
-    .value-card-title {
-      margin: 0 0 8px;
-      color: var(--skia-gold);
-      font-size: 12px;
-      letter-spacing: 1.2px;
-      text-transform: uppercase;
-      line-height: 1.5;
-    }
-    .value-card-body {
-      margin: 0;
-      font-family: Nunito, Arial, sans-serif;
-      color: var(--skia-text-soft);
-      font-size: 13px;
-      line-height: 1.45;
-    }
-    .journey {
-      width: 100%;
-      border: 1px solid rgba(212,175,55,0.2);
-      border-radius: 10px;
-      background: rgba(0,0,0,0.4);
-      padding: 12px 14px;
-      margin-top: 4px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .journey-title {
-      margin: 0 0 2px;
-      color: var(--skia-gold);
-      font-size: 11px;
-      letter-spacing: 1.4px;
-      text-transform: uppercase;
-    }
-    .journey-row {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      font-family: Nunito, Arial, sans-serif;
-      color: var(--skia-text-soft);
-      font-size: 13px;
-      line-height: 1.45;
-    }
-    .journey-step {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
-      border: 1px solid rgba(212,175,55,0.35);
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--skia-gold);
-      font-size: 11px;
-      font-family: Orbitron, sans-serif;
-    }
+
     .download-card-icon {
-      width: 28px;
-      height: 28px;
-      border: 1px solid rgba(212,175,55,0.35);
-      border-radius: 50%;
-      display: inline-flex;
+      width: 32px;
+      height: 32px;
+      margin-bottom: 10px;
+      background: rgba(212,175,55,0.15);
+      border-radius: 6px;
+      display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 4px;
-      background: rgba(212,175,55,0.08);
+      font-size: 18px;
     }
-    .download-card-icon.windows::before { content: "W"; font-size: 12px; color: var(--skia-gold); }
-    .download-card-icon.apple::before { content: "A"; font-size: 12px; color: var(--skia-gold); }
-    .download-card-icon.linux::before { content: "L"; font-size: 12px; color: var(--skia-gold); }
+    .download-card-icon::before { content: "⬢"; color: var(--skia-gold); }
+
     .download-card-name {
-      font-size: 14px;
-      color: var(--skia-gold);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-    .download-card-version {
-      font-family: Nunito, Arial, sans-serif;
-      font-size: 12px;
-      color: rgba(212,175,55,0.65);
-    }
-    .download-card-hint {
-      font-family: Nunito, Arial, sans-serif;
-      font-size: 12px;
-      color: var(--skia-text-soft);
-    }
-    .download-card-btn {
-      margin-top: 8px;
       font-size: 11px;
-      letter-spacing: 2px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .download-card-version {
+      font-size: 10px;
+      color: var(--skia-gold-muted);
+      margin-bottom: 4px;
+      font-family: Nunito, sans-serif;
+    }
+
+    .download-card-hint {
+      font-size: 10px;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 12px;
+      font-family: Nunito, sans-serif;
+    }
+
+    .download-card-btn {
+      padding: 6px 16px;
+      border: 1px solid rgba(212,175,55,0.45);
+      border-radius: 4px;
+      font-size: 10px;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--skia-gold);
+      background: rgba(212,175,55,0.07);
     }
 
     .download-actions {
-      width: 100%;
       display: flex;
-      justify-content: center;
-      gap: 10px;
+      gap: 12px;
       flex-wrap: wrap;
-      margin-top: 8px;
-    }
-    .feature-tab {
-      display: inline-flex;
-      align-items: center;
       justify-content: center;
-      padding: 8px 18px;
-      border-radius: 6px;
-      border: 1px solid rgba(212,175,55,0.2);
-      background: transparent;
-      color: rgba(212,175,55,0.8);
-      text-decoration: none;
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      transition: all 0.2s ease;
-    }
-    .feature-tab:hover {
-      border-color: rgba(212,175,55,0.45);
-      color: var(--skia-gold);
-      background: rgba(212,175,55,0.08);
+      margin: 8px 0 24px;
     }
 
     .download-instructions {
       width: 100%;
-      margin-top: 6px;
-      border: 1px solid rgba(212,175,55,0.2);
+      background: var(--skia-card-bg);
+      border: 1px solid var(--skia-border);
       border-radius: 10px;
-      background: rgba(0,0,0,0.45);
-      padding: 12px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+      padding: 20px 18px;
+      margin-bottom: 24px;
     }
+
     .download-instruction-row {
       display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: Nunito, Arial, sans-serif;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 10px;
+      font-size: 12px;
       color: var(--skia-text-soft);
-      font-size: 13px;
-      line-height: 1.4;
+      font-family: Nunito, sans-serif;
+      line-height: 1.5;
     }
+    .download-instruction-row:last-child { margin-bottom: 0; }
+
     .download-step {
-      width: 20px;
-      height: 20px;
-      flex-shrink: 0;
-      border: 1px solid rgba(212,175,55,0.35);
-      border-radius: 50%;
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
+      min-width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid rgba(212,175,55,0.4);
+      font-size: 10px;
       color: var(--skia-gold);
-      font-size: 11px;
       font-family: Orbitron, sans-serif;
+      flex-shrink: 0;
     }
 
     .update-banner {
       width: 100%;
-      margin-top: 4px;
-      border: 1px solid rgba(212,175,55,0.35);
-      background: rgba(212,175,55,0.08);
-      color: #f7e7b3;
-      padding: 10px 12px;
-      font-size: 11px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
+      border: 1px solid rgba(212,175,55,0.5);
+      background: rgba(212,175,55,0.1);
+      color: var(--skia-gold);
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      margin-bottom: 16px;
+      font-family: Nunito, sans-serif;
       display: none;
     }
-    .update-banner strong { color: var(--skia-gold); }
+
     .availability-banner {
       width: 100%;
       border: 1px solid rgba(212,175,55,0.35);
@@ -535,6 +510,9 @@ export function renderDownloadHtml(releaseBase: string): string {
       font-size: 11px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      font-family: Nunito, sans-serif;
       display: none;
     }
 
@@ -589,10 +567,10 @@ export function renderDownloadHtml(releaseBase: string): string {
       <a class="pc-sidebar-btn" href="/forge/platform">Product</a>
       <a class="pc-sidebar-btn" href="/docs/ENTERPRISE_READINESS_CHECKLIST.md">Enterprise</a>
       <a class="pc-sidebar-btn" href="/docs/PRICING_AND_PACKAGES.md">Pricing</a>
-      <a class="pc-sidebar-btn" href="/docs/README.md">Resources</a>
+      <a class="pc-sidebar-btn" href="/resources">Resources</a>
       <div class="pc-sidebar-divider"></div>
-      <a class="pc-sidebar-btn" href="/forge/app">Sign In</a>
-      <a class="pc-sidebar-btn" href="/forge/app">Register</a>
+      <a class="pc-sidebar-btn" href="https://skia.ca/login?returnTo=/forge/app">Sign In</a>
+      <a class="pc-sidebar-btn" href="https://skia.ca/register?returnTo=/forge/app">Register</a>
       <a class="pc-sidebar-btn" href="/forge#windows">Download IDE</a>
     </nav>
   </aside>
@@ -604,9 +582,9 @@ export function renderDownloadHtml(releaseBase: string): string {
         <h1 class="feature-page-title">SKIA Forge</h1>
         <p class="feature-page-subtitle">She Knows It All - frontier-grade, eval-gated intelligence for real software delivery</p>
         <div class="hero-actions">
-          <a class="feature-tab" href="/forge/app">Sign In</a>
-          <a class="feature-tab" href="/forge/app">Register</a>
-          <a class="feature-tab" href="/forge#windows">Download App</a>
+          <a class="feature-tab feature-tab--primary" href="https://skia.ca/login?returnTo=/forge/app">Sign In</a>
+          <a class="feature-tab" href="https://skia.ca/register?returnTo=/forge/app">Register</a>
+          <a class="feature-tab" href="https://github.com/AI-SKIA/skia/releases/latest" target="_blank" rel="noreferrer">Download App</a>
         </div>
       </div>
       <section class="value-section">${valueCards}</section>
@@ -626,7 +604,6 @@ export function renderDownloadHtml(releaseBase: string): string {
       <div id="availabilityBanner" class="availability-banner"></div>
       <div class="download-grid">${cards}</div>
       <div class="download-actions">
-        <a class="feature-tab" href="${releaseBase}/SHA256SUMS.txt">Download SHA256 checksums</a>
         <a class="feature-tab" href="https://github.com/AI-SKIA/skia/releases/latest" target="_blank" rel="noreferrer">View release notes and assets</a>
       </div>
       <div class="download-instructions">
@@ -634,17 +611,16 @@ export function renderDownloadHtml(releaseBase: string): string {
         <div class="download-instruction-row"><span class="download-step">2</span><span>Run the installer and follow the setup flow.</span></div>
         <div class="download-instruction-row"><span class="download-step">3</span><span>Open SKIA Forge and sign in with your account.</span></div>
         <div class="download-instruction-row"><span class="download-step">4</span><span>Desktop clients check for updates automatically.</span></div>
-        <div class="download-instruction-row"><span class="download-step">5</span><span>Verify installer hash from SHA256SUMS before install.</span></div>
       </div>
 
       <div class="footer-mark">One ecosystem. One universe. All SKIA.</div>
       <div class="footer-copy">© 2026 SKIA Singularity Continuum. The future is an understatement.</div>
       <div class="footer-links">
-        <a href="/docs/README.md">Resources</a>
+        <a href="/resources">Resources</a>
         <span class="sep">|</span>
-        <a href="/docs/SECURITY_GUIDE.md">Security</a>
+        <a href="/security">Security</a>
         <span class="sep">|</span>
-        <a href="/docs/SUPPORT.md">Contact & Support</a>
+        <a href="/contact">Contact &amp; Support</a>
       </div>
     </section>
   </div>
@@ -692,29 +668,36 @@ export function renderDownloadHtml(releaseBase: string): string {
         .then((r) => (r.ok ? r.json() : null))
         .then((payload) => {
           if (!payload) return;
+          const assets = new Map(
+            Array.isArray(payload.assets)
+              ? payload.assets
+                  .filter((asset) => asset && typeof asset.name === 'string' && typeof asset.url === 'string')
+                  .map((asset) => [asset.name, asset.url])
+              : []
+          );
           const files = new Set(Array.isArray(payload.files) ? payload.files : []);
           let visible = 0;
           cards.forEach((card) => {
             const file = card.getAttribute('data-file') || '';
             const supported = files.has(file);
             card.classList.toggle('download-card--hidden', !supported);
-            if (supported) visible += 1;
+            if (!supported) return;
+            const url = assets.get(file);
+            if (url) card.setAttribute('href', url);
+            visible += 1;
           });
-          if (!availabilityBanner) return;
           if (visible === 0) {
-            availabilityBanner.textContent = 'No installer assets are published yet. Publish a release first.';
-            availabilityBanner.style.display = 'block';
-            return;
+            cards.forEach((card) => card.classList.remove('download-card--hidden'));
           }
-          availabilityBanner.textContent =
-            'Only currently published installers are shown (' + String(visible) + ' available).';
-          availabilityBanner.style.display = 'block';
+          if (!availabilityBanner) return;
+          if (visible > 0) {
+            availabilityBanner.textContent =
+              'Only currently published installers are shown (' + String(visible) + ' available).';
+            availabilityBanner.style.display = 'block';
+          }
         })
         .catch(() => {
-          cards.forEach((card) => card.classList.add('download-card--hidden'));
-          if (!availabilityBanner) return;
-          availabilityBanner.textContent = 'Installer availability check failed. No unverified downloads shown.';
-          availabilityBanner.style.display = 'block';
+          cards.forEach((card) => card.classList.remove('download-card--hidden'));
         });
     })();
   </script>
