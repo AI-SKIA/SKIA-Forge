@@ -1,7 +1,7 @@
 export function renderChatHtml(releaseBase = "https://github.com/AI-SKIA/skia/releases/latest/download"): string {
   const releasePage = releaseBase.endsWith("/download")
     ? releaseBase.slice(0, -"/download".length)
-    : "https://github.com/AI-SKIA/skia/releases/latest";
+    : "https://skia.ca/download";
   return `<!doctype html>
 <html>
 <head>

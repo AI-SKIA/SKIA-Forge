@@ -69,7 +69,7 @@ const VALUE_CARDS: ValueCard[] = [
 export function renderDownloadHtml(releaseBase: string): string {
     const releasePage = releaseBase.endsWith("/download")
         ? releaseBase.slice(0, -"/download".length)
-        : "https://github.com/AI-SKIA/skia/releases/latest";
+        : "https://skia.ca/download";
     const forgeReturnTo = encodeURIComponent("https://forge.skia.ca/forge/app");
     const signInHref = `https://skia.ca/login?returnTo=${forgeReturnTo}`;
     const registerHref = `https://skia.ca/register?returnTo=${forgeReturnTo}`;
