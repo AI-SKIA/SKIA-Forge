@@ -18,7 +18,7 @@ COPY . .
 # Build Forge server + web IDE renderer so /forge/app is available in production.
 RUN npm run build \
     && cd skia-ide \
-    && npm ci \
+    && npm install \
     && npm run build
 
 EXPOSE 4173
