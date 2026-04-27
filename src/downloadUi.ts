@@ -66,11 +66,8 @@ const VALUE_CARDS: ValueCard[] = [
     }
 ];
 
-export function renderDownloadHtml(releaseBase: string): string {
-    const releasePage = releaseBase.endsWith("/download")
-        ? releaseBase.slice(0, -"/download".length)
-        : "https://skia.ca/download";
-    const forgeReturnTo = encodeURIComponent("https://forge.skia.ca/forge/app");
+export function renderDownloadHtml(_releaseBase: string): string {
+    const forgeReturnTo = encodeURIComponent("https://forge.skia.ca/forge");
     const signInHref = `https://skia.ca/login?returnTo=${forgeReturnTo}`;
     const registerHref = `https://skia.ca/register?returnTo=${forgeReturnTo}`;
 
@@ -85,12 +82,12 @@ export function renderDownloadHtml(releaseBase: string): string {
 
     const cards = PLATFORMS.map(
         (p) => `
-      <a id="${p.id}" class="download-card" data-file="${p.file}" href="/api/app/download/${p.id}" target="_blank" rel="noreferrer">
+      <a id="${p.id}" class="download-card" data-file="${p.file}" href="/forge/app/" target="_blank" rel="noreferrer">
         <div class="download-card-icon ${p.icon}"></div>
         <div class="download-card-name">${p.name}</div>
         <div class="download-card-version">${p.version}</div>
         <div class="download-card-hint">${p.hint}</div>
-        <div class="download-card-btn">Download</div>
+        <div class="download-card-btn">Open IDE</div>
       </a>
     `
     ).join("");
@@ -591,7 +588,7 @@ export function renderDownloadHtml(releaseBase: string): string {
         <div class="hero-actions">
           <a class="feature-tab feature-tab--primary" href="${signInHref}">Sign In</a>
           <a class="feature-tab" href="${registerHref}">Register</a>
-          <a class="feature-tab" href="${releasePage}" target="_blank" rel="noreferrer">Download App</a>
+          <a class="feature-tab" href="/forge/app/">Open Forge IDE</a>
         </div>
       </div>
       <section class="value-section">${valueCards}</section>
@@ -611,7 +608,7 @@ export function renderDownloadHtml(releaseBase: string): string {
       <div id="availabilityBanner" class="availability-banner"></div>
       <div class="download-grid">${cards}</div>
       <div class="download-actions">
-        <a class="feature-tab" href="${releasePage}" target="_blank" rel="noreferrer">View release notes and assets</a>
+        <a class="feature-tab" href="/forge/app/">Open Forge IDE</a>
       </div>
       <div class="download-instructions">
         <div class="download-instruction-row"><span class="download-step">1</span><span>Download the installer for your platform above.</span></div>

@@ -1,7 +1,4 @@
-export function renderChatHtml(releaseBase = "https://github.com/AI-SKIA/skia/releases/latest/download"): string {
-  const releasePage = releaseBase.endsWith("/download")
-    ? releaseBase.slice(0, -"/download".length)
-    : "https://skia.ca/download";
+export function renderChatHtml(_releaseBase = "https://skia.ca/download"): string {
   return `<!doctype html>
 <html>
 <head>
@@ -50,7 +47,7 @@ export function renderChatHtml(releaseBase = "https://github.com/AI-SKIA/skia/re
   </style>
 </head>
 <body>
-  <a class="ide-download-app" href="${releasePage}" target="_blank" rel="noreferrer">Download App</a>
+  <a class="ide-download-app" href="/forge/app/">Open Forge IDE</a>
   <div class="root">
     <section class="panel">
       <h2>SKIA Chat</h2>
