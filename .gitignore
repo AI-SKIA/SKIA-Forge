@@ -144,3 +144,4 @@ vite.config.ts.timestamp-*
 .skia/index.json
 .skia/agent-log.json
 .skia/runtime-state.json
+northflank-services.md

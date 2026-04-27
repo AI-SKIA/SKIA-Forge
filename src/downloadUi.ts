@@ -19,7 +19,7 @@ const PLATFORMS: DownloadPlatform[] = [
         version: "Windows 10/11",
         icon: "windows",
         hint: "64-bit installer (.exe)",
-        file: "Skia-Forge-Setup-1.0.0-win-x64.exe"
+        file: "SKIA.Setup.1.0.0.exe"
     },
     {
         id: "mac-intel",
@@ -27,7 +27,7 @@ const PLATFORMS: DownloadPlatform[] = [
         version: "macOS 11+",
         icon: "apple",
         hint: "Intel x64",
-        file: "Skia-Forge-1.0.0-mac-x64.dmg"
+        file: "SKIA-1.0.0.dmg"
     },
     {
         id: "mac-arm",
@@ -35,7 +35,7 @@ const PLATFORMS: DownloadPlatform[] = [
         version: "macOS 11+ M1/M2/M3",
         icon: "apple",
         hint: "Apple Silicon (M1/M2/M3)",
-        file: "Skia-Forge-1.0.0-mac-arm64.dmg"
+        file: "SKIA-1.0.0-arm64.dmg"
     },
     {
         id: "linux-appimage",
@@ -43,7 +43,7 @@ const PLATFORMS: DownloadPlatform[] = [
         version: "Ubuntu, Fedora, Arch",
         icon: "linux",
         hint: "AppImage (any distro)",
-        file: "Skia-Forge-1.0.0-linux-x64.AppImage"
+        file: "SKIA-1.0.0.AppImage"
     }
 ];
 
@@ -67,6 +67,13 @@ const VALUE_CARDS: ValueCard[] = [
 ];
 
 export function renderDownloadHtml(releaseBase: string): string {
+    const releasePage = releaseBase.endsWith("/download")
+        ? releaseBase.slice(0, -"/download".length)
+        : "https://github.com/AI-SKIA/skia/releases/latest";
+    const forgeReturnTo = encodeURIComponent("https://forge.skia.ca/forge/app");
+    const signInHref = `https://skia.ca/login?returnTo=${forgeReturnTo}`;
+    const registerHref = `https://skia.ca/register?returnTo=${forgeReturnTo}`;
+
     const valueCards = VALUE_CARDS.map(
         (card) => `
       <article class="value-card">
@@ -78,7 +85,7 @@ export function renderDownloadHtml(releaseBase: string): string {
 
     const cards = PLATFORMS.map(
         (p) => `
-      <a id="${p.id}" class="download-card" data-file="${p.file}" href="https://github.com/AI-SKIA/skia/releases/latest" target="_blank" rel="noreferrer">
+      <a id="${p.id}" class="download-card" data-file="${p.file}" href="${releasePage}" target="_blank" rel="noreferrer">
         <div class="download-card-icon ${p.icon}"></div>
         <div class="download-card-name">${p.name}</div>
         <div class="download-card-version">${p.version}</div>
@@ -569,8 +576,8 @@ export function renderDownloadHtml(releaseBase: string): string {
       <a class="pc-sidebar-btn" href="/docs/PRICING_AND_PACKAGES.md">Pricing</a>
       <a class="pc-sidebar-btn" href="/resources">Resources</a>
       <div class="pc-sidebar-divider"></div>
-      <a class="pc-sidebar-btn" href="https://skia.ca/login?returnTo=/forge/app">Sign In</a>
-      <a class="pc-sidebar-btn" href="https://skia.ca/register?returnTo=/forge/app">Register</a>
+      <a class="pc-sidebar-btn" href="${signInHref}">Sign In</a>
+      <a class="pc-sidebar-btn" href="${registerHref}">Register</a>
       <a class="pc-sidebar-btn" href="/forge#windows">Download IDE</a>
     </nav>
   </aside>
@@ -582,9 +589,9 @@ export function renderDownloadHtml(releaseBase: string): string {
         <h1 class="feature-page-title">SKIA Forge</h1>
         <p class="feature-page-subtitle">She Knows It All - frontier-grade, eval-gated intelligence for real software delivery</p>
         <div class="hero-actions">
-          <a class="feature-tab feature-tab--primary" href="https://skia.ca/login?returnTo=/forge/app">Sign In</a>
-          <a class="feature-tab" href="https://skia.ca/register?returnTo=/forge/app">Register</a>
-          <a class="feature-tab" href="https://github.com/AI-SKIA/skia/releases/latest" target="_blank" rel="noreferrer">Download App</a>
+          <a class="feature-tab feature-tab--primary" href="${signInHref}">Sign In</a>
+          <a class="feature-tab" href="${registerHref}">Register</a>
+          <a class="feature-tab" href="${releasePage}" target="_blank" rel="noreferrer">Download App</a>
         </div>
       </div>
       <section class="value-section">${valueCards}</section>
@@ -604,7 +611,7 @@ export function renderDownloadHtml(releaseBase: string): string {
       <div id="availabilityBanner" class="availability-banner"></div>
       <div class="download-grid">${cards}</div>
       <div class="download-actions">
-        <a class="feature-tab" href="https://github.com/AI-SKIA/skia/releases/latest" target="_blank" rel="noreferrer">View release notes and assets</a>
+        <a class="feature-tab" href="${releasePage}" target="_blank" rel="noreferrer">View release notes and assets</a>
       </div>
       <div class="download-instructions">
         <div class="download-instruction-row"><span class="download-step">1</span><span>Download the installer for your platform above.</span></div>
