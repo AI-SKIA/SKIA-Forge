@@ -143,7 +143,7 @@ type ReleaseAssetsCache = {
 };
 let releaseAssetsCache: ReleaseAssetsCache = { atMs: 0, latestVersion: null, files: [], assets: [] };
 type DownloadPlatformId = "windows" | "mac-intel" | "mac-arm" | "linux-appimage";
-const RELEASE_REPO = (process.env.SKIA_FORGE_RELEASE_REPO ?? "AI-SKIA/skia").trim();
+const RELEASE_REPO = (process.env.SKIA_FORGE_RELEASE_REPO ?? "AI-SKIA/SKIA-Forge").trim();
 const RELEASE_TAG = (process.env.SKIA_FORGE_RELEASE_TAG ?? "v1.0.0").trim();
 
 function normalizeSemver(version: string): string {
@@ -172,7 +172,7 @@ async function fetchLatestForgeReleaseTag(timeoutMs = 3000): Promise<string | nu
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const response = await fetch("https://api.github.com/repos/AI-SKIA/skia/releases/latest", {
+    const response = await fetch(`https://api.github.com/repos/${RELEASE_REPO}/releases/latest`, {
       headers: {
         Accept: "application/vnd.github+json",
         "User-Agent": "skia-forge-version-check"
@@ -211,7 +211,7 @@ async function fetchLatestForgeReleaseAssets(
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const response = await fetch("https://api.github.com/repos/AI-SKIA/skia/releases/latest", {
+    const response = await fetch(`https://api.github.com/repos/${RELEASE_REPO}/releases/latest`, {
       headers: {
         Accept: "application/vnd.github+json",
         "User-Agent": "skia-forge-release-assets"
@@ -278,10 +278,10 @@ function pickReleaseAssetUrlForPlatform(
 
 function fallbackReleaseAssetUrl(platform: DownloadPlatformId): string {
   const fileByPlatform: Record<DownloadPlatformId, string> = {
-    windows: "SKIA.Setup.1.0.0.exe",
-    "mac-intel": "SKIA-1.0.0.dmg",
-    "mac-arm": "SKIA-1.0.0-arm64.dmg",
-    "linux-appimage": "SKIA-1.0.0.AppImage"
+    windows: "Skia-Forge-Setup-1.0.0-win-x64.exe",
+    "mac-intel": "Skia-Forge-1.0.0-mac-x64.dmg",
+    "mac-arm": "Skia-Forge-1.0.0-mac-arm64.dmg",
+    "linux-appimage": "Skia-Forge-1.0.0-linux-x64.AppImage"
   };
   const file = fileByPlatform[platform];
   return `https://github.com/${RELEASE_REPO}/releases/download/${RELEASE_TAG}/${encodeURIComponent(file)}`;
