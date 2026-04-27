@@ -397,6 +397,54 @@ app.get("/api/app/release-assets", async (_req, res) => {
   });
 });
 
+async function proxyAuthToSkia(
+  req: express.Request,
+  res: express.Response,
+  method: "GET" | "POST",
+  pathSuffix: string
+): Promise<void> {
+  const base = (process.env.SKIA_BACKEND_URL ?? "https://api.skia.ca").trim().replace(/\/+$/, "");
+  const target = `${base}${pathSuffix}`;
+  try {
+    const upstream = await fetch(target, {
+      method,
+      headers: {
+        "content-type": "application/json",
+        ...(typeof req.headers.cookie === "string" ? { cookie: req.headers.cookie } : {}),
+        ...(typeof req.headers.authorization === "string"
+          ? { authorization: req.headers.authorization }
+          : {})
+      },
+      body: method === "POST" ? JSON.stringify(req.body ?? {}) : undefined
+    });
+    const text = await upstream.text();
+    const setCookie = upstream.headers.get("set-cookie");
+    if (setCookie) {
+      res.setHeader("set-cookie", setCookie);
+    }
+    const contentType = upstream.headers.get("content-type");
+    if (contentType) {
+      res.setHeader("content-type", contentType);
+    }
+    res.status(upstream.status).send(text);
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Auth proxy failed";
+    res.status(502).json({ error: message });
+  }
+}
+
+app.post("/api/auth/login", async (req, res) => {
+  await proxyAuthToSkia(req, res, "POST", "/api/auth/login");
+});
+
+app.post("/api/auth/register", async (req, res) => {
+  await proxyAuthToSkia(req, res, "POST", "/api/auth/register");
+});
+
+app.get("/api/auth/session", async (req, res) => {
+  await proxyAuthToSkia(req, res, "GET", "/api/auth/session");
+});
+
 app.get("/api/app/download/:platform", async (req, res) => {
   const platform = String(req.params.platform ?? "").toLowerCase() as DownloadPlatformId;
   if (!["windows", "mac-intel", "mac-arm", "linux-appimage"].includes(platform)) {

@@ -16,7 +16,7 @@
 
 type AuthUser = { email: string; name?: string };
 
-const API_ORIGIN = "https://api.skia.ca";
+const API_ORIGIN = "";
 const SESSION_TOKEN_KEY = "skia_session_token";
 const USER_EMAIL_KEY = "skia_user_email";
 const OVERLAY_ID = "skia-auth-overlay";
@@ -133,7 +133,6 @@ const verifySession = async (token: string): Promise<boolean> => {
         credentials: "include",
         headers: {
             "Content-Type": "application/json",
-            Origin: "https://skia.ca",
             Authorization: `Bearer ${token}`
         }
     });
@@ -173,8 +172,7 @@ const acquireTokenAfterAuth = async (
         method: "GET",
         credentials: "include",
         headers: {
-            "Content-Type": "application/json",
-            Origin: "https://skia.ca"
+            "Content-Type": "application/json"
         }
     });
     if (sessionResp.ok) {
@@ -330,8 +328,7 @@ const wireOverlayHandlers = (): void => {
                 method: "POST",
                 credentials: "include",
                 headers: {
-                    "Content-Type": "application/json",
-                    Origin: "https://skia.ca"
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({ email, password })
             });
@@ -360,8 +357,7 @@ const wireOverlayHandlers = (): void => {
                 method: "POST",
                 credentials: "include",
                 headers: {
-                    "Content-Type": "application/json",
-                    Origin: "https://skia.ca"
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({ email, password, firstName: firstName || undefined })
             });
