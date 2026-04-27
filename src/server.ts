@@ -287,6 +287,23 @@ function fallbackReleaseAssetUrl(platform: DownloadPlatformId): string {
   return `https://github.com/${RELEASE_REPO}/releases/download/${RELEASE_TAG}/${encodeURIComponent(file)}`;
 }
 
+async function canDownloadFromUrl(url: string): Promise<boolean> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 3500);
+  try {
+    const response = await fetch(url, {
+      method: "HEAD",
+      redirect: "manual",
+      signal: controller.signal
+    });
+    return response.status >= 200 && response.status < 400;
+  } catch {
+    return false;
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 function persistAllState(): void {
   void persistRuntimeState(projectRoot, providerRouter, telemetry, {
     getMode: () => sovereignMode,
@@ -468,7 +485,19 @@ app.get("/api/app/download/:platform", async (req, res) => {
   if (directUrl) {
     return res.redirect(302, directUrl);
   }
-  return res.redirect(302, fallbackReleaseAssetUrl(platform));
+  const fallbackUrl = fallbackReleaseAssetUrl(platform);
+  if (await canDownloadFromUrl(fallbackUrl)) {
+    return res.redirect(302, fallbackUrl);
+  }
+
+  return res
+    .status(503)
+    .type("html")
+    .send(`<!doctype html><html><body style="font-family:Arial;background:#080400;color:#d4af37;padding:24px">
+      <h2 style="margin-top:0">Forge installer unavailable</h2>
+      <p>The ${platform} desktop installer is not published yet for this release.</p>
+      <p><a href="/forge/app/" style="color:#d4af37">Open Forge Web IDE</a></p>
+    </body></html>`);
 });
 
 app.get("/api/app/download", (req, res) => {

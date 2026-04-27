@@ -691,17 +691,36 @@ export function renderDownloadHtml(_releaseBase: string): string {
             visible += 1;
           });
           if (visible === 0) {
-            cards.forEach((card) => card.classList.remove('download-card--hidden'));
+            cards.forEach((card) => {
+              card.classList.remove('download-card--hidden');
+              card.setAttribute('aria-disabled', 'true');
+              card.style.pointerEvents = 'none';
+              card.style.opacity = '0.55';
+            });
           }
           if (!availabilityBanner) return;
           if (visible > 0) {
             availabilityBanner.textContent =
               'Only currently published installers are shown (' + String(visible) + ' available).';
             availabilityBanner.style.display = 'block';
+          } else {
+            availabilityBanner.textContent =
+              'Desktop installers are not published yet. Use Forge Web IDE for now.';
+            availabilityBanner.style.display = 'block';
           }
         })
         .catch(() => {
-          cards.forEach((card) => card.classList.remove('download-card--hidden'));
+          cards.forEach((card) => {
+            card.classList.remove('download-card--hidden');
+            card.setAttribute('aria-disabled', 'true');
+            card.style.pointerEvents = 'none';
+            card.style.opacity = '0.55';
+          });
+          if (availabilityBanner) {
+            availabilityBanner.textContent =
+              'Installer availability is temporarily unknown. Use Forge Web IDE for now.';
+            availabilityBanner.style.display = 'block';
+          }
         });
     })();
   </script>
