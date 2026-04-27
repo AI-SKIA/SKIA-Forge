@@ -496,7 +496,7 @@ app.get("/api/app/download/:platform", async (req, res) => {
     .send(`<!doctype html><html><body style="font-family:Arial;background:#080400;color:#d4af37;padding:24px">
       <h2 style="margin-top:0">Forge installer unavailable</h2>
       <p>The ${platform} desktop installer is not published yet for this release.</p>
-      <p><a href="/forge/app/" style="color:#d4af37">Open Forge Web IDE</a></p>
+      <p><a href="/forge/app/?resetOnboarding=1" style="color:#d4af37">Open Forge Web IDE</a></p>
     </body></html>`);
 });
 

@@ -35,6 +35,12 @@ const buildOverlay = (): HTMLDivElement => {
 };
 
 export const initializeOnboarding = (): void => {
+  const params = new URLSearchParams(window.location.search);
+  const forceReset = params.get("resetOnboarding") === "1";
+  if (forceReset) {
+    localStorage.removeItem(ONBOARDED_KEY);
+  }
+
   if (localStorage.getItem(ONBOARDED_KEY) === "true") {
     return;
   }

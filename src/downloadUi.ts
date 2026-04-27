@@ -19,7 +19,7 @@ const PLATFORMS: DownloadPlatform[] = [
         version: "Windows 10/11",
         icon: "windows",
         hint: "64-bit installer (.exe)",
-        file: "SKIA.Setup.1.0.0.exe"
+        file: "Skia-Forge-Setup-1.0.0-win-x64.exe"
     },
     {
         id: "mac-intel",
@@ -27,7 +27,7 @@ const PLATFORMS: DownloadPlatform[] = [
         version: "macOS 11+",
         icon: "apple",
         hint: "Intel x64",
-        file: "SKIA-1.0.0.dmg"
+        file: "Skia-Forge-1.0.0-mac-x64.dmg"
     },
     {
         id: "mac-arm",
@@ -35,7 +35,7 @@ const PLATFORMS: DownloadPlatform[] = [
         version: "macOS 11+ M1/M2/M3",
         icon: "apple",
         hint: "Apple Silicon (M1/M2/M3)",
-        file: "SKIA-1.0.0-arm64.dmg"
+        file: "Skia-Forge-1.0.0-mac-arm64.dmg"
     },
     {
         id: "linux-appimage",
@@ -43,7 +43,7 @@ const PLATFORMS: DownloadPlatform[] = [
         version: "Ubuntu, Fedora, Arch",
         icon: "linux",
         hint: "AppImage (any distro)",
-        file: "SKIA-1.0.0.AppImage"
+        file: "Skia-Forge-1.0.0-linux-x64.AppImage"
     }
 ];
 
@@ -87,7 +87,7 @@ export function renderDownloadHtml(_releaseBase: string): string {
         <div class="download-card-name">${p.name}</div>
         <div class="download-card-version">${p.version}</div>
         <div class="download-card-hint">${p.hint}</div>
-        <div class="download-card-btn">Open IDE</div>
+        <div class="download-card-btn">Download App</div>
       </a>
     `
     ).join("");
@@ -684,19 +684,17 @@ export function renderDownloadHtml(_releaseBase: string): string {
           cards.forEach((card) => {
             const file = card.getAttribute('data-file') || '';
             const supported = files.has(file);
-            card.classList.toggle('download-card--hidden', !supported);
+            card.classList.remove('download-card--hidden');
+            card.removeAttribute('aria-disabled');
+            card.style.pointerEvents = '';
+            card.style.opacity = '';
             if (!supported) return;
             const url = assets.get(file);
-            if (url) card.setAttribute('href', url);
+            if (url) {
+              card.setAttribute('data-direct-url', url);
+            }
             visible += 1;
-          });
-          if (visible === 0) {
-            cards.forEach((card) => {
-              card.classList.remove('download-card--hidden');
-              card.setAttribute('aria-disabled', 'true');
-              card.style.pointerEvents = 'none';
-              card.style.opacity = '0.55';
-            });
+            card.classList.add('download-card--published');
           }
           if (!availabilityBanner) return;
           if (visible > 0) {
@@ -705,20 +703,15 @@ export function renderDownloadHtml(_releaseBase: string): string {
             availabilityBanner.style.display = 'block';
           } else {
             availabilityBanner.textContent =
-              'Desktop installers are not published yet. Use Forge Web IDE for now.';
+              'Installers are still being published. All download links stay active and will surface status clearly.';
             availabilityBanner.style.display = 'block';
           }
         })
         .catch(() => {
-          cards.forEach((card) => {
-            card.classList.remove('download-card--hidden');
-            card.setAttribute('aria-disabled', 'true');
-            card.style.pointerEvents = 'none';
-            card.style.opacity = '0.55';
-          });
+          cards.forEach((card) => card.classList.remove('download-card--hidden'));
           if (availabilityBanner) {
             availabilityBanner.textContent =
-              'Installer availability is temporarily unknown. Use Forge Web IDE for now.';
+              'Installer availability is temporarily unknown. Links remain active.';
             availabilityBanner.style.display = 'block';
           }
         });
