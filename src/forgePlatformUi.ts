@@ -200,7 +200,7 @@ export function renderForgePlatformHtml(): string {
   <div class="topbar">
     <div class="brand">SKIA FORGE IDE</div>
     <div class="status" id="integrationStatus">Integration: checking...</div>
-    <a class="download-btn" href="/forge/app/">Open Forge IDE</a>
+    <a class="download-btn" href="/api/app/download" target="_blank" rel="noreferrer">Download App</a>
   </div>
   <div class="root">
     <aside class="left">

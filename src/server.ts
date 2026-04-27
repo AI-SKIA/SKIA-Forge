@@ -461,6 +461,17 @@ app.get("/api/app/download/:platform", async (req, res) => {
   return res.redirect(302, `${DOWNLOAD_FALLBACK_URL}${joiner}platform=${encodeURIComponent(platform)}`);
 });
 
+app.get("/api/app/download", (req, res) => {
+  const ua = String(req.headers["user-agent"] ?? "").toLowerCase();
+  const platform: DownloadPlatformId =
+    ua.includes("windows")
+      ? "windows"
+      : ua.includes("mac os") || ua.includes("macintosh")
+        ? ua.includes("arm") || ua.includes("apple silicon") ? "mac-arm" : "mac-intel"
+        : "linux-appimage";
+  return res.redirect(302, `/api/app/download/${platform}`);
+});
+
 app.get("/state/runtime", (_req, res) => {
   res.json({
     provider: providerRouter.toSnapshot(),
