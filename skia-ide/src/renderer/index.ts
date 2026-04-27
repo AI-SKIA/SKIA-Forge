@@ -420,6 +420,25 @@ const openFolderInExplorer = async (): Promise<void> => {
     }
 };
 
+const openOnboardingFolderInExplorer = async (folderPath: string): Promise<void> => {
+    try {
+        const tree = await window.skiaElectron.readDirectoryTree(folderPath);
+        activeFolderPath = folderPath;
+        renderExplorerTree(folderPath, tree);
+        setView("explorer");
+        setStatus(`Workspace loaded: ${getFileName(folderPath)}`);
+    } catch (error) {
+        console.error("SKIA: failed to read onboarding folder tree", error);
+    }
+};
+
+const startEmptyWorkspace = (workspacePath: string): void => {
+    activeFolderPath = workspacePath;
+    renderExplorerTree(workspacePath, []);
+    setView("explorer");
+    setStatus("Workspace ready: empty project");
+};
+
 const openFileViaMenu = async (): Promise<void> => {
     const filePath = await window.skiaElectron.openFile();
     if (!filePath) return;
@@ -585,6 +604,17 @@ const bootstrap = async (): Promise<void> => {
     console.log("SKIA: chat panel initialized");
     initializeStatusBar();
     console.log("SKIA: status bar initialized");
+    window.addEventListener("skia-onboarding-folder-selected", (event) => {
+        const custom = event as CustomEvent<{ folderPath?: string }>;
+        const folderPath = custom.detail?.folderPath;
+        if (!folderPath) return;
+        void openOnboardingFolderInExplorer(folderPath);
+    });
+    window.addEventListener("skia-onboarding-start-empty", (event) => {
+        const custom = event as CustomEvent<{ workspacePath?: string }>;
+        const workspacePath = custom.detail?.workspacePath ?? "browser-workspace";
+        startEmptyWorkspace(workspacePath);
+    });
     initializeOnboarding();
     console.log("SKIA: onboarding initialized");
     initializeTerminalHandlers();
