@@ -67,7 +67,7 @@ const VALUE_CARDS: ValueCard[] = [
 ];
 
 export function renderDownloadHtml(_releaseBase: string): string {
-    const forgeReturnTo = encodeURIComponent("https://forge.skia.ca/forge/app");
+    const forgeReturnTo = encodeURIComponent("https://forge.skia.ca/forge/app/");
     const signInHref = `https://skia.ca/login?returnTo=${forgeReturnTo}`;
     const registerHref = `https://skia.ca/register?returnTo=${forgeReturnTo}`;
 
@@ -82,7 +82,7 @@ export function renderDownloadHtml(_releaseBase: string): string {
 
     const cards = PLATFORMS.map(
         (p) => `
-      <a id="${p.id}" class="download-card" data-file="${p.file}" href="/forge/app" target="_blank" rel="noreferrer">
+      <a id="${p.id}" class="download-card" data-file="${p.file}" href="/forge/app/" target="_blank" rel="noreferrer">
         <div class="download-card-icon ${p.icon}"></div>
         <div class="download-card-name">${p.name}</div>
         <div class="download-card-version">${p.version}</div>
@@ -588,7 +588,7 @@ export function renderDownloadHtml(_releaseBase: string): string {
         <div class="hero-actions">
           <a class="feature-tab feature-tab--primary" href="${signInHref}">Sign In</a>
           <a class="feature-tab" href="${registerHref}">Register</a>
-          <a class="feature-tab" href="/forge/app">Open Forge IDE</a>
+          <a class="feature-tab" href="/forge/app/">Open Forge IDE</a>
         </div>
       </div>
       <section class="value-section">${valueCards}</section>
@@ -608,7 +608,7 @@ export function renderDownloadHtml(_releaseBase: string): string {
       <div id="availabilityBanner" class="availability-banner"></div>
       <div class="download-grid">${cards}</div>
       <div class="download-actions">
-        <a class="feature-tab" href="/forge/app">Open Forge IDE</a>
+        <a class="feature-tab" href="/forge/app/">Open Forge IDE</a>
       </div>
       <div class="download-instructions">
         <div class="download-instruction-row"><span class="download-step">1</span><span>Download the installer for your platform above.</span></div>

@@ -47,7 +47,7 @@ export function renderChatHtml(_releaseBase = "https://skia.ca/download"): strin
   </style>
 </head>
 <body>
-  <a class="ide-download-app" href="/forge/app">Open Forge IDE</a>
+  <a class="ide-download-app" href="/forge/app/">Open Forge IDE</a>
   <div class="root">
     <section class="panel">
       <h2>SKIA Chat</h2>
