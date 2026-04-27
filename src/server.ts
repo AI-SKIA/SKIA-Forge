@@ -143,7 +143,8 @@ type ReleaseAssetsCache = {
 };
 let releaseAssetsCache: ReleaseAssetsCache = { atMs: 0, latestVersion: null, files: [], assets: [] };
 type DownloadPlatformId = "windows" | "mac-intel" | "mac-arm" | "linux-appimage";
-const DOWNLOAD_FALLBACK_URL = (process.env.SKIA_FORGE_DOWNLOAD_FALLBACK_URL ?? "https://skia.ca/download").trim();
+const RELEASE_REPO = (process.env.SKIA_FORGE_RELEASE_REPO ?? "AI-SKIA/skia").trim();
+const RELEASE_TAG = (process.env.SKIA_FORGE_RELEASE_TAG ?? "v1.0.0").trim();
 
 function normalizeSemver(version: string): string {
   return version.trim().replace(/^v/i, "");
@@ -273,6 +274,17 @@ function pickReleaseAssetUrlForPlatform(
     return byName((name) => /\.appimage$/i.test(name));
   }
   return null;
+}
+
+function fallbackReleaseAssetUrl(platform: DownloadPlatformId): string {
+  const fileByPlatform: Record<DownloadPlatformId, string> = {
+    windows: "SKIA.Setup.1.0.0.exe",
+    "mac-intel": "SKIA-1.0.0.dmg",
+    "mac-arm": "SKIA-1.0.0-arm64.dmg",
+    "linux-appimage": "SKIA-1.0.0.AppImage"
+  };
+  const file = fileByPlatform[platform];
+  return `https://github.com/${RELEASE_REPO}/releases/download/${RELEASE_TAG}/${encodeURIComponent(file)}`;
 }
 
 function persistAllState(): void {
@@ -456,9 +468,7 @@ app.get("/api/app/download/:platform", async (req, res) => {
   if (directUrl) {
     return res.redirect(302, directUrl);
   }
-
-  const joiner = DOWNLOAD_FALLBACK_URL.includes("?") ? "&" : "?";
-  return res.redirect(302, `${DOWNLOAD_FALLBACK_URL}${joiner}platform=${encodeURIComponent(platform)}`);
+  return res.redirect(302, fallbackReleaseAssetUrl(platform));
 });
 
 app.get("/api/app/download", (req, res) => {
