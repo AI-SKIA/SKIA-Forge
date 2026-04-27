@@ -11,6 +11,6 @@ test("forge platform html includes brand and core web IDE routes", () => {
   assert.ok(html.includes("/api/forge/modules/status"));
   assert.ok(html.includes("/integration/skia-full"));
   assert.ok(html.includes("/api/forge/mode"));
-  assert.ok(html.includes("Download App"));
+  assert.ok(html.includes("Open Forge IDE"));
   assert.ok(html.includes("#d4af37"));
 });
