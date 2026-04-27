@@ -283,12 +283,16 @@ function persistAllState(): void {
   });
 }
 
-void contextEngine.startIncrementalWatcher(
-  () => {
-    skiaStatus = providerRouter.getStatus();
-  },
-  embedSaveHook
-);
+const incrementalWatcherEnabled =
+  process.env.SKIA_ENABLE_WATCHER === "1" || process.env.NODE_ENV !== "production";
+if (incrementalWatcherEnabled) {
+  void contextEngine.startIncrementalWatcher(
+    () => {
+      skiaStatus = providerRouter.getStatus();
+    },
+    embedSaveHook
+  );
+}
 
 void loadSkiaRules(projectRoot)
   .then(async (rules) => {
