@@ -85,7 +85,7 @@ export function renderDownloadHtml(releaseBase: string): string {
 
     const cards = PLATFORMS.map(
         (p) => `
-      <a id="${p.id}" class="download-card" data-file="${p.file}" href="${releasePage}" target="_blank" rel="noreferrer">
+      <a id="${p.id}" class="download-card" data-file="${p.file}" href="/api/app/download/${p.id}" target="_blank" rel="noreferrer">
         <div class="download-card-icon ${p.icon}"></div>
         <div class="download-card-name">${p.name}</div>
         <div class="download-card-version">${p.version}</div>

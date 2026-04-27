@@ -142,6 +142,8 @@ type ReleaseAssetsCache = {
   assets: Array<{ name: string; url: string }>;
 };
 let releaseAssetsCache: ReleaseAssetsCache = { atMs: 0, latestVersion: null, files: [], assets: [] };
+type DownloadPlatformId = "windows" | "mac-intel" | "mac-arm" | "linux-appimage";
+const DOWNLOAD_FALLBACK_URL = (process.env.SKIA_FORGE_DOWNLOAD_FALLBACK_URL ?? "https://skia.ca/download").trim();
 
 function normalizeSemver(version: string): string {
   return version.trim().replace(/^v/i, "");
@@ -243,6 +245,34 @@ async function fetchLatestForgeReleaseAssets(
   } finally {
     clearTimeout(timeout);
   }
+}
+
+function pickReleaseAssetUrlForPlatform(
+  platform: DownloadPlatformId,
+  assets: Array<{ name: string; url: string }>
+): string | null {
+  const isArmMac = (name: string) => /(arm64|aarch64|apple[-_. ]?silicon|m1|m2|m3)/i.test(name);
+  const byName = (predicate: (name: string) => boolean): string | null => {
+    const hit = assets.find((asset) => predicate(asset.name));
+    return hit?.url ?? null;
+  };
+
+  if (platform === "windows") {
+    return byName((name) => /\.exe$/i.test(name));
+  }
+  if (platform === "mac-arm") {
+    return byName((name) => /\.dmg$/i.test(name) && isArmMac(name));
+  }
+  if (platform === "mac-intel") {
+    return (
+      byName((name) => /\.dmg$/i.test(name) && /(intel|x64|amd64)/i.test(name)) ??
+      byName((name) => /\.dmg$/i.test(name) && !isArmMac(name))
+    );
+  }
+  if (platform === "linux-appimage") {
+    return byName((name) => /\.appimage$/i.test(name));
+  }
+  return null;
 }
 
 function persistAllState(): void {
@@ -361,6 +391,22 @@ app.get("/api/app/release-assets", async (_req, res) => {
     assets,
     source: latestFromEnv ? "env+github-assets" : "github"
   });
+});
+
+app.get("/api/app/download/:platform", async (req, res) => {
+  const platform = String(req.params.platform ?? "").toLowerCase() as DownloadPlatformId;
+  if (!["windows", "mac-intel", "mac-arm", "linux-appimage"].includes(platform)) {
+    return res.status(400).json({ error: "Unsupported platform." });
+  }
+
+  const { assets } = await fetchLatestForgeReleaseAssets();
+  const directUrl = pickReleaseAssetUrlForPlatform(platform, assets);
+  if (directUrl) {
+    return res.redirect(302, directUrl);
+  }
+
+  const joiner = DOWNLOAD_FALLBACK_URL.includes("?") ? "&" : "?";
+  return res.redirect(302, `${DOWNLOAD_FALLBACK_URL}${joiner}platform=${encodeURIComponent(platform)}`);
 });
 
 app.get("/state/runtime", (_req, res) => {
