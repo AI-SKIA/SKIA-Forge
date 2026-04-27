@@ -1021,13 +1021,9 @@ app.get("/forge", (_req, res) => {
 });
 
 const skiaIdeRendererRoot = path.join(projectRoot, "skia-ide", "dist", "renderer");
-app.use("/forge/app", express.static(skiaIdeRendererRoot, { index: false }));
+app.use("/forge/app", express.static(skiaIdeRendererRoot, { index: false, redirect: false }));
 
-app.get("/forge/app", (_req, res) => {
-  res.redirect(302, "/forge/app/");
-});
-
-app.get("/forge/app/", async (_req, res) => {
+async function sendForgeAppHtml(res: express.Response) {
   const indexPath = path.join(skiaIdeRendererRoot, "index.html");
   try {
     const html = await fs.readFile(indexPath, "utf8");
@@ -1231,6 +1227,14 @@ app.get("/forge/app/", async (_req, res) => {
       "<!doctype html><html><body style='font-family:Arial;background:#080400;color:#d4af37;padding:24px'>SKIA IDE web assets are not built yet. Run <code>npm run build</code> in <code>skia-ide</code> first.</body></html>"
     );
   }
+}
+
+app.get("/forge/app", async (_req, res) => {
+  await sendForgeAppHtml(res);
+});
+
+app.get("/forge/app/", async (_req, res) => {
+  await sendForgeAppHtml(res);
 });
 
 app.get("/download", (_req, res) => {
