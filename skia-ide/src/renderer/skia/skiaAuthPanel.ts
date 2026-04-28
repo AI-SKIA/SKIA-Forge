@@ -215,6 +215,14 @@ const showError = (id: string, message: string): void => {
     node.style.display = "block";
 };
 
+const showNotice = (id: string, message: string): void => {
+    const node = document.getElementById(id);
+    if (!node) return;
+    node.textContent = message;
+    node.style.color = "#c9922a";
+    node.style.display = "block";
+};
+
 const clearError = (id: string): void => {
     const node = document.getElementById(id);
     if (!node) return;
@@ -330,7 +338,8 @@ const wireOverlayHandlers = (): void => {
                 method: "POST",
                 credentials: "include",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "x-skia-client": "forge-desktop"
                 },
                 body: JSON.stringify({ email, password })
             });
@@ -359,13 +368,24 @@ const wireOverlayHandlers = (): void => {
                 method: "POST",
                 credentials: "include",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "x-skia-client": "forge-desktop"
                 },
                 body: JSON.stringify({ email, password, firstName: firstName || undefined })
             });
             if (!response.ok) throw new Error(await extractError(response));
             const payload = (await response.json()) as unknown;
-            await acquireTokenAfterAuth(payload, email, firstName || undefined);
+            try {
+                await acquireTokenAfterAuth(payload, email, firstName || undefined);
+            } catch (authErr) {
+                const message = authErr instanceof Error ? authErr.message : "";
+                if (message.includes("Authentication succeeded but no session token could be retrieved")) {
+                    showNotice("auth-register-error", "Account created. Please switch to LOGIN and sign in.");
+                    setTab("login");
+                    return;
+                }
+                throw authErr;
+            }
         } catch (err) {
             showError("auth-register-error",
                 err instanceof Error ? err.message : "Registration failed. Try a different email.");
