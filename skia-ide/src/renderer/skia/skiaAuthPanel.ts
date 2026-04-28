@@ -413,15 +413,53 @@ export const initializeAuthPanel = (): void => {
 
     const token = getStoredToken();
     if (!token) {
-        ensureOverlay();
+        // Token may not be cached yet in Electron, but cookie session can still be valid.
+        void fetch(`${getApiOrigin()}/api/auth/session`, {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            .then(async (response) => {
+                if (!response.ok) {
+                    ensureOverlay();
+                    return;
+                }
+                const payload = (await response.json()) as unknown;
+                const user = extractUser(payload);
+                if (!user) {
+                    ensureOverlay();
+                    return;
+                }
+                const cookieToken = await getTokenFromElectronCookies();
+                if (cookieToken) localStorage.setItem(SESSION_TOKEN_KEY, cookieToken);
+                setAuthenticated(user);
+            })
+            .catch(() => {
+                ensureOverlay();
+            });
         return;
+    }
+
+    // Keep the user signed in across app restarts using the cached token,
+    // then verify in the background. This prevents unnecessary re-login
+    // prompts on transient startup/network failures.
+    const cachedEmail = localStorage.getItem(USER_EMAIL_KEY) || "";
+    if (cachedEmail) {
+        setAuthenticated({ email: cachedEmail });
     }
 
     void verifySession(token)
         .then((valid) => {
             if (!valid) { clearAuth(); ensureOverlay(); }
         })
-        .catch(() => { clearAuth(); ensureOverlay(); });
+        .catch(() => {
+            if (!authenticated) {
+                clearAuth();
+                ensureOverlay();
+            }
+        });
 };
 
 export const isAuthenticated = (): boolean => authenticated;

@@ -104,15 +104,12 @@ const loadForgeStatus = async (): Promise<void> => {
             // Non-standard error shape; show unavailable state without noisy logging.
         }
         if (modeEl) {
-            modeEl.innerHTML = `<div class="forge-row"><span class="forge-value" style="color:#8a6f1e">Backend unavailable — start SKIA-Forge with npm run dev</span></div>`;
+            modeEl.innerHTML = `<div class="forge-row"><span class="forge-value" style="color:#8a6f1e">Control plane telemetry temporarily unavailable. Core SKIA features remain available.</span></div>`;
         }
     }
 };
 
 const loadSettings = (): void => {
-    const urlInput = document.getElementById("settings-backend-url") as HTMLInputElement | null;
-    const tokenInput = document.getElementById("settings-auth-token") as HTMLInputElement | null;
-    const saveBtn = document.getElementById("settings-save-btn") as HTMLButtonElement | null;
     const decreaseBtn = document.getElementById("font-decrease") as HTMLButtonElement | null;
     const increaseBtn = document.getElementById("font-increase") as HTMLButtonElement | null;
     const fontDisplay = document.getElementById("font-size-display");
@@ -122,12 +119,6 @@ const loadSettings = (): void => {
     const autoSaveBtn = document.getElementById("toggle-autosave") as HTMLButtonElement | null;
     const statusDisplay = document.getElementById("connection-status-display");
 
-    if (urlInput) {
-        urlInput.value = localStorage.getItem("skia_backend_url") ?? "https://api.skia.ca";
-    }
-    if (tokenInput) {
-        tokenInput.value = localStorage.getItem("skia_auth_token") ?? "";
-    }
     if (statusDisplay) {
         statusDisplay.textContent = (document.getElementById("status-text")?.textContent ?? "Disconnected").replace("⬡ ", "");
     }
@@ -176,15 +167,6 @@ const loadSettings = (): void => {
         autoSaveEnabled = !autoSaveEnabled;
         autoSaveBtn.textContent = autoSaveEnabled ? "ON" : "OFF";
         window.skiaElectron.setAutoSave(autoSaveEnabled);
-    });
-
-    saveBtn?.addEventListener("click", () => {
-        if (urlInput) localStorage.setItem("skia_backend_url", urlInput.value);
-        if (tokenInput) localStorage.setItem("skia_auth_token", tokenInput.value);
-        saveBtn.textContent = "SAVED";
-        setTimeout(() => {
-            saveBtn.textContent = "SAVE CONNECTION";
-        }, 2000);
     });
 
     document.getElementById("open-docs-btn")?.addEventListener("click", () => {
@@ -539,6 +521,12 @@ const registerMenuIpcHandlers = (): void => {
     });
     window.skiaElectron.onMenuAction("save-all", () => {
         void saveCurrentFile();
+    });
+    window.skiaElectron.onMenuAction("toggle-auto-save", () => {
+        autoSaveEnabled = !autoSaveEnabled;
+        window.skiaElectron.setAutoSave(autoSaveEnabled);
+        const autoSaveBtn = document.getElementById("toggle-autosave") as HTMLButtonElement | null;
+        if (autoSaveBtn) autoSaveBtn.textContent = autoSaveEnabled ? "ON" : "OFF";
     });
     window.skiaElectron.onMenuAction("close-editor", closeEditorState);
     window.skiaElectron.onMenuAction("close-folder", closeFolderState);

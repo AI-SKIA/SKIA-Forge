@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SKIA FORGE — Report Abuse or Issue</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --card: #141414;
+      --border: #2a1f00;
+      --gold: #d4af37;
+      --text: #d4c08e;
+      --muted: rgba(212, 175, 55, 0.65);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.5;
+    }
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 28px 20px 36px;
+    }
+    h1 {
+      margin: 0;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 24px;
+    }
+    .subtitle {
+      margin-top: 6px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 12px;
+    }
+    section {
+      margin-top: 16px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    h2 {
+      margin: 0 0 10px;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 13px;
+    }
+    ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+    li { margin: 6px 0; }
+    .cta {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 14px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      font-size: 11px;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>SKIA FORGE</h1>
+    <div class="subtitle">Report Abuse or Issue</div>
+
+    <section>
+      <h2>What To Include</h2>
+      <ul>
+        <li>What happened, and what you expected to happen.</li>
+        <li>Any screenshots or error text shown in the app.</li>
+        <li>Whether this is abuse, security, or product behavior.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Contact</h2>
+      <p>For abuse reports, security concerns, or bugs, contact SKIA support directly.</p>
+      <a class="cta" href="mailto:support@skia.ca?subject=SKIA%20FORGE%20Report">Email support@skia.ca</a>
+    </section>
+  </main>
+</body>
+</html>

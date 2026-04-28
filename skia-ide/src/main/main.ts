@@ -46,9 +46,14 @@ const openLocalDocumentation = async (): Promise<void> => {
     await shell.openExternal(`file://${docPath}`);
 };
 
-const openLocalChangelog = async (): Promise<void> => {
-    const changelogPath = path.join(__dirname, "../renderer/docs/changelog.html");
-    await shell.openExternal(`file://${changelogPath}`);
+const openLocalChangelog = (): void => {
+    const changelogWin = new BrowserWindow({
+        width: 900,
+        height: 700,
+        title: "SKIA FORGE — Release Notes",
+        webPreferences: { contextIsolation: true }
+    });
+    void changelogWin.loadFile(path.join(__dirname, "../renderer/docs/changelog.html"));
 };
 
 const showAboutWindow = (): void => {
@@ -621,7 +626,7 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     helpMenu.append(
         new MenuItem({
             label: "My SKIA Account",
-            click: () => { void shell.openExternal("https://skia.ca/dashboard"); }
+            click: () => { void shell.openExternal("https://skia.ca/settings"); }
         })
     );
     helpMenu.append(new MenuItem({ type: "separator" }));
@@ -649,12 +654,7 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
                     title: "SKIA — Report an Issue",
                     webPreferences: { contextIsolation: true }
                 });
-                void reportWin.loadFile(path.join(__dirname, "../renderer/docs/index.html"));
-                reportWin.webContents.on("did-finish-load", () => {
-                    void reportWin.webContents.executeJavaScript(
-                        `document.getElementById('report')?.scrollIntoView({ behavior: 'instant' });`
-                    );
-                });
+                void reportWin.loadFile(path.join(__dirname, "../renderer/docs/report.html"));
             }
         })
     );
@@ -663,7 +663,7 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
         new MenuItem({
             label: "Release Notes",
             click: () => {
-                void openLocalChangelog();
+                openLocalChangelog();
             }
         })
     );
