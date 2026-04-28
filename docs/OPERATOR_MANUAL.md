@@ -4,6 +4,12 @@
 
 SKIA-Forge operates as an orchestration/governance runtime service that augments development workflows with policy-aware controls.
 
+## Ownership boundaries
+
+- Operate Forge as a control-plane service.
+- Do not treat Forge endpoints as replacements for `Skia-FULL` product runtime APIs.
+- Use `Skia-Status` for external/public incident communication.
+
 ## Deployment Baseline
 
 - Build: `npm run build`

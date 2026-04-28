@@ -731,6 +731,7 @@ const createWindow = (): void => {
         minWidth: 1000,
         minHeight: 600,
         title: "SKIA FORGE",
+        icon: path.resolve(__dirname, "../assets/skia-forge-app.png"),
         webPreferences: {
             nodeIntegration: false,
             contextIsolation: true,

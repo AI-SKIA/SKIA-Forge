@@ -1,5 +1,11 @@
 # SKIA-Forge Developer Guide
 
+## Ecosystem boundaries
+
+- `SKIA-Forge` is the control-plane codebase.
+- `Skia-FULL` remains the product runtime and customer feature surface.
+- `Skia-Status` remains the public operational publication surface.
+
 ## Local Setup
 
 - Node.js 20+

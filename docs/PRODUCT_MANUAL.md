@@ -2,7 +2,13 @@
 
 ## What SKIA-Forge Is
 
-SKIA-Forge is the governance and orchestration control plane for AI-native software development. It coordinates planning, execution safety, architecture checks, and remediation guidance around AI-assisted workflows.
+SKIA-Forge is the governance and orchestration control plane for AI-native software development in the SKIA ecosystem. It coordinates planning, execution safety, architecture checks, and remediation guidance around AI-assisted workflows.
+
+## What SKIA-Forge Is Not
+
+SKIA-Forge is not the full end-user product runtime. Product APIs, web/mobile/desktop delivery, and customer-facing feature execution live in `Skia-FULL`.
+
+Public operational communication lives in `Skia-Status`, not in Forge runtime endpoints.
 
 ## Who It Is For
 

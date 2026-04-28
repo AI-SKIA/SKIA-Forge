@@ -1,5 +1,9 @@
 # SKIA-Forge Quickstart (5 Minutes)
 
+## Scope
+
+Bootstrap Forge control-plane runtime. For customer feature runtime setup use `Skia-FULL`; for public status deployment use `Skia-Status`.
+
 ## 1) Install dependencies
 
 ```bash

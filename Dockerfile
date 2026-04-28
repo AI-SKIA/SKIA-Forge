@@ -23,4 +23,5 @@ RUN npm run build \
 
 EXPOSE 4173
 
-CMD ["npm", "run", "start"]
+# Northflank runtime capture uses `npm run dev` for this service currently.
+CMD ["npm", "run", "dev"]

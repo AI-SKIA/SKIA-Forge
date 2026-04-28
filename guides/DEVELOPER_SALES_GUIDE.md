@@ -1,5 +1,9 @@
 # SKIA-Forge Developer Guide (Sell-to-Developer)
 
+## Positioning boundary
+
+Sell Forge as developer governance/orchestration control layer that complements `Skia-FULL` runtime development rather than replacing product APIs.
+
 ## Positioning to developers
 SKIA-Forge is the layer that keeps AI-assisted coding fast **without losing control**.
 

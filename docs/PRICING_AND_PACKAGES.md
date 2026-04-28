@@ -2,6 +2,10 @@
 
 This document defines a practical commercial packaging model for SKIA-Forge.
 
+## Product framing
+
+Package SKIA-Forge as governance/orchestration control plane value layered on top of `Skia-FULL` runtime delivery and complemented by `Skia-Status` transparency operations.
+
 ## Package 1: Developer
 
 Best for solo engineers and small experiments.

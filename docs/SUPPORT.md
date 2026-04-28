@@ -1,5 +1,9 @@
 # SKIA-Forge Support
 
+## Boundary reminder
+
+This support scope applies to Forge control-plane behavior. Route product-runtime incidents to `Skia-FULL` owners and public status publication tasks to `Skia-Status` operators.
+
 ## Support Scope
 
 Support covers:

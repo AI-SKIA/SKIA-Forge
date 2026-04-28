@@ -1,5 +1,9 @@
 # SKIA-Forge User Guide
 
+## What this guide covers
+
+Daily operation of Forge as a governance/orchestration control plane, not end-user product runtime usage.
+
 ## Quick Start
 
 1. Install dependencies:

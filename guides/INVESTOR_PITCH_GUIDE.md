@@ -1,5 +1,13 @@
 # SKIA-Forge Investor Guide
 
+## Ecosystem boundary
+
+Present Forge as one part of the SKIA ecosystem:
+
+- `SKIA-Forge`: governance/orchestration control plane
+- `Skia-FULL`: core runtime and product delivery
+- `Skia-Status`: public operational transparency
+
 ## One-line thesis
 SKIA-Forge is the orchestration and governance control plane for AI-native software development, turning ad-hoc AI coding into measurable, policy-safe execution.
 

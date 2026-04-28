@@ -1,5 +1,13 @@
 # SKIA-Forge Enterprise Sales Guide
 
+## Ecosystem framing
+
+Enterprise messaging should distinguish:
+
+- Forge control-plane governance value (`SKIA-Forge`)
+- Product runtime value (`Skia-FULL`)
+- External reliability communication (`Skia-Status`)
+
 ## Enterprise value proposition
 SKIA-Forge enables enterprise AI development with governance, traceability, and operational control built in.
 

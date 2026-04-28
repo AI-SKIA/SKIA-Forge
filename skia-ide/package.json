@@ -1,7 +1,7 @@
 {
   "name": "skia-ide",
   "version": "1.0.0",
-  "description": "SKIA FORGE — Sovereign AI-Powered Development Environment",
+  "description": "SKIA FORGE — Desktop IDE",
   "main": "dist/main/main.js",
   "scripts": {
     "start": "electron dist/main/main.js",
@@ -14,7 +14,8 @@
   },
   "build": {
     "appId": "ca.skia.forge",
-    "productName": "SKIA Forge",
+    "productName": "SKIA FORGE",
+    "icon": "assets/skia-forge-app",
     "copyright": "© 2026 SKIA Singularity Continuum",
     "directories": {
       "output": "release"
@@ -36,14 +37,15 @@
           "arch": [ "x64" ]
         }
       ],
-      "icon": "assets/icon.ico"
+      "icon": "assets/skia-forge-app.ico"
     },
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
-      "installerIcon": "assets/icon.ico",
-      "uninstallerIcon": "assets/icon.ico",
-      "artifactName": "Skia-Forge-Setup-${version}-win-x64.exe"
+      "installerIcon": "assets/skia-forge-app.ico",
+      "uninstallerIcon": "assets/skia-forge-app.ico",
+      "artifactName": "SKIA-FORGE-Setup-${version}-win-x64.exe",
+      "shortcutName": "SKIA FORGE"
     },
     "mac": {
       "target": [
@@ -56,8 +58,8 @@
           "arch": [ "arm64" ]
         }
       ],
-      "icon": "assets/icon.icns",
-      "artifactName": "Skia-Forge-${version}-mac-${arch}.dmg",
+      "icon": "assets/skia-forge-app.icns",
+      "artifactName": "SKIA-FORGE-${version}-mac-${arch}.dmg",
       "category": "public.app-category.developer-tools"
     },
     "linux": {
@@ -67,8 +69,8 @@
           "arch": [ "x64" ]
         }
       ],
-      "icon": "assets/icon.png",
-      "artifactName": "Skia-Forge-${version}-linux-x64.AppImage",
+      "icon": "assets/skia-forge-app.png",
+      "artifactName": "SKIA-FORGE-${version}-linux-x64.AppImage",
       "category": "Development"
     },
     "publish": {
@@ -79,7 +81,6 @@
     }
   },
   "dependencies": {
-    "electron": "^30.0.0",
     "monaco-editor": "^0.47.0"
   },
   "devDependencies": {
@@ -87,6 +88,7 @@
     "concurrently": "^8.2.2",
     "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^7.1.1",
+    "electron": "^30.0.0",
     "electron-builder": "^24.13.3",
     "html-webpack-plugin": "^5.6.0",
     "mini-css-extract-plugin": "^2.9.0",

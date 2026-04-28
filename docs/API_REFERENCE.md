@@ -1,5 +1,9 @@
 # SKIA-Forge API Reference
 
+## Scope
+
+This reference covers Forge control-plane APIs. Product-facing runtime APIs belong to `Skia-FULL`; public status publication surfaces belong to `Skia-Status`.
+
 ## Health and Status
 
 - `GET /health`

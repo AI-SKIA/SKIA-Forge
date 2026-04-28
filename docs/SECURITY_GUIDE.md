@@ -1,5 +1,9 @@
 # SKIA-Forge Security Guide
 
+## Security scope
+
+This guide covers security controls for Forge control-plane services and governance behavior.
+
 ## Security Model
 
 SKIA-Forge applies layered controls:

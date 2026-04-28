@@ -13,6 +13,11 @@ export function buildControlPlaneSnapshot(input: {
   intents?: Record<string, unknown>;
   auditRows: AgentAuditLogRecord[];
   recentLimit?: number;
+  emitAdversaryEvent?: (event: {
+    eventType: string;
+    detail: Record<string, unknown>;
+    timestamp: string;
+  }) => void;
 }) {
   const recentLimit = input.recentLimit ?? 20;
   const governanceAudit = input.auditRows
@@ -43,6 +48,27 @@ export function buildControlPlaneSnapshot(input: {
         }
       | undefined
   );
+
+  const blockedDecisions = Number(
+    ((input.telemetry as any)?.byDecision?.blocked as number | undefined) ?? 0
+  );
+  const totalDecisions = Number((input.telemetry as any)?.totalDecisions ?? 0);
+  if (typeof input.emitAdversaryEvent === "function" && totalDecisions > 0) {
+    const blockedRatio = blockedDecisions / totalDecisions;
+    if (blockedRatio >= 0.6) {
+      input.emitAdversaryEvent({
+        eventType: "suspicious_traversal",
+        detail: {
+          source: "forgeControlPlane",
+          blockedDecisions,
+          totalDecisions,
+          blockedRatio
+        },
+        timestamp: new Date().toISOString()
+      });
+    }
+  }
+
   return {
     updatedAt: new Date().toISOString(),
     mode: input.mode,

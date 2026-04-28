@@ -1347,6 +1347,10 @@ app.get("/favicon.png", (_req, res) => {
   res.sendFile(path.join(projectRoot, "public", "skia-forge-favicon.png"));
 });
 
+app.get("/favicon.ico", (_req, res) => {
+  res.sendFile(path.join(projectRoot, "public", "favicon.ico"));
+});
+
 app.get("/og/skia-forge-preview.svg", (_req, res) => {
   res.type("image/svg+xml").send(renderOgImageSvg());
 });

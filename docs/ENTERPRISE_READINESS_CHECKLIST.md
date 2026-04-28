@@ -2,6 +2,12 @@
 
 Use this checklist before enterprise pilots and procurement conversations.
 
+## Ecosystem boundary check
+
+- [ ] Forge scope is documented as control-plane (not product runtime replacement)
+- [ ] Dependencies on `Skia-FULL` runtime contracts are documented
+- [ ] Public incident/status process with `Skia-Status` is documented
+
 ## Product and Architecture
 
 - [ ] Clear product definition and scope (`PRODUCT_MANUAL.md`)
