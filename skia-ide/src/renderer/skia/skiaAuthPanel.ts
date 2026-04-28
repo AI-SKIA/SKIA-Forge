@@ -16,7 +16,9 @@
 
 type AuthUser = { email: string; name?: string };
 
-const API_ORIGIN = "";
+import { getBackendUrl } from "./skiaConfig";
+
+const getApiOrigin = (): string => getBackendUrl().replace(/\/+$/, "");
 const SESSION_TOKEN_KEY = "skia_session_token";
 const USER_EMAIL_KEY = "skia_user_email";
 const OVERLAY_ID = "skia-auth-overlay";
@@ -90,7 +92,7 @@ const getTokenFromElectronCookies = async (): Promise<string | null> => {
             }
         }).skiaElectron;
         if (!electron?.getCookies) return null;
-        const cookies = await electron.getCookies(API_ORIGIN);
+        const cookies = await electron.getCookies(getApiOrigin());
         for (const name of ["token", "jwt", "skia_token", "auth_token", "access_token", "session"]) {
             const found = cookies.find((c) => c.name === name);
             if (found?.value) return found.value;
@@ -128,7 +130,7 @@ const clearAuth = (): void => {
 // ─── Session verification ─────────────────────────────────────────────────────
 
 const verifySession = async (token: string): Promise<boolean> => {
-    const response = await fetch(`${API_ORIGIN}/api/auth/session`, {
+    const response = await fetch(`${getApiOrigin()}/api/auth/session`, {
         method: "GET",
         credentials: "include",
         headers: {
@@ -168,7 +170,7 @@ const acquireTokenAfterAuth = async (
     }
 
     // 3. Cookie-only fallback — httpOnly cookie sent automatically
-    const sessionResp = await fetch(`${API_ORIGIN}/api/auth/session`, {
+    const sessionResp = await fetch(`${getApiOrigin()}/api/auth/session`, {
         method: "GET",
         credentials: "include",
         headers: {
@@ -324,7 +326,7 @@ const wireOverlayHandlers = (): void => {
         if (!email || !password) return;
         if (loginBtn) setButtonLoading(loginBtn, true, "SIGN IN");
         try {
-            const response = await fetch(`${API_ORIGIN}/api/auth/login`, {
+            const response = await fetch(`${getApiOrigin()}/api/auth/login`, {
                 method: "POST",
                 credentials: "include",
                 headers: {
@@ -353,7 +355,7 @@ const wireOverlayHandlers = (): void => {
         if (!email || !password) return;
         if (registerBtn) setButtonLoading(registerBtn, true, "CREATE ACCOUNT");
         try {
-            const response = await fetch(`${API_ORIGIN}/api/auth/register`, {
+            const response = await fetch(`${getApiOrigin()}/api/auth/register`, {
                 method: "POST",
                 credentials: "include",
                 headers: {

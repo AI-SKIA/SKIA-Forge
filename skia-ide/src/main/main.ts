@@ -755,7 +755,7 @@ const createWindow = (): void => {
 
 ipcMain.handle("skia:getConfig", (): SkiaConfig => {
     return {
-        backendUrl: process.env.SKIA_BACKEND_URL ?? "http://127.0.0.1:3000",
+        backendUrl: process.env.SKIA_BACKEND_URL ?? "https://api.skia.ca",
         authToken: process.env.SKIA_AUTH_TOKEN ?? "",
         timeout: Number(process.env.SKIA_TIMEOUT_MS ?? "10000")
     };
