@@ -13,6 +13,13 @@ export function renderForgePlatformHtml(): string {
       --text: #f1e2ad;
       --muted: rgba(255, 255, 255, 0.62);
       --gold: #d4af37;
+      --font-heading: "Space Grotesk", "Sora", system-ui, sans-serif;
+      --font-body: "Inter", "SF Pro Display", system-ui, sans-serif;
+      --tracking-heading: 0.06em;
+      --tracking-heading-display: 0.08em;
+      --tracking-body: 0.01em;
+      --line-heading: 1.12;
+      --line-body: 1.6;
     }
 
     * { box-sizing: border-box; }
@@ -20,9 +27,11 @@ export function renderForgePlatformHtml(): string {
       margin: 0;
       background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255, 180, 0, 0.06) 0%, transparent 70%), var(--bg);
       color: var(--text);
-      font-family: Orbitron, Arial, sans-serif;
+      font-family: var(--font-body);
       height: 100dvh;
       overflow: hidden;
+      line-height: var(--line-body);
+      letter-spacing: var(--tracking-body);
     }
 
     /* SKIA dashboard scrollbar style */
@@ -45,8 +54,8 @@ export function renderForgePlatformHtml(): string {
       background: rgba(0, 0, 0, 0.35);
       backdrop-filter: blur(4px);
     }
-    .brand { color: var(--gold); letter-spacing: 1px; font-size: 20px; }
-    .status { color: var(--muted); font-size: 12px; letter-spacing: 1px; text-transform: uppercase; }
+    .brand { color: var(--gold); letter-spacing: var(--tracking-heading-display); font-size: 20px; font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; }
+    .status { color: var(--muted); font-size: 12px; letter-spacing: var(--tracking-heading-display); text-transform: uppercase; font-family: var(--font-heading); font-weight: 600; line-height: 1.15; }
     .download-btn {
       text-decoration: none;
       color: var(--gold);
@@ -55,8 +64,10 @@ export function renderForgePlatformHtml(): string {
       padding: 8px 12px;
       border-radius: 6px;
       font-size: 11px;
-      letter-spacing: 1.5px;
+      letter-spacing: var(--tracking-heading-display);
       text-transform: uppercase;
+      font-family: var(--font-heading);
+      font-weight: 600;
     }
     .download-btn:hover {
       background: rgba(212, 175, 55, 0.16);
@@ -76,7 +87,7 @@ export function renderForgePlatformHtml(): string {
       padding: 16px;
       overflow: hidden;
     }
-    .section-title { color: var(--gold); padding: 12px; border-bottom: 1px solid var(--line); font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; }
+    .section-title { color: var(--gold); padding: 12px; border-bottom: 1px solid var(--line); font-size: 12px; letter-spacing: var(--tracking-heading-display); text-transform: uppercase; font-family: var(--font-heading); font-weight: 600; }
     .mod-list { padding: 10px; display: grid; gap: 8px; }
     .mod-btn {
       width: 100%;
@@ -87,9 +98,11 @@ export function renderForgePlatformHtml(): string {
       border-radius: 8px;
       padding: 10px;
       cursor: pointer;
-      font-family: Orbitron, Arial, sans-serif;
+      font-family: var(--font-heading);
       font-size: 12px;
-      letter-spacing: 1px;
+      font-weight: 600;
+      letter-spacing: var(--tracking-heading);
+      text-transform: uppercase;
     }
     .mod-btn:hover, .mod-btn.active {
       color: var(--gold);
@@ -107,14 +120,18 @@ export function renderForgePlatformHtml(): string {
       margin: 0 0 6px;
       font-size: 18px;
       color: var(--gold);
-      letter-spacing: 1.4px;
+      letter-spacing: var(--tracking-heading-display);
       text-transform: uppercase;
+      font-family: var(--font-heading);
+      font-weight: 700;
     }
     .hero p {
       margin: 0;
       color: var(--muted);
-      font-family: Nunito, Arial, sans-serif;
+      font-family: var(--font-body);
       font-size: 14px;
+      letter-spacing: var(--tracking-body);
+      line-height: var(--line-body);
     }
 
     .composer {
@@ -128,8 +145,10 @@ export function renderForgePlatformHtml(): string {
     .label {
       color: var(--gold);
       font-size: 11px;
-      letter-spacing: 1.5px;
+      letter-spacing: var(--tracking-heading-display);
       text-transform: uppercase;
+      font-family: var(--font-heading);
+      font-weight: 600;
     }
     .textarea {
       width: 100%;
@@ -140,8 +159,9 @@ export function renderForgePlatformHtml(): string {
       border-radius: 8px;
       color: #f5e8bc;
       padding: 10px;
-      font-family: Nunito, Arial, sans-serif;
+      font-family: var(--font-body);
       font-size: 14px;
+      letter-spacing: var(--tracking-body);
     }
     .textarea:focus { outline: none; border-color: rgba(212, 175, 55, 0.6); }
 
@@ -154,8 +174,10 @@ export function renderForgePlatformHtml(): string {
       color: var(--gold);
       cursor: pointer;
       font-size: 11px;
-      letter-spacing: 1.4px;
+      letter-spacing: var(--tracking-heading-display);
       text-transform: uppercase;
+      font-family: var(--font-heading);
+      font-weight: 600;
     }
     .btn:hover { border-color: rgba(212, 175, 55, 0.7); background: rgba(212, 175, 55, 0.16); }
 
@@ -167,10 +189,11 @@ export function renderForgePlatformHtml(): string {
       overflow: auto;
       min-height: 220px;
       white-space: pre-wrap;
-      font-family: Nunito, Arial, sans-serif;
+      font-family: var(--font-body);
       font-size: 13px;
       color: rgba(255, 255, 255, 0.86);
-      line-height: 1.55;
+      line-height: var(--line-body);
+      letter-spacing: var(--tracking-body);
     }
 
     .result {

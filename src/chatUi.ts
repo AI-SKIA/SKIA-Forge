@@ -6,7 +6,14 @@ export function renderChatHtml(_releaseBase = "https://skia.ca/download"): strin
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SKIA Forge | Web IDE</title>
   <style>
-    body { margin: 0; font-family: Calibri, Arial, sans-serif; background: #0a0a0a; color: #e8e8e8; }
+    body {
+      margin: 0;
+      font-family: Inter, "SF Pro Display", system-ui, sans-serif;
+      background: #0a0a0a;
+      color: #e8e8e8;
+      letter-spacing: 0.01em;
+      line-height: 1.6;
+    }
     .ide-download-app {
       position: fixed;
       top: 12px;
@@ -36,14 +43,23 @@ export function renderChatHtml(_releaseBase = "https://skia.ca/download"): strin
     .root { display: grid; grid-template-columns: 1fr 1fr; height: 100vh; }
     .panel { border-right: 1px solid #2a2a2a; padding: 14px; overflow: auto; }
     .panel:last-child { border-right: none; }
-    h2 { margin: 0 0 10px; color: #d4af37; font-size: 18px; }
+    h2 {
+      margin: 0 0 10px;
+      color: #d4af37;
+      font-size: 18px;
+      font-family: "Space Grotesk", "Sora", system-ui, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.12;
+    }
     textarea, input { width: 100%; background: #111; color: #e8e8e8; border: 1px solid #444; padding: 8px; border-radius: 6px; }
     button { margin-top: 8px; background: #d4af37; color: #000; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; }
     pre { background: #111; border: 1px solid #333; padding: 10px; white-space: pre-wrap; border-radius: 6px; }
     .msg { margin: 8px 0; padding: 8px; background: #121212; border-left: 3px solid #d4af37; }
     .added { color: #8ddf8d; }
     .removed { color: #f08f8f; }
-    .muted { color: #999; font-size: 12px; }
+    .muted { color: #999; font-size: 12px; font-family: Inter, "SF Pro Display", system-ui, sans-serif; letter-spacing: 0.01em; text-transform: none; }
   </style>
 </head>
 <body>

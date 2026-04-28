@@ -99,7 +99,20 @@
     .footer-links .sep { color:rgba(212,175,55,0.35); }
 
     @media(max-width:680px){ .wrap{padding:70px 16px 48px;} .page-title{font-size:22px;} .checklist{grid-template-columns:1fr;} }
-  </style>
+/* SKIA typography normalization */
+body {
+  font-family: Inter, "SF Pro Display", system-ui, sans-serif !important;
+  letter-spacing: 0.01em !important;
+  line-height: 1.6 !important;
+}
+h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
+  font-family: "Space Grotesk", "Sora", system-ui, sans-serif !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase;
+  font-weight: 600 !important;
+  line-height: 1.15 !important;
+}
+</style>
 </head>
 <body>
 

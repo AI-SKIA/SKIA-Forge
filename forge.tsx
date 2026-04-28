@@ -127,7 +127,7 @@ export default function ForgeHomePage() {
           </div>
 
           {/* Footer */}
-          <div style={{ marginTop: "60px", textAlign: "center", fontFamily: "Orbitron, sans-serif", color: "rgba(212,175,55,0.85)", fontSize: "12px", lineHeight: "1.8" }}>
+          <div style={{ marginTop: "60px", textAlign: "center", fontFamily: "var(--font-heading, 'Space Grotesk', system-ui, sans-serif)", color: "rgba(212,175,55,0.85)", fontSize: "12px", lineHeight: "1.8", letterSpacing: "0.08em", textTransform: "uppercase", fontWeight: 600 }}>
             <div style={{ marginBottom: "6px", fontSize: "13px", color: "rgba(212,175,55,1)" }}>
               One ecosystem. One universe. All SKIA.
             </div>

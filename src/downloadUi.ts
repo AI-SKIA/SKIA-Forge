@@ -126,8 +126,7 @@ export function renderDownloadHtml(_releaseBase: string): string {
   />
   <meta name="twitter:image" content="https://skia.ca/og/skia-forge-preview.svg" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&display=swap');
 
     :root {
       --skia-gold: #d4af37;
@@ -136,6 +135,13 @@ export function renderDownloadHtml(_releaseBase: string): string {
       --skia-card-bg: linear-gradient(135deg, rgba(15,8,0,0.95) 0%, rgba(25,14,0,0.95) 100%);
       --skia-border: rgba(212,175,55,0.3);
       --skia-text-soft: rgba(255,255,255,0.68);
+      --font-heading: "Space Grotesk", "Sora", system-ui, sans-serif;
+      --font-body: "Inter", "SF Pro Display", system-ui, sans-serif;
+      --tracking-heading: 0.06em;
+      --tracking-heading-display: 0.08em;
+      --tracking-body: 0.01em;
+      --line-heading: 1.12;
+      --line-body: 1.6;
     }
 
     * { box-sizing: border-box; }
@@ -143,8 +149,10 @@ export function renderDownloadHtml(_releaseBase: string): string {
       margin: 0;
       background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,180,0,0.06) 0%, transparent 70%), var(--skia-bg);
       color: var(--skia-gold);
-      font-family: Orbitron, sans-serif;
+      font-family: var(--font-body);
       min-height: 100vh;
+      letter-spacing: var(--tracking-body);
+      line-height: var(--line-body);
     }
 
     .pc-sidebar-backdrop {
@@ -203,9 +211,11 @@ export function renderDownloadHtml(_releaseBase: string): string {
     .pc-sidebar-logo-tagline {
       font-size: 10px;
       color: rgba(212,175,55,0.55);
-      letter-spacing: 0.12em;
+      letter-spacing: var(--tracking-heading-display);
       margin-top: 8px;
       text-transform: uppercase;
+      font-family: var(--font-heading);
+      font-weight: 600;
     }
     .pc-sidebar-divider {
       height: 1px;
@@ -227,6 +237,8 @@ export function renderDownloadHtml(_releaseBase: string): string {
       font-size: 11px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+      font-family: var(--font-heading);
+      font-weight: 600;
       transition: background 0.15s, color 0.15s;
     }
     .pc-sidebar-btn:hover {
@@ -260,9 +272,10 @@ export function renderDownloadHtml(_releaseBase: string): string {
     }
 
     .feature-page-title {
+      font-family: var(--font-heading);
       font-size: 32px;
       font-weight: 700;
-      letter-spacing: 0.18em;
+      letter-spacing: var(--tracking-heading-display);
       color: var(--skia-gold);
       margin: 0 0 10px;
       text-transform: uppercase;
@@ -271,9 +284,10 @@ export function renderDownloadHtml(_releaseBase: string): string {
     .feature-page-subtitle {
       font-size: 13px;
       color: var(--skia-text-soft);
-      letter-spacing: 0.05em;
+      letter-spacing: var(--tracking-body);
       margin: 0 0 24px;
-      font-family: Nunito, sans-serif;
+      font-family: var(--font-body);
+      text-transform: none;
     }
 
     .hero-actions {
@@ -291,9 +305,11 @@ export function renderDownloadHtml(_releaseBase: string): string {
       color: var(--skia-gold);
       text-decoration: none;
       font-size: 11px;
-      letter-spacing: 0.12em;
+      letter-spacing: var(--tracking-heading-display);
       text-transform: uppercase;
       background: rgba(212,175,55,0.06);
+      font-family: var(--font-heading);
+      font-weight: 600;
       transition: background 0.15s, border-color 0.15s;
     }
     .feature-tab:hover {
@@ -323,18 +339,21 @@ export function renderDownloadHtml(_releaseBase: string): string {
 
     .value-card-title {
       font-size: 11px;
-      letter-spacing: 0.12em;
+      letter-spacing: var(--tracking-heading-display);
       text-transform: uppercase;
       color: var(--skia-gold);
       margin: 0 0 10px;
+      font-family: var(--font-heading);
+      font-weight: 600;
     }
 
     .value-card-body {
       font-size: 12px;
       color: var(--skia-text-soft);
-      font-family: Nunito, sans-serif;
+      font-family: var(--font-body);
       line-height: 1.6;
       margin: 0;
+      text-transform: none;
     }
 
     .journey {
@@ -344,10 +363,12 @@ export function renderDownloadHtml(_releaseBase: string): string {
 
     .journey-title {
       font-size: 13px;
-      letter-spacing: 0.14em;
+      letter-spacing: var(--tracking-heading-display);
       text-transform: uppercase;
       color: var(--skia-gold);
       margin: 0 0 14px;
+      font-family: var(--font-heading);
+      font-weight: 600;
     }
 
     .journey-row {
@@ -357,7 +378,7 @@ export function renderDownloadHtml(_releaseBase: string): string {
       margin-bottom: 10px;
       font-size: 12px;
       color: var(--skia-text-soft);
-      font-family: Nunito, sans-serif;
+      font-family: var(--font-body);
       line-height: 1.5;
     }
 
@@ -371,7 +392,8 @@ export function renderDownloadHtml(_releaseBase: string): string {
       border: 1px solid rgba(212,175,55,0.5);
       font-size: 11px;
       color: var(--skia-gold);
-      font-family: Orbitron, sans-serif;
+      font-family: var(--font-heading);
+      font-weight: 600;
       flex-shrink: 0;
     }
 
@@ -417,24 +439,25 @@ export function renderDownloadHtml(_releaseBase: string): string {
 
     .download-card-name {
       font-size: 11px;
-      letter-spacing: 0.1em;
+      letter-spacing: var(--tracking-heading-display);
       text-transform: uppercase;
       margin-bottom: 4px;
       font-weight: 600;
+      font-family: var(--font-heading);
     }
 
     .download-card-version {
       font-size: 10px;
       color: var(--skia-gold-muted);
       margin-bottom: 4px;
-      font-family: Nunito, sans-serif;
+      font-family: var(--font-body);
     }
 
     .download-card-hint {
       font-size: 10px;
       color: rgba(255,255,255,0.45);
       margin-bottom: 12px;
-      font-family: Nunito, sans-serif;
+      font-family: var(--font-body);
     }
 
     .download-card-btn {
@@ -442,10 +465,12 @@ export function renderDownloadHtml(_releaseBase: string): string {
       border: 1px solid rgba(212,175,55,0.45);
       border-radius: 4px;
       font-size: 10px;
-      letter-spacing: 0.1em;
+      letter-spacing: var(--tracking-heading-display);
       text-transform: uppercase;
       color: var(--skia-gold);
       background: rgba(212,175,55,0.07);
+      font-family: var(--font-heading);
+      font-weight: 600;
     }
 
     .download-actions {
@@ -472,7 +497,7 @@ export function renderDownloadHtml(_releaseBase: string): string {
       margin-bottom: 10px;
       font-size: 12px;
       color: var(--skia-text-soft);
-      font-family: Nunito, sans-serif;
+      font-family: var(--font-body);
       line-height: 1.5;
     }
     .download-instruction-row:last-child { margin-bottom: 0; }
@@ -487,7 +512,8 @@ export function renderDownloadHtml(_releaseBase: string): string {
       border: 1px solid rgba(212,175,55,0.4);
       font-size: 10px;
       color: var(--skia-gold);
-      font-family: Orbitron, sans-serif;
+      font-family: var(--font-heading);
+      font-weight: 600;
       flex-shrink: 0;
     }
 
@@ -501,8 +527,9 @@ export function renderDownloadHtml(_releaseBase: string): string {
       font-size: 12px;
       letter-spacing: 0.04em;
       margin-bottom: 16px;
-      font-family: Nunito, sans-serif;
+      font-family: var(--font-body);
       display: none;
+      text-transform: none;
     }
 
     .availability-banner {
@@ -516,26 +543,29 @@ export function renderDownloadHtml(_releaseBase: string): string {
       text-transform: uppercase;
       border-radius: 6px;
       margin-bottom: 8px;
-      font-family: Nunito, sans-serif;
+      font-family: var(--font-body);
       display: none;
     }
 
     .footer-mark {
       margin-top: 38px;
       text-align: center;
-      font-family: Orbitron, sans-serif;
+      font-family: var(--font-heading);
       color: rgba(212,175,55,1);
-      letter-spacing: 0.08em;
+      letter-spacing: var(--tracking-heading-display);
       font-size: 13px;
       line-height: 1.8;
+      text-transform: uppercase;
+      font-weight: 700;
     }
     .footer-copy {
       text-align: center;
-      font-family: Orbitron, sans-serif;
+      font-family: var(--font-body);
       color: rgba(212,175,55,0.75);
       font-size: 12px;
       line-height: 1.8;
       margin-bottom: 12px;
+      letter-spacing: var(--tracking-body);
     }
     .footer-links {
       display: flex;
