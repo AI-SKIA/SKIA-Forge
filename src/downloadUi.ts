@@ -725,7 +725,7 @@ export function renderDownloadHtml(_releaseBase: string): string {
             }
             visible += 1;
             card.classList.add('download-card--published');
-          }
+          });
           if (!availabilityBanner) return;
           if (visible > 0) {
             availabilityBanner.textContent =

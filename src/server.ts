@@ -146,6 +146,18 @@ type DownloadPlatformId = "windows" | "mac-intel" | "mac-arm" | "linux-appimage"
 const RELEASE_REPO = (process.env.SKIA_FORGE_RELEASE_REPO ?? "AI-SKIA/SKIA-Forge").trim();
 const RELEASE_TAG = (process.env.SKIA_FORGE_RELEASE_TAG ?? "v1.0.0").trim();
 
+function githubApiHeaders(): Record<string, string> {
+  const token = (process.env.GITHUB_TOKEN ?? process.env.SKIA_GITHUB_TOKEN ?? "").trim();
+  const headers: Record<string, string> = {
+    Accept: "application/vnd.github+json",
+    "User-Agent": "skia-forge-release-assets"
+  };
+  if (token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+  return headers;
+}
+
 function normalizeSemver(version: string): string {
   return version.trim().replace(/^v/i, "");
 }
@@ -174,7 +186,7 @@ async function fetchLatestForgeReleaseTag(timeoutMs = 3000): Promise<string | nu
   try {
     const response = await fetch(`https://api.github.com/repos/${RELEASE_REPO}/releases/latest`, {
       headers: {
-        Accept: "application/vnd.github+json",
+        ...githubApiHeaders(),
         "User-Agent": "skia-forge-version-check"
       },
       signal: controller.signal
@@ -196,6 +208,43 @@ async function fetchLatestForgeReleaseTag(timeoutMs = 3000): Promise<string | nu
   }
 }
 
+async function fetchReleaseAssetsFromRecentReleases(
+  timeoutMs: number
+): Promise<Array<{ name: string; url: string }>> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch(
+      `https://api.github.com/repos/${RELEASE_REPO}/releases?per_page=25`,
+      { headers: githubApiHeaders(), signal: controller.signal }
+    );
+    if (!response.ok) {
+      return [];
+    }
+    const list = (await response.json()) as Array<{
+      assets?: Array<{ name?: unknown; browser_download_url?: unknown }>;
+    }>;
+    const merged: Array<{ name: string; url: string }> = [];
+    const seen = new Set<string>();
+    for (const rel of Array.isArray(list) ? list : []) {
+      const rowAssets = Array.isArray(rel.assets) ? rel.assets : [];
+      for (const asset of rowAssets) {
+        const name = typeof asset.name === "string" ? asset.name.trim() : "";
+        const url = typeof asset.browser_download_url === "string" ? asset.browser_download_url.trim() : "";
+        if (name && url && !seen.has(name)) {
+          seen.add(name);
+          merged.push({ name, url });
+        }
+      }
+    }
+    return merged;
+  } catch {
+    return [];
+  } finally {
+    clearTimeout(timeout);
+  }
+}
+
 async function fetchLatestForgeReleaseAssets(
   timeoutMs = 4000
 ): Promise<{ latestVersion: string | null; files: string[]; assets: Array<{ name: string; url: string }> }> {
@@ -212,10 +261,7 @@ async function fetchLatestForgeReleaseAssets(
   const timeout = setTimeout(() => controller.abort(), timeoutMs);
   try {
     const response = await fetch(`https://api.github.com/repos/${RELEASE_REPO}/releases/latest`, {
-      headers: {
-        Accept: "application/vnd.github+json",
-        "User-Agent": "skia-forge-release-assets"
-      },
+      headers: githubApiHeaders(),
       signal: controller.signal
     });
     if (!response.ok) {
@@ -229,7 +275,7 @@ async function fetchLatestForgeReleaseAssets(
     const latestVersion = typeof payload.tag_name === "string" && payload.tag_name.trim()
       ? payload.tag_name.trim()
       : null;
-    const assets = Array.isArray(payload.assets)
+    let assets = Array.isArray(payload.assets)
       ? payload.assets
           .map((asset) => ({
             name: typeof asset.name === "string" ? asset.name.trim() : "",
@@ -237,6 +283,12 @@ async function fetchLatestForgeReleaseAssets(
           }))
           .filter((asset) => Boolean(asset.name) && Boolean(asset.url))
       : [];
+    if (assets.length === 0) {
+      const merged = await fetchReleaseAssetsFromRecentReleases(timeoutMs);
+      if (merged.length > 0) {
+        assets = merged;
+      }
+    }
     const files = assets.map((asset) => asset.name);
     releaseAssetsCache = { atMs: now, latestVersion, files, assets };
     return { latestVersion, files, assets };
@@ -259,7 +311,23 @@ function pickReleaseAssetUrlForPlatform(
   };
 
   if (platform === "windows") {
-    return byName((name) => /\.exe$/i.test(name));
+    const exeHit = byName((name) => /\.exe$/i.test(name));
+    if (exeHit) {
+      return exeHit;
+    }
+    const msiHit = byName((name) => /\.msi$/i.test(name));
+    if (msiHit) {
+      return msiHit;
+    }
+    const anyInstaller = assets.find((a) => /\.(exe|msi)$/i.test(a.name));
+    if (anyInstaller) {
+      return anyInstaller.url;
+    }
+    const loose = assets.find(
+      (a) =>
+        /(win|windows|nsis|setup|x64|amd64)/i.test(a.name) && !/\.(dmg|appimage|zip|tar)/i.test(a.name)
+    );
+    return loose?.url ?? null;
   }
   if (platform === "mac-arm") {
     return byName((name) => /\.dmg$/i.test(name) && isArmMac(name));
@@ -289,14 +357,22 @@ function fallbackReleaseAssetUrl(platform: DownloadPlatformId): string {
 
 async function canDownloadFromUrl(url: string): Promise<boolean> {
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 3500);
+  const timeout = setTimeout(() => controller.abort(), 12_000);
   try {
     const response = await fetch(url, {
-      method: "HEAD",
-      redirect: "manual",
+      method: "GET",
+      redirect: "follow",
       signal: controller.signal
     });
-    return response.status >= 200 && response.status < 400;
+    if (!response.ok) {
+      return false;
+    }
+    try {
+      await response.body?.cancel();
+    } catch {
+      // ignore cancel errors
+    }
+    return true;
   } catch {
     return false;
   } finally {
