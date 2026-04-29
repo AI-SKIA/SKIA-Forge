@@ -22,9 +22,108 @@ type StoredCredentials = {
     password: string;
 };
 
+type UpdateCheckResult =
+    | { status: "update-available"; latestVersion: string; downloadUrl: string }
+    | { status: "up-to-date"; currentVersion: string }
+    | { status: "error"; message: string };
+
 let mainWindow: BrowserWindow | null = null;
 let autoSaveEnabled = false;
 let forgeProcess: ChildProcessWithoutNullStreams | null = null;
+let periodicUpdateTimer: NodeJS.Timeout | null = null;
+
+const FORGE_RELEASE_REPO = (process.env.SKIA_FORGE_RELEASE_REPO || "AI-SKIA/SKIA-Forge").trim();
+
+const normalizeSemver = (version: string): string => version.trim().replace(/^v/i, "");
+
+const compareSemver = (aRaw: string, bRaw: string): number => {
+    const a = normalizeSemver(aRaw).split(".").map((part) => Number(part.replace(/\D.*/, "")) || 0);
+    const b = normalizeSemver(bRaw).split(".").map((part) => Number(part.replace(/\D.*/, "")) || 0);
+    const len = Math.max(a.length, b.length);
+    for (let i = 0; i < len; i += 1) {
+        const av = a[i] ?? 0;
+        const bv = b[i] ?? 0;
+        if (av > bv) return 1;
+        if (av < bv) return -1;
+    }
+    return 0;
+};
+
+const githubHeaders = (): Record<string, string> => {
+    const token = (process.env.GITHUB_TOKEN || process.env.SKIA_GITHUB_TOKEN || "").trim();
+    const headers: Record<string, string> = {
+        Accept: "application/vnd.github+json",
+        "User-Agent": "skia-forge-desktop-updater"
+    };
+    if (token) headers.Authorization = `Bearer ${token}`;
+    return headers;
+};
+
+const pickPlatformAssetUrl = (assets: Array<{ name: string; url: string }>): string | null => {
+    if (process.platform === "win32") {
+        const exact = assets.find((a) => /\.(exe|msi)$/i.test(a.name));
+        if (exact) return exact.url;
+    } else if (process.platform === "darwin") {
+        if (process.arch === "arm64") {
+            const arm = assets.find((a) => /\.dmg$/i.test(a.name) && /(arm64|aarch64|apple[-_. ]?silicon|m1|m2|m3)/i.test(a.name));
+            if (arm) return arm.url;
+        }
+        const intel = assets.find((a) => /\.dmg$/i.test(a.name) && /(intel|x64|amd64)/i.test(a.name));
+        if (intel) return intel.url;
+        const anyDmg = assets.find((a) => /\.dmg$/i.test(a.name));
+        if (anyDmg) return anyDmg.url;
+    } else {
+        const appImage = assets.find((a) => /\.appimage$/i.test(a.name));
+        if (appImage) return appImage.url;
+    }
+    return null;
+};
+
+const runUpdateCheck = async (): Promise<UpdateCheckResult> => {
+    try {
+        const currentVersion = app.getVersion();
+        const response = await fetch(`https://api.github.com/repos/${FORGE_RELEASE_REPO}/releases/latest`, {
+            headers: githubHeaders()
+        });
+        if (!response.ok) {
+            return { status: "error", message: `Release lookup failed (${response.status})` };
+        }
+        const payload = (await response.json()) as {
+            tag_name?: unknown;
+            assets?: Array<{ name?: unknown; browser_download_url?: unknown }>;
+        };
+        const latestVersion = typeof payload.tag_name === "string" ? payload.tag_name.trim() : "";
+        if (!latestVersion) {
+            return { status: "error", message: "No latest release tag found." };
+        }
+        const isNewer = compareSemver(latestVersion, currentVersion) > 0;
+        if (!isNewer) {
+            return { status: "up-to-date", currentVersion };
+        }
+        const assets = Array.isArray(payload.assets)
+            ? payload.assets
+                .map((asset) => ({
+                    name: typeof asset.name === "string" ? asset.name.trim() : "",
+                    url: typeof asset.browser_download_url === "string" ? asset.browser_download_url.trim() : ""
+                }))
+                .filter((asset) => Boolean(asset.name) && Boolean(asset.url))
+            : [];
+        const downloadUrl = pickPlatformAssetUrl(assets);
+        if (!downloadUrl) {
+            return { status: "error", message: `Release ${latestVersion} has no installer for this platform.` };
+        }
+        return { status: "update-available", latestVersion, downloadUrl };
+    } catch (error: any) {
+        return { status: "error", message: error?.message || "Update check failed." };
+    }
+};
+
+const emitUpdateToRenderer = (result: UpdateCheckResult): void => {
+    const windows = BrowserWindow.getAllWindows();
+    windows.forEach((win) => {
+        win.webContents.send("update-status", result);
+    });
+};
 
 const credentialsPath = (): string => path.join(app.getPath("userData"), "forge-credentials.bin");
 
@@ -672,6 +771,17 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     helpMenu.append(new MenuItem({ type: "separator" }));
     helpMenu.append(
         new MenuItem({
+            label: "Check for Updates",
+            click: () => {
+                void runUpdateCheck().then((result) => {
+                    emitUpdateToRenderer(result);
+                });
+            }
+        })
+    );
+    helpMenu.append(new MenuItem({ type: "separator" }));
+    helpMenu.append(
+        new MenuItem({
             label: "Documentation",
             click: () => {
                 const docsWin = new BrowserWindow({
@@ -789,6 +899,10 @@ const createWindow = (): void => {
         void mainWindow.loadFile(rendererPath);
     }
     buildApplicationMenu(mainWindow);
+
+    mainWindow.webContents.on("did-finish-load", () => {
+        void runUpdateCheck().then((result) => emitUpdateToRenderer(result));
+    });
 
     // Open DevTools automatically in development
     // mainWindow.webContents.openDevTools();
@@ -941,8 +1055,21 @@ ipcMain.on("open-external", (_event, url: string) => {
     void shell.openExternal(url);
 });
 
+ipcMain.handle("skia:checkForUpdates", async () => {
+    const result = await runUpdateCheck();
+    emitUpdateToRenderer(result);
+    return result;
+});
+
 app.whenReady().then(() => {
     createWindow();
+    periodicUpdateTimer = setInterval(() => {
+        void runUpdateCheck().then((result) => {
+            if (result.status === "update-available") {
+                emitUpdateToRenderer(result);
+            }
+        });
+    }, 6 * 60 * 60 * 1000);
     app.on("activate", () => {
         if (BrowserWindow.getAllWindows().length === 0) createWindow();
     });
@@ -950,4 +1077,11 @@ app.whenReady().then(() => {
 
 app.on("window-all-closed", () => {
     if (process.platform !== "darwin") app.quit();
+});
+
+app.on("before-quit", () => {
+    if (periodicUpdateTimer) {
+        clearInterval(periodicUpdateTimer);
+        periodicUpdateTimer = null;
+    }
 });

@@ -18,7 +18,23 @@ declare global {
       onMenuAction: (channel: string, listener: () => void) => () => void;
       onBackendLog: (listener: (payload: string) => void) => () => void;
       onStatusUpdate: (listener: (status: string) => void) => () => void;
+      onUpdateStatus: (
+        listener: (payload: {
+          status: "update-available" | "up-to-date" | "error";
+          latestVersion?: string;
+          downloadUrl?: string;
+          currentVersion?: string;
+          message?: string;
+        }) => void
+      ) => () => void;
       runCommand: (cmd: string, cwd?: string) => Promise<{ stdout: string; stderr: string }>;
+      checkForUpdates: () => Promise<{
+        status: "update-available" | "up-to-date" | "error";
+        latestVersion?: string;
+        downloadUrl?: string;
+        currentVersion?: string;
+        message?: string;
+      }>;
       setAutoSave: (enabled: boolean) => void;
       openDocs: () => void;
       getCookies: (url: string) => Promise<Array<{ name: string; value: string }>>;

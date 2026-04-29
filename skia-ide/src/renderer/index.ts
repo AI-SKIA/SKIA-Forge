@@ -24,6 +24,45 @@ let menuListenersRegistered = false;
 let terminalOutputEl: HTMLDivElement | null = null;
 let autoSaveEnabled = false;
 
+const showUpdateNotice = (title: string, message: string, actionLabel?: string, actionUrl?: string): void => {
+    let host = document.getElementById("skia-update-notice") as HTMLDivElement | null;
+    if (!host) {
+        host = document.createElement("div");
+        host.id = "skia-update-notice";
+        host.style.position = "fixed";
+        host.style.right = "14px";
+        host.style.bottom = "34px";
+        host.style.zIndex = "9999";
+        host.style.maxWidth = "360px";
+        host.style.background = "rgba(12, 12, 12, 0.96)";
+        host.style.border = "1px solid rgba(212,175,55,0.45)";
+        host.style.borderRadius = "10px";
+        host.style.padding = "12px";
+        host.style.color = "#f1e2ad";
+        host.style.boxShadow = "0 8px 24px rgba(0,0,0,0.45)";
+        document.body.appendChild(host);
+    }
+    const actionButton = actionLabel && actionUrl
+        ? `<button id="skia-update-action" style="margin-top:10px;background:transparent;border:1px solid rgba(212,175,55,0.5);color:#d4af37;padding:8px 10px;cursor:pointer;">${actionLabel}</button>`
+        : "";
+    host.innerHTML = `
+      <div style="font-size:12px;letter-spacing:0.08em;color:#d4af37;text-transform:uppercase;margin-bottom:6px;">${title}</div>
+      <div style="font-size:12px;line-height:1.5;color:rgba(255,255,255,0.86);">${message}</div>
+      ${actionButton}
+      <button id="skia-update-dismiss" style="margin-top:10px;margin-left:8px;background:transparent;border:1px solid rgba(255,255,255,0.22);color:rgba(255,255,255,0.72);padding:8px 10px;cursor:pointer;">Dismiss</button>
+    `;
+    const dismissBtn = document.getElementById("skia-update-dismiss") as HTMLButtonElement | null;
+    dismissBtn?.addEventListener("click", () => {
+        host?.remove();
+    });
+    if (actionLabel && actionUrl) {
+        const actionBtn = document.getElementById("skia-update-action") as HTMLButtonElement | null;
+        actionBtn?.addEventListener("click", () => {
+            window.skiaElectron.openExternal(actionUrl);
+        });
+    }
+};
+
 const getLanguageFromPath = (filePath: string): string => {
     const normalized = filePath.toLowerCase();
     if (normalized.endsWith(".ts") || normalized.endsWith(".tsx")) return "typescript";
@@ -119,6 +158,7 @@ const loadSettings = (): void => {
     const autoSaveBtn = document.getElementById("toggle-autosave") as HTMLButtonElement | null;
     const statusDisplay = document.getElementById("connection-status-display");
     const logoutBtn = document.getElementById("settings-logout-btn") as HTMLButtonElement | null;
+    const checkUpdatesBtn = document.getElementById("settings-check-updates-btn") as HTMLButtonElement | null;
 
     if (statusDisplay) {
         statusDisplay.textContent = (document.getElementById("status-text")?.textContent ?? "Disconnected").replace("⬡ ", "");
@@ -180,6 +220,17 @@ const loadSettings = (): void => {
         setTimeout(() => {
             logoutBtn.textContent = "SIGN OUT";
         }, 1500);
+    });
+
+    checkUpdatesBtn?.addEventListener("click", async () => {
+        checkUpdatesBtn.textContent = "CHECKING...";
+        const result = await window.skiaElectron.checkForUpdates();
+        if (result.status === "up-to-date") {
+            showUpdateNotice("No Update", `You are on the latest version (${result.currentVersion || "current"}).`);
+        } else if (result.status === "error") {
+            showUpdateNotice("Update Check Failed", result.message || "Unable to check updates.");
+        }
+        checkUpdatesBtn.textContent = "CHECK FOR UPDATES";
     });
 };
 
@@ -573,6 +624,21 @@ const registerMenuIpcHandlers = (): void => {
         setStatus(status);
         const connectionStatus = document.getElementById("connection-status-display");
         if (connectionStatus) connectionStatus.textContent = status;
+    });
+    window.skiaElectron.onUpdateStatus((payload) => {
+        if (payload.status === "update-available" && payload.latestVersion && payload.downloadUrl) {
+            showUpdateNotice(
+                "Update Available",
+                `Version ${payload.latestVersion} is available. Download and install the latest SKIA FORGE build.`,
+                "Update Now",
+                payload.downloadUrl
+            );
+            return;
+        }
+        if (payload.status === "error" && payload.message) {
+            // Keep this silent unless user triggered manual check.
+            return;
+        }
     });
 };
 

@@ -1,0 +1,67 @@
+name: Forge Auto Release
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "skia-ide/**"
+      - ".github/workflows/forge-auto-release.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: forge-auto-release
+  cancel-in-progress: true
+
+jobs:
+  build-and-release-windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: skia-ide/package-lock.json
+
+      - name: Install dependencies
+        working-directory: skia-ide
+        run: npm ci
+
+      - name: Compute release version
+        shell: pwsh
+        run: |
+          $pkg = Get-Content "skia-ide/package.json" -Raw | ConvertFrom-Json
+          $base = [string]$pkg.version
+          $parts = $base.Split(".")
+          if ($parts.Length -lt 2) {
+            throw "package.json version must be semantic (x.y.z)"
+          }
+          $version = "$($parts[0]).$($parts[1]).${{ github.run_number }}"
+          "FORGE_VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+          "FORGE_TAG=v$version" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
+
+      - name: Build Windows installer
+        working-directory: skia-ide
+        shell: pwsh
+        run: |
+          npm run build
+          npx electron-builder --win --publish never --config.extraMetadata.version=$env:FORGE_VERSION --config.win.signAndEditExecutable=false
+
+      - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ env.FORGE_TAG }}
+          name: ${{ env.FORGE_TAG }}
+          make_latest: true
+          generate_release_notes: true
+          files: |
+            skia-ide/release/*.exe
+            skia-ide/release/*.yml
+            skia-ide/release/*.blockmap

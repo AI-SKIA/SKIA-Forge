@@ -27,7 +27,20 @@ contextBridge.exposeInMainWorld("skiaElectron", {
     ipcRenderer.on("status-update", wrapped);
     return () => ipcRenderer.removeListener("status-update", wrapped);
   },
+  onUpdateStatus: (
+    listener: (payload: { status: "update-available" | "up-to-date" | "error"; latestVersion?: string; downloadUrl?: string; currentVersion?: string; message?: string }) => void
+  ) => {
+    const wrapped = (
+      _event: Electron.IpcRendererEvent,
+      payload: { status: "update-available" | "up-to-date" | "error"; latestVersion?: string; downloadUrl?: string; currentVersion?: string; message?: string }
+    ) => {
+      listener(payload);
+    };
+    ipcRenderer.on("update-status", wrapped);
+    return () => ipcRenderer.removeListener("update-status", wrapped);
+  },
   runCommand: (cmd: string, cwd?: string) => ipcRenderer.invoke("skia:runCommand", cmd, cwd),
+  checkForUpdates: () => ipcRenderer.invoke("skia:checkForUpdates"),
   setAutoSave: (enabled: boolean) => ipcRenderer.send("skia:setAutoSave", enabled),
   openDocs: () => ipcRenderer.send("open-docs"),
   getCookies: (url: string): Promise<Array<{ name: string; value: string }>> =>

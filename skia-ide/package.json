@@ -76,7 +76,7 @@
     "publish": {
       "provider": "github",
       "owner": "AI-SKIA",
-      "repo": "skia",
+      "repo": "SKIA-Forge",
       "releaseType": "release"
     }
   },
