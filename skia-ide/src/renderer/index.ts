@@ -5,7 +5,7 @@ import { loadConfig } from "./skia/skiaConfig";
 import { initializeChatPanel } from "./skia/skiaChatPanel";
 import { initializeStatusBar } from "./skia/skiaStatusBar";
 import { initializeOnboarding } from "./skia/skiaOnboarding";
-import { initializeAuthPanel, isAuthenticated } from "./skia/skiaAuthPanel";
+import { initializeAuthPanel, isAuthenticated, logout } from "./skia/skiaAuthPanel";
 import { setActiveFile } from "./skia/skiaSessionStore";
 import { getMode, getGovernance, getModulesStatus, SkiaOfflineError } from "./skia/skiaApiClient";
 
@@ -118,6 +118,7 @@ const loadSettings = (): void => {
     const tabSelect = document.getElementById("tab-size-select") as HTMLSelectElement | null;
     const autoSaveBtn = document.getElementById("toggle-autosave") as HTMLButtonElement | null;
     const statusDisplay = document.getElementById("connection-status-display");
+    const logoutBtn = document.getElementById("settings-logout-btn") as HTMLButtonElement | null;
 
     if (statusDisplay) {
         statusDisplay.textContent = (document.getElementById("status-text")?.textContent ?? "Disconnected").replace("⬡ ", "");
@@ -171,6 +172,14 @@ const loadSettings = (): void => {
 
     document.getElementById("open-docs-btn")?.addEventListener("click", () => {
         window.skiaElectron.openDocs();
+    });
+
+    logoutBtn?.addEventListener("click", () => {
+        logout();
+        logoutBtn.textContent = "SIGNED OUT";
+        setTimeout(() => {
+            logoutBtn.textContent = "SIGN OUT";
+        }, 1500);
     });
 };
 

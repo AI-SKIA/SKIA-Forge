@@ -1,4 +1,4 @@
-import { app, BrowserWindow, dialog, ipcMain, Menu, MenuItem, shell, session } from "electron";
+import { app, BrowserWindow, dialog, ipcMain, Menu, MenuItem, shell, session, safeStorage } from "electron";
 import { exec, spawn, type ChildProcessWithoutNullStreams, type ExecException } from "node:child_process";
 import { promises as fs } from "node:fs";
 import path from "node:path";
@@ -17,9 +17,49 @@ type DirTreeNode = {
     children?: DirTreeNode[];
 };
 
+type StoredCredentials = {
+    email: string;
+    password: string;
+};
+
 let mainWindow: BrowserWindow | null = null;
 let autoSaveEnabled = false;
 let forgeProcess: ChildProcessWithoutNullStreams | null = null;
+
+const credentialsPath = (): string => path.join(app.getPath("userData"), "forge-credentials.bin");
+
+const saveEncryptedCredentials = async (credentials: StoredCredentials): Promise<boolean> => {
+    try {
+        if (!safeStorage.isEncryptionAvailable()) return false;
+        const serialized = JSON.stringify(credentials);
+        const encrypted = safeStorage.encryptString(serialized);
+        await fs.writeFile(credentialsPath(), encrypted);
+        return true;
+    } catch {
+        return false;
+    }
+};
+
+const loadEncryptedCredentials = async (): Promise<StoredCredentials | null> => {
+    try {
+        if (!safeStorage.isEncryptionAvailable()) return null;
+        const encrypted = await fs.readFile(credentialsPath());
+        const serialized = safeStorage.decryptString(encrypted);
+        const parsed = JSON.parse(serialized) as Partial<StoredCredentials>;
+        if (typeof parsed.email !== "string" || typeof parsed.password !== "string") return null;
+        return { email: parsed.email, password: parsed.password };
+    } catch {
+        return null;
+    }
+};
+
+const clearEncryptedCredentials = async (): Promise<void> => {
+    try {
+        await fs.unlink(credentialsPath());
+    } catch {
+        // ignore if absent
+    }
+};
 
 const getMenuTargetWindow = (fallbackWindow: BrowserWindow): BrowserWindow => {
     return BrowserWindow.getFocusedWindow() ?? fallbackWindow;
@@ -741,8 +781,13 @@ const createWindow = (): void => {
         }
     });
 
-    const rendererPath = path.resolve(__dirname, "../renderer/index.html");
-    void mainWindow.loadFile(rendererPath);
+    const useWebShell = process.env.SKIA_FORGE_WEB_SHELL === "true";
+    if (useWebShell) {
+        void mainWindow.loadURL("https://forge.skia.ca");
+    } else {
+        const rendererPath = path.resolve(__dirname, "../renderer/index.html");
+        void mainWindow.loadFile(rendererPath);
+    }
     buildApplicationMenu(mainWindow);
 
     // Open DevTools automatically in development
@@ -877,6 +922,19 @@ ipcMain.on("open-docs", () => {
 ipcMain.handle("skia:getCookies", async (_event, url: string) => {
     const cookies = await session.defaultSession.cookies.get({ url });
     return cookies.map((c) => ({ name: c.name, value: c.value }));
+});
+
+ipcMain.handle("skia:saveCredentials", async (_event, credentials: StoredCredentials) => {
+    return saveEncryptedCredentials(credentials);
+});
+
+ipcMain.handle("skia:getSavedCredentials", async () => {
+    return loadEncryptedCredentials();
+});
+
+ipcMain.handle("skia:clearSavedCredentials", async () => {
+    await clearEncryptedCredentials();
+    return true;
 });
 
 ipcMain.on("open-external", (_event, url: string) => {

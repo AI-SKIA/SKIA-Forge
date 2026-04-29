@@ -269,6 +269,10 @@ const createOverlay = (): HTMLDivElement => {
                autocomplete="email" style="${inputStyle}" />
         <input id="auth-password" type="password" placeholder="Password"
                autocomplete="current-password" style="${inputStyle}" />
+        <label style="display:flex;align-items:center;gap:8px;margin:-2px 0 12px;color:#b59752;font-size:12px;">
+          <input id="auth-remember" type="checkbox" checked />
+          Remember credentials on this device
+        </label>
         <button id="auth-login-btn" type="submit" style="${btnStyle}">SIGN IN</button>
         <div id="auth-login-error"
              style="display:none;color:#ff9f9f;margin-top:10px;font-size:12px;line-height:1.5;"></div>
@@ -310,6 +314,7 @@ const wireOverlayHandlers = (): void => {
     const registerForm = document.getElementById("auth-register-form") as HTMLFormElement | null;
     const loginBtn = document.getElementById("auth-login-btn") as HTMLButtonElement | null;
     const registerBtn = document.getElementById("auth-register-btn") as HTMLButtonElement | null;
+    const rememberBox = document.getElementById("auth-remember") as HTMLInputElement | null;
     if (!loginTab || !registerTab || !loginForm || !registerForm) return;
 
     const setTab = (tab: "login" | "register"): void => {
@@ -324,6 +329,19 @@ const wireOverlayHandlers = (): void => {
 
     loginTab.addEventListener("click", () => setTab("login"));
     registerTab.addEventListener("click", () => setTab("register"));
+
+    void window.skiaElectron.getSavedCredentials()
+        .then((saved) => {
+            if (!saved) return;
+            const emailInput = document.getElementById("auth-email") as HTMLInputElement | null;
+            const passInput = document.getElementById("auth-password") as HTMLInputElement | null;
+            if (emailInput && !emailInput.value) emailInput.value = saved.email;
+            if (passInput && !passInput.value) passInput.value = saved.password;
+            if (rememberBox) rememberBox.checked = true;
+        })
+        .catch(() => {
+            // ignore unavailable secure storage
+        });
 
     // ── Login ──
     loginForm.addEventListener("submit", async (e) => {
@@ -345,6 +363,11 @@ const wireOverlayHandlers = (): void => {
             });
             if (!response.ok) throw new Error(await extractError(response));
             const payload = (await response.json()) as unknown;
+            if (rememberBox?.checked) {
+                void window.skiaElectron.saveCredentials(email, password);
+            } else {
+                void window.skiaElectron.clearSavedCredentials();
+            }
             await acquireTokenAfterAuth(payload, email);
         } catch (err) {
             showError("auth-login-error",
@@ -375,6 +398,9 @@ const wireOverlayHandlers = (): void => {
             });
             if (!response.ok) throw new Error(await extractError(response));
             const payload = (await response.json()) as unknown;
+            if (rememberBox?.checked) {
+                void window.skiaElectron.saveCredentials(email, password);
+            }
             try {
                 await acquireTokenAfterAuth(payload, email, firstName || undefined);
             } catch (authErr) {
@@ -418,7 +444,8 @@ export const initializeAuthPanel = (): void => {
             method: "GET",
             credentials: "include",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "x-skia-client": "forge-desktop"
             }
         })
             .then(async (response) => {
@@ -432,6 +459,8 @@ export const initializeAuthPanel = (): void => {
                     ensureOverlay();
                     return;
                 }
+                const bodyToken = extractTokenFromBody(payload);
+                if (bodyToken) localStorage.setItem(SESSION_TOKEN_KEY, bodyToken);
                 const cookieToken = await getTokenFromElectronCookies();
                 if (cookieToken) localStorage.setItem(SESSION_TOKEN_KEY, cookieToken);
                 setAuthenticated(user);

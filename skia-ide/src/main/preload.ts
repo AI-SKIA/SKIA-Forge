@@ -32,5 +32,9 @@ contextBridge.exposeInMainWorld("skiaElectron", {
   openDocs: () => ipcRenderer.send("open-docs"),
   getCookies: (url: string): Promise<Array<{ name: string; value: string }>> =>
     ipcRenderer.invoke("skia:getCookies", url),
-  openExternal: (url: string) => ipcRenderer.send("open-external", url)
+  openExternal: (url: string) => ipcRenderer.send("open-external", url),
+  saveCredentials: (email: string, password: string) => ipcRenderer.invoke("skia:saveCredentials", { email, password }),
+  getSavedCredentials: (): Promise<{ email: string; password: string } | null> =>
+    ipcRenderer.invoke("skia:getSavedCredentials"),
+  clearSavedCredentials: (): Promise<boolean> => ipcRenderer.invoke("skia:clearSavedCredentials")
 });

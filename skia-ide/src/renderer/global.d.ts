@@ -23,6 +23,9 @@ declare global {
       openDocs: () => void;
       getCookies: (url: string) => Promise<Array<{ name: string; value: string }>>;
       openExternal: (url: string) => void;
+      saveCredentials: (email: string, password: string) => Promise<boolean>;
+      getSavedCredentials: () => Promise<{ email: string; password: string } | null>;
+      clearSavedCredentials: () => Promise<boolean>;
     };
   }
 }
