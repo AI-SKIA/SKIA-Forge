@@ -126,7 +126,7 @@ export function renderDownloadHtml(_releaseBase: string): string {
   />
   <meta name="twitter:image" content="https://skia.ca/og/skia-forge-preview.svg" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&family=Inter:wght@400;500;600;700&family=Sora:wght@600;700&display=swap');
+    /* Fonts: system stack only (no Google CDN — avoids gstatic/woff2 404s and ad-block issues). */
 
     :root {
       --skia-gold: #d4af37;
@@ -135,8 +135,8 @@ export function renderDownloadHtml(_releaseBase: string): string {
       --skia-card-bg: linear-gradient(135deg, rgba(15,8,0,0.95) 0%, rgba(25,14,0,0.95) 100%);
       --skia-border: rgba(212,175,55,0.3);
       --skia-text-soft: rgba(255,255,255,0.68);
-      --font-heading: "Space Grotesk", "Sora", system-ui, sans-serif;
-      --font-body: "Inter", "SF Pro Display", system-ui, sans-serif;
+      --font-heading: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --tracking-heading: 0.06em;
       --tracking-heading-display: 0.08em;
       --tracking-body: 0.01em;

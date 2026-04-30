@@ -6,10 +6,10 @@
   <title>Security | SKIA Forge</title>
   <link rel="icon" type="image/png" href="/favicon.png" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&display=swap');
 
     :root {
+      --forge-font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --forge-font-heading: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --gold: #d4af37;
       --gold-muted: rgba(212,175,55,0.62);
       --gold-dim: rgba(212,175,55,0.25);
@@ -25,7 +25,7 @@
     body {
       background: radial-gradient(ellipse 80% 60% at 50% 0%,rgba(255,180,0,0.06) 0%,transparent 70%), var(--bg);
       color: var(--gold);
-      font-family: Orbitron, sans-serif;
+      font-family:var(--forge-font-sans);
       min-height: 100vh;
     }
 
@@ -51,7 +51,7 @@
 
     .page-header { text-align:center;margin-bottom:48px; }
     .page-title { font-size:30px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px; }
-    .page-subtitle { font-size:13px;color:var(--text-soft);letter-spacing:0.05em;font-family:Nunito,sans-serif; }
+    .page-subtitle { font-size:13px;color:var(--text-soft);letter-spacing:0.05em;font-family:var(--forge-font-sans); }
 
     .section-label { font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border); }
 
@@ -62,35 +62,35 @@
     .control-card { background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:18px 16px;display:flex;gap:12px;align-items:flex-start; }
     .control-icon { font-size:20px;flex-shrink:0;margin-top:2px; }
     .control-title { font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--gold);margin-bottom:4px; }
-    .control-desc { font-size:12px;color:var(--text-soft);font-family:Nunito,sans-serif;line-height:1.5; }
+    .control-desc { font-size:12px;color:var(--text-soft);font-family:var(--forge-font-sans);line-height:1.5; }
 
     /* Key components */
     .kc-list { display:flex;flex-direction:column;gap:10px; }
     .kc-item { background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start; }
     .kc-bullet { width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:6px; }
-    .kc-text { font-size:12px;color:var(--text-soft);font-family:Nunito,sans-serif;line-height:1.55; }
-    .kc-text strong { color:var(--gold);font-family:Orbitron,sans-serif;font-size:11px;letter-spacing:0.06em; }
+    .kc-text { font-size:12px;color:var(--text-soft);font-family:var(--forge-font-sans);line-height:1.55; }
+    .kc-text strong { color:var(--gold);font-family:var(--forge-font-sans);font-size:11px;letter-spacing:0.06em; }
 
     /* Practices */
     .practice-list { display:flex;flex-direction:column;gap:8px; }
     .practice-item { display:flex;gap:12px;align-items:flex-start;padding:12px 16px;background:rgba(212,175,55,0.04);border:1px solid rgba(212,175,55,0.18);border-radius:8px; }
     .practice-num { font-size:10px;font-weight:700;color:var(--gold);letter-spacing:0.1em;min-width:20px;margin-top:1px; }
-    .practice-text { font-size:12px;color:var(--text-soft);font-family:Nunito,sans-serif;line-height:1.5; }
+    .practice-text { font-size:12px;color:var(--text-soft);font-family:var(--forge-font-sans);line-height:1.5; }
 
     /* Checklist */
     .checklist { display:grid;grid-template-columns:1fr 1fr;gap:10px; }
     .check-item { display:flex;gap:10px;align-items:flex-start;padding:12px 14px;background:rgba(212,175,55,0.04);border:1px solid rgba(212,175,55,0.18);border-radius:8px; }
     .check-icon { color:var(--gold);font-size:13px;flex-shrink:0;margin-top:1px; }
-    .check-text { font-size:12px;color:var(--text-soft);font-family:Nunito,sans-serif;line-height:1.5; }
+    .check-text { font-size:12px;color:var(--text-soft);font-family:var(--forge-font-sans);line-height:1.5; }
 
     /* Reporting banner */
     .report-banner { background:var(--card-bg);border:1px solid rgba(212,175,55,0.45);border-radius:12px;padding:28px 24px;text-align:center;margin-bottom:48px; }
     .report-banner h3 { font-size:14px;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:10px; }
-    .report-banner p { font-size:13px;color:var(--text-soft);font-family:Nunito,sans-serif;line-height:1.6;margin-bottom:16px; }
+    .report-banner p { font-size:13px;color:var(--text-soft);font-family:var(--forge-font-sans);line-height:1.6;margin-bottom:16px; }
     .report-btn { display:inline-block;padding:10px 24px;border:1px solid var(--gold);border-radius:6px;color:var(--gold);text-decoration:none;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:rgba(212,175,55,0.08);transition:background 0.15s; }
     .report-btn:hover { background:rgba(212,175,55,0.18); }
 
-    footer { margin-top:60px;text-align:center;font-family:Orbitron,sans-serif;font-size:12px;line-height:1.8; }
+    footer { margin-top:60px;text-align:center;font-family:var(--forge-font-sans);font-size:12px;line-height:1.8; }
     .footer-tagline { color:var(--gold);font-size:13px;margin-bottom:4px; }
     .footer-copy { color:var(--gold-muted); }
     .footer-links { display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:11px; }
@@ -101,12 +101,12 @@
     @media(max-width:680px){ .wrap{padding:70px 16px 48px;} .page-title{font-size:22px;} .checklist{grid-template-columns:1fr;} }
 /* SKIA typography normalization */
 body {
-  font-family: Inter, "SF Pro Display", system-ui, sans-serif !important;
+  font-family:var(--forge-font-sans) !important;
   letter-spacing: 0.01em !important;
   line-height: 1.6 !important;
 }
 h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
-  font-family: "Space Grotesk", "Sora", system-ui, sans-serif !important;
+  font-family:var(--forge-font-heading) !important;
   letter-spacing: 0.08em !important;
   text-transform: uppercase;
   font-weight: 600 !important;

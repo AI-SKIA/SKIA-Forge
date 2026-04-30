@@ -6,10 +6,10 @@
   <title>Resources | SKIA Forge</title>
   <link rel="icon" type="image/png" href="/favicon.png" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&display=swap');
 
     :root {
+      --forge-font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --forge-font-heading: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
       --gold: #d4af37;
       --gold-muted: rgba(212,175,55,0.62);
       --gold-dim: rgba(212,175,55,0.25);
@@ -25,7 +25,7 @@
     body {
       background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,180,0,0.06) 0%, transparent 70%), var(--bg);
       color: var(--gold);
-      font-family: Orbitron, sans-serif;
+      font-family:var(--forge-font-sans);
       min-height: 100vh;
     }
 
@@ -54,7 +54,7 @@
 
     .page-header { text-align:center;margin-bottom:48px; }
     .page-title { font-size:30px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px; }
-    .page-subtitle { font-size:13px;color:var(--text-soft);letter-spacing:0.05em;font-family:Nunito,sans-serif; }
+    .page-subtitle { font-size:13px;color:var(--text-soft);letter-spacing:0.05em;font-family:var(--forge-font-sans); }
 
     /* ── Section label ── */
     .section-label { font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border); }
@@ -65,7 +65,7 @@
     .doc-card { background:var(--card-bg);border:1px solid var(--border);border-radius:10px;padding:20px 18px;text-decoration:none;color:var(--gold);transition:border-color 0.15s,background 0.15s;display:flex;flex-direction:column;gap:6px; }
     .doc-card:hover { border-color:rgba(212,175,55,0.7);background:linear-gradient(135deg,rgba(20,10,0,0.98) 0%,rgba(35,18,0,0.98) 100%); }
     .doc-card-title { font-size:11px;letter-spacing:0.1em;text-transform:uppercase;font-weight:600; }
-    .doc-card-desc { font-size:12px;color:var(--text-soft);font-family:Nunito,sans-serif;line-height:1.5; }
+    .doc-card-desc { font-size:12px;color:var(--text-soft);font-family:var(--forge-font-sans);line-height:1.5; }
     .doc-card-tag { font-size:10px;color:var(--gold-muted);letter-spacing:0.08em;margin-top:4px; }
 
     /* ── Quick links ── */
@@ -74,7 +74,7 @@
     .ql:hover { background:rgba(212,175,55,0.12);border-color:rgba(212,175,55,0.6); }
 
     /* ── Footer ── */
-    footer { margin-top:60px;text-align:center;font-family:Orbitron,sans-serif;font-size:12px;line-height:1.8; }
+    footer { margin-top:60px;text-align:center;font-family:var(--forge-font-sans);font-size:12px;line-height:1.8; }
     .footer-tagline { color:var(--gold);font-size:13px;margin-bottom:4px; }
     .footer-copy { color:var(--gold-muted); }
     .footer-links { display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:11px; }
@@ -85,12 +85,12 @@
     @media(max-width:680px){.wrap{padding:70px 16px 48px;}.page-title{font-size:22px;}.pc-sidebar,.pc-sidebar-tab,.pc-sidebar-backdrop{display:none!important;}}
 /* SKIA typography normalization */
 body {
-  font-family: Inter, "SF Pro Display", system-ui, sans-serif !important;
+  font-family:var(--forge-font-sans) !important;
   letter-spacing: 0.01em !important;
   line-height: 1.6 !important;
 }
 h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
-  font-family: "Space Grotesk", "Sora", system-ui, sans-serif !important;
+  font-family:var(--forge-font-heading) !important;
   letter-spacing: 0.08em !important;
   text-transform: uppercase;
   font-weight: 600 !important;
