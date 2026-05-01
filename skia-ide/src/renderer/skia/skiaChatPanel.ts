@@ -240,11 +240,44 @@ const send = async (
                 signal: activeController.signal
             });
 
-            if (response.status === 401 || response.status === 403) {
+            if (response.status === 401) {
                 logout();
-                throw new Error("Session expired. Please sign in again.");
+                throw new Error("Your session wrapped up while you were away. Log back in and we'll pick up instantly.");
+            }
+            if (response.status === 403) {
+                let detail = "";
+                try {
+                    const payload = (await response.json()) as Record<string, unknown>;
+                    detail = String(payload?.error || payload?.message || "");
+                } catch {
+                    try {
+                        detail = await response.text();
+                    } catch {
+                        detail = "";
+                    }
+                }
+                throw new Error(
+                    detail ||
+                        "Quick heads-up — your 10-day window to verify your email ran out.\nNo worries — you didn't break anything.\n\nTo keep chatting with me, just verify your email.\n\nTakes about 10 seconds and you're right back in.\nI'll be waiting on the other side.",
+                );
             }
             if (!response.ok) {
+                if (response.status === 402) {
+                    throw new Error("You've hit zero credits. Add more anytime and SKIA will keep going.");
+                }
+                if (response.status === 429) {
+                    throw new Error(
+                        "You're moving fast - faster than the system can keep up. Give it a moment and try again.",
+                    );
+                }
+                if (response.status === 500) {
+                    throw new Error("SKIA stumbled on something unexpected. A quick retry should clear it.");
+                }
+                if (response.status === 503) {
+                    throw new Error(
+                        "Alright, tiny hiccup on my end.\nSKIA's systems are doing a quick reset.\n\nNothing you did — just routine chaos behind the scenes.\nGive me a moment and I'll be back online.",
+                    );
+                }
                 throw new Error(`Server returned ${response.status}`);
             }
 
@@ -277,7 +310,7 @@ const send = async (
             } else {
                 const data = (await response.json()) as Record<string, unknown>;
                 const reply = typeof data.response === "string" ? data.response : "";
-                assistantMessage.content = reply || "I couldn't get a response from SKIA.";
+                assistantMessage.content = reply || "SKIA couldn't generate a reply this time. One more try should do it.";
                 if (textNode) textNode.textContent = assistantMessage.content;
             }
 
@@ -292,8 +325,27 @@ const send = async (
     } catch (error) {
         assistantNode.classList.remove("stream-cursor");
         if (textNode) {
-            textNode.textContent =
-                error instanceof Error ? `Error: ${error.message}` : "Error reaching SKIA backend.";
+            const message = error instanceof Error ? String(error.message || "") : "";
+            const isAbort = (error as { name?: string } | null)?.name === "AbortError" || message.includes("AbortError");
+            const userFacing =
+                message.includes("401")
+                    ? "Your session wrapped up while you were away. Log back in and we'll pick up instantly."
+                    : message.includes("402")
+                        ? "You've hit zero credits. Add more anytime and SKIA will keep going."
+                        : message.includes("429")
+                            ? "You're moving fast - faster than the system can keep up. Give it a moment and try again."
+                            : message.includes("500")
+                                ? "SKIA stumbled on something unexpected. A quick retry should clear it."
+                                : message.includes("503")
+                                    ? "Alright, tiny hiccup on my end.\nSKIA's systems are doing a quick reset.\n\nNothing you did — just routine chaos behind the scenes.\nGive me a moment and I'll be back online."
+                                    : isAbort
+                                        ? "SKIA took too long to respond this time. Try again and we'll get it through."
+                                        : /^Server returned \d{3}$/.test(message)
+                                            ? "The connection dropped on the way here. Check your network or try again in a moment."
+                                        : message
+                                            ? message
+                                            : "The connection dropped on the way here. Check your network or try again in a moment.";
+            textNode.textContent = userFacing;
         }
     } finally {
         assistantNode.classList.remove("stream-cursor");
