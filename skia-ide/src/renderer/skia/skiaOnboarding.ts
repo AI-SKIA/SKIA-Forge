@@ -71,7 +71,7 @@ export const initializeOnboarding = (): void => {
       })
     );
     try {
-      await getContext({ workspacePath: folderPath });
+      await getContext({ query: `Forge IDE onboarding workspace: ${folderPath}` });
     } catch {
       // Non-blocking onboarding; backend might be offline.
     }

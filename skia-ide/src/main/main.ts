@@ -8,6 +8,8 @@ type SkiaConfig = {
     backendUrl: string;
     authToken: string;
     timeout: number;
+    /** Next chat route (multipart extraction + search). Default https://skia.ca/api/skia/chat */
+    chatPipelineUrl?: string;
 };
 
 type DirTreeNode = {
@@ -916,7 +918,8 @@ ipcMain.handle("skia:getConfig", (): SkiaConfig => {
     return {
         backendUrl: process.env.SKIA_BACKEND_URL ?? "https://api.skia.ca",
         authToken: process.env.SKIA_AUTH_TOKEN ?? "",
-        timeout: Number(process.env.SKIA_TIMEOUT_MS ?? "10000")
+        timeout: Number(process.env.SKIA_TIMEOUT_MS ?? "10000"),
+        chatPipelineUrl: process.env.SKIA_CHAT_PIPELINE_URL,
     };
 });
 

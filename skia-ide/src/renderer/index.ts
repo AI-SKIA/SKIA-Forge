@@ -6,8 +6,14 @@ import { initializeChatPanel } from "./skia/skiaChatPanel";
 import { initializeStatusBar } from "./skia/skiaStatusBar";
 import { initializeOnboarding } from "./skia/skiaOnboarding";
 import { initializeAuthPanel, isAuthenticated, logout } from "./skia/skiaAuthPanel";
-import { setActiveFile } from "./skia/skiaSessionStore";
-import { getMode, getGovernance, getModulesStatus, SkiaOfflineError } from "./skia/skiaApiClient";
+import { setActiveFile, setWorkspacePath } from "./skia/skiaSessionStore";
+import {
+    getContext,
+    getMode,
+    getGovernance,
+    getModulesStatus,
+    SkiaOfflineError,
+} from "./skia/skiaApiClient";
 
 const viewMap: Record<string, string> = {
     explorer: "editor-container",
@@ -455,8 +461,14 @@ const openFolderInExplorer = async (): Promise<void> => {
     try {
         const tree = await window.skiaElectron.readDirectoryTree(folderPath);
         activeFolderPath = folderPath;
+        setWorkspacePath(folderPath);
         renderExplorerTree(folderPath, tree);
         setView("explorer");
+        void getContext({
+            query: `Forge IDE workspace root: ${folderPath}`,
+        }).catch(() => {
+            /* Forge control plane optional when offline */
+        });
     } catch (error) {
         console.error("SKIA: failed to read folder tree", error);
     }
@@ -466,6 +478,7 @@ const openOnboardingFolderInExplorer = async (folderPath: string): Promise<void>
     try {
         const tree = await window.skiaElectron.readDirectoryTree(folderPath);
         activeFolderPath = folderPath;
+        setWorkspacePath(folderPath);
         renderExplorerTree(folderPath, tree);
         setView("explorer");
         setStatus(`Workspace loaded: ${getFileName(folderPath)}`);

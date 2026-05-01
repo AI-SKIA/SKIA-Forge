@@ -8,7 +8,13 @@ declare global {
 
   interface Window {
     skiaElectron: {
-      getConfig: () => Promise<{ backendUrl: string; authToken: string; timeout: number }>;
+      getConfig: () => Promise<{
+        backendUrl: string;
+        authToken: string;
+        timeout: number;
+        /** Optional override; default pipeline is https://skia.ca/api/skia/chat */
+        chatPipelineUrl?: string;
+      }>;
       openFolder: () => Promise<string | null>;
       openFile: () => Promise<string | null>;
       saveFile: (filePath: string, content: string) => Promise<boolean>;

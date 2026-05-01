@@ -144,9 +144,11 @@
             <section id="chat-messages"></section>
 
             <div id="chat-controls">
+                <input id="chat-file-input" type="file" multiple style="display:none" />
                 <textarea id="chat-input"
                   placeholder="Ask SKIA anything..."></textarea>
                 <div class="chat-buttons">
+                    <button type="button" id="chat-attach-btn" class="chat-attach-btn">ATTACH</button>
                     <button id="chat-clear-btn">CLEAR</button>
                     <button id="chat-cancel-btn">CANCEL</button>
                     <button id="chat-send-btn">SEND</button>

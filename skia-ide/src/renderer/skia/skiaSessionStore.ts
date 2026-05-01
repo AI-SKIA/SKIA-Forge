@@ -2,6 +2,9 @@ export type SkiaMessage = {
   role: "user" | "assistant";
   content: string;
   timestamp: number;
+  files?: string[];
+  /** Present when this assistant reply followed an upload — enables Download .txt export. */
+  downloadBaseName?: string;
 };
 
 const MAX_MESSAGES = 50;
@@ -16,6 +19,8 @@ const historyKey = (): string => {
 export const setWorkspacePath = (workspacePath: string): void => {
   localStorage.setItem(WORKSPACE_KEY, workspacePath);
 };
+
+export const getWorkspacePath = (): string => localStorage.getItem(WORKSPACE_KEY) ?? "";
 
 export const addMessage = (message: SkiaMessage): void => {
   const history = getHistory();

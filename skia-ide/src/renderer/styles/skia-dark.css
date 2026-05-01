@@ -255,6 +255,11 @@ body {
   background: #0a0a0a;
 }
 
+.chat-attach-btn.chat-attach--queued {
+  border-color: rgba(212, 175, 55, 0.85);
+  box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.12);
+}
+
 #chat-input {
   width: 100%;
   background: rgba(0,0,0,0.4);
