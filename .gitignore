@@ -146,3 +146,5 @@ vite.config.ts.timestamp-*
 .skia/runtime-state.json
 northflank-services.md
 skia-ide/release/
+# CI writes decoded signing cert here — never commit
+skia-ide/codesign.pfx

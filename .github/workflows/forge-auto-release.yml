@@ -1,3 +1,8 @@
+# Windows releases: SmartScreen shows "Unknown publisher" unless the installer is Authenticode-signed.
+# Optional signing — add repo secrets (Settings → Secrets → Actions):
+#   WINDOWS_CODESIGN_PFX_BASE64 — Base64 content of your .pfx from an OV/EV code-signing CA
+#   WINDOWS_CODESIGN_PASSWORD     — PFX password
+# Without these, CI still builds an unsigned installer (users click More info → Run anyway).
 name: Forge Auto Release
 
 on:
@@ -47,12 +52,38 @@ jobs:
           "FORGE_VERSION=$version" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
           "FORGE_TAG=v$version" | Out-File -FilePath $env:GITHUB_ENV -Append -Encoding utf8
 
+      - name: Prepare Windows code signing (optional)
+        id: codesign
+        working-directory: skia-ide
+        shell: pwsh
+        env:
+          PFX_B64: ${{ secrets.WINDOWS_CODESIGN_PFX_BASE64 }}
+        run: |
+          if ([string]::IsNullOrWhiteSpace($env:PFX_B64)) {
+            Add-Content -Path $env:GITHUB_OUTPUT -Value "signing=false"
+            Write-Host "WINDOWS_CODESIGN_PFX_BASE64 not set — installer will be unsigned."
+          } else {
+            $pfxPath = Join-Path (Get-Location) "codesign.pfx"
+            [IO.File]::WriteAllBytes($pfxPath, [Convert]::FromBase64String($env:PFX_B64))
+            Add-Content -Path $env:GITHUB_OUTPUT -Value "signing=true"
+            Add-Content -Path $env:GITHUB_OUTPUT -Value "pfx_path=$pfxPath"
+            Write-Host "Signing certificate ready at $pfxPath"
+          }
+
       - name: Build Windows installer
         working-directory: skia-ide
         shell: pwsh
+        env:
+          SIGNING: ${{ steps.codesign.outputs.signing }}
+          PFX_PATH: ${{ steps.codesign.outputs.pfx_path }}
+          CSC_KEY_PASSWORD: ${{ secrets.WINDOWS_CODESIGN_PASSWORD }}
         run: |
           npm run build
-          npx electron-builder --win --publish never --config.extraMetadata.version=$env:FORGE_VERSION --config.win.signAndEditExecutable=false
+          if ($env:SIGNING -eq "true") {
+            $env:CSC_LINK = $env:PFX_PATH
+            Write-Host "electron-builder will Authenticode-sign (CSC_LINK set)."
+          }
+          npx electron-builder --win --publish never --config.extraMetadata.version=$env:FORGE_VERSION
 
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
