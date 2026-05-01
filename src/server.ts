@@ -311,6 +311,12 @@ function pickReleaseAssetUrlForPlatform(
   };
 
   if (platform === "windows") {
+    const setupExe = assets.find(
+      (a) => /\.exe$/i.test(a.name) && /(setup|nsis|installer|forge)/i.test(a.name)
+    );
+    if (setupExe) {
+      return setupExe.url;
+    }
     const exeHit = byName((name) => /\.exe$/i.test(name));
     if (exeHit) {
       return exeHit;
@@ -346,7 +352,7 @@ function pickReleaseAssetUrlForPlatform(
 
 function fallbackReleaseAssetUrl(platform: DownloadPlatformId): string {
   const fileByPlatform: Record<DownloadPlatformId, string> = {
-    windows: "Skia-Forge-Setup-1.0.0-win-x64.exe",
+    windows: "SKIA-FORGE-Setup-1.0.0-win-x64.exe",
     "mac-intel": "Skia-Forge-1.0.0-mac-x64.dmg",
     "mac-arm": "Skia-Forge-1.0.0-mac-arm64.dmg",
     "linux-appimage": "Skia-Forge-1.0.0-linux-x64.AppImage"

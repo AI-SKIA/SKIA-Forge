@@ -31,6 +31,11 @@ type UpdateCheckResult =
 
 let mainWindow: BrowserWindow | null = null;
 let autoSaveEnabled = false;
+
+/** Windows taskbar / Start shortcut grouping — must match packaged app identity (see package.json appId). */
+if (process.platform === "win32") {
+    app.setAppUserModelId("ca.skia.forge");
+}
 let forgeProcess: ChildProcessWithoutNullStreams | null = null;
 let periodicUpdateTimer: NodeJS.Timeout | null = null;
 
@@ -192,6 +197,7 @@ const openLocalChangelog = (): void => {
         width: 900,
         height: 700,
         title: "SKIA FORGE — Release Notes",
+        ...browserWindowIconOptions(),
         webPreferences: { contextIsolation: true }
     });
     void changelogWin.loadFile(path.join(__dirname, "../renderer/docs/changelog.html"));
@@ -208,6 +214,7 @@ const showAboutWindow = (): void => {
         frame: false,
         transparent: false,
         backgroundColor: "#0a0a0a",
+        ...browserWindowIconOptions(),
         webPreferences: { nodeIntegration: false, contextIsolation: true }
     });
 
@@ -790,6 +797,7 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
                     width: 900,
                     height: 700,
                     title: "SKIA FORGE — Documentation",
+                    ...browserWindowIconOptions(),
                     webPreferences: { contextIsolation: true }
                 });
                 void docsWin.loadFile(path.join(__dirname, "../renderer/docs/index.html"));
@@ -804,6 +812,7 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
                     width: 900,
                     height: 700,
                     title: "SKIA — Report an Issue",
+                    ...browserWindowIconOptions(),
                     webPreferences: { contextIsolation: true }
                 });
                 void reportWin.loadFile(path.join(__dirname, "../renderer/docs/report.html"));
@@ -882,6 +891,8 @@ const resolveAppWindowIcon = (): string | undefined => {
         candidates.push(
             path.join(resAssets, "skia-forge-app.ico"),
             path.join(resAssets, "skia-forge-app.png"),
+            path.join(app.getAppPath(), "assets", "skia-forge-app.ico"),
+            path.join(app.getAppPath(), "assets", "skia-forge-app.png"),
         );
     }
     const repoAssets = path.resolve(__dirname, "../../assets");
@@ -895,9 +906,13 @@ const resolveAppWindowIcon = (): string | undefined => {
     return undefined;
 };
 
+const browserWindowIconOptions = (): { icon: string } | Record<string, never> => {
+    const icon = resolveAppWindowIcon();
+    return icon ? { icon } : {};
+};
+
 const createWindow = (): void => {
     const preloadPath = path.resolve(__dirname, "preload.js");
-    const winIcon = resolveAppWindowIcon();
 
     mainWindow = new BrowserWindow({
         width: 1400,
@@ -905,7 +920,7 @@ const createWindow = (): void => {
         minWidth: 1000,
         minHeight: 600,
         title: "SKIA FORGE",
-        ...(winIcon ? { icon: winIcon } : {}),
+        ...browserWindowIconOptions(),
         webPreferences: {
             nodeIntegration: false,
             contextIsolation: true,
@@ -1054,7 +1069,13 @@ ipcMain.handle("skia:runCommand", async (_event, cmd: string, cwd?: string): Pro
 });
 
 ipcMain.on("open-docs", () => {
-    const docsWin = new BrowserWindow({ width: 900, height: 700, title: "SKIA Docs", webPreferences: { contextIsolation: true } });
+    const docsWin = new BrowserWindow({
+        width: 900,
+        height: 700,
+        title: "SKIA Docs",
+        ...browserWindowIconOptions(),
+        webPreferences: { contextIsolation: true }
+    });
     void docsWin.loadFile(path.join(__dirname, "../renderer/docs/index.html"));
 });
 

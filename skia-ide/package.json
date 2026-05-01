@@ -15,6 +15,7 @@
   "build": {
     "appId": "ca.skia.forge",
     "productName": "SKIA FORGE",
+    "executableName": "SKIA-FORGE",
     "icon": "assets/skia-forge-app",
     "copyright": "© 2026 SKIA Singularity Continuum",
     "directories": {
@@ -22,7 +23,10 @@
     },
     "files": [
       "dist/**/*",
-      "package.json"
+      "package.json",
+      "assets/skia-forge-app.ico",
+      "assets/skia-forge-app.png",
+      "assets/skia-forge-app.icns"
     ],
     "extraResources": [
       {
@@ -42,6 +46,8 @@
     "nsis": {
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": "always",
+      "createStartMenuShortcut": true,
       "installerIcon": "assets/skia-forge-app.ico",
       "uninstallerIcon": "assets/skia-forge-app.ico",
       "artifactName": "SKIA-FORGE-Setup-${version}-win-x64.exe",
