@@ -1,4 +1,5 @@
-import { getAuthToken, getLoggedInUser, logout } from "./skiaAuthPanel";
+import { getArchitectureHealth } from "./skiaApiClient";
+import { getLoggedInUser, logout } from "./skiaAuthPanel";
 
 const statusEl = document.getElementById("status-text");
 const architectureEl = document.getElementById("status-architecture");
@@ -73,21 +74,9 @@ const render = (): void => {
 
 const pollArchitectureHealth = async (): Promise<void> => {
   try {
-    const token = getAuthToken();
-    const response = await fetch("https://api.skia.ca/api/forge/architecture/health", {
-      method: "GET",
-      headers: {
-        Origin: "https://skia.ca",
-        ...(token ? { Authorization: `Bearer ${token}` } : {})
-      }
-    });
-    if (!response.ok) {
-      return;
-    }
-    // Parsed intentionally for side-effect validation; failures are silenced.
-    await response.json();
+    await getArchitectureHealth();
   } catch {
-    // Offline/unreachable should be silent.
+    /* 404/offline — silent; same URL stack as other Forge API calls (getBackendUrl). */
   }
 };
 

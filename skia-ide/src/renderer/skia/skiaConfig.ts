@@ -36,19 +36,27 @@ const normalizeBackendUrl = (rawUrl: string | undefined): string => {
 
 const normalizeChatPipelineUrl = (rawUrl: string | undefined): string => {
   const candidate = (rawUrl || "").trim();
+  const fallback = defaults.chatPipelineUrl;
   if (!candidate) {
-    return defaults.chatPipelineUrl;
+    return fallback;
   }
   try {
     const parsed = new URL(candidate);
     const host = parsed.hostname.toLowerCase();
     const disallowedHosts = new Set(["127.0.0.1", "localhost", "0.0.0.0"]);
     if (parsed.protocol === "file:" || disallowedHosts.has(host)) {
-      return defaults.chatPipelineUrl;
+      return fallback;
+    }
+    /**
+     * Forge uses Bearer tokens from login; calling the login API host directly for `/api/skia/chat`
+     * returns 401 and triggers logout loops. Chat must use the Next route (`skia.ca`) which forwards auth.
+     */
+    if (host === "api.skia.ca" && parsed.pathname.includes("/api/skia/chat")) {
+      return fallback;
     }
     return parsed.toString().replace(/\/+$/, "");
   } catch {
-    return defaults.chatPipelineUrl;
+    return fallback;
   }
 };
 

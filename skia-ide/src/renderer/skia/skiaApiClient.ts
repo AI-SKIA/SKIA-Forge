@@ -1,4 +1,4 @@
-import { getAuthToken, getBackendUrl, getTimeout } from "./skiaConfig";
+import { getAuthToken, getBackendUrl, getChatPipelineUrl, getTimeout } from "./skiaConfig";
 
 type Json = Record<string, unknown>;
 export class SkiaOfflineError extends Error {
@@ -148,9 +148,7 @@ const integrationChatResponseText = (json: Json): string => {
     return JSON.stringify(json);
 };
 
-const DIRECT_SKIA_CHAT_URL = "https://api.skia.ca/api/skia/chat";
-
-/** Forge proxy → `SkiaFullAdapter.intelligence()`; falls back to direct brain if the proxy fails. */
+/** Forge proxy → `SkiaFullAdapter.intelligence()`; falls back to Next chat pipeline (never api.skia.ca chat — 401 loop). */
 export const sendChatStream = async (
     payload: { message: string },
     onChunk: (chunk: string) => void,
@@ -183,7 +181,7 @@ export const sendChatStream = async (
     }
 
     if (text === undefined) {
-        const res = await withTimeout(DIRECT_SKIA_CHAT_URL, {
+        const res = await withTimeout(getChatPipelineUrl(), {
             method: "POST",
             headers: h,
             body: JSON.stringify(directBody),
