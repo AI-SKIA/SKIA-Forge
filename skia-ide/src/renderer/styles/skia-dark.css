@@ -287,9 +287,17 @@ body {
 
 .chat-buttons {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   justify-content: flex-end;
   margin-bottom: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#chat-controls .chat-buttons button {
+  flex: 0 1 auto;
+  min-width: 0;
 }
 
 button {

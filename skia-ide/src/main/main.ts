@@ -1,6 +1,6 @@
 import { app, BrowserWindow, dialog, ipcMain, Menu, MenuItem, shell, session, safeStorage } from "electron";
 import { exec, spawn, type ChildProcessWithoutNullStreams, type ExecException } from "node:child_process";
-import { promises as fs } from "node:fs";
+import { existsSync, promises as fs } from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
@@ -874,16 +874,38 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     console.log("SKIA: application menu initialized");
 };
 
+/** Title-bar / taskbar icon — must exist on disk; wrong path shows Electron's default "atom" icon. */
+const resolveAppWindowIcon = (): string | undefined => {
+    const candidates: string[] = [];
+    if (app.isPackaged) {
+        const resAssets = path.join(process.resourcesPath, "assets");
+        candidates.push(
+            path.join(resAssets, "skia-forge-app.ico"),
+            path.join(resAssets, "skia-forge-app.png"),
+        );
+    }
+    const repoAssets = path.resolve(__dirname, "../../assets");
+    candidates.push(
+        path.join(repoAssets, "skia-forge-app.ico"),
+        path.join(repoAssets, "skia-forge-app.png"),
+    );
+    for (const p of candidates) {
+        if (existsSync(p)) return p;
+    }
+    return undefined;
+};
+
 const createWindow = (): void => {
     const preloadPath = path.resolve(__dirname, "preload.js");
+    const winIcon = resolveAppWindowIcon();
 
     mainWindow = new BrowserWindow({
         width: 1400,
         height: 900,
         minWidth: 1000,
         minHeight: 600,
-        title: "",
-        icon: path.resolve(__dirname, "../assets/skia-forge-app.png"),
+        title: "SKIA FORGE",
+        ...(winIcon ? { icon: winIcon } : {}),
         webPreferences: {
             nodeIntegration: false,
             contextIsolation: true,
