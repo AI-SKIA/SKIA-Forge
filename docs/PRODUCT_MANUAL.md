@@ -33,3 +33,11 @@ Public operational communication lives in `Skia-Status`, not in Forge runtime en
 ## Product Boundaries
 
 SKIA-Forge is a control and orchestration layer. It is not a replacement for your full application runtime; it integrates with upstream SKIA intelligence contracts and your existing deployment topology.
+
+## Delivery surfaces (current)
+
+- **Forge HTTP server** (`src/server.ts`): Express app exposing orchestration APIs, integration probes, governance, context/embedding routes, and static/marketing pages. Default port **`SKIA_PORT`** = **4173**.
+- **Public web**: Download / positioning lives on **`https://skia.ca/platform-downloads`** (`Skia-FULL` `frontend/pages/platform-downloads.tsx`). This Forge server redirects `/`, `/forge`, and `/download` there. Other static routes: `/resources`, `/security`, `/contact`, `/docs/*` (branded HTML + markdown fallback). Account **sign-in and registration are not promoted on marketing HTML** — users authenticate in the **SKIA Forge IDE** or other clients against `/api/auth/*`.
+- **Web IDE shell**: `/forge/app` serves the built `skia-ide` renderer with a browser compatibility shim (optional full desktop features require Electron).
+- **Desktop IDE**: `skia-ide/` Electron app — primary interactive surface for developers connecting to Forge/SKIA backends.
+- **Installers**: Served via `/api/app/download/*`; filenames use the `Skia-Forge-*` prefix (platform list mirrors `Skia-FULL` `frontend/lib/downloadUi.ts`).

@@ -15,9 +15,17 @@
 
 ## Project Structure (Core)
 
-- `src/server.ts` - runtime entrypoint
+- `src/server.ts` - runtime entrypoint (binds **`SKIA_PORT`**, default **4173**)
 - `src/forge/modules/` - module domains (governance, safety, work, context-engine, etc.)
-- `skia-ide/` - IDE-facing integration surface
+- `skia-ide/` - Electron + renderer for **SKIA Forge IDE**; run `npm run build` here before `/forge/app` can load in the browser
+- `public/docs/` - branded HTML documentation served at `/docs/*.html` (takes precedence over `docs/*.md`)
+
+## HTTP surfaces (quick)
+
+- `/`, `/forge`, `/download` → redirect **`https://skia.ca/platform-downloads`** (download UI: `Skia-FULL` `frontend/pages/platform-downloads.tsx`)
+- `/forge/app` - web IDE (requires built `skia-ide/dist/renderer`)
+- `/api/forge/*` - control plane (see `API_REFERENCE.md`)
+- `/integration/skia-full/*` - adapter probes and passthroughs
 
 ## Development Workflow
 

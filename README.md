@@ -18,10 +18,20 @@ It provides:
 
 ## Project structure
 
-- `src/server.ts` -> runtime entrypoint
+- `src/server.ts` -> runtime entrypoint (listens on **`SKIA_PORT`**, default **4173**)
 - `src/forge/modules/` -> domain modules (auto, governance, context-engine, safety, work, etc.)
+- `skia-ide/` -> **SKIA Forge IDE** (Electron); build with `npm run build` inside this folder for `/forge/app` web shell
+- `public/` -> static marketing pages (`resources`, `security`, `contact`) and `public/docs/` branded HTML at `/docs/*`
+- `docs/` -> Markdown documentation source (also served at `/docs/*.md` when no HTML override exists)
 - `.skia/` -> runtime state and baseline artifacts (local/generated)
-- `docs/` -> architecture and operating documentation
+
+## Public HTTP routes (summary)
+
+- `/`, `/forge`, and `/download` redirect to **`https://skia.ca/platform-downloads`** (`Skia-FULL` `frontend/pages/platform-downloads.tsx`)
+- `/forge/app` serves the IDE renderer when `skia-ide/dist/renderer` is built
+- `/resources`, `/security`, `/contact` serve `public/*.html`
+- `/docs/*` serves `public/docs/` first, then repo `docs/`
+- Full API index: **`docs/API_REFERENCE.md`**
 
 ## Local development
 

@@ -21,6 +21,7 @@ SKIA-Forge is the orchestration and governance control plane for AI-native softw
 - Policy-aware orchestration across modules (context, safety, work planning, architecture, healing).
 - Contract-based integration with SKIA runtime intelligence (`/integration/skia-full/*`).
 - Operational APIs for health, posture, and audit-friendly recommendations.
+- SKIA Forge IDE (desktop) for authenticated developer workflows; Forge HTTP serves control-plane APIs, downloads, and docs (`docs/API_REFERENCE.md`).
 
 ## Why now
 - AI-assisted development is mainstream, but trust and control lag behind.

@@ -930,7 +930,7 @@ const createWindow = (): void => {
 
     const useWebShell = process.env.SKIA_FORGE_WEB_SHELL === "true";
     if (useWebShell) {
-        void mainWindow.loadURL("https://forge.skia.ca");
+        void mainWindow.loadURL("https://skia.ca/platform-downloads");
     } else {
         const rendererPath = path.resolve(__dirname, "../renderer/index.html");
         void mainWindow.loadFile(rendererPath);

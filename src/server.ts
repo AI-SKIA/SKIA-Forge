@@ -32,7 +32,9 @@ import { SkiaFullAdapter } from "./skiaFullAdapter.js";
 import { buildProbeReport } from "./integrationReport.js";
 import { runForgeOrchestration } from "./forgeOrchestrator.js";
 import { renderForgePlatformHtml } from "./forgePlatformUi.js";
-import { renderDownloadHtml } from "./downloadUi.js";
+
+/** Canonical download / marketing UI lives in Skia-FULL (`frontend/pages/platform-downloads.tsx`). */
+const SKIA_PLATFORM_DOWNLOADS_URL = "https://skia.ca/platform-downloads";
 import { renderOgImageSvg } from "./ogImage.js";
 import { buildForgeModuleHealth } from "./forgeModuleHealth.js";
 import { ForgeModuleName, isForgeModuleName, runForgeModule } from "./forgeModuleExecutor.js";
@@ -1194,14 +1196,11 @@ app.get("/chat", (_req, res) => {
 });
 
 app.get("/", (_req, res) => {
-  res.redirect(302, "/forge");
+  res.redirect(302, SKIA_PLATFORM_DOWNLOADS_URL);
 });
 
 app.get("/forge", (_req, res) => {
-  const releaseBase =
-    process.env.SKIA_IDE_RELEASE_BASE_URL ??
-    "https://github.com/AI-SKIA/skia/releases/latest/download";
-  res.type("html").send(renderDownloadHtml(releaseBase));
+  res.redirect(302, SKIA_PLATFORM_DOWNLOADS_URL);
 });
 
 const skiaIdeRendererRoot = path.join(projectRoot, "skia-ide", "dist", "renderer");
@@ -1422,7 +1421,7 @@ app.get("/forge/app/", async (_req, res) => {
 });
 
 app.get("/download", (_req, res) => {
-  res.redirect(302, "/forge");
+  res.redirect(302, SKIA_PLATFORM_DOWNLOADS_URL);
 });
 
 app.get("/favicon.png", (_req, res) => {

@@ -10,6 +10,13 @@ This directory contains the core product documentation set for `SKIA-Forge`, the
 
 Documents in this folder must describe Forge as a control plane, not as a replacement for the full product runtime.
 
+## Deployment surfaces (where this documentation applies)
+
+- **Forge Node server** (`src/server.ts`): HTTP API + static docs; default **`SKIA_PORT=4173`**.
+- **Packaged SKIA Forge IDE** (`skia-ide/`): Electron desktop client; **sign-in / registration occur in-app**, not on marketing HTML.
+- **Public site routes**: downloads canonical on **`https://skia.ca/platform-downloads`** (`Skia-FULL` `frontend/pages/platform-downloads.tsx`); Forge redirects `/`, `/forge`, `/download` there. Also `/forge/app` (web IDE bundle), `/resources`, `/security`, `/contact`, `/docs/*`.
+- **Canonical API index:** `API_REFERENCE.md` (kept in sync with `src/server.ts`).
+
 ## Documents
 
 - `PRODUCT_MANUAL.md` - product overview, capabilities, and positioning
