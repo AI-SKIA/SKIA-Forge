@@ -28,6 +28,11 @@
       "assets/skia-forge-app.png",
       "assets/skia-forge-app.icns"
     ],
+    "asarUnpack": [
+      "assets/skia-forge-app.ico",
+      "assets/skia-forge-app.png",
+      "assets/skia-forge-app.icns"
+    ],
     "extraResources": [
       {
         "from": "dist/renderer/assets",

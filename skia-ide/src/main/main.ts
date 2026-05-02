@@ -883,25 +883,23 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     console.log("SKIA: application menu initialized");
 };
 
-/** Title-bar / taskbar icon — must exist on disk; wrong path shows Electron's default "atom" icon. */
+/**
+ * Title-bar / taskbar icon — must be a real file on disk. Icons inside app.asar are not reliably
+ * usable on Windows; package.json asarUnpack exposes assets under app.asar.unpacked (see electron-builder).
+ * Note: extraResources maps renderer bundles to resources/assets — not the repo-root branding icons.
+ */
 const resolveAppWindowIcon = (): string | undefined => {
-    const candidates: string[] = [];
+    const fileNames = ["skia-forge-app.ico", "skia-forge-app.png"] as const;
+    const roots: string[] = [];
     if (app.isPackaged) {
-        const resAssets = path.join(process.resourcesPath, "assets");
-        candidates.push(
-            path.join(resAssets, "skia-forge-app.ico"),
-            path.join(resAssets, "skia-forge-app.png"),
-            path.join(app.getAppPath(), "assets", "skia-forge-app.ico"),
-            path.join(app.getAppPath(), "assets", "skia-forge-app.png"),
-        );
+        roots.push(path.join(process.resourcesPath, "app.asar.unpacked"));
     }
-    const repoAssets = path.resolve(__dirname, "../../assets");
-    candidates.push(
-        path.join(repoAssets, "skia-forge-app.ico"),
-        path.join(repoAssets, "skia-forge-app.png"),
-    );
-    for (const p of candidates) {
-        if (existsSync(p)) return p;
+    roots.push(path.resolve(__dirname, "../../assets"));
+    for (const root of roots) {
+        for (const name of fileNames) {
+            const p = path.join(root, "assets", name);
+            if (existsSync(p)) return p;
+        }
     }
     return undefined;
 };

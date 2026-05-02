@@ -6,12 +6,6 @@
 name: Forge Auto Release
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - "skia-ide/**"
-      - ".github/workflows/forge-auto-release.yml"
   workflow_dispatch:
 
 permissions:
