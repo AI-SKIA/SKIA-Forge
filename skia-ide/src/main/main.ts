@@ -198,7 +198,7 @@ const openLocalChangelog = (): void => {
         height: 700,
         title: "SKIA FORGE — Release Notes",
         ...browserWindowIconOptions(),
-        webPreferences: { contextIsolation: true }
+        webPreferences: { contextIsolation: true, webSecurity: true, sandbox: true }
     });
     void changelogWin.loadFile(path.join(__dirname, "../renderer/docs/changelog.html"));
 };
@@ -215,7 +215,7 @@ const showAboutWindow = (): void => {
         transparent: false,
         backgroundColor: "#0a0a0a",
         ...browserWindowIconOptions(),
-        webPreferences: { nodeIntegration: false, contextIsolation: true }
+        webPreferences: { nodeIntegration: false, contextIsolation: true, webSecurity: true, sandbox: true }
     });
 
     const logoUrl = getRendererFileUrl("assets/logo.png");
@@ -798,7 +798,7 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
                     height: 700,
                     title: "SKIA FORGE — Documentation",
                     ...browserWindowIconOptions(),
-                    webPreferences: { contextIsolation: true }
+                    webPreferences: { contextIsolation: true, webSecurity: true, sandbox: true }
                 });
                 void docsWin.loadFile(path.join(__dirname, "../renderer/docs/index.html"));
             }
@@ -813,7 +813,7 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
                     height: 700,
                     title: "SKIA — Report an Issue",
                     ...browserWindowIconOptions(),
-                    webPreferences: { contextIsolation: true }
+                    webPreferences: { contextIsolation: true, webSecurity: true, sandbox: true }
                 });
                 void reportWin.loadFile(path.join(__dirname, "../renderer/docs/report.html"));
             }
@@ -922,7 +922,12 @@ const createWindow = (): void => {
         webPreferences: {
             nodeIntegration: false,
             contextIsolation: true,
+            // webSecurity: false required until skiaApiClient.ts fetch calls are
+            // moved to IPC bridge — file:// origin cannot make cross-origin HTTPS
+            // requests with webSecurity: true. Tracked as: IPC bridge migration.
             webSecurity: false,
+            // sandbox: true — preload exposes only contextBridge APIs (see preload.ts); no require() in preload.
+            sandbox: true,
             preload: preloadPath,
             devTools: true
         }
@@ -1072,7 +1077,7 @@ ipcMain.on("open-docs", () => {
         height: 700,
         title: "SKIA Docs",
         ...browserWindowIconOptions(),
-        webPreferences: { contextIsolation: true }
+        webPreferences: { contextIsolation: true, webSecurity: true, sandbox: true }
     });
     void docsWin.loadFile(path.join(__dirname, "../renderer/docs/index.html"));
 });

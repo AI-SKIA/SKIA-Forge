@@ -23,5 +23,8 @@ RUN npm run build \
 
 EXPOSE 4173
 
-# Northflank runtime capture uses `npm run dev` for this service currently.
-CMD ["npm", "run", "dev"]
+ENV NODE_ENV=production
+
+HEALTHCHECK --interval=30s --timeout=5s CMD node -e "require('http').get('http://localhost:4173/health', r => process.exit(r.statusCode === 200 ? 0 : 1)).on('error', () => process.exit(1))"
+
+CMD ["npm", "start"]

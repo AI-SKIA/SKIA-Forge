@@ -68,6 +68,7 @@ import { getEmbedIndexQueue } from "./forge/modules/context-engine/embedIndexQue
 import { createEmbedIncrementalOnSaveHandler } from "./forge/modules/context-engine/embedIncrementalOnSave.js";
 import { createEmbeddingVectorStore } from "./forge/modules/context-engine/embeddingVectorStoreFactory.js";
 import { SKIA_FULL_EMBEDDING_PATH_DEFAULT } from "./skiaFullEmbeddingContract.js";
+import { requireAuth } from "./middleware/requireAuth.js";
 
 const app = express();
 app.use(attachRequestContext);
@@ -648,6 +649,11 @@ app.get("/integration/skia-full/probe/report", async (req, res) => {
   }
 });
 
+// Bearer JWT required for all /api/forge/* routes registered below (login/session proxies above are unaffected).
+// PUBLIC BY DESIGN (no change here): /integration/skia-full/*, /state/runtime, /telemetry/*, /rpc, /providers/* —
+// operators should gate those separately (network ACL / future middleware) if Forge is internet-facing.
+app.use("/api/forge", requireAuth);
+
 app.get("/api/forge/modules/status", async (req, res) => {
   try {
     const rows = await skiaFullAdapter.probeBrainContracts(pickSkiaHeaders(req));
@@ -674,6 +680,7 @@ app.get("/api/forge/architecture/health", async (_req, res) => {
 });
 
 app.post("/api/forge/skia-review", async (req, res) => {
+  if (!verifySensitiveIntent(req, res, "forge.skia.review")) return;
   try {
     const message = String(req.body?.message ?? req.body?.query ?? "Run full SKIA review.");
     const [arch, archHotspots, sec] = await Promise.all([
@@ -1089,6 +1096,7 @@ app.post("/api/forge/control-plane/remediate/recommended", async (_req, res) => 
 });
 
 app.post("/api/forge/governance/reload", async (_req, res) => {
+  if (!verifySensitiveIntent(_req, res, "forge.governance.reload")) return;
   try {
     const rules = await loadSkiaRules(projectRoot);
     governancePolicy = buildGovernancePolicy(rules);
@@ -1162,7 +1170,10 @@ async function enforceForgeModuleAccess(
   return { mode, approved: effectiveApproved };
 }
 
+app.use("/index", requireAuth);
+
 app.post("/index/rebuild", async (_req, res, next) => {
+  if (!verifySensitiveIntent(_req, res, "forge.index.rebuild")) return;
   try {
     skiaStatus = "Indexing";
     const started = Date.now();
@@ -1549,6 +1560,8 @@ app.get("/index", async (_req, res, next) => {
   }
 });
 
+app.use("/search", requireAuth);
+
 app.get("/search", async (req, res, next) => {
   try {
     const query = String(req.query.q ?? "").trim();
@@ -1575,6 +1588,8 @@ app.get("/rules", async (_req, res, next) => {
     next(error);
   }
 });
+
+app.use("/agent", requireAuth);
 
 app.get("/agent/audit-log", async (_req, res, next) => {
   try {

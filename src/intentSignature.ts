@@ -5,7 +5,10 @@ export type SensitiveIntentName =
   | "forge.lockdown.toggle"
   | "forge.control_plane.remediate"
   | "forge.control_plane.remediate.recommended"
-  | "forge.approval_token.issue";
+  | "forge.approval_token.issue"
+  | "forge.governance.reload"
+  | "forge.index.rebuild"
+  | "forge.skia.review";
 
 export type IntentVerificationResult =
   | { ok: true; reason: "verified" | "disabled" }
