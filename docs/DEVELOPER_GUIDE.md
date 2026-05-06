@@ -42,3 +42,27 @@
 ## Integration Notes
 
 Forge can run with SKIA-full integration enabled or disabled; adapter paths should fail clearly when upstream contracts are unavailable.
+
+## EPAAS Integration
+
+### Forge governance vs Skia-FULL EPAAS tokens
+
+**`ApprovalTokenStore`** (`src/approvalTokens.ts`) issues short-lived random tokens for **Forge control-plane** workflows. Purposes are coarse (`any`, `module`, `orchestration`, `remediation`). **`consume(token, purpose)`** checks purpose compatibility and expiry only—there is **no** binding to user id, device fingerprint, risk band, or a hash of request parameters.
+
+**`OperationTokenService`** (Skia-FULL `src/epaas/OperationTokenService.ts`) issues **one-time** tokens for **product runtime** routes. Each row binds **`userId`**, **`deviceFingerprint`**, **`riskBand`**, **`actionType`**, and a **parameters hash** derived from the JSON body. Validation happens in **`requireOperationToken`** middleware using the **`X-Operation-Token`** and **`X-Device-Fingerprint`** headers.
+
+Use **approval tokens** when implementing Forge governance flows that already call **`POST /api/forge/approval-token`** and pass **`approvalToken`** into remediation-style bodies. Use **EPAAS operation tokens** when implementing destructive Skia-FULL APIs that participate in the EPAAS route/token pipeline—they are different trust domains and must not be substituted for each other.
+
+### Reading EPAAS adversary events in the Forge audit log
+
+Forge stores audit rows via **`appendAuditLog`**. For EPAAS-shaped adversary telemetry, use **`appendEpaasEvent`** from **`src/auditLog.ts`**: it writes **`action`** values such as **`epaas.honey_trigger`** (pattern **`epaas.<eventType>`**) and sets **`parameters.epaas: true`**, **`parameters.category: "epaas"`**, plus **`eventId`**, **`riskBandAtEvent`**, and **`detail`**.
+
+To read events locally, call **`readAuditLog(projectRoot)`** and filter rows where **`typeof record.action === "string"`** and **`record.action.startsWith("epaas.")`**, or where **`parameters`** includes **`category: "epaas"`** depending on your parser.
+
+### `verifySensitiveIntent` vs EPAAS operation tokens
+
+**`verifySensitiveIntent`** (declared in **`src/server.ts`**) gates sensitive **Forge** HTTP handlers. It requires **`x-skia-intent-signature`**, **`x-skia-intent-ts`**, and **`x-skia-intent-nonce`**, and verifies them with **`intentVerifier.verifyIntent`** against the declared intent name and JSON body. Failure returns **401** with a short **`reason`**.
+
+Skia-FULL **EPAAS operation tokens** are a separate mechanism: UUID **`X-Operation-Token`**, device fingerprint header, and **`OperationTokenService`** consumption tied to **`actionType`** and hashed parameters.
+
+Conceptually both are **second-step / proof-of-intent** layers on top of normal auth, but they operate on **different codebases and headers**. Integrations that touch Forge use **`verifySensitiveIntent`** (and optionally **`ApprovalTokenStore`**); integrations that touch Skia-FULL EPAAS-protected APIs use **`OperationTokenService`** after those routes are mounted per Skia-FULL’s EPAAS integration steps.

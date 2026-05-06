@@ -73,3 +73,51 @@ export async function readAuditLog(
     throw error;
   }
 }
+
+/** Minimal EPAAS adversary event shape (Skia-FULL-compatible subset; no cross-repo imports). */
+export type EpaasAdversaryEventInput = {
+  eventId: string;
+  eventType:
+    | "high_risk_session"
+    | "decoy_interaction"
+    | "honey_trigger"
+    | "alias_misuse"
+    | "token_misuse"
+    | "suspicious_traversal";
+  riskBandAtEvent: "low" | "medium" | "high" | "critical";
+  detail: Record<string, unknown>;
+  timestamp: string;
+  sessionId?: string;
+  userId?: string;
+  ip?: string;
+  asn?: string;
+  deviceFingerprint?: string;
+};
+
+/**
+ * Append an EPAAS adversary event using the `epaas.<eventType>` action namespace (category `epaas` in parameters).
+ */
+export async function appendEpaasEvent(
+  projectRoot: string,
+  adversaryEvent: EpaasAdversaryEventInput
+): Promise<void> {
+  const record: AgentAuditLogRecord = {
+    timestamp: adversaryEvent.timestamp,
+    action: `epaas.${adversaryEvent.eventType}`,
+    parameters: {
+      epaas: true,
+      category: "epaas",
+      eventId: adversaryEvent.eventId,
+      sessionId: adversaryEvent.sessionId,
+      userId: adversaryEvent.userId,
+      ip: adversaryEvent.ip,
+      asn: adversaryEvent.asn,
+      deviceFingerprint: adversaryEvent.deviceFingerprint,
+      riskBandAtEvent: adversaryEvent.riskBandAtEvent,
+      detail: adversaryEvent.detail
+    },
+    result: "success",
+    details: `EPAAS adversary event: ${adversaryEvent.eventType}`
+  };
+  await appendAuditLog(projectRoot, record);
+}

@@ -1,8 +1,44 @@
+import { randomUUID } from "crypto";
 import { AgentAuditLogRecord } from "./types.js";
 import { ForgeGovernancePolicy } from "./forgePolicy.js";
 import { SovereignExecutionMode } from "./forgeGovernance.js";
 import { buildControlPlaneAlerts } from "./forgeControlPlaneAlerts.js";
 import { buildControlPlaneRecommendations } from "./forgeControlPlaneRecommendations.js";
+
+/**
+ * Skia-FULL `AdversaryEvent` shape (duplicated here so Forge can compile without importing
+ * `../../Skia-FULL/...`, which violates TS `rootDir` for this package).
+ */
+type EpaasAdversaryEvent = {
+  eventId: string;
+  sessionId?: string;
+  userId?: string;
+  ip?: string;
+  asn?: string;
+  deviceFingerprint?: string;
+  eventType:
+    | "high_risk_session"
+    | "decoy_interaction"
+    | "honey_trigger"
+    | "alias_misuse"
+    | "token_misuse"
+    | "suspicious_traversal";
+  riskBandAtEvent: "low" | "medium" | "high" | "critical";
+  detail: Record<string, unknown>;
+  timestamp: Date;
+};
+
+const forgeAdversaryIngestBuffer: EpaasAdversaryEvent[] = [];
+
+/**
+ * Mirrors Skia-FULL `adversaryTelemetryService.ingest()` from `AdversaryTelemetryService.ts` —
+ * in-memory buffer only; Forge cannot bundle Skia-FULL `AuditService` / `logger` transitive graph under TS6059.
+ */
+const adversaryTelemetryService = {
+  ingest(event: EpaasAdversaryEvent): void {
+    forgeAdversaryIngestBuffer.push(event);
+  }
+};
 
 export function buildControlPlaneSnapshot(input: {
   mode: SovereignExecutionMode;
@@ -53,19 +89,37 @@ export function buildControlPlaneSnapshot(input: {
     ((input.telemetry as any)?.byDecision?.blocked as number | undefined) ?? 0
   );
   const totalDecisions = Number((input.telemetry as any)?.totalDecisions ?? 0);
-  if (typeof input.emitAdversaryEvent === "function" && totalDecisions > 0) {
+  if (totalDecisions > 0) {
     const blockedRatio = blockedDecisions / totalDecisions;
     if (blockedRatio >= 0.6) {
-      input.emitAdversaryEvent({
+      if (typeof input.emitAdversaryEvent === "function") {
+        input.emitAdversaryEvent({
+          eventType: "suspicious_traversal",
+          detail: {
+            source: "forgeControlPlane",
+            blockedDecisions,
+            totalDecisions,
+            blockedRatio
+          },
+          timestamp: new Date().toISOString()
+        });
+      }
+
+      // EPAAS BEGIN — same anomaly threshold as above: high governance block ratio
+      const evt: EpaasAdversaryEvent = {
+        eventId: randomUUID(),
         eventType: "suspicious_traversal",
+        riskBandAtEvent: "high",
         detail: {
           source: "forgeControlPlane",
           blockedDecisions,
           totalDecisions,
           blockedRatio
         },
-        timestamp: new Date().toISOString()
-      });
+        timestamp: new Date()
+      };
+      adversaryTelemetryService.ingest(evt);
+      // EPAAS END
     }
   }
 
