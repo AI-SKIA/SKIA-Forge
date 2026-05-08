@@ -922,9 +922,16 @@ const createWindow = (): void => {
         webPreferences: {
             nodeIntegration: false,
             contextIsolation: true,
-            // webSecurity: false required until skiaApiClient.ts fetch calls are
-            // moved to IPC bridge — file:// origin cannot make cross-origin HTTPS
-            // requests with webSecurity: true. Tracked as: IPC bridge migration.
+            // webSecurity: false is required because the renderer loads from file://
+            // origin, which cannot make cross-origin HTTPS requests (to api.skia.ca)
+            // with webSecurity: true. This is safe here because:
+            //   - sandbox: true is enforced (no Node.js access in renderer)
+            //   - contextIsolation: true is enforced (preload uses contextBridge only)
+            //   - nodeIntegration: false (no require() in renderer)
+            //   - All sensitive IPC handlers validate their inputs
+            // To fully remove this, migrate all skiaApiClient fetch() calls to IPC
+            // handlers in main.ts so requests originate from the main process.
+            // Tracked as: IPC bridge migration.
             webSecurity: false,
             // sandbox: true — preload exposes only contextBridge APIs (see preload.ts); no require() in preload.
             sandbox: true,

@@ -50,85 +50,85 @@
             </div>
 
             <div id="view-settings" class="center-view">
-              <div class="view-header">SETTINGS</div>
+                <div class="view-header">SETTINGS</div>
 
-              <div class="settings-group">
-                <div class="settings-label">APPEARANCE</div>
-                <div class="settings-row">
-                  <span>Theme</span>
-                  <span class="settings-value">SKIA Dark (Default)</span>
+                <div class="settings-group">
+                    <div class="settings-label">APPEARANCE</div>
+                    <div class="settings-row">
+                        <span>Theme</span>
+                        <span class="settings-value">SKIA Dark (Default)</span>
+                    </div>
+                    <div class="settings-row">
+                        <span>Font Size</span>
+                        <div class="settings-controls">
+                            <button id="font-decrease">−</button>
+                            <span id="font-size-display">13px</span>
+                            <button id="font-increase">+</button>
+                        </div>
+                    </div>
+                    <div class="settings-row">
+                        <span>Minimap</span>
+                        <button id="toggle-minimap" class="settings-toggle">ON</button>
+                    </div>
+                    <div class="settings-row">
+                        <span>Word Wrap</span>
+                        <button id="toggle-wordwrap" class="settings-toggle">OFF</button>
+                    </div>
                 </div>
-                <div class="settings-row">
-                  <span>Font Size</span>
-                  <div class="settings-controls">
-                    <button id="font-decrease">−</button>
-                    <span id="font-size-display">13px</span>
-                    <button id="font-increase">+</button>
-                  </div>
-                </div>
-                <div class="settings-row">
-                  <span>Minimap</span>
-                  <button id="toggle-minimap" class="settings-toggle">ON</button>
-                </div>
-                <div class="settings-row">
-                  <span>Word Wrap</span>
-                  <button id="toggle-wordwrap" class="settings-toggle">OFF</button>
-                </div>
-              </div>
 
-              <div class="settings-group">
-                <div class="settings-label">EDITOR</div>
-                <div class="settings-row">
-                  <span>Tab Size</span>
-                  <select id="tab-size-select" class="settings-select">
-                    <option value="2">2 spaces</option>
-                    <option value="4" selected>4 spaces</option>
-                  </select>
+                <div class="settings-group">
+                    <div class="settings-label">EDITOR</div>
+                    <div class="settings-row">
+                        <span>Tab Size</span>
+                        <select id="tab-size-select" class="settings-select">
+                            <option value="2">2 spaces</option>
+                            <option value="4" selected>4 spaces</option>
+                        </select>
+                    </div>
+                    <div class="settings-row">
+                        <span>Auto Save</span>
+                        <button id="toggle-autosave" class="settings-toggle">OFF</button>
+                    </div>
                 </div>
-                <div class="settings-row">
-                  <span>Auto Save</span>
-                  <button id="toggle-autosave" class="settings-toggle">OFF</button>
-                </div>
-              </div>
 
-              <div class="settings-group">
-                <div class="settings-label">APPLICATION</div>
-                <div class="settings-row">
-                  <span>Status</span>
-                  <span id="connection-status-display"
-                    class="settings-value">Disconnected</span>
+                <div class="settings-group">
+                    <div class="settings-label">APPLICATION</div>
+                    <div class="settings-row">
+                        <span>Status</span>
+                        <span id="connection-status-display"
+                              class="settings-value">Disconnected</span>
+                    </div>
+                    <button id="settings-logout-btn" class="settings-save" style="margin-bottom:12px">SIGN OUT</button>
+                    <button id="settings-check-updates-btn" class="settings-save" style="margin-bottom:12px">CHECK FOR UPDATES</button>
+                    <button id="open-docs-btn" class="settings-save">OPEN DOCUMENTATION</button>
                 </div>
-                <button id="settings-logout-btn" class="settings-save" style="margin-bottom:12px">SIGN OUT</button>
-                <button id="settings-check-updates-btn" class="settings-save" style="margin-bottom:12px">CHECK FOR UPDATES</button>
-                <button id="open-docs-btn" class="settings-save">OPEN DOCUMENTATION</button>
-              </div>
 
-              <div class="settings-group">
-                <div class="settings-label">ABOUT</div>
-                <div class="settings-row">
-                  <span>Version</span>
-                  <span class="settings-value">0.1.0</span>
+                <div class="settings-group">
+                    <div class="settings-label">ABOUT</div>
+                    <div class="settings-row">
+                        <span>Version</span>
+                        <span class="settings-value">0.1.0</span>
+                    </div>
+                    <div class="settings-row">
+                        <span>Build</span>
+                        <span class="settings-value">Sovereign Intelligence</span>
+                    </div>
                 </div>
-                <div class="settings-row">
-                  <span>Build</span>
-                  <span class="settings-value">Sovereign Intelligence</span>
-                </div>
-              </div>
             </div>
 
             <div id="terminal-panel" style="display:none">
-              <div id="terminal-header">
-                <span>TERMINAL</span>
-                <button id="terminal-close">×</button>
-              </div>
-              <div id="terminal-output"></div>
-              <div id="terminal-input-row">
-                <span class="terminal-prompt">❯</span>
-                <input id="terminal-input"
-                  type="text"
-                  placeholder="Enter command..."
-                  spellcheck="false" />
-              </div>
+                <div id="terminal-header">
+                    <span>TERMINAL</span>
+                    <button id="terminal-close">×</button>
+                </div>
+                <div id="terminal-output"></div>
+                <div id="terminal-input-row">
+                    <span class="terminal-prompt">❯</span>
+                    <input id="terminal-input"
+                           type="text"
+                           placeholder="Enter command..."
+                           spellcheck="false" />
+                </div>
             </div>
         </main>
 
@@ -144,9 +144,9 @@
             <section id="chat-messages"></section>
 
             <div id="chat-controls">
-                <input id="chat-file-input" type="file" multiple style="display:none" />
+                <input id="chat-file-input" type="file" multiple style="display:none" accept=".pdf,.doc,.docx,.odt,.rtf,.txt,.md,.csv,.json,.xml,.html,.htm,.xls,.xlsx,.pptx,.ppt,.yaml,.yml,.ts,.tsx,.js,.jsx,.css,.log,.sh,.py,.rb,.go,.rs,.java,.c,.h,.cpp,.hpp,.png,.jpg,.jpeg,.gif,.webp,.svg,*/*" />
                 <textarea id="chat-input"
-                  placeholder="Ask SKIA anything..."></textarea>
+                          placeholder="Ask SKIA anything..."></textarea>
                 <div class="chat-buttons">
                     <button id="chat-clear-btn">CLEAR</button>
                     <button id="chat-cancel-btn">CANCEL</button>
@@ -154,7 +154,7 @@
                     <button id="chat-send-btn">SEND</button>
                 </div>
                 <div id="chat-tagline">
-                  One ecosystem. One universe. All SKIA.
+                    One ecosystem. One universe. All SKIA.
                 </div>
             </div>
         </aside>

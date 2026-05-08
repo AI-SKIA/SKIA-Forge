@@ -532,9 +532,19 @@ async function proxyAuthToSkia(
       body: method === "POST" ? JSON.stringify(req.body ?? {}) : undefined
     });
     const text = await upstream.text();
-    const setCookie = upstream.headers.get("set-cookie");
-    if (setCookie) {
-      res.setHeader("set-cookie", setCookie);
+    // FIX: upstream (api.skia.ca) can return multiple Set-Cookie headers.
+    // fetch() merges them into a comma-joined string via .get("set-cookie"), losing
+    // individual cookie boundaries. Use .getSetCookie() (Node 18+ / undici) when
+    // available so all cookies are forwarded as separate headers, which is required
+    // for httpOnly session cookies to work correctly in the Electron session.
+    const setCookies: string[] =
+      typeof (upstream.headers as any).getSetCookie === "function"
+        ? (upstream.headers as any).getSetCookie()
+        : upstream.headers.get("set-cookie")
+          ? [upstream.headers.get("set-cookie") as string]
+          : [];
+    if (setCookies.length > 0) {
+      res.setHeader("set-cookie", setCookies);
     }
     const contentType = upstream.headers.get("content-type");
     if (contentType) {

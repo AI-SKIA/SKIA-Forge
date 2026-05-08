@@ -60,6 +60,19 @@ const normalizeChatPipelineUrl = (rawUrl: string | undefined): string => {
   }
 };
 
+/**
+ * Read the live session token from localStorage (written by skiaAuthPanel after login).
+ * SKIA_AUTH_TOKEN env var is almost never set in production Northflank, so without this
+ * skiaApiClient would send all requests without a Bearer token.
+ */
+const getStoredSessionToken = (): string => {
+  try {
+    return localStorage.getItem("skia_session_token") ?? "";
+  } catch {
+    return "";
+  }
+};
+
 export const loadConfig = async (): Promise<RuntimeConfig> => {
   if (cache) {
     return cache;
@@ -82,7 +95,13 @@ export const loadConfig = async (): Promise<RuntimeConfig> => {
 
 export const getBackendUrl = (): string => cache?.backendUrl ?? defaults.backendUrl;
 
-export const getAuthToken = (): string => cache?.authToken ?? defaults.authToken;
+/**
+ * Always prefer the live token from localStorage (set by skiaAuthPanel after login)
+ * over the IPC config value, which is only populated when SKIA_AUTH_TOKEN env is set.
+ * This ensures every API call carries a valid Bearer token after the user logs in.
+ */
+export const getAuthToken = (): string =>
+  getStoredSessionToken() || cache?.authToken || defaults.authToken;
 
 export const getTimeout = (): number => cache?.timeout ?? defaults.timeout;
 
