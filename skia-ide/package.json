@@ -40,6 +40,9 @@
       }
     ],
     "win": {
+      "sign": null,
+      "signDlls": false,
+      "signAndEditExecutable": false,
       "target": [
         {
           "target": "nsis",

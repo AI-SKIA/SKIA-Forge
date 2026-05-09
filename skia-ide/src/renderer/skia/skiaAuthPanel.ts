@@ -14,9 +14,86 @@
  * from the JSON response body if present, then to a cookie-only session check.
  */
 
-type AuthUser = { email: string; name?: string };
-
 import { getBackendUrl } from "./skiaConfig";
+
+declare global {
+    interface Window {
+        __skiaAuthPanel?: { signOut: () => void };
+    }
+}
+
+function hasForgeAccess(user: Record<string, unknown>): boolean {
+    if (!user) return false;
+    // Enterprise plan
+    if (user.enterprisePlan === true) return true;
+    // Active subscription (Pro, Team, Business)
+    if (
+        user.subscriptionStatus &&
+        user.subscriptionStatus !== "cancelled" &&
+        user.subscriptionStatus !== "expired" &&
+        user.subscriptionStatus !== "inactive"
+    ) return true;
+    // Unlimited plan (credits top-up unlimited)
+    if (user.unlimitedUntil && new Date(String(user.unlimitedUntil)) > new Date()) return true;
+    // Access via accessExpiresAt
+    if (user.accessExpiresAt && new Date(String(user.accessExpiresAt)) > new Date()) return true;
+    return false;
+}
+
+function showPlanRequiredMessage(overlay: HTMLElement, email: string): void {
+    const card = overlay.querySelector(".skia-auth-card") as HTMLElement;
+    if (!card) return;
+    card.innerHTML = `
+    <div style="text-align:center; padding: 32px 24px;">
+      <img src="../assets/sidebar-logo.png"
+           style="width:80px; margin-bottom:20px; opacity:0.9;"
+           alt="SKIA Forge" />
+      <h2 style="color:#c9922a; font-size:16px; font-weight:700;
+                 letter-spacing:0.08em; margin-bottom:12px;">
+        FORGE IDE ACCESS REQUIRED
+      </h2>
+      <p style="color:rgba(255,255,255,0.75); font-size:13px;
+                line-height:1.6; margin-bottom:8px;">
+        Signed in as <strong style="color:#c9922a;">${email}</strong>
+      </p>
+      <p style="color:rgba(255,255,255,0.6); font-size:13px;
+                line-height:1.6; margin-bottom:24px;">
+        SKIA Forge IDE requires an active Pro, Team, Business,
+        or Enterprise plan.
+      </p>
+      <a href="https://skia.ca/settings"
+         target="_blank"
+         style="display:block; background:#2a1f0d; border:1px solid #c9922a;
+                border-radius:6px; color:#c9922a; font-size:11px;
+                font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
+                padding:14px 22px; text-decoration:none; margin-bottom:12px;
+                cursor:pointer;">
+        UPGRADE YOUR PLAN
+      </a>
+      <button onclick="window.__skiaAuthPanel.signOut()"
+              style="background:transparent; border:1px solid rgba(201,146,42,0.3);
+                     border-radius:6px; color:rgba(201,146,42,0.6); font-size:11px;
+                     font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
+                     padding:10px 22px; cursor:pointer; width:100%;">
+        SIGN OUT
+      </button>
+      <p style="color:rgba(255,255,255,0.3); font-size:11px; margin-top:20px;">
+        ONE ECOSYSTEM. ONE UNIVERSE. ALL SKIA.
+      </p>
+    </div>
+  `;
+}
+
+type AuthUser = {
+    email: string;
+    name?: string;
+    id?: number;
+    subscriptionStatus?: string | null;
+    unlimitedUntil?: string | null;
+    accessExpiresAt?: string | null;
+    enterprisePlan?: boolean;
+    credits?: number;
+};
 
 const getApiOrigin = (): string => getBackendUrl().replace(/\/+$/, "");
 const SESSION_TOKEN_KEY = "skia_session_token";
@@ -79,7 +156,73 @@ const extractUser = (payload: unknown): AuthUser | null => {
     const name =
         typeof candidate.firstName === "string" ? candidate.firstName :
             typeof candidate.name === "string" ? candidate.name : undefined;
-    return { email, name };
+    const idRaw = candidate.id;
+    const id =
+        typeof idRaw === "number"
+            ? idRaw
+            : typeof idRaw === "string" && /^\d+$/.test(idRaw)
+                ? Number(idRaw)
+                : undefined;
+    const subscriptionStatus =
+        typeof candidate.subscriptionStatus === "string" || candidate.subscriptionStatus === null
+            ? (candidate.subscriptionStatus as string | null)
+            : undefined;
+    const unlimitedUntil =
+        candidate.unlimitedUntil === null || typeof candidate.unlimitedUntil === "string"
+            ? (candidate.unlimitedUntil as string | null)
+            : candidate.unlimitedUntil instanceof Date
+                ? candidate.unlimitedUntil.toISOString()
+                : undefined;
+    const accessExpiresAt =
+        candidate.accessExpiresAt === null || typeof candidate.accessExpiresAt === "string"
+            ? (candidate.accessExpiresAt as string | null)
+            : candidate.accessExpiresAt instanceof Date
+                ? candidate.accessExpiresAt.toISOString()
+                : undefined;
+    const enterprisePlan =
+        typeof candidate.enterprisePlan === "boolean" ? candidate.enterprisePlan : undefined;
+    const credits = typeof candidate.credits === "number" ? candidate.credits : undefined;
+
+    return {
+        email,
+        name,
+        ...(id !== undefined ? { id } : {}),
+        ...(subscriptionStatus !== undefined ? { subscriptionStatus } : {}),
+        ...(unlimitedUntil !== undefined ? { unlimitedUntil } : {}),
+        ...(accessExpiresAt !== undefined ? { accessExpiresAt } : {}),
+        ...(enterprisePlan !== undefined ? { enterprisePlan } : {}),
+        ...(credits !== undefined ? { credits } : {}),
+    };
+};
+
+const hasEntitlementPayload = (user: AuthUser): boolean =>
+    user.subscriptionStatus !== undefined ||
+    user.enterprisePlan !== undefined ||
+    user.credits !== undefined ||
+    user.unlimitedUntil !== undefined ||
+    user.accessExpiresAt !== undefined;
+
+const hydrateUserIfNeeded = async (user: AuthUser, token: string | null): Promise<AuthUser> => {
+    if (typeof user.id !== "number") return user;
+    if (hasEntitlementPayload(user)) return user;
+    if (!token) return user;
+    let sessionResp: Response;
+    try {
+        sessionResp = await fetch(`${getApiOrigin()}/api/auth/session`, {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+                "x-skia-client": "forge-desktop",
+            },
+        });
+    } catch {
+        return user;
+    }
+    if (!sessionResp.ok) return user;
+    const sessionPayload = (await sessionResp.json()) as unknown;
+    return extractUser(sessionPayload) ?? user;
 };
 
 // ─── Electron cookie bridge ───────────────────────────────────────────────────
@@ -110,13 +253,29 @@ const removeOverlay = (): void => {
     document.getElementById(OVERLAY_ID)?.remove();
 };
 
-const setAuthenticated = (user: AuthUser): void => {
+const setAuthenticated = (user: AuthUser): boolean => {
+    if (typeof user.id === "number") {
+        if (!hasForgeAccess(user as unknown as Record<string, unknown>)) {
+            ensureOverlay();
+            const overlay = document.getElementById(OVERLAY_ID);
+            if (overlay) showPlanRequiredMessage(overlay as HTMLElement, user.email || "");
+            clearAuth();
+            return false;
+        }
+    }
+
     authenticated = true;
     cachedUser = user;
     localStorage.setItem(USER_EMAIL_KEY, user.email);
+
+    if (typeof user.id !== "number") {
+        return true;
+    }
+
     removeOverlay();
     authReadyCallbacks.forEach((cb) => cb());
     window.dispatchEvent(new CustomEvent("skia-auth-ready", { detail: user }));
+    return true;
 };
 
 const clearAuth = (): void => {
@@ -135,15 +294,15 @@ const verifySession = async (token: string): Promise<boolean> => {
         credentials: "include",
         headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-        }
+            Authorization: `Bearer ${token}`,
+            "x-skia-client": "forge-desktop",
+        },
     });
     if (!response.ok) return false;
     const payload = (await response.json()) as unknown;
     const user = extractUser(payload);
     if (!user) return false;
-    setAuthenticated(user);
-    return true;
+    return setAuthenticated(user);
 };
 
 // ─── Post-login token acquisition ─────────────────────────────────────────────
@@ -164,8 +323,9 @@ const acquireTokenAfterAuth = async (
 
     if (token) {
         localStorage.setItem(SESSION_TOKEN_KEY, token);
-        const user = extractUser(responsePayload) ?? { email, name: firstName };
-        setAuthenticated(user);
+        let user = extractUser(responsePayload) ?? { email, name: firstName };
+        user = await hydrateUserIfNeeded(user, token);
+        if (!setAuthenticated(user)) return;
         return;
     }
 
@@ -174,16 +334,18 @@ const acquireTokenAfterAuth = async (
         method: "GET",
         credentials: "include",
         headers: {
-            "Content-Type": "application/json"
-        }
+            "Content-Type": "application/json",
+            "x-skia-client": "forge-desktop",
+        },
     });
     if (sessionResp.ok) {
         const sessionPayload = (await sessionResp.json()) as unknown;
         // Try cookie bridge one more time after session refresh
         const cookieToken = await getTokenFromElectronCookies();
         if (cookieToken) localStorage.setItem(SESSION_TOKEN_KEY, cookieToken);
-        const user = extractUser(sessionPayload) ?? { email, name: firstName };
-        setAuthenticated(user);
+        let user = extractUser(sessionPayload) ?? { email, name: firstName };
+        user = await hydrateUserIfNeeded(user, cookieToken || localStorage.getItem(SESSION_TOKEN_KEY));
+        if (!setAuthenticated(user)) return;
         return;
     }
 
@@ -246,7 +408,7 @@ const createOverlay = (): HTMLDivElement => {
     ].join(";");
 
     overlay.innerHTML = `
-    <div style="width:100%;max-width:420px;background:#161616;border:1px solid #2a2a2a;padding:32px 28px;">
+    <div class="skia-auth-card" style="width:100%;max-width:420px;background:#161616;border:1px solid #2a2a2a;padding:32px 28px;">
 
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
         <img src="assets/sidebar-logo.png" alt="SKIA"
@@ -454,7 +616,7 @@ export const initializeAuthPanel = (): void => {
                     return;
                 }
                 const payload = (await response.json()) as unknown;
-                const user = extractUser(payload);
+                let user = extractUser(payload);
                 if (!user) {
                     ensureOverlay();
                     return;
@@ -463,6 +625,9 @@ export const initializeAuthPanel = (): void => {
                 if (bodyToken) localStorage.setItem(SESSION_TOKEN_KEY, bodyToken);
                 const cookieToken = await getTokenFromElectronCookies();
                 if (cookieToken) localStorage.setItem(SESSION_TOKEN_KEY, cookieToken);
+                const sessionTok =
+                    bodyToken || cookieToken || localStorage.getItem(SESSION_TOKEN_KEY);
+                user = await hydrateUserIfNeeded(user, sessionTok);
                 setAuthenticated(user);
             })
             .catch(() => {
@@ -507,4 +672,12 @@ export const logout = (): void => {
 
 export const onAuthReady = (callback: () => void): void => {
     authReadyCallbacks.push(callback);
+};
+
+window.__skiaAuthPanel = {
+    signOut: () => {
+        localStorage.removeItem("skia_session_token");
+        localStorage.removeItem("skia_user_email");
+        location.reload();
+    },
 };
