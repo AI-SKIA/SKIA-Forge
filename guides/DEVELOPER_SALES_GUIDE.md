@@ -4,6 +4,8 @@
 
 Sell Forge as developer governance/orchestration control layer that complements `Skia-FULL` runtime development rather than replacing product APIs.
 
+**Technical baseline:** Forge server and SKIA Forge IDE ship at **`1.0.0`**; default upstream API **`https://api.skia.ca`**; desktop chat pipeline **`https://skia.ca/api/skia/chat`**.
+
 ## Positioning to developers
 SKIA-Forge is the layer that keeps AI-assisted coding fast **without losing control**.
 

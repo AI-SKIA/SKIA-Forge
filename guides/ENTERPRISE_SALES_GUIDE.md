@@ -30,7 +30,8 @@ SKIA-Forge enables enterprise AI development with governance, traceability, and 
 
 ## Deployment model
 - Northflank-aligned service topology (frontend/login/backend/TTS and supporting services).
-- Runtime contract integration via SKIA-full endpoints.
+- Forge web/control-plane hostname **`forge.skia.ca`** in production [CONFIRM] — validate against your Domains mapping.
+- Runtime contract integration via SKIA-full endpoints (**`SkiaFullAdapter`**, default **`https://api.skia.ca`**).
 - Works as control layer without requiring full rewrite of existing SDLC.
 
 ## Enterprise buying triggers
