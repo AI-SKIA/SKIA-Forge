@@ -23,3 +23,5 @@ Project maintainers may remove comments, reject contributions, or restrict parti
 ## Reporting
 
 Report conduct concerns privately to: `conduct@skia.local`.
+
+For security vulnerabilities, use the coordinated disclosure process in **`SECURITY.md`** (do not file public issues for undisclosed security defects).

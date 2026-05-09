@@ -23,3 +23,7 @@ If you discover a security issue, do not open a public issue.
 ## Scope
 
 This policy applies to the full SKIA-Forge repository, including web assets, build tooling, and packaged app artifacts.
+
+## Control-plane API access
+
+All **`/api/forge/*`** HTTP routes are protected by **`requireAuth`** in `src/server.ts` (authenticated API clients or sessions as implemented there). Do not assume these endpoints are anonymously callable in production.

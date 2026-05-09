@@ -22,3 +22,8 @@
 
 - Preserve existing architecture and naming patterns.
 - Prefer small, explicit changes over broad refactors unless requested.
+
+## Documentation
+
+- Keep narrative aligned with the live **`1.0.0`** control-plane surface (`package.json`) and **`src/server.ts`**.
+- After route or governance changes, update **`docs/API_REFERENCE.md`** so operators have an accurate index.
