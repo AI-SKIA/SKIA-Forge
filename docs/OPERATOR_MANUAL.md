@@ -12,6 +12,8 @@ SKIA-Forge operates as an orchestration/governance **HTTP service** that augment
 
 ## Deployment baseline
 
+- **Release:** Forge **`1.0.0`** (root `package.json`); desktop IDE **`skia-ide`** **`1.0.0`**.
+- **Public hostname:** `forge.skia.ca` in production (Northflank) [CONFIRM] — validate Domains mapping and TLS in your environment.
 - Build: `npm run build`
 - Start: `npm run dev` (development) or `node dist/server.js` after build (production shape)
 - Listen address: **`SKIA_PORT`** (default **4173**)
@@ -65,5 +67,6 @@ Values below are **representative** — see `src/server.ts` for the full set.
 
 ## Desktop distribution
 
-- Confirm release assets exist for `Skia-Forge-*` installers or configure env overrides above.
+- Installers are reached via **`GET /api/app/download`** and **`GET /api/app/download/:platform`** (Windows NSIS, macOS DMG x64/arm64, Linux AppImage — see `skia-ide/package.json` `build`).
+- Confirm release assets exist for `Skia-Forge-*` / `SKIA-FORGE-*` installers or configure env overrides above.
 - Marketing pages do not surface web sign-in; users authenticate via the **Forge IDE** or direct API clients.

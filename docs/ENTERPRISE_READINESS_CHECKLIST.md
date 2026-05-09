@@ -5,8 +5,10 @@ Use this checklist before enterprise pilots and procurement conversations.
 ## Ecosystem boundary check
 
 - [ ] Forge scope is documented as control-plane (not product runtime replacement)
+- [ ] **`SkiaFullAdapter`** upstream defaults and “calls `Skia-FULL`, does not replace it” are documented (**`1.0.0`** baseline)
 - [ ] Dependencies on `Skia-FULL` runtime contracts are documented
 - [ ] Public incident/status process with `Skia-Status` is documented
+- [ ] Production hostname **`forge.skia.ca`** and installer routes **`/api/app/download*`** validated [CONFIRM] in target environment
 
 ## Product and Architecture
 

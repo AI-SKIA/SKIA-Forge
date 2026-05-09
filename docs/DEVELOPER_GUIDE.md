@@ -2,7 +2,7 @@
 
 ## Ecosystem boundaries
 
-- `SKIA-Forge` is the control-plane codebase.
+- `SKIA-Forge` is the control-plane codebase (**`1.0.0`**). Upstream intelligence calls go through **`SkiaFullAdapter`** to **`SKIA_FULL_API_URL`** (default **`https://api.skia.ca`**); Forge does not replace `Skia-FULL`.
 - `Skia-FULL` remains the product runtime and customer feature surface.
 - `Skia-Status` remains the public operational publication surface.
 
@@ -16,15 +16,16 @@
 ## Project Structure (Core)
 
 - `src/server.ts` - runtime entrypoint (binds **`SKIA_PORT`**, default **4173**)
-- `src/forge/modules/` - module domains (governance, safety, work, context-engine, etc.)
-- `skia-ide/` - Electron + renderer for **SKIA Forge IDE**; run `npm run build` here before `/forge/app` can load in the browser
+- `src/forge/modules/` - module domains. **Live in server mount path:** `context-engine`, `agent-planner`, `agent-executor`, `production`, `healing`, `architecture`, `skiarules`, `security`, `sdlc`, `tools`. **Scaffolded / not directly mounted [CONFIRM]:** `agent`, `auto`, `global`, `self`, `work`, `governance` (module folder), `safety`, `errors`.
+- `skia-ide/` - Electron + renderer for **SKIA Forge IDE** (**`1.0.0`**); run `npm run build` here before `/forge/app` can load in the browser
 - `public/docs/` - branded HTML documentation served at `/docs/*.html` (takes precedence over `docs/*.md`)
 
 ## HTTP surfaces (quick)
 
 - `/`, `/forge`, `/download` → redirect **`https://skia.ca/platform-downloads`** (download UI: `Skia-FULL` `frontend/pages/platform-downloads.tsx`)
+- `/api/app/download`, `/api/app/download/:platform` → desktop installer redirects (GitHub releases; default repo `AI-SKIA/SKIA-Forge`)
 - `/forge/app` - web IDE (requires built `skia-ide/dist/renderer`)
-- `/api/forge/*` - control plane (see `API_REFERENCE.md`)
+- `/api/forge/*` - control plane (**authenticated**; see `API_REFERENCE.md`)
 - `/integration/skia-full/*` - adapter probes and passthroughs
 
 ## Development Workflow

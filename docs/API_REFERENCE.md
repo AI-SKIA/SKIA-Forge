@@ -6,7 +6,9 @@ This reference maps the HTTP API **as implemented in `src/server.ts`**. Product-
 
 The canonical route list is the server file; this document is the operator-friendly index.
 
-**Default listen port:** `SKIA_PORT` (default `4173`).
+**Package version:** `1.0.0` (root `package.json`). **Default listen port:** `SKIA_PORT` (default `4173`).
+
+**Authentication:** All routes under **`/api/forge/*`** require **`requireAuth`** in `src/server.ts` (authenticated clients). Auth proxy routes **`/api/auth/*`** forward to **`SKIA_BACKEND_URL`** (default `https://api.skia.ca`). Integration and some diagnostic routes may be public by design — verify `src/server.ts` before exposing Forge to untrusted networks.
 
 ---
 

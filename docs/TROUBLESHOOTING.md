@@ -44,4 +44,5 @@ Use this guide for Forge **service** and **integration** issues. Product-runtime
 ## Auth from IDE or API client
 
 - Auth requests go to **`POST /api/auth/login`**, **`POST /api/auth/register`**, **`GET /api/auth/session`** — proxied to **`SKIA_BACKEND_URL`** (default `https://api.skia.ca`).
+- **`/api/forge/*`** returns **401** without a valid authenticated session/token (**`requireAuth`**).
 - Static HTML pages intentionally omit marketing sign-in/register buttons; use the **Forge IDE** or API clients.
