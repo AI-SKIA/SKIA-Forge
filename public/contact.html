@@ -44,6 +44,7 @@
 
     .back-btn { position:fixed;top:24px;left:24px;z-index:100;display:flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--border);border-radius:6px;padding:8px 14px;background:rgba(0,0,0,0.55);transition:background 0.15s; }
     .back-btn:hover { background:rgba(212,175,55,0.08); }
+    button.back-btn { appearance:none;-webkit-appearance:none;font:inherit;color:inherit;cursor:pointer; }
 
     .wrap { max-width:760px;margin:0 auto;padding:80px 24px 72px; }
 
@@ -162,18 +163,18 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
     <a class="pc-sidebar-btn" href="/security">Security</a>
     <a class="pc-sidebar-btn" href="/contact">Contact & Support</a>
     <div class="pc-sidebar-divider"></div>
-    <a class="pc-sidebar-btn" href="https://skia.ca/platform-downloads#windows">Download IDE</a>
+    <a class="pc-sidebar-btn" href="https://skia.ca/platform-downloads">Download SKIA Forge</a>
   </nav>
 </aside>
 
-<a href="https://skia.ca/platform-downloads" class="back-btn">← Back</a>
+<button type="button" class="back-btn" onclick="history.back()">← Back</button>
 
 <div class="wrap">
   <img src="https://skia.ca/sidebar-logo.png" alt="SKIA" class="page-logo" />
 
   <div class="page-header">
     <h1 class="page-title">Contact & Support</h1>
-    <p class="page-subtitle">Runtime issues, integration failures, governance debugging, or just getting started — we're here</p>
+    <p class="page-subtitle">SKIA Forge runtime and SKIA Forge IDE — startup, updates, integrations, governance, or getting started — we're here</p>
   </div>
 
   <!-- Support Scope -->
@@ -183,7 +184,7 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
     <div class="scope-card"><div class="scope-icon">🔗</div><div class="scope-text">Integration contract failures</div></div>
     <div class="scope-card"><div class="scope-icon">🛡</div><div class="scope-text">Governance and policy flow debugging</div></div>
     <div class="scope-card"><div class="scope-icon">🔨</div><div class="scope-text">Build and test pipeline breakages</div></div>
-    <div class="scope-card"><div class="scope-icon">📦</div><div class="scope-text">Installation and update issues</div></div>
+    <div class="scope-card"><div class="scope-icon">📦</div><div class="scope-text">SKIA Forge IDE install, updates, and desktop runtime</div></div>
     <div class="scope-card"><div class="scope-icon">💡</div><div class="scope-text">General usage and workflow questions</div></div>
   </div>
 
@@ -222,6 +223,7 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
     <div class="triage-item"><div class="triage-dot"></div>Governance mode: strict / adaptive / autonomous</div>
     <div class="triage-item"><div class="triage-dot"></div>Full error message and stack trace</div>
     <div class="triage-item"><div class="triage-dot"></div>Steps to reproduce reliably</div>
+    <div class="triage-item"><div class="triage-dot"></div>SKIA Forge IDE version or build channel (if using the desktop app)</div>
   </div>
 
   <!-- Escalation path -->

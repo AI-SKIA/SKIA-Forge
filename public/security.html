@@ -44,6 +44,7 @@
 
     .back-btn { position:fixed;top:24px;left:24px;z-index:100;display:flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--border);border-radius:6px;padding:8px 14px;background:rgba(0,0,0,0.55);transition:background 0.15s; }
     .back-btn:hover { background:rgba(212,175,55,0.08); }
+    button.back-btn { appearance:none;-webkit-appearance:none;font:inherit;color:inherit;cursor:pointer; }
 
     .wrap { max-width:860px;margin:0 auto;padding:80px 24px 72px; }
 
@@ -133,11 +134,11 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
     <a class="pc-sidebar-btn" href="/security">Security</a>
     <a class="pc-sidebar-btn" href="/contact">Contact & Support</a>
     <div class="pc-sidebar-divider"></div>
-    <a class="pc-sidebar-btn" href="https://skia.ca/platform-downloads#windows">Download IDE</a>
+    <a class="pc-sidebar-btn" href="https://skia.ca/platform-downloads">Download SKIA Forge</a>
   </nav>
 </aside>
 
-<a href="https://skia.ca/platform-downloads" class="back-btn">← Back</a>
+<button type="button" class="back-btn" onclick="history.back()">← Back</button>
 
 <div class="wrap">
   <img src="https://skia.ca/sidebar-logo.png" alt="SKIA" class="page-logo" />
@@ -209,7 +210,7 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
   <div class="section-block">
     <div class="section-label">Operational Security Practices</div>
     <div class="practice-list">
-      <div class="practice-item"><div class="practice-num">01</div><div class="practice-text">Keep secrets out of repositories and logs. Use Northflank environment variables exclusively for credentials and API keys.</div></div>
+      <div class="practice-item"><div class="practice-num">01</div><div class="practice-text">Keep secrets out of repositories and logs. Inject credentials and API keys via environment variables in your deployment, hosting provider (e.g. Northflank secrets), or SKIA Forge IDE configuration — never commit them.</div></div>
       <div class="practice-item"><div class="practice-num">02</div><div class="practice-text">Validate all external integration responses. Never trust third-party data without schema assertion.</div></div>
       <div class="practice-item"><div class="practice-num">03</div><div class="practice-text">Treat policy blocks as first-class security events. Every block is logged, reviewable, and feeds governance tuning.</div></div>
       <div class="practice-item"><div class="practice-num">04</div><div class="practice-text">Record and monitor remediation outcomes. Fixes without follow-up validation are not considered complete.</div></div>

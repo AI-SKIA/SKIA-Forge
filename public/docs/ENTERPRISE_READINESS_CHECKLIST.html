@@ -29,7 +29,7 @@
   .pc-sidebar-btn{display:block;padding:10px 14px;border-radius:6px;color:rgba(212,175,55,0.85);text-decoration:none;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;transition:background 0.15s,color 0.15s;}
   .pc-sidebar-btn:hover{background:rgba(212,175,55,0.1);color:#d4af37;}
   .back-btn{position:fixed;top:24px;left:24px;z-index:100;display:flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--border);border-radius:6px;padding:8px 14px;background:rgba(0,0,0,0.6);transition:background 0.15s;}
-  .back-btn:hover{background:rgba(212,175,55,0.08);}
+  .back-btn:hover{background:rgba(212,175,55,0.08);}button.back-btn{appearance:none;-webkit-appearance:none;font:inherit;color:inherit;cursor:pointer;}
   .wrap{max-width:820px;margin:0 auto;padding:80px 24px 80px;}
   .doc-badge{display:inline-block;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold-muted);border:1px solid var(--gold-dim);border-radius:4px;padding:3px 10px;margin-bottom:18px;}
   .doc-title{font-size:28px;font-weight:800;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);line-height:1.15;margin-bottom:12px;}
@@ -120,15 +120,18 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
     <span class="pc-sidebar-logo-tagline">She Knows It All</span>
   </div>
   <div class="pc-sidebar-divider"></div>
-  <nav class="pc-sidebar-nav">
+    <nav class="pc-sidebar-nav">
     <a class="pc-sidebar-btn" href="https://skia.ca/platform-downloads">Forge Home</a>
+    <a class="pc-sidebar-btn" href="/forge/platform">Product</a>
     <a class="pc-sidebar-btn" href="/resources">Resources</a>
     <a class="pc-sidebar-btn" href="/security">Security</a>
     <a class="pc-sidebar-btn" href="/contact">Contact & Support</a>
+    <div class="pc-sidebar-divider"></div>
+    <a class="pc-sidebar-btn" href="https://skia.ca/platform-downloads">Download SKIA Forge</a>
   </nav>
 </aside>
 
-<a href="/resources" class="back-btn">← Resources</a>
+<button type="button" class="back-btn" onclick="history.back()">← Resources</button>
 <div class="wrap">
   <div class="doc-badge">Enterprise & Pilot Readiness</div>
   <h1 class="doc-title">Enterprise Readiness Checklist</h1>
