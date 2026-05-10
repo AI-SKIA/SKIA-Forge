@@ -1,4 +1,4 @@
-# SKIA-Forge Quickstart (5 Minutes)
+﻿# SKIA-Forge Quickstart (5 Minutes)
 
 ## Scope
 
@@ -47,7 +47,7 @@ npm run test
 
 1. Build the Electron renderer: `cd skia-ide && npm install && npm run build`.
 2. Open `GET /forge/app` in the browser *or* run `npm start` in `skia-ide` for the desktop shell.
-3. Sign in or register **inside the IDE** when prompted — the canonical download page (`https://skia.ca/platform-downloads`) does not carry account CTAs.
+3. Sign in or register **inside the IDE** when prompted — the canonical download page (`https://forge.skia.ca/platform-downloads`) does not carry account CTAs.
 
 ## Need more?
 

@@ -1,4 +1,4 @@
-# SKIA-Forge Product Manual
+﻿# SKIA-Forge Product Manual
 
 **Versions:** Forge server **`1.0.0`** · SKIA Forge IDE (`skia-ide`) **`1.0.0`**.
 
@@ -40,7 +40,7 @@ SKIA-Forge is a control and orchestration layer. It is not a replacement for you
 ## Delivery surfaces (current)
 
 - **Forge HTTP server** (`src/server.ts`): Express app exposing orchestration APIs, integration probes, governance, context/embedding routes, and static/marketing pages. Default port **`SKIA_PORT`** = **4173**. Production edge hostname **`forge.skia.ca`** [CONFIRM].
-- **Public web**: Download / positioning lives on **`https://skia.ca/platform-downloads`** (`Skia-FULL` `frontend/pages/platform-downloads.tsx`). This Forge server redirects `/`, `/forge`, and `/download` there. Other static routes: `/resources`, `/security`, `/contact`, `/docs/*` (branded HTML + markdown fallback). Account **sign-in and registration are not promoted on marketing HTML** — users authenticate in the **SKIA Forge IDE** or other clients against `/api/auth/*` (proxied to **`SKIA_BACKEND_URL`**, default **`https://api.skia.ca`**).
+- **Public web**: Download / positioning lives on **`https://forge.skia.ca/platform-downloads`** (`Skia-FULL` `frontend/pages/platform-downloads.tsx`). This Forge server redirects `/`, `/forge`, and `/download` there. Other static routes: `/resources`, `/security`, `/contact`, `/docs/*` (branded HTML + markdown fallback). Account **sign-in and registration are not promoted on marketing HTML** — users authenticate in the **SKIA Forge IDE** or other clients against `/api/auth/*` (proxied to **`SKIA_BACKEND_URL`**, default **`https://api.skia.ca`**).
 - **Web IDE shell**: `/forge/app` serves the built `skia-ide` renderer with a browser compatibility shim (optional full desktop features require Electron).
 - **Desktop IDE**: `skia-ide/` Electron app — primary interactive surface for developers; default API **`https://api.skia.ca`**, chat pipeline **`https://skia.ca/api/skia/chat`** (see `skia-ide/src/renderer/skia/skiaConfig.ts`).
 - **Installers**: **`GET /api/app/download`** and **`GET /api/app/download/:platform`** redirect to GitHub release assets (default **`AI-SKIA/SKIA-Forge`**). Artifact names follow `skia-ide` electron-builder configuration (e.g. `SKIA-FORGE-Setup-*`, `SKIA-FORGE-*-mac-*.dmg`, `SKIA-FORGE-*-linux-x64.AppImage`).

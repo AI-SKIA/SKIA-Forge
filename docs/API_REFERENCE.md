@@ -1,4 +1,4 @@
-# SKIA-Forge API Reference
+﻿# SKIA-Forge API Reference
 
 ## Scope
 
@@ -18,7 +18,7 @@ These routes serve HTML, redirects, or static assets for the Forge site and IDE 
 
 | Method | Path | Notes |
 |--------|------|--------|
-| GET | `/` | Redirects to **`https://skia.ca/platform-downloads`** (canonical download UI: `Skia-FULL` `frontend/pages/platform-downloads.tsx`). |
+| GET | `/` | Redirects to **`https://forge.skia.ca/platform-downloads`** (canonical download UI: `Skia-FULL` `frontend/pages/platform-downloads.tsx`). |
 | GET | `/forge` | Same redirect (legacy path; formerly served HTML from removed `src/downloadUi.ts`). |
 | GET | `/download` | Same redirect. |
 | GET | `/forge/platform` | Forge platform overview (`renderForgePlatformHtml`). |

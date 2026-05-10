@@ -1,4 +1,4 @@
-# SKIA-Forge Security Guide
+﻿# SKIA-Forge Security Guide
 
 ## Security scope
 
@@ -17,7 +17,7 @@ SKIA-Forge applies layered controls:
 
 - All **`/api/forge/*`** routes require authentication via **`requireAuth`** in `src/server.ts` (plan tokens/sessions accordingly for operators and automation).
 - Forge exposes **`POST /api/auth/login`**, **`POST /api/auth/register`**, and **`GET /api/auth/session`**, which **proxy** to the configured SKIA backend (`SKIA_BACKEND_URL`, default `https://api.skia.ca`). These exist for the **SKIA Forge IDE**, automation, and API clients — not for anonymous public marketing pages.
-- **Static Forge pages** (`/resources`, `/security`, `/contact`, `/docs/*`) and the canonical download surface at **`https://skia.ca/platform-downloads`** intentionally omit **Sign in** and **Register** web CTAs; end users **create accounts and sign in inside the desktop IDE** (or other trusted clients).
+- **Static Forge pages** (`/resources`, `/security`, `/contact`, `/docs/*`) and the canonical download surface at **`https://forge.skia.ca/platform-downloads`** intentionally omit **Sign in** and **Register** web CTAs; end users **create accounts and sign in inside the desktop IDE** (or other trusted clients).
 - Pass-through auth headers (`Authorization`, `Cookie`, `X-Api-Key`) are forwarded to upstream SKIA calls where applicable (`pickSkiaHeaders` in `server.ts`).
 
 ## Key Security Components

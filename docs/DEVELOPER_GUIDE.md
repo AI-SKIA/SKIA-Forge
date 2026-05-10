@@ -1,4 +1,4 @@
-# SKIA-Forge Developer Guide
+﻿# SKIA-Forge Developer Guide
 
 ## Ecosystem boundaries
 
@@ -22,7 +22,7 @@
 
 ## HTTP surfaces (quick)
 
-- `/`, `/forge`, `/download` → redirect **`https://skia.ca/platform-downloads`** (download UI: `Skia-FULL` `frontend/pages/platform-downloads.tsx`)
+- `/`, `/forge`, `/download` → redirect **`https://forge.skia.ca/platform-downloads`** (download UI: `Skia-FULL` `frontend/pages/platform-downloads.tsx`)
 - `/api/app/download`, `/api/app/download/:platform` → desktop installer redirects (GitHub releases; default repo `AI-SKIA/SKIA-Forge`)
 - `/forge/app` - web IDE (requires built `skia-ide/dist/renderer`)
 - `/api/forge/*` - control plane (**authenticated**; see `API_REFERENCE.md`)

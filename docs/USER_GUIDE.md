@@ -1,4 +1,4 @@
-# SKIA-Forge User Guide
+﻿# SKIA-Forge User Guide
 
 ## What this guide covers
 
@@ -44,5 +44,5 @@ Using the Forge **control-plane HTTP service**: orchestration APIs, governance f
 
 ## Getting the desktop IDE
 
-- Download installers via **`GET /api/app/download`** or **`GET /api/app/download/:platform`**, or open the canonical page **`https://skia.ca/platform-downloads`** (`Skia-FULL` `frontend/pages/platform-downloads.tsx`) in the browser.
+- Download installers via **`GET /api/app/download`** or **`GET /api/app/download/:platform`**, or open the canonical page **`https://forge.skia.ca/platform-downloads`** (`Skia-FULL` `frontend/pages/platform-downloads.tsx`) in the browser.
 - Release artifacts are published on GitHub (**`AI-SKIA/SKIA-Forge`** by default); filenames follow `skia-ide` electron-builder rules (e.g. `SKIA-FORGE-*`).

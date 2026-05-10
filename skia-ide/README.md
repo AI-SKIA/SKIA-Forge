@@ -1,4 +1,4 @@
-# SKIA FORGE
+﻿# SKIA FORGE
 
 Standalone Electron + Monaco desktop IDE shell for SKIA-Forge integration.
 
@@ -25,4 +25,4 @@ See `src/renderer/skia/skiaConfig.ts` for backend URL (**default `https://api.sk
 
 ## Distribution
 
-Published installers are consumed via Forge **`GET /api/app/download`** and **`GET /api/app/download/:platform`**, and via the canonical web page **`https://skia.ca/platform-downloads`**.
+Published installers are consumed via Forge **`GET /api/app/download`** and **`GET /api/app/download/:platform`**, and via the canonical web page **`https://forge.skia.ca/platform-downloads`**.

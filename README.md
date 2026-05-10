@@ -24,14 +24,14 @@ It provides:
 - `src/server.ts` -> runtime entrypoint (listens on **`SKIA_PORT`**, default **4173**)
 - `src/forge/modules/` -> domain modules (auto, governance, context-engine, safety, work, etc.)
 - `skia-ide/` -> **SKIA Forge IDE** (Electron); build with `npm run build` inside this folder for `/forge/app` web shell
-- `public/` -> static marketing pages (`resources`, `security`, `contact`) and `public/docs/` branded HTML at `/docs/*`
+- `public/` -> static marketing pages (`platform-downloads`, `resources`, `security`, `contact`) and `public/docs/` branded HTML at `/docs/*`
 - `docs/` -> Markdown documentation source (also served at `/docs/*.md` when no HTML override exists)
 - `.skia/` -> runtime state and baseline artifacts (local/generated)
 
 ## Public HTTP routes (summary)
 
 - **Production web surface:** `forge.skia.ca` maps to this service (Northflank) [CONFIRM] against your live Domains configuration.
-- `/`, `/forge`, and `/download` redirect to **`https://skia.ca/platform-downloads`** (`Skia-FULL` `frontend/pages/platform-downloads.tsx`).
+- `/`, `/forge`, and `/download` redirect to **`/platform-downloads`** (canonical downloads hub: `public/platform-downloads.html`). **`skia.ca/platform-downloads`** permanently redirects to **`https://forge.skia.ca/platform-downloads`** (Skia-FULL Next.js config).
 - **Desktop installers:** `GET /api/app/download` and `GET /api/app/download/:platform` (`windows`, `mac-intel`, `mac-arm`, `linux-appimage`) redirect to published GitHub release assets (repo default `AI-SKIA/SKIA-Forge`).
 - `/forge/app` serves the IDE renderer when `skia-ide/dist/renderer` is built.
 - `/resources`, `/security`, `/contact` serve `public/*.html`
