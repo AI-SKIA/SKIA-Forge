@@ -1453,6 +1453,12 @@ app.get("/favicon.ico", (_req, res) => {
   res.sendFile(path.join(projectRoot, "public", "favicon.ico"));
 });
 
+/** Shared hub styles + `.page-logo` sizing — linked from all branded HTML under `public/` */
+app.get("/forge-premium-ui.css", (_req, res) => {
+  res.type("text/css");
+  res.sendFile(path.join(projectRoot, "public", "forge-premium-ui.css"));
+});
+
 app.get("/og/skia-forge-preview.svg", (_req, res) => {
   res.type("image/svg+xml").send(renderOgImageSvg());
 });
