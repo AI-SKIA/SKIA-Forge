@@ -62,7 +62,6 @@ function showPlanRequiredMessage(overlay: HTMLElement, email: string): void {
         or Enterprise plan.
       </p>
       <a href="https://skia.ca/settings"
-         target="_blank"
          style="display:block; background:#2a1f0d; border:1px solid #c9922a;
                 border-radius:6px; color:#c9922a; font-size:11px;
                 font-weight:700; letter-spacing:0.12em; text-transform:uppercase;

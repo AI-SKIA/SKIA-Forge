@@ -1415,9 +1415,9 @@ async function sendForgeAppHtml(res: express.Response) {
       },
       runCommand: async function () { return { stdout: "", stderr: unsupported }; },
       setAutoSave: function () {},
-      openDocs: function () { window.open("/docs/README.md", "_blank", "noopener"); },
+      openDocs: function () { window.location.assign("/docs/README.md"); },
       getCookies: async function () { return []; },
-      openExternal: function (url) { if (typeof url === "string" && url) window.open(url, "_blank", "noopener"); }
+      openExternal: function (url) { if (typeof url === "string" && url) window.location.assign(url); }
     };
     fireStatus(webModeStatus);
   })();
