@@ -1,5 +1,5 @@
 export function renderForgePlatformHtml(): string {
-  return `<!doctype html>
+    return `<!doctype html>
 <html>
 <head>
   <meta charset="utf-8" />
@@ -217,9 +217,13 @@ export function renderForgePlatformHtml(): string {
       .brand { font-size: 16px; }
       .download-btn { font-size: 10px; padding: 7px 9px; }
     }
+    .back-btn { position:fixed;top:24px;left:24px;z-index:300;display:flex;align-items:center;gap:8px;color:#d4af37;text-decoration:none;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid rgba(212,175,55,0.3);border-radius:6px;padding:8px 14px;background:rgba(0,0,0,0.55);transition:background 0.15s;font-family:var(--font-heading);font-weight:600; }
+    .back-btn:hover { background:rgba(212,175,55,0.08); }
+    button.back-btn { appearance:none;-webkit-appearance:none;font:inherit;color:inherit;cursor:pointer; }
   </style>
 </head>
 <body>
+  <button type="button" class="back-btn" onclick="history.back()">← Back</button>
   <div class="topbar">
     <div class="brand">SKIA FORGE IDE</div>
     <div class="status" id="integrationStatus">Integration: checking...</div>
@@ -263,9 +267,22 @@ export function renderForgePlatformHtml(): string {
     const moduleButtons = Array.from(document.querySelectorAll(".mod-btn"));
     let activeModule = "agent";
 
+    const moduleDescriptions = {
+      agent:        { title: "Agent",                 desc: "Run an autonomous agent task — SKIA plans, reasons, and executes steps to complete your goal." },
+      context:      { title: "Context",               desc: "Analyze and load context from your codebase or inputs — SKIA builds a structured understanding before acting." },
+      sdlc:         { title: "SDLC",                  desc: "Run a software delivery lifecycle task — from spec to implementation, governed end-to-end." },
+      production:   { title: "Production",            desc: "Execute production-grade operations — deployments, releases, and runtime governance." },
+      healing:      { title: "Healing",               desc: "Diagnose and remediate issues — SKIA identifies failures and applies structured recovery." },
+      architecture: { title: "Architecture",          desc: "Analyze or evolve your system architecture — SKIA enforces rules and surfaces structural insights." },
+      orchestrate:  { title: "Lifecycle Orchestrate", desc: "Run the full lifecycle pipeline — agent, context, SDLC, production, healing, and architecture in sequence." }
+    };
+
     function setActiveModule(next) {
       activeModule = next;
       moduleButtons.forEach((btn) => btn.classList.toggle("active", btn.dataset.module === next));
+      const info = moduleDescriptions[next] || { title: next, desc: "Select a prompt and run this module." };
+      document.querySelector(".hero h1").textContent = info.title;
+      document.querySelector(".hero p").textContent = info.desc;
     }
 
     moduleButtons.forEach((btn) => {
