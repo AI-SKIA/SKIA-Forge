@@ -890,16 +890,17 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
  */
 const resolveAppWindowIcon = (): string | undefined => {
     const fileNames = ["skia-forge-app.ico", "skia-forge-app.png"] as const;
-    const roots: string[] = [];
     if (app.isPackaged) {
-        roots.push(path.join(process.resourcesPath, "app.asar.unpacked"));
-    }
-    roots.push(path.resolve(__dirname, "../../assets"));
-    for (const root of roots) {
+        const unpackedRoot = path.join(process.resourcesPath, "app.asar.unpacked");
         for (const name of fileNames) {
-            const p = path.join(root, "assets", name);
+            const p = path.join(unpackedRoot, "assets", name);
             if (existsSync(p)) return p;
         }
+    }
+    const devAssetsRoot = path.resolve(__dirname, "../../assets");
+    for (const name of fileNames) {
+        const p = path.join(devAssetsRoot, name);
+        if (existsSync(p)) return p;
     }
     return undefined;
 };

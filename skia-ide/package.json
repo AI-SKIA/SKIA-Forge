@@ -52,6 +52,7 @@
       "icon": "assets/skia-forge-app.ico"
     },
     "nsis": {
+      "include": "build/shortcut-icon.nsh",
       "oneClick": false,
       "allowToChangeInstallationDirectory": true,
       "createDesktopShortcut": "always",
