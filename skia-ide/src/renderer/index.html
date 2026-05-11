@@ -7,8 +7,136 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="vs/loader.js"></script>
     <script>
-      require.config({ paths: { vs: 'vs' } });
+        require.config({ paths: { vs: 'vs' } });
     </script>
+    <style>
+        /* ── Resizable panel system ───────────────────────────────────────── */
+        #app-shell {
+            display: flex;
+            flex-direction: row;
+            height: calc(100vh - 28px); /* leave room for status bar */
+            overflow: hidden;
+        }
+
+        #sidebar {
+            /* min/max enforced by JS; default 220px */
+            min-width: 120px;
+            max-width: 600px;
+            width: 220px;
+            flex-shrink: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .panel-resizer {
+            width: 4px;
+            cursor: col-resize;
+            background: rgba(212, 175, 55, 0.08);
+            flex-shrink: 0;
+            transition: background 0.15s;
+            z-index: 10;
+        }
+
+            .panel-resizer:hover,
+            .panel-resizer.is-dragging {
+                background: rgba(212, 175, 55, 0.45);
+            }
+
+        #center-panel {
+            flex: 1 1 0;
+            min-width: 200px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #chat-panel {
+            min-width: 200px;
+            max-width: 700px;
+            width: 340px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ── Forge panel ─────────────────────────────────────────────────── */
+        #view-forge {
+            padding: 24px 20px;
+            overflow-y: auto;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .forge-status-card {
+            background: rgba(212,175,55,0.04);
+            border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 4px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+        }
+
+            .forge-status-card .forge-card-title {
+                font-size: 10px;
+                letter-spacing: 0.15em;
+                color: rgba(212,175,55,0.55);
+                text-transform: uppercase;
+                margin-bottom: 8px;
+            }
+
+            .forge-status-card .forge-card-value {
+                font-size: 13px;
+                color: #d4af37;
+                font-family: 'Cascadia Code', 'Fira Code', monospace;
+                white-space: pre-wrap;
+                word-break: break-word;
+            }
+
+        .forge-offline-notice {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 20px 16px;
+            background: rgba(212,175,55,0.03);
+            border: 1px solid rgba(212,175,55,0.12);
+            border-radius: 4px;
+        }
+
+        .forge-offline-title {
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            color: rgba(212,175,55,0.6);
+            text-transform: uppercase;
+        }
+
+        .forge-offline-body {
+            font-size: 12px;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.6;
+        }
+
+        .forge-offline-hint {
+            font-size: 11px;
+            color: rgba(212,175,55,0.4);
+            margin-top: 4px;
+        }
+
+        #forge-retry-btn {
+            margin-top: 8px;
+            background: transparent;
+            border: 1px solid rgba(212,175,55,0.3);
+            color: #d4af37;
+            padding: 6px 14px;
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            cursor: pointer;
+            align-self: flex-start;
+        }
+
+            #forge-retry-btn:hover {
+                background: rgba(212,175,55,0.08);
+            }
+    </style>
 </head>
 <body>
     <div id="app-shell">
@@ -25,6 +153,9 @@
             </nav>
             <div id="explorer-tree"></div>
         </aside>
+
+        <!-- Drag handle: sidebar ↔ center -->
+        <div class="panel-resizer" id="resizer-left" title="Drag to resize"></div>
 
         <main id="center-panel">
             <div id="editor-container" class="center-view active"></div>
@@ -95,8 +226,7 @@
                     <div class="settings-label">APPLICATION</div>
                     <div class="settings-row">
                         <span>Status</span>
-                        <span id="connection-status-display"
-                              class="settings-value">Disconnected</span>
+                        <span id="connection-status-display" class="settings-value">Disconnected</span>
                     </div>
                     <button id="settings-logout-btn" class="settings-save" style="margin-bottom:12px">SIGN OUT</button>
                     <button id="settings-check-updates-btn" class="settings-save" style="margin-bottom:12px">CHECK FOR UPDATES</button>
@@ -132,6 +262,9 @@
             </div>
         </main>
 
+        <!-- Drag handle: center ↔ chat -->
+        <div class="panel-resizer" id="resizer-right" title="Drag to resize"></div>
+
         <aside id="chat-panel">
             <header class="chat-header">
                 <div class="chat-brand">
@@ -144,10 +277,10 @@
             <section id="chat-messages"></section>
 
             <div id="chat-controls">
-                <input id="chat-file-input" type="file" multiple style="display:none" accept=".pdf,.doc,.docx,.odt,.rtf,.txt,.md,.csv,.json,.xml,.html,.htm,.xls,.xlsx,.pptx,.ppt,.yaml,.yml,.ts,.tsx,.js,.jsx,.css,.log,.sh,.py,.rb,.go,.rs,.java,.c,.h,.cpp,.hpp,.png,.jpg,.jpeg,.gif,.webp,.svg,*/*" />
+                <input id="chat-file-input" type="file" multiple style="display:none"
+                       accept=".pdf,.doc,.docx,.odt,.rtf,.txt,.md,.csv,.json,.xml,.html,.htm,.xls,.xlsx,.pptx,.ppt,.yaml,.yml,.ts,.tsx,.js,.jsx,.css,.log,.sh,.py,.rb,.go,.rs,.java,.c,.h,.cpp,.hpp,.png,.jpg,.jpeg,.gif,.webp,.svg,*/*" />
                 <div id="chat-pending-attachments" aria-label="Pending attachments" style="display:none"></div>
-                <textarea id="chat-input"
-                          placeholder="Ask SKIA anything..."></textarea>
+                <textarea id="chat-input" placeholder="Ask SKIA anything..."></textarea>
                 <div class="chat-buttons">
                     <button id="chat-clear-btn">CLEAR</button>
                     <button id="chat-cancel-btn">CANCEL</button>
@@ -167,5 +300,72 @@
     </footer>
 
     <script src="bundle.js"></script>
+
+    <script>
+        // ── Panel resize logic ────────────────────────────────────────────────
+        // Runs after bundle.js so DOM is ready. Pure vanilla JS — no deps needed.
+        (function () {
+            function initResizer(resizerId, leftElId, rightElId, storageKey, which) {
+                const resizer = document.getElementById(resizerId);
+                const leftEl = document.getElementById(leftElId);
+                const rightEl = document.getElementById(rightElId);
+                if (!resizer || !leftEl || !rightEl) return;
+
+                // Restore saved width
+                const saved = localStorage.getItem(storageKey);
+                if (saved) {
+                    if (which === 'left') leftEl.style.width = saved + 'px';
+                    else rightEl.style.width = saved + 'px';
+                }
+
+                let dragging = false;
+                let startX = 0;
+                let startW = 0;
+
+                resizer.addEventListener('mousedown', function (e) {
+                    dragging = true;
+                    startX = e.clientX;
+                    startW = which === 'left'
+                        ? leftEl.getBoundingClientRect().width
+                        : rightEl.getBoundingClientRect().width;
+                    resizer.classList.add('is-dragging');
+                    document.body.style.cursor = 'col-resize';
+                    document.body.style.userSelect = 'none';
+                    e.preventDefault();
+                });
+
+                document.addEventListener('mousemove', function (e) {
+                    if (!dragging) return;
+                    const delta = e.clientX - startX;
+                    if (which === 'left') {
+                        const minW = parseInt(leftEl.style.minWidth || '120', 10);
+                        const maxW = parseInt(leftEl.style.maxWidth || '600', 10);
+                        const newW = Math.min(maxW, Math.max(minW, startW + delta));
+                        leftEl.style.width = newW + 'px';
+                        localStorage.setItem(storageKey, newW);
+                    } else {
+                        const minW = parseInt(rightEl.style.minWidth || '200', 10);
+                        const maxW = parseInt(rightEl.style.maxWidth || '700', 10);
+                        const newW = Math.min(maxW, Math.max(minW, startW - delta));
+                        rightEl.style.width = newW + 'px';
+                        localStorage.setItem(storageKey, newW);
+                    }
+                });
+
+                document.addEventListener('mouseup', function () {
+                    if (!dragging) return;
+                    dragging = false;
+                    resizer.classList.remove('is-dragging');
+                    document.body.style.cursor = '';
+                    document.body.style.userSelect = '';
+                });
+            }
+
+            // Left resizer controls sidebar width
+            initResizer('resizer-left', 'sidebar', 'center-panel', 'skia_sidebar_w', 'left');
+            // Right resizer controls chat panel width
+            initResizer('resizer-right', 'center-panel', 'chat-panel', 'skia_chatpanel_w', 'right');
+        })();
+    </script>
 </body>
 </html>

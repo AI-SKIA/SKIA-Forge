@@ -41,6 +41,18 @@ if (process.platform === "win32") {
 let forgeProcess: ChildProcessWithoutNullStreams | null = null;
 let periodicUpdateTimer: NodeJS.Timeout | null = null;
 
+// ─── PROJECT ROOT ────────────────────────────────────────────────────────────
+// Tracks whichever folder the user has opened. Every terminal command and
+// skia:runCommand call resolves its cwd relative to this — never a hardcoded path.
+let currentProjectRoot: string | undefined;
+
+const broadcastProjectRoot = (root: string): void => {
+    BrowserWindow.getAllWindows().forEach((win) => {
+        win.webContents.send("skia:projectRootChanged", root);
+    });
+};
+// ─────────────────────────────────────────────────────────────────────────────
+
 const FORGE_RELEASE_REPO = (process.env.SKIA_FORGE_RELEASE_REPO || "AI-SKIA/SKIA-Forge").trim();
 
 const normalizeSemver = (version: string): string => version.trim().replace(/^v/i, "");
@@ -828,7 +840,11 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
             label: "Open Terminal",
             accelerator: "CmdOrCtrl+`",
             click: () => {
-                mainWindow?.webContents.send("open-terminal");
+                // FIXED: pass the current project root so the renderer opens
+                // the terminal in the right directory.
+                mainWindow?.webContents.send("open-terminal", {
+                    cwd: currentProjectRoot ?? app.getPath("home")
+                });
             }
         })
     );
@@ -1067,11 +1083,14 @@ ipcMain.handle("skia:getConfig", (): SkiaConfig => {
     };
 });
 
+// FIXED: now also sets currentProjectRoot and broadcasts to SKIA brain
 ipcMain.handle("skia:openFolder", async (): Promise<string | null> => {
-    const result = await dialog.showOpenDialog({
-        properties: ["openDirectory"]
-    });
-    return result.canceled ? null : result.filePaths[0] ?? null;
+    const result = await dialog.showOpenDialog({ properties: ["openDirectory"] });
+    if (result.canceled || !result.filePaths[0]) return null;
+    const chosen = result.filePaths[0];
+    currentProjectRoot = chosen;
+    broadcastProjectRoot(chosen);
+    return chosen;
 });
 
 ipcMain.handle("skia:openFile", async (): Promise<string | null> => {
@@ -1157,22 +1176,50 @@ ipcMain.on("skia:setAutoSave", (_event, enabled: boolean) => {
     autoSaveEnabled = enabled;
 });
 
-ipcMain.handle("skia:runCommand", async (_event, cmd: string, cwd?: string): Promise<{ stdout: string; stderr: string }> => {
+// FIXED: cwd now resolves from currentProjectRoot (the folder the user opened),
+// never a hardcoded path. Also broadcasts every result to SKIA's brain.
+ipcMain.handle("skia:runCommand", async (_event, cmd: string, cwd?: string): Promise<{ stdout: string; stderr: string; exitCode: number }> => {
+    const resolvedCwd = cwd ?? currentProjectRoot ?? app.getPath("home");
     return new Promise((resolve) => {
         exec(
             cmd,
             {
-                cwd: cwd || "C:\\SKIA-Forge",
-                shell: "powershell.exe"
+                cwd: resolvedCwd,
+                shell: "powershell.exe",
+                maxBuffer: 4 * 1024 * 1024
             },
             (err: ExecException | null, stdout: string, stderr: string) => {
-                resolve({
+                const result = {
                     stdout: stdout || "",
-                    stderr: stderr || err?.message || ""
+                    stderr: stderr || err?.message || "",
+                    exitCode: err?.code ?? 0
+                };
+                // SKIA brain observability: every command result is forwarded
+                BrowserWindow.getAllWindows().forEach((win) => {
+                    win.webContents.send("skia:commandResult", {
+                        cmd,
+                        cwd: resolvedCwd,
+                        ...result
+                    });
                 });
+                resolve(result);
             }
         );
     });
+});
+
+// Lets the renderer (or SKIA) explicitly set the project root
+// e.g. when user drags a folder onto the window or types a path
+ipcMain.handle("skia:setProjectRoot", async (_event, folderPath: string): Promise<void> => {
+    if (typeof folderPath === "string" && folderPath.length > 0) {
+        currentProjectRoot = folderPath;
+        broadcastProjectRoot(folderPath);
+    }
+});
+
+// Lets SKIA query the current project root at any time
+ipcMain.handle("skia:getProjectRoot", (): string | null => {
+    return currentProjectRoot ?? null;
 });
 
 ipcMain.on("open-docs", () => {
@@ -1250,7 +1297,7 @@ ipcMain.handle("skia:downloadAndInstall", async (event, downloadUrl: unknown): P
 app.whenReady().then(() => {
     createWindow();
     if (process.platform === "win32" && app.isPackaged) {
-        exec("ie4uinit.exe -show", () => {});
+        exec("ie4uinit.exe -show", () => { });
     }
     periodicUpdateTimer = setInterval(() => {
         void runUpdateCheck().then((result) => {
