@@ -1,54 +1,91 @@
-import { z } from "zod";
-
 /**
- * D1-09: tool execution is always scoped to a project root; executor wiring is separate.
+ * SKIA-Forge — src/types.ts
+ * Drop this in at: C:\SKIA-Forge\src\types.ts
  */
-export type ToolContext = {
-    projectRoot: string;
 
-    /**
-     * Optional event emitter used by tools like runTerminalTool.
-     * Added to support Claude’s updated runTerminalTool.ts.
-     */
-    emitEvent?: (event: string, payload?: any) => void;
+// ─── Audit ────────────────────────────────────────────────────────────────────
+
+/** A single entry written to `.skia/agent-log.json`. */
+export type AgentAuditLogRecord = {
+    timestamp: string;
+    action: string;
+    parameters?: Record<string, unknown>;
+    result: "success" | "failure" | "blocked" | "pending";
+    details?: string;
 };
 
-export type ToolSuccess<T = unknown> = {
-    success: true;
-    data: T;
-    /**
-     * Opaque handle for mutating tools; passed to `rollback`.
-     * Read-only tools omit this.
-     */
-    rollbackHandle?: unknown;
+/** Forge audit v1 metadata block embedded inside `parameters`. */
+export type ForgeAuditV1 = {
+    v: 1;
+    source: string;
 };
 
-export type ToolFailure = {
-    success: false;
-    error: string;
-    code?: string;
+// ─── Provider / routing ───────────────────────────────────────────────────────
+
+/** Health state of a single AI provider. */
+export type ProviderHealth = {
+    provider: string;
+    healthy: boolean;
+    latencyMs?: number;
+    lastChecked: string;
+    error?: string;
 };
 
-export type ToolExecuteResult<T = unknown> = ToolSuccess<T> | ToolFailure;
+// ─── Server / status ──────────────────────────────────────────────────────────
 
-/**
- * Pluggable tool: validate → execute → (optional) rollback.
- */
-export type ForgeTool = {
-    name: string;
-    description: string;
-    /** Exposed for contracts / UIs. */
-    inputSchema: z.ZodType<unknown>;
-    validate: (raw: unknown) => { ok: true; data: unknown } | { ok: false; error: string };
-    execute: (ctx: ToolContext, input: unknown) => Promise<ToolExecuteResult>;
-    /**
-     * Restore pre-mutation state. No-op for read-only tools; safe to call with undefined.
-     */
-    rollback: (ctx: ToolContext, rollbackHandle: unknown) => Promise<ToolExecuteResult<undefined>>;
+/** Overall SKIA backend status — returned by getStatus() and broadcast over WebSocket. */
+export type SkiaStatus = {
+    status: "sovereign" | "degraded" | "offline" | "lockdown";
+    version: string;
+    uptime: number;
+    providers: ProviderHealth[];
+    /** ISO timestamp of last status evaluation. */
+    evaluatedAt: string;
 };
 
-export function isToolSuccess(
-    r: ToolExecuteResult
-): r is ToolSuccess {
-    return r.success === true;
-}
+// ─── Inline completion WebSocket ──────────────────────────────────────────────
+
+/** Union of all messages sent over the /inline-completion WebSocket. */
+export type InlineCompletionMessage =
+    | { type: "status"; status: SkiaStatus }
+    | { type: "completion"; text: string; provider: string }
+    | { type: "error"; message: string };
+
+// ─── Context / search engine ──────────────────────────────────────────────────
+
+/** A single file entry in the project manifest. */
+export type FileManifestEntry = {
+    path: string;
+    language: string;
+    size: number;
+    modifiedAt: string;
+};
+
+/** A windowed chunk of file content stored in the project index. */
+export type IndexChunk = {
+    id: string;
+    filePath: string;
+    language: string;
+    symbolName: string;
+    symbolType: "function" | "class" | "module" | "unknown";
+    startLine: number;
+    endLine: number;
+    tokenCount: number;
+    content: string;
+    checksum: string;
+    updatedAt: string;
+};
+
+/** The full persisted project index (written to .skia/index.json). */
+export type ProjectIndex = {
+    generatedAt: string;
+    rootPath: string;
+    files: FileManifestEntry[];
+    chunks: IndexChunk[];
+};
+
+/** A ranked search result from ContextEngine.search(). */
+export type SearchResult = {
+    chunk: IndexChunk;
+    score: number;
+};
