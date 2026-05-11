@@ -1,19 +1,19 @@
-# SKIA-Forge Operator Manual
+# SKIA Forge Operator Manual
 
 ## Runtime Role
 
-SKIA-Forge operates as an orchestration/governance **HTTP service** that augments development workflows with policy-aware controls.
+SKIA Forge operates as an orchestration/governance **HTTP service** that augments development workflows with policy-aware controls.
 
 ## Ownership boundaries
 
 - Operate Forge as a control-plane service.
-- Do not treat Forge endpoints as replacements for `Skia-FULL` product runtime APIs.
+- Do not treat Forge endpoints as replacements for SKIA product runtime APIs.
 - Use `Skia-Status` for external/public incident communication.
 
 ## Deployment baseline
 
-- **Release:** Forge **`1.0.0`** (root `package.json`); desktop IDE **`skia-ide`** **`1.0.0`**.
-- **Public hostname:** `forge.skia.ca` in production (Northflank) [CONFIRM] — validate Domains mapping and TLS in your environment.
+- **Release:** Forge **`1.0.0`** (root `package.json`); desktop **SKIA Forge IDE** **`1.0.0`**.
+- **Public hostname:** `forge.skia.ca` in production (your hosting provider) [CONFIRM] — validate Domains mapping and TLS in your environment.
 - Build: `npm run build`
 - Start: `npm run dev` (development) or `node dist/server.js` after build (production shape)
 - Listen address: **`SKIA_PORT`** (default **4173**)
@@ -23,13 +23,13 @@ SKIA-Forge operates as an orchestration/governance **HTTP service** that augment
 
 ## Environment variables (primary)
 
-Values below are **representative** — see `src/server.ts` for the full set.
+Values below are **representative** — see the Forge server for the full set.
 
 | Variable | Purpose |
 |----------|---------|
 | `SKIA_PORT` | HTTP port (default `4173`). |
 | `SKIA_PROJECT_ROOT` | Override project root (defaults `cwd`). |
-| `SKIA_FULL_ENABLED` | Set `false` to disable SKIA-full adapter. |
+| `SKIA_FULL_ENABLED` | Set `false` to disable SKIA adapter integration. |
 | `SKIA_FULL_API_URL` | Upstream API base (default `https://api.skia.ca`). |
 | `SKIA_FULL_TIMEOUT_MS` | Request timeout (default `15000`). |
 | `SKIA_FULL_ALLOW_LOCAL_FALLBACK` | Allow local fallback paths when upstream unavailable. |

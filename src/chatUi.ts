@@ -4,7 +4,7 @@ export function renderChatHtml(_releaseBase = "https://skia.ca/download"): strin
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SKIA Forge | Web IDE</title>
+  <title>SKIA Forge | Intelligence Console</title>
   <style>
     body {
       margin: 0;
@@ -66,10 +66,10 @@ export function renderChatHtml(_releaseBase = "https://skia.ca/download"): strin
   <a class="ide-download-app" href="/api/app/download">Download App</a>
   <div class="root">
     <section class="panel">
-      <h2>SKIA Chat</h2>
+      <h2>SKIA Intelligence Console</h2>
       <div class="muted">Status: <span id="status">Loading...</span></div>
       <div id="messages"></div>
-      <textarea id="prompt" rows="6" placeholder="Ask SKIA..."></textarea>
+      <textarea id="prompt" rows="6" placeholder="Describe what you need SKIA to execute…"></textarea>
       <button id="send">Send</button>
     </section>
     <section class="panel">

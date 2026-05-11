@@ -1,8 +1,8 @@
-# SKIA-Forge Troubleshooting
+# SKIA Forge Troubleshooting
 
 ## Scope boundary
 
-Use this guide for Forge **service** and **integration** issues. Product-runtime feature failures may belong to `Skia-FULL`; public status publication issues belong to `Skia-Status`.
+Use this guide for Forge **service** and **integration** issues. Product-runtime feature failures may belong to SKIA; public status publication issues belong to `Skia-Status`.
 
 ## Build/Test Failures
 

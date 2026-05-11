@@ -1,8 +1,8 @@
-# SKIA-Forge Support
+# SKIA Forge Support
 
 ## Boundary reminder
 
-This support scope applies to Forge control-plane behavior (**release baseline `1.0.0`**). Route product-runtime incidents to `Skia-FULL` owners and public status publication tasks to `Skia-Status` operators.
+This support scope applies to Forge control-plane behavior (**release baseline `1.0.0`**). Route product-runtime incidents to SKIA runtime owners and public status publication tasks to `Skia-Status` operators.
 
 ## Support Scope
 
@@ -11,7 +11,7 @@ Support covers:
 - runtime startup and health issues
 - integration contract failures
 - governance and policy flow debugging
-- build/test pipeline breakages
+- workflow failures and integration issues
 
 ## Triage Information to Collect
 

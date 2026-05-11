@@ -1,10 +1,10 @@
-# SKIA-Forge Pricing and Packages
+# SKIA Forge Pricing and Packages
 
-This document defines a practical commercial packaging model for SKIA-Forge.
+This document defines a practical commercial packaging model for SKIA Forge.
 
 ## Product framing
 
-Package SKIA-Forge as governance/orchestration control plane value layered on top of `Skia-FULL` runtime delivery and complemented by `Skia-Status` transparency operations.
+Package SKIA Forge as governance/orchestration control plane value layered on top of SKIA runtime delivery and complemented by `Skia-Status` transparency operations.
 
 ## Package 1: Developer
 

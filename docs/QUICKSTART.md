@@ -1,8 +1,8 @@
-﻿# SKIA-Forge Quickstart (5 Minutes)
+﻿# SKIA Forge Quickstart (5 Minutes)
 
 ## Scope
 
-Bootstrap the Forge **control-plane** Node server (**`1.0.0`**). Customer-facing product setup lives in `Skia-FULL`; public status deployment in `Skia-Status`. Forge calls **`Skia-FULL`** APIs via **`SkiaFullAdapter`** (default **`https://api.skia.ca`**).
+Bootstrap the Forge **control-plane** Node server (**`1.0.0`**). Customer-facing product setup lives in SKIA; public status deployment in `Skia-Status`. Forge calls SKIA APIs via **`SkiaFullAdapter`** (default **`https://api.skia.ca`**).
 
 ## 1) Install dependencies
 
@@ -37,7 +37,7 @@ npm run test
 
 ## 5) First productive workflow
 
-1. Obtain a valid session or token for **`/api/forge/*`** (routes are **`requireAuth`**-protected in `src/server.ts`).
+1. Obtain a valid session or token for **`/api/forge/*`** (routes are **`requireAuth`**-protected in the Forge server).
 2. Send a request to a Forge orchestration surface (e.g. `POST /api/forge/orchestrate` or module endpoints — see `API_REFERENCE.md`).
 3. Review stage decisions and governance output.
 4. Apply remediation if blocked.

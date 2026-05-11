@@ -1,14 +1,14 @@
-﻿# SKIA-Forge API Reference
+﻿# SKIA Forge API Reference
 
 ## Scope
 
-This reference maps the HTTP API **as implemented in `src/server.ts`**. Product-facing web APIs for the main SKIA product live in `Skia-FULL`. Public status publication is `Skia-Status`.
+This reference maps the HTTP API **as implemented in the Forge server**. Product-facing web APIs for the main SKIA product live in SKIA. Public status publication is `Skia-Status`.
 
-The canonical route list is the server file; this document is the operator-friendly index.
+The canonical route list is the Forge server implementation; this document is the operator-friendly index.
 
 **Package version:** `1.0.0` (root `package.json`). **Default listen port:** `SKIA_PORT` (default `4173`).
 
-**Authentication:** All routes under **`/api/forge/*`** require **`requireAuth`** in `src/server.ts` (authenticated clients). Auth proxy routes **`/api/auth/*`** forward to **`SKIA_BACKEND_URL`** (default `https://api.skia.ca`). Integration and some diagnostic routes may be public by design — verify `src/server.ts` before exposing Forge to untrusted networks.
+**Authentication:** All routes under **`/api/forge/*`** require **`requireAuth`** in the Forge server (authenticated clients). Auth proxy routes **`/api/auth/*`** forward to **`SKIA_BACKEND_URL`** (default `https://api.skia.ca`). Integration and some diagnostic routes may be public by design — verify the Forge server before exposing Forge to untrusted networks.
 
 ---
 
@@ -18,12 +18,12 @@ These routes serve HTML, redirects, or static assets for the Forge site and IDE 
 
 | Method | Path | Notes |
 |--------|------|--------|
-| GET | `/` | Redirects to **`https://forge.skia.ca/platform-downloads`** (canonical download UI: `Skia-FULL` `frontend/pages/platform-downloads.tsx`). |
+| GET | `/` | Redirects to **`https://forge.skia.ca/platform-downloads`** (canonical download UI on the SKIA platform). |
 | GET | `/forge` | Same redirect (legacy path; formerly served HTML from removed `src/downloadUi.ts`). |
 | GET | `/download` | Same redirect. |
 | GET | `/forge/platform` | Forge platform overview (`renderForgePlatformHtml`). |
 | GET | `/chat` | Lightweight chat shell (`renderChatHtml`). |
-| GET | `/forge/app`, `/forge/app/` | SKIA IDE web shell (`skia-ide/dist/renderer/index.html` + browser shim). Returns `503` if IDE assets are not built. |
+| GET | `/forge/app`, `/forge/app/` | SKIA Forge IDE web shell (renderer bundle + browser shim). Returns `503` if IDE assets are not built. |
 | GET | `/resources`, `/security`, `/contact` | Static pages from `public/*.html`. |
 | GET | `/docs/*` | Branded HTML under `public/docs/` first, then raw markdown under repo `docs/`. |
 | GET | `/favicon.png`, `/favicon.ico`, `/og/skia-forge-preview.svg` | Icons / OG image. |
@@ -43,7 +43,7 @@ These routes serve HTML, redirects, or static assets for the Forge site and IDE 
 | GET | `/api/app/download` | User-agent pick → redirect to `/api/app/download/:platform`. |
 | GET | `/api/app/download/:platform` | Redirect to GitHub release asset (`windows`, `mac-intel`, `mac-arm`, `linux-appimage`). |
 
-Platform installer filenames expected by the download UI are defined in `Skia-FULL` `frontend/lib/downloadUi.ts` (`Skia-Forge-*`).
+Platform installer filenames expected by the download UI are defined in the SKIA platform (`Skia-Forge-*`).
 
 ---
 

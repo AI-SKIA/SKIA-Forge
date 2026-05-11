@@ -4,7 +4,7 @@ export function renderForgePlatformHtml(): string {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SKIA Forge | Web IDE</title>
+  <title>SKIA Forge | Execution Platform</title>
   <style>
     :root {
       --bg: #080400;
@@ -240,8 +240,8 @@ export function renderForgePlatformHtml(): string {
     </aside>
     <main class="main">
       <section class="hero">
-        <h1>Forge Web IDE</h1>
-        <p>Choose a module, write your prompt, and run it. Output appears below.</p>
+        <h1>SKIA Forge</h1>
+        <p>Select an execution mode and submit your task — SKIA returns governed, structured output.</p>
       </section>
       <section class="composer">
         <div class="label">Prompt</div>
@@ -280,10 +280,7 @@ export function renderForgePlatformHtml(): string {
           fetch("/integration/skia-full").then((r) => r.json()),
           fetch("/api/forge/mode").then((r) => r.json())
         ]);
-        integrationStatus.textContent =
-          "Integration: " + (integrationData.enabled ? "enabled" : "disabled") +
-          " | brainOnly=" + String(integrationData.brainOnly) +
-          " | mode=" + String(modeData.mode || "adaptive");
+        integrationStatus.textContent = integrationData.enabled ? "SKIA connected" : "SKIA integration unavailable";
       } catch {
         integrationStatus.textContent = "Integration: unavailable";
       }

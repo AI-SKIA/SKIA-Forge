@@ -1,17 +1,17 @@
-﻿# SKIA-Forge User Guide
+﻿# SKIA Forge User Guide
 
 ## What this guide covers
 
-Using the Forge **control-plane HTTP service**: orchestration APIs, governance flows, health checks, and how that differs from the **SKIA Forge IDE** (desktop) and **Skia-FULL** product runtime.
+Using the Forge **control-plane HTTP service**: orchestration APIs, governance flows, health checks, and how that differs from the **SKIA Forge IDE** (desktop) and **SKIA** product runtime.
 
 ## Runtime roles
 
 | Surface | Role |
 |---------|------|
 | **Forge server** (`npm run dev` / production Node process) | Express control plane: `/api/forge/*` (**authenticated**), `/integration/skia-full/*`, governance, context engine, downloads metadata. Listens on `SKIA_PORT` (default **4173**). Production: **`forge.skia.ca`** [CONFIRM]. |
-| **SKIA Forge IDE** (`skia-ide/`, Electron, **`1.0.0`**) | Desktop editor; sign-in and registration happen **in the app**, not on static Forge marketing pages. Default backend **`https://api.skia.ca`**; chat pipeline **`https://skia.ca/api/skia/chat`** (see `skia-ide/src/renderer/skia/skiaConfig.ts`). |
-| **Forge web IDE** | `GET /forge/app` serves the built IDE bundle with a browser shim (folder picker, limited “desktop” actions). Build `skia-ide` first. |
-| **Skia-FULL** | Primary customer product runtime and Next.js surfaces — not this repo. |
+| **SKIA Forge IDE** (Electron, **`1.0.0`**) | Desktop editor; sign-in and registration happen **in the app**, not on static Forge marketing pages. Default backend **`https://api.skia.ca`**; chat pipeline **`https://skia.ca/api/skia/chat`** (configured in the IDE). |
+| **Forge web IDE** | `GET /forge/app` serves the built IDE bundle with a browser shim (folder picker, limited “desktop” actions). Build the SKIA Forge IDE bundle first. |
+| **SKIA** | Primary customer product runtime and Next.js surfaces — not this repo. |
 
 ## Quick validation (operator)
 
@@ -44,5 +44,5 @@ Using the Forge **control-plane HTTP service**: orchestration APIs, governance f
 
 ## Getting the desktop IDE
 
-- Download installers via **`GET /api/app/download`** or **`GET /api/app/download/:platform`**, or open the canonical page **`https://forge.skia.ca/platform-downloads`** (`Skia-FULL` `frontend/pages/platform-downloads.tsx`) in the browser.
-- Release artifacts are published on GitHub (**`AI-SKIA/SKIA-Forge`** by default); filenames follow `skia-ide` electron-builder rules (e.g. `SKIA-FORGE-*`).
+- Download installers via **`GET /api/app/download`** or **`GET /api/app/download/:platform`**, or open the canonical page **`https://forge.skia.ca/platform-downloads`** (the SKIA platform) in the browser.
+- Release artifacts are published on GitHub (**`AI-SKIA/SKIA-Forge`** by default); filenames follow SKIA Forge IDE electron-builder rules (e.g. `SKIA-FORGE-*`).
