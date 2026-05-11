@@ -22,26 +22,22 @@ export type ForgeAuditV1 = {
 
 // ─── Provider / routing ───────────────────────────────────────────────────────
 
-/** Health state of a single AI provider. */
+/** Health state of a single AI provider (matches `ProviderRouter` + `/providers/*` payloads). */
 export type ProviderHealth = {
-    provider: string;
+    name: "gemini" | "skia";
     healthy: boolean;
-    latencyMs?: number;
-    lastChecked: string;
-    error?: string;
+    latencyMs: number;
+    checkedAt: string;
+    failures: number;
 };
 
 // ─── Server / status ──────────────────────────────────────────────────────────
 
-/** Overall SKIA backend status — returned by getStatus() and broadcast over WebSocket. */
-export type SkiaStatus = {
-    status: "sovereign" | "degraded" | "offline" | "lockdown";
-    version: string;
-    uptime: number;
-    providers: ProviderHealth[];
-    /** ISO timestamp of last status evaluation. */
-    evaluatedAt: string;
-};
+/**
+ * Routing / readiness posture for SKIA-Forge — returned by `ProviderRouter.getStatus()`,
+ * `/ready`, `/providers/status`, and inline-completion `type: "status"` messages.
+ */
+export type SkiaStatus = "Sovereign" | "Adaptive" | "Indexing";
 
 // ─── Inline completion WebSocket ──────────────────────────────────────────────
 

@@ -5,6 +5,8 @@ import { z } from "zod";
  */
 export type ToolContext = {
   projectRoot: string;
+  /** Optional hook for session/telemetry wiring; most callers omit this. */
+  emitEvent?: (event: string, payload: Record<string, unknown>) => void;
 };
 
 export type ToolSuccess<T = unknown> = {

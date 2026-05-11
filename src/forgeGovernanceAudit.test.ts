@@ -12,6 +12,7 @@ test("buildGovernanceAuditRecord includes governance metadata", () => {
     details: "blocked by policy"
   });
   assert.equal(out.action, "forge.module.decision");
+  assert.ok(out.parameters);
   assert.equal(out.parameters.mode, "strict");
   assert.equal(out.parameters.module, "production");
   assert.equal(out.result, "failure");
