@@ -1,60 +1,54 @@
-export type IndexChunk = {
-  id: string;
-  filePath: string;
-  language: string;
-  symbolName: string;
-  symbolType: "function" | "class" | "module" | "unknown";
-  startLine: number;
-  endLine: number;
-  tokenCount: number;
-  content: string;
-  checksum: string;
-  updatedAt: string;
+import { z } from "zod";
+
+/**
+ * D1-09: tool execution is always scoped to a project root; executor wiring is separate.
+ */
+export type ToolContext = {
+    projectRoot: string;
+
+    /**
+     * Optional event emitter used by tools like runTerminalTool.
+     * Added to support Claude’s updated runTerminalTool.ts.
+     */
+    emitEvent?: (event: string, payload?: any) => void;
 };
 
-export type FileManifestEntry = {
-  path: string;
-  language: string;
-  size: number;
-  modifiedAt: string;
+export type ToolSuccess<T = unknown> = {
+    success: true;
+    data: T;
+    /**
+     * Opaque handle for mutating tools; passed to `rollback`.
+     * Read-only tools omit this.
+     */
+    rollbackHandle?: unknown;
 };
 
-export type ProjectIndex = {
-  generatedAt: string;
-  rootPath: string;
-  files: FileManifestEntry[];
-  chunks: IndexChunk[];
+export type ToolFailure = {
+    success: false;
+    error: string;
+    code?: string;
 };
 
-export type SearchResult = {
-  chunk: IndexChunk;
-  score: number;
+export type ToolExecuteResult<T = unknown> = ToolSuccess<T> | ToolFailure;
+
+/**
+ * Pluggable tool: validate → execute → (optional) rollback.
+ */
+export type ForgeTool = {
+    name: string;
+    description: string;
+    /** Exposed for contracts / UIs. */
+    inputSchema: z.ZodType<unknown>;
+    validate: (raw: unknown) => { ok: true; data: unknown } | { ok: false; error: string };
+    execute: (ctx: ToolContext, input: unknown) => Promise<ToolExecuteResult>;
+    /**
+     * Restore pre-mutation state. No-op for read-only tools; safe to call with undefined.
+     */
+    rollback: (ctx: ToolContext, rollbackHandle: unknown) => Promise<ToolExecuteResult<undefined>>;
 };
 
-export type ForgeAuditV1 = {
-  v: 1;
-  source: string;
-};
-
-export type AgentAuditLogRecord = {
-  timestamp: string;
-  action: string;
-  parameters: Record<string, unknown>;
-  result: "success" | "failure";
-  details?: string;
-};
-
-export type ProviderHealth = {
-  name: string;
-  healthy: boolean;
-  latencyMs: number;
-  checkedAt: string;
-  failures: number;
-};
-
-export type SkiaStatus = "Sovereign" | "Adaptive" | "Autonomous" | "Indexing";
-
-export type InlineCompletionMessage =
-  | { type: "status"; status: SkiaStatus }
-  | { type: "completion"; text: string; provider: string }
-  | { type: "error"; message: string };
+export function isToolSuccess(
+    r: ToolExecuteResult
+): r is ToolSuccess {
+    return r.success === true;
+}
