@@ -22,6 +22,8 @@ declare global {
       readFileText: (filePath: string) => Promise<string>;
       readDirectoryTree: (folderPath: string) => Promise<SkiaDirectoryNode[]>;
       onMenuAction: (channel: string, listener: () => void) => () => void;
+      /** Run → Open Terminal: receives `{ cwd }` from main (opened project root). */
+      onOpenTerminal: (listener: (payload: { cwd: string }) => void) => () => void;
       onBackendLog: (listener: (payload: string) => void) => () => void;
       onStatusUpdate: (listener: (status: string) => void) => () => void;
       onUpdateStatus: (
@@ -33,7 +35,19 @@ declare global {
           message?: string;
         }) => void
       ) => () => void;
-      runCommand: (cmd: string, cwd?: string) => Promise<{ stdout: string; stderr: string }>;
+      runCommand: (cmd: string, cwd?: string) => Promise<{ stdout: string; stderr: string; exitCode: number }>;
+
+      getProjectRoot: () => Promise<string | null>;
+      setProjectRoot: (folderPath: string) => Promise<void>;
+      onProjectRootChanged: (listener: (root: string) => void) => () => void;
+
+      ptyCreate: (cwd?: string) => Promise<{ id: string; cwd: string; shell: string }>;
+      ptyWrite: (id: string, data: string) => void;
+      ptyResize: (id: string, cols: number, rows: number) => void;
+      ptyKill: (id: string) => Promise<void>;
+      onPtyData: (listener: (payload: { id: string; data: string }) => void) => () => void;
+      onPtyExit: (listener: (payload: { id: string; exitCode: number; signal?: number }) => void) => () => void;
+
       checkForUpdates: () => Promise<{
         status: "update-available" | "up-to-date" | "error";
         latestVersion?: string;

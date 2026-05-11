@@ -6,6 +6,7 @@
   "scripts": {
     "start": "electron dist/main/main.js",
     "build": "tsc -p tsconfig.main.json && webpack --config webpack.config.js",
+    "rebuild:native": "electron-rebuild -f -w node-pty",
     "dev": "concurrently \"tsc -p tsconfig.main.json --watch\" \"webpack --config webpack.config.js --watch\" \"wait-on dist/main/main.js && electron dist/main/main.js\"",
     "dist:win": "npm run build && electron-builder --win --publish never",
     "dist:mac": "npm run build && electron-builder --mac --publish never",
@@ -31,7 +32,8 @@
     "asarUnpack": [
       "assets/skia-forge-app.ico",
       "assets/skia-forge-app.png",
-      "assets/skia-forge-app.icns"
+      "assets/skia-forge-app.icns",
+      "**/node_modules/node-pty/**/*"
     ],
     "extraResources": [
       {
@@ -46,7 +48,9 @@
       "target": [
         {
           "target": "nsis",
-          "arch": [ "x64" ]
+          "arch": [
+            "x64"
+          ]
         }
       ],
       "icon": "assets/skia-forge-app.ico"
@@ -66,11 +70,15 @@
       "target": [
         {
           "target": "dmg",
-          "arch": [ "x64" ]
+          "arch": [
+            "x64"
+          ]
         },
         {
           "target": "dmg",
-          "arch": [ "arm64" ]
+          "arch": [
+            "arm64"
+          ]
         }
       ],
       "icon": "assets/skia-forge-app.icns",
@@ -81,7 +89,9 @@
       "target": [
         {
           "target": "AppImage",
-          "arch": [ "x64" ]
+          "arch": [
+            "x64"
+          ]
         }
       ],
       "icon": "assets/skia-forge-app.png",
@@ -96,9 +106,13 @@
     }
   },
   "dependencies": {
-    "monaco-editor": "^0.47.0"
+    "@xterm/addon-fit": "^0.11.0",
+    "@xterm/xterm": "^6.0.0",
+    "monaco-editor": "^0.47.0",
+    "node-pty": "^1.0.0"
   },
   "devDependencies": {
+    "@electron/rebuild": "^3.7.2",
     "@types/node": "^20.0.0",
     "concurrently": "^8.2.2",
     "copy-webpack-plugin": "^12.0.2",

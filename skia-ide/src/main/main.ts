@@ -1,4 +1,5 @@
 import { app, BrowserWindow, dialog, ipcMain, Menu, MenuItem, shell, session, safeStorage } from "electron";
+import { killAllPtySessions, registerPtyIpc } from "./ptyBridge";
 import { exec, spawn, type ChildProcessWithoutNullStreams, type ExecException } from "node:child_process";
 import { createWriteStream, existsSync, promises as fs } from "node:fs";
 import https from "node:https";
@@ -1295,6 +1296,7 @@ ipcMain.handle("skia:downloadAndInstall", async (event, downloadUrl: unknown): P
 });
 
 app.whenReady().then(() => {
+    registerPtyIpc(() => currentProjectRoot ?? app.getPath("home"));
     createWindow();
     if (process.platform === "win32" && app.isPackaged) {
         exec("ie4uinit.exe -show", () => { });
@@ -1320,4 +1322,5 @@ app.on("before-quit", () => {
         clearInterval(periodicUpdateTimer);
         periodicUpdateTimer = null;
     }
+    killAllPtySessions();
 });

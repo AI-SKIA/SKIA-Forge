@@ -1,5 +1,6 @@
 import { getEditor } from "../editor/monacoSetup";
 import { getActiveFile, getWorkspacePath } from "./skiaSessionStore";
+import { getTerminalContextForSkia } from "./skiaTerminalCapture";
 
 /** Keep payloads bounded — upstream chat routes enforce their own limits too. */
 const MAX_BUFFER_CHARS = 120_000;
@@ -204,12 +205,15 @@ export async function buildIdeBrainEnvelope(userMessage: string): Promise<string
         ? `${workspacePack}\n`
         : "### WORKSPACE_FILES_SNAPSHOT\n(no indexed text files in budget, or workspace not opened)\n\n";
 
+    const terminalBlock = getTerminalContextForSkia();
+
     return (
         "### SKIA_FORGE_IDE_LIVE_CONTEXT\n" +
         "You are assisting inside the SKIA Forge desktop IDE. Treat paths and file contents below as live workspace truth for coding, refactors, debugging, and reasoning.\n\n" +
         `workspace_root: ${workspace}\n` +
         `active_file_path: ${activeFile}\n\n` +
         snapshotBlock +
+        terminalBlock +
         langLine +
         selBlock +
         bufBlock +

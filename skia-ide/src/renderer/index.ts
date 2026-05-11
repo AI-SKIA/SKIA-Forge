@@ -8,6 +8,11 @@ import { initializeOnboarding } from "./skia/skiaOnboarding";
 import { initializeAuthPanel, isAuthenticated, logout } from "./skia/skiaAuthPanel";
 import { setActiveFile, setWorkspacePath } from "./skia/skiaSessionStore";
 import {
+    appendSystemTerminalLine,
+    ensureTerminalPanelVisible,
+    initSkiaTerminalPanel
+} from "./skia/skiaTerminalPanel";
+import {
     getContext,
     getMode,
     getGovernance,
@@ -27,9 +32,6 @@ let navItems: HTMLElement[] = [];
 let activeFilePath = "";
 let activeFolderPath = "";
 let menuListenersRegistered = false;
-let terminalOutputEl: HTMLDivElement | null = null;
-/** Tracked cwd for single-command terminal exec (PowerShell); synced after each command via (Get-Location).Path */
-let terminalCwd = "C:\\SKIA-Forge";
 let autoSaveEnabled = false;
 
 type UpdateInstallBridge = {
@@ -308,17 +310,6 @@ const loadSettings = (): void => {
     });
 };
 
-const ensureTerminalPanelVisible = (): void => {
-    const terminalPanel = document.getElementById("terminal-panel") as HTMLDivElement | null;
-    const terminalInput = document.getElementById("terminal-input") as HTMLInputElement | null;
-    if (!terminalPanel) return;
-    terminalPanel.style.display = "flex";
-    if (!terminalOutputEl) {
-        terminalOutputEl = document.getElementById("terminal-output") as HTMLDivElement | null;
-    }
-    terminalInput?.focus();
-};
-
 const setView = (view: string): void => {
     navItems.forEach((item) => {
         item.classList.toggle("is-active", item.dataset.view === view);
@@ -353,6 +344,10 @@ const initializeSidebarNavigation = (): void => {
         item.addEventListener("click", () => {
             setView(view);
         });
+    });
+
+    document.getElementById("nav-terminal")?.addEventListener("click", () => {
+        void ensureTerminalPanelVisible();
     });
 
     setView("explorer");
@@ -440,46 +435,6 @@ const focusSearchInput = (): void => {
 const focusAgentInput = (): void => {
     const input = document.getElementById("agent-task-input") as HTMLInputElement | null;
     input?.focus();
-};
-
-const appendTerminalLog = (line: string): void => {
-    ensureTerminalPanelVisible();
-    if (!terminalOutputEl) return;
-    terminalOutputEl.textContent += `${line}\n`;
-    terminalOutputEl.scrollTop = terminalOutputEl.scrollHeight;
-};
-
-const initializeTerminalHandlers = (): void => {
-    const terminalInput = document.getElementById("terminal-input") as HTMLInputElement | null;
-    const terminalClose = document.getElementById("terminal-close") as HTMLButtonElement | null;
-    const terminalPanel = document.getElementById("terminal-panel") as HTMLDivElement | null;
-
-    terminalClose?.addEventListener("click", () => {
-        if (terminalPanel) terminalPanel.style.display = "none";
-    });
-    terminalInput?.addEventListener("keydown", async (event) => {
-        if (event.key !== "Enter") return;
-        event.preventDefault();
-        const command = terminalInput.value.trim();
-        if (!command) return;
-        appendTerminalLog(`❯ ${command}`);
-        terminalInput.value = "";
-        const cwd = terminalCwd;
-        // One exec = one shell; chain (Get-Location).Path so cwd reflects cd/set-location in this invocation.
-        const combined = `${command}; (Get-Location).Path`;
-        const result = await window.skiaElectron.runCommand(combined, cwd);
-        if (result.stdout) appendTerminalLog(result.stdout.trimEnd());
-        if (result.stderr) appendTerminalLog(result.stderr.trimEnd());
-        const raw = (result.stdout || "").trimEnd();
-        const lines = raw.split(/\r?\n/).filter((l) => l.length > 0);
-        for (let i = lines.length - 1; i >= 0; i -= 1) {
-            const candidate = lines[i].trim();
-            if (/^([A-Za-z]:[\\/]|\\\\)/.test(candidate)) {
-                terminalCwd = candidate;
-                break;
-            }
-        }
-    });
 };
 
 const openFileInEditor = async (filePath: string): Promise<void> => {
@@ -683,7 +638,9 @@ const registerMenuIpcHandlers = (): void => {
     });
     window.skiaElectron.onMenuAction("close-editor", closeEditorState);
     window.skiaElectron.onMenuAction("close-folder", closeFolderState);
-    window.skiaElectron.onMenuAction("open-terminal", ensureTerminalPanelVisible);
+    window.skiaElectron.onOpenTerminal(() => {
+        void ensureTerminalPanelVisible();
+    });
 
     window.skiaElectron.onMenuAction("run-agent-task", () => {
         setView("agent");
@@ -694,24 +651,24 @@ const registerMenuIpcHandlers = (): void => {
         cancelBtn?.click();
     });
     window.skiaElectron.onMenuAction("run-start-backend", () => {
-        appendTerminalLog("SKIA: backend start requested");
+        void appendSystemTerminalLine("SKIA: backend start requested");
         setStatus("SKIA: BACKEND START REQUESTED");
     });
     window.skiaElectron.onMenuAction("run-stop-backend", () => {
-        appendTerminalLog("SKIA: backend stop requested");
+        void appendSystemTerminalLine("SKIA: backend stop requested");
         setStatus("SKIA: BACKEND STOP REQUESTED");
     });
     window.skiaElectron.onMenuAction("run-start-frontend", () => {
-        appendTerminalLog("SKIA: frontend dev server start requested");
+        void appendSystemTerminalLine("SKIA: frontend dev server start requested");
         setStatus("SKIA: FRONTEND START REQUESTED");
     });
     window.skiaElectron.onMenuAction("run-stop-frontend", () => {
-        appendTerminalLog("SKIA: frontend dev server stop requested");
+        void appendSystemTerminalLine("SKIA: frontend dev server stop requested");
         setStatus("SKIA: FRONTEND STOP REQUESTED");
     });
 
     window.skiaElectron.onBackendLog((message) => {
-        appendTerminalLog(message.trimEnd());
+        void appendSystemTerminalLine(message.trimEnd());
     });
     window.skiaElectron.onStatusUpdate((status) => {
         setStatus(status);
@@ -773,8 +730,8 @@ const bootstrap = async (): Promise<void> => {
     });
     initializeOnboarding();
     console.log("SKIA: onboarding initialized");
-    initializeTerminalHandlers();
-    console.log("SKIA: terminal handlers initialized");
+    initSkiaTerminalPanel();
+    console.log("SKIA: terminal panel initialized");
     registerMenuIpcHandlers();
     console.log("SKIA: menu IPC handlers initialized");
     console.log("SKIA: bootstrap complete");

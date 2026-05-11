@@ -150,6 +150,7 @@
                 <div class="nav-item" data-view="agent">AGENT</div>
                 <div class="nav-item" data-view="forge">FORGE</div>
                 <div class="nav-item" data-view="settings">SETTINGS</div>
+                <div class="nav-item" id="nav-terminal" title="Open integrated terminal (bottom panel)">TERMINAL</div>
             </nav>
             <div id="explorer-tree"></div>
         </aside>
@@ -247,18 +248,13 @@
             </div>
 
             <div id="terminal-panel" style="display:none">
-                <div id="terminal-header">
-                    <span>TERMINAL</span>
-                    <button id="terminal-close">×</button>
+                <div id="terminal-toolbar">
+                    <span id="terminal-brand">TERMINAL</span>
+                    <div id="terminal-tabs" class="terminal-tabs" aria-label="Terminal tabs"></div>
+                    <button type="button" id="terminal-add-tab" class="terminal-toolbar-btn" title="New PowerShell terminal">+</button>
+                    <button type="button" id="terminal-close-panel" class="terminal-toolbar-btn" title="Hide terminal panel">×</button>
                 </div>
-                <div id="terminal-output"></div>
-                <div id="terminal-input-row">
-                    <span class="terminal-prompt">❯</span>
-                    <input id="terminal-input"
-                           type="text"
-                           placeholder="Enter command..."
-                           spellcheck="false" />
-                </div>
+                <div id="terminal-xterm-host"></div>
             </div>
         </main>
 

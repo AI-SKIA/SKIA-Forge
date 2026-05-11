@@ -44,6 +44,30 @@ contextBridge.exposeInMainWorld("skiaElectron", {
         return () => ipcRenderer.removeListener("update-status", wrapped);
     },
     runCommand: (cmd: string, cwd?: string) => ipcRenderer.invoke("skia:runCommand", cmd, cwd),
+
+    ptyCreate: (cwd?: string): Promise<{ id: string; cwd: string; shell: string }> =>
+        ipcRenderer.invoke("skia:pty:create", cwd),
+    ptyWrite: (id: string, data: string): void => {
+        ipcRenderer.send("skia:pty:write", id, data);
+    },
+    ptyResize: (id: string, cols: number, rows: number): void => {
+        ipcRenderer.send("skia:pty:resize", id, cols, rows);
+    },
+    ptyKill: (id: string): Promise<void> => ipcRenderer.invoke("skia:pty:kill", id),
+
+    onPtyData: (listener: (payload: { id: string; data: string }) => void): (() => void) => {
+        const wrapped = (_event: Electron.IpcRendererEvent, payload: { id: string; data: string }) => listener(payload);
+        ipcRenderer.on("skia:pty-data", wrapped);
+        return () => ipcRenderer.removeListener("skia:pty-data", wrapped);
+    },
+    onPtyExit: (listener: (payload: { id: string; exitCode: number; signal?: number }) => void): (() => void) => {
+        const wrapped = (
+            _event: Electron.IpcRendererEvent,
+            payload: { id: string; exitCode: number; signal?: number }
+        ) => listener(payload);
+        ipcRenderer.on("skia:pty-exit", wrapped);
+        return () => ipcRenderer.removeListener("skia:pty-exit", wrapped);
+    },
     checkForUpdates: () => ipcRenderer.invoke("skia:checkForUpdates"),
     downloadAndInstall: (downloadUrl: string) => ipcRenderer.invoke("skia:downloadAndInstall", downloadUrl),
     onUpdateDownloadProgress: (listener: (data: { percent: number }) => void): void => {
