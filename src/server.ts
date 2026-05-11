@@ -565,6 +565,10 @@ app.post("/api/auth/register", async (req, res) => {
   await proxyAuthToSkia(req, res, "POST", "/api/auth/register");
 });
 
+app.post("/api/auth/contact", async (req, res) => {
+  await proxyAuthToSkia(req, res, "POST", "/api/auth/contact");
+});
+
 app.get("/api/auth/session", async (req, res) => {
   await proxyAuthToSkia(req, res, "GET", "/api/auth/session");
 });
@@ -1212,7 +1216,7 @@ app.post("/index/rebuild", async (_req, res, next) => {
 app.get("/chat", (_req, res) => {
   const releaseBase =
     process.env.SKIA_IDE_RELEASE_BASE_URL ??
-    "https://github.com/AI-SKIA/skia/releases/latest/download";
+    "https://github.com/AI-SKIA/SKIA-Forge/releases/latest/download";
   res.type("html").send(renderChatHtml(releaseBase));
 });
 

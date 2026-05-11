@@ -84,7 +84,8 @@
 
     .field { margin-bottom:12px; }
     .field input,
-    .field textarea {
+    .field textarea,
+    .field select {
       width:100%;
       background:rgba(0,0,0,0.65);
       border:1px solid rgba(212,175,55,0.25);
@@ -96,12 +97,25 @@
       outline:none;
       transition:border-color 0.15s;
       resize:vertical;
+      box-sizing:border-box;
     }
     .field input:focus,
-    .field textarea:focus { border-color:rgba(212,175,55,0.6); }
+    .field textarea:focus,
+    .field select:focus { border-color:rgba(212,175,55,0.6); }
     .field textarea { height:120px; }
     .field input::placeholder,
     .field textarea::placeholder { color:rgba(255,255,255,0.28); }
+    .field select {
+      appearance:none;
+      -webkit-appearance:none;
+      background-image:linear-gradient(45deg, transparent 50%, rgba(212,175,55,0.7) 50%), linear-gradient(135deg, rgba(212,175,55,0.7) 50%, transparent 50%);
+      background-position:calc(100% - 18px) 50%, calc(100% - 13px) 50%;
+      background-size:5px 5px, 5px 5px;
+      background-repeat:no-repeat;
+      padding-right:36px;
+      cursor:pointer;
+    }
+    .field select option { background:#0a0500; color:#fff; }
 
     .submit-btn { width:100%;padding:12px;background:rgba(212,175,55,0.12);border:1px solid var(--gold);border-radius:8px;color:var(--gold);font-family:var(--forge-font-sans);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:background 0.15s; }
     .submit-btn:hover { background:rgba(212,175,55,0.22); }
@@ -152,25 +166,25 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
 </button>
 <aside id="pcSidebar" class="pc-sidebar">
   <div class="pc-sidebar-logo">
-    <img src="https://skia.ca/sidebar-logo.png" alt="SKIA" class="pc-sidebar-logo-img" />
+    <img src="/sidebar-logo.png" alt="SKIA" class="pc-sidebar-logo-img" />
     <span class="pc-sidebar-logo-tagline">She Knows It All</span>
   </div>
   <div class="pc-sidebar-divider"></div>
   <nav class="pc-sidebar-nav">
-    <a class="pc-sidebar-btn" href="https://forge.skia.ca/platform-downloads">Forge Home</a>
+    <a class="pc-sidebar-btn" href="/platform-downloads">Forge Home</a>
     <a class="pc-sidebar-btn" href="/forge/platform">Product</a>
     <a class="pc-sidebar-btn" href="/resources">Resources</a>
     <a class="pc-sidebar-btn" href="/security">Security</a>
     <a class="pc-sidebar-btn" href="/contact">Contact & Support</a>
     <div class="pc-sidebar-divider"></div>
-    <a class="pc-sidebar-btn" href="https://forge.skia.ca/platform-downloads">Download SKIA Forge</a>
+    <a class="pc-sidebar-btn" href="/platform-downloads">Download SKIA Forge</a>
   </nav>
 </aside>
 
 <button type="button" class="back-btn" onclick="history.back()">← Back</button>
 
 <div class="wrap">
-  <img src="https://skia.ca/sidebar-logo.png" alt="SKIA" class="page-logo" />
+  <img src="/sidebar-logo.png" alt="SKIA" class="page-logo" />
 
   <div class="page-header">
     <h1 class="page-title">Contact & Support</h1>
@@ -244,6 +258,12 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
       <input type="email" id="f-email" placeholder="Email" />
     </div>
     <div class="field">
+      <select id="f-category" aria-label="Topic">
+        <option value="support">Topic — Support (runtime, integration, governance)</option>
+        <option value="cx">Topic — Customer Service (account, billing, general)</option>
+      </select>
+    </div>
+    <div class="field">
       <input type="text" id="f-subject" placeholder="Subject" />
     </div>
     <div class="field">
@@ -252,7 +272,7 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
     <button class="submit-btn" id="submitBtn">Send Message</button>
     <div id="formStatus" class="form-status"></div>
     <div class="direct-contact" style="margin-top:14px">
-      Or reach us directly at: <a href="mailto:dany.francis@skia.ca">dany.francis@skia.ca</a>
+      Or reach us directly at: <a id="directContactLink" href="mailto:support_forge@skia.ca">support_forge@skia.ca</a>
     </div>
   </div>
 
@@ -283,14 +303,30 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
     sidebar.addEventListener('click',e=>{if(e.target.tagName==='A')close();});
   })();
 
+  // Keep the visible "reach us directly" email in sync with the Topic dropdown.
+  (function(){
+    const select = document.getElementById('f-category');
+    const link   = document.getElementById('directContactLink');
+    if(!select||!link) return;
+    const update = function(){
+      const addr = select.value === 'cx' ? 'cx_forge@skia.ca' : 'support_forge@skia.ca';
+      link.textContent = addr;
+      link.setAttribute('href','mailto:' + addr);
+    };
+    select.addEventListener('change', update);
+    update();
+  })();
+
   // Form submit
   document.getElementById('submitBtn').addEventListener('click', async function(){
-    const name    = document.getElementById('f-name').value.trim();
-    const email   = document.getElementById('f-email').value.trim();
-    const subject = document.getElementById('f-subject').value.trim();
-    const message = document.getElementById('f-message').value.trim();
-    const status  = document.getElementById('formStatus');
-    const btn     = this;
+    const name     = document.getElementById('f-name').value.trim();
+    const email    = document.getElementById('f-email').value.trim();
+    const subject  = document.getElementById('f-subject').value.trim();
+    const message  = document.getElementById('f-message').value.trim();
+    const category = (document.getElementById('f-category').value === 'cx') ? 'cx' : 'support';
+    const fallback = category === 'cx' ? 'cx_forge@skia.ca' : 'support_forge@skia.ca';
+    const status   = document.getElementById('formStatus');
+    const btn      = this;
 
     if(!name||!email||!subject||!message){
       status.className='form-status error';
@@ -303,10 +339,10 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
     status.textContent='';
 
     try {
-      const res = await fetch('https://api.skia.ca/api/auth/contact', {
+      const res = await fetch('/api/auth/contact', {
         method:'POST',
         headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({name,email,subject,message})
+        body: JSON.stringify({name,email,subject,message,category,source:'forge'})
       });
       if(!res.ok) throw new Error('Failed');
       status.className='form-status success';
@@ -315,7 +351,7 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
       document.getElementById('f-message').value='';
     } catch {
       status.className='form-status error';
-      status.textContent='Failed to send. Please email us at dany.francis@skia.ca';
+      status.textContent='Failed to send. Please email us at ' + fallback;
     } finally {
       btn.disabled=false;
       btn.textContent='Send Message';
