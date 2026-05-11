@@ -6,6 +6,7 @@
   <title>Contact & Support | SKIA Forge</title>
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="stylesheet" href="/forge-premium-ui.css" />
+  <link rel="stylesheet" href="/forge-lucide-icons.css" />
   <style>
 
     :root {
@@ -58,7 +59,7 @@
     /* Support scope cards */
     .scope-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:40px; }
     .scope-card { background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start; }
-    .scope-icon { font-size:16px;flex-shrink:0;margin-top:1px; }
+    .scope-icon { flex-shrink:0;margin-top:1px;display:flex;align-items:flex-start; }
     .scope-text { font-size:12px;color:var(--text-soft);font-family:var(--forge-font-sans);line-height:1.5; }
 
     /* SLA table */
@@ -147,7 +148,7 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
 
 <div id="pcSidebarBackdrop" class="pc-sidebar-backdrop"></div>
 <button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation">
-  <span class="pc-sidebar-tab-icon">☰</span>
+  <span class="pc-sidebar-tab-icon skia-li skia-li--menu" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg></span>
 </button>
 <aside id="pcSidebar" class="pc-sidebar">
   <div class="pc-sidebar-logo">
@@ -179,12 +180,12 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
   <!-- Support Scope -->
   <div class="section-label">Support Scope</div>
   <div class="scope-grid">
-    <div class="scope-card"><div class="scope-icon">⚙</div><div class="scope-text">Runtime startup and health issues</div></div>
-    <div class="scope-card"><div class="scope-icon">🔗</div><div class="scope-text">Integration contract failures</div></div>
-    <div class="scope-card"><div class="scope-icon">🛡</div><div class="scope-text">Governance and policy flow debugging</div></div>
-    <div class="scope-card"><div class="scope-icon">🔨</div><div class="scope-text">Workflow failures and integration issues</div></div>
-    <div class="scope-card"><div class="scope-icon">📦</div><div class="scope-text">SKIA Forge IDE install, updates, and desktop runtime</div></div>
-    <div class="scope-card"><div class="scope-icon">💡</div><div class="scope-text">General usage and workflow questions</div></div>
+    <div class="scope-card"><div class="scope-icon skia-li skia-li--scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg></div><div class="scope-text">Runtime startup and health issues</div></div>
+    <div class="scope-card"><div class="scope-icon skia-li skia-li--scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg></div><div class="scope-text">Integration contract failures</div></div>
+    <div class="scope-card"><div class="scope-icon skia-li skia-li--scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></div><div class="scope-text">Governance and policy flow debugging</div></div>
+    <div class="scope-card"><div class="scope-icon skia-li skia-li--scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 12-9.373 9.373a1 1 0 0 1-3.001-3L12 9"/><path d="m18 15 4-4"/><path d="m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172v-.344a2 2 0 0 0-.586-1.414l-1.657-1.657A6 6 0 0 0 12.516 3H9l1.243 1.243A6 6 0 0 1 12 8.485V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5"/></svg></div><div class="scope-text">Workflow failures and integration issues</div></div>
+    <div class="scope-card"><div class="scope-icon skia-li skia-li--scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/></svg></div><div class="scope-text">SKIA Forge IDE install, updates, and desktop runtime</div></div>
+    <div class="scope-card"><div class="scope-icon skia-li skia-li--scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></div><div class="scope-text">General usage and workflow questions</div></div>
   </div>
 
   <!-- SLA -->

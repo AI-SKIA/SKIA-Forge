@@ -1,0 +1,43 @@
+/**
+ * Lucide-style stroke icons for static Forge HTML (parity with Skia-FULL FeatureIcon).
+ * Paths align with lucide v1.8 icon definitions (stroke, round caps/joins).
+ */
+.skia-li {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--gold, #d4af37);
+}
+
+.skia-li svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.skia-li--scope {
+  width: 18px;
+  height: 18px;
+}
+
+.skia-li--control {
+  width: 20px;
+  height: 20px;
+}
+
+.skia-li--check {
+  width: 14px;
+  height: 14px;
+}
+
+.pc-sidebar-tab-icon.skia-li,
+.skia-li--menu {
+  width: 20px;
+  height: 20px;
+}
+
+.skia-li--arrow {
+  width: 14px;
+  height: 14px;
+}
