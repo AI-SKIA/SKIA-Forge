@@ -146,5 +146,7 @@ vite.config.ts.timestamp-*
 .skia/runtime-state.json
 northflank-services.md
 skia-ide/release/
+# Electron unpack / verify builds (large binaries — same GitHub 100MB limit as main repo)
+skia-ide/release-eb-verify/
 # CI writes decoded signing cert here — never commit
 skia-ide/codesign.pfx

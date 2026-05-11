@@ -1,5 +1,8 @@
 import { contextBridge, ipcRenderer } from "electron";
 
+let updateProgressWrap: ((_event: Electron.IpcRendererEvent, data: { percent: number }) => void) | null = null;
+let updateErrorWrap: ((_event: Electron.IpcRendererEvent, data: { message: string }) => void) | null = null;
+
 contextBridge.exposeInMainWorld("skiaElectron", {
   getConfig: () => ipcRenderer.invoke("skia:getConfig"),
   openFolder: () => ipcRenderer.invoke("skia:openFolder"),
@@ -41,6 +44,25 @@ contextBridge.exposeInMainWorld("skiaElectron", {
   },
   runCommand: (cmd: string, cwd?: string) => ipcRenderer.invoke("skia:runCommand", cmd, cwd),
   checkForUpdates: () => ipcRenderer.invoke("skia:checkForUpdates"),
+  downloadAndInstall: (downloadUrl: string) => ipcRenderer.invoke("skia:downloadAndInstall", downloadUrl),
+  onUpdateDownloadProgress: (listener: (data: { percent: number }) => void): void => {
+    if (updateProgressWrap) {
+      ipcRenderer.removeListener("update-download-progress", updateProgressWrap);
+    }
+    updateProgressWrap = (_event: Electron.IpcRendererEvent, data: { percent: number }) => {
+      listener(data);
+    };
+    ipcRenderer.on("update-download-progress", updateProgressWrap);
+  },
+  onUpdateDownloadError: (listener: (data: { message: string }) => void): void => {
+    if (updateErrorWrap) {
+      ipcRenderer.removeListener("update-download-error", updateErrorWrap);
+    }
+    updateErrorWrap = (_event: Electron.IpcRendererEvent, data: { message: string }) => {
+      listener(data);
+    };
+    ipcRenderer.on("update-download-error", updateErrorWrap);
+  },
   setAutoSave: (enabled: boolean) => ipcRenderer.send("skia:setAutoSave", enabled),
   openDocs: () => ipcRenderer.send("open-docs"),
   getCookies: (url: string): Promise<Array<{ name: string; value: string }>> =>

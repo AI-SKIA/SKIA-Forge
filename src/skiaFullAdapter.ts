@@ -3,6 +3,16 @@ import {
   parseSkiaFullEmbeddingVector,
   SKIA_FULL_EMBEDDING_PATH_DEFAULT
 } from "./skiaFullEmbeddingContract.js";
+import type {
+  DiffRequest,
+  DiffResponse,
+  ProposeEditRequest,
+  ProposeEditResponse,
+  ProposeRefactorRequest,
+  ProposeRefactorResponse,
+  RepoAnalyzeRequest,
+  RepoAnalyzeResponse
+} from "./types/codeIntelligence.js";
 
 export type SkiaFullAdapterConfig = {
   enabled: boolean;
@@ -99,6 +109,54 @@ export class SkiaFullAdapter {
     passthroughHeaders?: Record<string, string>
   ): Promise<Record<string, unknown>> {
     return this.postJson("/api/routing/estimate", payload, passthroughHeaders);
+  }
+
+  async analyzeRepo(
+    payload: RepoAnalyzeRequest,
+    passthroughHeaders?: Record<string, string>
+  ): Promise<RepoAnalyzeResponse> {
+    const data = await this.postJson(
+      "/api/skia/code/analyze",
+      payload as unknown as Record<string, unknown>,
+      passthroughHeaders
+    );
+    return data as unknown as RepoAnalyzeResponse;
+  }
+
+  async proposeEdit(
+    payload: ProposeEditRequest,
+    passthroughHeaders?: Record<string, string>
+  ): Promise<ProposeEditResponse> {
+    const data = await this.postJson(
+      "/api/skia/code/propose-edit",
+      payload as unknown as Record<string, unknown>,
+      passthroughHeaders
+    );
+    return data as unknown as ProposeEditResponse;
+  }
+
+  async proposeRefactor(
+    payload: ProposeRefactorRequest,
+    passthroughHeaders?: Record<string, string>
+  ): Promise<ProposeRefactorResponse> {
+    const data = await this.postJson(
+      "/api/skia/code/propose-refactor",
+      payload as unknown as Record<string, unknown>,
+      passthroughHeaders
+    );
+    return data as unknown as ProposeRefactorResponse;
+  }
+
+  async computeDiff(
+    payload: DiffRequest,
+    passthroughHeaders?: Record<string, string>
+  ): Promise<DiffResponse> {
+    const data = await this.postJson(
+      "/api/skia/code/diff",
+      payload as unknown as Record<string, unknown>,
+      passthroughHeaders
+    );
+    return data as unknown as DiffResponse;
   }
 
   async traceExplain(

@@ -28,7 +28,75 @@ let activeFilePath = "";
 let activeFolderPath = "";
 let menuListenersRegistered = false;
 let terminalOutputEl: HTMLDivElement | null = null;
+/** Tracked cwd for single-command terminal exec (PowerShell); synced after each command via (Get-Location).Path */
+let terminalCwd = "C:\\SKIA-Forge";
 let autoSaveEnabled = false;
+
+type UpdateInstallBridge = {
+    downloadAndInstall: (downloadUrl: string) => Promise<void>;
+    onUpdateDownloadProgress: (listener: (data: { percent: number }) => void) => void;
+    onUpdateDownloadError: (listener: (data: { message: string }) => void) => void;
+};
+
+const updateInstallApi = (): typeof window.skiaElectron & UpdateInstallBridge =>
+    window.skiaElectron as typeof window.skiaElectron & UpdateInstallBridge;
+
+const wireInAppUpdateAction = (host: HTMLDivElement, downloadUrl: string): void => {
+    const actions = host.querySelector("#skia-update-actions");
+    const actionBtn = host.querySelector("#skia-update-action") as HTMLButtonElement | null;
+    if (!actions || !actionBtn) return;
+
+    const startDownload = (): void => {
+        const api = updateInstallApi();
+        actions.innerHTML = `
+      <div style="margin-top:10px;">
+        <div id="skia-update-bar-bg" style="height:8px;background:rgba(255,255,255,0.12);border-radius:4px;overflow:hidden;">
+          <div id="skia-update-bar-fill" style="height:100%;width:0%;background:#d4af37;transition:width 0.12s ease;"></div>
+        </div>
+        <div id="skia-update-status" style="margin-top:8px;font-size:11px;color:rgba(255,255,255,0.78);">Downloading…</div>
+      </div>`;
+        const fill = actions.querySelector("#skia-update-bar-fill") as HTMLDivElement | null;
+        const statusEl = actions.querySelector("#skia-update-status") as HTMLDivElement | null;
+
+        api.onUpdateDownloadProgress((d) => {
+            if (fill) fill.style.width = `${d.percent}%`;
+            if (d.percent >= 100 && statusEl) {
+                statusEl.textContent = "Installing…";
+            }
+        });
+
+        api.onUpdateDownloadError((err) => {
+            actions.innerHTML = "";
+            const msg = document.createElement("div");
+            msg.style.marginTop = "10px";
+            msg.style.fontSize = "11px";
+            msg.style.color = "#e8a0a0";
+            msg.textContent = err.message;
+            actions.appendChild(msg);
+            const retry = document.createElement("button");
+            retry.type = "button";
+            retry.id = "skia-update-retry";
+            retry.textContent = "Retry";
+            retry.style.marginTop = "8px";
+            retry.style.background = "transparent";
+            retry.style.border = "1px solid rgba(212,175,55,0.5)";
+            retry.style.color = "#d4af37";
+            retry.style.padding = "6px 10px";
+            retry.style.cursor = "pointer";
+            retry.style.fontSize = "10px";
+            retry.addEventListener("click", () => startDownload());
+            actions.appendChild(retry);
+        });
+
+        void api.downloadAndInstall(downloadUrl).catch(() => {
+            /* terminal errors arrive via update-download-error */
+        });
+    };
+
+    actionBtn.addEventListener("click", () => {
+        startDownload();
+    });
+};
 
 const showUpdateNotice = (title: string, message: string, actionLabel?: string, actionUrl?: string): void => {
     let host = document.getElementById("skia-update-notice") as HTMLDivElement | null;
@@ -48,13 +116,16 @@ const showUpdateNotice = (title: string, message: string, actionLabel?: string, 
         host.style.boxShadow = "0 8px 24px rgba(0,0,0,0.45)";
         document.body.appendChild(host);
     }
-    const actionButton = actionLabel && actionUrl
-        ? `<button id="skia-update-action" style="margin-top:10px;background:transparent;border:1px solid rgba(212,175,55,0.5);color:#d4af37;padding:8px 10px;cursor:pointer;">${actionLabel}</button>`
-        : "";
+    const actionBlock =
+        actionLabel && actionUrl
+            ? `<div id="skia-update-actions" style="margin-top:10px;">
+      <button type="button" id="skia-update-action" style="background:transparent;border:1px solid rgba(212,175,55,0.5);color:#d4af37;padding:8px 10px;cursor:pointer;">${actionLabel}</button>
+    </div>`
+            : "";
     host.innerHTML = `
       <div style="font-size:12px;letter-spacing:0.08em;color:#d4af37;text-transform:uppercase;margin-bottom:6px;">${title}</div>
       <div style="font-size:12px;line-height:1.5;color:rgba(255,255,255,0.86);">${message}</div>
-      ${actionButton}
+      ${actionBlock}
       <button id="skia-update-dismiss" style="margin-top:10px;margin-left:8px;background:transparent;border:1px solid rgba(255,255,255,0.22);color:rgba(255,255,255,0.72);padding:8px 10px;cursor:pointer;">Dismiss</button>
     `;
     const dismissBtn = document.getElementById("skia-update-dismiss") as HTMLButtonElement | null;
@@ -62,10 +133,7 @@ const showUpdateNotice = (title: string, message: string, actionLabel?: string, 
         host?.remove();
     });
     if (actionLabel && actionUrl) {
-        const actionBtn = document.getElementById("skia-update-action") as HTMLButtonElement | null;
-        actionBtn?.addEventListener("click", () => {
-            window.skiaElectron.openExternal(actionUrl);
-        });
+        wireInAppUpdateAction(host, actionUrl);
     }
 };
 
@@ -396,9 +464,21 @@ const initializeTerminalHandlers = (): void => {
         if (!command) return;
         appendTerminalLog(`❯ ${command}`);
         terminalInput.value = "";
-        const result = await window.skiaElectron.runCommand(command);
+        const cwd = terminalCwd;
+        // One exec = one shell; chain (Get-Location).Path so cwd reflects cd/set-location in this invocation.
+        const combined = `${command}; (Get-Location).Path`;
+        const result = await window.skiaElectron.runCommand(combined, cwd);
         if (result.stdout) appendTerminalLog(result.stdout.trimEnd());
         if (result.stderr) appendTerminalLog(result.stderr.trimEnd());
+        const raw = (result.stdout || "").trimEnd();
+        const lines = raw.split(/\r?\n/).filter((l) => l.length > 0);
+        for (let i = lines.length - 1; i >= 0; i -= 1) {
+            const candidate = lines[i].trim();
+            if (/^([A-Za-z]:[\\/]|\\\\)/.test(candidate)) {
+                terminalCwd = candidate;
+                break;
+            }
+        }
     });
 };
 

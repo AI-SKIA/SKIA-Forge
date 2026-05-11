@@ -29,6 +29,7 @@ import { loadRuntimeState, persistRuntimeState } from "./stateStore.js";
 import { attachRequestContext, buildRequestLog, RequestWithContext } from "./requestContext.js";
 import { enforceTextSize, RateLimiter, rateLimitMiddleware } from "./guardrails.js";
 import { SkiaFullAdapter } from "./skiaFullAdapter.js";
+import { registerForgeCodeIntelRoutes } from "./forgeCodeIntelRoutes.js";
 import { buildProbeReport } from "./integrationReport.js";
 import { runForgeOrchestration } from "./forgeOrchestrator.js";
 import { renderForgePlatformHtml } from "./forgePlatformUi.js";
@@ -69,7 +70,6 @@ import { createEmbedIncrementalOnSaveHandler } from "./forge/modules/context-eng
 import { createEmbeddingVectorStore } from "./forge/modules/context-engine/embeddingVectorStoreFactory.js";
 import { SKIA_FULL_EMBEDDING_PATH_DEFAULT } from "./skiaFullEmbeddingContract.js";
 import { requireAuth } from "./middleware/requireAuth.js";
-
 const app = express();
 app.use(attachRequestContext);
 app.use(express.json({ limit: "2mb" }));
@@ -1758,6 +1758,12 @@ app.post("/api/forge/agent", async (req, res) => {
     const message = error instanceof Error ? error.message : "Forge agent failed";
     return res.status(502).json({ error: message });
   }
+});
+
+registerForgeCodeIntelRoutes(app, {
+  skiaFullAdapter,
+  enforceForgeModuleAccess,
+  pickSkiaHeaders
 });
 
 /** D1-08: structured plan — D1-07 context + SKIA chat; does not run executor/tools. */

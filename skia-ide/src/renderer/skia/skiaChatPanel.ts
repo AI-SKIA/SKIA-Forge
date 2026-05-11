@@ -10,6 +10,8 @@ import {
 } from "./skiaSessionStore";
 
 let activeController: AbortController | null = null;
+/** DOM node for the in-flight assistant bubble (streaming or review); cleared when the turn completes or CANCEL runs. */
+let streamingAssistantEl: HTMLDivElement | null = null;
 /** Files queued for the next send (same behavior as main-site chat). */
 let pendingChatAttachments: File[] = [];
 
@@ -125,7 +127,72 @@ const renderHistory = (chatMessages: HTMLElement): void => {
     getHistory().forEach((message) => renderMessage(chatMessages, message));
 };
 
-function syncAttachmentUi(fileInput: HTMLInputElement | null, attachBtn: HTMLButtonElement | null): void {
+function renderPendingAttachmentChips(
+    chipsHost: HTMLElement | null,
+    fileInput: HTMLInputElement | null,
+    attachBtn: HTMLButtonElement | null
+): void {
+    if (!chipsHost) return;
+    chipsHost.innerHTML = "";
+    if (pendingChatAttachments.length === 0) {
+        chipsHost.style.display = "none";
+        return;
+    }
+    chipsHost.style.display = "flex";
+    chipsHost.style.flexWrap = "wrap";
+    chipsHost.style.gap = "6px";
+    chipsHost.style.marginBottom = "6px";
+    chipsHost.style.alignItems = "center";
+
+    pendingChatAttachments.forEach((file, index) => {
+        const wrap = document.createElement("span");
+        wrap.style.display = "inline-flex";
+        wrap.style.alignItems = "center";
+        wrap.style.gap = "4px";
+        wrap.style.fontSize = "10px";
+        wrap.style.padding = "3px 6px 3px 8px";
+        wrap.style.borderRadius = "4px";
+        wrap.style.background = "rgba(212,175,55,0.12)";
+        wrap.style.border = "1px solid rgba(212,175,55,0.28)";
+        wrap.style.color = "rgba(212,175,55,0.9)";
+
+        const name = document.createElement("span");
+        name.textContent = file.name;
+        name.title = file.name;
+        name.style.maxWidth = "180px";
+        name.style.overflow = "hidden";
+        name.style.textOverflow = "ellipsis";
+        name.style.whiteSpace = "nowrap";
+
+        const rm = document.createElement("button");
+        rm.type = "button";
+        rm.textContent = "×";
+        rm.title = "Remove attachment";
+        rm.setAttribute("aria-label", `Remove ${file.name}`);
+        rm.style.background = "transparent";
+        rm.style.border = "none";
+        rm.style.color = "rgba(212,175,55,0.85)";
+        rm.style.cursor = "pointer";
+        rm.style.fontSize = "14px";
+        rm.style.lineHeight = "1";
+        rm.style.padding = "0 2px";
+        rm.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            pendingChatAttachments.splice(index, 1);
+            syncAttachmentUi(fileInput, attachBtn, chipsHost);
+        });
+
+        wrap.append(name, rm);
+        chipsHost.appendChild(wrap);
+    });
+}
+
+function syncAttachmentUi(
+    fileInput: HTMLInputElement | null,
+    attachBtn: HTMLButtonElement | null,
+    chipsHost: HTMLElement | null
+): void {
     const n = pendingChatAttachments.length;
     if (attachBtn) {
         attachBtn.textContent = n > 0 ? `ATTACH (${n})` : "ATTACH";
@@ -135,13 +202,15 @@ function syncAttachmentUi(fileInput: HTMLInputElement | null, attachBtn: HTMLBut
         attachBtn.setAttribute("aria-label", n > 0 ? `${n} files attached` : "Attach files");
     }
     if (fileInput) fileInput.value = "";
+    renderPendingAttachmentChips(chipsHost, fileInput, attachBtn);
 }
 
 const send = async (
     chatMessages: HTMLElement,
     chatInput: HTMLTextAreaElement,
     fileInput: HTMLInputElement | null,
-    attachBtn: HTMLButtonElement | null
+    attachBtn: HTMLButtonElement | null,
+    chipsHost: HTMLElement | null
 ): Promise<void> => {
     if (activeController) return;
 
@@ -179,7 +248,7 @@ const send = async (
     renderMessage(chatMessages, userMessage);
     chatInput.value = "";
     pendingChatAttachments = [];
-    syncAttachmentUi(fileInput, attachBtn);
+    syncAttachmentUi(fileInput, attachBtn, chipsHost);
 
     const assistantMessage: SkiaMessage = {
         role: "assistant",
@@ -188,6 +257,7 @@ const send = async (
     };
 
     const assistantNode = renderMessage(chatMessages, { ...assistantMessage, content: "..." }, true);
+    streamingAssistantEl = assistantNode;
     const textNode = assistantNode.querySelector(".chat-message-text") as HTMLDivElement | null;
 
     activeController = new AbortController();
@@ -207,7 +277,10 @@ const send = async (
     try {
         if (content.startsWith("/skia-review")) {
             const reviewPayload = content.replace("/skia-review", "").trim() || "Run full SKIA review.";
-            const review = await runSkiaReview({ message: reviewPayload });
+            const review = await runSkiaReview(
+                { message: reviewPayload },
+                { signal: activeController.signal }
+            );
             assistantMessage.content = JSON.stringify(review, null, 2);
             if (textNode) textNode.textContent = assistantMessage.content;
         } else {
@@ -324,7 +397,7 @@ const send = async (
         addMessage(assistantMessage);
     } catch (error) {
         assistantNode.classList.remove("stream-cursor");
-        if (textNode) {
+        if (textNode?.isConnected) {
             const message = error instanceof Error ? String(error.message || "") : "";
             const isAbort = (error as { name?: string } | null)?.name === "AbortError" || message.includes("AbortError");
             const userFacing =
@@ -350,6 +423,7 @@ const send = async (
     } finally {
         assistantNode.classList.remove("stream-cursor");
         activeController = null;
+        streamingAssistantEl = null;
     }
 };
 
@@ -403,6 +477,7 @@ export const initializeChatPanel = (): void => {
     const fileInput = document.getElementById("chat-file-input") as HTMLInputElement | null;
     const attachButton = document.getElementById("chat-attach-btn") as HTMLButtonElement | null;
     const chatControls = document.getElementById("chat-controls");
+    const chipsHost = document.getElementById("chat-pending-attachments") as HTMLDivElement | null;
 
     if (!chatMessages || !chatInput) {
         console.error("SKIA: Chat panel DOM elements not found");
@@ -410,7 +485,7 @@ export const initializeChatPanel = (): void => {
     }
 
     renderHistory(chatMessages);
-    syncAttachmentUi(fileInput, attachButton);
+    syncAttachmentUi(fileInput, attachButton, chipsHost);
 
     attachButton?.addEventListener("click", () => fileInput?.click());
 
@@ -419,7 +494,7 @@ export const initializeChatPanel = (): void => {
         if (list?.length) {
             pendingChatAttachments = [...pendingChatAttachments, ...Array.from(list)];
         }
-        syncAttachmentUi(fileInput, attachButton);
+        syncAttachmentUi(fileInput, attachButton, chipsHost);
     });
 
     chatControls?.addEventListener("dragover", (e) => {
@@ -432,37 +507,43 @@ export const initializeChatPanel = (): void => {
         const dt = e.dataTransfer?.files;
         if (dt?.length) {
             pendingChatAttachments = [...pendingChatAttachments, ...Array.from(dt)];
-            syncAttachmentUi(fileInput, attachButton);
+            syncAttachmentUi(fileInput, attachButton, chipsHost);
         }
     });
 
     sendButton?.addEventListener("click", () => {
-        void send(chatMessages, chatInput, fileInput, attachButton);
+        void send(chatMessages, chatInput, fileInput, attachButton, chipsHost);
     });
 
     chatInput.addEventListener("keydown", (event) => {
         if (event.key === "Enter" && !event.shiftKey) {
             event.preventDefault();
-            void send(chatMessages, chatInput, fileInput, attachButton);
+            void send(chatMessages, chatInput, fileInput, attachButton, chipsHost);
         }
     });
 
     cancelButton?.addEventListener("click", () => {
-        activeController?.abort();
+        if (!activeController) {
+            return;
+        }
+        activeController.abort();
+        chatInput.value = "";
+        streamingAssistantEl?.remove();
+        streamingAssistantEl = null;
         activeController = null;
     });
 
     clearButton?.addEventListener("click", () => {
         clearHistory();
         pendingChatAttachments = [];
-        syncAttachmentUi(fileInput, attachButton);
+        syncAttachmentUi(fileInput, attachButton, chipsHost);
         renderHistory(chatMessages);
     });
 
     newChatButton?.addEventListener("click", () => {
         clearHistory();
         pendingChatAttachments = [];
-        syncAttachmentUi(fileInput, attachButton);
+        syncAttachmentUi(fileInput, attachButton, chipsHost);
         renderHistory(chatMessages);
     });
 };

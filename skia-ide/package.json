@@ -16,7 +16,7 @@
     "appId": "ca.skia.forge",
     "productName": "SKIA FORGE",
     "executableName": "SKIA-FORGE",
-    "icon": "assets/skia-forge-app",
+    "icon": "assets/skia-forge-app.ico",
     "copyright": "© 2026 SKIA Singularity Continuum",
     "directories": {
       "output": "release"

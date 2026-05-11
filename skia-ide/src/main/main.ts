@@ -1,6 +1,8 @@
 import { app, BrowserWindow, dialog, ipcMain, Menu, MenuItem, shell, session, safeStorage } from "electron";
 import { exec, spawn, type ChildProcessWithoutNullStreams, type ExecException } from "node:child_process";
-import { existsSync, promises as fs } from "node:fs";
+import { createWriteStream, existsSync, promises as fs } from "node:fs";
+import https from "node:https";
+import { randomBytes } from "node:crypto";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 
@@ -131,6 +133,100 @@ const emitUpdateToRenderer = (result: UpdateCheckResult): void => {
         win.webContents.send("update-status", result);
     });
 };
+
+/** Stream HTTPS GET (with redirect follow) to disk; emits 0–99 from Content-Length when known. */
+const downloadHttpsToFile = (
+    startUrl: string,
+    destPath: string,
+    headers: Record<string, string>,
+    onProgress: (percent: number) => void
+): Promise<void> =>
+    new Promise((resolve, reject) => {
+        const openRequest = (urlStr: string, redirectCount: number): void => {
+            if (redirectCount > 12) {
+                reject(new Error("Too many redirects while downloading."));
+                return;
+            }
+            let parsed: URL;
+            try {
+                parsed = new URL(urlStr);
+            } catch {
+                reject(new Error("Invalid download URL."));
+                return;
+            }
+            if (parsed.protocol !== "https:") {
+                reject(new Error("Only HTTPS download URLs are allowed."));
+                return;
+            }
+
+            const assetHeaders =
+                parsed.hostname.includes("github") || parsed.hostname.includes("githubusercontent")
+                    ? headers
+                    : { "User-Agent": "skia-forge-desktop-updater" };
+
+            const req = https.request(
+                {
+                    protocol: parsed.protocol,
+                    hostname: parsed.hostname,
+                    port: parsed.port || 443,
+                    path: `${parsed.pathname}${parsed.search}`,
+                    method: "GET",
+                    headers: assetHeaders
+                },
+                (res) => {
+                    const code = res.statusCode ?? 0;
+                    if (code === 301 || code === 302 || code === 303 || code === 307 || code === 308) {
+                        const loc = res.headers.location;
+                        res.resume();
+                        if (!loc) {
+                            reject(new Error(`Redirect (${code}) without Location header.`));
+                            return;
+                        }
+                        const next = new URL(loc, parsed).href;
+                        openRequest(next, redirectCount + 1);
+                        return;
+                    }
+                    if (code !== 200) {
+                        res.resume();
+                        reject(new Error(`Download failed (HTTP ${code}).`));
+                        return;
+                    }
+
+                    const total = Number(res.headers["content-length"] ?? 0);
+                    let received = 0;
+                    let lastEmitted = -1;
+                    const bump = (pct: number): void => {
+                        const clamped = Math.max(0, Math.min(99, Math.round(pct)));
+                        if (clamped !== lastEmitted) {
+                            lastEmitted = clamped;
+                            onProgress(clamped);
+                        }
+                    };
+
+                    const file = createWriteStream(destPath);
+                    res.on("data", (chunk: Buffer) => {
+                        received += chunk.length;
+                        if (total > 0) {
+                            bump((received / total) * 100);
+                        } else {
+                            bump(Math.min(95, received / (8 * 1024 * 1024) * 95));
+                        }
+                    });
+                    res.pipe(file);
+                    file.on("finish", () => {
+                        file.close(() => resolve());
+                    });
+                    file.on("error", (err) => {
+                        res.destroy();
+                        reject(err);
+                    });
+                }
+            );
+            req.on("error", reject);
+            req.end();
+        };
+        openRequest(startUrl, 0);
+    });
 
 const credentialsPath = (): string => path.join(app.getPath("userData"), "forge-credentials.bin");
 
@@ -1118,8 +1214,44 @@ ipcMain.handle("skia:checkForUpdates", async () => {
     return result;
 });
 
+ipcMain.handle("skia:downloadAndInstall", async (event, downloadUrl: unknown): Promise<void> => {
+    const wc = event.sender;
+    const url = typeof downloadUrl === "string" ? downloadUrl.trim() : "";
+    if (!url || !url.startsWith("https://")) {
+        wc.send("update-download-error", { message: "Invalid or non-HTTPS download URL." });
+        return;
+    }
+
+    let ext = path.extname(new URL(url).pathname);
+    if (!ext || ext.length > 8) {
+        ext = ".bin";
+    }
+    const tempPath = path.join(app.getPath("temp"), `skia-forge-update-${randomBytes(8).toString("hex")}${ext}`);
+
+    try {
+        await downloadHttpsToFile(url, tempPath, githubHeaders(), (pct) => {
+            wc.send("update-download-progress", { percent: pct });
+        });
+        wc.send("update-download-progress", { percent: 100 });
+        const openErr = await shell.openPath(tempPath);
+        if (openErr) {
+            wc.send("update-download-error", { message: openErr });
+            return;
+        }
+        setTimeout(() => {
+            app.quit();
+        }, 400);
+    } catch (e: unknown) {
+        const message = e instanceof Error ? e.message : "Download failed.";
+        wc.send("update-download-error", { message });
+    }
+});
+
 app.whenReady().then(() => {
     createWindow();
+    if (process.platform === "win32" && app.isPackaged) {
+        exec("ie4uinit.exe -show", () => {});
+    }
     periodicUpdateTimer = setInterval(() => {
         void runUpdateCheck().then((result) => {
             if (result.status === "update-available") {

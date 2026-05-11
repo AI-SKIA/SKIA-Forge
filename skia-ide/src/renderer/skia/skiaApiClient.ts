@@ -27,11 +27,20 @@ const withTimeout = async (
     input: RequestInfo | URL,
     init: RequestInit = {}
 ): Promise<Response> => {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), getTimeout());
+    const timeoutCtrl = new AbortController();
+    const timeout = setTimeout(() => timeoutCtrl.abort(), getTimeout());
+    const external = init.signal;
+    const anyFn = (AbortSignal as typeof AbortSignal & { any?: (signals: AbortSignal[]) => AbortSignal }).any;
+    const combined =
+        external && typeof anyFn === "function"
+            ? anyFn([external, timeoutCtrl.signal])
+            : external ?? timeoutCtrl.signal;
     try {
-        return await skiaFetch(input, { ...init, signal: controller.signal });
+        return await skiaFetch(input, { ...init, signal: combined });
     } catch (error) {
+        if (error instanceof DOMException && error.name === "AbortError") {
+            throw error;
+        }
         if (error instanceof SkiaOfflineError) {
             throw error;
         }
@@ -44,7 +53,10 @@ const withTimeout = async (
 const skiaFetch = async (input: RequestInfo | URL, init?: RequestInit): Promise<Response> => {
     try {
         return await fetch(input, init);
-    } catch {
+    } catch (error) {
+        if (error instanceof DOMException && error.name === "AbortError") {
+            throw error;
+        }
         throw new SkiaOfflineError();
     }
 };
@@ -61,6 +73,9 @@ const fetchJsonWithRetry = async (path: string, init?: RequestInit): Promise<Jso
                 headers: { ...headers(), ...(init?.headers ?? {}) }
             });
         } catch (error) {
+            if (error instanceof DOMException && error.name === "AbortError") {
+                throw error;
+            }
             if (error instanceof SkiaOfflineError) {
                 throw error;
             }
@@ -135,10 +150,14 @@ export const getArchitectureHealth = async (): Promise<Json | null> => {
     }
 };
 
-export const runSkiaReview = (payload: { message: string }): Promise<Json> =>
+export const runSkiaReview = (
+    payload: { message: string },
+    options?: { signal?: AbortSignal }
+): Promise<Json> =>
     fetchJsonWithRetry("/api/forge/skia-review", {
         method: "POST",
-        body: JSON.stringify(payload)
+        body: JSON.stringify({ message: payload.message }),
+        signal: options?.signal
     });
 
 const integrationChatResponseText = (json: Json): string => {
