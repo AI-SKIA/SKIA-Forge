@@ -1463,6 +1463,16 @@ app.get("/forge-premium-ui.css", (_req, res) => {
   res.sendFile(path.join(projectRoot, "public", "forge-premium-ui.css"));
 });
 
+app.get("/forge-lucide-icons.css", (_req, res) => {
+  res.type("text/css");
+  res.sendFile(path.join(projectRoot, "public", "forge-lucide-icons.css"));
+});
+
+/** Hub + docs sidebar and hero logo (`public/*.html`, `public/docs/*.html`) */
+app.get("/sidebar-logo.png", (_req, res) => {
+  res.sendFile(path.join(projectRoot, "public", "sidebar-logo.png"));
+});
+
 app.get("/og/skia-forge-preview.svg", (_req, res) => {
   res.type("image/svg+xml").send(renderOgImageSvg());
 });
