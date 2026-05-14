@@ -70,6 +70,23 @@ import { createEmbedIncrementalOnSaveHandler } from "./forge/modules/context-eng
 import { createEmbeddingVectorStore } from "./forge/modules/context-engine/embeddingVectorStoreFactory.js";
 import { SKIA_FULL_EMBEDDING_PATH_DEFAULT } from "./skiaFullEmbeddingContract.js";
 import { requireAuth } from "./middleware/requireAuth.js";
+
+/** Admin-only mutations: requires `x-skia-admin-secret` to match `SKIA_ADMIN_SECRET` (fail closed if unset). */
+function requireSkiaAdminSecret(req: express.Request, res: express.Response, next: express.NextFunction): void {
+  const secret = (process.env.SKIA_ADMIN_SECRET ?? "").trim();
+  if (!secret) {
+    res.status(403).json({ error: "forbidden" });
+    return;
+  }
+  const header = req.headers["x-skia-admin-secret"];
+  const provided = Array.isArray(header) ? header[0] : header;
+  if (typeof provided !== "string" || provided !== secret) {
+    res.status(403).json({ error: "forbidden" });
+    return;
+  }
+  next();
+}
+
 const app = express();
 app.use(attachRequestContext);
 app.use(express.json({ limit: "2mb" }));
@@ -450,12 +467,12 @@ app.get("/health", (_req, res) => {
   res.json({
     status: "ok",
     service: "skia-intelligence",
-    projectRoot,
+    project: "skia-forge",
     timestamp: new Date().toISOString()
   });
 });
 
-app.get("/live", (_req, res) => {
+app.get("/live", requireAuth, (_req, res) => {
   res.json(
     buildLiveness({
       ...runtimeState,
@@ -464,7 +481,7 @@ app.get("/live", (_req, res) => {
   );
 });
 
-app.get("/ready", (_req, res) => {
+app.get("/ready", requireAuth, (_req, res) => {
   const readiness = buildReadiness({
     ...runtimeState,
     skiaStatus
@@ -610,14 +627,14 @@ app.get("/api/app/download", (req, res) => {
   return res.redirect(302, `/api/app/download/${platform}`);
 });
 
-app.get("/state/runtime", (_req, res) => {
+app.get("/state/runtime", requireAuth, (_req, res) => {
   res.json({
     provider: providerRouter.toSnapshot(),
     telemetry: telemetry.toSnapshot()
   });
 });
 
-app.get("/integration/skia-full", (_req, res) => {
+app.get("/integration/skia-full", requireAuth, (_req, res) => {
   res.json({
     ...skiaFullAdapter.getStatus(),
     intelligenceContracts: {
@@ -629,7 +646,7 @@ app.get("/integration/skia-full", (_req, res) => {
   });
 });
 
-app.get("/integration/skia-full/probe", async (_req, res) => {
+app.get("/integration/skia-full/probe", requireAuth, async (_req, res) => {
   try {
     const rows = await skiaFullAdapter.probeBrainContracts(pickSkiaHeaders(_req));
     const okCount = rows.filter((r) => r.ok).length;
@@ -649,7 +666,7 @@ app.get("/integration/skia-full/probe", async (_req, res) => {
   }
 });
 
-app.get("/integration/skia-full/probe/report", async (req, res) => {
+app.get("/integration/skia-full/probe/report", requireAuth, async (req, res) => {
   try {
     const rows = await skiaFullAdapter.probeBrainContracts(pickSkiaHeaders(req));
     const report = buildProbeReport(rows);
@@ -664,8 +681,8 @@ app.get("/integration/skia-full/probe/report", async (req, res) => {
 });
 
 // Bearer JWT required for all /api/forge/* routes registered below (login/session proxies above are unaffected).
-// PUBLIC BY DESIGN (no change here): /integration/skia-full/*, /state/runtime, /telemetry/*, /rpc, /providers/* —
-// operators should gate those separately (network ACL / future middleware) if Forge is internet-facing.
+// Per-route `requireAuth` gates /rules, /rpc, /state/runtime, /telemetry/summary, /providers/status, /live, /ready,
+// and /integration/skia-full/* plus related POSTs. Admin mutations use `requireSkiaAdminSecret` then `requireAuth`.
 app.use("/api/forge", requireAuth);
 
 app.get("/api/forge/modules/status", async (req, res) => {
@@ -1534,7 +1551,7 @@ app.post("/diff/preview", (req, res) => {
   res.json({ lines });
 });
 
-app.get("/providers/status", (_req, res) => {
+app.get("/providers/status", requireAuth, (_req, res) => {
   const activeProvider = providerRouter.routeForTask("chat");
   skiaStatus = providerRouter.getStatus();
   res.json({
@@ -1544,7 +1561,7 @@ app.get("/providers/status", (_req, res) => {
   });
 });
 
-app.post("/providers/health", (req, res) => {
+app.post("/providers/health", requireSkiaAdminSecret, requireAuth, (req, res) => {
   const parsed = providerHealthSchema.safeParse(req.body);
   if (!parsed.success) {
     return res.status(400).json({ error: "Invalid provider health payload." });
@@ -1555,7 +1572,7 @@ app.post("/providers/health", (req, res) => {
   res.json({ ok: true, status: skiaStatus, providers: providerRouter.getHealth() });
 });
 
-app.post("/providers/force", (req, res) => {
+app.post("/providers/force", requireSkiaAdminSecret, requireAuth, (req, res) => {
   const parsed = providerForceSchema.safeParse(req.body);
   if (!parsed.success) {
     return res.status(400).json({ error: "Invalid provider force payload." });
@@ -1571,7 +1588,7 @@ app.post("/providers/force", (req, res) => {
   res.json({ ok: true, forced: name ?? null, status: skiaStatus });
 });
 
-app.post("/telemetry/record", (req, res) => {
+app.post("/telemetry/record", requireSkiaAdminSecret, requireAuth, (req, res) => {
   const parsed = telemetryRecordSchema.safeParse(req.body);
   if (!parsed.success) {
     return res.status(400).json({ error: "Invalid telemetry payload." });
@@ -1581,7 +1598,7 @@ app.post("/telemetry/record", (req, res) => {
   return res.json({ ok: true });
 });
 
-app.get("/telemetry/summary", (_req, res) => {
+app.get("/telemetry/summary", requireAuth, (_req, res) => {
   res.json(telemetry.getSummary());
 });
 
@@ -1614,7 +1631,7 @@ app.get("/search", async (req, res, next) => {
   }
 });
 
-app.get("/rules", async (_req, res, next) => {
+app.get("/rules", requireAuth, async (_req, res, next) => {
   try {
     const rules = await loadSkiaRules(projectRoot);
     res.json(rules);
@@ -1674,7 +1691,7 @@ app.post("/agent/validate-command", async (req, res, next) => {
   }
 });
 
-app.post("/rpc", rateLimitMiddleware(rpcLimiter), async (req, res, next) => {
+app.post("/rpc", requireAuth, rateLimitMiddleware(rpcLimiter), async (req, res, next) => {
   try {
     const serialized = JSON.stringify(req.body ?? {});
     const payloadSize = enforceTextSize(serialized, 250_000);
@@ -1688,7 +1705,7 @@ app.post("/rpc", rateLimitMiddleware(rpcLimiter), async (req, res, next) => {
   }
 });
 
-app.post("/sovereign-core", async (req, res) => {
+app.post("/sovereign-core", requireAuth, async (req, res) => {
   try {
     const upstream = await skiaFullAdapter.sovereignCore(
       typeof req.body === "object" && req.body ? (req.body as Record<string, unknown>) : {},
@@ -1701,7 +1718,7 @@ app.post("/sovereign-core", async (req, res) => {
   }
 });
 
-app.post("/integration/skia-full/route", async (req, res) => {
+app.post("/integration/skia-full/route", requireAuth, async (req, res) => {
   try {
     const query = String(req.body?.query ?? "");
     const intent = typeof req.body?.intent === "string" ? req.body.intent : undefined;
@@ -1716,7 +1733,7 @@ app.post("/integration/skia-full/route", async (req, res) => {
   }
 });
 
-app.post("/integration/skia-full/routing-estimate", async (req, res) => {
+app.post("/integration/skia-full/routing-estimate", requireAuth, async (req, res) => {
   try {
     const payload =
       typeof req.body === "object" && req.body ? (req.body as Record<string, unknown>) : {};
@@ -1728,7 +1745,7 @@ app.post("/integration/skia-full/routing-estimate", async (req, res) => {
   }
 });
 
-app.post("/integration/skia-full/chat", async (req, res) => {
+app.post("/integration/skia-full/chat", requireAuth, async (req, res) => {
   try {
     const message = String(req.body?.message ?? req.body?.query ?? "");
     const mode = typeof req.body?.mode === "string" ? req.body.mode : undefined;
@@ -2111,6 +2128,16 @@ app.use((error: unknown, req: express.Request, res: express.Response, _next: exp
 const port = Number(process.env.SKIA_PORT ?? 4173);
 const server = http.createServer(app);
 attachInlineCompletionServer(server, providerRouter, () => skiaStatus);
+if (!(process.env.SKIA_ADMIN_SECRET ?? "").trim()) {
+  console.warn(
+    JSON.stringify({
+      level: "warn",
+      event: "config.skia_admin_secret",
+      message:
+        "SKIA_ADMIN_SECRET is not set; POST /providers/health, POST /providers/force, and POST /telemetry/record will return 403 until configured."
+    })
+  );
+}
 server.listen(port, () => {
   // Intentional startup log to simplify local diagnostics.
   console.log(`SKIA Intelligence listening on http://localhost:${port}`);

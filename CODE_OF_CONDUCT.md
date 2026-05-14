@@ -22,6 +22,6 @@ Project maintainers may remove comments, reject contributions, or restrict parti
 
 ## Reporting
 
-Report conduct concerns privately to: `conduct@skia.local`.
+Report conduct concerns privately to: `conduct_forge@skia.ca`.
 
 For security vulnerabilities, use the coordinated disclosure process in **`SECURITY.md`** (do not file public issues for undisclosed security defects).

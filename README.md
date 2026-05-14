@@ -2,7 +2,7 @@
 
 **Package version:** `1.0.0`
 
-SKIA-Forge is the sovereign control-plane and intelligence orchestration runtime for the SKIA ecosystem. It governs and orchestrates via the **`SkiaFullAdapter`**: Forge **calls** `Skia-FULL` HTTP APIs (for example `/api/skia/chat`, `/api/meta/route`, `/api/routing/estimate`) and does **not** replace the `Skia-FULL` product runtime.
+SKIA Forge is the governance and orchestration control plane for AI-native software development. It coordinates planning, execution safety, architecture checks, and policy enforcement across AI-assisted workflows.
 
 It provides:
 
@@ -10,14 +10,6 @@ It provides:
 - governance and safety enforcement,
 - orchestration and module execution surfaces,
 - operational telemetry and posture APIs.
-
-## Relationship to `Skia-FULL`
-
-- `Skia-FULL` is the main product/runtime monorepo.
-- `SKIA-Forge` is the focused orchestration and governance plane that integrates with SKIA-FULL contracts through the adapter; it does not duplicate full application behavior.
-- Default upstream base for adapter and auth proxy: **`https://api.skia.ca`** (`SKIA_FULL_API_URL` / `SKIA_BACKEND_URL`).
-- Forge is designed to stay modular and diagnostics-first, with explicit governance controls.
-- `Skia-Status` is the public status repository that reflects operational posture and incident communications for user-facing transparency.
 
 ## Project structure
 
@@ -30,8 +22,8 @@ It provides:
 
 ## Public HTTP routes (summary)
 
-- **Production web surface:** `forge.skia.ca` maps to this service (Northflank) [CONFIRM] against your live Domains configuration.
-- `/`, `/forge`, and `/download` redirect to **`/platform-downloads`** (canonical downloads hub: `public/platform-downloads.html`). **`skia.ca/platform-downloads`** permanently redirects to **`https://forge.skia.ca/platform-downloads`** (Skia-FULL Next.js config).
+- **Production web surface:** `forge.skia.ca` serves this service.
+- `/`, `/forge`, and `/download` redirect to **`/platform-downloads`** (canonical downloads hub: `public/platform-downloads.html`).
 - **Desktop installers:** `GET /api/app/download` and `GET /api/app/download/:platform` (`windows`, `mac-intel`, `mac-arm`, `linux-appimage`) redirect to published GitHub release assets (repo default `AI-SKIA/SKIA-Forge`).
 - `/forge/app` serves the IDE renderer when `skia-ide/dist/renderer` is built.
 - `/resources`, `/security`, `/contact` serve `public/*.html`
@@ -74,14 +66,11 @@ npm test
 
 Forge modules in `src/forge/modules/` are organized by capability. **Wired in `src/server.ts` (live execution path):** `context-engine`, `agent-planner`, `agent-executor`, `production`, `healing`, `architecture`, `skiarules`, `security`, `sdlc`, `tools`.
 
-**Present in-repo but not directly mounted on the HTTP entrypoint [CONFIRM]:** `agent`, `auto`, `global`, `self`, `work`, `governance` (module folder), `safety`, `errors`. Treat these as scaffold until a future route audit proves otherwise.
-
 This layout enables targeted evolution and operational isolation by domain.
 
 ## Desktop IDE (`skia-ide`)
 
 - **Version:** `1.0.0` (see `skia-ide/package.json`).
-- Default backend: **`https://api.skia.ca`**; chat pipeline default: **`https://skia.ca/api/skia/chat`** (see `skia-ide/src/renderer/skia/skiaConfig.ts`).
 - Packaged targets: Windows NSIS, macOS DMG (x64 / arm64), Linux AppImage (see `skia-ide/package.json` `build` section).
 
 ## Key docs

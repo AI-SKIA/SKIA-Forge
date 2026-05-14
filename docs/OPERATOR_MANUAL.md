@@ -2,24 +2,17 @@
 
 ## Runtime Role
 
-SKIA Forge operates as an orchestration/governance **HTTP service** that augments development workflows with policy-aware controls.
-
-## Ownership boundaries
-
-- Operate Forge as a control-plane service.
-- Do not treat Forge endpoints as replacements for SKIA product runtime APIs.
-- Use `Skia-Status` for external/public incident communication.
+SKIA Forge operates as an orchestration and governance **HTTP service** that augments development workflows with policy-aware controls.
 
 ## Deployment baseline
 
 - **Release:** Forge **`1.0.0`** (root `package.json`); desktop **SKIA Forge IDE** **`1.0.0`**.
-- **Public hostname:** `forge.skia.ca` in production (your hosting provider) [CONFIRM] — validate Domains mapping and TLS in your environment.
+- **Production hostname:** `forge.skia.ca`
 - Build: `npm run build`
 - Start: `npm run dev` (development) or `node dist/server.js` after build (production shape)
 - Listen address: **`SKIA_PORT`** (default **4173**)
 - After startup, validate:
   - `GET /health`, `GET /live`, `GET /ready`, `GET /version`
-  - `GET /integration/skia-full` / `probe`
 
 ## Environment variables (primary)
 
@@ -41,15 +34,13 @@ Values below are **representative** — see the Forge server for the full set.
 | `EMBED_INCREMENTAL_ON_SAVE` | Enable incremental embed indexing on save. |
 | `EMBED_VECTOR_STORE` | Vector store backend hint (e.g. `file`). |
 | `PRODUCTION_API_URL` | Production module adapter URL. |
-| `SKIA_INTENT_SIGNING_KEY` | Primary HMAC key for sensitive intents. |
-| `SKIA_INTENT_SIGNING_PREVIOUS_KEY` | Secondary key for rotation. |
-| `SKIA_INTENT_SIGNING_PREVIOUS_GRACE_UNTIL_MS` | Grace window for previous key. |
 | `SKIA_FORGE_RELEASE_REPO` | GitHub repo for installers (default `AI-SKIA/SKIA-Forge`). |
 | `SKIA_FORGE_RELEASE_TAG` | Release tag for asset resolution (default `v1.0.0`). |
 | `SKIA_FORGE_LATEST_VERSION` | Override “latest” version for `/api/app/version-check`. |
-| `GITHUB_TOKEN` / `SKIA_GITHUB_TOKEN` | Token for GitHub API when fetching release assets. |
 | `SKIA_IDE_RELEASE_BASE_URL` | Base URL for chat UI download links. |
 | `SKIA_ENABLE_WATCHER` | File watcher behavior (`1` enables). |
+
+Additional environment variables for signing and GitHub integration are documented in your onboarding package.
 
 ## Operational checks
 
@@ -67,6 +58,6 @@ Values below are **representative** — see the Forge server for the full set.
 
 ## Desktop distribution
 
-- Installers are reached via **`GET /api/app/download`** and **`GET /api/app/download/:platform`** (Windows NSIS, macOS DMG x64/arm64, Linux AppImage — see `skia-ide/package.json` `build`).
-- Confirm release assets exist for `Skia-Forge-*` / `SKIA-FORGE-*` installers or configure env overrides above.
+- Installers are reached via **`GET /api/app/download`** and **`GET /api/app/download/:platform`** (Windows, macOS Intel/Apple Silicon, Linux AppImage — see the SKIA Forge IDE package build configuration).
+- Confirm release assets exist for published installers or configure environment overrides as provided in your onboarding package.
 - Marketing pages do not surface web sign-in; users authenticate via the **Forge IDE** or direct API clients.

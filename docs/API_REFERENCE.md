@@ -2,13 +2,13 @@
 
 ## Scope
 
-This reference maps the HTTP API **as implemented in the Forge server**. Product-facing web APIs for the main SKIA product live in SKIA. Public status publication is `Skia-Status`.
+This reference maps the HTTP API **as implemented in the Forge server**. Product-facing web APIs for the main SKIA product live in SKIA.
 
 The canonical route list is the Forge server implementation; this document is the operator-friendly index.
 
-**Package version:** `1.0.0` (root `package.json`). **Default listen port:** `SKIA_PORT` (default `4173`).
+**Package version:** `1.0.0` (root `package.json`).
 
-**Authentication:** All routes under **`/api/forge/*`** require **`requireAuth`** in the Forge server (authenticated clients). Auth proxy routes **`/api/auth/*`** forward to **`SKIA_BACKEND_URL`** (default `https://api.skia.ca`). Integration and some diagnostic routes may be public by design — verify the Forge server before exposing Forge to untrusted networks.
+**Authentication:** All routes under **`/api/forge/*`** require authenticated clients. Auth proxy routes **`/api/auth/*`** forward to the configured SKIA backend (default `https://api.skia.ca`). Integration and diagnostic routes may have different access policies — follow your deployment’s security configuration.
 
 ---
 
@@ -152,9 +152,8 @@ The adapter may probe upstream paths such as `/api/health` **on the SKIA API hos
 - `POST /rpc` — Internal RPC / streaming bridge (rate limited).
 - `POST /sovereign-core` — Sovereign core passthrough to SKIA-full.
 - `GET /stream/:method` — SSE streaming for SKIA methods (rate limited).
-- `GET /state/runtime`, `GET /providers/status`, `POST /providers/health`, `POST /providers/force`.
-- Index / search / rules / agent audit: `GET /index`, `GET /search`, `GET /rules`, `GET /agent/audit-log`, `POST /agent/log`, `POST /agent/validate-command`.
-- `POST /telemetry/record`, `GET /telemetry/summary`.
+- `GET /providers/status` — Provider routing status snapshot.
+- Index, search, and agent audit: `GET /index`, `GET /search`, `GET /agent/audit-log`, `POST /agent/log`, `POST /agent/validate-command`.
 - `POST /diff/preview` — Text diff preview.
 
 ---

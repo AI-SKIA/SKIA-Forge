@@ -1,10 +1,6 @@
 # SKIA Forge Pricing and Packages
 
-This document defines a practical commercial packaging model for SKIA Forge.
-
-## Product framing
-
-Package SKIA Forge as governance/orchestration control plane value layered on top of SKIA runtime delivery and complemented by `Skia-Status` transparency operations.
+SKIA Forge is available in three packages designed for individuals, teams, and enterprise organisations.
 
 ## Package 1: Developer
 
@@ -27,7 +23,7 @@ Best for engineering teams adopting AI workflows.
 
 ## Package 3: Enterprise
 
-Best for organizations with compliance and operational requirements.
+Best for organisations with compliance and operational requirements.
 
 - Everything in Team
 - Enterprise policy controls and hardening guidance
@@ -41,11 +37,3 @@ Best for organizations with compliance and operational requirements.
 - Integration acceleration services
 - Architecture and security review workshops
 - Rollout training for platform and security teams
-
-## Commercial framing guidance
-
-- Sell outcomes, not just features:
-  - safer velocity
-  - reduced rollback risk
-  - stronger auditability
-- Position Forge as the governance/control multiplier for existing AI development investments.

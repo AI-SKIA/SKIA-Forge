@@ -1,8 +1,6 @@
 # SKIA Forge Support
 
-## Boundary reminder
-
-This support scope applies to Forge control-plane behavior (**release baseline `1.0.0`**). Route product-runtime incidents to SKIA runtime owners and public status publication tasks to `Skia-Status` operators.
+SKIA Forge support covers the following areas:
 
 ## Support Scope
 
@@ -15,10 +13,10 @@ Support covers:
 
 ## Triage Information to Collect
 
-- endpoint and method
+- endpoint and method (if using HTTP APIs)
 - request timestamp
 - request ID / correlation ID (if available)
-- mode (`strict` / `adaptive` / `autonomous`)
+- what you were trying to do when the issue occurred
 - error message and reproduction steps
 
 ## Escalation Path

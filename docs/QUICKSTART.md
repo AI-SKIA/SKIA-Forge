@@ -1,57 +1,28 @@
-﻿# SKIA Forge Quickstart (5 Minutes)
+﻿# SKIA Forge Quickstart
 
-## Scope
+Get started with SKIA Forge in a few minutes using the desktop IDE.
 
-Bootstrap the Forge **control-plane** Node server (**`1.0.0`**). Customer-facing product setup lives in SKIA; public status deployment in `Skia-Status`. Forge calls SKIA APIs via **`SkiaFullAdapter`** (default **`https://api.skia.ca`**).
+## 1. Download SKIA Forge
 
-## 1) Install dependencies
+Open **[https://forge.skia.ca/platform-downloads](https://forge.skia.ca/platform-downloads)** and download the installer for your operating system (Windows, macOS, or Linux).
 
-```bash
-npm install
-```
+## 2. Install and open the app
 
-## 2) Start Forge
+Run the installer, then launch **SKIA Forge** from your applications menu or desktop shortcut.
 
-```bash
-npm run dev
-```
+## 3. Sign in or create an account
 
-Default bind: **`SKIA_PORT`** (default **4173**).
+When the app opens, **sign in** with your SKIA account or follow the prompts to **create one**. Authentication happens inside the application.
 
-## 3) Validate health
+## 4. Your first workflow
 
-Open or curl:
+- Open or import a project you want to work on.
+- Use Forge to run governed assistance on your code: planning, review, or orchestrated tasks depending on what your organisation has enabled.
+- Review any governance or policy messages before applying changes.
 
-- `GET /health` — basic OK
-- `GET /live` — liveness
-- `GET /ready` — readiness (`503` if not ready)
-- `GET /integration/skia-full` — adapter status
-- `GET /integration/skia-full/probe` — contract probe
+## 5. Go deeper
 
-## 4) Validate quality gates
-
-```bash
-npm run build
-npm run test
-```
-
-## 5) First productive workflow
-
-1. Obtain a valid session or token for **`/api/forge/*`** (routes are **`requireAuth`**-protected in the Forge server).
-2. Send a request to a Forge orchestration surface (e.g. `POST /api/forge/orchestrate` or module endpoints — see `API_REFERENCE.md`).
-3. Review stage decisions and governance output.
-4. Apply remediation if blocked.
-5. Re-run to healthy posture.
-
-## Optional: desktop IDE
-
-1. Build the Electron renderer: `cd skia-ide && npm install && npm run build`.
-2. Open `GET /forge/app` in the browser *or* run `npm start` in `skia-ide` for the desktop shell.
-3. Sign in or register **inside the IDE** when prompted — the canonical download page (`https://forge.skia.ca/platform-downloads`) does not carry account CTAs.
-
-## Need more?
-
-- Product overview: `PRODUCT_MANUAL.md`
-- API list: `API_REFERENCE.md`
-- Ops: `OPERATOR_MANUAL.md`
-- Troubleshooting: `TROUBLESHOOTING.md`
+- **Day-to-day usage and governance modes:** [User Guide](USER_GUIDE.md)
+- **HTTP APIs and integration:** [API Reference](API_REFERENCE.md)
+- **Product capabilities:** [Product Manual](PRODUCT_MANUAL.md)
+- **Help and escalation:** [Support](SUPPORT.md)

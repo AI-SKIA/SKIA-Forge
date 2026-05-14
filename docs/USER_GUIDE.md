@@ -1,48 +1,34 @@
 ﻿# SKIA Forge User Guide
 
-## What this guide covers
+## What SKIA Forge does for you
 
-Using the Forge **control-plane HTTP service**: orchestration APIs, governance flows, health checks, and how that differs from the **SKIA Forge IDE** (desktop) and **SKIA** product runtime.
+SKIA Forge helps you build software with AI assistance under clear governance: planning, reviews, architecture insight, and safer apply paths so your team can move fast without bypassing policy.
 
-## Runtime roles
+## Get the desktop IDE
 
-| Surface | Role |
-|---------|------|
-| **Forge server** (`npm run dev` / production Node process) | Express control plane: `/api/forge/*` (**authenticated**), `/integration/skia-full/*`, governance, context engine, downloads metadata. Listens on `SKIA_PORT` (default **4173**). Production: **`forge.skia.ca`** [CONFIRM]. |
-| **SKIA Forge IDE** (Electron, **`1.0.0`**) | Desktop editor; sign-in and registration happen **in the app**, not on static Forge marketing pages. Default backend **`https://api.skia.ca`**; chat pipeline **`https://skia.ca/api/skia/chat`** (configured in the IDE). |
-| **Forge web IDE** | `GET /forge/app` serves the built IDE bundle with a browser shim (folder picker, limited “desktop” actions). Build the SKIA Forge IDE bundle first. |
-| **SKIA** | Primary customer product runtime and Next.js surfaces — not this repo. |
+Download installers from **[https://forge.skia.ca/platform-downloads](https://forge.skia.ca/platform-downloads)** and install **SKIA Forge** for your platform.
 
-## Quick validation (operator)
+## Signing in
 
-1. Install dependencies: `npm install`
-2. Start Forge: `npm run dev`
-3. Check **Forge-local** endpoints (not upstream `/api/health`):
-   - `GET /health`
-   - `GET /live` and `GET /ready`
-   - `GET /integration/skia-full` and `GET /integration/skia-full/probe`
-4. Optional quality gates: `npm run typecheck`, `npm run test`, `npm run build`
+Open the app and **sign in** or **create a SKIA account** when prompted. Account creation and sign-in happen inside the IDE, not on the public download pages.
 
-## Typical orchestration workflow
+## Daily usage
 
-1. Submit context and goals to Forge POST endpoints (see `API_REFERENCE.md`).
-2. Review stage decisions and governance output in responses.
-3. If blocked, follow remediation hints from the control plane or policy response.
-4. Re-run until posture is healthy.
+- **Submit work** — open your project and describe what you want to accomplish (refactor, feature, review, etc.).
+- **Review governance output** — read policy messages, previews, and any blocks before you apply changes.
+- **Apply remediation** — when Forge suggests fixes or a safer path, follow the in-app guidance and re-run checks until you are unblocked.
 
-## Daily usage patterns
+## Governance modes (plain language)
 
-- Review control-plane summaries (`GET /api/forge/control-plane`) before major changes.
-- Use orchestration preview (`POST /api/forge/orchestrate/preview`) before high-risk runs when applicable.
-- Run architecture and security diagnostics on changed areas (`POST /api/forge/skia-review`, architecture routes).
+Your organisation may set how much automation runs without extra confirmation:
 
-## Best practices
+- **Strict** — safest default: more steps require explicit approval before changes land.
+- **Adaptive** — balanced: routine work can flow faster while higher-risk actions still surface for review.
+- **Autonomous** — fastest path: where enabled, more automation can proceed in one pass; use only when your team accepts the trade-offs.
 
-- Align governance mode (`strict` / `adaptive` / `autonomous`) with environment risk.
-- Treat blocked actions as policy feedback; responses often include remediation paths.
-- Run build/test after applying orchestration-driven code changes.
+Exact labels in the product may vary; ask your admin which mode applies to your workspace.
 
-## Getting the desktop IDE
+## Where to get help
 
-- Download installers via **`GET /api/app/download`** or **`GET /api/app/download/:platform`**, or open the canonical page **`https://forge.skia.ca/platform-downloads`** (the SKIA platform) in the browser.
-- Release artifacts are published on GitHub (**`AI-SKIA/SKIA-Forge`** by default); filenames follow SKIA Forge IDE electron-builder rules (e.g. `SKIA-FORGE-*`).
+- **Documentation:** [Support](SUPPORT.md), [Troubleshooting](TROUBLESHOOTING.md), [Security guide](SECURITY_GUIDE.md)
+- **Contact:** use the contact options on **[forge.skia.ca](https://forge.skia.ca)** (e.g. **Contact & Support**) for account or billing questions routed by SKIA.

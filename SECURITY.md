@@ -4,7 +4,7 @@
 
 If you discover a security issue, do not open a public issue.
 
-- Email: `security@skia.local`
+- Email: `security_forge@skia.ca`
 - Subject: `SKIA-Forge Security Report`
 - Include: affected component, reproduction steps, impact, and any suggested mitigation.
 
@@ -26,4 +26,4 @@ This policy applies to the full SKIA-Forge repository, including web assets, bui
 
 ## Control-plane API access
 
-All **`/api/forge/*`** HTTP routes are protected by **`requireAuth`** in `src/server.ts` (authenticated API clients or sessions as implemented there). Do not assume these endpoints are anonymously callable in production.
+SKIA Forge API routes require authentication. Refer to the API Reference for details on authenticated endpoints.
