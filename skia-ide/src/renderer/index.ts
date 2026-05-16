@@ -417,7 +417,7 @@ const setView = (view: string): void => {
     const targetId = viewMap[view] ?? "editor-container";
     const target = document.getElementById(targetId);
     if (target) {
-        target.style.display = "flex";
+        target.style.display = targetId === "view-settings" ? "block" : "flex";
         target.classList.add("active");
     }
 

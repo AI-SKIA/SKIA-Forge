@@ -629,8 +629,8 @@ button {
     flex-direction: column;
     gap: 10px;
     padding: 20px 16px;
-    background: rgba(212,175,55,0.03);
-    border: 1px solid rgba(212,175,55,0.12);
+    background: rgba(212,175,55,0.08);
+    border: 1px solid rgba(212,175,55,0.35);
     border-radius: 4px;
     margin: 16px;
 }
