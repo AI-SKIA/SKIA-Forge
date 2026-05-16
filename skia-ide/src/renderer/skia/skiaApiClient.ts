@@ -1,4 +1,4 @@
-import { getAuthToken, getBackendUrl, getChatPipelineUrl, getTimeout } from "./skiaConfig";
+import { forgeUrl, getAuthToken, getBackendUrl, getChatPipelineUrl, getTimeout } from "./skiaConfig";
 
 type Json = Record<string, unknown>;
 export class SkiaOfflineError extends Error {
@@ -62,7 +62,7 @@ const skiaFetch = async (input: RequestInfo | URL, init?: RequestInit): Promise<
 };
 
 const fetchJsonWithRetry = async (path: string, init?: RequestInit): Promise<Json> => {
-    const url = `${getBackendUrl()}${path}`;
+    const url = /^https?:\/\//i.test(path) ? path : `${getBackendUrl()}${path}`;
     let tries = 0;
     while (tries < 3) {
         tries += 1;
@@ -101,7 +101,7 @@ export const healthCheck = async (): Promise<Json | null> => {
 
 export const getMode = async (): Promise<Json | null> => {
     try {
-        return await fetchJsonWithRetry("/api/forge/mode", { method: "GET" });
+        return await fetchJsonWithRetry(`${forgeUrl}/api/forge/mode`, { method: "GET" });
     } catch (error) {
         if (error instanceof SkiaOfflineError) return null;
         throw error;
@@ -110,7 +110,7 @@ export const getMode = async (): Promise<Json | null> => {
 
 export const getGovernance = async (): Promise<Json | null> => {
     try {
-        return await fetchJsonWithRetry("/api/forge/governance", { method: "GET" });
+        return await fetchJsonWithRetry(`${forgeUrl}/api/forge/governance`, { method: "GET" });
     } catch (error) {
         if (error instanceof SkiaOfflineError) return null;
         throw error;
@@ -134,7 +134,7 @@ export const getContext = (payload: Json): Promise<Json> =>
 
 export const getModulesStatus = async (): Promise<Json | null> => {
     try {
-        return await fetchJsonWithRetry("/api/forge/modules/status", { method: "GET" });
+        return await fetchJsonWithRetry(`${forgeUrl}/api/forge/modules/status`, { method: "GET" });
     } catch (error) {
         if (error instanceof SkiaOfflineError) return null;
         throw error;
@@ -143,7 +143,7 @@ export const getModulesStatus = async (): Promise<Json | null> => {
 
 export const getArchitectureHealth = async (): Promise<Json | null> => {
     try {
-        return await fetchJsonWithRetry("/api/forge/architecture/health", { method: "GET" });
+        return await fetchJsonWithRetry(`${forgeUrl}/api/forge/architecture/health`, { method: "GET" });
     } catch (error) {
         if (error instanceof SkiaOfflineError) return null;
         throw error;

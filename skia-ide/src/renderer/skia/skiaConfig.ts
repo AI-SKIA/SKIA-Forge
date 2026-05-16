@@ -7,6 +7,7 @@ type RuntimeConfig = {
 };
 
 let cache: RuntimeConfig | null = null;
+export let forgeUrl = "https://forge.skia.ca";
 
 const defaults: RuntimeConfig = {
   backendUrl: "https://api.skia.ca",
@@ -15,10 +16,10 @@ const defaults: RuntimeConfig = {
   chatPipelineUrl: "https://skia.ca/api/skia/chat",
 };
 
-const normalizeBackendUrl = (rawUrl: string | undefined): string => {
+const normalizeUrl = (rawUrl: string | undefined, fallback: string): string => {
   const candidate = (rawUrl || "").trim();
   if (!candidate) {
-    return defaults.backendUrl;
+    return fallback;
   }
 
   try {
@@ -26,13 +27,16 @@ const normalizeBackendUrl = (rawUrl: string | undefined): string => {
     const host = parsed.hostname.toLowerCase();
     const disallowedHosts = new Set(["127.0.0.1", "localhost", "0.0.0.0"]);
     if (parsed.protocol === "file:" || disallowedHosts.has(host)) {
-      return defaults.backendUrl;
+      return fallback;
     }
     return parsed.origin;
   } catch {
-    return defaults.backendUrl;
+    return fallback;
   }
 };
+
+const normalizeBackendUrl = (rawUrl: string | undefined): string =>
+  normalizeUrl(rawUrl, defaults.backendUrl);
 
 const normalizeChatPipelineUrl = (rawUrl: string | undefined): string => {
   const candidate = (rawUrl || "").trim();
@@ -80,12 +84,14 @@ export const loadConfig = async (): Promise<RuntimeConfig> => {
 
   try {
     const config = await window.skiaElectron.getConfig();
+    const configWithForge = config as typeof config & { forgeUrl?: string };
     cache = {
       backendUrl: normalizeBackendUrl(config.backendUrl),
       authToken: config.authToken || defaults.authToken,
       timeout: Number(config.timeout || defaults.timeout),
       chatPipelineUrl: normalizeChatPipelineUrl(config.chatPipelineUrl),
     };
+    if (configWithForge.forgeUrl) forgeUrl = normalizeUrl(configWithForge.forgeUrl, forgeUrl);
   } catch {
     cache = defaults;
   }
