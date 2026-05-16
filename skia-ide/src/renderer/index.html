@@ -137,17 +137,23 @@
                 background: rgba(212,175,55,0.08);
             }
 
+        /* ── View height propagation (required for scroll to work) ──────── */
+        .center-view.active {
+            flex: 1;
+            min-height: 0;
+        }
+
         /* ── Settings panel (scroll) ─────────────────────────────────────── */
         #view-settings {
             overflow-y: auto;
             min-height: 0;
         }
 
-        #view-settings.active {
-            flex: 1;
-            overflow-y: auto;
-            min-height: 0;
-        }
+            #view-settings.active {
+                flex: 1;
+                overflow-y: auto;
+                min-height: 0;
+            }
     </style>
 </head>
 <body>
@@ -166,7 +172,7 @@
             </nav>
             <div id="explorer-tree">
                 <div id="explorer-empty-state" style="padding: 18px 14px; color: rgba(212,175,55,0.45); font-size: 11px; letter-spacing: 0.08em; line-height: 1.7;">
-                    No folder open.<br/>
+                    No folder open.<br />
                     <span style="cursor:pointer; color:#d4af37; text-decoration:underline;" id="explorer-open-folder-hint">Open a folder</span> to get started.
                 </div>
                 <div id="explorer-tree-content" style="display: none;"></div>

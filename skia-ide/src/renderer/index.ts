@@ -184,9 +184,9 @@ const renderForgeError = (message: string): void => {
     if (modEl) modEl.innerHTML = "";
     if (!el) return;
     el.innerHTML = `
-        <div style="padding:24px;color:rgba(212,175,55,0.7);font-size:12px;letter-spacing:0.08em;">
-            <div style="margin-bottom:12px;">${message}</div>
-            <button id="forge-retry-btn" style="padding:6px 14px;border:1px solid rgba(212,175,55,0.3);background:rgba(212,175,55,0.06);color:#d4af37;border-radius:6px;cursor:pointer;font-size:11px;letter-spacing:0.1em;">RETRY</button>
+        <div class="forge-offline-notice">
+            <span class="forge-offline-title">${message}</span>
+            <button id="forge-retry-btn">RETRY</button>
         </div>`;
     document.getElementById("forge-retry-btn")?.addEventListener("click", () => loadForgeStatus(), { once: true });
 };
@@ -196,7 +196,7 @@ const loadForgeStatus = async (): Promise<void> => {
     const govEl = document.getElementById("forge-governance");
     const modEl = document.getElementById("forge-modules");
 
-    if (modeEl) modeEl.textContent = "Loading...";
+    if (modeEl) modeEl.innerHTML = `<div class="forge-offline-notice"><span class="forge-offline-title">Loading...</span></div>`;
     if (govEl) govEl.textContent = "";
     if (modEl) modEl.textContent = "";
 
