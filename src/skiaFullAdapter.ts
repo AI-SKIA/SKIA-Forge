@@ -13,6 +13,17 @@ import type {
   RepoAnalyzeRequest,
   RepoAnalyzeResponse
 } from "./types/codeIntelligence.js";
+import type {
+  SkiaFullAdapterStatus,
+  SkiaFullChatResponse,
+  SkiaFullEmbeddingResponse,
+  SkiaFullEmbeddingVectorResult,
+  SkiaFullMetaRouteResponse,
+  SkiaFullRoutingEstimateResponse,
+  SkiaFullSearchResponse,
+  SkiaFullSovereignCoreResponse,
+  SkiaFullTraceExplainResponse
+} from "./types/skiaFullResponses.js";
 
 export type SkiaFullAdapterConfig = {
   enabled: boolean;
@@ -27,7 +38,7 @@ export type SkiaFullAdapterConfig = {
   embedModel?: string;
 };
 
-export type SkiaFullSearchResult = Record<string, unknown>;
+export type SkiaFullSearchResult = SkiaFullSearchResponse | SkiaFullMetaRouteResponse;
 export type SkiaBrainProbeRow = {
   name: string;
   method: "GET" | "POST";
@@ -41,7 +52,7 @@ export type SkiaBrainProbeRow = {
 export class SkiaFullAdapter {
   constructor(private readonly config: SkiaFullAdapterConfig) {}
 
-  getStatus() {
+  getStatus(): SkiaFullAdapterStatus {
     return {
       enabled: this.config.enabled,
       baseUrl: this.config.baseUrl,
@@ -58,9 +69,9 @@ export class SkiaFullAdapter {
     query: string,
     category?: string,
     passthroughHeaders?: Record<string, string>
-  ): Promise<Record<string, unknown>> {
+  ): Promise<SkiaFullChatResponse> {
     // Primary evolved brain path from SKIA-FULL runtime.
-    return this.postJson(
+    return this.postJson<SkiaFullChatResponse>(
       "/api/skia/chat",
       {
         messages: [{ role: "user", content: query }],
@@ -75,9 +86,9 @@ export class SkiaFullAdapter {
     // Keep compatibility with search-specific API where available,
     // while falling back to meta routing if search contract drifts.
     try {
-      return await this.postJson("/api/skia/search", { query }, passthroughHeaders);
+      return await this.postJson<SkiaFullSearchResponse>("/api/skia/search", { query }, passthroughHeaders);
     } catch {
-      return this.postJson("/api/meta/route", {
+      return this.postJson<SkiaFullMetaRouteResponse>("/api/meta/route", {
         query,
         intent: "search",
         source: "skia-forge"
@@ -88,16 +99,16 @@ export class SkiaFullAdapter {
   async sovereignCore(
     payload: Record<string, unknown>,
     passthroughHeaders?: Record<string, string>
-  ): Promise<Record<string, unknown>> {
-    return this.postJson("/api/sovereign-core", payload, passthroughHeaders);
+  ): Promise<SkiaFullSovereignCoreResponse> {
+    return this.postJson<SkiaFullSovereignCoreResponse>("/api/sovereign-core", payload, passthroughHeaders);
   }
 
   async routeReasoning(
     query: string,
     intent?: string,
     passthroughHeaders?: Record<string, string>
-  ): Promise<Record<string, unknown>> {
-    return this.postJson("/api/meta/route", {
+  ): Promise<SkiaFullMetaRouteResponse> {
+    return this.postJson<SkiaFullMetaRouteResponse>("/api/meta/route", {
       query,
       intent: intent ?? "analysis",
       source: "skia-forge"
@@ -107,8 +118,8 @@ export class SkiaFullAdapter {
   async routingEstimate(
     payload: Record<string, unknown>,
     passthroughHeaders?: Record<string, string>
-  ): Promise<Record<string, unknown>> {
-    return this.postJson("/api/routing/estimate", payload, passthroughHeaders);
+  ): Promise<SkiaFullRoutingEstimateResponse> {
+    return this.postJson<SkiaFullRoutingEstimateResponse>("/api/routing/estimate", payload, passthroughHeaders);
   }
 
   async analyzeRepo(
@@ -162,8 +173,8 @@ export class SkiaFullAdapter {
   async traceExplain(
     traceId: string,
     passthroughHeaders?: Record<string, string>
-  ): Promise<Record<string, unknown>> {
-    return this.getJson(`/api/tracing/traces/${encodeURIComponent(traceId)}/explain`, passthroughHeaders);
+  ): Promise<SkiaFullTraceExplainResponse> {
+    return this.getJson<SkiaFullTraceExplainResponse>(`/api/tracing/traces/${encodeURIComponent(traceId)}/explain`, passthroughHeaders);
   }
 
   /**
@@ -174,7 +185,7 @@ export class SkiaFullAdapter {
     text: string,
     passthroughHeaders?: Record<string, string>
   ): Promise<
-    | { ok: true; data: Record<string, unknown>; vector: number[]; model?: string }
+    | { ok: true; data: SkiaFullEmbeddingResponse; vector: number[]; model?: string }
     | { ok: false; reason: string; statusCode?: number }
   > {
     if (!this.config.enabled) {
@@ -187,7 +198,7 @@ export class SkiaFullAdapter {
         source: "skia-forge",
         model: this.config.embedModel
       });
-      const data = await this.postJson(path, body, passthroughHeaders);
+      const data = await this.postJson<SkiaFullEmbeddingResponse>(path, body, passthroughHeaders);
       const parsed = parseSkiaFullEmbeddingVector(data);
       if (!parsed) {
         return { ok: true, data, vector: [], model: undefined };
@@ -207,7 +218,7 @@ export class SkiaFullAdapter {
   async embedTextOrThrow(
     text: string,
     passthroughHeaders?: Record<string, string>
-  ): Promise<{ vector: number[]; model?: string }> {
+  ): Promise<SkiaFullEmbeddingVectorResult> {
     if (!this.config.enabled) {
       throw new Error("SKIA-FULL adapter is disabled");
     }
@@ -217,7 +228,7 @@ export class SkiaFullAdapter {
       source: "skia-forge",
       model: this.config.embedModel
     });
-    const data = await this.postJson(path, body, passthroughHeaders);
+    const data = await this.postJson<SkiaFullEmbeddingResponse>(path, body, passthroughHeaders);
     const parsed = parseSkiaFullEmbeddingVector(data);
     if (!parsed?.vector.length) {
       throw new Error("Invalid embedding response: no vector in contract shape");
@@ -286,11 +297,11 @@ export class SkiaFullAdapter {
     return out;
   }
 
-  private async postJson(
+  private async postJson<TResponse = Record<string, unknown>>(
     path: string,
     body: Record<string, unknown>,
     passthroughHeaders?: Record<string, string>
-  ): Promise<Record<string, unknown>> {
+  ): Promise<TResponse> {
     if (!this.config.enabled) {
       throw new Error("SKIA-FULL adapter is disabled.");
     }
@@ -311,16 +322,16 @@ export class SkiaFullAdapter {
           }`
         );
       }
-      return data;
+      return data as TResponse;
     } finally {
       clearTimeout(timer);
     }
   }
 
-  private async getJson(
+  private async getJson<TResponse = Record<string, unknown>>(
     path: string,
     passthroughHeaders?: Record<string, string>
-  ): Promise<Record<string, unknown>> {
+  ): Promise<TResponse> {
     if (!this.config.enabled) {
       throw new Error("SKIA-FULL adapter is disabled.");
     }
@@ -340,7 +351,7 @@ export class SkiaFullAdapter {
           }`
         );
       }
-      return data;
+      return data as TResponse;
     } finally {
       clearTimeout(timer);
     }
