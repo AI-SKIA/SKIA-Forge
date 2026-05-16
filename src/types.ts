@@ -24,7 +24,7 @@ export type ForgeAuditV1 = {
 
 /** Health state of a single AI provider (matches `ProviderRouter` + `/providers/*` payloads). */
 export type ProviderHealth = {
-    name: "gemini" | "skia";
+    name: "google" | "skia-serve";
     healthy: boolean;
     latencyMs: number;
     checkedAt: string;

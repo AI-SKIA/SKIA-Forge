@@ -1,27 +1,69 @@
 import { ProviderHealth, SkiaStatus } from "./types.js";
 
-type ProviderName = "gemini" | "skia";
+export type ProviderName = "google" | "skia-serve";
+
+/** API / persisted legacy ids (`gemini` / `skia`) plus canonical `ProviderName`. */
+export type ProviderNameInput = ProviderName | "gemini" | "skia";
+
 type ProviderSnapshot = {
   providerHealth: Record<ProviderName, ProviderHealth>;
   forcedProvider: ProviderName | null;
 };
 
+function normalizeProviderName(name: string | null | undefined): ProviderName | null {
+  if (name == null || name === "") {
+    return null;
+  }
+  if (name === "google" || name === "skia-serve") {
+    return name;
+  }
+  if (name === "gemini") {
+    return "google";
+  }
+  if (name === "skia") {
+    return "skia-serve";
+  }
+  return null;
+}
+
+const defaultGoogleHealth = (): ProviderHealth => ({
+  name: "google",
+  healthy: true,
+  latencyMs: 120,
+  checkedAt: new Date().toISOString(),
+  failures: 0
+});
+
+const defaultSkiaServeHealth = (): ProviderHealth => ({
+  name: "skia-serve",
+  healthy: true,
+  latencyMs: 180,
+  checkedAt: new Date().toISOString(),
+  failures: 0
+});
+
+type RawSnapshotHealth = Partial<
+  Record<ProviderName | "gemini" | "skia", ProviderHealth | undefined>
+>;
+
+function mergePickedHealth(
+  row: ProviderHealth | undefined,
+  canonical: ProviderName,
+  defaults: ProviderHealth
+): ProviderHealth {
+  if (!row) {
+    return { ...defaults };
+  }
+  return {
+    ...row,
+    name: canonical
+  };
+}
+
 export class ProviderRouter {
   private providerHealth: Record<ProviderName, ProviderHealth> = {
-    gemini: {
-      name: "gemini",
-      healthy: true,
-      latencyMs: 120,
-      checkedAt: new Date().toISOString(),
-      failures: 0
-    },
-    skia: {
-      name: "skia",
-      healthy: true,
-      latencyMs: 180,
-      checkedAt: new Date().toISOString(),
-      failures: 0
-    }
+    google: defaultGoogleHealth(),
+    "skia-serve": defaultSkiaServeHealth()
   };
 
   private forcedProvider: ProviderName | null = null;
@@ -30,9 +72,13 @@ export class ProviderRouter {
     return Object.values(this.providerHealth);
   }
 
-  setProviderHealth(name: ProviderName, healthy: boolean, latencyMs = 150): void {
-    const current = this.providerHealth[name];
-    this.providerHealth[name] = {
+  setProviderHealth(name: ProviderNameInput, healthy: boolean, latencyMs = 150): void {
+    const n = normalizeProviderName(name);
+    if (!n) {
+      return;
+    }
+    const current = this.providerHealth[n];
+    this.providerHealth[n] = {
       ...current,
       healthy,
       latencyMs,
@@ -41,8 +87,12 @@ export class ProviderRouter {
     };
   }
 
-  forceProvider(name: ProviderName | null): void {
-    this.forcedProvider = name;
+  forceProvider(name: ProviderNameInput | null): void {
+    if (name === null) {
+      this.forcedProvider = null;
+      return;
+    }
+    this.forcedProvider = normalizeProviderName(name);
   }
 
   getForcedProvider(): ProviderName | null {
@@ -57,22 +107,29 @@ export class ProviderRouter {
   }
 
   restoreFromSnapshot(snapshot: ProviderSnapshot): void {
-    this.providerHealth = snapshot.providerHealth;
-    this.forcedProvider = snapshot.forcedProvider;
+    const raw = snapshot.providerHealth as RawSnapshotHealth;
+    this.providerHealth = {
+      google: mergePickedHealth(raw.google ?? raw.gemini, "google", defaultGoogleHealth()),
+      "skia-serve": mergePickedHealth(raw["skia-serve"] ?? raw.skia, "skia-serve", defaultSkiaServeHealth())
+    };
+    this.forcedProvider =
+      snapshot.forcedProvider === null
+        ? null
+        : normalizeProviderName(snapshot.forcedProvider) ?? null;
   }
 
   routeForTask(_taskType: "chat" | "completion" | "review"): ProviderName {
     if (this.forcedProvider) {
       return this.forcedProvider;
     }
-    if (this.providerHealth.gemini.healthy) {
-      return "gemini";
+    if (this.providerHealth["skia-serve"].healthy) {
+      return "skia-serve";
     }
-    return "skia";
+    return "google";
   }
 
   getStatus(): SkiaStatus {
-    if (this.routeForTask("chat") === "gemini") {
+    if (this.routeForTask("chat") === "skia-serve") {
       return "Sovereign";
     }
     return "Adaptive";

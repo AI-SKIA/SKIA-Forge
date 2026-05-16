@@ -39,7 +39,7 @@ test("runtime state persists and restores provider + telemetry", async () => {
     },
     governanceTelemetry: governanceTelemetryB
   });
-  assert.equal(providerB.getForcedProvider(), "skia");
+  assert.equal(providerB.getForcedProvider(), "skia-serve");
   const summary = telemetryB.getSummary();
   assert.ok(summary.inline_completion_latency_ms.count >= 1);
   assert.equal(modeB, "strict");
