@@ -177,6 +177,7 @@ body {
 
 #view-settings.active {
   flex: 1;
+  overflow-y: auto;
   min-height: 0;
 }
 

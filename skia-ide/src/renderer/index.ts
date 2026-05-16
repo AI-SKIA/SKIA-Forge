@@ -34,7 +34,6 @@ let activeFolderPath = "";
 let menuListenersRegistered = false;
 let autoSaveEnabled = false;
 let settingsControlsInitialized = false;
-let forgeRetryDelegated = false;
 
 type UpdateInstallBridge = {
     downloadAndInstall: (downloadUrl: string) => Promise<void>;
@@ -177,42 +176,19 @@ const getExplorerTreeContent = (): HTMLDivElement | null =>
     document.getElementById("explorer-tree-content") as HTMLDivElement | null;
 
 const renderForgeError = (message: string): void => {
-    const modeEl = document.getElementById("forge-mode");
+    const el = document.getElementById("forge-mode");
     const govEl = document.getElementById("forge-governance");
     const modEl = document.getElementById("forge-modules");
 
     if (govEl) govEl.innerHTML = "";
     if (modEl) modEl.innerHTML = "";
-    if (modeEl) {
-        const row = document.createElement("div");
-        row.className = "forge-row";
-        const span = document.createElement("span");
-        span.className = "forge-value";
-        span.style.color = "#8a6f1e";
-        span.textContent = message;
-        row.appendChild(span);
-        modeEl.innerHTML = "";
-        modeEl.appendChild(row);
-        const retry = document.createElement("button");
-        retry.type = "button";
-        retry.id = "forge-retry-btn";
-        retry.textContent = "Retry";
-        modeEl.appendChild(retry);
-    }
-};
-
-const wireForgeRetryOnce = (): void => {
-    if (forgeRetryDelegated) {
-        return;
-    }
-    forgeRetryDelegated = true;
-    document.getElementById("view-forge")?.addEventListener("click", (e) => {
-        const target = e.target as HTMLElement;
-        if (target.id === "forge-retry-btn") {
-            e.preventDefault();
-            void loadForgeStatus();
-        }
-    });
+    if (!el) return;
+    el.innerHTML = `
+        <div style="padding:24px;color:rgba(212,175,55,0.7);font-size:12px;letter-spacing:0.08em;">
+            <div style="margin-bottom:12px;">${message}</div>
+            <button id="forge-retry-btn" style="padding:6px 14px;border:1px solid rgba(212,175,55,0.3);background:rgba(212,175,55,0.06);color:#d4af37;border-radius:6px;cursor:pointer;font-size:11px;letter-spacing:0.1em;">RETRY</button>
+        </div>`;
+    document.getElementById("forge-retry-btn")?.addEventListener("click", () => loadForgeStatus(), { once: true });
 };
 
 const loadForgeStatus = async (): Promise<void> => {
@@ -236,7 +212,7 @@ const loadForgeStatus = async (): Promise<void> => {
             return;
         }
         if (!mode || !gov || !modules) {
-            renderForgeError("Control plane returned incomplete data.");
+            renderForgeError("Control plane returned an unexpected error.");
             return;
         }
 
@@ -283,7 +259,7 @@ const loadForgeStatus = async (): Promise<void> => {
             renderForgeError("Cannot reach backend. Check your connection.");
             return;
         }
-        renderForgeError("Cannot reach backend. Check your connection.");
+        renderForgeError("Control plane returned an unexpected error.");
     }
 };
 
@@ -819,7 +795,6 @@ const bootstrap = async (): Promise<void> => {
     initializeMonaco();
     console.log("SKIA: monaco initialized");
     initializeSettingsControlsOnce();
-    wireForgeRetryOnce();
     initializeSidebarNavigation();
     console.log("SKIA: sidebar navigation initialized");
     initializeChatPanel();
