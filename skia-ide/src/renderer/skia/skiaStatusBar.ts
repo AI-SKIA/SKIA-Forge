@@ -1,8 +1,9 @@
-import { getArchitectureHealth } from "./skiaApiClient";
+import { getArchitectureHealth, SkiaOfflineError } from "./skiaApiClient";
 import { getLoggedInUser, logout } from "./skiaAuthPanel";
 
 const statusEl = document.getElementById("status-text");
 const architectureEl = document.getElementById("status-architecture");
+let healthPollInterval: number | undefined;
 
 const removeDropdown = (): void => {
   const existing = document.getElementById("skia-status-dropdown");
@@ -75,15 +76,23 @@ const render = (): void => {
 const pollArchitectureHealth = async (): Promise<void> => {
   try {
     await getArchitectureHealth();
-  } catch {
-    /* 404/offline — silent; same URL stack as other Forge API calls (getBackendUrl). */
+  } catch (error) {
+    const status = typeof (error as { status?: unknown }).status === "number"
+      ? (error as { status: number }).status
+      : undefined;
+    const message = error instanceof Error ? error.message : "";
+    const isMissingEndpoint = status === 404 || message.includes("404") || error instanceof SkiaOfflineError;
+    if (isMissingEndpoint && healthPollInterval !== undefined) {
+      window.clearInterval(healthPollInterval);
+      healthPollInterval = undefined;
+    }
   }
 };
 
 export const initializeStatusBar = (): void => {
   render();
   void pollArchitectureHealth();
-  window.setInterval(() => {
+  healthPollInterval = window.setInterval(() => {
     void pollArchitectureHealth();
   }, 10_000);
   window.addEventListener("skia-auth-ready", render as EventListener);

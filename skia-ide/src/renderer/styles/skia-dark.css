@@ -623,3 +623,38 @@ button {
 ::-webkit-scrollbar-thumb {
     background: var(--skia-gold);
 }
+
+.forge-offline-notice {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 16px;
+    background: rgba(212,175,55,0.03);
+    border: 1px solid rgba(212,175,55,0.12);
+    border-radius: 4px;
+    margin: 16px;
+}
+
+.forge-offline-title {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: rgba(212,175,55,0.6);
+    text-transform: uppercase;
+}
+
+#forge-retry-btn {
+    margin-top: 8px;
+    background: transparent;
+    border: 1px solid rgba(212,175,55,0.3);
+    color: #d4af37;
+    padding: 6px 14px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    cursor: pointer;
+    align-self: flex-start;
+}
+
+#forge-retry-btn:hover {
+    background: rgba(212,175,55,0.08);
+}
