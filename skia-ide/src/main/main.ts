@@ -804,23 +804,6 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     const runMenu = new Menu();
     runMenu.append(
         new MenuItem({
-            label: "Start SKIA Backend",
-            click: () => {
-                startBackendProcess();
-            }
-        })
-    );
-    runMenu.append(
-        new MenuItem({
-            label: "Stop SKIA Backend",
-            click: () => {
-                stopBackendProcess();
-            }
-        })
-    );
-    runMenu.append(new MenuItem({ type: "separator" }));
-    runMenu.append(
-        new MenuItem({
             label: "Run Agent Task",
             click: () => {
                 mainWindow?.webContents.send("run-agent-task");

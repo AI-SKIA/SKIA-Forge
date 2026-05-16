@@ -33,6 +33,8 @@ let activeFilePath = "";
 let activeFolderPath = "";
 let menuListenersRegistered = false;
 let autoSaveEnabled = false;
+let settingsControlsInitialized = false;
+let forgeRetryDelegated = false;
 
 type UpdateInstallBridge = {
     downloadAndInstall: (downloadUrl: string) => Promise<void>;
@@ -161,17 +163,56 @@ const setStatus = (text: string): void => {
     if (statusEl) statusEl.textContent = text;
 };
 
-const ensureExplorerTreeContainer = (): HTMLDivElement | null => {
-    const sidebar = document.getElementById("sidebar");
-    if (!sidebar) return null;
-
-    let tree = document.getElementById("explorer-tree") as HTMLDivElement | null;
-    if (!tree) {
-        tree = document.createElement("div");
-        tree.id = "explorer-tree";
-        sidebar.appendChild(tree);
+const showExplorerEmptyState = (): void => {
+    const empty = document.getElementById("explorer-empty-state");
+    const content = document.getElementById("explorer-tree-content");
+    if (empty) empty.style.display = "";
+    if (content) {
+        content.style.display = "none";
+        content.innerHTML = "";
     }
-    return tree;
+};
+
+const getExplorerTreeContent = (): HTMLDivElement | null =>
+    document.getElementById("explorer-tree-content") as HTMLDivElement | null;
+
+const renderForgeError = (message: string): void => {
+    const modeEl = document.getElementById("forge-mode");
+    const govEl = document.getElementById("forge-governance");
+    const modEl = document.getElementById("forge-modules");
+
+    if (govEl) govEl.innerHTML = "";
+    if (modEl) modEl.innerHTML = "";
+    if (modeEl) {
+        const row = document.createElement("div");
+        row.className = "forge-row";
+        const span = document.createElement("span");
+        span.className = "forge-value";
+        span.style.color = "#8a6f1e";
+        span.textContent = message;
+        row.appendChild(span);
+        modeEl.innerHTML = "";
+        modeEl.appendChild(row);
+        const retry = document.createElement("button");
+        retry.type = "button";
+        retry.id = "forge-retry-btn";
+        retry.textContent = "Retry";
+        modeEl.appendChild(retry);
+    }
+};
+
+const wireForgeRetryOnce = (): void => {
+    if (forgeRetryDelegated) {
+        return;
+    }
+    forgeRetryDelegated = true;
+    document.getElementById("view-forge")?.addEventListener("click", (e) => {
+        const target = e.target as HTMLElement;
+        if (target.id === "forge-retry-btn") {
+            e.preventDefault();
+            void loadForgeStatus();
+        }
+    });
 };
 
 const loadForgeStatus = async (): Promise<void> => {
@@ -189,8 +230,14 @@ const loadForgeStatus = async (): Promise<void> => {
             getGovernance(),
             getModulesStatus()
         ]);
+
+        if (!mode && !gov && !modules) {
+            renderForgeError("Cannot reach backend. Check your connection.");
+            return;
+        }
         if (!mode || !gov || !modules) {
-            throw new SkiaOfflineError();
+            renderForgeError("Control plane returned incomplete data.");
+            return;
         }
 
         if (modeEl) {
@@ -215,29 +262,38 @@ const loadForgeStatus = async (): Promise<void> => {
                 </div>`;
         }
     } catch (error) {
-        if (!(error instanceof SkiaOfflineError) && !(error instanceof Error)) {
-            // Non-standard error shape; show unavailable state without noisy logging.
+        const msg = error instanceof Error ? error.message : "";
+        if (error instanceof SkiaOfflineError) {
+            renderForgeError("Cannot reach backend. Check your connection.");
+            return;
         }
-        if (modeEl) {
-            modeEl.innerHTML = `<div class="forge-row"><span class="forge-value" style="color:#8a6f1e">Control plane telemetry temporarily unavailable. Core SKIA features remain available.</span></div>`;
+        if (error instanceof DOMException && error.name === "AbortError") {
+            renderForgeError("Cannot reach backend. Check your connection.");
+            return;
         }
+        if (/\(401\)/.test(msg) || /\(403\)/.test(msg)) {
+            renderForgeError("Authentication required. Sign in and try again.");
+            return;
+        }
+        if (/\(404\)/.test(msg)) {
+            renderForgeError("Control plane not available on this host.");
+            return;
+        }
+        if (msg === "Failed to fetch" || error instanceof TypeError) {
+            renderForgeError("Cannot reach backend. Check your connection.");
+            return;
+        }
+        renderForgeError("Cannot reach backend. Check your connection.");
     }
 };
 
-const loadSettings = (): void => {
-    const decreaseBtn = document.getElementById("font-decrease") as HTMLButtonElement | null;
-    const increaseBtn = document.getElementById("font-increase") as HTMLButtonElement | null;
-    const fontDisplay = document.getElementById("font-size-display");
-    const minimapBtn = document.getElementById("toggle-minimap") as HTMLButtonElement | null;
-    const wrapBtn = document.getElementById("toggle-wordwrap") as HTMLButtonElement | null;
-    const tabSelect = document.getElementById("tab-size-select") as HTMLSelectElement | null;
-    const autoSaveBtn = document.getElementById("toggle-autosave") as HTMLButtonElement | null;
+const refreshSettingsDisplay = (): void => {
     const statusDisplay = document.getElementById("connection-status-display");
-    const logoutBtn = document.getElementById("settings-logout-btn") as HTMLButtonElement | null;
-    const checkUpdatesBtn = document.getElementById("settings-check-updates-btn") as HTMLButtonElement | null;
-
     if (statusDisplay) {
-        statusDisplay.textContent = (document.getElementById("status-text")?.textContent ?? "Disconnected").replace("⬡ ", "");
+        statusDisplay.textContent = (document.getElementById("status-text")?.textContent ?? "Disconnected").replace(
+            "⬡ ",
+            ""
+        );
     }
 
     const editor = getEditor() as unknown as {
@@ -245,39 +301,85 @@ const loadSettings = (): void => {
         getRawOptions?: () => Record<string, unknown>;
     } | null;
     const rawOptions = typeof editor?.getRawOptions === "function" ? editor.getRawOptions() : {};
-    let fontSize = Number(rawOptions?.fontSize ?? 13);
-    let minimapEnabled = Boolean((rawOptions?.minimap as { enabled?: boolean } | undefined)?.enabled ?? true);
-    let wordWrapOn = String(rawOptions?.wordWrap ?? "off") === "on";
-    let tabSize = Number(rawOptions?.tabSize ?? 4);
+    const fontSize = Number(rawOptions?.fontSize ?? 13);
+    const minimapEnabled = Boolean((rawOptions?.minimap as { enabled?: boolean } | undefined)?.enabled ?? true);
+    const wordWrapOn = String(rawOptions?.wordWrap ?? "off") === "on";
+    const tabSize = Number(rawOptions?.tabSize ?? 4);
+
+    const fontDisplay = document.getElementById("font-size-display");
+    const minimapBtn = document.getElementById("toggle-minimap") as HTMLButtonElement | null;
+    const wrapBtn = document.getElementById("toggle-wordwrap") as HTMLButtonElement | null;
+    const tabSelect = document.getElementById("tab-size-select") as HTMLSelectElement | null;
+    const autoSaveBtn = document.getElementById("toggle-autosave") as HTMLButtonElement | null;
 
     if (fontDisplay) fontDisplay.textContent = `${fontSize}px`;
     if (minimapBtn) minimapBtn.textContent = minimapEnabled ? "ON" : "OFF";
     if (wrapBtn) wrapBtn.textContent = wordWrapOn ? "ON" : "OFF";
     if (tabSelect) tabSelect.value = String(tabSize);
     if (autoSaveBtn) autoSaveBtn.textContent = autoSaveEnabled ? "ON" : "OFF";
+};
+
+const initializeSettingsControlsOnce = (): void => {
+    if (settingsControlsInitialized) {
+        return;
+    }
+    settingsControlsInitialized = true;
+
+    const fontDisplay = document.getElementById("font-size-display");
+    const decreaseBtn = document.getElementById("font-decrease") as HTMLButtonElement | null;
+    const increaseBtn = document.getElementById("font-increase") as HTMLButtonElement | null;
+    const minimapBtn = document.getElementById("toggle-minimap") as HTMLButtonElement | null;
+    const wrapBtn = document.getElementById("toggle-wordwrap") as HTMLButtonElement | null;
+    const tabSelect = document.getElementById("tab-size-select") as HTMLSelectElement | null;
+    const autoSaveBtn = document.getElementById("toggle-autosave") as HTMLButtonElement | null;
+    const logoutBtn = document.getElementById("settings-logout-btn") as HTMLButtonElement | null;
+    const checkUpdatesBtn = document.getElementById("settings-check-updates-btn") as HTMLButtonElement | null;
+
+    const getEditorOpts = (): {
+        editor: {
+            updateOptions?: (opts: Record<string, unknown>) => void;
+            getRawOptions?: () => Record<string, unknown>;
+        } | null;
+        raw: Record<string, unknown>;
+    } => {
+        const editor = getEditor() as unknown as {
+            updateOptions?: (opts: Record<string, unknown>) => void;
+            getRawOptions?: () => Record<string, unknown>;
+        } | null;
+        const raw = typeof editor?.getRawOptions === "function" ? editor.getRawOptions() : {};
+        return { editor, raw };
+    };
 
     decreaseBtn?.addEventListener("click", () => {
+        const { editor, raw } = getEditorOpts();
+        let fontSize = Number(raw?.fontSize ?? 13);
         fontSize = Math.max(10, fontSize - 1);
         if (fontDisplay) fontDisplay.textContent = `${fontSize}px`;
         editor?.updateOptions?.({ fontSize });
     });
     increaseBtn?.addEventListener("click", () => {
+        const { editor, raw } = getEditorOpts();
+        let fontSize = Number(raw?.fontSize ?? 13);
         fontSize = Math.min(24, fontSize + 1);
         if (fontDisplay) fontDisplay.textContent = `${fontSize}px`;
         editor?.updateOptions?.({ fontSize });
     });
     minimapBtn?.addEventListener("click", () => {
-        minimapEnabled = !minimapEnabled;
-        minimapBtn.textContent = minimapEnabled ? "ON" : "OFF";
-        editor?.updateOptions?.({ minimap: { enabled: minimapEnabled } });
+        const { editor, raw } = getEditorOpts();
+        const cur = Boolean((raw?.minimap as { enabled?: boolean } | undefined)?.enabled ?? true);
+        const next = !cur;
+        minimapBtn.textContent = next ? "ON" : "OFF";
+        editor?.updateOptions?.({ minimap: { enabled: next } });
     });
     wrapBtn?.addEventListener("click", () => {
-        wordWrapOn = !wordWrapOn;
-        wrapBtn.textContent = wordWrapOn ? "ON" : "OFF";
-        editor?.updateOptions?.({ wordWrap: wordWrapOn ? "on" : "off" });
+        const { editor, raw } = getEditorOpts();
+        const nextOn = String(raw?.wordWrap ?? "off") !== "on";
+        wrapBtn.textContent = nextOn ? "ON" : "OFF";
+        editor?.updateOptions?.({ wordWrap: nextOn ? "on" : "off" });
     });
     tabSelect?.addEventListener("change", () => {
-        tabSize = Number(tabSelect.value);
+        const { editor } = getEditorOpts();
+        const tabSize = Number(tabSelect.value);
         editor?.updateOptions?.({ tabSize });
     });
     autoSaveBtn?.addEventListener("click", () => {
@@ -299,6 +401,7 @@ const loadSettings = (): void => {
     });
 
     checkUpdatesBtn?.addEventListener("click", async () => {
+        if (!checkUpdatesBtn) return;
         checkUpdatesBtn.textContent = "CHECKING...";
         const result = await window.skiaElectron.checkForUpdates();
         if (result.status === "up-to-date") {
@@ -310,7 +413,19 @@ const loadSettings = (): void => {
     });
 };
 
+const loadSettings = (): void => {
+    refreshSettingsDisplay();
+};
+
 const setView = (view: string): void => {
+    if (view === "terminal") {
+        navItems.forEach((item) => {
+            item.classList.toggle("is-active", item.dataset.view === "terminal");
+        });
+        void ensureTerminalPanelVisible();
+        return;
+    }
+
     navItems.forEach((item) => {
         item.classList.toggle("is-active", item.dataset.view === view);
     });
@@ -346,8 +461,8 @@ const initializeSidebarNavigation = (): void => {
         });
     });
 
-    document.getElementById("nav-terminal")?.addEventListener("click", () => {
-        void ensureTerminalPanelVisible();
+    document.getElementById("explorer-open-folder-hint")?.addEventListener("click", () => {
+        void openFolderInExplorer();
     });
 
     setView("explorer");
@@ -467,9 +582,12 @@ const renderTreeNode = (node: SkiaDirectoryNode, depth: number): HTMLDivElement 
 };
 
 const renderExplorerTree = (rootPath: string, nodes: SkiaDirectoryNode[]): void => {
-    const container = ensureExplorerTreeContainer();
+    const empty = document.getElementById("explorer-empty-state");
+    const container = getExplorerTreeContent();
     if (!container) return;
 
+    if (empty) empty.style.display = "none";
+    container.style.display = "block";
     container.innerHTML = "";
 
     const root = document.createElement("div");
@@ -574,10 +692,7 @@ const closeFolderState = (): void => {
     if (searchResults) {
         searchResults.innerHTML = "";
     }
-    const tree = document.getElementById("explorer-tree");
-    if (tree) {
-        tree.innerHTML = "";
-    }
+    showExplorerEmptyState();
 };
 
 const registerMenuIpcHandlers = (): void => {
@@ -650,14 +765,6 @@ const registerMenuIpcHandlers = (): void => {
         const cancelBtn = document.getElementById("chat-cancel-btn") as HTMLButtonElement | null;
         cancelBtn?.click();
     });
-    window.skiaElectron.onMenuAction("run-start-backend", () => {
-        void appendSystemTerminalLine("SKIA: backend start requested");
-        setStatus("SKIA: BACKEND START REQUESTED");
-    });
-    window.skiaElectron.onMenuAction("run-stop-backend", () => {
-        void appendSystemTerminalLine("SKIA: backend stop requested");
-        setStatus("SKIA: BACKEND STOP REQUESTED");
-    });
     window.skiaElectron.onMenuAction("run-start-frontend", () => {
         void appendSystemTerminalLine("SKIA: frontend dev server start requested");
         setStatus("SKIA: FRONTEND START REQUESTED");
@@ -711,6 +818,8 @@ const bootstrap = async (): Promise<void> => {
     });
     initializeMonaco();
     console.log("SKIA: monaco initialized");
+    initializeSettingsControlsOnce();
+    wireForgeRetryOnce();
     initializeSidebarNavigation();
     console.log("SKIA: sidebar navigation initialized");
     initializeChatPanel();
