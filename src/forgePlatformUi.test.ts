@@ -10,17 +10,30 @@ test("forge platform html includes brand and core web IDE routes", () => {
     assert.ok(html.includes("/api/forge/module/"));
     assert.ok(html.includes("/api/forge/modules/status"));
     assert.ok(html.includes("/integration/skia-full"));
-    assert.ok(html.includes("SKIA connected"));
+    assert.ok(html.includes("SKIA CONNECTED"));
     assert.ok(html.includes("/api/forge/mode"));
-    assert.ok(html.includes("Download App"));
+    assert.ok(html.includes("Download Skia Forge"));
     assert.ok(html.includes("#d4af37"));
 });
 
-test("forge platform html includes back button", () => {
+test("forge platform html includes session bootstrap and bearer auth helpers", () => {
     const html = renderForgePlatformHtml();
-    assert.ok(html.includes("back-btn"));
-    assert.ok(html.includes("history.back()"));
-    assert.ok(html.includes("← Back"));
+    assert.ok(html.includes("bootstrapForgeSession"));
+    assert.ok(html.includes("authHeaders"));
+    assert.ok(html.includes('fetch("/api/auth/session"'));
+    assert.ok(html.includes("credentials: \"include\""));
+    assert.ok(html.includes("Authorization"));
+    assert.ok(html.includes("_forgeToken"));
+    assert.ok(html.includes("DOMContentLoaded"));
+    assert.ok(html.includes("SKIA INTEGRATION UNAVAILABLE — not authenticated"));
+    assert.ok(!html.includes("Authorization: Bearer hardcoded"));
+});
+
+test("forge platform html does not include back button", () => {
+    const html = renderForgePlatformHtml();
+    assert.ok(!html.includes("back-btn"));
+    assert.ok(!html.includes("history.back()"));
+    assert.ok(!html.includes("← Back"));
 });
 
 test("forge platform html includes all module buttons", () => {

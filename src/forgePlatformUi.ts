@@ -1,3 +1,5 @@
+import { forgeDownloadAppLink, forgeDownloadClientGateScript } from "./utils/forgeDownloadMarkup.js";
+
 export function renderForgePlatformHtml(): string {
     return `<!doctype html>
 <html>
@@ -73,6 +75,19 @@ export function renderForgePlatformHtml(): string {
       background: rgba(212, 175, 55, 0.16);
       border-color: rgba(212, 175, 55, 0.7);
     }
+    .auth-banner {
+      display: none;
+      margin: 0 16px 8px;
+      padding: 10px 14px;
+      border: 1px solid rgba(251, 113, 133, 0.45);
+      border-radius: 8px;
+      background: rgba(40, 8, 12, 0.55);
+      color: rgba(255, 220, 220, 0.92);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+    .auth-banner.visible { display: block; }
+    .auth-banner a { color: var(--gold); }
 
     .root {
       height: calc(100dvh - 58px);
@@ -217,18 +232,15 @@ export function renderForgePlatformHtml(): string {
       .brand { font-size: 16px; }
       .download-btn { font-size: 10px; padding: 7px 9px; }
     }
-    .back-btn { position:fixed;top:24px;left:24px;z-index:300;display:flex;align-items:center;gap:8px;color:#d4af37;text-decoration:none;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid rgba(212,175,55,0.3);border-radius:6px;padding:8px 14px;background:rgba(0,0,0,0.55);transition:background 0.15s;font-family:var(--font-heading);font-weight:600; }
-    .back-btn:hover { background:rgba(212,175,55,0.08); }
-    button.back-btn { appearance:none;-webkit-appearance:none;font:inherit;color:inherit;cursor:pointer; }
   </style>
 </head>
 <body>
-  <button type="button" class="back-btn" onclick="history.back()">← Back</button>
   <div class="topbar">
     <div class="brand">SKIA FORGE IDE</div>
     <div class="status" id="integrationStatus">Integration: checking...</div>
-    <a class="download-btn" href="/api/app/download">Download App</a>
+    ${forgeDownloadAppLink("download-btn")}
   </div>
+  <div id="authBanner" class="auth-banner" role="alert"></div>
   <div class="root">
     <aside class="left">
       <div class="section-title">IDE Modules</div>
@@ -262,10 +274,51 @@ export function renderForgePlatformHtml(): string {
   </div>
   <script>
     const integrationStatus = document.getElementById("integrationStatus");
+    const authBanner = document.getElementById("authBanner");
     const mainOutput = document.getElementById("mainOutput");
     const metaOutput = document.getElementById("metaOutput");
     const moduleButtons = Array.from(document.querySelectorAll(".mod-btn"));
     let activeModule = "agent";
+    let _forgeToken = null;
+
+    function authHeaders() {
+      return _forgeToken
+        ? { "Content-Type": "application/json", "Authorization": "Bearer " + _forgeToken }
+        : { "Content-Type": "application/json" };
+    }
+
+    function showAuthError(message) {
+      integrationStatus.textContent = "SKIA INTEGRATION UNAVAILABLE — " + message;
+      if (authBanner) {
+        authBanner.innerHTML =
+          message +
+          ' <a href="https://skia.ca/login" target="_blank" rel="noopener noreferrer">Log in at skia.ca</a>, then reload this page.';
+        authBanner.classList.add("visible");
+      }
+    }
+
+    async function bootstrapForgeSession() {
+      try {
+        const res = await fetch("/api/auth/session", {
+          method: "GET",
+          credentials: "include"
+        });
+        if (!res.ok) {
+          showAuthError("Session expired or not logged in. Please log in at skia.ca first.");
+          return;
+        }
+        const data = await res.json();
+        _forgeToken = data.token ?? null;
+        if (!_forgeToken) {
+          showAuthError("No token returned. Please log in at skia.ca first.");
+        } else if (authBanner) {
+          authBanner.classList.remove("visible");
+          authBanner.textContent = "";
+        }
+      } catch {
+        showAuthError("Could not reach auth service.");
+      }
+    }
 
     const moduleDescriptions = {
       agent:        { title: "Agent",                 desc: "Run an autonomous agent task — SKIA plans, reasons, and executes steps to complete your goal." },
@@ -293,17 +346,33 @@ export function renderForgePlatformHtml(): string {
 
     async function refreshIntegration() {
       try {
-        const [integrationData, modeData] = await Promise.all([
-          fetch("/integration/skia-full").then((r) => r.json()),
-          fetch("/api/forge/mode").then((r) => r.json())
+        const [integrationRes, modeRes] = await Promise.all([
+          fetch("/integration/skia-full", { headers: authHeaders() }),
+          fetch("/api/forge/mode", { headers: authHeaders() })
         ]);
-        integrationStatus.textContent = integrationData.enabled ? "SKIA connected" : "SKIA integration unavailable";
+
+        if (integrationRes.status === 401 || modeRes.status === 401) {
+          integrationStatus.textContent = "SKIA INTEGRATION UNAVAILABLE — not authenticated";
+          return;
+        }
+
+        const integrationData = await integrationRes.json();
+        integrationStatus.textContent = integrationData.enabled
+          ? "SKIA CONNECTED"
+          : "SKIA INTEGRATION UNAVAILABLE";
       } catch {
-        integrationStatus.textContent = "Integration: unavailable";
+        integrationStatus.textContent = "SKIA INTEGRATION UNAVAILABLE";
       }
     }
 
+    function requireAuthForAction() {
+      if (_forgeToken) return true;
+      mainOutput.textContent = "Not authenticated. Log in at skia.ca and reload this page.";
+      return false;
+    }
+
     async function runSelectedModule() {
+      if (!requireAuthForAction()) return;
       const prompt = String(document.getElementById("prompt").value || "").trim();
       if (!prompt) {
         mainOutput.textContent = "Add a prompt first.";
@@ -314,9 +383,13 @@ export function renderForgePlatformHtml(): string {
         if (activeModule === "orchestrate") {
           const res = await fetch("/api/forge/orchestrate", {
             method: "POST",
-            headers: { "content-type": "application/json" },
+            headers: authHeaders(),
             body: JSON.stringify({ intent: prompt, mode: "adaptive", approved: false })
           });
+          if (res.status === 401) {
+            mainOutput.textContent = "Session expired. Log in at skia.ca and reload this page.";
+            return;
+          }
           const data = await res.json();
           mainOutput.textContent = JSON.stringify(data, null, 2);
           metaOutput.textContent = "Orchestration complete (" + res.status + ").";
@@ -325,9 +398,13 @@ export function renderForgePlatformHtml(): string {
 
         const res = await fetch("/api/forge/module/" + activeModule, {
           method: "POST",
-          headers: { "content-type": "application/json" },
+          headers: authHeaders(),
           body: JSON.stringify({ query: prompt, task: prompt, mode: "adaptive", approved: false })
         });
+        if (res.status === 401) {
+          mainOutput.textContent = "Session expired. Log in at skia.ca and reload this page.";
+          return;
+        }
         const data = await res.json();
         mainOutput.textContent = JSON.stringify(data, null, 2);
         metaOutput.textContent = "Module " + activeModule + " complete (" + res.status + ").";
@@ -338,6 +415,7 @@ export function renderForgePlatformHtml(): string {
     }
 
     async function runOrchestration() {
+      if (!requireAuthForAction()) return;
       const prompt = String(document.getElementById("prompt").value || "").trim();
       if (!prompt) {
         mainOutput.textContent = "Add a prompt first.";
@@ -347,9 +425,13 @@ export function renderForgePlatformHtml(): string {
       try {
         const res = await fetch("/api/forge/orchestrate", {
           method: "POST",
-          headers: { "content-type": "application/json" },
+          headers: authHeaders(),
           body: JSON.stringify({ intent: prompt, mode: "adaptive", approved: false })
         });
+        if (res.status === 401) {
+          mainOutput.textContent = "Session expired. Log in at skia.ca and reload this page.";
+          return;
+        }
         const data = await res.json();
         mainOutput.textContent = JSON.stringify(data, null, 2);
         metaOutput.textContent = "Lifecycle complete (" + res.status + ").";
@@ -360,9 +442,15 @@ export function renderForgePlatformHtml(): string {
     }
 
     async function checkHealth() {
+      if (!requireAuthForAction()) return;
       metaOutput.textContent = "Checking health...";
       try {
-        const data = await fetch("/api/forge/modules/status").then((r) => r.json());
+        const res = await fetch("/api/forge/modules/status", { headers: authHeaders() });
+        if (res.status === 401) {
+          metaOutput.textContent = "Not authenticated.";
+          return;
+        }
+        const data = await res.json();
         metaOutput.textContent = JSON.stringify(data, null, 2);
       } catch (error) {
         metaOutput.textContent = String(error);
@@ -373,8 +461,15 @@ export function renderForgePlatformHtml(): string {
     document.getElementById("runOrchestration").addEventListener("click", runOrchestration);
     document.getElementById("checkHealth").addEventListener("click", checkHealth);
 
-    refreshIntegration();
+    async function init() {
+      await bootstrapForgeSession();
+      if (!_forgeToken) return;
+      await refreshIntegration();
+    }
+
+    document.addEventListener("DOMContentLoaded", init);
   </script>
+  ${forgeDownloadClientGateScript()}
 </body>
 </html>`;
 }

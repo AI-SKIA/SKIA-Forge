@@ -1,4 +1,4 @@
-Ôªø<!doctype html>
+<!doctype html>
 <html lang="en" class="skia-scrollbar-premium">
 <head>
   <meta charset="utf-8" />
@@ -129,7 +129,7 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
   <div class="pc-sidebar-divider"></div>
   <nav class="pc-sidebar-nav">
     <a class="pc-sidebar-btn" href="/platform-downloads">Forge Home</a>
-    <a class="pc-sidebar-btn" href="/forge/platform">Product</a>
+    <a class="pc-sidebar-btn" href="/forge/platform" target="_blank" rel="noopener noreferrer">Product</a>
     <a class="pc-sidebar-btn" href="/resources">Resources</a>
     <a class="pc-sidebar-btn" href="/security">Security</a>
     <a class="pc-sidebar-btn" href="/contact">Contact & Support</a>
@@ -138,14 +138,14 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
   </nav>
 </aside>
 
-<button type="button" class="back-btn" onclick="history.back()">‚Üê Back</button>
+<button type="button" class="back-btn" onclick="history.back()">? Back</button>
 
 <div class="wrap">
   <img src="/sidebar-logo.png" alt="SKIA" class="page-logo" />
 
   <div class="page-header">
     <h1 class="page-title">Security</h1>
-    <p class="page-subtitle">SKIA Forge applies layered controls across every surface ‚Äî request, governance, and execution</p>
+    <p class="page-subtitle">SKIA Forge applies layered controls across every surface ó request, governance, and execution</p>
   </div>
 
   <!-- Security Model -->
@@ -189,19 +189,19 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
     <div class="kc-list">
       <div class="kc-item">
         <div class="kc-bullet"></div>
-        <div class="kc-text"><strong>Security analysis</strong> ‚Äî runs scan and save-time checks on code and agent output before persistence.</div>
+        <div class="kc-text"><strong>Security analysis</strong> ó runs scan and save-time checks on code and agent output before persistence.</div>
       </div>
       <div class="kc-item">
         <div class="kc-bullet"></div>
-        <div class="kc-text"><strong>Governance layer</strong> ‚Äî enforces strict / adaptive / autonomous control based on user-defined policy. All mode transitions are logged.</div>
+        <div class="kc-text"><strong>Governance layer</strong> ó enforces strict / adaptive / autonomous control based on user-defined policy. All mode transitions are logged.</div>
       </div>
       <div class="kc-item">
         <div class="kc-bullet"></div>
-        <div class="kc-text"><strong>Route & Action Modules</strong> ‚Äî per-route and per-action safety constraints that cannot be bypassed at the API layer.</div>
+        <div class="kc-text"><strong>Route & Action Modules</strong> ó per-route and per-action safety constraints that cannot be bypassed at the API layer.</div>
       </div>
       <div class="kc-item">
         <div class="kc-bullet"></div>
-        <div class="kc-text"><strong>Audit Trail</strong> ‚Äî all orchestration runs produce a structured audit trail. Reviewed after major agent operations.</div>
+        <div class="kc-text"><strong>Audit Trail</strong> ó all orchestration runs produce a structured audit trail. Reviewed after major agent operations.</div>
       </div>
     </div>
   </div>
@@ -210,7 +210,7 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
   <div class="section-block">
     <div class="section-label">Operational Security Practices</div>
     <div class="practice-list">
-      <div class="practice-item"><div class="practice-num">01</div><div class="practice-text">Keep secrets out of repositories and logs. Store all secrets using your secrets manager or hosting provider's secrets injection ‚Äî never in plaintext config files.</div></div>
+      <div class="practice-item"><div class="practice-num">01</div><div class="practice-text">Keep secrets out of repositories and logs. Store all secrets using your secrets manager or hosting provider's secrets injection ó never in plaintext config files.</div></div>
       <div class="practice-item"><div class="practice-num">02</div><div class="practice-text">Validate all external integration responses. Never trust third-party data without schema assertion.</div></div>
       <div class="practice-item"><div class="practice-num">03</div><div class="practice-text">Treat policy blocks as first-class security events. Every block is logged, reviewable, and feeds governance tuning.</div></div>
       <div class="practice-item"><div class="practice-num">04</div><div class="practice-text">Record and monitor remediation outcomes. Fixes without follow-up validation are not considered complete.</div></div>
@@ -222,11 +222,11 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
     <div class="section-label">Hardening Checklist</div>
     <div class="checklist">
       <div class="check-item"><div class="check-icon skia-li skia-li--check" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div class="check-text">Run lint, typecheck, and tests before every release</div></div>
-      <div class="check-item"><div class="check-icon skia-li skia-li--check" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div class="check-text">Keep all dependencies current ‚Äî patch within 48 hours of CVE</div></div>
+      <div class="check-item"><div class="check-icon skia-li skia-li--check" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div class="check-text">Keep all dependencies current ó patch within 48 hours of CVE</div></div>
       <div class="check-item"><div class="check-icon skia-li skia-li--check" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div class="check-text">Validate integration probe endpoints regularly</div></div>
       <div class="check-item"><div class="check-icon skia-li skia-li--check" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div class="check-text">Review audit trails after major orchestration runs</div></div>
       <div class="check-item"><div class="check-icon skia-li skia-li--check" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div class="check-text">Rotate JWT_SECRET and API keys on a scheduled cadence</div></div>
-      <div class="check-item"><div class="check-icon skia-li skia-li--check" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div class="check-text">Never commit secrets ‚Äî use environment variable injection</div></div>
+      <div class="check-item"><div class="check-icon skia-li skia-li--check" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><div class="check-text">Never commit secrets ó use environment variable injection</div></div>
     </div>
   </div>
 
@@ -239,7 +239,7 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
 
   <footer>
     <div class="footer-tagline">One ecosystem. One universe. All SKIA.</div>
-    <div class="footer-copy">¬© 2026 SKIA. All rights reserved.</div>
+    <div class="footer-copy">© 2026 SKIA. All rights reserved.</div>
     <div class="footer-links">
       <a href="/resources">Resources</a>
       <span class="sep">|</span>

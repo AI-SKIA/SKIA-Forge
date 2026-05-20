@@ -1,5 +1,7 @@
 import { contextBridge, ipcRenderer } from "electron";
 
+contextBridge.exposeInMainWorld("__SKIA_PLATFORM__", "forge-ide");
+
 let updateProgressWrap: ((_event: Electron.IpcRendererEvent, data: { percent: number }) => void) | null = null;
 let updateErrorWrap: ((_event: Electron.IpcRendererEvent, data: { message: string }) => void) | null = null;
 

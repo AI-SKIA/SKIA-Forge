@@ -1,3 +1,5 @@
+import { forgeDownloadAppLink, forgeDownloadClientGateScript } from "./utils/forgeDownloadMarkup.js";
+
 export function renderChatHtml(_releaseBase = "https://skia.ca/download"): string {
   return `<!doctype html>
 <html>
@@ -63,7 +65,7 @@ export function renderChatHtml(_releaseBase = "https://skia.ca/download"): strin
   </style>
 </head>
 <body>
-  <a class="ide-download-app" href="/api/app/download">Download App</a>
+  ${forgeDownloadAppLink("ide-download-app")}
   <div class="root">
     <section class="panel">
       <h2>SKIA Intelligence Console</h2>
@@ -122,6 +124,7 @@ export function renderChatHtml(_releaseBase = "https://skia.ca/download"): strin
     });
     refreshStatus();
   </script>
+  ${forgeDownloadClientGateScript()}
 </body>
 </html>`;
 }

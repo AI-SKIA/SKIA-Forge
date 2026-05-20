@@ -587,7 +587,59 @@ app.post("/api/auth/contact", async (req, res) => {
 });
 
 app.get("/api/auth/session", async (req, res) => {
-  await proxyAuthToSkia(req, res, "GET", "/api/auth/session");
+  const base = (process.env.SKIA_FULL_API_URL ?? process.env.SKIA_BACKEND_URL ?? "https://api.skia.ca")
+    .trim()
+    .replace(/\/+$/, "");
+  const target = `${base}/api/auth/session`;
+  try {
+    const upstream = await fetch(target, {
+      method: "GET",
+      headers: {
+        "content-type": "application/json",
+        "x-skia-client": "forge-desktop",
+        ...(typeof req.headers.cookie === "string" ? { cookie: req.headers.cookie } : {}),
+        ...(typeof req.headers.authorization === "string"
+          ? { authorization: req.headers.authorization }
+          : {}),
+        ...(req.ip ? { "x-forwarded-for": req.ip } : {})
+      }
+    });
+    const setCookies: string[] =
+      typeof (upstream.headers as { getSetCookie?: () => string[] }).getSetCookie === "function"
+        ? (upstream.headers as { getSetCookie: () => string[] }).getSetCookie()
+        : upstream.headers.get("set-cookie")
+          ? [upstream.headers.get("set-cookie") as string]
+          : [];
+    if (setCookies.length > 0) {
+      res.setHeader("set-cookie", setCookies);
+    }
+    const text = await upstream.text();
+    let data: Record<string, unknown> = {};
+    try {
+      data = text ? (JSON.parse(text) as Record<string, unknown>) : {};
+    } catch {
+      return res.status(502).json({ error: "Invalid session response from auth service" });
+    }
+    if (!upstream.ok) {
+      return res.status(upstream.status).json({
+        error: typeof data.error === "string" ? data.error : "Unauthorized",
+        token: null,
+        user: data.user ?? null
+      });
+    }
+    const token =
+      (typeof data.token === "string" && data.token) ||
+      (typeof data.accessToken === "string" && data.accessToken) ||
+      null;
+    const user = data.user ?? null;
+    if (!token && (user === null || user === undefined)) {
+      return res.status(401).json({ error: "Unauthorized", token: null, user: null });
+    }
+    return res.json({ token, user, ...(token ? {} : { error: "No token in session response" }) });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Session service unavailable";
+    return res.status(500).json({ error: message, token: null });
+  }
 });
 
 app.get("/api/app/download/:platform", async (req, res) => {
