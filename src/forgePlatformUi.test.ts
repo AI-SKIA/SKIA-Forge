@@ -5,6 +5,9 @@ import { renderForgePlatformHtml } from "./forgePlatformUi.js";
 test("forge platform html includes brand and core web IDE routes", () => {
     const html = renderForgePlatformHtml();
     assert.ok(html.includes("SKIA FORGE IDE"));
+    assert.ok(html.includes('src="/sidebar-logo.png"'));
+    assert.ok(html.includes('class="brand-logo"'));
+    assert.ok(html.includes('height="28"'));
     assert.ok(html.includes("<h1>SKIA Forge</h1>"));
     assert.ok(html.includes("/api/forge/orchestrate"));
     assert.ok(html.includes("/api/forge/module/"));

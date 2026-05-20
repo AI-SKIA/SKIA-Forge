@@ -56,7 +56,23 @@ export function renderForgePlatformHtml(): string {
       background: rgba(0, 0, 0, 0.35);
       backdrop-filter: blur(4px);
     }
-    .brand { color: var(--gold); letter-spacing: var(--tracking-heading-display); font-size: 20px; font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; }
+    .brand {
+      display: flex;
+      align-items: center;
+      color: var(--gold);
+      letter-spacing: var(--tracking-heading-display);
+      font-size: 20px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .brand-logo {
+      height: 28px;
+      width: auto;
+      vertical-align: middle;
+      margin-right: 8px;
+      flex-shrink: 0;
+    }
     .status { color: var(--muted); font-size: 12px; letter-spacing: var(--tracking-heading-display); text-transform: uppercase; font-family: var(--font-heading); font-weight: 600; line-height: 1.15; }
     .download-btn {
       text-decoration: none;
@@ -236,7 +252,10 @@ export function renderForgePlatformHtml(): string {
 </head>
 <body>
   <div class="topbar">
-    <div class="brand">SKIA FORGE IDE</div>
+    <div class="brand">
+      <img src="/sidebar-logo.png" alt="Skia" height="28" class="brand-logo" />
+      SKIA FORGE IDE
+    </div>
     <div class="status" id="integrationStatus">Integration: checking...</div>
     ${forgeDownloadAppLink("download-btn")}
   </div>
