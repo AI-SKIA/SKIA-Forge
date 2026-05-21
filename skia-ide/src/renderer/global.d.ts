@@ -14,6 +14,8 @@ declare global {
         timeout: number;
         /** Optional override; default pipeline is https://skia.ca/api/skia/chat */
         chatPipelineUrl?: string;
+        /** Optional override; default https://skia.ca/api/skia/forge-agent */
+        forgeAgentPipelineUrl?: string;
       }>;
       getAppVersion: () => string;
       openFolder: () => Promise<string | null>;
@@ -56,6 +58,8 @@ declare global {
         currentVersion?: string;
         message?: string;
       }>;
+      /** Tell main the update listener is attached (replays cached update-available if needed). */
+      notifyRendererReady: () => void;
       setAutoSave: (enabled: boolean) => void;
       openDocs: () => void;
       getCookies: (url: string) => Promise<Array<{ name: string; value: string }>>;

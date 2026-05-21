@@ -4,6 +4,8 @@ type RuntimeConfig = {
   timeout: number;
   /** Full URL to Next `/api/skia/chat` (document extraction + live search + upstream). */
   chatPipelineUrl: string;
+  /** Next `/api/skia/forge-agent` — Forge IDE agent work stream only. */
+  forgeAgentPipelineUrl: string;
 };
 
 let cache: RuntimeConfig | null = null;
@@ -14,6 +16,7 @@ const defaults: RuntimeConfig = {
   authToken: "",
   timeout: 10000,
   chatPipelineUrl: "https://skia.ca/api/skia/chat",
+  forgeAgentPipelineUrl: "https://skia.ca/api/skia/forge-agent",
 };
 
 const normalizeUrl = (rawUrl: string | undefined, fallback: string): string => {
@@ -64,6 +67,31 @@ const normalizeChatPipelineUrl = (rawUrl: string | undefined): string => {
   }
 };
 
+const normalizeForgeAgentPipelineUrl = (rawUrl: string | undefined, chatPipelineUrl: string): string => {
+  const candidate = (rawUrl || "").trim();
+  if (candidate) {
+    try {
+      const parsed = new URL(candidate);
+      const host = parsed.hostname.toLowerCase();
+      const disallowedHosts = new Set(["127.0.0.1", "localhost", "0.0.0.0"]);
+      if (parsed.protocol !== "file:" && !disallowedHosts.has(host)) {
+        if (host === "api.skia.ca") {
+          return defaults.forgeAgentPipelineUrl;
+        }
+        return parsed.toString().replace(/\/+$/, "");
+      }
+    } catch {
+      /* fall through */
+    }
+  }
+  try {
+    const chat = new URL(chatPipelineUrl);
+    return `${chat.origin}/api/skia/forge-agent`.replace(/\/+$/, "");
+  } catch {
+    return defaults.forgeAgentPipelineUrl;
+  }
+};
+
 /**
  * Read the live session token from localStorage (written by skiaAuthPanel after login).
  * SKIA_AUTH_TOKEN env var is almost never set in production Northflank, so without this
@@ -84,12 +112,20 @@ export const loadConfig = async (): Promise<RuntimeConfig> => {
 
   try {
     const config = await window.skiaElectron.getConfig();
-    const configWithForge = config as typeof config & { forgeUrl?: string };
+    const configWithForge = config as typeof config & {
+      forgeUrl?: string;
+      forgeAgentPipelineUrl?: string;
+    };
+    const chatPipelineUrl = normalizeChatPipelineUrl(config.chatPipelineUrl);
     cache = {
       backendUrl: normalizeBackendUrl(config.backendUrl),
       authToken: config.authToken || defaults.authToken,
       timeout: Number(config.timeout || defaults.timeout),
-      chatPipelineUrl: normalizeChatPipelineUrl(config.chatPipelineUrl),
+      chatPipelineUrl,
+      forgeAgentPipelineUrl: normalizeForgeAgentPipelineUrl(
+        configWithForge.forgeAgentPipelineUrl,
+        chatPipelineUrl,
+      ),
     };
     if (configWithForge.forgeUrl) forgeUrl = normalizeUrl(configWithForge.forgeUrl, forgeUrl);
   } catch {
@@ -112,3 +148,6 @@ export const getAuthToken = (): string =>
 export const getTimeout = (): number => cache?.timeout ?? defaults.timeout;
 
 export const getChatPipelineUrl = (): string => cache?.chatPipelineUrl ?? defaults.chatPipelineUrl;
+
+export const getForgeAgentPipelineUrl = (): string =>
+  cache?.forgeAgentPipelineUrl ?? defaults.forgeAgentPipelineUrl;

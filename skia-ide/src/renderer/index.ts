@@ -3,6 +3,7 @@ import "./styles/skia-dark.css";
 import { getEditor, initializeMonaco } from "./editor/monacoSetup";
 import { loadConfig } from "./skia/skiaConfig";
 import { initializeChatPanel } from "./skia/skiaChatPanel";
+import { cancelAgentTask, initializeAgentPanel } from "./skia/skiaAgentPanel";
 import { initializeStatusBar } from "./skia/skiaStatusBar";
 import { initializeOnboarding } from "./skia/skiaOnboarding";
 import { initializeAuthPanel, isAuthenticated, logout } from "./skia/skiaAuthPanel";
@@ -176,6 +177,26 @@ const showUpdateNotice = (title: string, message: string, actionLabel?: string, 
     if (actionLabel && actionUrl) {
         wireInAppUpdateAction(host, actionUrl);
     }
+};
+
+/** Register before bootstrap so startup update checks are not missed (main emits on did-finish-load). */
+const initializeAutoUpdateListener = (): void => {
+    window.skiaElectron.onUpdateStatus((payload) => {
+        if (payload.status === "update-available" && payload.latestVersion && payload.downloadUrl) {
+            showUpdateNotice(
+                "Update Available",
+                `Version ${payload.latestVersion} is available. Download and install the latest SKIA FORGE build.`,
+                "Update Now",
+                payload.downloadUrl
+            );
+            return;
+        }
+        if (payload.status === "error" && payload.message) {
+            // Keep this silent unless user triggered manual check.
+            return;
+        }
+    });
+    window.skiaElectron.notifyRendererReady();
 };
 
 const getLanguageFromPath = (filePath: string): string => {
@@ -819,6 +840,7 @@ const registerMenuIpcHandlers = (): void => {
         focusAgentInput();
     });
     window.skiaElectron.onMenuAction("run-cancel-task", () => {
+        cancelAgentTask();
         const cancelBtn = document.getElementById("chat-cancel-btn") as HTMLButtonElement | null;
         cancelBtn?.click();
     });
@@ -838,21 +860,6 @@ const registerMenuIpcHandlers = (): void => {
         setStatus(status);
         const connectionStatus = document.getElementById("connection-status-display");
         if (connectionStatus) connectionStatus.textContent = status;
-    });
-    window.skiaElectron.onUpdateStatus((payload) => {
-        if (payload.status === "update-available" && payload.latestVersion && payload.downloadUrl) {
-            showUpdateNotice(
-                "Update Available",
-                `Version ${payload.latestVersion} is available. Download and install the latest SKIA FORGE build.`,
-                "Update Now",
-                payload.downloadUrl
-            );
-            return;
-        }
-        if (payload.status === "error" && payload.message) {
-            // Keep this silent unless user triggered manual check.
-            return;
-        }
     });
 };
 
@@ -884,6 +891,8 @@ const bootstrap = async (): Promise<void> => {
     if (process.env.NODE_ENV !== "production") console.log("SKIA: sidebar navigation initialized");
     initializeChatPanel();
     if (process.env.NODE_ENV !== "production") console.log("SKIA: chat panel initialized");
+    initializeAgentPanel();
+    if (process.env.NODE_ENV !== "production") console.log("SKIA: agent panel initialized");
     initializeStatusBar();
     if (process.env.NODE_ENV !== "production") console.log("SKIA: status bar initialized");
     window.addEventListener("skia-auth-ready", () => {
@@ -915,4 +924,5 @@ const bootstrap = async (): Promise<void> => {
     if (process.env.NODE_ENV !== "production") console.log("SKIA: bootstrap complete");
 };
 
+initializeAutoUpdateListener();
 void bootstrap();

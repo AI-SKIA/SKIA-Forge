@@ -14,6 +14,8 @@ type SkiaConfig = {
     timeout: number;
     /** Next chat route (multipart extraction + search). Default https://skia.ca/api/skia/chat */
     chatPipelineUrl?: string;
+    /** Next forge-agent route. Default derived from chat pipeline origin. */
+    forgeAgentPipelineUrl?: string;
 };
 
 type DirTreeNode = {
@@ -35,6 +37,8 @@ type UpdateCheckResult =
 
 let mainWindow: BrowserWindow | null = null;
 let autoSaveEnabled = false;
+/** Last update check result — re-sent when renderer signals ready (startup check can finish before UI listeners attach). */
+let cachedUpdateCheckResult: UpdateCheckResult | null = null;
 
 /** Windows taskbar / Start shortcut grouping — must match packaged app identity (see package.json appId). */
 if (process.platform === "win32") {
@@ -142,6 +146,7 @@ const runUpdateCheck = async (): Promise<UpdateCheckResult> => {
 };
 
 const emitUpdateToRenderer = (result: UpdateCheckResult): void => {
+    cachedUpdateCheckResult = result;
     const windows = BrowserWindow.getAllWindows();
     windows.forEach((win) => {
         win.webContents.send("update-status", result);
@@ -1066,6 +1071,7 @@ ipcMain.handle("skia:getConfig", (): SkiaConfig => {
         authToken: process.env.SKIA_AUTH_TOKEN ?? "",
         timeout: Number(process.env.SKIA_TIMEOUT_MS ?? "10000"),
         chatPipelineUrl: process.env.SKIA_CHAT_PIPELINE_URL,
+        forgeAgentPipelineUrl: process.env.SKIA_FORGE_AGENT_PIPELINE_URL,
     };
 });
 
@@ -1236,6 +1242,12 @@ ipcMain.handle("skia:clearSavedCredentials", async () => {
 
 ipcMain.on("open-external", (_event, url: string) => {
     void shell.openExternal(url);
+});
+
+ipcMain.on("skia:rendererReady", () => {
+    if (cachedUpdateCheckResult?.status === "update-available") {
+        emitUpdateToRenderer(cachedUpdateCheckResult);
+    }
 });
 
 ipcMain.handle("skia:checkForUpdates", async () => {

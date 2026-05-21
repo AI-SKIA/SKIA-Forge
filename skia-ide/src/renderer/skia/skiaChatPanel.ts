@@ -8,6 +8,7 @@ import {
     getHistory,
     type SkiaMessage
 } from "./skiaSessionStore";
+import { consumeSkiaChatSseStream } from "./skiaChatStream";
 
 let activeController: AbortController | null = null;
 /** DOM node for the in-flight assistant bubble (streaming or review); cleared when the turn completes or CANCEL runs. */
@@ -16,15 +17,6 @@ let streamingAssistantEl: HTMLDivElement | null = null;
 let pendingChatAttachments: File[] = [];
 
 const logoSrc = "assets/sidebar-logo.png";
-
-type StreamFrameType =
-    | "section_start"
-    | "content"
-    | "section_end"
-    | "quality_score"
-    | "correction"
-    | "verification_log";
-type StreamFrame = { type: StreamFrameType; payload: string };
 
 function downloadSkiaOutputAsFile(text: string, baseName: string): void {
     const safeBase = (baseName || "skia-output").replace(/[^\w\-]+/g, "-").slice(0, 80) || "skia-output";
@@ -297,6 +289,7 @@ const send = async (
             formData.append("responseDepth", "Balanced");
             formData.append("mode", "agent");
             formData.append("source", "skia-forge-ide");
+            formData.append("stream", "true");
             if (user?.email) formData.append("user_email", user.email);
             for (const f of filesToSend) {
                 formData.append("files", f);
@@ -356,29 +349,15 @@ const send = async (
 
             const contentType = response.headers.get("content-type") || "";
             if (contentType.includes("text/event-stream") && response.body) {
-                const reader = response.body.getReader();
-                const decoder = new TextDecoder("utf8");
-                let buffer = "";
-                while (true) {
-                    const { done, value } = await reader.read();
-                    if (done) break;
-                    buffer += decoder.decode(value, { stream: true });
-                    const frames = buffer.split("\n\n");
-                    buffer = frames.pop() ?? "";
-                    for (const chunk of frames) {
-                        const line = chunk
-                            .split("\n")
-                            .find((entry) => entry.startsWith("data: "));
-                        if (!line) continue;
-                        const frame = parseFrame(line.slice("data: ".length));
-                        if (frame) {
-                            applyStreamFrame(frame, assistantMessage, textNode, logBody);
-                        } else {
-                            assistantMessage.content += line.slice("data: ".length);
-                            if (textNode) textNode.textContent = assistantMessage.content || "...";
-                        }
-                        chatMessages.scrollTop = chatMessages.scrollHeight;
-                    }
+                verificationPanel.remove();
+                const donePayload = await consumeSkiaChatSseStream(response.body, (token) => {
+                    assistantMessage.content += token;
+                    if (textNode) textNode.textContent = assistantMessage.content || "...";
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                });
+                if (donePayload?.response) {
+                    assistantMessage.content = donePayload.response;
+                    if (textNode) textNode.textContent = assistantMessage.content;
                 }
             } else {
                 const data = (await response.json()) as Record<string, unknown>;
@@ -425,46 +404,6 @@ const send = async (
         activeController = null;
         streamingAssistantEl = null;
     }
-};
-
-const parseFrame = (frameRaw: string): StreamFrame | null => {
-    try {
-        const parsed = JSON.parse(frameRaw) as Partial<StreamFrame>;
-        if (!parsed || typeof parsed.type !== "string" || typeof parsed.payload !== "string") return null;
-        return parsed as StreamFrame;
-    } catch {
-        return null;
-    }
-};
-
-const applyStreamFrame = (
-    frame: StreamFrame,
-    assistantMessage: SkiaMessage,
-    textNode: HTMLDivElement | null,
-    verificationBody: HTMLPreElement
-): void => {
-    switch (frame.type) {
-        case "section_start":
-            assistantMessage.content += `\n\n## ${frame.payload}\n`;
-            break;
-        case "content":
-            assistantMessage.content += frame.payload;
-            break;
-        case "section_end":
-            assistantMessage.content += `\n\n-- ${frame.payload} complete --\n`;
-            break;
-        case "quality_score":
-            verificationBody.textContent += `\n[quality_score]\n${frame.payload}\n`;
-            break;
-        case "verification_log":
-            verificationBody.textContent += `\n[verification_log]\n${frame.payload}\n`;
-            break;
-        case "correction":
-            assistantMessage.content += `\n\`\`\`diff\n- pending output segment\n+ ${frame.payload}\n\`\`\`\n`;
-            verificationBody.textContent += `\n[correction]\n${frame.payload}\n`;
-            break;
-    }
-    if (textNode) textNode.textContent = assistantMessage.content || "...";
 };
 
 export const initializeChatPanel = (): void => {

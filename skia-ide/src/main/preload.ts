@@ -72,6 +72,9 @@ contextBridge.exposeInMainWorld("skiaElectron", {
         return () => ipcRenderer.removeListener("skia:pty-exit", wrapped);
     },
     checkForUpdates: () => ipcRenderer.invoke("skia:checkForUpdates"),
+    notifyRendererReady: () => {
+        ipcRenderer.send("skia:rendererReady");
+    },
     downloadAndInstall: (downloadUrl: string) => ipcRenderer.invoke("skia:downloadAndInstall", downloadUrl),
     onUpdateDownloadProgress: (listener: (data: { percent: number }) => void): void => {
         if (updateProgressWrap) {

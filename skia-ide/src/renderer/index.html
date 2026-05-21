@@ -195,9 +195,14 @@
 
             <div id="view-agent" class="center-view">
                 <div class="view-header">AGENT</div>
-                <input id="agent-task-input" type="text" placeholder="Describe a task for SKIA..." />
-                <button id="agent-run-btn">RUN TASK</button>
-                <div id="agent-log"></div>
+                <p class="agent-hint">SKIA work stream — tool steps and diffs appear here only (not in side chat).</p>
+                <div class="agent-controls">
+                    <input id="agent-task-input" type="text" placeholder="Describe a task for SKIA..." />
+                    <button id="agent-run-btn" type="button">RUN TASK</button>
+                    <button id="agent-cancel-btn" type="button">CANCEL</button>
+                </div>
+                <div id="agent-log" class="agent-log" aria-live="polite"></div>
+                <div id="agent-summary" class="agent-summary"></div>
             </div>
 
             <div id="view-forge" class="center-view">
