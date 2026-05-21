@@ -20,6 +20,42 @@ import {
     SkiaOfflineError,
 } from "./skia/skiaApiClient";
 
+const SETTINGS_STORAGE_KEY = "skia_editor_settings";
+
+const loadEditorSettings = (): {
+    fontSize: number;
+    minimap: boolean;
+    wordWrap: string;
+    tabSize: number;
+    autoSave: boolean;
+} => {
+    try {
+        const raw = localStorage.getItem(SETTINGS_STORAGE_KEY);
+        if (raw) {
+            return { fontSize: 13, minimap: true, wordWrap: "off", tabSize: 4, autoSave: false, ...JSON.parse(raw) };
+        }
+    } catch { /* ignore */ }
+    return { fontSize: 13, minimap: true, wordWrap: "off", tabSize: 4, autoSave: false };
+};
+
+const saveEditorSettings = (): void => {
+    const editor = getEditor() as {
+        getRawOptions?: () => Record<string, unknown>;
+    } | null;
+    if (!editor?.getRawOptions) return;
+    const opts = editor.getRawOptions();
+    localStorage.setItem(
+        SETTINGS_STORAGE_KEY,
+        JSON.stringify({
+            fontSize: opts.fontSize ?? 13,
+            minimap: (opts.minimap as { enabled?: boolean } | undefined)?.enabled ?? true,
+            wordWrap: opts.wordWrap ?? "off",
+            tabSize: opts.tabSize ?? 4,
+            autoSave: autoSaveEnabled,
+        })
+    );
+};
+
 const viewMap: Record<string, string> = {
     explorer: "editor-container",
     search: "view-search",
@@ -34,6 +70,7 @@ let activeFilePath = "";
 let activeFolderPath = "";
 let menuListenersRegistered = false;
 let autoSaveEnabled = false;
+let autoSaveTimer: ReturnType<typeof setTimeout> | null = null;
 let settingsControlsInitialized = false;
 
 type UpdateInstallBridge = {
@@ -264,14 +301,16 @@ const loadForgeStatus = async (): Promise<void> => {
     }
 };
 
-const refreshSettingsDisplay = (): void => {
-    const statusDisplay = document.getElementById("connection-status-display");
-    if (statusDisplay) {
-        statusDisplay.textContent = (document.getElementById("status-text")?.textContent ?? "Disconnected").replace(
-            "⬡ ",
-            ""
-        );
+const syncSettingsConnectionStatus = (): void => {
+    const connEl = document.getElementById("connection-status-display");
+    if (connEl) {
+        const statusText = document.getElementById("status-text")?.textContent ?? "";
+        connEl.textContent = statusText.replace("⬡ ", "").replace("◈ ", "");
     }
+};
+
+const refreshSettingsDisplay = (): void => {
+    syncSettingsConnectionStatus();
 
     const editor = getEditor() as unknown as {
         updateOptions?: (opts: Record<string, unknown>) => void;
@@ -302,6 +341,9 @@ const initializeSettingsControlsOnce = (): void => {
     }
     settingsControlsInitialized = true;
 
+    const verEl = document.getElementById("settings-app-version");
+    if (verEl) verEl.textContent = window.skiaElectron?.getAppVersion?.() ?? "—";
+
     const fontDisplay = document.getElementById("font-size-display");
     const decreaseBtn = document.getElementById("font-decrease") as HTMLButtonElement | null;
     const increaseBtn = document.getElementById("font-increase") as HTMLButtonElement | null;
@@ -309,6 +351,7 @@ const initializeSettingsControlsOnce = (): void => {
     const wrapBtn = document.getElementById("toggle-wordwrap") as HTMLButtonElement | null;
     const tabSelect = document.getElementById("tab-size-select") as HTMLSelectElement | null;
     const autoSaveBtn = document.getElementById("toggle-autosave") as HTMLButtonElement | null;
+    if (autoSaveBtn) autoSaveBtn.textContent = autoSaveEnabled ? "ON" : "OFF";
     const logoutBtn = document.getElementById("settings-logout-btn") as HTMLButtonElement | null;
     const checkUpdatesBtn = document.getElementById("settings-check-updates-btn") as HTMLButtonElement | null;
 
@@ -333,6 +376,7 @@ const initializeSettingsControlsOnce = (): void => {
         fontSize = Math.max(10, fontSize - 1);
         if (fontDisplay) fontDisplay.textContent = `${fontSize}px`;
         editor?.updateOptions?.({ fontSize });
+        saveEditorSettings();
     });
     increaseBtn?.addEventListener("click", () => {
         const { editor, raw } = getEditorOpts();
@@ -340,6 +384,7 @@ const initializeSettingsControlsOnce = (): void => {
         fontSize = Math.min(24, fontSize + 1);
         if (fontDisplay) fontDisplay.textContent = `${fontSize}px`;
         editor?.updateOptions?.({ fontSize });
+        saveEditorSettings();
     });
     minimapBtn?.addEventListener("click", () => {
         const { editor, raw } = getEditorOpts();
@@ -347,22 +392,26 @@ const initializeSettingsControlsOnce = (): void => {
         const next = !cur;
         minimapBtn.textContent = next ? "ON" : "OFF";
         editor?.updateOptions?.({ minimap: { enabled: next } });
+        saveEditorSettings();
     });
     wrapBtn?.addEventListener("click", () => {
         const { editor, raw } = getEditorOpts();
         const nextOn = String(raw?.wordWrap ?? "off") !== "on";
         wrapBtn.textContent = nextOn ? "ON" : "OFF";
         editor?.updateOptions?.({ wordWrap: nextOn ? "on" : "off" });
+        saveEditorSettings();
     });
     tabSelect?.addEventListener("change", () => {
         const { editor } = getEditorOpts();
         const tabSize = Number(tabSelect.value);
         editor?.updateOptions?.({ tabSize });
+        saveEditorSettings();
     });
     autoSaveBtn?.addEventListener("click", () => {
         autoSaveEnabled = !autoSaveEnabled;
         autoSaveBtn.textContent = autoSaveEnabled ? "ON" : "OFF";
         window.skiaElectron.setAutoSave(autoSaveEnabled);
+        saveEditorSettings();
     });
 
     document.getElementById("open-docs-btn")?.addEventListener("click", () => {
@@ -656,6 +705,35 @@ const saveCurrentFileAs = async (): Promise<void> => {
     }
 };
 
+const triggerAutoSave = (): void => {
+    if (!autoSaveEnabled) return;
+    if (autoSaveTimer) clearTimeout(autoSaveTimer);
+    autoSaveTimer = setTimeout(() => {
+        void saveCurrentFile();
+    }, 1000);
+};
+
+const wireMonacoEditorPersistence = (): void => {
+    const editor = getEditor() as {
+        updateOptions?: (opts: Record<string, unknown>) => void;
+        onDidChangeModelContent?: (listener: () => void) => void;
+    } | null;
+    if (!editor?.updateOptions) {
+        window.setTimeout(wireMonacoEditorPersistence, 50);
+        return;
+    }
+    const saved = loadEditorSettings();
+    editor.updateOptions({
+        fontSize: saved.fontSize,
+        minimap: { enabled: saved.minimap },
+        wordWrap: saved.wordWrap as "on" | "off",
+        tabSize: saved.tabSize,
+    });
+    editor.onDidChangeModelContent?.(() => {
+        triggerAutoSave();
+    });
+};
+
 const closeEditorState = (): void => {
     activeFilePath = "";
     setActiveFile("");
@@ -728,6 +806,7 @@ const registerMenuIpcHandlers = (): void => {
         window.skiaElectron.setAutoSave(autoSaveEnabled);
         const autoSaveBtn = document.getElementById("toggle-autosave") as HTMLButtonElement | null;
         if (autoSaveBtn) autoSaveBtn.textContent = autoSaveEnabled ? "ON" : "OFF";
+        saveEditorSettings();
     });
     window.skiaElectron.onMenuAction("close-editor", closeEditorState);
     window.skiaElectron.onMenuAction("close-folder", closeFolderState);
@@ -796,6 +875,10 @@ const bootstrap = async (): Promise<void> => {
     });
     initializeMonaco();
     if (process.env.NODE_ENV !== "production") console.log("SKIA: monaco initialized");
+    const editorSettings = loadEditorSettings();
+    autoSaveEnabled = editorSettings.autoSave;
+    window.skiaElectron.setAutoSave(autoSaveEnabled);
+    wireMonacoEditorPersistence();
     initializeSettingsControlsOnce();
     initializeSidebarNavigation();
     if (process.env.NODE_ENV !== "production") console.log("SKIA: sidebar navigation initialized");
@@ -804,9 +887,13 @@ const bootstrap = async (): Promise<void> => {
     initializeStatusBar();
     if (process.env.NODE_ENV !== "production") console.log("SKIA: status bar initialized");
     window.addEventListener("skia-auth-ready", () => {
+        syncSettingsConnectionStatus();
         if (activeView === "forge") {
             void loadForgeStatus();
         }
+    });
+    window.addEventListener("skia-auth-logout", () => {
+        syncSettingsConnectionStatus();
     });
     window.addEventListener("skia-onboarding-folder-selected", (event) => {
         const custom = event as CustomEvent<{ folderPath?: string }>;

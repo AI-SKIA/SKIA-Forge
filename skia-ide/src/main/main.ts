@@ -1209,14 +1209,11 @@ ipcMain.handle("skia:getProjectRoot", (): string | null => {
 });
 
 ipcMain.on("open-docs", () => {
-    const docsWin = new BrowserWindow({
-        width: 900,
-        height: 700,
-        title: "SKIA Docs",
-        ...browserWindowIconOptions(),
-        webPreferences: { contextIsolation: true, webSecurity: true, sandbox: true }
-    });
-    void docsWin.loadFile(path.join(__dirname, "../renderer/docs/index.html"));
+    void shell.openExternal("https://docs.skia.ca");
+});
+
+ipcMain.on("get-app-version", (event) => {
+    event.returnValue = app.getVersion();
 });
 
 ipcMain.handle("skia:getCookies", async (_event, url: string) => {

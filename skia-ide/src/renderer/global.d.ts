@@ -15,6 +15,7 @@ declare global {
         /** Optional override; default pipeline is https://skia.ca/api/skia/chat */
         chatPipelineUrl?: string;
       }>;
+      getAppVersion: () => string;
       openFolder: () => Promise<string | null>;
       openFile: () => Promise<string | null>;
       saveFile: (filePath: string, content: string) => Promise<boolean>;
