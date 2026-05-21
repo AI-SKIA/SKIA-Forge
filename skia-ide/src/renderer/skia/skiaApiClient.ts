@@ -1,4 +1,5 @@
-import { forgeUrl, getAuthToken, getBackendUrl, getTimeout } from "./skiaConfig";
+import { getAuthToken } from "./skiaAuthPanel";
+import { forgeUrl, getBackendUrl, getTimeout } from "./skiaConfig";
 
 type Json = Record<string, unknown>;
 export class SkiaOfflineError extends Error {

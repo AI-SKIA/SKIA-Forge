@@ -29,6 +29,7 @@ const viewMap: Record<string, string> = {
 };
 
 let navItems: HTMLElement[] = [];
+let activeView = "explorer";
 let activeFilePath = "";
 let activeFolderPath = "";
 let menuListenersRegistered = false;
@@ -394,6 +395,7 @@ const loadSettings = (): void => {
 };
 
 const setView = (view: string): void => {
+    activeView = view;
     if (view === "terminal") {
         navItems.forEach((item) => {
             item.classList.toggle("is-active", item.dataset.view === "terminal");
@@ -801,6 +803,11 @@ const bootstrap = async (): Promise<void> => {
     if (process.env.NODE_ENV !== "production") console.log("SKIA: chat panel initialized");
     initializeStatusBar();
     if (process.env.NODE_ENV !== "production") console.log("SKIA: status bar initialized");
+    window.addEventListener("skia-auth-ready", () => {
+        if (activeView === "forge") {
+            void loadForgeStatus();
+        }
+    });
     window.addEventListener("skia-onboarding-folder-selected", (event) => {
         const custom = event as CustomEvent<{ folderPath?: string }>;
         const folderPath = custom.detail?.folderPath;

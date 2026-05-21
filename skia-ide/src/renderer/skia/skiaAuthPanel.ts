@@ -276,6 +276,45 @@ const setAuthenticated = (user: AuthUser): boolean => {
     return true;
 };
 
+/** Re-fetch session with forge-desktop client so login returns a Bearer JWT for forge.skia.ca. */
+const refetchForgeDesktopSessionToken = async (): Promise<string | null> => {
+    let response: Response;
+    try {
+        response = await fetch(`${getApiOrigin()}/api/auth/session`, {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                "x-skia-client": "forge-desktop",
+            },
+        });
+    } catch {
+        return null;
+    }
+    if (!response.ok) return null;
+    const payload = (await response.json()) as unknown;
+    const token = extractTokenFromBody(payload);
+    if (token) {
+        localStorage.setItem(SESSION_TOKEN_KEY, token);
+    }
+    return token;
+};
+
+/** Persist Bearer token when session has a user but localStorage is still empty, then complete auth. */
+const finalizeAuthenticatedUser = async (
+    user: AuthUser,
+    sessionPayload?: unknown
+): Promise<boolean> => {
+    const bodyToken = extractTokenFromBody(sessionPayload);
+    if (bodyToken) localStorage.setItem(SESSION_TOKEN_KEY, bodyToken);
+    const cookieToken = await getTokenFromElectronCookies();
+    if (cookieToken) localStorage.setItem(SESSION_TOKEN_KEY, cookieToken);
+    if (!getStoredToken()) {
+        await refetchForgeDesktopSessionToken();
+    }
+    return setAuthenticated(user);
+};
+
 const clearAuth = (): void => {
     authenticated = false;
     cachedUser = null;
@@ -300,7 +339,7 @@ const verifySession = async (token: string): Promise<boolean> => {
     const payload = (await response.json()) as unknown;
     const user = extractUser(payload);
     if (!user) return false;
-    return setAuthenticated(user);
+    return finalizeAuthenticatedUser(user, payload);
 };
 
 // ─── Post-login token acquisition ─────────────────────────────────────────────
@@ -323,7 +362,7 @@ const acquireTokenAfterAuth = async (
         localStorage.setItem(SESSION_TOKEN_KEY, token);
         let user = extractUser(responsePayload) ?? { email, name: firstName };
         user = await hydrateUserIfNeeded(user, token);
-        if (!setAuthenticated(user)) return;
+        if (!(await finalizeAuthenticatedUser(user, responsePayload))) return;
         return;
     }
 
@@ -338,12 +377,13 @@ const acquireTokenAfterAuth = async (
     });
     if (sessionResp.ok) {
         const sessionPayload = (await sessionResp.json()) as unknown;
-        // Try cookie bridge one more time after session refresh
-        const cookieToken = await getTokenFromElectronCookies();
-        if (cookieToken) localStorage.setItem(SESSION_TOKEN_KEY, cookieToken);
         let user = extractUser(sessionPayload) ?? { email, name: firstName };
-        user = await hydrateUserIfNeeded(user, cookieToken || localStorage.getItem(SESSION_TOKEN_KEY));
-        if (!setAuthenticated(user)) return;
+        const sessionTok =
+            extractTokenFromBody(sessionPayload) ||
+            (await getTokenFromElectronCookies()) ||
+            localStorage.getItem(SESSION_TOKEN_KEY);
+        user = await hydrateUserIfNeeded(user, sessionTok);
+        if (!(await finalizeAuthenticatedUser(user, sessionPayload))) return;
         return;
     }
 
@@ -631,7 +671,7 @@ export const initializeAuthPanel = (): void => {
                 const sessionTok =
                     bodyToken || cookieToken || localStorage.getItem(SESSION_TOKEN_KEY);
                 user = await hydrateUserIfNeeded(user, sessionTok);
-                setAuthenticated(user);
+                void finalizeAuthenticatedUser(user, payload);
             })
             .catch(() => {
                 ensureOverlay();
