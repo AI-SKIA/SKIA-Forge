@@ -25,16 +25,17 @@ export function isDesktopSurface(): boolean {
   return p === 'forge-web' || p === 'forge-ide';
 }
 
-/** Forge web UI (forge.skia.ca) — desktop browser only; hidden in IDE and mobile browser. */
+/** Forge download CTA — forge.skia.ca browser and Forge IDE; hidden on mobile browser. */
 export function showForgeDownload(): boolean {
-  return getCurrentPlatform() === 'forge-web';
+  const p = getCurrentPlatform();
+  return p === 'forge-web' || p === 'forge-ide';
 }
 
 export function showPCAppDownload(): boolean {
   return false;
 }
 
+/** Hidden until app store approval (Forge never shows skia.ca PC/mobile store CTAs). */
 export function showMobileAppDownload(): boolean {
-  if (isMobileSurface()) return MOBILE_APP_APPROVED;
-  return true;
+  return MOBILE_APP_APPROVED;
 }
