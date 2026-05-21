@@ -15,29 +15,16 @@
  */
 
 import { getBackendUrl } from "./skiaConfig";
+import {
+    FORGE_PLAN_REQUIRED_MESSAGE,
+    userHasForgePlanAccess,
+    type ForgeAccessUser,
+} from "./forgePlanAccess";
 
 declare global {
     interface Window {
         __skiaAuthPanel?: { signOut: () => void };
     }
-}
-
-function hasForgeAccess(user: Record<string, unknown>): boolean {
-    if (!user) return false;
-    // Enterprise plan
-    if (user.enterprisePlan === true) return true;
-    // Active subscription (Pro, Team, Business)
-    if (
-        user.subscriptionStatus &&
-        user.subscriptionStatus !== "cancelled" &&
-        user.subscriptionStatus !== "expired" &&
-        user.subscriptionStatus !== "inactive"
-    ) return true;
-    // Unlimited plan (credits top-up unlimited)
-    if (user.unlimitedUntil && new Date(String(user.unlimitedUntil)) > new Date()) return true;
-    // Access via accessExpiresAt
-    if (user.accessExpiresAt && new Date(String(user.accessExpiresAt)) > new Date()) return true;
-    return false;
 }
 
 function showPlanRequiredMessage(overlay: HTMLElement, email: string): void {
@@ -50,7 +37,7 @@ function showPlanRequiredMessage(overlay: HTMLElement, email: string): void {
            alt="SKIA Forge" />
       <h2 style="color:#c9922a; font-size:16px; font-weight:700;
                  letter-spacing:0.08em; margin-bottom:12px;">
-        FORGE IDE ACCESS REQUIRED
+        FORGE IDE REQUIRES A PLAN
       </h2>
       <p style="color:rgba(255,255,255,0.75); font-size:13px;
                 line-height:1.6; margin-bottom:8px;">
@@ -58,8 +45,7 @@ function showPlanRequiredMessage(overlay: HTMLElement, email: string): void {
       </p>
       <p style="color:rgba(255,255,255,0.6); font-size:13px;
                 line-height:1.6; margin-bottom:24px;">
-        SKIA Forge IDE requires an active Pro, Team, Business,
-        or Enterprise plan.
+        ${FORGE_PLAN_REQUIRED_MESSAGE}
       </p>
       <a href="https://skia.ca/settings"
          style="display:block; background:#2a1f0d; border:1px solid #c9922a;
@@ -88,6 +74,8 @@ type AuthUser = {
     name?: string;
     id?: number;
     subscriptionStatus?: string | null;
+    subscriptionPlan?: string | null;
+    plan?: string | null;
     unlimitedUntil?: string | null;
     accessExpiresAt?: string | null;
     enterprisePlan?: boolean;
@@ -113,13 +101,18 @@ const getStoredToken = (): string | null => localStorage.getItem(SESSION_TOKEN_K
 const extractError = async (response: Response): Promise<string> => {
     try {
         const payload = (await response.json()) as Record<string, unknown>;
+        if (typeof payload.message === "string" && payload.message.trim()) {
+            return payload.message;
+        }
         const err = payload.error;
-        if (typeof err === "string") return err;
+        if (typeof err === "string") {
+            if (err === "FORGE_PLAN_REQUIRED") return FORGE_PLAN_REQUIRED_MESSAGE;
+            return err;
+        }
         if (err && typeof err === "object") {
             const msg = (err as Record<string, unknown>).message;
             if (typeof msg === "string") return msg;
         }
-        if (typeof payload.message === "string") return payload.message;
     } catch { /* ignore */ }
     return `Request failed (${response.status})`;
 };
@@ -181,12 +174,22 @@ const extractUser = (payload: unknown): AuthUser | null => {
     const enterprisePlan =
         typeof candidate.enterprisePlan === "boolean" ? candidate.enterprisePlan : undefined;
     const credits = typeof candidate.credits === "number" ? candidate.credits : undefined;
+    const subscriptionPlan =
+        typeof candidate.subscriptionPlan === "string" || candidate.subscriptionPlan === null
+            ? (candidate.subscriptionPlan as string | null)
+            : undefined;
+    const plan =
+        typeof candidate.plan === "string" || candidate.plan === null
+            ? (candidate.plan as string | null)
+            : undefined;
 
     return {
         email,
         name,
         ...(id !== undefined ? { id } : {}),
         ...(subscriptionStatus !== undefined ? { subscriptionStatus } : {}),
+        ...(subscriptionPlan !== undefined ? { subscriptionPlan } : {}),
+        ...(plan !== undefined ? { plan } : {}),
         ...(unlimitedUntil !== undefined ? { unlimitedUntil } : {}),
         ...(accessExpiresAt !== undefined ? { accessExpiresAt } : {}),
         ...(enterprisePlan !== undefined ? { enterprisePlan } : {}),
@@ -196,10 +199,9 @@ const extractUser = (payload: unknown): AuthUser | null => {
 
 const hasEntitlementPayload = (user: AuthUser): boolean =>
     user.subscriptionStatus !== undefined ||
-    user.enterprisePlan !== undefined ||
-    user.credits !== undefined ||
-    user.unlimitedUntil !== undefined ||
-    user.accessExpiresAt !== undefined;
+    user.subscriptionPlan !== undefined ||
+    user.plan !== undefined ||
+    user.enterprisePlan !== undefined;
 
 const hydrateUserIfNeeded = async (user: AuthUser, token: string | null): Promise<AuthUser> => {
     if (typeof user.id !== "number") return user;
@@ -252,25 +254,22 @@ const removeOverlay = (): void => {
     document.getElementById(OVERLAY_ID)?.remove();
 };
 
+const denyForgeAccess = (user: AuthUser): boolean => {
+    ensureOverlay();
+    const overlay = document.getElementById(OVERLAY_ID);
+    if (overlay) showPlanRequiredMessage(overlay as HTMLElement, user.email || "");
+    clearAuth();
+    return false;
+};
+
 const setAuthenticated = (user: AuthUser): boolean => {
-    if (typeof user.id === "number") {
-        if (!hasForgeAccess(user as unknown as Record<string, unknown>)) {
-            ensureOverlay();
-            const overlay = document.getElementById(OVERLAY_ID);
-            if (overlay) showPlanRequiredMessage(overlay as HTMLElement, user.email || "");
-            clearAuth();
-            return false;
-        }
+    if (!userHasForgePlanAccess(user as ForgeAccessUser)) {
+        return denyForgeAccess(user);
     }
 
     authenticated = true;
     cachedUser = user;
     localStorage.setItem(USER_EMAIL_KEY, user.email);
-
-    if (typeof user.id !== "number") {
-        return true;
-    }
-
     removeOverlay();
     authReadyCallbacks.forEach((cb) => cb());
     window.dispatchEvent(new CustomEvent("skia-auth-ready", { detail: user }));
@@ -531,8 +530,13 @@ const wireOverlayHandlers = (): void => {
             }
             await acquireTokenAfterAuth(payload, email);
         } catch (err) {
-            showError("auth-login-error",
-                err instanceof Error ? err.message : "Login failed. Check your credentials.");
+            const message = err instanceof Error ? err.message : "Login failed. Check your credentials.";
+            showError(
+                "auth-login-error",
+                message.includes("FORGE_PLAN_REQUIRED") || message.includes("requires a subscription plan")
+                    ? FORGE_PLAN_REQUIRED_MESSAGE
+                    : message,
+            );
         } finally {
             if (loginBtn) setButtonLoading(loginBtn, false, "SIGN IN");
         }
@@ -633,14 +637,6 @@ export const initializeAuthPanel = (): void => {
                 ensureOverlay();
             });
         return;
-    }
-
-    // Keep the user signed in across app restarts using the cached token,
-    // then verify in the background. This prevents unnecessary re-login
-    // prompts on transient startup/network failures.
-    const cachedEmail = localStorage.getItem(USER_EMAIL_KEY) || "";
-    if (cachedEmail) {
-        setAuthenticated({ email: cachedEmail });
     }
 
     void verifySession(token)
