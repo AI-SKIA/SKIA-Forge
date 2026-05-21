@@ -776,9 +776,9 @@ const registerMenuIpcHandlers = (): void => {
 };
 
 const bootstrap = async (): Promise<void> => {
-    console.log("SKIA: bootstrap starting");
+    if (process.env.NODE_ENV !== "production") console.log("SKIA: bootstrap starting");
     await loadConfig();
-    console.log("SKIA: config loaded");
+    if (process.env.NODE_ENV !== "production") console.log("SKIA: config loaded");
     initializeAuthPanel();
     await new Promise<void>((resolve) => {
         if (isAuthenticated()) {
@@ -793,14 +793,14 @@ const bootstrap = async (): Promise<void> => {
         }, 200);
     });
     initializeMonaco();
-    console.log("SKIA: monaco initialized");
+    if (process.env.NODE_ENV !== "production") console.log("SKIA: monaco initialized");
     initializeSettingsControlsOnce();
     initializeSidebarNavigation();
-    console.log("SKIA: sidebar navigation initialized");
+    if (process.env.NODE_ENV !== "production") console.log("SKIA: sidebar navigation initialized");
     initializeChatPanel();
-    console.log("SKIA: chat panel initialized");
+    if (process.env.NODE_ENV !== "production") console.log("SKIA: chat panel initialized");
     initializeStatusBar();
-    console.log("SKIA: status bar initialized");
+    if (process.env.NODE_ENV !== "production") console.log("SKIA: status bar initialized");
     window.addEventListener("skia-onboarding-folder-selected", (event) => {
         const custom = event as CustomEvent<{ folderPath?: string }>;
         const folderPath = custom.detail?.folderPath;
@@ -813,12 +813,12 @@ const bootstrap = async (): Promise<void> => {
         startEmptyWorkspace(workspacePath);
     });
     initializeOnboarding();
-    console.log("SKIA: onboarding initialized");
+    if (process.env.NODE_ENV !== "production") console.log("SKIA: onboarding initialized");
     initSkiaTerminalPanel();
-    console.log("SKIA: terminal panel initialized");
+    if (process.env.NODE_ENV !== "production") console.log("SKIA: terminal panel initialized");
     registerMenuIpcHandlers();
-    console.log("SKIA: menu IPC handlers initialized");
-    console.log("SKIA: bootstrap complete");
+    if (process.env.NODE_ENV !== "production") console.log("SKIA: menu IPC handlers initialized");
+    if (process.env.NODE_ENV !== "production") console.log("SKIA: bootstrap complete");
 };
 
 void bootstrap();

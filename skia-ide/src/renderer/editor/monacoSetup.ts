@@ -124,7 +124,7 @@ export const initializeMonaco = (): void => {
 
         monaco.editor.setTheme("skia-dark");
         editorInstance.focus();
-        console.log("SKIA: Monaco editor initialized");
+        if (process.env.NODE_ENV !== "production") console.log("SKIA: Monaco editor initialized");
     });
 };
 
