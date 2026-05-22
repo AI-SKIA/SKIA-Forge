@@ -1,3 +1,6 @@
+import { applyChatChromeStrings } from "../i18n/applyForgeUi";
+import { getChatRequestLanguage } from "../i18n/forgeChatVoice";
+import { subscribeLocaleChange, t } from "../i18n/forgeI18n";
 import { runSkiaReview } from "./skiaApiClient";
 import { getAuthToken, getLoggedInUser, isAuthenticated, logout } from "./skiaAuthPanel";
 import { getChatPipelineUrl } from "./skiaConfig";
@@ -41,8 +44,8 @@ function attachAssistantDownloadButton(
     const dl = document.createElement("button");
     dl.type = "button";
     dl.dataset.skiaDownload = "1";
-    dl.textContent = "DOWNLOAD";
-    dl.title = "Download SKIA's reply as a text file";
+    dl.textContent = t("chat.download");
+    dl.title = t("chat.downloadTitle");
     dl.style.marginTop = "8px";
     dl.style.background = "rgba(212,175,55,0.1)";
     dl.style.border = "1px solid rgba(212,175,55,0.35)";
@@ -74,7 +77,7 @@ const renderMessage = (
         icon.width = 16;
         icon.height = 16;
         const label = document.createElement("span");
-        label.textContent = "SKIA";
+        label.textContent = t("chat.brand");
         prefix.append(icon, label);
         node.appendChild(prefix);
     }
@@ -114,9 +117,27 @@ const renderMessage = (
     return node;
 };
 
+const welcomeMessage = (): SkiaMessage => ({
+    role: "assistant",
+    content: t("chat.initialMessage"),
+    timestamp: Date.now(),
+});
+
 const renderHistory = (chatMessages: HTMLElement): void => {
     chatMessages.innerHTML = "";
-    getHistory().forEach((message) => renderMessage(chatMessages, message));
+    const history = getHistory();
+    if (history.length === 0) {
+        renderMessage(chatMessages, welcomeMessage());
+        return;
+    }
+    history.forEach((message) => renderMessage(chatMessages, message));
+};
+
+const refreshWelcomeOnLocaleChange = (chatMessages: HTMLElement): void => {
+    const history = getHistory();
+    if (history.length > 0) return;
+    chatMessages.innerHTML = "";
+    renderMessage(chatMessages, welcomeMessage());
 };
 
 function renderPendingAttachmentChips(
@@ -159,8 +180,8 @@ function renderPendingAttachmentChips(
         const rm = document.createElement("button");
         rm.type = "button";
         rm.textContent = "×";
-        rm.title = "Remove attachment";
-        rm.setAttribute("aria-label", `Remove ${file.name}`);
+        rm.title = t("chat.removeAttachment");
+        rm.setAttribute("aria-label", t("chat.removeAttachmentAria", { name: file.name }));
         rm.style.background = "transparent";
         rm.style.border = "none";
         rm.style.color = "rgba(212,175,55,0.85)";
@@ -187,11 +208,17 @@ function syncAttachmentUi(
 ): void {
     const n = pendingChatAttachments.length;
     if (attachBtn) {
-        attachBtn.textContent = n > 0 ? `ATTACH (${n})` : "ATTACH";
+        attachBtn.textContent =
+            n > 0 ? t("chat.attachQueued", { n }) : t("chat.attach");
         attachBtn.classList.toggle("chat-attach--queued", n > 0);
         attachBtn.title =
-            n > 0 ? `${n} file(s) queued — click to add more (or drop files here)` : "Attach documents for SKIA";
-        attachBtn.setAttribute("aria-label", n > 0 ? `${n} files attached` : "Attach files");
+            n > 0
+                ? t("chat.attachTitleQueued", { n })
+                : t("chat.attachTitle");
+        attachBtn.setAttribute(
+            "aria-label",
+            n > 0 ? t("chat.attachAriaQueued", { n }) : t("chat.attachAria"),
+        );
     }
     if (fileInput) fileInput.value = "";
     renderPendingAttachmentChips(chipsHost, fileInput, attachBtn);
@@ -211,7 +238,7 @@ const send = async (
     if (!isAuthenticated()) {
         renderMessage(chatMessages, {
             role: "assistant",
-            content: "Please sign in to use SKIA",
+            content: t("chat.signInRequired"),
             timestamp: Date.now()
         });
         return;
@@ -220,7 +247,7 @@ const send = async (
     if (!token) {
         renderMessage(chatMessages, {
             role: "assistant",
-            content: "Please sign in to use SKIA",
+            content: t("chat.signInRequired"),
             timestamp: Date.now()
         });
         return;
@@ -290,6 +317,7 @@ const send = async (
             formData.append("mode", "agent");
             formData.append("source", "skia-forge-ide");
             formData.append("stream", "true");
+            formData.append("language", getChatRequestLanguage());
             if (user?.email) formData.append("user_email", user.email);
             for (const f of filesToSend) {
                 formData.append("files", f);
@@ -308,7 +336,7 @@ const send = async (
 
             if (response.status === 401) {
                 logout();
-                throw new Error("Your session wrapped up while you were away. Log back in and we'll pick up instantly.");
+                throw new Error(t("chat.errors.sessionExpired"));
             }
             if (response.status === 403) {
                 let detail = "";
@@ -322,27 +350,20 @@ const send = async (
                         detail = "";
                     }
                 }
-                throw new Error(
-                    detail ||
-                        "Quick heads-up — your 10-day window to verify your email ran out.\nNo worries — you didn't break anything.\n\nTo keep chatting with me, just verify your email.\n\nTakes about 10 seconds and you're right back in.\nI'll be waiting on the other side.",
-                );
+                throw new Error(detail || t("chat.errors.verifyEmail"));
             }
             if (!response.ok) {
                 if (response.status === 402) {
-                    throw new Error("You've hit zero credits. Add more anytime and SKIA will keep going.");
+                    throw new Error(t("chat.errors.noCredits"));
                 }
                 if (response.status === 429) {
-                    throw new Error(
-                        "You're moving fast - faster than the system can keep up. Give it a moment and try again.",
-                    );
+                    throw new Error(t("chat.errors.rateLimit"));
                 }
                 if (response.status === 500) {
-                    throw new Error("SKIA stumbled on something unexpected. A quick retry should clear it.");
+                    throw new Error(t("chat.errors.unexpected"));
                 }
                 if (response.status === 503) {
-                    throw new Error(
-                        "Alright, tiny hiccup on my end.\nSKIA's systems are doing a quick reset.\n\nNothing you did — just routine chaos behind the scenes.\nGive me a moment and I'll be back online.",
-                    );
+                    throw new Error(t("chat.errors.reset"));
                 }
                 throw new Error(`Server returned ${response.status}`);
             }
@@ -362,7 +383,7 @@ const send = async (
             } else {
                 const data = (await response.json()) as Record<string, unknown>;
                 const reply = typeof data.response === "string" ? data.response : "";
-                assistantMessage.content = reply || "SKIA couldn't generate a reply this time. One more try should do it.";
+                assistantMessage.content = reply || t("chat.errors.fallbackReply");
                 if (textNode) textNode.textContent = assistantMessage.content;
             }
 
@@ -423,8 +444,15 @@ export const initializeChatPanel = (): void => {
         return;
     }
 
+    applyChatChromeStrings();
     renderHistory(chatMessages);
     syncAttachmentUi(fileInput, attachButton, chipsHost);
+
+    subscribeLocaleChange(() => {
+        applyChatChromeStrings();
+        refreshWelcomeOnLocaleChange(chatMessages);
+        syncAttachmentUi(fileInput, attachButton, chipsHost);
+    });
 
     attachButton?.addEventListener("click", () => fileInput?.click());
 

@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "explorer": "EXPLORER",
+    "search": "SEARCH",
+    "agent": "AGENT",
+    "forge": "FORGE",
+    "settings": "إعدادات",
+    "terminal": "TERMINAL"
+  },
+  "explorer": {
+    "noFolder": "No folder open.",
+    "openFolder": "Open a folder",
+    "openFolderSuffix": " to get started."
+  },
+  "views": {
+    "search": "SEARCH",
+    "searchPlaceholder": "Search files and symbols...",
+    "agent": "AGENT",
+    "agentHint": "SKIA work stream — tool steps and diffs appear here only (not in side chat).",
+    "agentPlaceholder": "Describe a task for SKIA...",
+    "agentRun": "RUN TASK",
+    "agentCancel": "CANCEL",
+    "forge": "FORGE CONTROL PLANE"
+  },
+  "settings": {
+    "title": "SETTINGS",
+    "languageGroup": "LANGUAGE & REGION",
+    "uiLanguage": "UI language",
+    "uiLanguageHint": "Shared with skia.ca (same browser storage key).",
+    "defaultNationality": "Default voice nationality",
+    "defaultNationalityHint": "Also change in the chat panel — used for spoken replies and chat language hints.",
+    "appearance": "APPEARANCE",
+    "theme": "Theme",
+    "themeValue": "SKIA Dark (Default)",
+    "fontSize": "Font Size",
+    "minimap": "Minimap",
+    "wordWrap": "Word Wrap",
+    "editor": "EDITOR",
+    "tabSize": "Tab Size",
+    "tabSpaces2": "2 spaces",
+    "tabSpaces4": "4 spaces",
+    "autoSave": "Auto Save",
+    "application": "APPLICATION",
+    "status": "Status",
+    "disconnected": "Disconnected",
+    "connected": "Connected",
+    "signOut": "SIGN OUT",
+    "signedOut": "SIGNED OUT",
+    "checkUpdates": "CHECK FOR UPDATES",
+    "checkingUpdates": "CHECKING...",
+    "openDocs": "OPEN DOCUMENTATION",
+    "about": "ABOUT",
+    "version": "Version",
+    "build": "Build",
+    "buildValue": "Sovereign Intelligence",
+    "toggleOn": "ON",
+    "toggleOff": "OFF"
+  },
+  "chat": {
+    "brand": "SKIA",
+    "newChat": "+ محادثة جديدة",
+    "placeholder": "اسأل SKIA أي شيء...",
+    "clear": "تاريخ واضح",
+    "cancel": "CANCEL",
+    "attach": "ATTACH",
+    "attachQueued": "ATTACH ({n})",
+    "send": "إرسال",
+    "tagline": "One ecosystem. One universe. All SKIA.",
+    "initialMessage": "أنا SKIA — منصة استخباراتية محكومة مصممة للإبداع والتنفيذ والاستدلال. ما الذي ترغب في العمل عليه؟",
+    "signInRequired": "Please sign in to use SKIA",
+    "download": "تحميل",
+    "downloadTitle": "قم بتنزيل رد SKIA كملف نصي",
+    "removeAttachment": "Remove attachment",
+    "removeAttachmentAria": "Remove {name}",
+    "attachTitle": "Attach documents for SKIA",
+    "attachTitleQueued": "{n} file(s) queued — click to add more (or drop files here)",
+    "attachAria": "Attach files",
+    "attachAriaQueued": "{n} files attached",
+    "nationality": "جنسية",
+    "voiceNationality": "جنسية الصوت",
+    "nationalityTitle": "Nationality: {label}",
+    "errors": {
+      "sessionExpired": "انتهت جلستك أثناء غيابك. قم بتسجيل الدخول مرة أخرى وسوف نلتقط على الفور.",
+      "noCredits": "لقد وصلت إلى الصفر الاعتمادات. أضف المزيد في أي وقت وسيستمر SKIA.",
+      "rateLimit": "أنت تتحرك بسرعة، أسرع مما يستطيع النظام مواكبته. أعطها لحظة وحاول مرة أخرى.",
+      "unexpected": "SKIA عثر على شيء غير متوقع. يجب أن تؤدي إعادة المحاولة السريعة إلى مسحها.",
+      "reset": "حسنا، زوبعة صغيرة في نهايتي.\nتقوم أنظمة SKIA بإعادة ضبط سريعة.\n\nلم تفعل شيئًا، مجرد فوضى روتينية خلف الكواليس.\nأعطني لحظة وسأعود إلى الإنترنت.",
+      "fallbackReply": "SKIA لم يتمكن من الرد هذه المرة. محاولة أخرى يجب أن تفعل ذلك.",
+      "verifyEmail": "Quick heads-up — your 10-day window to verify your email ran out.\nNo worries — you didn't break anything.\n\nTo keep chatting with me, just verify your email.\n\nTakes about 10 seconds and you're right back in.\nI'll be waiting on the other side."
+    }
+  },
+  "statusBar": {
+    "sovereign": "⬡ SKIA: SOVEREIGN",
+    "connected": "⬡ SKIA: CONNECTED",
+    "arch": "ARCH:"
+  },
+  "updates": {
+    "noUpdateTitle": "No Update",
+    "noUpdateBody": "You are on the latest version ({version}).",
+    "failedTitle": "Update Check Failed"
+  }
+}

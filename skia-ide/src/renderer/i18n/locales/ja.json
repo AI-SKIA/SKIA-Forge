@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "explorer": "EXPLORER",
+    "search": "SEARCH",
+    "agent": "AGENT",
+    "forge": "FORGE",
+    "settings": "設定",
+    "terminal": "TERMINAL"
+  },
+  "explorer": {
+    "noFolder": "No folder open.",
+    "openFolder": "Open a folder",
+    "openFolderSuffix": " to get started."
+  },
+  "views": {
+    "search": "SEARCH",
+    "searchPlaceholder": "Search files and symbols...",
+    "agent": "AGENT",
+    "agentHint": "SKIA work stream — tool steps and diffs appear here only (not in side chat).",
+    "agentPlaceholder": "Describe a task for SKIA...",
+    "agentRun": "RUN TASK",
+    "agentCancel": "CANCEL",
+    "forge": "FORGE CONTROL PLANE"
+  },
+  "settings": {
+    "title": "SETTINGS",
+    "languageGroup": "LANGUAGE & REGION",
+    "uiLanguage": "UI language",
+    "uiLanguageHint": "Shared with skia.ca (same browser storage key).",
+    "defaultNationality": "Default voice nationality",
+    "defaultNationalityHint": "Also change in the chat panel — used for spoken replies and chat language hints.",
+    "appearance": "APPEARANCE",
+    "theme": "Theme",
+    "themeValue": "SKIA Dark (Default)",
+    "fontSize": "Font Size",
+    "minimap": "Minimap",
+    "wordWrap": "Word Wrap",
+    "editor": "EDITOR",
+    "tabSize": "Tab Size",
+    "tabSpaces2": "2 spaces",
+    "tabSpaces4": "4 spaces",
+    "autoSave": "Auto Save",
+    "application": "APPLICATION",
+    "status": "Status",
+    "disconnected": "Disconnected",
+    "connected": "Connected",
+    "signOut": "SIGN OUT",
+    "signedOut": "SIGNED OUT",
+    "checkUpdates": "CHECK FOR UPDATES",
+    "checkingUpdates": "CHECKING...",
+    "openDocs": "OPEN DOCUMENTATION",
+    "about": "ABOUT",
+    "version": "Version",
+    "build": "Build",
+    "buildValue": "Sovereign Intelligence",
+    "toggleOn": "ON",
+    "toggleOff": "OFF"
+  },
+  "chat": {
+    "brand": "SKIA",
+    "newChat": "+ 新しい会話",
+    "placeholder": "SKIAに何でも聞いてください...",
+    "clear": "履歴をクリアする",
+    "cancel": "CANCEL",
+    "attach": "ATTACH",
+    "attachQueued": "ATTACH ({n})",
+    "send": "送信",
+    "tagline": "One ecosystem. One universe. All SKIA.",
+    "initialMessage": "私は SKIA — 創造、実行、推論のために構築された管理されたインテリジェンス プラットフォームです。何に取り組みたいですか?",
+    "signInRequired": "Please sign in to use SKIA",
+    "download": "ダウンロード",
+    "downloadTitle": "SKIA の返信をテキスト ファイルとしてダウンロード",
+    "removeAttachment": "Remove attachment",
+    "removeAttachmentAria": "Remove {name}",
+    "attachTitle": "Attach documents for SKIA",
+    "attachTitleQueued": "{n} file(s) queued — click to add more (or drop files here)",
+    "attachAria": "Attach files",
+    "attachAriaQueued": "{n} files attached",
+    "nationality": "国籍",
+    "voiceNationality": "声の国籍",
+    "nationalityTitle": "Nationality: {label}",
+    "errors": {
+      "sessionExpired": "セッションはあなたが離れている間に終了しました。再度ログインしてください。すぐに受け取ります。",
+      "noCredits": "クレジットがゼロになりました。いつでも追加すれば、SKIA は継続します。",
+      "rateLimit": "システムが追いつけないほどの速さで動いています。しばらく待ってから、もう一度試してください。",
+      "unexpected": "SKIA は予期せぬことに遭遇しました。すぐに再試行するとクリアされるはずです。",
+      "reset": "さて、私の側で小さな問題が発生しました。\nSKIA のシステムはクイック リセットを行っています。\n\nあなたがしたことは何もありません。舞台裏で日常的に混乱が生じているだけです。\nしばらくお待ちください。オンラインに戻ります。",
+      "fallbackReply": "SKIA は今回は応答を生成できませんでした。あと 1 回試行すれば完了するはずです。",
+      "verifyEmail": "Quick heads-up — your 10-day window to verify your email ran out.\nNo worries — you didn't break anything.\n\nTo keep chatting with me, just verify your email.\n\nTakes about 10 seconds and you're right back in.\nI'll be waiting on the other side."
+    }
+  },
+  "statusBar": {
+    "sovereign": "⬡ SKIA: SOVEREIGN",
+    "connected": "⬡ SKIA: CONNECTED",
+    "arch": "ARCH:"
+  },
+  "updates": {
+    "noUpdateTitle": "No Update",
+    "noUpdateBody": "You are on the latest version ({version}).",
+    "failedTitle": "Update Check Failed"
+  }
+}

@@ -216,13 +216,26 @@
                 <div class="view-header">SETTINGS</div>
 
                 <div class="settings-group">
-                    <div class="settings-label">APPEARANCE</div>
+                    <div class="settings-label" data-i18n="settings.languageGroup">LANGUAGE &amp; REGION</div>
                     <div class="settings-row">
-                        <span>Theme</span>
-                        <span class="settings-value">SKIA Dark (Default)</span>
+                        <span data-i18n="settings.uiLanguage">UI language</span>
+                        <select id="settings-locale-select" class="settings-select" aria-label="UI language"></select>
+                    </div>
+                    <p class="settings-hint" data-i18n="settings.uiLanguageHint">Shared with skia.ca (same browser storage key).</p>
+                    <div class="settings-row settings-row--hint-only">
+                        <span data-i18n="settings.defaultNationality">Default voice nationality</span>
+                    </div>
+                    <p class="settings-hint" data-i18n="settings.defaultNationalityHint">Also change in the chat panel — used for spoken replies and chat language hints.</p>
+                </div>
+
+                <div class="settings-group">
+                    <div class="settings-label" data-i18n="settings.appearance">APPEARANCE</div>
+                    <div class="settings-row">
+                        <span data-i18n="settings.theme">Theme</span>
+                        <span class="settings-value" data-i18n="settings.themeValue">SKIA Dark (Default)</span>
                     </div>
                     <div class="settings-row">
-                        <span>Font Size</span>
+                        <span data-i18n="settings.fontSize">Font Size</span>
                         <div class="settings-controls">
                             <button id="font-decrease">−</button>
                             <span id="font-size-display">13px</span>
@@ -230,34 +243,34 @@
                         </div>
                     </div>
                     <div class="settings-row">
-                        <span>Minimap</span>
+                        <span data-i18n="settings.minimap">Minimap</span>
                         <button id="toggle-minimap" class="settings-toggle">ON</button>
                     </div>
                     <div class="settings-row">
-                        <span>Word Wrap</span>
+                        <span data-i18n="settings.wordWrap">Word Wrap</span>
                         <button id="toggle-wordwrap" class="settings-toggle">OFF</button>
                     </div>
                 </div>
 
                 <div class="settings-group">
-                    <div class="settings-label">EDITOR</div>
+                    <div class="settings-label" data-i18n="settings.editor">EDITOR</div>
                     <div class="settings-row">
-                        <span>Tab Size</span>
+                        <span data-i18n="settings.tabSize">Tab Size</span>
                         <select id="tab-size-select" class="settings-select">
                             <option value="2">2 spaces</option>
                             <option value="4" selected>4 spaces</option>
                         </select>
                     </div>
                     <div class="settings-row">
-                        <span>Auto Save</span>
+                        <span data-i18n="settings.autoSave">Auto Save</span>
                         <button id="toggle-autosave" class="settings-toggle">OFF</button>
                     </div>
                 </div>
 
                 <div class="settings-group">
-                    <div class="settings-label">APPLICATION</div>
+                    <div class="settings-label" data-i18n="settings.application">APPLICATION</div>
                     <div class="settings-row">
-                        <span>Status</span>
+                        <span data-i18n="settings.status">Status</span>
                         <span id="connection-status-display" class="settings-value">Disconnected</span>
                     </div>
                     <button id="settings-logout-btn" class="settings-save" style="margin-bottom:12px">SIGN OUT</button>
@@ -266,14 +279,14 @@
                 </div>
 
                 <div class="settings-group">
-                    <div class="settings-label">ABOUT</div>
+                    <div class="settings-label" data-i18n="settings.about">ABOUT</div>
                     <div class="settings-row">
-                        <span>Version</span>
+                        <span data-i18n="settings.version">Version</span>
                         <span id="settings-app-version" class="settings-value"></span>
                     </div>
                     <div class="settings-row">
-                        <span>Build</span>
-                        <span class="settings-value">Sovereign Intelligence</span>
+                        <span data-i18n="settings.build">Build</span>
+                        <span class="settings-value" data-i18n="settings.buildValue">Sovereign Intelligence</span>
                     </div>
                 </div>
             </div>
@@ -304,6 +317,13 @@
             <section id="chat-messages"></section>
 
             <div id="chat-controls">
+                <div id="chat-voice-panel" class="chat-voice-panel" style="display:none" role="dialog" aria-label="Voice nationality">
+                    <div class="chat-voice-panel-header">
+                        <span data-i18n="chat.nationality">NATIONALITY</span>
+                        <button type="button" id="chat-voice-panel-close" class="chat-voice-panel-close" aria-label="Close">✕</button>
+                    </div>
+                    <div id="chat-voice-list" class="chat-voice-list skia-scrollbar-premium" role="listbox" aria-label="Voice nationality"></div>
+                </div>
                 <input id="chat-file-input" type="file" multiple style="display:none"
                        accept=".pdf,.doc,.docx,.odt,.rtf,.txt,.md,.csv,.json,.xml,.html,.htm,.xls,.xlsx,.pptx,.ppt,.yaml,.yml,.ts,.tsx,.js,.jsx,.css,.log,.sh,.py,.rb,.go,.rs,.java,.c,.h,.cpp,.hpp,.png,.jpg,.jpeg,.gif,.webp,.svg,*/*" />
                 <div id="chat-pending-attachments" aria-label="Pending attachments" style="display:none"></div>
@@ -312,6 +332,7 @@
                     <button id="chat-clear-btn">CLEAR</button>
                     <button id="chat-cancel-btn">CANCEL</button>
                     <button type="button" id="chat-attach-btn" class="chat-attach-btn">ATTACH</button>
+                    <button type="button" id="chat-nationality-btn" class="chat-nationality-btn" title="Nationality">US</button>
                     <button id="chat-send-btn">SEND</button>
                 </div>
                 <div id="chat-tagline">

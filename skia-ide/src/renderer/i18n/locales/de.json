@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "explorer": "EXPLORER",
+    "search": "SEARCH",
+    "agent": "AGENT",
+    "forge": "FORGE",
+    "settings": "EINSTELLUNGEN",
+    "terminal": "TERMINAL"
+  },
+  "explorer": {
+    "noFolder": "No folder open.",
+    "openFolder": "Open a folder",
+    "openFolderSuffix": " to get started."
+  },
+  "views": {
+    "search": "SEARCH",
+    "searchPlaceholder": "Search files and symbols...",
+    "agent": "AGENT",
+    "agentHint": "SKIA work stream — tool steps and diffs appear here only (not in side chat).",
+    "agentPlaceholder": "Describe a task for SKIA...",
+    "agentRun": "RUN TASK",
+    "agentCancel": "CANCEL",
+    "forge": "FORGE CONTROL PLANE"
+  },
+  "settings": {
+    "title": "SETTINGS",
+    "languageGroup": "LANGUAGE & REGION",
+    "uiLanguage": "UI language",
+    "uiLanguageHint": "Shared with skia.ca (same browser storage key).",
+    "defaultNationality": "Default voice nationality",
+    "defaultNationalityHint": "Also change in the chat panel — used for spoken replies and chat language hints.",
+    "appearance": "APPEARANCE",
+    "theme": "Theme",
+    "themeValue": "SKIA Dark (Default)",
+    "fontSize": "Font Size",
+    "minimap": "Minimap",
+    "wordWrap": "Word Wrap",
+    "editor": "EDITOR",
+    "tabSize": "Tab Size",
+    "tabSpaces2": "2 spaces",
+    "tabSpaces4": "4 spaces",
+    "autoSave": "Auto Save",
+    "application": "APPLICATION",
+    "status": "Status",
+    "disconnected": "Disconnected",
+    "connected": "Connected",
+    "signOut": "SIGN OUT",
+    "signedOut": "SIGNED OUT",
+    "checkUpdates": "CHECK FOR UPDATES",
+    "checkingUpdates": "CHECKING...",
+    "openDocs": "OPEN DOCUMENTATION",
+    "about": "ABOUT",
+    "version": "Version",
+    "build": "Build",
+    "buildValue": "Sovereign Intelligence",
+    "toggleOn": "ON",
+    "toggleOff": "OFF"
+  },
+  "chat": {
+    "brand": "SKIA",
+    "newChat": "+ NEUES GESPRÄCH",
+    "placeholder": "Fragen Sie SKIA etwas ...",
+    "clear": "Klare Geschichte",
+    "cancel": "CANCEL",
+    "attach": "ATTACH",
+    "attachQueued": "ATTACH ({n})",
+    "send": "SENDEN",
+    "tagline": "One ecosystem. One universe. All SKIA.",
+    "initialMessage": "Ich bin SKIA – eine verwaltete Intelligenzplattform, die für die Erstellung, Ausführung und Argumentation entwickelt wurde. Woran würden Sie gerne arbeiten?",
+    "signInRequired": "Please sign in to use SKIA",
+    "download": "HERUNTERLADEN",
+    "downloadTitle": "Laden Sie die Antwort von SKIA als Textdatei herunter",
+    "removeAttachment": "Remove attachment",
+    "removeAttachmentAria": "Remove {name}",
+    "attachTitle": "Attach documents for SKIA",
+    "attachTitleQueued": "{n} file(s) queued — click to add more (or drop files here)",
+    "attachAria": "Attach files",
+    "attachAriaQueued": "{n} files attached",
+    "nationality": "NATIONALITÄT",
+    "voiceNationality": "Nationalität der Stimme",
+    "nationalityTitle": "Nationality: {label}",
+    "errors": {
+      "sessionExpired": "Ihre Sitzung wurde während Ihrer Abwesenheit beendet. Melden Sie sich erneut an und wir melden uns umgehend.",
+      "noCredits": "Sie haben keine Credits mehr erhalten. Fügen Sie jederzeit weitere hinzu und SKIA macht weiter.",
+      "rateLimit": "Sie bewegen sich schnell – schneller, als das System mithalten kann. Nehmen Sie sich einen Moment Zeit und versuchen Sie es erneut.",
+      "unexpected": "SKIA ist über etwas Unerwartetes gestolpert. Ein schneller erneuter Versuch sollte das Problem beheben.",
+      "reset": "Okay, kleiner Schluckauf bei mir.\nDie Systeme von SKIA führen einen Schnell-Reset durch.\n\nNichts, was Sie getan haben – nur routinemäßiges Chaos hinter den Kulissen.\nGeben Sie mir einen Moment Zeit und ich bin wieder online.",
+      "fallbackReply": "SKIA konnte dieses Mal keine Antwort generieren. Ein weiterer Versuch sollte reichen.",
+      "verifyEmail": "Quick heads-up — your 10-day window to verify your email ran out.\nNo worries — you didn't break anything.\n\nTo keep chatting with me, just verify your email.\n\nTakes about 10 seconds and you're right back in.\nI'll be waiting on the other side."
+    }
+  },
+  "statusBar": {
+    "sovereign": "⬡ SKIA: SOVEREIGN",
+    "connected": "⬡ SKIA: CONNECTED",
+    "arch": "ARCH:"
+  },
+  "updates": {
+    "noUpdateTitle": "No Update",
+    "noUpdateBody": "You are on the latest version ({version}).",
+    "failedTitle": "Update Check Failed"
+  }
+}

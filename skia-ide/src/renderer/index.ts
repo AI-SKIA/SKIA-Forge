@@ -1,5 +1,8 @@
 import "./styles/app.css";
 import "./styles/skia-dark.css";
+import { applyForgeUiStrings, populateSettingsLocaleSelect } from "./i18n/applyForgeUi";
+import { getLocale, initForgeI18n, subscribeLocaleChange } from "./i18n/forgeI18n";
+import { initializeForgeChatVoice } from "./i18n/forgeChatVoice";
 import { getEditor, initializeMonaco } from "./editor/monacoSetup";
 import { loadConfig } from "./skia/skiaConfig";
 import { initializeChatPanel } from "./skia/skiaChatPanel";
@@ -865,6 +868,14 @@ const registerMenuIpcHandlers = (): void => {
 
 const bootstrap = async (): Promise<void> => {
     if (process.env.NODE_ENV !== "production") console.log("SKIA: bootstrap starting");
+    initForgeI18n();
+    populateSettingsLocaleSelect();
+    applyForgeUiStrings();
+    subscribeLocaleChange(() => {
+        applyForgeUiStrings();
+        const select = document.getElementById("settings-locale-select") as HTMLSelectElement | null;
+        if (select) select.value = getLocale();
+    });
     await loadConfig();
     if (process.env.NODE_ENV !== "production") console.log("SKIA: config loaded");
     initializeAuthPanel();
@@ -890,6 +901,7 @@ const bootstrap = async (): Promise<void> => {
     initializeSidebarNavigation();
     if (process.env.NODE_ENV !== "production") console.log("SKIA: sidebar navigation initialized");
     initializeChatPanel();
+    initializeForgeChatVoice();
     if (process.env.NODE_ENV !== "production") console.log("SKIA: chat panel initialized");
     initializeAgentPanel();
     if (process.env.NODE_ENV !== "production") console.log("SKIA: agent panel initialized");

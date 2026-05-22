@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "explorer": "EXPLORER",
+    "search": "SEARCH",
+    "agent": "AGENT",
+    "forge": "FORGE",
+    "settings": "सेटिंग्स",
+    "terminal": "TERMINAL"
+  },
+  "explorer": {
+    "noFolder": "No folder open.",
+    "openFolder": "Open a folder",
+    "openFolderSuffix": " to get started."
+  },
+  "views": {
+    "search": "SEARCH",
+    "searchPlaceholder": "Search files and symbols...",
+    "agent": "AGENT",
+    "agentHint": "SKIA work stream — tool steps and diffs appear here only (not in side chat).",
+    "agentPlaceholder": "Describe a task for SKIA...",
+    "agentRun": "RUN TASK",
+    "agentCancel": "CANCEL",
+    "forge": "FORGE CONTROL PLANE"
+  },
+  "settings": {
+    "title": "SETTINGS",
+    "languageGroup": "LANGUAGE & REGION",
+    "uiLanguage": "UI language",
+    "uiLanguageHint": "Shared with skia.ca (same browser storage key).",
+    "defaultNationality": "Default voice nationality",
+    "defaultNationalityHint": "Also change in the chat panel — used for spoken replies and chat language hints.",
+    "appearance": "APPEARANCE",
+    "theme": "Theme",
+    "themeValue": "SKIA Dark (Default)",
+    "fontSize": "Font Size",
+    "minimap": "Minimap",
+    "wordWrap": "Word Wrap",
+    "editor": "EDITOR",
+    "tabSize": "Tab Size",
+    "tabSpaces2": "2 spaces",
+    "tabSpaces4": "4 spaces",
+    "autoSave": "Auto Save",
+    "application": "APPLICATION",
+    "status": "Status",
+    "disconnected": "Disconnected",
+    "connected": "Connected",
+    "signOut": "SIGN OUT",
+    "signedOut": "SIGNED OUT",
+    "checkUpdates": "CHECK FOR UPDATES",
+    "checkingUpdates": "CHECKING...",
+    "openDocs": "OPEN DOCUMENTATION",
+    "about": "ABOUT",
+    "version": "Version",
+    "build": "Build",
+    "buildValue": "Sovereign Intelligence",
+    "toggleOn": "ON",
+    "toggleOff": "OFF"
+  },
+  "chat": {
+    "brand": "SKIA",
+    "newChat": "+ नई बातचीत",
+    "placeholder": "SKIA कुछ भी पूछें...",
+    "clear": "इतिहास मिटा दें",
+    "cancel": "CANCEL",
+    "attach": "ATTACH",
+    "attachQueued": "ATTACH ({n})",
+    "send": "भेजें",
+    "tagline": "One ecosystem. One universe. All SKIA.",
+    "initialMessage": "मैं SKIA हूं - निर्माण, निष्पादन और तर्क के लिए बनाया गया एक शासित खुफिया मंच। आप किस पर काम करना चाहेंगे?",
+    "signInRequired": "Please sign in to use SKIA",
+    "download": "डाउनलोड करना",
+    "downloadTitle": "SKIA के उत्तर को टेक्स्ट फ़ाइल के रूप में डाउनलोड करें",
+    "removeAttachment": "Remove attachment",
+    "removeAttachmentAria": "Remove {name}",
+    "attachTitle": "Attach documents for SKIA",
+    "attachTitleQueued": "{n} file(s) queued — click to add more (or drop files here)",
+    "attachAria": "Attach files",
+    "attachAriaQueued": "{n} files attached",
+    "nationality": "राष्ट्रीयता",
+    "voiceNationality": "आवाज राष्ट्रीयता",
+    "nationalityTitle": "Nationality: {label}",
+    "errors": {
+      "sessionExpired": "जब आप दूर थे तब आपका सत्र समाप्त हो गया। वापस लॉग इन करें और हम तुरंत उठा लेंगे।",
+      "noCredits": "आपने शून्य क्रेडिट हासिल कर लिया है. किसी भी समय और जोड़ें और SKIA चलता रहेगा।",
+      "rateLimit": "आप तेजी से आगे बढ़ रहे हैं - सिस्टम की गति से भी तेज। इसे एक क्षण दें और पुनः प्रयास करें।",
+      "unexpected": "SKIA किसी अप्रत्याशित चीज़ पर ठोकर खाई। एक त्वरित पुनः प्रयास से यह साफ़ हो जाना चाहिए।",
+      "reset": "ठीक है, मेरी ओर से छोटी सी हिचकी आ रही है।\nSKIA के सिस्टम त्वरित रीसेट कर रहे हैं।\n\nआपने कुछ नहीं किया - बस पर्दे के पीछे नियमित अराजकता है।\nमुझे एक क्षण दीजिए और मैं ऑनलाइन वापस आऊंगा।",
+      "fallbackReply": "SKIA इस बार कोई उत्तर उत्पन्न नहीं कर सका। एक बार और प्रयास करना चाहिए.",
+      "verifyEmail": "Quick heads-up — your 10-day window to verify your email ran out.\nNo worries — you didn't break anything.\n\nTo keep chatting with me, just verify your email.\n\nTakes about 10 seconds and you're right back in.\nI'll be waiting on the other side."
+    }
+  },
+  "statusBar": {
+    "sovereign": "⬡ SKIA: SOVEREIGN",
+    "connected": "⬡ SKIA: CONNECTED",
+    "arch": "ARCH:"
+  },
+  "updates": {
+    "noUpdateTitle": "No Update",
+    "noUpdateBody": "You are on the latest version ({version}).",
+    "failedTitle": "Update Check Failed"
+  }
+}

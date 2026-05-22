@@ -1,0 +1,102 @@
+{
+  "nav": {
+    "explorer": "EXPLORER",
+    "search": "SEARCH",
+    "agent": "AGENT",
+    "forge": "FORGE",
+    "settings": "CONFIGURAÇÕES",
+    "terminal": "TERMINAL"
+  },
+  "explorer": {
+    "noFolder": "No folder open.",
+    "openFolder": "Open a folder",
+    "openFolderSuffix": " to get started."
+  },
+  "views": {
+    "search": "SEARCH",
+    "searchPlaceholder": "Search files and symbols...",
+    "agent": "AGENT",
+    "agentHint": "SKIA work stream — tool steps and diffs appear here only (not in side chat).",
+    "agentPlaceholder": "Describe a task for SKIA...",
+    "agentRun": "RUN TASK",
+    "agentCancel": "CANCEL",
+    "forge": "FORGE CONTROL PLANE"
+  },
+  "settings": {
+    "title": "SETTINGS",
+    "languageGroup": "LANGUAGE & REGION",
+    "uiLanguage": "UI language",
+    "uiLanguageHint": "Shared with skia.ca (same browser storage key).",
+    "defaultNationality": "Default voice nationality",
+    "defaultNationalityHint": "Also change in the chat panel — used for spoken replies and chat language hints.",
+    "appearance": "APPEARANCE",
+    "theme": "Theme",
+    "themeValue": "SKIA Dark (Default)",
+    "fontSize": "Font Size",
+    "minimap": "Minimap",
+    "wordWrap": "Word Wrap",
+    "editor": "EDITOR",
+    "tabSize": "Tab Size",
+    "tabSpaces2": "2 spaces",
+    "tabSpaces4": "4 spaces",
+    "autoSave": "Auto Save",
+    "application": "APPLICATION",
+    "status": "Status",
+    "disconnected": "Disconnected",
+    "connected": "Connected",
+    "signOut": "SIGN OUT",
+    "signedOut": "SIGNED OUT",
+    "checkUpdates": "CHECK FOR UPDATES",
+    "checkingUpdates": "CHECKING...",
+    "openDocs": "OPEN DOCUMENTATION",
+    "about": "ABOUT",
+    "version": "Version",
+    "build": "Build",
+    "buildValue": "Sovereign Intelligence",
+    "toggleOn": "ON",
+    "toggleOff": "OFF"
+  },
+  "chat": {
+    "brand": "SKIA",
+    "newChat": "+ NOVA CONVERSA",
+    "placeholder": "Pergunte qualquer coisa ao SKIA...",
+    "clear": "LIMPAR HISTÓRICO",
+    "cancel": "CANCEL",
+    "attach": "ATTACH",
+    "attachQueued": "ATTACH ({n})",
+    "send": "ENVIAR",
+    "tagline": "One ecosystem. One universe. All SKIA.",
+    "initialMessage": "Sou SKIA — uma plataforma de inteligência governada construída para criação, execução e raciocínio. No que você gostaria de trabalhar?",
+    "signInRequired": "Please sign in to use SKIA",
+    "download": "DOWNLOAD",
+    "downloadTitle": "Baixe a resposta do SKIA como um arquivo de texto",
+    "removeAttachment": "Remove attachment",
+    "removeAttachmentAria": "Remove {name}",
+    "attachTitle": "Attach documents for SKIA",
+    "attachTitleQueued": "{n} file(s) queued — click to add more (or drop files here)",
+    "attachAria": "Attach files",
+    "attachAriaQueued": "{n} files attached",
+    "nationality": "NACIONALIDADE",
+    "voiceNationality": "Nacionalidade de voz",
+    "nationalityTitle": "Nationality: {label}",
+    "errors": {
+      "sessionExpired": "Sua sessão terminou enquanto você estava fora. Faça login novamente e atenderemos instantaneamente.",
+      "noCredits": "Você atingiu zero créditos. Adicione mais a qualquer momento e SKIA continuará.",
+      "rateLimit": "Você está se movendo rápido – mais rápido do que o sistema consegue acompanhar. Espere um momento e tente novamente.",
+      "unexpected": "SKIA tropeçou em algo inesperado. Uma nova tentativa rápida deve resolvê-lo.",
+      "reset": "Tudo bem, pequeno soluço da minha parte.\nOs sistemas do SKIA estão fazendo uma reinicialização rápida.\n\nNada do que você fez - apenas o caos rotineiro nos bastidores.\nDê-me um momento e estarei online novamente.",
+      "fallbackReply": "SKIA não conseguiu gerar uma resposta desta vez. Mais uma tentativa deve bastar.",
+      "verifyEmail": "Quick heads-up — your 10-day window to verify your email ran out.\nNo worries — you didn't break anything.\n\nTo keep chatting with me, just verify your email.\n\nTakes about 10 seconds and you're right back in.\nI'll be waiting on the other side."
+    }
+  },
+  "statusBar": {
+    "sovereign": "⬡ SKIA: SOVEREIGN",
+    "connected": "⬡ SKIA: CONNECTED",
+    "arch": "ARCH:"
+  },
+  "updates": {
+    "noUpdateTitle": "No Update",
+    "noUpdateBody": "You are on the latest version ({version}).",
+    "failedTitle": "Update Check Failed"
+  }
+}
