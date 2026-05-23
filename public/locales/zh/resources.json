@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "title": "Resources | SKIA Forge"
+  },
+  "hero": {
+    "title": "Resources",
+    "subtitle": "Everything you need to understand, deploy, and operate SKIA Forge"
+  },
+  "quickLinks": {
+    "download": "Download SKIA Forge",
+    "releaseNotes": "Release Notes",
+    "contactSupport": "Contact Support"
+  },
+  "sections": {
+    "documentation": "Documentation",
+    "operators": "For operators"
+  },
+  "cards": {
+    "productManual": {
+      "title": "Product Manual",
+      "desc": "Full product overview, capabilities, and feature positioning for SKIA Forge."
+    },
+    "quickstart": {
+      "title": "Quickstart",
+      "desc": "Download the IDE, sign in, and complete your first workflow."
+    },
+    "userGuide": {
+      "title": "User Guide",
+      "desc": "Using the IDE: sign-in, daily workflows, governance modes, and help."
+    },
+    "developerGuide": {
+      "title": "Developer Guide",
+      "desc": "Local development setup, architecture conventions, and contribution patterns."
+    },
+    "apiReference": {
+      "title": "API Reference",
+      "desc": "Primary Forge API surfaces, endpoints, request shapes, and response contracts."
+    },
+    "troubleshooting": {
+      "title": "Troubleshooting",
+      "desc": "Common failure modes, diagnostics, and step-by-step fixes."
+    },
+    "changelog": {
+      "title": "Changelog",
+      "desc": "Versioned product change history. What changed, when, and why."
+    },
+    "pricing": {
+      "title": "Pricing & Packages",
+      "desc": "Product packaging, tiers, and commercial model overview."
+    },
+    "enterprise": {
+      "title": "Enterprise Readiness",
+      "desc": "Enterprise launch and pilot readiness checklist for IT and procurement teams."
+    },
+    "securityGuide": {
+      "title": "Security Guide",
+      "desc": "Security model, controls, hardening checklist, and operational security practices."
+    },
+    "support": {
+      "title": "Support",
+      "desc": "Support scope, triage information, escalation path, and SLA expectations."
+    },
+    "operatorManual": {
+      "title": "Operator Manual",
+      "desc": "Deployment, runtime operations, health checks, and infrastructure guidance."
+    }
+  }
+}

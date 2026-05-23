@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Resources | SKIA Forge</title>
+  <script src="/forge-document-locale.js"></script>
+
+    <title data-i18n="resources.meta.title"></title>
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="stylesheet" href="/forge-premium-ui.css" />
     <link rel="stylesheet" href="/forge-lucide-icons.css" />
@@ -391,123 +393,124 @@
             line-height: 1.15 !important;
         }
     </style>
+  <link rel="stylesheet" href="/forge-sidebar-locale.css" />
 </head>
-<body>
+<body data-forge-i18n-page="resources">
 
     <div id="pcSidebarBackdrop" class="pc-sidebar-backdrop"></div>
-    <button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation">
+    <button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation" data-i18n-aria-label="common.aria.openNavigation">
         <span class="pc-sidebar-tab-icon skia-li skia-li--menu" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16" /><path d="M4 12h16" /><path d="M4 19h16" /></svg></span>
     </button>
     <aside id="pcSidebar" class="pc-sidebar">
         <div class="pc-sidebar-logo">
             <img src="/sidebar-logo.png" alt="SKIA" class="pc-sidebar-logo-img" />
-            <span class="pc-sidebar-logo-tagline">She Knows It All</span>
+            <span class="pc-sidebar-logo-tagline" data-i18n="common.sidebar.tagline"></span>
         </div>
         <div class="pc-sidebar-divider"></div>
         <nav class="pc-sidebar-nav">
-            <a class="pc-sidebar-btn" href="/platform-downloads">Forge Home</a>
-            <a class="pc-sidebar-btn" href="/forge/platform" target="_blank" rel="noopener noreferrer">Product</a>
-            <a class="pc-sidebar-btn" href="/resources">Resources</a>
-            <a class="pc-sidebar-btn" href="/security">Security</a>
-            <a class="pc-sidebar-btn" href="/contact">Contact & Support</a>
+            <a class="pc-sidebar-btn" href="/platform-downloads" data-i18n="common.nav.forgeHome"></a>
+            <a class="pc-sidebar-btn" href="/forge/platform" target="_blank" rel="noopener noreferrer" data-i18n="common.nav.product"></a>
+            <a class="pc-sidebar-btn" href="/resources" data-i18n="common.nav.resources"></a>
+            <a class="pc-sidebar-btn" href="/security" data-i18n="common.nav.security"></a>
+            <a class="pc-sidebar-btn" href="/contact" data-i18n="common.nav.contactSupport"></a>
             <div class="pc-sidebar-divider"></div>
-            <a class="pc-sidebar-btn" href="/platform-downloads">Download SKIA Forge</a>
+            <a class="pc-sidebar-btn" href="/platform-downloads" data-i18n="common.nav.downloadForge"></a>
         </nav>
     </aside>
 
-    <button type="button" class="back-btn" onclick="history.back()">← Back</button>
+    <button type="button" class="back-btn" onclick="history.back()" data-i18n="common.back.label"></button>
 
     <div class="wrap">
         <img src="/sidebar-logo.png" alt="SKIA" class="page-logo" />
 
         <div class="page-header">
-            <h1 class="page-title">Resources</h1>
-            <p class="page-subtitle">Everything you need to understand, deploy, and operate SKIA Forge</p>
+            <h1 class="page-title" data-i18n="resources.hero.title"></h1>
+            <p class="page-subtitle" data-i18n="resources.hero.subtitle"></p>
         </div>
 
         <div class="quick-links">
-            <a href="/platform-downloads" class="feature-tab feature-tab--active">Download SKIA Forge</a>
-            <a href="/docs/CHANGELOG.html" class="ql">Release Notes</a>
-            <a href="/contact" class="ql">Contact Support</a>
+            <a href="/platform-downloads" class="feature-tab feature-tab--active" data-i18n="resources.quickLinks.download"></a>
+            <a href="/docs/CHANGELOG.html" class="ql" data-i18n="resources.quickLinks.releaseNotes"></a>
+            <a href="/contact" class="ql" data-i18n="resources.quickLinks.contactSupport"></a>
         </div>
 
-        <div class="section-label">Documentation</div>
+        <div class="section-label" data-i18n="resources.sections.documentation"></div>
         <div class="doc-grid">
             <a href="/docs/PRODUCT_MANUAL.html" class="doc-card">
-                <div class="doc-card-title">Product Manual</div>
-                <div class="doc-card-desc">Full product overview, capabilities, and feature positioning for SKIA Forge.</div>
+                <div class="doc-card-title" data-i18n="resources.cards.productManual.title"></div>
+                <div class="doc-card-desc" data-i18n="resources.cards.productManual.desc"></div>
                 <div class="doc-card-tag">PRODUCT_MANUAL.md</div>
             </a>
             <a href="/docs/QUICKSTART.html" class="doc-card">
-                <div class="doc-card-title">Quickstart</div>
-                <div class="doc-card-desc">Download the IDE, sign in, and complete your first workflow.</div>
+                <div class="doc-card-title" data-i18n="resources.cards.quickstart.title"></div>
+                <div class="doc-card-desc" data-i18n="resources.cards.quickstart.desc"></div>
                 <div class="doc-card-tag">QUICKSTART.md</div>
             </a>
             <a href="/docs/USER_GUIDE.html" class="doc-card">
-                <div class="doc-card-title">User Guide</div>
-                <div class="doc-card-desc">Using the IDE: sign-in, daily workflows, governance modes, and help.</div>
+                <div class="doc-card-title" data-i18n="resources.cards.userGuide.title"></div>
+                <div class="doc-card-desc" data-i18n="resources.cards.userGuide.desc"></div>
                 <div class="doc-card-tag">USER_GUIDE.md</div>
             </a>
             <a href="/docs/DEVELOPER_GUIDE.html" class="doc-card">
-                <div class="doc-card-title">Developer Guide</div>
-                <div class="doc-card-desc">Local development setup, architecture conventions, and contribution patterns.</div>
+                <div class="doc-card-title" data-i18n="resources.cards.developerGuide.title"></div>
+                <div class="doc-card-desc" data-i18n="resources.cards.developerGuide.desc"></div>
                 <div class="doc-card-tag">DEVELOPER_GUIDE.md</div>
             </a>
             <a href="/docs/API_REFERENCE.html" class="doc-card">
-                <div class="doc-card-title">API Reference</div>
-                <div class="doc-card-desc">Primary Forge API surfaces, endpoints, request shapes, and response contracts.</div>
+                <div class="doc-card-title" data-i18n="resources.cards.apiReference.title"></div>
+                <div class="doc-card-desc" data-i18n="resources.cards.apiReference.desc"></div>
                 <div class="doc-card-tag">API_REFERENCE.md</div>
             </a>
             <a href="/docs/TROUBLESHOOTING.html" class="doc-card">
-                <div class="doc-card-title">Troubleshooting</div>
-                <div class="doc-card-desc">Common failure modes, diagnostics, and step-by-step fixes.</div>
+                <div class="doc-card-title" data-i18n="resources.cards.troubleshooting.title"></div>
+                <div class="doc-card-desc" data-i18n="resources.cards.troubleshooting.desc"></div>
                 <div class="doc-card-tag">TROUBLESHOOTING.md</div>
             </a>
             <a href="/docs/CHANGELOG.html" class="doc-card">
-                <div class="doc-card-title">Changelog</div>
-                <div class="doc-card-desc">Versioned product change history. What changed, when, and why.</div>
+                <div class="doc-card-title" data-i18n="resources.cards.changelog.title"></div>
+                <div class="doc-card-desc" data-i18n="resources.cards.changelog.desc"></div>
                 <div class="doc-card-tag">CHANGELOG.md</div>
             </a>
             <a href="/docs/PRICING_AND_PACKAGES.html" class="doc-card">
-                <div class="doc-card-title">Pricing & Packages</div>
-                <div class="doc-card-desc">Product packaging, tiers, and commercial model overview.</div>
+                <div class="doc-card-title" data-i18n="resources.cards.pricing.title"></div>
+                <div class="doc-card-desc" data-i18n="resources.cards.pricing.desc"></div>
                 <div class="doc-card-tag">PRICING_AND_PACKAGES.md</div>
             </a>
             <a href="/docs/ENTERPRISE_READINESS_CHECKLIST.html" class="doc-card">
-                <div class="doc-card-title">Enterprise Readiness</div>
-                <div class="doc-card-desc">Enterprise launch and pilot readiness checklist for IT and procurement teams.</div>
+                <div class="doc-card-title" data-i18n="resources.cards.enterprise.title"></div>
+                <div class="doc-card-desc" data-i18n="resources.cards.enterprise.desc"></div>
                 <div class="doc-card-tag">ENTERPRISE_READINESS_CHECKLIST.md</div>
             </a>
             <a href="/docs/SECURITY_GUIDE.html" class="doc-card">
-                <div class="doc-card-title">Security Guide</div>
-                <div class="doc-card-desc">Security model, controls, hardening checklist, and operational security practices.</div>
+                <div class="doc-card-title" data-i18n="resources.cards.securityGuide.title"></div>
+                <div class="doc-card-desc" data-i18n="resources.cards.securityGuide.desc"></div>
                 <div class="doc-card-tag">SECURITY_GUIDE.md</div>
             </a>
             <a href="/docs/SUPPORT.html" class="doc-card">
-                <div class="doc-card-title">Support</div>
-                <div class="doc-card-desc">Support scope, triage information, escalation path, and SLA expectations.</div>
+                <div class="doc-card-title" data-i18n="resources.cards.support.title"></div>
+                <div class="doc-card-desc" data-i18n="resources.cards.support.desc"></div>
                 <div class="doc-card-tag">SUPPORT.md</div>
             </a>
         </div>
 
-        <div class="section-label" style="margin-top:32px;">For operators</div>
+        <div class="section-label" style="margin-top:32px;" data-i18n="resources.sections.operators"></div>
         <div class="doc-grid">
             <a href="/docs/OPERATOR_MANUAL.html" class="doc-card">
-                <div class="doc-card-title">Operator Manual</div>
-                <div class="doc-card-desc">Deployment, runtime operations, health checks, and infrastructure guidance.</div>
+                <div class="doc-card-title" data-i18n="resources.cards.operatorManual.title"></div>
+                <div class="doc-card-desc" data-i18n="resources.cards.operatorManual.desc"></div>
                 <div class="doc-card-tag">OPERATOR_MANUAL.md</div>
             </a>
         </div>
 
         <footer>
-            <div class="footer-tagline">One ecosystem. One universe. All SKIA.</div>
-            <div class="footer-copy">© 2026 SKIA. All rights reserved.</div>
+            <div class="footer-tagline" data-i18n="common.footer.tagline"></div>
+            <div class="footer-copy" data-i18n="common.footer.copyright"></div>
             <div class="footer-links">
-                <a href="/resources">Resources</a>
+                <a href="/resources" data-i18n="common.footer.resources"></a>
                 <span class="sep">|</span>
-                <a href="/security">Security</a>
+                <a href="/security" data-i18n="common.footer.security"></a>
                 <span class="sep">|</span>
-                <a href="/contact">Contact & Support</a>
+                <a href="/contact" data-i18n="common.footer.contactSupport"></a>
             </div>
         </footer>
     </div>
@@ -525,5 +528,7 @@
     sidebar.addEventListener('click',e=>{if(e.target.tagName==='A')close();});
   })();
     </script>
+  <script src="/forge-page-locale.js" defer></script>
+  <script src="/forge-sidebar-locale.js" defer></script>
 </body>
 </html>

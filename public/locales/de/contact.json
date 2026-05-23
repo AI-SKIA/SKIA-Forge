@@ -1,0 +1,67 @@
+{
+  "meta": {
+    "title": "Contact & Support | SKIA Forge"
+  },
+  "hero": {
+    "title": "Contact & Support",
+    "subtitle": "SKIA Forge runtime and SKIA Forge IDE — startup, updates, integrations, governance, or getting started — we're here"
+  },
+  "sections": {
+    "scope": "Support Scope",
+    "sla": "Response Expectations",
+    "triage": "When Reporting an Issue — Include",
+    "escalation": "Escalation Path",
+    "form": "Send a Message"
+  },
+  "scope": {
+    "s1": "Runtime startup and health issues",
+    "s2": "Integration contract failures",
+    "s3": "Governance and policy flow debugging",
+    "s4": "Workflow failures and integration issues",
+    "s5": "SKIA Forge IDE install, updates, and desktop runtime",
+    "s6": "General usage and workflow questions"
+  },
+  "sla": {
+    "p1": {
+      "label": "Critical Outage",
+      "desc": "Complete loss of service or data integrity risk. Immediate response window."
+    },
+    "p2": {
+      "label": "Degraded Service",
+      "desc": "Core functionality impaired but workaround exists. Same business day response."
+    },
+    "p3": {
+      "label": "Non-blocking Issue",
+      "desc": "Minor issues, questions, feature requests. Prioritized backlog response."
+    }
+  },
+  "triage": {
+    "t1": "Endpoint and HTTP method",
+    "t2": "Request timestamp",
+    "t3": "Request ID or correlation ID (if available)",
+    "t4": "Governance mode: strict / adaptive / autonomous",
+    "t5": "Full error message and stack trace",
+    "t6": "Steps to reproduce reliably",
+    "t7": "SKIA Forge IDE version or build channel (if using the desktop app)"
+  },
+  "escalation": {
+    "e1": "Reproduce locally and validate with health and probe endpoints to isolate the failure surface.",
+    "e2": "Apply remediation guidance from control-plane outputs and check the Troubleshooting docs.",
+    "e3": "Escalate via the form below with logs, payload shape, and expected vs actual behaviour."
+  },
+  "form": {
+    "namePlaceholder": "Name",
+    "emailPlaceholder": "Email",
+    "topicAria": "Topic",
+    "topicSupport": "Topic — Support (runtime, integration, governance)",
+    "topicCx": "Topic — Customer Service (account, billing, general)",
+    "subjectPlaceholder": "Subject",
+    "messagePlaceholder": "Describe your issue or question...",
+    "submit": "Send Message",
+    "sending": "Sending...",
+    "directPrefix": "Or reach us directly at:",
+    "fillAll": "Please fill in all fields.",
+    "success": "Message sent. We'll get back to you shortly.",
+    "failedPrefix": "Failed to send. Please email us at "
+  }
+}

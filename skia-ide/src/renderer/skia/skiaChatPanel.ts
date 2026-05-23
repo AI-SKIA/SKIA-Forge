@@ -1,5 +1,6 @@
 import { applyChatChromeStrings } from "../i18n/applyForgeUi";
-import { getChatRequestLanguage } from "../i18n/forgeChatVoice";
+import { localeToApiLanguage } from "../i18n/config";
+import { getLocale } from "../i18n/forgeI18n";
 import { subscribeLocaleChange, t } from "../i18n/forgeI18n";
 import { runSkiaReview } from "./skiaApiClient";
 import { getAuthToken, getLoggedInUser, isAuthenticated, logout } from "./skiaAuthPanel";
@@ -317,7 +318,7 @@ const send = async (
             formData.append("mode", "agent");
             formData.append("source", "skia-forge-ide");
             formData.append("stream", "true");
-            formData.append("language", getChatRequestLanguage());
+            formData.append("language", localeToApiLanguage(getLocale()));
             if (user?.email) formData.append("user_email", user.email);
             for (const f of filesToSend) {
                 formData.append("files", f);

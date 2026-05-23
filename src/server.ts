@@ -70,6 +70,7 @@ import { createEmbedIncrementalOnSaveHandler } from "./forge/modules/context-eng
 import { createEmbeddingVectorStore } from "./forge/modules/context-engine/embeddingVectorStoreFactory.js";
 import { SKIA_FULL_EMBEDDING_PATH_DEFAULT } from "./skiaFullEmbeddingContract.js";
 import { requireAuth } from "./middleware/requireAuth.js";
+import { forgeLocaleMiddleware } from "./middleware/forgeLocaleMiddleware.js";
 
 /** Admin-only mutations: requires `x-skia-admin-secret` to match `SKIA_ADMIN_SECRET` (fail closed if unset). */
 function requireSkiaAdminSecret(req: express.Request, res: express.Response, next: express.NextFunction): void {
@@ -90,6 +91,7 @@ function requireSkiaAdminSecret(req: express.Request, res: express.Response, nex
 const app = express();
 app.use(attachRequestContext);
 app.use(express.json({ limit: "2mb" }));
+app.use(forgeLocaleMiddleware);
 app.use((req, res, next) => {
   res.on("finish", () => {
     const row = buildRequestLog(req as RequestWithContext, res);
@@ -1536,6 +1538,28 @@ app.get("/forge-lucide-icons.css", (_req, res) => {
   res.type("text/css");
   res.sendFile(path.join(projectRoot, "public", "forge-lucide-icons.css"));
 });
+
+app.get("/forge-document-locale.js", (_req, res) => {
+  res.type("application/javascript");
+  res.sendFile(path.join(projectRoot, "public", "forge-document-locale.js"));
+});
+
+app.get("/forge-sidebar-locale.css", (_req, res) => {
+  res.type("text/css");
+  res.sendFile(path.join(projectRoot, "public", "forge-sidebar-locale.css"));
+});
+
+app.get("/forge-sidebar-locale.js", (_req, res) => {
+  res.type("application/javascript");
+  res.sendFile(path.join(projectRoot, "public", "forge-sidebar-locale.js"));
+});
+
+app.get("/forge-page-locale.js", (_req, res) => {
+  res.type("application/javascript");
+  res.sendFile(path.join(projectRoot, "public", "forge-page-locale.js"));
+});
+
+app.use("/locales", express.static(path.join(projectRoot, "public", "locales")));
 
 /** Hub + docs sidebar and hero logo (`public/*.html`, `public/docs/*.html`) */
 app.get("/sidebar-logo.png", (_req, res) => {

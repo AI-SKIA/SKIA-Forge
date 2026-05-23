@@ -3,7 +3,9 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Enterprise Readiness Checklist | SKIA Forge</title>
+  <script src="/forge-document-locale.js"></script>
+
+  <title data-i18n="docs.pages.enterprise-readiness-checklist.meta.title"></title>
   <link rel="icon" type="image/png" href="/favicon.png"/>
   <link rel="stylesheet" href="/forge-premium-ui.css" />
   <style>
@@ -108,48 +110,49 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
   line-height: 1.15 !important;
 }
 </style>
+  <link rel="stylesheet" href="/forge-sidebar-locale.css" />
 </head>
-<body>
+<body data-forge-i18n-page="docs" data-forge-i18n-slug="enterprise-readiness-checklist">
 
 <div id="pcSidebarBackdrop" class="pc-sidebar-backdrop"></div>
-<button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation">
+<button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation" data-i18n-aria-label="common.aria.openNavigation">
   <span class="pc-sidebar-tab-icon">?</span>
 </button>
 <aside id="pcSidebar" class="pc-sidebar">
   <div class="pc-sidebar-logo">
     <img src="/sidebar-logo.png" alt="SKIA" class="pc-sidebar-logo-img" />
-    <span class="pc-sidebar-logo-tagline">She Knows It All</span>
+    <span class="pc-sidebar-logo-tagline" data-i18n="common.sidebar.tagline"></span>
   </div>
   <div class="pc-sidebar-divider"></div>
     <nav class="pc-sidebar-nav">
-    <a class="pc-sidebar-btn" href="/platform-downloads">Forge Home</a>
-    <a class="pc-sidebar-btn" href="/forge/platform" target="_blank" rel="noopener noreferrer">Product</a>
-    <a class="pc-sidebar-btn" href="/resources">Resources</a>
-    <a class="pc-sidebar-btn" href="/security">Security</a>
-    <a class="pc-sidebar-btn" href="/contact">Contact & Support</a>
+    <a class="pc-sidebar-btn" href="/platform-downloads" data-i18n="common.nav.forgeHome"></a>
+    <a class="pc-sidebar-btn" href="/forge/platform" target="_blank" rel="noopener noreferrer" data-i18n="common.nav.product"></a>
+    <a class="pc-sidebar-btn" href="/resources" data-i18n="common.nav.resources"></a>
+    <a class="pc-sidebar-btn" href="/security" data-i18n="common.nav.security"></a>
+    <a class="pc-sidebar-btn" href="/contact" data-i18n="common.nav.contactSupport"></a>
     <div class="pc-sidebar-divider"></div>
-    <a class="pc-sidebar-btn" href="/platform-downloads">Download SKIA Forge</a>
+    <a class="pc-sidebar-btn" href="/platform-downloads" data-i18n="common.nav.downloadForge"></a>
   </nav>
 </aside>
 
-<button type="button" class="back-btn" onclick="history.back()">? Back</button>
+<button type="button" class="back-btn" onclick="history.back()" data-i18n="common.back.label"></button>
 <div class="wrap">
   <img src="/sidebar-logo.png" alt="SKIA" class="page-logo" />
-  <div class="doc-badge">Enterprise Evaluation</div>
-  <h1 class="doc-title">Enterprise Readiness Checklist</h1>
-  <p class="doc-desc"><strong>Your guide to evaluating and deploying SKIA Forge at scale.</strong> Use this checklist when your organisation is deciding whether SKIA Forge fits your engineering, security, and operations requirements.</p>
+  <div class="doc-badge" data-i18n="docs.pages.enterprise-readiness-checklist.badge"></div>
+  <h1 class="doc-title" data-i18n="docs.pages.enterprise-readiness-checklist.title"></h1>
+  <p class="doc-desc" data-i18n="docs.pages.enterprise-readiness-checklist.description"></p>
   <div class="doc-divider"></div>
-  <div class="section"><div class="section-title">Product &amp; Architecture</div><div class="section-body"><div class="check-grid"><div class="check-item"><div class="check-box"></div><div class="check-text">Your team should confirm the product scope matches your expectations: governance and orchestration for AI-assisted development, aligned with your delivery stack.</div></div><div class="check-item"><div class="check-box"></div><div class="check-text">Your team should confirm you have a clear picture of core capabilities from the product manual and public materials.</div></div><div class="check-item"><div class="check-box"></div><div class="check-text">Your team should confirm integration expectations with your existing tools and workflows are documented internally.</div></div><div class="check-item"><div class="check-box"></div><div class="check-text">Your team should confirm you have access to an up-to-date API reference for any automation or custom clients.</div></div></div></div></div><div class="section"><div class="section-title">Security &amp; Governance</div><div class="section-body"><div class="check-grid"><div class="check-item"><div class="check-box"></div><div class="check-text">Your team should confirm security controls and threat assumptions are acceptable under your policies (Security Guide).</div></div><div class="check-item"><div class="check-box"></div><div class="check-text">Your team should confirm how governance modes map to your risk appetite and who can change them.</div></div><div class="check-item"><div class="check-box"></div><div class="check-text">Your team should confirm high-risk operations, approvals, and audit expectations meet compliance needs.</div></div><div class="check-item"><div class="check-box"></div><div class="check-text">Your team should confirm secret handling and access control for Forge hosts match your standards.</div></div></div></div></div><div class="section"><div class="section-title">Operations</div><div class="section-body"><div class="check-grid"><div class="check-item"><div class="check-box"></div><div class="check-text">Your team should confirm you have an operational runbook for deployment, upgrades, and rollback (Operator Manual).</div></div><div class="check-item"><div class="check-box"></div><div class="check-text">Your team should confirm health and readiness checks you rely on are defined and monitored.</div></div><div class="check-item"><div class="check-box"></div><div class="check-text">Your team should confirm troubleshooting and escalation paths are understood (Support, Troubleshooting).</div></div><div class="check-item"><div class="check-box"></div><div class="check-text">Your team should confirm backup, recovery, and incident response procedures are assigned.</div></div></div></div></div><div class="section"><div class="section-title">Quality &amp; Reliability</div><div class="section-body"><div class="check-grid"><div class="check-item"><div class="check-box"></div><div class="check-text">Your team should confirm release quality expectations align with your internal gates.</div></div><div class="check-item"><div class="check-box"></div><div class="check-text">Your team should confirm known limitations and non-goals are captured for stakeholders.</div></div><div class="check-item"><div class="check-box"></div><div class="check-text">Your team should confirm performance and availability targets for your topology are documented.</div></div></div></div></div><div class="section"><div class="section-title">Commercial &amp; Support</div><div class="section-body"><div class="check-grid"><div class="check-item"><div class="check-box"></div><div class="check-text">Your team should confirm packaging and licensing match the seats or deployment model you intend (Pricing &amp; Packages).</div></div><div class="check-item"><div class="check-box"></div><div class="check-text">Your team should confirm support tiers and escalation contacts are agreed with SKIA.</div></div><div class="check-item"><div class="check-box"></div><div class="check-text">Your team should confirm procurement items (security questionnaires, DPA, subprocessors if applicable) are tracked before go-live.</div></div></div></div></div>
+  <div class="section"><div class="section-title" data-i18n="docs.pages.enterprise-readiness-checklist.sections.product-architecture.title"></div><div class="section-body" data-i18n-html="docs.pages.enterprise-readiness-checklist.sections.product-architecture.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.enterprise-readiness-checklist.sections.security-governance.title"></div><div class="section-body" data-i18n-html="docs.pages.enterprise-readiness-checklist.sections.security-governance.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.enterprise-readiness-checklist.sections.operations.title"></div><div class="section-body" data-i18n-html="docs.pages.enterprise-readiness-checklist.sections.operations.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.enterprise-readiness-checklist.sections.quality-reliability.title"></div><div class="section-body" data-i18n-html="docs.pages.enterprise-readiness-checklist.sections.quality-reliability.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.enterprise-readiness-checklist.sections.commercial-support.title"></div><div class="section-body" data-i18n-html="docs.pages.enterprise-readiness-checklist.sections.commercial-support.html"></div></div>
   
 <div class="doc-footer">
-  <div class="tagline">One ecosystem. One universe. All SKIA.</div>
-  <div class="copy">� 2026 SKIA. All rights reserved.</div>
+  <div class="tagline" data-i18n="common.footer.tagline"></div>
+  <div class="copy" data-i18n="common.footer.copyright"></div>
   <div class="links">
-    <a href="/resources">Resources</a>
+    <a href="/resources" data-i18n="common.footer.resources"></a>
     <span class="sep">|</span>
-    <a href="/security">Security</a>
+    <a href="/security" data-i18n="common.footer.security"></a>
     <span class="sep">|</span>
-    <a href="/contact">Contact & Support</a>
+    <a href="/contact" data-i18n="common.footer.contactSupport"></a>
   </div>
 </div>
 
@@ -169,5 +172,7 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
 })();
 </script>
 
+  <script src="/forge-page-locale.js" defer></script>
+  <script src="/forge-sidebar-locale.js" defer></script>
 </body>
 </html>

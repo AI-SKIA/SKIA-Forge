@@ -1,0 +1,118 @@
+.pc-sidebar-locale {
+  display: flex;
+  justify-content: center;
+  padding: 0 16px 12px;
+}
+
+.skia-lang-switcher {
+  position: relative;
+  display: inline-block;
+}
+
+.skia-lang-switcher__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  background: rgba(8, 5, 0, 0.55);
+  color: rgba(212, 175, 55, 0.9);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.skia-lang-switcher__trigger:hover {
+  border-color: rgba(212, 175, 55, 0.55);
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.skia-lang-switcher__trigger:focus-visible {
+  outline: 2px solid rgba(212, 175, 55, 0.65);
+  outline-offset: 2px;
+}
+
+.skia-lang-switcher__globe {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  color: rgba(212, 175, 55, 0.7);
+}
+
+.skia-lang-switcher__globe-svg {
+  width: 14px;
+  height: 14px;
+  opacity: 0.85;
+}
+
+.skia-lang-switcher__caret {
+  font-size: 10px;
+  opacity: 0.75;
+}
+
+.skia-lang-switcher__menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  z-index: 260;
+  min-width: 11rem;
+  max-height: min(70vh, 320px);
+  overflow-y: auto;
+  padding: 4px 0;
+  border-radius: 8px;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  background: #1a1208;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+}
+
+.skia-lang-switcher__option {
+  display: block;
+  width: 100%;
+  padding: 7px 14px;
+  border: none;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 13px;
+  text-align: start;
+  cursor: pointer;
+}
+
+.skia-lang-switcher__option:hover {
+  background: rgba(212, 175, 55, 0.08);
+}
+
+.skia-lang-switcher__option--active {
+  color: #d4af37;
+}
+
+.skia-lang-switcher__option:focus-visible {
+  outline: 2px solid rgba(212, 175, 55, 0.65);
+  outline-offset: -2px;
+}
+
+/* Arabic RTL: mirror collapsible sidebar to the right edge */
+html[dir="rtl"] .pc-sidebar {
+  left: auto;
+  right: 0;
+  border-right: none;
+  border-left: 1px solid rgba(212, 175, 55, 0.25);
+  transform: translateX(100%);
+}
+
+html[dir="rtl"] .pc-sidebar--open {
+  transform: translateX(0);
+}
+
+html[dir="rtl"] .pc-sidebar-tab {
+  left: auto;
+  right: 0;
+  border-left: 1px solid rgba(212, 175, 55, 0.4);
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+  box-shadow: -4px 0 20px rgba(212, 175, 55, 0.15);
+}

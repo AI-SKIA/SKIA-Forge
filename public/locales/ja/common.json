@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "documentTitle": "SKIA FORGE"
+  },
+  "sidebar": {
+    "tagline": "She Knows It All"
+  },
+  "nav": {
+    "forgeHome": "",
+    "product": "",
+    "resources": "",
+    "security": "",
+    "contactSupport": "",
+    "downloadForge": ""
+  },
+  "back": {
+    "label": "← Back"
+  },
+  "aria": {
+    "openNavigation": "Open navigation"
+  },
+  "footer": {
+    "tagline": "One ecosystem. One universe. All SKIA.",
+    "copyright": "© 2026 SKIA. All rights reserved.",
+    "resources": "Resources",
+    "security": "Security",
+    "contactSupport": "Contact & Support"
+  }
+}
