@@ -7,8 +7,9 @@
     return LOCALES.indexOf(v) >= 0;
   }
 
+  /** First path segment after leading slash (matches forge locale middleware). */
   function getLocaleFromPath(path) {
-    var seg = (path || '').split('/').filter(Boolean)[0] || '';
+    var seg = (path || '').split('/')[1] || '';
     return isLocale(seg) ? seg : null;
   }
 
@@ -27,8 +28,21 @@
     }
   }
 
+  function persistUiLocale(locale) {
+    try {
+      localStorage.setItem('skia-ui-locale', locale);
+    } catch (e) {
+      /* ignore */
+    }
+    document.cookie = 'skia-ui-locale=' + locale + ';path=/;max-age=31536000;SameSite=Lax';
+  }
+
   function resolveLocale() {
-    return getLocaleFromPath(location.pathname) || readCookieLocale() || readStoredLocale() || DEFAULT_LOCALE;
+    var pathLocale = getLocaleFromPath(location.pathname);
+    if (pathLocale) {
+      return pathLocale;
+    }
+    return readCookieLocale() || readStoredLocale() || DEFAULT_LOCALE;
   }
 
   function slugifyTitle(title) {
@@ -211,6 +225,10 @@
   }
 
   function run() {
+    var pathLocale = getLocaleFromPath(location.pathname);
+    if (pathLocale) {
+      persistUiLocale(pathLocale);
+    }
     var locale = resolveLocale();
     var cfg = resolvePageConfig();
     loadNamespaces(locale, cfg.namespaces)

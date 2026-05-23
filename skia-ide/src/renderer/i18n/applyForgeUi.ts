@@ -60,31 +60,15 @@ export function applyForgeUiStrings(): void {
   applyChatChromeStrings();
 }
 
+/** Setting value strings (not labels) — keep literal product/status copy. */
+const SETTINGS_VALUE_I18N_KEYS = new Set(['settings.themeValue', 'settings.buildValue']);
+
 function applySettingsLabels(): void {
-  const map: Array<[string, string]> = [
-    ['[data-i18n="settings.languageGroup"]', 'settings.languageGroup'],
-    ['[data-i18n="settings.uiLanguage"]', 'settings.uiLanguage'],
-    ['[data-i18n="settings.uiLanguageHint"]', 'settings.uiLanguageHint'],
-    ['[data-i18n="settings.appearance"]', 'settings.appearance'],
-    ['[data-i18n="settings.theme"]', 'settings.theme'],
-    ['[data-i18n="settings.themeValue"]', 'settings.themeValue'],
-    ['[data-i18n="settings.fontSize"]', 'settings.fontSize'],
-    ['[data-i18n="settings.minimap"]', 'settings.minimap'],
-    ['[data-i18n="settings.wordWrap"]', 'settings.wordWrap'],
-    ['[data-i18n="settings.editor"]', 'settings.editor'],
-    ['[data-i18n="settings.tabSize"]', 'settings.tabSize'],
-    ['[data-i18n="settings.autoSave"]', 'settings.autoSave'],
-    ['[data-i18n="settings.application"]', 'settings.application'],
-    ['[data-i18n="settings.status"]', 'settings.status'],
-    ['[data-i18n="settings.about"]', 'settings.about'],
-    ['[data-i18n="settings.version"]', 'settings.version'],
-    ['[data-i18n="settings.build"]', 'settings.build'],
-    ['[data-i18n="settings.buildValue"]', 'settings.buildValue'],
-  ];
-  for (const [sel, key] of map) {
-    const el = document.querySelector<HTMLElement>(sel);
-    if (el) el.textContent = t(key);
-  }
+  document.querySelectorAll<HTMLElement>('#view-settings [data-i18n]').forEach((el) => {
+    const attr = el.getAttribute('data-i18n');
+    if (!attr || SETTINGS_VALUE_I18N_KEYS.has(attr)) return;
+    el.textContent = t(attr);
+  });
 
   const logoutBtn = document.getElementById('settings-logout-btn');
   if (logoutBtn && logoutBtn.textContent !== t('settings.signedOut')) {

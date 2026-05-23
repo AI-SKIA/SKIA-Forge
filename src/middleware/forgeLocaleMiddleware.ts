@@ -44,6 +44,16 @@ export function forgeLocaleMiddleware(req: Request, res: Response, next: NextFun
   }
 
   const pathname = req.path;
+  if (
+    pathname.startsWith('/locales/') ||
+    pathname === '/forge-page-locale.js' ||
+    pathname === '/forge-sidebar-locale.js' ||
+    pathname === '/forge-sidebar-locale.css' ||
+    pathname === '/forge-document-locale.js'
+  ) {
+    next();
+    return;
+  }
   if (!shouldApplyForgeLocaleRouting(pathname)) {
     next();
     return;
