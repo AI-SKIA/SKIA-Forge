@@ -124,8 +124,6 @@ export function applyChatChromeStrings(): void {
   const chatBrand = document.querySelector<HTMLElement>('.chat-brand span');
   if (chatBrand) chatBrand.textContent = t('chat.brand');
 
-  const natHeader = document.querySelector<HTMLElement>('#chat-voice-panel [data-i18n="chat.nationality"]');
-  if (natHeader) natHeader.textContent = t('chat.nationality');
 }
 
 export function populateSettingsLocaleSelect(): void {

@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script src="/forge-document-locale.js"></script>
+
   <title>SKIA FORGE</title>
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="stylesheet" href="/forge-premium-ui.css" />
@@ -90,6 +92,7 @@
     body { letter-spacing: 0.01em; line-height: 1.6; }
     h1, h2, h3 { font-family:var(--forge-font-heading); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; line-height: 1.15; }
   </style>
+  <link rel="stylesheet" href="/forge-sidebar-locale.css" />
 </head>
 <body>
 
@@ -295,5 +298,6 @@
     sidebar.addEventListener('click',e=>{if(e.target.tagName==='A')close();});
   })();
 </script>
+  <script src="/forge-sidebar-locale.js" defer></script>
 </body>
 </html>
