@@ -3,27 +3,27 @@
     "documentTitle": "SKIA FORGE"
   },
   "sidebar": {
-    "tagline": "She Knows It All"
+    "tagline": "그녀는 모든 것을 알고 있습니다"
   },
   "nav": {
     "forgeHome": "Forge Home",
-    "product": "Product",
-    "resources": "Resources",
-    "security": "Security",
-    "contactSupport": "Contact & Support",
-    "downloadForge": "Download SKIA Forge"
+    "product": "제품",
+    "resources": "자원",
+    "security": "보안",
+    "contactSupport": "연락처 및 지원",
+    "downloadForge": "SKIA Forge 다운로드"
   },
   "back": {
-    "label": "← Back"
+    "label": "← 뒤로"
   },
   "aria": {
-    "openNavigation": "Open navigation"
+    "openNavigation": "탐색 열기"
   },
   "footer": {
-    "tagline": "One ecosystem. One universe. All SKIA.",
-    "copyright": "© 2026 SKIA. All rights reserved.",
-    "resources": "Resources",
-    "security": "Security",
-    "contactSupport": "Contact & Support"
+    "tagline": "하나의 생태계. 하나의 우주. 모든 SKIA.",
+    "copyright": "© 2026 SKIA. 모든 권리 보유.",
+    "resources": "자원",
+    "security": "보안",
+    "contactSupport": "연락처 및 지원"
   }
 }

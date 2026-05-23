@@ -1,68 +1,68 @@
 {
   "meta": {
-    "title": "Resources | SKIA Forge"
+    "title": "Ressourcen | SKIA Forge"
   },
   "hero": {
-    "title": "Resources",
-    "subtitle": "Everything you need to understand, deploy, and operate SKIA Forge"
+    "title": "Ressourcen",
+    "subtitle": "Alles, was Sie brauchen, um SKIA Forge zu verstehen, einzusetzen und zu bedienen"
   },
   "quickLinks": {
-    "download": "Download SKIA Forge",
-    "releaseNotes": "Release Notes",
-    "contactSupport": "Contact Support"
+    "download": "Laden Sie SKIA Forge herunter",
+    "releaseNotes": "Versionshinweise",
+    "contactSupport": "Kontaktieren Sie den Support"
   },
   "sections": {
-    "documentation": "Documentation",
-    "operators": "For operators"
+    "documentation": "Dokumentation",
+    "operators": "Für Betreiber"
   },
   "cards": {
     "productManual": {
-      "title": "Product Manual",
-      "desc": "Full product overview, capabilities, and feature positioning for SKIA Forge."
+      "title": "Produkthandbuch",
+      "desc": "Vollständige Produktübersicht, Funktionen und Funktionspositionierung für SKIA Forge."
     },
     "quickstart": {
-      "title": "Quickstart",
-      "desc": "Download the IDE, sign in, and complete your first workflow."
+      "title": "Schnellstart",
+      "desc": "Laden Sie die IDE herunter, melden Sie sich an und schließen Sie Ihren ersten Workflow ab."
     },
     "userGuide": {
-      "title": "User Guide",
-      "desc": "Using the IDE: sign-in, daily workflows, governance modes, and help."
+      "title": "Benutzerhandbuch",
+      "desc": "Verwendung der IDE: Anmeldung, tägliche Arbeitsabläufe, Governance-Modi und Hilfe."
     },
     "developerGuide": {
-      "title": "Developer Guide",
-      "desc": "Local development setup, architecture conventions, and contribution patterns."
+      "title": "Entwicklerhandbuch",
+      "desc": "Lokale Entwicklungseinrichtung, Architekturkonventionen und Beitragsmuster."
     },
     "apiReference": {
-      "title": "API Reference",
-      "desc": "Primary Forge API surfaces, endpoints, request shapes, and response contracts."
+      "title": "API Referenz",
+      "desc": "Primary Forge API-Oberflächen, Endpunkte, Anforderungsformen und Antwortverträge."
     },
     "troubleshooting": {
-      "title": "Troubleshooting",
-      "desc": "Common failure modes, diagnostics, and step-by-step fixes."
+      "title": "Fehlerbehebung",
+      "desc": "Häufige Fehlermodi, Diagnose und schrittweise Fehlerbehebungen."
     },
     "changelog": {
-      "title": "Changelog",
-      "desc": "Versioned product change history. What changed, when, and why."
+      "title": "Änderungsprotokoll",
+      "desc": "Versionierter Produktänderungsverlauf. Was hat sich wann und warum geändert?"
     },
     "pricing": {
-      "title": "Pricing & Packages",
-      "desc": "Product packaging, tiers, and commercial model overview."
+      "title": "Preise und Pakete",
+      "desc": "Übersicht über Produktverpackungen, Ebenen und kommerzielle Modelle."
     },
     "enterprise": {
-      "title": "Enterprise Readiness",
-      "desc": "Enterprise launch and pilot readiness checklist for IT and procurement teams."
+      "title": "Unternehmensbereitschaft",
+      "desc": "Checkliste zur Unternehmenseinführung und Pilotbereitschaft für IT- und Beschaffungsteams."
     },
     "securityGuide": {
-      "title": "Security Guide",
-      "desc": "Security model, controls, hardening checklist, and operational security practices."
+      "title": "Sicherheitsleitfaden",
+      "desc": "Sicherheitsmodell, Kontrollen, Härtungscheckliste und betriebliche Sicherheitspraktiken."
     },
     "support": {
-      "title": "Support",
-      "desc": "Support scope, triage information, escalation path, and SLA expectations."
+      "title": "Unterstützung",
+      "desc": "Supportumfang, Triage-Informationen, Eskalationspfad und SLA-Erwartungen."
     },
     "operatorManual": {
-      "title": "Operator Manual",
-      "desc": "Deployment, runtime operations, health checks, and infrastructure guidance."
+      "title": "Bedienungsanleitung",
+      "desc": "Bereitstellung, Laufzeitbetrieb, Zustandsprüfungen und Infrastrukturanleitung."
     }
   }
 }

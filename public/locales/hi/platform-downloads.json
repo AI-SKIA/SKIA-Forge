@@ -1,132 +1,132 @@
 {
   "meta": {
-    "title": "SKIA FORGE"
+    "title": "स्किया_फोर्ज_कैप्स"
   },
   "hero": {
-    "title": "SKIA Forge",
-    "subtitle": "Governed intelligence for real software delivery — built for operators, developers, and production teams",
-    "downloadButton": "Download SKIA Forge"
+    "title": "स्किया_फोर्ज",
+    "subtitle": "वास्तविक सॉफ़्टवेयर डिलीवरी के लिए शासित इंटेलिजेंस - ऑपरेटरों, डेवलपर्स और उत्पादन टीमों के लिए बनाया गया",
+    "downloadButton": "SKIA Forge डाउनलोड करें"
   },
   "cards": {
     "frontier": {
-      "title": "Frontier-Ready Intelligence Layer",
-      "brand": "SKIA Forge",
-      "body": "SKIA Forge is built on a hardened intelligence stack validated across coding, tool use, reasoning, long context, vision, and multimodal workflows."
+      "title": "फ्रंटियर-रेडी इंटेलिजेंस लेयर",
+      "brand": "स्किया_फोर्ज",
+      "body": "SKIA Forge कोडिंग, टूल उपयोग, तर्क, लंबे संदर्भ, दृष्टि और मल्टीमॉडल वर्कफ़्लोज़ में मान्य एक कठोर इंटेलिजेंस स्टैक पर बनाया गया है।"
     },
     "reliability": {
-      "title": "Verified Reliability",
-      "brand": "SKIA Forge",
-      "body": "Every release is verified before it ships. Quality is protected end-to-end so you get stable, trustworthy outputs every time."
+      "title": "सत्यापित विश्वसनीयता",
+      "brand": "स्किया_फोर्ज",
+      "body": "प्रत्येक रिलीज़ को शिप करने से पहले सत्यापित किया जाता है। गुणवत्ता को शुरू से अंत तक सुरक्षित रखा जाता है ताकि आपको हर बार स्थिर, भरोसेमंद आउटपुट मिले।"
     },
     "operations": {
-      "title": "Production-Grade Operations",
-      "brand": "SKIA Forge",
-      "body": "Forge ships with health checks, governance telemetry, status surfaces, and deterministic routing controls designed for operational trust."
+      "title": "उत्पादन-ग्रेड संचालन",
+      "brand": "स्किया_फोर्ज",
+      "body": "स्वास्थ्य जांच, शासन टेलीमेट्री, स्थिति सतहों और परिचालन विश्वास के लिए डिज़ाइन किए गए नियतात्मक रूटिंग नियंत्रण वाले फोर्ज जहाज।"
     },
     "surfaces": {
-      "title": "One Intelligence Across Surfaces",
-      "brand": "SKIA Forge",
-      "body": "Use Forge on the web for API-powered execution, or install desktop for full local filesystem and terminal workflows."
+      "title": "सभी सतहों पर एक खुफिया जानकारी",
+      "brand": "स्किया_फोर्ज",
+      "body": "एपीआई-संचालित निष्पादन के लिए वेब पर फोर्ज का उपयोग करें, या पूर्ण स्थानीय फ़ाइल सिस्टम और टर्मिनल वर्कफ़्लो के लिए डेस्कटॉप स्थापित करें।"
     }
   },
   "docLinks": {
     "overview": {
-      "title": "Overview",
-      "sub": "PRODUCT OVERVIEW",
-      "desc": "Orientation and high-level view of SKIA Forge on the Forge site."
+      "title": "सिंहावलोकन",
+      "sub": "उत्पाद अवलोकन",
+      "desc": "फोर्ज साइट पर स्किया_फोर्ज का अभिविन्यास और उच्च-स्तरीय दृश्य।"
     },
     "api": {
-      "title": "API reference",
+      "title": "एपीआई संदर्भ",
       "sub": "HTTP API",
-      "desc": "HTTP and integration endpoints for Forge-powered execution."
+      "desc": "फोर्ज-संचालित निष्पादन के लिए HTTP और एकीकरण समापन बिंदु।"
     },
     "quickstart": {
-      "title": "Quickstart",
-      "sub": "GET STARTED",
-      "desc": "Download the IDE, sign in, and run your first governed workflow."
+      "title": "त्वरित शुरुआत",
+      "sub": "शुरू हो जाओ",
+      "desc": "IDE डाउनलोड करें, साइन इन करें और अपना पहला नियंत्रित वर्कफ़्लो चलाएँ।"
     },
     "userGuide": {
-      "title": "User guide",
-      "sub": "DAY-TO-DAY USE",
-      "desc": "Using the IDE: sign-in, workflows, governance modes, and help."
+      "title": "उपयोगकर्ता गाइड",
+      "sub": "दैनिक उपयोग",
+      "desc": "आईडी का उपयोग करना: साइन-इन, वर्कफ़्लो, शासन मोड और सहायता।"
     },
     "developerGuide": {
-      "title": "Developer guide",
-      "sub": "INTEGRATION & EXTENSION",
-      "desc": "Architecture, extension points, and integration patterns."
+      "title": "डेवलपर गाइड",
+      "sub": "एकीकरण एवं विस्तार",
+      "desc": "वास्तुकला, विस्तार बिंदु और एकीकरण पैटर्न।"
     },
     "productManual": {
-      "title": "Product manual",
-      "sub": "FULL PRODUCT REFERENCE",
-      "desc": "Deep product behavior, surfaces, and operational semantics."
+      "title": "उत्पाद का मार्गदर्शन",
+      "sub": "संपूर्ण उत्पाद संदर्भ",
+      "desc": "गहन उत्पाद व्यवहार, सतहें और परिचालन शब्दार्थ।"
     },
     "enterprise": {
-      "title": "Enterprise readiness",
-      "sub": "ENTERPRISE DEPLOYMENT",
-      "desc": "Checklist and signals for regulated or large-team rollout."
+      "title": "उद्यम की तत्परता",
+      "sub": "उद्यम परिनियोजन",
+      "desc": "विनियमित या बड़ी-टीम रोलआउट के लिए चेकलिस्ट और संकेत।"
     },
     "pricing": {
-      "title": "Pricing & packages",
-      "sub": "PLANS & PRICING",
-      "desc": "Commercial packaging and procurement-facing detail."
+      "title": "मूल्य निर्धारण और पैकेज",
+      "sub": "योजनाएं और मूल्य निर्धारण",
+      "desc": "वाणिज्यिक पैकेजिंग और खरीद-संबंधी विवरण।"
     },
     "troubleshooting": {
-      "title": "Troubleshooting",
-      "sub": "DIAGNOSTICS & FIXES",
-      "desc": "Known failure modes, diagnostics, and recovery steps."
+      "title": "समस्या निवारण",
+      "sub": "निदान एवं सुधार",
+      "desc": "ज्ञात विफलता मोड, निदान और पुनर्प्राप्ति चरण।"
     },
     "support": {
-      "title": "Support",
-      "sub": "GET HELP",
-      "desc": "How to get help and escalate issues through Forge support."
+      "title": "सहायता",
+      "sub": "मदद लें",
+      "desc": "फोर्ज समर्थन के माध्यम से सहायता कैसे प्राप्त करें और मुद्दों को कैसे बढ़ाएं।"
     },
     "securityGuide": {
-      "title": "Security guide",
-      "sub": "SECURITY & HARDENING",
-      "desc": "Threat model, hardening, and safe deployment practices."
+      "title": "सुरक्षा गाइड",
+      "sub": "सुरक्षा एवं कठोरता",
+      "desc": "खतरा मॉडल, सख्तीकरण और सुरक्षित तैनाती प्रथाएं।"
     }
   },
   "installers": {
-    "heading": "SKIA Forge PC app installers",
+    "heading": "स्किया_फोर्ज पीसी ऐप इंस्टॉलर",
     "windows": {
-      "title": "Windows",
-      "sub": "PC APP INSTALLER",
-      "desc": "Windows 10/11",
-      "hint": "64-bit installer (.exe)"
+      "title": "विंडोज़",
+      "sub": "पीसी ऐप इंस्टॉलर",
+      "desc": "विंडोज़ 10/11",
+      "hint": "64-बिट इंस्टॉलर (.exe)"
     },
     "macIntel": {
-      "title": "macOS (Intel)",
-      "sub": "PC APP INSTALLER",
+      "title": "macOS (इंटेल)",
+      "sub": "पीसी ऐप इंस्टॉलर",
       "desc": "macOS 11+",
-      "hint": "Intel x64"
+      "hint": "इंटेल x64"
     },
     "macArm": {
-      "title": "macOS (Apple Silicon)",
-      "sub": "PC APP INSTALLER",
+      "title": "macOS (Apple सिलिकॉन)",
+      "sub": "पीसी ऐप इंस्टॉलर",
       "desc": "macOS 11+ M1/M2/M3",
-      "hint": "Apple Silicon (M1/M2/M3)"
+      "hint": "एप्पल सिलिकॉन (एम1/एम2/एम3)"
     },
     "linux": {
-      "title": "Linux",
-      "sub": "PC APP INSTALLER",
-      "desc": "Ubuntu, Fedora, Arch",
-      "hint": "AppImage (any distro)"
+      "title": "लिनक्स",
+      "sub": "पीसी ऐप इंस्टॉलर",
+      "desc": "उबंटू, फेडोरा, आर्क",
+      "hint": "AppImage (कोई भी डिस्ट्रो)"
     },
-    "windowsAria": "Download SKIA Forge for Windows",
-    "macIntelAria": "Download SKIA Forge for macOS Intel",
-    "macArmAria": "Download SKIA Forge for Apple Silicon",
-    "linuxAria": "Download SKIA Forge for Linux"
+    "windowsAria": "विंडोज़ के लिए SKIA Forge डाउनलोड करें",
+    "macIntelAria": "macOS Intel के लिए SKIA Forge डाउनलोड करें",
+    "macArmAria": "Apple सिलिकॉन के लिए SKIA Forge डाउनलोड करें",
+    "linuxAria": "लिनक्स के लिए SKIA Forge डाउनलोड करें"
   },
   "howItWorks": {
-    "heading": "How Forge + SKIA works",
-    "step1": "Use Forge on the web for immediate access, or install desktop for full local workflow control.",
-    "step2": "Choose the right execution path: context, agent, SDLC, production, healing, and architecture.",
-    "step3": "Get structured outputs designed for real use, not generic draft text."
+    "heading": "फोर्ज + स्किया कैसे काम करता है",
+    "step1": "तत्काल पहुंच के लिए वेब पर फोर्ज का उपयोग करें, या पूर्ण स्थानीय वर्कफ़्लो नियंत्रण के लिए डेस्कटॉप स्थापित करें।",
+    "step2": "सही निष्पादन पथ चुनें: संदर्भ, एजेंट, एसडीएलसी, उत्पादन, उपचार और वास्तुकला।",
+    "step3": "वास्तविक उपयोग के लिए डिज़ाइन किए गए संरचित आउटपुट प्राप्त करें, सामान्य ड्राफ्ट टेक्स्ट के लिए नहीं।"
   },
   "whyTeams": {
-    "heading": "Why teams choose SKIA Forge",
-    "a": "Benchmark-aligned quality on your critical dimensions: coding, tools, reasoning, long context, vision, and TTS.",
-    "b": "System-level maturity beyond raw output: observability, health checks, and integration governance built for production environments.",
-    "c": "Truth-based release distribution: only published installers are shown for download."
+    "heading": "टीमें SKIA Forge क्यों चुनती हैं",
+    "a": "आपके महत्वपूर्ण आयामों पर बेंचमार्क-संरेखित गुणवत्ता: कोडिंग, उपकरण, तर्क, लंबा संदर्भ, दृष्टि, और टीटीएस।",
+    "b": "कच्चे आउटपुट से परे सिस्टम-स्तरीय परिपक्वता: उत्पादन वातावरण के लिए निर्मित अवलोकन, स्वास्थ्य जांच और एकीकरण शासन।",
+    "c": "सत्य-आधारित रिलीज़ वितरण: केवल प्रकाशित इंस्टॉलर ही डाउनलोड के लिए दिखाए जाते हैं।"
   }
 }

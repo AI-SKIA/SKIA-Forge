@@ -1,68 +1,68 @@
 {
   "meta": {
-    "title": "Resources | SKIA Forge"
+    "title": "资源 | SKIA Forge"
   },
   "hero": {
-    "title": "Resources",
-    "subtitle": "Everything you need to understand, deploy, and operate SKIA Forge"
+    "title": "资源",
+    "subtitle": "了解、部署和操作 SKIA Forge 所需的一切"
   },
   "quickLinks": {
-    "download": "Download SKIA Forge",
-    "releaseNotes": "Release Notes",
-    "contactSupport": "Contact Support"
+    "download": "下载SKIA Forge",
+    "releaseNotes": "发行说明",
+    "contactSupport": "联系支持人员"
   },
   "sections": {
-    "documentation": "Documentation",
-    "operators": "For operators"
+    "documentation": "文档",
+    "operators": "对于运营商"
   },
   "cards": {
     "productManual": {
-      "title": "Product Manual",
-      "desc": "Full product overview, capabilities, and feature positioning for SKIA Forge."
+      "title": "产品手册",
+      "desc": "SKIA Forge 的完整产品概述、功能和功能定位。"
     },
     "quickstart": {
-      "title": "Quickstart",
-      "desc": "Download the IDE, sign in, and complete your first workflow."
+      "title": "快速入门",
+      "desc": "下载IDE、登录并完成您的第一个工作流程。"
     },
     "userGuide": {
-      "title": "User Guide",
-      "desc": "Using the IDE: sign-in, daily workflows, governance modes, and help."
+      "title": "用户指南",
+      "desc": "使用 IDE：登录、日常工作流程、治理模式和帮助。"
     },
     "developerGuide": {
-      "title": "Developer Guide",
-      "desc": "Local development setup, architecture conventions, and contribution patterns."
+      "title": "开发者指南",
+      "desc": "本地开发设置、架构约定和贡献模式。"
     },
     "apiReference": {
-      "title": "API Reference",
-      "desc": "Primary Forge API surfaces, endpoints, request shapes, and response contracts."
+      "title": "API参考",
+      "desc": "Primary Forge API 表面、端点、请求形状和响应契约。"
     },
     "troubleshooting": {
-      "title": "Troubleshooting",
-      "desc": "Common failure modes, diagnostics, and step-by-step fixes."
+      "title": "故障排除",
+      "desc": "常见故障模式、诊断和逐步修复。"
     },
     "changelog": {
-      "title": "Changelog",
-      "desc": "Versioned product change history. What changed, when, and why."
+      "title": "变更日志",
+      "desc": "版本化的产品变更历史记录。 发生了什么变化、何时发生以及为什么发生变化。"
     },
     "pricing": {
-      "title": "Pricing & Packages",
-      "desc": "Product packaging, tiers, and commercial model overview."
+      "title": "定价和套餐",
+      "desc": "产品包装、层级和商业模式概述。"
     },
     "enterprise": {
-      "title": "Enterprise Readiness",
-      "desc": "Enterprise launch and pilot readiness checklist for IT and procurement teams."
+      "title": "企业准备情况",
+      "desc": "面向 IT 和采购团队的企业启动和试点准备清单。"
     },
     "securityGuide": {
-      "title": "Security Guide",
-      "desc": "Security model, controls, hardening checklist, and operational security practices."
+      "title": "安全指南",
+      "desc": "安全模型、控制、强化清单和操作安全实践。"
     },
     "support": {
-      "title": "Support",
-      "desc": "Support scope, triage information, escalation path, and SLA expectations."
+      "title": "支持",
+      "desc": "支持范围、分类信息、升级路径和 SLA 期望。"
     },
     "operatorManual": {
-      "title": "Operator Manual",
-      "desc": "Deployment, runtime operations, health checks, and infrastructure guidance."
+      "title": "操作手册",
+      "desc": "部署、运行时操作、运行状况检查和基础设施指导。"
     }
   }
 }

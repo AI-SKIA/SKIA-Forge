@@ -3,27 +3,27 @@
     "documentTitle": "SKIA FORGE"
   },
   "sidebar": {
-    "tagline": "She Knows It All"
+    "tagline": "Sie weiß alles"
   },
   "nav": {
     "forgeHome": "Forge Home",
-    "product": "Product",
-    "resources": "Resources",
-    "security": "Security",
-    "contactSupport": "Contact & Support",
-    "downloadForge": "Download SKIA Forge"
+    "product": "Produkt",
+    "resources": "Ressourcen",
+    "security": "Sicherheit",
+    "contactSupport": "Kontakt & Support",
+    "downloadForge": "Laden Sie SKIA Forge herunter"
   },
   "back": {
-    "label": "← Back"
+    "label": "← Zurück"
   },
   "aria": {
-    "openNavigation": "Open navigation"
+    "openNavigation": "Navigation öffnen"
   },
   "footer": {
-    "tagline": "One ecosystem. One universe. All SKIA.",
-    "copyright": "© 2026 SKIA. All rights reserved.",
-    "resources": "Resources",
-    "security": "Security",
-    "contactSupport": "Contact & Support"
+    "tagline": "Ein Ökosystem. Ein Universum. Alle SKIA.",
+    "copyright": "© 2026 SKIA. Alle Rechte vorbehalten.",
+    "resources": "Ressourcen",
+    "security": "Sicherheit",
+    "contactSupport": "Kontakt & Support"
   }
 }

@@ -2,351 +2,351 @@
   "pages": {
     "readme": {
       "meta": {
-        "title": "SKIA Forge Documentation | SKIA Forge"
+        "title": "SKIA Forge Belgeler | SKIA Forge"
       },
-      "badge": "SKIA Forge Docs",
-      "title": "SKIA Forge Documentation",
-      "description": "Browse product guides, API reference, security, support, and enterprise evaluation materials. Branded HTML pages are listed below; Markdown sources are available at the same paths with a .md suffix when served from the Forge host.",
+      "badge": "SKIA Forge Dokümanlar",
+      "title": "SKIA Forge Belgeler",
+      "description": "Ürün kılavuzlarına, API referansına, güvenliğe, desteğe ve kurumsal değerlendirme materyallerine göz atın. Markalı HTML sayfaları aşağıda listelenmiştir; Markdown kaynakları, Forge ana bilgisayarından sunulduğunda .md sonekiyle aynı yollarda bulunur.",
       "sections": {
         "all-documents": {
-          "title": "All Documents",
-          "html": "<div class=\"card-grid\"><a href=\"/docs/PRODUCT_MANUAL.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Product Manual</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">PRODUCT_MANUAL.html</div></div></a><a href=\"/docs/QUICKSTART.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Quickstart</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">QUICKSTART.html</div></div></a><a href=\"/docs/USER_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">User Guide</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">USER_GUIDE.html</div></div></a><a href=\"/docs/DEVELOPER_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Developer Guide</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">DEVELOPER_GUIDE.html</div></div></a><a href=\"/docs/OPERATOR_MANUAL.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Operator Manual</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">OPERATOR_MANUAL.html</div></div></a><a href=\"/docs/API_REFERENCE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">API Reference</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">API_REFERENCE.html</div></div></a><a href=\"/docs/SECURITY_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Security Guide</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">SECURITY_GUIDE.html</div></div></a><a href=\"/docs/TROUBLESHOOTING.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Troubleshooting</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">TROUBLESHOOTING.html</div></div></a><a href=\"/docs/CHANGELOG.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Changelog</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">CHANGELOG.html</div></div></a><a href=\"/docs/SUPPORT.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Support</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">SUPPORT.html</div></div></a><a href=\"/docs/PRICING_AND_PACKAGES.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Pricing & Packages</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">PRICING_AND_PACKAGES.html</div></div></a><a href=\"/docs/ENTERPRISE_READINESS_CHECKLIST.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Enterprise Readiness</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">ENTERPRISE_READINESS_CHECKLIST.html</div></div></a></div></div>"
+          "title": "Tüm Belgeler",
+          "html": "<div class=\"card-grid\"><a href=\"/docs/product_MANUAL.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Ürün Kılavuzu</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">product_manual.html</div></div></a><a href=\"/docs/QUICKSTART.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Hızlı başlangıç</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">QUICKSTART.html</div></div></a><a href=\"/docs/USER_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Kullanıcı Kılavuzu</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">USER_GUIDE.html</div></div></a><a href=\"/docs/DEVELOPER_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Geliştirici Kılavuzu</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">DEVELOPER_GUIDE.html</div></div></a><a href=\"/docs/OPERATOR_MANUAL.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Kullanıcı Kılavuzu</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">OPERATOR_MANUAL.html</div></div></a><a href=\"/docs/API_REFERENCE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">API Referansı</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">API_REFERENCE.html</div></div></a><a href=\"/docs/SECURITY_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Güvenlik Rehberi</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">SECURITY_GUIDE.html</div></div></a><a href=\"/docs/TROUBLESHOOTING.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Sorun giderme</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">TROUBLESHOOTING.html</div></div></a><a href=\"/docs/CHANGELOG.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Değişiklik</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">CHANGELOG.html</div></div></a><a href=\"/docs/SUPPORT.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Destek</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">SUPPORT.html</div></div></a><a href=\"/docs/PRICING_AND_PACKAGES.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Fiyatlandırma ve Paketler</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">PRICING_AND_PACKAGES.html</div></div></a><a href=\"/docs/ENTERPRISE_READINESS_CHECKLIST.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Kurumsal Hazırlık</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">ENTERPRISE_READINESS_CHECKLIST.html</div></div></a></div></div>"
         }
       }
     },
     "quickstart": {
       "meta": {
-        "title": "Quickstart | SKIA Forge"
+        "title": "Hızlı Başlangıç ​​| SKIA Forge"
       },
-      "badge": "Get Started",
-      "title": "Quickstart",
-      "description": "Download SKIA Forge, sign in, and run your first governed workflow in the desktop IDE.",
+      "badge": "Başlayın",
+      "title": "Hızlı başlangıç",
+      "description": "SKIA Forge'yi indirin, oturum açın ve ilk yönetilen iş akışınızı masaüstü IDE'de çalıştırın.",
       "sections": {
         "step-by-step": {
-          "title": "Step-by-Step",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Download SKIA Forge from <a href=\"https://forge.skia.ca/platform-downloads\" style=\"color:var(--gold)\">forge.skia.ca/platform-downloads</a> for your operating system.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Install the app, then open <strong>SKIA Forge</strong> from your applications menu or desktop shortcut.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Sign in with your SKIA account or create one when prompted � authentication happens inside the application.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Open or import a project, submit work, review governance output, and apply changes when you are ready.</div></div><div class=\"step\"><div class=\"step-num\">05</div><div class=\"step-text\">Explore deeper guides from the links below when you need more detail.</div></div></div></div>"
+          "title": "Adım Adım",
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><a href=\"https://forge.skia.ca/platform-downloads\" adresinden SKIA Forge'yi indirin işletim sisteminiz için style=\"color:var(--gold)\">forge.skia.ca/platform-downloads</a>.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Uygulamayı yükleyin, ardından uygulamalar menünüzden veya masaüstünüzden <strong>SKIA Forge</strong>'yi açın. kısayol.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">SKIA hesabınızla oturum açın veya istendiğinde bir hesap oluşturun; kimlik doğrulama uygulamanın içinde gerçekleşir.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Bir proje açın veya içe aktarın, gönderin çalışın, yönetişim çıktısını inceleyin ve hazır olduğunuzda değişiklikleri uygulayın.</div></div><div class=\"step\"><div class=\"step-num\">05</div><div class=\"step-text\">Daha fazla ayrıntıya ihtiyaç duyduğunuzda aşağıdaki bağlantılardan daha ayrıntılı kılavuzları keşfedin.</div></div></div></div>"
         },
         "next-steps": {
-          "title": "Next Steps",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>User Guide</a> � day-to-day usage and governance modes</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API Reference</a> � HTTP APIs for developers and automation</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>Product Manual</a> � capabilities overview</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>Support</a> � how to get help</div></div></div></div>"
+          "title": "Sonraki Adımlar",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>Kullanıcı Kılavuzu</a> � günlük kullanım ve yönetim modları</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API Referansı</a> � HTTP Geliştiriciler ve otomasyon için API'ler</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/product_MANUAL.html' style='color:var(--gold)'>Ürün Kılavuzu</a> - yeteneklere genel bakış</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>Destek</a> � nasıl yardım alınır</div></div></div></div>"
         }
       }
     },
     "user-guide": {
       "meta": {
-        "title": "User Guide | SKIA Forge"
+        "title": "Kullanım Kılavuzu | SKIA Forge"
       },
-      "badge": "Using SKIA Forge",
-      "title": "User Guide",
-      "description": "What SKIA Forge does for you, how to install and sign in, daily workflows, governance modes in plain language, and where to get help.",
+      "badge": "SKIA Forge kullanma",
+      "title": "Kullanım Kılavuzu",
+      "description": "SKIA Forge sizin için neler yapar, nasıl kurulur ve oturum açılır, günlük iş akışları, yönetim modları sade bir dille anlatılır ve nereden yardım alınır.",
       "sections": {
         "what-skia-forge-does-for-you": {
-          "title": "What SKIA Forge Does For You",
-          "html": "SKIA Forge helps you build software with AI assistance under clear governance: planning, reviews, architecture insight, and safer apply paths so your team can move fast without bypassing policy.</div>"
+          "title": "SKIA Forge Sizin İçin Ne Yapar?",
+          "html": "SKIA Forge net yönetim altında yapay zeka yardımıyla yazılım oluşturmanıza yardımcı olur: planlama, incelemeler, mimari öngörüler ve daha güvenli uygulama yolları, böylece ekibiniz politikayı atlamadan hızlı hareket edebilir.</div>"
         },
         "get-the-desktop-ide": {
-          "title": "Get the Desktop IDE",
-          "html": "Download installers from <a href=\"https://forge.skia.ca/platform-downloads\" style=\"color:var(--gold)\">forge.skia.ca/platform-downloads</a> and install <strong>SKIA Forge</strong> for your platform.</div>"
+          "title": "Masaüstü IDE'yi edinin",
+          "html": "<a href=\"https://forge.skia.ca/platform-downloads\" style=\"color:var(--gold)\">forge.skia.ca/platform-downloads</a> adresinden yükleyicileri indirin ve platformunuz için <strong>SKIA Forge</strong>'yi yükleyin.</div>"
         },
         "signing-in": {
-          "title": "Signing In",
-          "html": "Open the app and sign in or create a SKIA account when prompted. Authentication happens inside the application.</div>"
+          "title": "Oturum Açma",
+          "html": "Uygulamayı açın ve istendiğinde oturum açın veya bir SKIA hesabı oluşturun. Kimlik doğrulama uygulamanın içinde gerçekleşir.</div>"
         },
         "daily-usage": {
-          "title": "Daily Usage",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Open or import the project you want to work on.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Submit work and review governance output before applying changes.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Follow in-app remediation when something is blocked, then try again.</div></div></div></div>"
+          "title": "Günlük Kullanım",
+          "html": "<div class = \"steps\"><div class = \"step\"><div class = \"step-num\">01</div><div class = \"step-text\">Üzerinde çalışmak istediğiniz projeyi açın veya içe aktarın.</div></div><div class = \"step\"><div class = \"step-num\">02</div><div class = \"step-text\">Değişiklikleri uygulamadan önce çalışmayı gönderin ve yönetişim çıktısını inceleyin.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Bir şey engellendiğinde uygulama içi düzeltmeleri takip edin ve tekrar deneyin.</div></div></div></div>"
         },
         "governance-modes": {
-          "title": "Governance Modes",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Strict</strong> � safest default; more steps require explicit approval.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Adaptive</strong> � balanced; routine work flows faster while higher-risk actions surface for review.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Autonomous</strong> � fastest path where enabled; use when your team accepts the trade-offs.</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">Labels in the product may vary; ask your admin which mode applies to your workspace.</p></div>"
+          "title": "Yönetişim Modları",
+          "html": "<div class = \"item-list\"><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\"><strong>Katı</strong> - en güvenli varsayılan; daha fazla adım için açık onay gerekir.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Uyarlanabilir</strong> � dengeli; rutin işler daha hızlı akarken, yüksek riskli eylemler inceleme için ortaya çıkar.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Otonom</strong> - etkinleştirildiğinde en hızlı yol; ekibiniz ödünleri kabul ettiğinde kullanın.</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">Üründeki etiketler değişiklik gösterebilir; yöneticinize çalışma alanınız için hangi modun geçerli olduğunu sorun.</p></div>"
         },
         "where-to-get-help": {
-          "title": "Where to Get Help",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href=\"/docs/SUPPORT.html\" style=\"color:var(--gold)\">Support</a> and <a href=\"/docs/TROUBLESHOOTING.html\" style=\"color:var(--gold)\">Troubleshooting</a></div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href=\"/contact\" style=\"color:var(--gold)\">Contact &amp; Support</a> on the Forge site for routed requests</div></div></div></div>"
+          "title": "Nereden Yardım Alınır?",
+          "html": "<div class = \"item-list\"><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\"><a href=\"/docs/SUPPORT.html\" style = \"color:var(--gold)\">Destek</a> ve <a href=\"/docs/TROUBLESHOOTING.html\" style=\"color:var(--gold)\">Sorun Giderme</a></div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href=\"/contact\" style=\"color:var(--gold)\">İletişim &amp; Yönlendirilmiş istekler için Forge sitesinde</a> destek</div></div></div></div>"
         }
       }
     },
     "developer-guide": {
       "meta": {
-        "title": "Developer Guide | SKIA Forge"
+        "title": "Geliştirici Kılavuzu | SKIA Forge"
       },
-      "badge": "Local Dev & Architecture",
-      "title": "Developer Guide",
-      "description": "Local setup, project structure, coding conventions, and integration notes.",
+      "badge": "Yerel Geliştirme ve Mimarlık",
+      "title": "Geliştirici Kılavuzu",
+      "description": "Yerel kurulum, proje yapısı, kodlama kuralları ve entegrasyon notları.",
       "sections": {
         "local-setup": {
-          "title": "Local Setup",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Ensure Node.js 20+ is installed</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\"><div class=\"code-block\">npm install</div></div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\"><div class=\"code-block\">npm run build</div></div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\"><div class=\"code-block\">npm run test</div></div></div></div></div>"
+          "title": "Yerel Kurulum",
+          "html": "<div class = \"steps\"><div class = \"step\"><div class = \"step-num\">01</div><div class = \"step-text\">Node.js 20+ sürümünün kurulu olduğundan emin olun</div></div><div class = \"step\"><div class = \"step-num\">02</div><div class = \"step-text\"><div class = \"code-block\">npm yükle</div></div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\"><div class=\"code-block\">npm derlemeyi çalıştır</div></div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\"><div class=\"code-block\">npm çalıştırma testi</div></div></div></div></div>"
         },
         "project-structure": {
-          "title": "Project Structure",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">the Forge server � runtime entrypoint</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>src/forge/modules/</code> � module domains: governance, safety, context-engine, agent, production, healing, architecture</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE � IDE-facing integration surface</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> � product documentation set</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> � static assets and HTML pages</div></div></div></div>"
+          "title": "Proje Yapısı",
+          "html": "<div class = \"item-list\"><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\">Forge sunucusu - çalışma zamanı giriş noktası</div></div><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\"><code>src/forge/modules/</code> - modül alanları: yönetişim, güvenlik, bağlam motoru, aracı, üretim, iyileştirme, mimari</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE � IDE'ye bakan entegrasyon yüzeyi</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> � ürün dokümantasyon seti</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> � statik varlıklar ve HTML sayfaları</div></div></div></div>"
         },
         "development-workflow": {
-          "title": "Development Workflow",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Implement scoped changes in <code>src/forge/modules/*</code>.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Run <code>npm run lint</code>, <code>npm run typecheck</code>, <code>npm run test</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Validate integration routes and control-plane behaviour.</div></div></div></div>"
+          "title": "Geliştirme İş Akışı",
+          "html": "<div class = \"steps\"><div class = \"step\"><div class = \"step-num\">01</div><div class = \"step-text\"><code>src/forge/modules/*</code>'da kapsamlı değişiklikleri uygulayın.</div></div><div class = \"step\"><div class = \"step-num\">02</div><div class = \"step-text\">Çalıştır <code>npm run lint</code>, <code>npm run typecheck</code>, <code>npm run test</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Entegrasyon rotalarını ve kontrol düzlemi davranışını doğrulama.</div></div></div></div>"
         },
         "coding-conventions": {
-          "title": "Coding Conventions",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Use typed request/response schemas for all API surfaces</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Keep policy checks explicit and test-covered</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Prefer additive changes over implicit behaviour changes</div></div></div></div>"
+          "title": "Kodlama Kuralları",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Tüm API yüzeyleri için yazılan istek/yanıt şemalarını kullanın</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Politika kontrollerini açık ve açık tutun test kapsamında</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Örtülü davranış değişiklikleri yerine ek değişiklikleri tercih edin</div></div></div></div>"
         },
         "integration-notes": {
-          "title": "Integration Notes",
-          "html": "Forge can run with SKIA integration enabled or disabled. Adapter paths should fail clearly and return structured errors when upstream contracts are unavailable.</div>"
+          "title": "Entegrasyon Notları",
+          "html": "Forge, SKIA entegrasyonu etkin veya devre dışıyken çalışabilir. Bağdaştırıcı yolları açıkça başarısız olmalı ve yukarı yöndeki sözleşmeler kullanılamadığında yapılandırılmış hatalar döndürmelidir.</div>"
         }
       }
     },
     "api-reference": {
       "meta": {
-        "title": "API Reference | SKIA Forge"
+        "title": "API Referansı | SKIA Forge"
       },
-      "badge": "Primary API Surfaces",
-      "title": "API Reference",
-      "description": "Forge HTTP API as implemented in the Forge server. Authenticated clients are required for control-plane routes under /api/forge/* . For the complete route index see docs/API_REFERENCE.md in the repository.",
+      "badge": "Birincil API Yüzeyleri",
+      "title": "API Referansı",
+      "description": "Forge sunucusunda uygulandığı şekliyle Forge HTTP API. /api/forge/* altındaki kontrol düzlemi rotaları için kimliği doğrulanmış istemciler gereklidir. Rota dizininin tamamı için depodaki docs/API_REFERENCE.md dosyasına bakın.",
       "sections": {
         "browser-static": {
-          "title": "Browser & Static",
-          "html": "<table class=\"tbl\"><thead><tr><th>Method</th><th>Path</th><th>Notes</th></tr></thead><tbody><tr><td>GET</td><td><code>/</code></td><td>Redirect to <code>/platform-downloads</code> (static <code>public/platform-downloads.html</code>)</td></tr><tr><td>GET</td><td><code>/forge</code></td><td>Same redirect (legacy path)</td></tr><tr><td>GET</td><td><code>/forge/app</code></td><td>Web IDE (build the SKIA Forge IDE bundle first)</td></tr><tr><td>GET</td><td><code>/resources</code>, <code>/security</code>, <code>/contact</code></td><td>Static pages</td></tr><tr><td>GET</td><td><code>/docs/*</code></td><td>Branded HTML then markdown fallback</td></tr></tbody></table></div>"
+          "title": "Tarayıcı ve Statik",
+          "html": "<table class=\"tbl\"><thead><tr><th>Yöntem</th><th>Yol</th><th>Notlar</th></tr></thead><tbody><tr><td>GET</td><td><code>/</code></td><td><code>/platform-downloads'a yönlendir</code> (statik) <code>public/platform-downloads.html</code>)</td></tr><tr><td>GET</td><td><code>/forge</code></td><td>Aynı yönlendirme (eski yol)</td></tr><tr><td>GET</td><td><code>/forge/app</code></td><td>Web IDE'yi oluşturun SKIA Forge IDE önce paket)</td></tr><tr><td>GET</td><td><code>/resources</code>, <code>/security</code>, <code>/contact</code></td><td>Statik sayfalar</td></tr><tr><td>GET</td><td><code>/docs/*</code></td><td>Markalı HTML ve ardından işaretleme geri dönüşü</td></tr></tbody></table></div>"
         },
         "auth-proxy": {
-          "title": "Auth Proxy",
-          "html": "<table class=\"tbl\"><thead><tr><th>Method</th><th>Path</th></tr></thead><tbody><tr><td>POST</td><td><code>/api/auth/login</code></td></tr><tr><td>POST</td><td><code>/api/auth/register</code></td></tr><tr><td>GET</td><td><code>/api/auth/session</code></td></tr></tbody></table><p style=\"margin-top:12px;font-size:13px;color:var(--text-soft)\">Proxied to <code>SKIA_BACKEND_URL</code>. Marketing pages omit web sign-in UI; use the SKIA Forge IDE.</p></div>"
+          "title": "Kimlik Doğrulama Proxy'si",
+          "html": "<masa class=\"tbl\"><thead><tr><th>Yöntem</th><th>Yol</th></tr></thead><tbody><tr><td>POST</td><td><code>/api/auth/login</code></td></tr><tr>< td>POST</td><td><code>/api/auth/register</code></td></tr><tr><td>GET</td><td><code>/api/auth/session</code></td></tr></tbody></table><p style=\"margin-top:12px;font-size:13px;color:var(--text-soft)\"><code>SKIA_BACKEND_URL</code> adresine proxy uygulandı. Pazarlama sayfalarında web'de oturum açma kullanıcı arayüzü yer almaz; SKIA Forge IDE'yi kullanın.</p></div>"
         },
         "app-distribution": {
-          "title": "App Distribution",
-          "html": "<table class=\"tbl\"><thead><tr><th>Method</th><th>Path</th></tr></thead><tbody><tr><td>GET</td><td><code>/api/app/version-check</code></td></tr><tr><td>GET</td><td><code>/api/app/release-assets</code></td></tr><tr><td>GET</td><td><code>/api/app/download</code></td></tr><tr><td>GET</td><td><code>/api/app/download/:platform</code></td></tr></tbody></table></div>"
+          "title": "Uygulama Dağıtımı",
+          "html": "<masa class=\"tbl\"><thead><tr><th>Yöntem</th><th>Yol</th></tr></thead><tbody><tr><td>GET</td><td><code>/api/app/version-check</code></td></tr><tr><td>GET</td><td><code>/api/app/releas e-varlıklar</code></td></tr><tr><td>ALIN</td><td><code>/api/app/download</code></td></tr><tr><td>GET</td><td><code>/api/app/download/:platform</code></td></tr></tbody></table></div>"
         },
         "health-status": {
-          "title": "Health & Status",
-          "html": "<table class=\"tbl\"><thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead><tbody><tr><td>GET</td><td><code>/health</code></td><td>Service health check</td></tr><tr><td>GET</td><td><code>/live</code></td><td>Liveness probe</td></tr><tr><td>GET</td><td><code>/ready</code></td><td>Readiness probe</td></tr><tr><td>GET</td><td><code>/version</code></td><td>Service version</td></tr></tbody></table></div>"
+          "title": "Sağlık ve Durum",
+          "html": "<table class=\"tbl\"><thead><tr><th>Yöntem</th><th>Yol</th><th>Açıklama</th></tr></thead><tbody><tr><td>GET</td><td><code>/health</code></td><td>Hizmet durumu kontrolü</td></tr><tr><td>GET</td><td><code>/live</code></td><td>Canlılık probe</td></tr><tr><td>GET</td><td><code>/ready</code></td><td>Hazırlık araştırması</td></tr><tr><td>GET</td><td><code>/version</code></td><td>Hizmet sürümü</td></tr></tbody></table></div>"
         },
         "integration": {
-          "title": "Integration",
-          "html": "<table class=\"tbl\"><thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead><tbody><tr><td>GET</td><td><code>/integration/skia-full</code></td><td>Adapter status and contract map</td></tr><tr><td>GET</td><td><code>/integration/skia-full/probe</code></td><td>Live contract probe summary</td></tr><tr><td>GET</td><td><code>/integration/skia-full/probe/report</code></td><td>Detailed probe report</td></tr><tr><td>POST</td><td><code>/integration/skia-full/chat</code></td><td>Chat via SKIA brain</td></tr><tr><td>POST</td><td><code>/integration/skia-full/route</code></td><td>Reasoning router</td></tr><tr><td>POST</td><td><code>/integration/skia-full/routing-estimate</code></td><td>Routing estimate</td></tr></tbody></table></div>"
+          "title": "Entegrasyon",
+          "html": "<table class=\"tbl\"><thead><tr><th>Yöntem</th><th>Yol</th><th>Açıklama</th></tr></thead><tbody><tr><td>GET</td><td><code>/integration/skia-full</code></td><td>Adaptör durumu ve sözleşmesi harita</td></tr><tr><td>GET</td><td><code>/integration/skia-full/probe</code></td><td>Canlı sözleşme inceleme özeti</td></tr><tr><td>GET</td><td><code>/integration/skia-full/probe/report</code></td><td>Ayrıntılı araştırma rapor</td></tr><tr><td>POST</td><td><code>/integration/skia-full/chat</code></td><td>SKIA beyni aracılığıyla sohbet</td></tr><tr><td>POST</td><td><code>/integration/skia-full/route</code></td><td>Akıl yürütme yönlendirici</td></tr><tr><td>POST</td><td><code>/integration/skia-full/routing-estimate</code></td><td>Yönlendirme tahmini</td></tr></tbody></table></div>"
         },
         "forge-module-surfaces": {
-          "title": "Forge Module Surfaces",
-          "html": "<table class=\"tbl\"><thead><tr><th>Prefix</th><th>Domain</th></tr></thead><tbody><tr><td><code>/api/forge/context/*</code></td><td>Context engine, embeddings, semantic chunking</td></tr><tr><td><code>/api/forge/agent/*</code></td><td>Agent planner and executor</td></tr><tr><td><code>POST /api/forge/sdlc</code></td><td>SDLC intelligence</td></tr><tr><td><code>/api/forge/production/*</code></td><td>Production adapter</td></tr><tr><td><code>/api/forge/healing/*</code></td><td>Healing executor</td></tr><tr><td><code>/api/forge/architecture/*</code></td><td>Architecture diagnostics</td></tr><tr><td><code>/api/forge/orchestrate</code></td><td>Full orchestration flow</td></tr><tr><td><code>/api/forge/control-plane</code></td><td>Control plane snapshot</td></tr><tr><td><code>/api/forge/governance</code></td><td>Governance mode and policy</td></tr></tbody></table></div>"
+          "title": "Forge Modül Yüzeyleri",
+          "html": "<table class=\"tbl\"><thead><tr><th>Önek</th><th>Etki Alanı</th></tr></thead><tbody><tr><td><code>/api/forge/context/*</code></td><td>Bağlam motoru, yerleştirmeler, anlamsal parçalama</td></tr><tr><td><code>/api/forge/agent/*</code></td><td>Ajan planlayıcı ve yürütücü</td></tr><tr><td><code>POST /api/forge/sdlc</code></td><td>SDLC zekası</td></tr><tr><td><code>/api/forge/prodüksiyon/*</code></td><td>Üretim adaptör</td></tr><tr><td><code>/api/forge/healing/*</code></td><td>Şifa uygulayıcısı</td></tr><tr><td><code>/api/forge/architecture/*</code></td><td>Mimari tanılama</td></tr><tr><td><code>/api/forge/orchestra</code></td><td>Tam orkestrasyon akış</td></tr><tr><td><code>/api/forge/control-plane</code></td><td>Kontrol düzlemi anlık görüntüsü</td></tr><tr><td><code>/api/forge/governance</code></td><td>Yönetim modu ve politikası</td></tr></tbody></table></div>"
         },
         "rpc": {
           "title": "RPC",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> � SKIA-backed operations with local fallbacks for unavailable upstream paths</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> � Kullanılamayan yukarı akış yolları için yerel yedeklerle SKIA destekli işlemler</div></div></div></div>"
         },
         "error-model": {
-          "title": "Error Model",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Schema validation errors return structured request feedback with field-level detail</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Upstream unavailability returns explicit SKIA unavailable errors</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Governance blocks return mode and policy-based decision context with remediation guidance</div></div></div></div>"
+          "title": "Hata Modeli",
+          "html": "<div class = \"item-list\"><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\">Şema doğrulama hataları, alan düzeyinde ayrıntılarla birlikte yapılandırılmış istek geri bildirimi döndürür</div></div><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\"> Yukarı akış kullanılamaması açık SKIA değerini döndürür kullanılamayan hatalar</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Yönetişim, düzeltme rehberliğiyle geri dönüş modunu ve politikaya dayalı karar bağlamını engeller</div></div></div></div>"
         }
       }
     },
     "operator-manual": {
       "meta": {
-        "title": "Operator Manual | SKIA Forge"
+        "title": "Kullanım Kılavuzu | SKIA Forge"
       },
-      "badge": "Deployment & Runtime Ops",
-      "title": "Operator Manual",
-      "description": "Deployment baseline, operational checks, and incident handling for SKIA Forge.",
+      "badge": "Dağıtım ve Çalışma Zamanı Operasyonları",
+      "title": "Kullanım Kılavuzu",
+      "description": "SKIA Forge için dağıtım temeli, operasyonel kontroller ve olay yönetimi.",
       "sections": {
         "runtime-role": {
-          "title": "Runtime Role",
-          "html": "SKIA Forge operates as an orchestration and governance runtime service that augments development workflows with policy-aware controls.</div>"
+          "title": "Çalışma Zamanı Rolü",
+          "html": "SKIA Forge, geliştirme iş akışlarını politikaya duyarlı kontrollerle zenginleştiren bir orkestrasyon ve yönetişim çalışma zamanı hizmeti olarak çalışır.</div>"
         },
         "deployment-baseline": {
-          "title": "Deployment Baseline",
-          "html": "<p style=\"margin-bottom:14px;font-size:13px;color:var(--text-soft)\">Production hostname: <code>forge.skia.ca</code>. Release baseline Forge <code>1.0.0</code> and SKIA Forge IDE <code>1.0.0</code>.</p><div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><div class=\"code-block\">npm run build</div></div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\"><div class=\"code-block\">npm run dev</div> (or your production process command)</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Listen on <code>SKIA_PORT</code> (default <code>4173</code>). Validate <code>/health</code>, <code>/live</code>, <code>/ready</code>, <code>/version</code></div></div></div><p style=\"margin-top:14px;font-size:13px;color:var(--text-soft)\">Additional environment variables for signing and GitHub integration are documented in your onboarding package.</p></div>"
+          "title": "Dağıtım Temel Çizgisi",
+          "html": "<p style=\"margin-bottom:14px;font-size:13px;color:var(--text-soft)\">Üretim ana bilgisayar adı: <code>forge.skia.ca</code>. Temel Forge <code>1.0.0</code> ve SKIA Forge IDE <code>1.0.0</code>'ı yayınlayın.</p><div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><div class=\"code-block\">npm çalıştır build</div></div></div><div class = \"step\"><div class = \"step-num\">02</div><div class = \"step-text\"><div class = \"code-block\">npm dev'i çalıştır</div> (veya üretim süreci komutunuz)</div></div><div class = \"step\"><div class = \"step-num\">03</div><div class = \"step-text\">Dinle <code>SKIA_PORT</code> (varsayılan <code>4173</code>). Doğrulayın <code>/health</code>, <code>/live</code>, <code>/ready</code>, <code>/version</code></div></div></div><p style=\"margin-top:14px;font-size:13px;color:var(--text-soft)\">İmzalama ve GitHub entegrasyonu için ek ortam değişkenleri başlangıç ​​paketinizde belgelenmiştir.</p></div>"
         },
         "environment-secrets": {
-          "title": "Environment & Secrets",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Keep all secrets in environment management � never commit credentials</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Configure SKIA integration values per deployment environment via your hosting provider's environment variables</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Use explicit mode controls for strict vs adaptive operations</div></div></div></div>"
+          "title": "Çevre ve Sırlar",
+          "html": "<div class = \"item-list\"><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\">Ortam yönetiminde tüm sırları saklayın - hiçbir zaman kimlik bilgilerini vermeyin</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Barındırma ortamınız aracılığıyla dağıtım ortamı başına SKIA entegrasyon değerlerini yapılandırın sağlayıcının ortam değişkenleri</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Katı ve uyarlanabilir işlemler için açık mod kontrollerini kullanın</div></div></div></div>"
         },
         "operational-checks": {
-          "title": "Operational Checks",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Health checks pass: <code>/health</code> returns <code>200 ok</code></div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Control-plane posture shows expected governance mode</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Governance recommendations are readable and actionable</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Audit logs are being produced after orchestration runs</div></div></div></div>"
+          "title": "Operasyonel Kontroller",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Durum kontrolleri başarılı: <code>/health</code> <code>200 tamam</code></div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Kontrol düzlemi duruşu beklenen yönetimi gösterir mode</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Yönetişim önerileri okunabilir ve uygulanabilir niteliktedir</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Denetim günlükleri düzenleme çalıştırmalarından sonra üretiliyor</div></div></div></div>"
         },
         "incident-handling": {
-          "title": "Incident Handling",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Capture failure endpoint and payload metadata.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Review control-plane recommendations from <code>/api/forge/control-plane</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Apply remediation and re-run the failed request.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Escalate with logs and request IDs if unresolved � contact support.</div></div></div></div>"
+          "title": "Olay Yönetimi",
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Başarısızlık uç noktasını ve yük meta verilerini yakalayın.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Şu adresteki kontrol düzlemi önerilerini inceleyin: <code>/api/forge/control-plane</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Düzeltmeyi uygulayın ve başarısız olan isteği yeniden çalıştırın.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Günlükler ve istekle üst kademeye iletin Kimlikler çözülmezse destek ekibiyle iletişime geçin.</div></div></div></div>"
         }
       }
     },
     "product-manual": {
       "meta": {
-        "title": "Product Manual | SKIA Forge"
+        "title": "Ürün Kılavuzu | SKIA Forge"
       },
-      "badge": "SKIA Forge Docs",
-      "title": "Product Manual",
-      "description": "The governance and orchestration control plane for AI-native software development. SKIA Forge connects to SKIA intelligence services for orchestration; it does not replace the full SKIA product runtime.",
+      "badge": "SKIA Forge Dokümanlar",
+      "title": "Ürün Kılavuzu",
+      "description": "Yapay zekaya özgü yazılım geliştirme için yönetişim ve orkestrasyon kontrol düzlemi. SKIA Forge orkestrasyon için SKIA istihbarat servislerine bağlanır; tam SKIA ürün çalışma süresinin yerini almaz.",
       "sections": {
         "what-skia-forge-is": {
-          "title": "What SKIA Forge Is",
-          "html": "SKIA Forge coordinates planning, execution safety, architecture checks, and remediation guidance around AI-assisted workflows.</div>"
+          "title": "SKIA Forge Nedir?",
+          "html": "SKIA Forge yapay zeka destekli iş akışları etrafında planlamayı, yürütme güvenliğini, mimari kontrollerini ve iyileştirme rehberliğini koordine eder.</div>"
         },
         "delivery-surfaces": {
-          "title": "Delivery Surfaces",
-          "html": "Public download and documentation live at <strong>forge.skia.ca</strong>, including <code>/platform-downloads</code>, <code>/resources</code>, <code>/security</code>, <code>/contact</code>, and <code>/docs/*</code>. The web IDE is available at <code>/forge/app</code> when the IDE bundle is built. Account sign-in and registration happen in the <strong>SKIA Forge IDE</strong> or other supported clients, not on static marketing pages. Desktop installers are served via <code>/api/app/download</code> routes.</div>"
+          "title": "Teslimat Yüzeyleri",
+          "html": "<code>/platform-downloads</code>, <code>/resources</code>, <code>/security</code>, <code>/contact</code> ve <code>/docs/*</code> dahil olmak üzere genel indirme ve belgeler <strong>forge.skia.ca</strong> adresinde yayındadır. Web IDE, IDE paketi oluşturulduğunda <code>/forge/app</code> adresinde mevcuttur. Hesapta oturum açma ve kayıt, statik pazarlama sayfalarında değil, <strong>SKIA Forge IDE</strong> veya diğer desteklenen istemcilerde gerçekleşir. Masaüstü yükleyiciler <code>/api/app/download</code> yolları aracılığıyla sunulur.</div>"
         },
         "who-it-is-for": {
-          "title": "Who It Is For",
-          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">AI-First Engineering Teams</div><div class=\"card-body\">Build faster with safety guardrails baked into every workflow.</div></div><div class=\"card\"><div class=\"card-title\">Platform & Productivity Teams</div><div class=\"card-body\">Governance-aware automation for platform-level development workflows.</div></div><div class=\"card\"><div class=\"card-title\">Security & Governance Stakeholders</div><div class=\"card-body\">Policy-aware automation that produces first-class audit trails.</div></div></div></div>"
+          "title": "Kimin İçin?",
+          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">AI-First Mühendislik Ekipleri</div><div class=\"card-body\">Her iş akışına eklenen güvenlik korkuluklarıyla daha hızlı oluşturun.</div></div><div class=\"card\"><div class=\"card-title\">Platform ve Üretkenlik Ekipleri</div><div class=\"card-body\">Yönetişime duyarlı otomasyon platform düzeyinde geliştirme iş akışları.</div></div><div class=\"card\"><div class=\"card-title\">Güvenlik ve Yönetişim Paydaşları</div><div class=\"card-body\">Birinci sınıf denetim izleri üreten, politikaya duyarlı otomasyon.</div></div></div></div>"
         },
         "core-capabilities": {
-          "title": "Core Capabilities",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Structured orchestration across context, agent, SDLC, production, healing, architecture, and related modules</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Governance mode controls: <code>strict</code>, <code>adaptive</code>, <code>autonomous</code></div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Runtime control-plane posture, alerts, and recommendations</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Safety and architecture diagnostics on changed files</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Integration with SKIA intelligence services for reasoning and execution support</div></div></div></div>"
+          "title": "Temel Yetenekler",
+          "html": "<div class = \"item-list\"><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\"> Bağlam, aracı, SDLC, üretim, iyileştirme, mimari ve ilgili modüller genelinde yapılandırılmış orkestrasyon</div></div><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\"> Yönetim modu kontroller: <code>katı</code>, <code>uyarlanabilir</code>, <code>otonom</code></div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Çalışma zamanı kontrol düzlemi duruşu, uyarılar ve öneriler</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Değiştirilen dosyalarda güvenlik ve mimari tanılama</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Akıl yürütme ve yürütme desteği için SKIA istihbarat servisleriyle entegrasyon</div></div></div></div>"
         },
         "value-proposition": {
-          "title": "Value Proposition",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Faster delivery with guardrails � ship confidently without sacrificing speed</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Reduced unsafe operations reaching production</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Better traceability for enterprise governance and audits</div></div></div></div>"
+          "title": "Değer Önerisi",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Korkuluklarla daha hızlı teslimat - hızdan ödün vermeden güvenle nakliye</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Üretime ulaşan güvenli olmayan operasyonlar azaltıldı</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Kurumsal yönetişim ve denetimler için daha iyi izlenebilirlik</div></div></div></div>"
         },
         "product-boundaries": {
-          "title": "Product Boundaries",
-          "html": "SKIA Forge is a control and orchestration layer. It is not a replacement for your full application runtime � it integrates with upstream SKIA intelligence contracts and your existing deployment topology.</div>"
+          "title": "Ürün Sınırları",
+          "html": "SKIA Forge bir kontrol ve orkestrasyon katmanıdır. Tam uygulama çalışma zamanınızın yerini almaz; yukarı akışlı SKIA istihbarat sözleşmeleri ve mevcut dağıtım topolojinizle bütünleşir.</div>"
         }
       }
     },
     "security-guide": {
       "meta": {
-        "title": "Security Guide | SKIA Forge"
+        "title": "Güvenlik Rehberi | SKIA Forge"
       },
-      "badge": "Security Model & Controls",
-      "title": "Security Guide",
+      "badge": "Güvenlik Modeli ve Kontrolleri",
+      "title": "Güvenlik Rehberi",
       "description": "Layered controls, key components, operational practices, and hardening checklist.",
       "sections": {
         "security-model": {
-          "title": "Security Model",
-          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">Request Validation</div><div class=\"card-body\">All inputs validated against strict schemas before execution.</div></div><div class=\"card\"><div class=\"card-title\">Governance Enforcement</div><div class=\"card-body\">Strict, adaptive, and autonomous modes control agent permissions.</div></div><div class=\"card\"><div class=\"card-title\">Safety Gates</div><div class=\"card-body\">High-risk actions pass through safety gates with execution previews.</div></div><div class=\"card\"><div class=\"card-title\">Policy-Based Blocking</div><div class=\"card-body\">Policy violations are blocked, logged, and returned with remediation.</div></div></div></div>"
+          "title": "Güvenlik Modeli",
+          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">Doğrulama İsteği</div><div class=\"card-body\">Tüm girişler, yürütmeden önce katı şemalara göre doğrulanır.</div></div><div class=\"card\"><div class=\"card-title\">Yönetim Uygulaması</div><div class=\"card-body\">Katı, uyarlanabilir ve özerk mod kontrol aracısı izinler.</div></div><div class=\"card\"><div class=\"card-title\">Güvenlik Kapıları</div><div class=\"card-body\">Yüksek riskli eylemler, yürütme önizlemeleriyle güvenlik kapılarından geçer.</div></div><div class=\"card\"><div class=\"card-title\">Politika Tabanlı Engelleme</div><div class=\"card-body\">Politika ihlalleri engellenir, günlüğe kaydedilir ve düzeltme.</div></div></div></div>"
         },
         "authentication-accounts": {
-          "title": "Authentication & Accounts",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">All Forge API routes require authentication. Sign in via the SKIA Forge IDE or your API client.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Marketing HTML omits web sign-in/register CTAs; users authenticate in the <strong>SKIA Forge IDE</strong>.</div></div></div></div>"
+          "title": "Kimlik Doğrulama ve Hesaplar",
+          "html": "<div class = \"item-list\"><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\">Tüm Forge API rotaları kimlik doğrulama gerektirir. SKIA Forge IDE veya API istemciniz aracılığıyla oturum açın.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Pazarlama HTML'si web'de oturum açma/kayıt CTA'larını atlar; kullanıcılar <strong>SKIA Forge IDE</strong>'de kimlik doğrulaması yapar.</div></div></div></div>"
         },
         "key-security-components": {
-          "title": "Key Security Components",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>SecurityAnalysisService</code> � scan and save-time checks on code and agent output</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Governance decision engine � strict / adaptive / autonomous control with audit trail</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Route and action-level safety modules � per-surface constraints that cannot be bypassed</div></div></div></div>"
+          "title": "Temel Güvenlik Bileşenleri",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>SecurityAnalyticService</code> � kod ve aracı çıktısında tarama ve zamandan tasarruf kontrolleri</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Yönetişim karar motoru � Denetim takibi ile sıkı / uyarlanabilir / otonom kontrol</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Yön ve eylem düzeyinde güvenlik modülleri - atlanamayan yüzey kısıtlamaları</div></div></div></div>"
         },
         "operational-security-practices": {
-          "title": "Operational Security Practices",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Keep secrets out of repositories and logs � use your hosting provider's environment variables</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Validate all external integration responses � never trust third-party data without assertion</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Treat policy blocks as first-class security events � every block is logged and reviewable</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Record and monitor remediation outcomes � fixes without validation are incomplete</div></div></div></div>"
+          "title": "Operasyonel Güvenlik Uygulamaları",
+          "html": "<div class = \"item-list\"><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\">Gizli bilgileri depolardan ve günlüklerden uzak tutun - barındırma sağlayıcınızın ortam değişkenlerini kullanın</div></div><div class=\"item\"><div class = \"item-dot\"></div><div class = \"item-text\">Tüm harici entegrasyon yanıtlarını doğrulayın - asla güvenmeyin iddiasız üçüncü taraf verileri</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Politika bloklarını birinci sınıf güvenlik olayları olarak ele alın; her blok günlüğe kaydedilir ve incelenebilir</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">İyileştirme sonuçlarını kaydetme ve izleme � olmadan düzeltmeler doğrulama tamamlanmadı</div></div></div></div>"
         },
         "hardening-checklist": {
-          "title": "Hardening Checklist",
-          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Run lint, typecheck, and tests before every release</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Keep all dependencies current</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Validate integration probe endpoints regularly</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Review audit trails after major orchestration runs</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Rotate JWT_SECRET and API keys on schedule</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Never commit secrets � use environment injection</div></div></div></div>"
+          "title": "Sertleştirme Kontrol Listesi",
+          "html": "<div class = \"check-grid\"><div class = \"check-item\"><div class = \"check-box\"></div><div class = \"check-text\">Her sürümden önce lint, typecheck ve testler çalıştırın</div></div><div class = \"check-item\"><div class = \"check-box\"></div><div class = \"check-text\">Tüm bağımlılıkları güncel tutun</div></div><div class = \"check-item\"><div class = \"check-box\"></div><div class = \"check-text\">Entegrasyon araştırması uç noktalarını düzenli olarak doğrulayın</div></div><div class = \"check-item\"><div class = \"check-box\"></div><div class = \"check-text\">Büyük orkestrasyon çalıştırmalarından sonra denetim izlerini inceleyin</div></div><div class = \"check-item\"><div class = \"check-box\"></div><div class=\"check-text\">JWT_SECRET ve API anahtarlarını planlandığı gibi döndürün</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Hiçbir zaman gizli bilgileri işlemeyin; ortam eklemeyi kullanın</div></div></div></div>"
         }
       }
     },
     "troubleshooting": {
       "meta": {
-        "title": "Troubleshooting | SKIA Forge"
+        "title": "Sorun Giderme | SKIA Forge"
       },
-      "badge": "Common Failures & Fixes",
-      "title": "Troubleshooting",
-      "description": "Diagnostics and step-by-step fixes for the most common SKIA Forge issues.",
+      "badge": "Yaygın Arızalar ve Düzeltmeler",
+      "title": "Sorun giderme",
+      "description": "En yaygın SKIA Forge sorunlarına yönelik tanılamalar ve adım adım düzeltmeler.",
       "sections": {
         "build-test-failures": {
-          "title": "Build / Test Failures",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><div class=\"code-block\">npm run typecheck</div></div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\"><div class=\"code-block\">npm run test</div></div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\"><div class=\"code-block\">npm run build</div></div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Fix schema and type mismatches before re-running orchestration endpoints.</div></div></div></div>"
+          "title": "Derleme / Test Hataları",
+          "html": "<div class = \"steps\"><div class = \"step\"><div class = \"step-num\">01</div><div class = \"step-text\"><div class = \"code-block\">npm typecheck'i çalıştır</div></div></div><div class = \"step\"><div class = \"step-num\">02</div><div class = \"step-text\"><div class=\"code-block\">npm testi çalıştırma</div></div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\"><div class=\"code-block\">npm derlemeyi çalıştırma</div></div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Düzenleme uç noktalarını yeniden çalıştırmadan önce şema ve tür uyuşmazlıklarını düzeltin.</div></div></div></div>"
         },
         "skia-integration-unavailable": {
-          "title": "SKIA Integration Unavailable",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Check <code>/integration/skia-full</code> and <code>/integration/skia-full/probe</code>.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Verify upstream URL and environment configuration in your hosting provider.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Review adapter disabled flags and auth headers.</div></div></div></div>"
+          "title": "SKIA Entegrasyon Mevcut Değil",
+          "html": "<div class = \"steps\"><div class = \"step\"><div class = \"step-num\">01</div><div class = \"step-text\"><code>/integration/skia-full</code> ve <code>/integration/skia-full/probe</code>'u kontrol edin.</div></div><div class = \"step\"><div class = \"step-num\">02</div><div class=\"step-text\">Barındırma sağlayıcınızdaki yukarı akış URL ve ortam yapılandırmasını doğrulayın.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Bağdaştırıcının devre dışı bıraktığı işaretleri ve kimlik doğrulama başlıklarını inceleyin.</div></div></div></div>"
         },
         "governance-blocks": {
-          "title": "Governance Blocks",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Expected in strict or adaptive mode for risky actions</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Read remediation recommendations from the block response</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Apply the suggested safe path and re-run the request</div></div></div></div>"
+          "title": "Yönetişim Blokları",
+          "html": "<div class = \"item-list\"><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\">Riskli eylemler için katı veya uyarlanabilir modda bekleniyor</div></div><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\">Blok yanıtındaki düzeltme önerilerini okuyun</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Önerilen güvenli yolu uygulayın ve isteği yeniden çalıştırın</div></div></div></div>"
         },
         "runtime-health-issues": {
-          "title": "Runtime Health Issues",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Validate <code>/health</code> and <code>/live</code> endpoints.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Check logs for failing module names and request IDs.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Isolate whether the issue is a local Forge module or an upstream contract failure.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">If unresolved, escalate via <a href='/contact' style='color:var(--gold)'>Contact & Support</a> with request ID and logs.</div></div></div></div>"
+          "title": "Çalışma Zamanı Sağlık Sorunları",
+          "html": "<div class = \"steps\"><div class = \"step\"><div class = \"step-num\">01</div><div class = \"step-text\"><code>/health</code> ve <code>/live</code> uç noktalarını doğrulayın.</div></div><div class = \"step\"><div class = \"step-num\">02</div><div class = \"step-text\">Başarısız modül adları için günlükleri kontrol edin ve istek kimlikleri.</div></div><div class = \"step\"><div class = \"step-num\">03</div><div class = \"step-text\">Sorunun yerel bir Forge modülü mü, yoksa bir yukarı akış sözleşmesi hatası mı olduğunu belirleyin.</div></div><div class = \"step\"><div class = \"step-num\">04</div><div class = \"step-text\">Çözülmezse, <a yoluyla iletin İstek kimliği ve günlüklerle href='/contact' style='color:var(--gold)'>İletişim ve Destek</a>.</div></div></div></div>"
         }
       }
     },
     "changelog": {
       "meta": {
-        "title": "Changelog | SKIA Forge"
+        "title": "Değişiklik günlüğü | SKIA Forge"
       },
-      "badge": "Version History",
-      "title": "Changelog",
-      "description": "Notable changes to SKIA Forge, documented by release.",
+      "badge": "Sürüm Geçmişi",
+      "title": "Değişiklik günlüğü",
+      "description": "SKIA Forge'de, sürümle belgelenen dikkate değer değişiklikler.",
       "sections": {
         "v1-0-0-initial-release": {
-          "title": "v1.0.0 — Initial release",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge control plane with governance modes, orchestration APIs, and integration with SKIA intelligence services.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE (desktop) and web shell at <code>/forge/app</code> for browser-based access.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Public documentation, security guide, support model, and download hub at forge.skia.ca.</div></div></div></div>"
+          "title": "v1.0.0 — İlk sürüm",
+          "html": "<div class = \"item-list\"><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\">SKIA Forge yönetişim modları, orkestrasyon API'leri ve SKIA istihbarat servisleriyle entegrasyon içeren kontrol düzlemi.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE (masaüstü) ve tarayıcı tabanlı erişim için <code>/forge/app</code> adresindeki web kabuğu.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Genel belgeler, güvenlik kılavuzu, destek modeli, ve forge.skia.ca adresindeki indirme merkezini kullanın.</div></div></div></div>"
         }
       }
     },
     "support": {
       "meta": {
-        "title": "Support | SKIA Forge"
+        "title": "Destek | SKIA Forge"
       },
-      "badge": "Support Model & Escalation",
-      "title": "Support",
-      "description": "SKIA Forge support covers the following areas:",
+      "badge": "Destek Modeli ve Eskalasyon",
+      "title": "Destek",
+      "description": "SKIA Forge desteği aşağıdaki alanları kapsar:",
       "sections": {
         "support-scope": {
-          "title": "Support Scope",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Runtime startup and health issues</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Integration contract failures</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Governance and policy flow debugging</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Build and test pipeline breakages</div></div></div></div>"
+          "title": "Destek Kapsamı",
+          "html": "<div class = \"item-list\"><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\">Çalışma zamanı başlatma ve sistem durumu sorunları</div></div><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\">Entegrasyon sözleşmesi hataları</div></div><div class = \"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Yönetim ve politika akışında hata ayıklama</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Ardışık düzen kesintilerini derleyin ve test edin</div></div></div></div>"
         },
         "triage-information-to-collect": {
-          "title": "Triage Information to Collect",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Endpoint and HTTP method</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Request timestamp</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Request ID or correlation ID (if available)</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">What you were trying to do when the issue occurred</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Full error message and reproduction steps</div></div></div></div>"
+          "title": "Toplanacak Triyaj Bilgileri",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Uç nokta ve HTTP yöntemi</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">İstek zaman damgası</div></div><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\">İstek kimliği veya korelasyon kimliği (varsa)</div></div><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\">Sorun oluştuğunda yapmaya çalıştığınız şey</div></div><div class = \"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Tam hata mesajı ve çoğaltma adımları</div></div></div></div>"
         },
         "escalation-path": {
-          "title": "Escalation Path",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Reproduce locally and validate with <code>/health</code> and probe endpoints.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Apply remediation guidance from control-plane outputs.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Escalate with logs, payload shape, and expected vs actual behaviour.</div></div></div></div>"
+          "title": "İlerletme Yolu",
+          "html": "<div class = \"steps\"><div class = \"step\"><div class = \"step-num\">01</div><div class = \"step-text\">Yerel olarak çoğaltın ve <code>/health</code> ile doğrulayın ve uç noktaları inceleyin.</div></div><div class = \"step\"><div class = \"step-num\">02</div><div class = \"step-text\">Kontrol düzleminden düzeltme kılavuzunu uygulayın çıktılar.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Günlükler, yük şekli ve beklenen ve gerçek davranışla üst kademeye iletin.</div></div></div></div>"
         },
         "enterprise-support-expectations": {
-          "title": "Enterprise Support Expectations",
-          "html": "<div class=\"sla-row\"><div class=\"sla-tier p1\">P1</div><div class=\"sla-body\"><div class=\"sla-label\">Critical Outage</div><div class=\"sla-desc\">Immediate response window.</div></div></div><div class=\"sla-row\"><div class=\"sla-tier p2\">P2</div><div class=\"sla-body\"><div class=\"sla-label\">Degraded Service</div><div class=\"sla-desc\">Same business day response.</div></div></div><div class=\"sla-row\"><div class=\"sla-tier p3\">P3</div><div class=\"sla-body\"><div class=\"sla-label\">Non-blocking Issue</div><div class=\"sla-desc\">Prioritized backlog response.</div></div></div></div>"
+          "title": "Kurumsal Destek Beklentileri",
+          "html": "<div class = \"sla-row\"><div class = \"sla-tier p1\"> P1</div><div class = \"sla-body\"><div class = \"sla-label\"> Kritik Kesinti</div><div class = \"sla-desc\">Anında yanıt aralığı.</div></div></div><div class = \"sla-row\"><div class = \"sla-tier p2\">P2</div><div class=\"sla-body\"><div class=\"sla-label\">Kötü Hizmet</div><div class=\"sla-desc\">Aynı iş günü yanıtı.</div></div></div><div class=\"sla-row\"><div class=\"sla-tier p3\">P3</div><div class=\"sla-body\"><div class=\"sla-label\">Engellenmeyen Sorun</div><div class=\"sla-desc\">Öncelikli biriktirme listesi yanıtı.</div></div></div></div>"
         },
         "contact": {
-          "title": "Contact",
-          "html": "<div style=\"text-align:center;padding:20px;\"><a href=\"/contact\" style=\"display:inline-block;padding:10px 24px;border:1px solid var(--gold);border-radius:6px;color:var(--gold);text-decoration:none;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:rgba(212,175,55,0.08);\">Open Support Form</a></div></div>"
+          "title": "Temas etmek",
+          "html": "<div style=\"text-align:center;padding:20px;\"><a href=\"/contact\" style=\"display:inline-block;padding:10px 24px;border:1px katı var(--gold);border-radius:6px;color:var(--gold);text-decoration:none;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:rgba(212,175,55,0.08);\">Destek Formunu Aç</a></div></div>"
         }
       }
     },
     "pricing-and-packages": {
       "meta": {
-        "title": "Pricing & Packages | SKIA Forge"
+        "title": "Fiyatlandırma ve Paketler | SKIA Forge"
       },
-      "badge": "Commercial Model",
-      "title": "Pricing & Packages",
-      "description": "SKIA Forge is available in three packages designed for individuals, teams, and enterprise organisations.",
+      "badge": "Ticari Model",
+      "title": "Fiyatlandırma ve Paketler",
+      "description": "SKIA Forge bireyler, ekipler ve kurumsal organizasyonlar için tasarlanmış üç paket halinde mevcuttur.",
       "sections": {
         "packages": {
-          "title": "Packages",
-          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">Developer</div><div class=\"pkg-tag\">Solo engineers & experiments</div><div class=\"pkg-body\">Core Forge runtime � Basic orchestration and governance modes � Standard API access � Community support</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Team</div><div class=\"pkg-tag\">Engineering teams adopting AI workflows</div><div class=\"pkg-body\">Everything in Developer � Team policy presets � Shared operational dashboards � Priority support � Collaboration-ready governance defaults</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Enterprise</div><div class=\"pkg-tag\">Organizations with compliance requirements</div><div class=\"pkg-body\">Everything in Team � Enterprise policy controls and hardening � Audit/export-ready reporting � Deployment architecture support � Defined SLAs and escalation path</div></div></div></div>"
+          "title": "Paketler",
+          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">Geliştirici</div><div class=\"pkg-tag\">Yalnız mühendisler ve deneyler</div><div class=\"pkg-body\">Core Forge çalışma zamanı � Temel düzenleme ve yönetim modları � Standart API erişimi � Topluluk desteği</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Ekip</div><div class=\"pkg-tag\">Yapay zeka iş akışlarını benimseyen mühendislik ekipleri</div><div class=\"pkg-body\">Geliştiricideki her şey � Ekip politikası ön ayarları � Paylaşılan operasyonel kontrol panelleri � Öncelikli destek � İşbirliğine hazır yönetişim varsayılanları</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Enterprise</div><div class=\"pkg-tag\">Uyumluluk gereksinimleri olan kuruluşlar</div><div class=\"pkg-body\">Ekipteki her şey � Kurumsal politika kontrolleri ve güçlendirme � Denetime/dışa aktarmaya hazır raporlama � Dağıtım mimarisi desteği � Tanımlı SLA'lar ve yükseltme yolu</div></div></div></div>"
         },
         "optional-add-ons": {
-          "title": "Optional Add-ons",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Custom policy packs</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Integration acceleration services</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Architecture and security review workshops</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Rollout training for platform and security teams</div></div></div></div>"
+          "title": "İsteğe Bağlı Eklentiler",
+          "html": "<div class = \"item-list\"><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\">Özel politika paketleri</div></div><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\">Entegrasyon hızlandırma hizmetleri</div></div><div class = \"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Mimari ve güvenlik inceleme atölyeleri</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Platform ve güvenlik ekipleri için kullanıma sunma eğitimi</div></div></div></div>"
         }
       }
     },
     "enterprise-readiness-checklist": {
       "meta": {
-        "title": "Enterprise Readiness Checklist | SKIA Forge"
+        "title": "Kurumsal Hazırlık Kontrol Listesi | SKIA Forge"
       },
-      "badge": "Enterprise Evaluation",
-      "title": "Enterprise Readiness Checklist",
-      "description": "Your guide to evaluating and deploying SKIA Forge at scale. Use this checklist when your organisation is deciding whether SKIA Forge fits your engineering, security, and operations requirements.",
+      "badge": "Kurumsal Değerlendirme",
+      "title": "Kurumsal Hazırlık Kontrol Listesi",
+      "description": "SKIA Forge'yi geniş ölçekte değerlendirme ve dağıtma rehberiniz. Kuruluşunuz SKIA Forge'nin mühendislik, güvenlik ve operasyon gereksinimlerinize uyup uymadığına karar verirken bu kontrol listesini kullanın.",
       "sections": {
         "product-architecture": {
-          "title": "Product & Architecture",
-          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm the product scope matches your expectations: governance and orchestration for AI-assisted development, aligned with your delivery stack.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm you have a clear picture of core capabilities from the product manual and public materials.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm integration expectations with your existing tools and workflows are documented internally.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm you have access to an up-to-date API reference for any automation or custom clients.</div></div></div></div>"
+          "title": "Ürün ve Mimari",
+          "html": "<div class = \"check-grid\"><div class = \"check-item\"><div class = \"check-box\"></div><div class = \"check-text\">Ekibiniz, ürün kapsamının beklentilerinize uyduğunu doğrulamalıdır: Yapay zeka destekli geliştirme için yönetim ve düzenleme, teslimat yığınınızla uyumlu.</div></div><div class = \"check-item\"><div class = \"check-box\"></div><div class = \"check-text\">Ekibiniz, bir ürün kılavuzunda ve genel materyallerde temel yeteneklerin net bir resmi.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Ekibinizin mevcut araçlarınızla entegrasyon beklentilerini onaylaması gerekir ve iş akışları dahili olarak belgelenir.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Ekibinizin şuna erişiminiz olduğunu onaylaması gerekir: otomasyon veya özel istemciler için güncel API referansı.</div></div></div></div>"
         },
         "security-governance": {
-          "title": "Security & Governance",
-          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm security controls and threat assumptions are acceptable under your policies (Security Guide).</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm how governance modes map to your risk appetite and who can change them.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm high-risk operations, approvals, and audit expectations meet compliance needs.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm secret handling and access control for Forge hosts match your standards.</div></div></div></div>"
+          "title": "Güvenlik ve Yönetişim",
+          "html": "<div class = \"check-grid\"><div class = \"check-item\"><div class = \"check-box\"></div><div class = \"check-text\">Ekibiniz, güvenlik kontrollerinin ve tehdit varsayımlarının politikalarınız (Güvenlik Rehberi) kapsamında kabul edilebilir olduğunu doğrulamalıdır.</div></div><div class = \"check-item\"><div class = \"check-box\"></div><div class = \"check-text\"> Ekibiniz, yönetim modlarının risk iştahınıza nasıl eşleştiğini ve kimlerin değiştirebileceğini doğrulamalıdır. </div></div><div class = \"check-item\"><div class = \"check-box\"></div><div class = \"check-text\">Ekibiniz yüksek riskli operasyonların, onayların ve denetim beklentilerinin uyumluluk ihtiyaçlarını karşıladığından emin olmalıdır.</div></div><div class = \"check-item\"><div class = \"check-box\"></div><div class = \"check-text\">Ekibiniz, Forge ana bilgisayarlarınız için gizli işleme ve erişim kontrolünün sizinle eşleştiğini doğrulamalıdır. standartlar.</div></div></div></div>"
         },
         "operations": {
-          "title": "Operations",
-          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm you have an operational runbook for deployment, upgrades, and rollback (Operator Manual).</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm health and readiness checks you rely on are defined and monitored.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm troubleshooting and escalation paths are understood (Support, Troubleshooting).</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm backup, recovery, and incident response procedures are assigned.</div></div></div></div>"
+          "title": "Operasyonlar",
+          "html": "<div class = \"check-grid\"><div class = \"check-item\"><div class = \"check-box\"></div><div class = \"check-text\">Ekibiniz, dağıtım, yükseltmeler ve geri alma (Operatör Kılavuzu) için operasyonel bir runbook'a sahip olduğunuzu doğrulamalıdır.</div></div><div class = \"check-item\"><div class = \"check-box\"></div><div class = \"check-text\"> Ekibiniz, güvendiğiniz durum ve hazırlık kontrollerini onaylamalıdır. </div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Ekibiniz sorun giderme ve üst kademeye iletme yollarının anlaşıldığını doğrulamalıdır (Destek, Sorun Giderme).</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Ekibiniz yedekleme, kurtarma ve olay müdahalesini onaylamalıdır prosedürler atanır.</div></div></div></div>"
         },
         "quality-reliability": {
-          "title": "Quality & Reliability",
-          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm release quality expectations align with your internal gates.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm known limitations and non-goals are captured for stakeholders.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm performance and availability targets for your topology are documented.</div></div></div></div>"
+          "title": "Kalite ve Güvenilirlik",
+          "html": "<div class = \"check-grid\"><div class = \"check-item\"><div class = \"check-box\"></div><div class = \"check-text\">Ekibiniz, sürüm kalitesi beklentilerinin dahili sınırlarınızla uyumlu olduğunu doğrulamalıdır.</div></div><div class = \"check-item\"><div class = \"check-box\"></div><div class = \"check-text\">Ekibiniz, bilinen sınırlamaları ve hedef olmayan hedeflerin yakalandığını onaylamalıdır. paydaşlar.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Ekibinizin topolojinize ilişkin performans ve kullanılabilirlik hedeflerinin belgelendiğini onaylaması gerekir.</div></div></div></div>"
         },
         "commercial-support": {
-          "title": "Commercial & Support",
-          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm packaging and licensing match the seats or deployment model you intend (Pricing &amp; Packages).</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm support tiers and escalation contacts are agreed with SKIA.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm procurement items (security questionnaires, DPA, subprocessors if applicable) are tracked before go-live.</div></div></div></div>"
+          "title": "Ticari ve Destek",
+          "html": "<div class = \"check-grid\"><div class = \"check-item\"><div class = \"check-box\"></div><div class = \"check-text\">Ekibinizin paketleme ve lisanslamanın istediğiniz lisanslarla veya dağıtım modeliyle (Fiyatlandırma ve Paketler) eşleştiğini onaylaması gerekir.</div></div><div class = \"check-item\"><div class = \"check-box\"></div><div class = \"check-text\"> Ekibiniz destek katmanlarını ve üst kademeye iletilecek kişiler için SKIA ile anlaşmaya varılmıştır.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Ekibinizin, satın alma öğelerinin (güvenlik anketleri, DPA, varsa alt işleyiciler) canlıya geçişten önce takip edildiğini doğrulaması gerekir.</div></div></div></div>"
         }
       }
     }

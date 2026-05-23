@@ -1,29 +1,29 @@
 {
   "meta": {
-    "documentTitle": "SKIA FORGE"
+    "documentTitle": "SKIA FORGESKIA_FORGE_CAPS"
   },
   "sidebar": {
-    "tagline": "She Knows It All"
+    "tagline": "她知道这一切"
   },
   "nav": {
-    "forgeHome": "Forge Home",
-    "product": "Product",
-    "resources": "Resources",
-    "security": "Security",
-    "contactSupport": "Contact & Support",
-    "downloadForge": "Download SKIA Forge"
+    "forgeHome": "FORGE_HOME",
+    "product": "产品",
+    "resources": "资源",
+    "security": "安全",
+    "contactSupport": "联系与支持",
+    "downloadForge": "下载SKIA Forge"
   },
   "back": {
-    "label": "← Back"
+    "label": "← 返回"
   },
   "aria": {
-    "openNavigation": "Open navigation"
+    "openNavigation": "打开导航"
   },
   "footer": {
-    "tagline": "One ecosystem. One universe. All SKIA.",
-    "copyright": "© 2026 SKIA. All rights reserved.",
-    "resources": "Resources",
-    "security": "Security",
-    "contactSupport": "Contact & Support"
+    "tagline": "一个生态系统。 一个宇宙。 全部为 SKIA。",
+    "copyright": "© 2026 SKIA。 版权所有。",
+    "resources": "资源",
+    "security": "安全",
+    "contactSupport": "联系与支持"
   }
 }

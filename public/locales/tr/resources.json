@@ -1,68 +1,68 @@
 {
   "meta": {
-    "title": "Resources | SKIA Forge"
+    "title": "Kaynaklar | SKIA Forge"
   },
   "hero": {
-    "title": "Resources",
-    "subtitle": "Everything you need to understand, deploy, and operate SKIA Forge"
+    "title": "Kaynaklar",
+    "subtitle": "SKIA Forge'yi anlamak, dağıtmak ve çalıştırmak için ihtiyacınız olan her şey"
   },
   "quickLinks": {
-    "download": "Download SKIA Forge",
-    "releaseNotes": "Release Notes",
-    "contactSupport": "Contact Support"
+    "download": "SKIA Forge'yi indirin",
+    "releaseNotes": "Sürüm Notları",
+    "contactSupport": "Destek Ekibiyle İletişime Geçin"
   },
   "sections": {
-    "documentation": "Documentation",
-    "operators": "For operators"
+    "documentation": "Dokümantasyon",
+    "operators": "Operatörler için"
   },
   "cards": {
     "productManual": {
-      "title": "Product Manual",
-      "desc": "Full product overview, capabilities, and feature positioning for SKIA Forge."
+      "title": "Ürün Kılavuzu",
+      "desc": "SKIA Forge için tam ürüne genel bakış, yetenekler ve özellik konumlandırma."
     },
     "quickstart": {
-      "title": "Quickstart",
-      "desc": "Download the IDE, sign in, and complete your first workflow."
+      "title": "Hızlı başlangıç",
+      "desc": "IDE'yi indirin, oturum açın ve ilk iş akışınızı tamamlayın."
     },
     "userGuide": {
-      "title": "User Guide",
-      "desc": "Using the IDE: sign-in, daily workflows, governance modes, and help."
+      "title": "Kullanım Kılavuzu",
+      "desc": "IDE'yi kullanma: oturum açma, günlük iş akışları, yönetim modları ve yardım."
     },
     "developerGuide": {
-      "title": "Developer Guide",
-      "desc": "Local development setup, architecture conventions, and contribution patterns."
+      "title": "Geliştirici Kılavuzu",
+      "desc": "Yerel kalkınma düzeni, mimari sözleşmeler ve katkı modelleri."
     },
     "apiReference": {
-      "title": "API Reference",
-      "desc": "Primary Forge API surfaces, endpoints, request shapes, and response contracts."
+      "title": "API Referansı",
+      "desc": "Birincil Forge API yüzeyleri, uç noktalar, istek şekilleri ve yanıt sözleşmeleri."
     },
     "troubleshooting": {
-      "title": "Troubleshooting",
-      "desc": "Common failure modes, diagnostics, and step-by-step fixes."
+      "title": "Sorun giderme",
+      "desc": "Yaygın hata modları, tanılamalar ve adım adım düzeltmeler."
     },
     "changelog": {
-      "title": "Changelog",
-      "desc": "Versioned product change history. What changed, when, and why."
+      "title": "Değişiklik günlüğü",
+      "desc": "Sürümlendirilmiş ürün değişiklik geçmişi. Ne, ne zaman ve neden değişti?"
     },
     "pricing": {
-      "title": "Pricing & Packages",
-      "desc": "Product packaging, tiers, and commercial model overview."
+      "title": "Fiyatlandırma ve Paketler",
+      "desc": "Ürün ambalajına, katmanlara ve ticari modele genel bakış."
     },
     "enterprise": {
-      "title": "Enterprise Readiness",
-      "desc": "Enterprise launch and pilot readiness checklist for IT and procurement teams."
+      "title": "Kurumsal Hazırlık",
+      "desc": "BT ve satın alma ekipleri için kurumsal lansman ve pilot hazırlık kontrol listesi."
     },
     "securityGuide": {
-      "title": "Security Guide",
-      "desc": "Security model, controls, hardening checklist, and operational security practices."
+      "title": "Güvenlik Rehberi",
+      "desc": "Güvenlik modeli, kontroller, sağlamlaştırma kontrol listesi ve operasyonel güvenlik uygulamaları."
     },
     "support": {
-      "title": "Support",
-      "desc": "Support scope, triage information, escalation path, and SLA expectations."
+      "title": "Destek",
+      "desc": "Destek kapsamı, önceliklendirme bilgileri, yükseltme yolu ve SLA beklentileri."
     },
     "operatorManual": {
-      "title": "Operator Manual",
-      "desc": "Deployment, runtime operations, health checks, and infrastructure guidance."
+      "title": "Kullanım Kılavuzu",
+      "desc": "Dağıtım, çalışma zamanı işlemleri, durum denetimleri ve altyapı rehberliği."
     }
   }
 }

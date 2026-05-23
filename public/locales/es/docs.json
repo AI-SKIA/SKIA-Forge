@@ -2,351 +2,351 @@
   "pages": {
     "readme": {
       "meta": {
-        "title": "SKIA Forge Documentation | SKIA Forge"
+        "title": "SKIA Forge Documentación | SKIA Forge"
       },
-      "badge": "SKIA Forge Docs",
-      "title": "SKIA Forge Documentation",
-      "description": "Browse product guides, API reference, security, support, and enterprise evaluation materials. Branded HTML pages are listed below; Markdown sources are available at the same paths with a .md suffix when served from the Forge host.",
+      "badge": "SKIA Forge Documentos",
+      "title": "SKIA Forge Documentación",
+      "description": "Explore guías de productos, referencias de API, seguridad, soporte y materiales de evaluación empresarial. Las páginas HTML de marca se enumeran a continuación; Las fuentes de Markdown están disponibles en las mismas rutas con un sufijo .md cuando se sirven desde el host de Forge.",
       "sections": {
         "all-documents": {
-          "title": "All Documents",
-          "html": "<div class=\"card-grid\"><a href=\"/docs/PRODUCT_MANUAL.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Product Manual</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">PRODUCT_MANUAL.html</div></div></a><a href=\"/docs/QUICKSTART.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Quickstart</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">QUICKSTART.html</div></div></a><a href=\"/docs/USER_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">User Guide</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">USER_GUIDE.html</div></div></a><a href=\"/docs/DEVELOPER_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Developer Guide</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">DEVELOPER_GUIDE.html</div></div></a><a href=\"/docs/OPERATOR_MANUAL.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Operator Manual</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">OPERATOR_MANUAL.html</div></div></a><a href=\"/docs/API_REFERENCE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">API Reference</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">API_REFERENCE.html</div></div></a><a href=\"/docs/SECURITY_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Security Guide</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">SECURITY_GUIDE.html</div></div></a><a href=\"/docs/TROUBLESHOOTING.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Troubleshooting</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">TROUBLESHOOTING.html</div></div></a><a href=\"/docs/CHANGELOG.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Changelog</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">CHANGELOG.html</div></div></a><a href=\"/docs/SUPPORT.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Support</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">SUPPORT.html</div></div></a><a href=\"/docs/PRICING_AND_PACKAGES.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Pricing & Packages</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">PRICING_AND_PACKAGES.html</div></div></a><a href=\"/docs/ENTERPRISE_READINESS_CHECKLIST.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Enterprise Readiness</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">ENTERPRISE_READINESS_CHECKLIST.html</div></div></a></div></div>"
+          "title": "Todos los documentos",
+          "html": "<div class=\"card-grid\"><a href=\"/docs/PRODUCT_MANUAL.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Manual del producto</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">PRODUCT_MANUAL.html</div></div></a><a href=\"/docs/QUICKSTART.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Inicio rápido</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">QUICKSTART.html</div></div></a><a href=\"/docs/USER_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Guía del usuario</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">USER_GUIDE.html</div></div></a><a href=\"/docs/DEVELOPER_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Guía para desarrolladores</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">DEVELOPER_GUIDE.html</div></div></a><a href=\"/docs/OPERATOR_MANUAL.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Manual del operador</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">OPERATOR_MANUAL.html</div></div></a><a href=\"/docs/API_REFERENCE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">API Referencia</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">API_REFERENCE.html</div></div></a><a href=\"/docs/SECURITY_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Guía de seguridad</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">SECURITY_GUIDE.html</div></div></a><a href=\"/docs/TROUBLESHOOTING.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Solución de problemas</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">TROUBLESHOOTING.html</div></div></a><a href=\"/docs/CHANGELOG.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Registro de cambios</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">CHANGELOG.html</div></div></a><a href=\"/docs/SUPPORT.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Soporte</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">SUPPORT.html</div></div></a><a href=\"/docs/PRICING_AND_PACKAGES.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Precios y paquetes</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">PRICING_AND_PACKAGES.html</div></div></a><a href=\"/docs/ENTERPRISE_READINESS_CHECKLIST.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Preparación empresarial</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">ENTERPRISE_READINESS_CHECKLIST.html</div></div></a></div></div>"
         }
       }
     },
     "quickstart": {
       "meta": {
-        "title": "Quickstart | SKIA Forge"
+        "title": "Inicio rápido | SKIA Forge"
       },
-      "badge": "Get Started",
-      "title": "Quickstart",
-      "description": "Download SKIA Forge, sign in, and run your first governed workflow in the desktop IDE.",
+      "badge": "Empezar",
+      "title": "Inicio rápido",
+      "description": "Descargue SKIA Forge, inicie sesión y ejecute su primer flujo de trabajo gobernado en el escritorio IDE.",
       "sections": {
         "step-by-step": {
-          "title": "Step-by-Step",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Download SKIA Forge from <a href=\"https://forge.skia.ca/platform-downloads\" style=\"color:var(--gold)\">forge.skia.ca/platform-downloads</a> for your operating system.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Install the app, then open <strong>SKIA Forge</strong> from your applications menu or desktop shortcut.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Sign in with your SKIA account or create one when prompted � authentication happens inside the application.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Open or import a project, submit work, review governance output, and apply changes when you are ready.</div></div><div class=\"step\"><div class=\"step-num\">05</div><div class=\"step-text\">Explore deeper guides from the links below when you need more detail.</div></div></div></div>"
+          "title": "Paso a paso",
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Descargar SKIA Forge desde <a href=\"https://forge.skia.ca/platform-downloads\" style=\"color:var(--gold)\">forge.skia.ca/platform-downloads</a> para su sistema operativo.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Instale la aplicación y luego abra <strong>SKIA Forge</strong> desde el menú de aplicaciones o el acceso directo del escritorio.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Inicie sesión con su SKIA o cree una cuando se le solicite; la autenticación ocurre dentro de la aplicación.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Abra o importe un proyecto, envíe trabajo, revise los resultados de gobernanza y aplique cambios cuando esté listo.</div></div><div class=\"step\"><div class=\"step-num\">05</div><div class=\"step-text\">Explore guías más profundas de los enlaces a continuación cuando necesite más detalles.</div></div></div></div>"
         },
         "next-steps": {
-          "title": "Next Steps",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>User Guide</a> � day-to-day usage and governance modes</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API Reference</a> � HTTP APIs for developers and automation</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>Product Manual</a> � capabilities overview</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>Support</a> � how to get help</div></div></div></div>"
+          "title": "Próximos pasos",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>Guía del usuario</a> � modos de gobierno y uso diario</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API Referencia</a> � HTTP API para desarrolladores y automatización</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>Manual del producto</a> � descripción general de capacidades</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>Soporte</a> � cómo obtener ayuda</div></div></div></div>"
         }
       }
     },
     "user-guide": {
       "meta": {
-        "title": "User Guide | SKIA Forge"
+        "title": "Guía del usuario | SKIA Forge"
       },
-      "badge": "Using SKIA Forge",
-      "title": "User Guide",
-      "description": "What SKIA Forge does for you, how to install and sign in, daily workflows, governance modes in plain language, and where to get help.",
+      "badge": "Usando SKIA Forge",
+      "title": "Guía del usuario",
+      "description": "Qué hace SKIA Forge por usted, cómo instalarlo e iniciar sesión, flujos de trabajo diarios, modos de gobierno en lenguaje sencillo y dónde obtener ayuda.",
       "sections": {
         "what-skia-forge-does-for-you": {
-          "title": "What SKIA Forge Does For You",
-          "html": "SKIA Forge helps you build software with AI assistance under clear governance: planning, reviews, architecture insight, and safer apply paths so your team can move fast without bypassing policy.</div>"
+          "title": "Lo que SKIA Forge hace por usted",
+          "html": "SKIA Forge lo ayuda a crear software con asistencia de IA bajo una gobernanza clara: planificación, revisiones, conocimiento de la arquitectura y rutas de aplicación más seguras para que su equipo pueda moverse rápidamente sin eludir las políticas.</div>"
         },
         "get-the-desktop-ide": {
-          "title": "Get the Desktop IDE",
-          "html": "Download installers from <a href=\"https://forge.skia.ca/platform-downloads\" style=\"color:var(--gold)\">forge.skia.ca/platform-downloads</a> and install <strong>SKIA Forge</strong> for your platform.</div>"
+          "title": "Obtenga el IDE del escritorio",
+          "html": "Descargue los instaladores de <a href=\"https://forge.skia.ca/platform-downloads\" style=\"color:var(--gold)\">forge.skia.ca/platform-downloads</a> e instale <strong>SKIA Forge</strong> para su plataforma.</div>"
         },
         "signing-in": {
-          "title": "Signing In",
-          "html": "Open the app and sign in or create a SKIA account when prompted. Authentication happens inside the application.</div>"
+          "title": "Iniciar sesión",
+          "html": "Abra la aplicación e inicie sesión o cree una cuenta SKIA cuando se le solicite. La autenticación ocurre dentro de la aplicación.</div>"
         },
         "daily-usage": {
-          "title": "Daily Usage",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Open or import the project you want to work on.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Submit work and review governance output before applying changes.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Follow in-app remediation when something is blocked, then try again.</div></div></div></div>"
+          "title": "Uso diario",
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Abra o importe el proyecto en el que desea trabajar.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Envíe el trabajo y revise los resultados de gobernanza antes de aplicar los cambios.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Sigue la corrección en la aplicación cuando algo esté bloqueado y luego inténtalo de nuevo.</div></div></div></div>"
         },
         "governance-modes": {
-          "title": "Governance Modes",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Strict</strong> � safest default; more steps require explicit approval.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Adaptive</strong> � balanced; routine work flows faster while higher-risk actions surface for review.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Autonomous</strong> � fastest path where enabled; use when your team accepts the trade-offs.</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">Labels in the product may vary; ask your admin which mode applies to your workspace.</p></div>"
+          "title": "Modos de gobernanza",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Estricto</strong>: valor predeterminado más seguro; más pasos requieren aprobación explícita.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Adaptable</strong> � equilibrado; el trabajo rutinario fluye más rápido mientras que las acciones de mayor riesgo surgen para su revisión.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Autónoma</strong>: ruta más rápida cuando está habilitada; utilícelo cuando su equipo acepte las compensaciones.</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">Las etiquetas del producto pueden variar; Pregúntele a su administrador qué modo se aplica a su espacio de trabajo.</p></div>"
         },
         "where-to-get-help": {
-          "title": "Where to Get Help",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href=\"/docs/SUPPORT.html\" style=\"color:var(--gold)\">Support</a> and <a href=\"/docs/TROUBLESHOOTING.html\" style=\"color:var(--gold)\">Troubleshooting</a></div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href=\"/contact\" style=\"color:var(--gold)\">Contact &amp; Support</a> on the Forge site for routed requests</div></div></div></div>"
+          "title": "Dónde obtener ayuda",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href=\"/docs/SUPPORT.html\" style=\"color:var(--gold)\">Soporte</a> y <a href=\"/docs/TROUBLESHOOTING.html\" style=\"color:var(--gold)\">Solución de problemas</a></div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href=\"/contact\" style=\"color:var(--gold)\">Contacto y soporte técnico. Soporte</a> en el sitio de Forge para solicitudes enrutadas</div></div></div></div>"
         }
       }
     },
     "developer-guide": {
       "meta": {
-        "title": "Developer Guide | SKIA Forge"
+        "title": "Guía para desarrolladores | SKIA Forge"
       },
-      "badge": "Local Dev & Architecture",
-      "title": "Developer Guide",
-      "description": "Local setup, project structure, coding conventions, and integration notes.",
+      "badge": "Desarrollo y arquitectura locales",
+      "title": "Guía para desarrolladores",
+      "description": "Configuración local, estructura del proyecto, convenciones de codificación y notas de integración.",
       "sections": {
         "local-setup": {
-          "title": "Local Setup",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Ensure Node.js 20+ is installed</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\"><div class=\"code-block\">npm install</div></div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\"><div class=\"code-block\">npm run build</div></div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\"><div class=\"code-block\">npm run test</div></div></div></div></div>"
+          "title": "Configuración local",
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Asegúrese de que Node.js 20+ esté instalado</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\"><div class=\"code-block\">npm instalar</div></div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\"><div class=\"code-block\">npm ejecutar compilación</div></div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\"><div class=\"code-block\">npm ejecutar prueba</div></div></div></div></div>"
         },
         "project-structure": {
-          "title": "Project Structure",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">the Forge server � runtime entrypoint</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>src/forge/modules/</code> � module domains: governance, safety, context-engine, agent, production, healing, architecture</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE � IDE-facing integration surface</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> � product documentation set</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> � static assets and HTML pages</div></div></div></div>"
+          "title": "Estructura del proyecto",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">el servidor Forge � punto de entrada de tiempo de ejecución</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>src/forge/modules/</code> � dominios del módulo: gobernanza, seguridad, motor de contexto, agente, producción, curación, arquitectura</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE � Superficie de integración orientada hacia IDE</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> � producto conjunto de documentación</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> � activos estáticos y páginas HTML</div></div></div></div>"
         },
         "development-workflow": {
-          "title": "Development Workflow",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Implement scoped changes in <code>src/forge/modules/*</code>.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Run <code>npm run lint</code>, <code>npm run typecheck</code>, <code>npm run test</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Validate integration routes and control-plane behaviour.</div></div></div></div>"
+          "title": "Flujo de trabajo de desarrollo",
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Implementar cambios de alcance en <code>src/forge/modules/*</code>.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Ejecutar <code>npm run lint</code>, <code>npm ejecutar typecheck</code>, <code>npm ejecutar prueba</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Validar rutas de integración y comportamiento del plano de control.</div></div></div></div>"
         },
         "coding-conventions": {
-          "title": "Coding Conventions",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Use typed request/response schemas for all API surfaces</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Keep policy checks explicit and test-covered</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Prefer additive changes over implicit behaviour changes</div></div></div></div>"
+          "title": "Convenciones de codificación",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Usar esquemas de solicitud/respuesta mecanografiados para todas las superficies API</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Mantener las comprobaciones de políticas explícitas y cubiertas de pruebas</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Prefiera cambios aditivos a cambios de comportamiento implícitos</div></div></div></div>"
         },
         "integration-notes": {
-          "title": "Integration Notes",
-          "html": "Forge can run with SKIA integration enabled or disabled. Adapter paths should fail clearly and return structured errors when upstream contracts are unavailable.</div>"
+          "title": "Notas de integración",
+          "html": "Forge puede ejecutarse con la integración SKIA habilitada o deshabilitada. Las rutas de adaptador deberían fallar claramente y devolver errores estructurados cuando los contratos ascendentes no estén disponibles.</div>"
         }
       }
     },
     "api-reference": {
       "meta": {
-        "title": "API Reference | SKIA Forge"
+        "title": "Referencia API | SKIA Forge"
       },
-      "badge": "Primary API Surfaces",
-      "title": "API Reference",
-      "description": "Forge HTTP API as implemented in the Forge server. Authenticated clients are required for control-plane routes under /api/forge/* . For the complete route index see docs/API_REFERENCE.md in the repository.",
+      "badge": "Superficies primarias API",
+      "title": "Referencia API",
+      "description": "Forge HTTP API tal como se implementa en el servidor Forge. Se requieren clientes autenticados para las rutas del plano de control en /api/forge/* . Para obtener el índice de ruta completo, consulte docs/API_REFERENCE.md en el repositorio.",
       "sections": {
         "browser-static": {
-          "title": "Browser & Static",
-          "html": "<table class=\"tbl\"><thead><tr><th>Method</th><th>Path</th><th>Notes</th></tr></thead><tbody><tr><td>GET</td><td><code>/</code></td><td>Redirect to <code>/platform-downloads</code> (static <code>public/platform-downloads.html</code>)</td></tr><tr><td>GET</td><td><code>/forge</code></td><td>Same redirect (legacy path)</td></tr><tr><td>GET</td><td><code>/forge/app</code></td><td>Web IDE (build the SKIA Forge IDE bundle first)</td></tr><tr><td>GET</td><td><code>/resources</code>, <code>/security</code>, <code>/contact</code></td><td>Static pages</td></tr><tr><td>GET</td><td><code>/docs/*</code></td><td>Branded HTML then markdown fallback</td></tr></tbody></table></div>"
+          "title": "Navegador y estático",
+          "html": "<table class=\"tbl\"><thead><tr><th>Método</th><th>Ruta</th><th>Notas</th></tr></thead><tbody><tr><td>GET</td><td><code>/</code></td><td>Redirigir a <code>/platform-downloads</code> (estático <code>public/platform-downloads.html</code>)</td></tr><tr><td>GET</td><td><code>/forge</code></td><td>Mismo redireccionamiento (ruta antigua)</td></tr><tr><td>GET</td><td><code>/forge/app</code></td><td>Web IDE (compila el SKIA Forge IDE paquete primero)</td></tr><tr><td>GET</td><td><code>/resources</code>, <code>/security</code>, <code>/contact</code></td><td>Estático páginas</td></tr><tr><td>OBTENER</td><td><code>/docs/*</code></td><td>HTML de marca y luego reserva de rebajas</td></tr></tbody></table></div>"
         },
         "auth-proxy": {
-          "title": "Auth Proxy",
-          "html": "<table class=\"tbl\"><thead><tr><th>Method</th><th>Path</th></tr></thead><tbody><tr><td>POST</td><td><code>/api/auth/login</code></td></tr><tr><td>POST</td><td><code>/api/auth/register</code></td></tr><tr><td>GET</td><td><code>/api/auth/session</code></td></tr></tbody></table><p style=\"margin-top:12px;font-size:13px;color:var(--text-soft)\">Proxied to <code>SKIA_BACKEND_URL</code>. Marketing pages omit web sign-in UI; use the SKIA Forge IDE.</p></div>"
+          "title": "Proxy de autenticación",
+          "html": "<tabla class=\"tbl\"><thead><tr><th>Método</th><th>Ruta</th></tr></thead><tbody><tr><td>POST</td><td><code>/api/auth/login</code></td></tr><tr>< td>POST</td><td><code>/api/auth/register</code></td></tr><tr><td>GET</td><td><code>/api/auth/session</code></td></tr></tbody></table><p style=\"margin-top:12px;font-size:13px;color:var(--text-soft)\">Proxy a <code>SKIA_BACKEND_URL</code>. Las páginas de marketing omiten la interfaz de usuario de inicio de sesión web; utilice SKIA Forge IDE.</p></div>"
         },
         "app-distribution": {
-          "title": "App Distribution",
-          "html": "<table class=\"tbl\"><thead><tr><th>Method</th><th>Path</th></tr></thead><tbody><tr><td>GET</td><td><code>/api/app/version-check</code></td></tr><tr><td>GET</td><td><code>/api/app/release-assets</code></td></tr><tr><td>GET</td><td><code>/api/app/download</code></td></tr><tr><td>GET</td><td><code>/api/app/download/:platform</code></td></tr></tbody></table></div>"
+          "title": "Distribución de aplicaciones",
+          "html": "<tabla class=\"tbl\"><thead><tr><th>Método</th><th>Ruta</th></tr></thead><tbody><tr><td>GET</td><td><code>/api/app/version-check</code></td></tr><tr><td>GET</td><td><code>/api/app/releas activos electrónicos</code></td></tr><tr><td>GET</td><td><code>/api/app/download</code></td></tr><tr><td>GET</td><td><code>/api/app/download/:platform</code></td></tr></tbody></table></div>"
         },
         "health-status": {
-          "title": "Health & Status",
-          "html": "<table class=\"tbl\"><thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead><tbody><tr><td>GET</td><td><code>/health</code></td><td>Service health check</td></tr><tr><td>GET</td><td><code>/live</code></td><td>Liveness probe</td></tr><tr><td>GET</td><td><code>/ready</code></td><td>Readiness probe</td></tr><tr><td>GET</td><td><code>/version</code></td><td>Service version</td></tr></tbody></table></div>"
+          "title": "Salud y estado",
+          "html": "<table class=\"tbl\"><thead><tr><th>Método</th><th>Ruta</th><th>Descripción</th></tr></thead><tbody><tr><td>GET</td><td><code>/health</code></td><td>Comprobación del estado del servicio</td></tr><tr><td>GET</td><td><code>/live</code></td><td>Vivacidad sonda</td></tr><tr><td>GET</td><td><code>/ready</code></td><td>Sonda de preparación</td></tr><tr><td>GET</td><td><code>/version</code></td><td>Versión del servicio</td></tr></tbody></table></div>"
         },
         "integration": {
-          "title": "Integration",
-          "html": "<table class=\"tbl\"><thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead><tbody><tr><td>GET</td><td><code>/integration/skia-full</code></td><td>Adapter status and contract map</td></tr><tr><td>GET</td><td><code>/integration/skia-full/probe</code></td><td>Live contract probe summary</td></tr><tr><td>GET</td><td><code>/integration/skia-full/probe/report</code></td><td>Detailed probe report</td></tr><tr><td>POST</td><td><code>/integration/skia-full/chat</code></td><td>Chat via SKIA brain</td></tr><tr><td>POST</td><td><code>/integration/skia-full/route</code></td><td>Reasoning router</td></tr><tr><td>POST</td><td><code>/integration/skia-full/routing-estimate</code></td><td>Routing estimate</td></tr></tbody></table></div>"
+          "title": "Integración",
+          "html": "<table class=\"tbl\"><thead><tr><th>Método</th><th>Ruta</th><th>Descripción</th></tr></thead><tbody><tr><td>GET</td><td><code>/integration/skia-full</code></td><td>Estado y contrato del adaptador mapa</td></tr><tr><td>GET</td><td><code>/integration/skia-full/probe</code></td><td>Resumen de la sonda de contrato en vivo</td></tr><tr><td>GET</td><td><code>/integration/skia-full/probe/report</code></td><td>Sonda detallada informe</td></tr><tr><td>POST</td><td><code>/integración/skia-full/chat</code></td><td>Chat a través de SKIA Brain</td></tr><tr><td>POST</td><td><code>/integración/skia-full/ruta</code></td><td>Razonamiento enrutador</td></tr><tr><td>POST</td><td><code>/integration/skia-full/routing-estimate</code></td><td>Estimación de ruta</td></tr></tbody></table></div>"
         },
         "forge-module-surfaces": {
-          "title": "Forge Module Surfaces",
-          "html": "<table class=\"tbl\"><thead><tr><th>Prefix</th><th>Domain</th></tr></thead><tbody><tr><td><code>/api/forge/context/*</code></td><td>Context engine, embeddings, semantic chunking</td></tr><tr><td><code>/api/forge/agent/*</code></td><td>Agent planner and executor</td></tr><tr><td><code>POST /api/forge/sdlc</code></td><td>SDLC intelligence</td></tr><tr><td><code>/api/forge/production/*</code></td><td>Production adapter</td></tr><tr><td><code>/api/forge/healing/*</code></td><td>Healing executor</td></tr><tr><td><code>/api/forge/architecture/*</code></td><td>Architecture diagnostics</td></tr><tr><td><code>/api/forge/orchestrate</code></td><td>Full orchestration flow</td></tr><tr><td><code>/api/forge/control-plane</code></td><td>Control plane snapshot</td></tr><tr><td><code>/api/forge/governance</code></td><td>Governance mode and policy</td></tr></tbody></table></div>"
+          "title": "Superficies del módulo Forge",
+          "html": "<table class=\"tbl\"><thead><tr><th>Prefijo</th><th>Dominio</th></tr></thead><tbody><tr><td><code>/api/forge/context/*</code></td><td>Motor de contexto, incrustaciones, fragmentación semántica</td></tr><tr><td><code>/api/forge/agent/*</code></td><td>Planificador de agentes y ejecutor</td></tr><tr><td><code>POST /api/forge/sdlc</code></td><td>SDLC inteligencia</td></tr><tr><td><code>/api/forge/production/*</code></td><td>Producción adaptador</td></tr><tr><td><code>/api/forge/healing/*</code></td><td>Ejecutor de curación</td></tr><tr><td><code>/api/forge/architecture/*</code></td><td>Arquitectura diagnósticos</td></tr><tr><td><code>/api/forge/orchetrate</code></td><td>Flujo de orquestación completo</td></tr><tr><td><code>/api/forge/control-plane</code></td><td>Instantánea del plano de control</td></tr><tr><td><code>/api/forge/governance</code></td><td>Modo de gobernanza y política</td></tr></tbody></table></div>"
         },
         "rpc": {
           "title": "RPC",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> � SKIA-backed operations with local fallbacks for unavailable upstream paths</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> � Operaciones respaldadas por SKIA con respaldos locales para rutas ascendentes no disponibles</div></div></div></div>"
         },
         "error-model": {
-          "title": "Error Model",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Schema validation errors return structured request feedback with field-level detail</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Upstream unavailability returns explicit SKIA unavailable errors</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Governance blocks return mode and policy-based decision context with remediation guidance</div></div></div></div>"
+          "title": "Modelo de error",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Los errores de validación del esquema devuelven comentarios de solicitud estructurados con detalles a nivel de campo</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">La indisponibilidad ascendente devuelve errores SKIA explícitos no disponibles</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">La gobernanza bloquea el modo de retorno y el contexto de decisión basado en políticas con orientación de remediación</div></div></div></div>"
         }
       }
     },
     "operator-manual": {
       "meta": {
-        "title": "Operator Manual | SKIA Forge"
+        "title": "Manual del operador | SKIA Forge"
       },
-      "badge": "Deployment & Runtime Ops",
-      "title": "Operator Manual",
-      "description": "Deployment baseline, operational checks, and incident handling for SKIA Forge.",
+      "badge": "Operaciones de implementación y tiempo de ejecución",
+      "title": "Manual del operador",
+      "description": "Línea base de implementación, verificaciones operativas y manejo de incidentes para SKIA Forge.",
       "sections": {
         "runtime-role": {
-          "title": "Runtime Role",
-          "html": "SKIA Forge operates as an orchestration and governance runtime service that augments development workflows with policy-aware controls.</div>"
+          "title": "Función de tiempo de ejecución",
+          "html": "SKIA Forge opera como un servicio de ejecución de orquestación y gobernanza que aumenta los flujos de trabajo de desarrollo con controles que tienen en cuenta las políticas.</div>"
         },
         "deployment-baseline": {
-          "title": "Deployment Baseline",
-          "html": "<p style=\"margin-bottom:14px;font-size:13px;color:var(--text-soft)\">Production hostname: <code>forge.skia.ca</code>. Release baseline Forge <code>1.0.0</code> and SKIA Forge IDE <code>1.0.0</code>.</p><div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><div class=\"code-block\">npm run build</div></div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\"><div class=\"code-block\">npm run dev</div> (or your production process command)</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Listen on <code>SKIA_PORT</code> (default <code>4173</code>). Validate <code>/health</code>, <code>/live</code>, <code>/ready</code>, <code>/version</code></div></div></div><p style=\"margin-top:14px;font-size:13px;color:var(--text-soft)\">Additional environment variables for signing and GitHub integration are documented in your onboarding package.</p></div>"
+          "title": "Línea base de implementación",
+          "html": "<p style=\"margin-bottom:14px;font-size:13px;color:var(--text-soft)\">Nombre de host de producción: <code>forge.skia.ca</code>. Lanzamiento de la línea base Forge <code>1.0.0</code> y SKIA Forge IDE <code>1.0.0</code>.</p><div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><div class=\"code-block\">npm run build</div></div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\"><div class=\"code-block\">npm run dev</div> (o el comando de su proceso de producción)</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Escuche en <code>SKIA_PORT</code> (predeterminado <código>4173</código>). Valide <code>/health</code>, <code>/live</code>, <code>/ready</code>, <code>/version</code></div></div></div><p style=\"margin-top:14px;font-size:13px;color:var(--text-soft)\">Las variables de entorno adicionales para la firma y la integración de GitHub están documentadas en su paquete de incorporación.</p></div>"
         },
         "environment-secrets": {
-          "title": "Environment & Secrets",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Keep all secrets in environment management � never commit credentials</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Configure SKIA integration values per deployment environment via your hosting provider's environment variables</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Use explicit mode controls for strict vs adaptive operations</div></div></div></div>"
+          "title": "Medio ambiente y secretos",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Mantenga todos los secretos en la gestión del entorno, nunca confirme las credenciales</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Configure los valores de integración SKIA por entorno de implementación a través del entorno de su proveedor de hosting variables</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Usar controles de modo explícitos para operaciones estrictas frente a adaptativas</div></div></div></div>"
         },
         "operational-checks": {
-          "title": "Operational Checks",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Health checks pass: <code>/health</code> returns <code>200 ok</code></div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Control-plane posture shows expected governance mode</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Governance recommendations are readable and actionable</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Audit logs are being produced after orchestration runs</div></div></div></div>"
+          "title": "Comprobaciones operativas",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Comprobaciones de estado aprobadas: <code>/health</code> devuelve <code>200 ok</code></div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">La postura del plano de control muestra el modo de gobierno esperado</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Las recomendaciones de gobernanza son legibles y procesables</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Los registros de auditoría se generan después de ejecutar la orquestación</div></div></div></div>"
         },
         "incident-handling": {
-          "title": "Incident Handling",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Capture failure endpoint and payload metadata.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Review control-plane recommendations from <code>/api/forge/control-plane</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Apply remediation and re-run the failed request.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Escalate with logs and request IDs if unresolved � contact support.</div></div></div></div>"
+          "title": "Manejo de incidentes",
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Capture el punto final de falla y los metadatos de carga útil.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Revise las recomendaciones del plano de control de <code>/api/forge/control-plane</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Aplicar la corrección y volver a ejecutar la solicitud fallida.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Escalar con registros e ID de solicitud si no se resuelve; comuníquese con el soporte.</div></div></div></div>"
         }
       }
     },
     "product-manual": {
       "meta": {
-        "title": "Product Manual | SKIA Forge"
+        "title": "Manual del producto | SKIA Forge"
       },
-      "badge": "SKIA Forge Docs",
-      "title": "Product Manual",
-      "description": "The governance and orchestration control plane for AI-native software development. SKIA Forge connects to SKIA intelligence services for orchestration; it does not replace the full SKIA product runtime.",
+      "badge": "SKIA Forge Documentos",
+      "title": "Manual del producto",
+      "description": "El plano de control de gobernanza y orquestación para el desarrollo de software nativo de IA. SKIA Forge se conecta a los servicios de inteligencia de SKIA para la orquestación; no reemplaza el tiempo de ejecución completo del producto SKIA.",
       "sections": {
         "what-skia-forge-is": {
-          "title": "What SKIA Forge Is",
-          "html": "SKIA Forge coordinates planning, execution safety, architecture checks, and remediation guidance around AI-assisted workflows.</div>"
+          "title": "¿Qué es SKIA Forge?",
+          "html": "SKIA Forge coordina la planificación, la seguridad de la ejecución, las comprobaciones de la arquitectura y la orientación sobre remediación en torno a los flujos de trabajo asistidos por IA.</div>"
         },
         "delivery-surfaces": {
-          "title": "Delivery Surfaces",
-          "html": "Public download and documentation live at <strong>forge.skia.ca</strong>, including <code>/platform-downloads</code>, <code>/resources</code>, <code>/security</code>, <code>/contact</code>, and <code>/docs/*</code>. The web IDE is available at <code>/forge/app</code> when the IDE bundle is built. Account sign-in and registration happen in the <strong>SKIA Forge IDE</strong> or other supported clients, not on static marketing pages. Desktop installers are served via <code>/api/app/download</code> routes.</div>"
+          "title": "Superficies de entrega",
+          "html": "Descarga pública y documentación disponible en <strong>forge.skia.ca</strong>, incluidos <code>/platform-downloads</code>, <code>/resources</code>, <code>/security</code>, <code>/contact</code> y <code>/docs/*</code>. La web IDE está disponible en <code>/forge/app</code> cuando se crea el paquete IDE. El inicio de sesión y el registro de la cuenta se realizan en <strong>SKIA Forge IDE</strong> u otros clientes admitidos, no en páginas de marketing estáticas. Los instaladores de escritorio se entregan a través de rutas <code>/api/app/download</code>.</div>"
         },
         "who-it-is-for": {
-          "title": "Who It Is For",
-          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">AI-First Engineering Teams</div><div class=\"card-body\">Build faster with safety guardrails baked into every workflow.</div></div><div class=\"card\"><div class=\"card-title\">Platform & Productivity Teams</div><div class=\"card-body\">Governance-aware automation for platform-level development workflows.</div></div><div class=\"card\"><div class=\"card-title\">Security & Governance Stakeholders</div><div class=\"card-body\">Policy-aware automation that produces first-class audit trails.</div></div></div></div>"
+          "title": "¿Para quién es?",
+          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">Equipos de ingeniería basados en IA</div><div class=\"card-body\">Construya más rápido con barreras de seguridad incorporadas en cada flujo de trabajo.</div></div><div class=\"card\"><div class=\"card-title\">Equipos de plataforma y productividad</div><div class=\"card-body\">Automatización consciente de la gobernanza para flujos de trabajo de desarrollo a nivel de plataforma.</div></div><div class=\"card\"><div class=\"card-title\">Partes interesadas en seguridad y gobernanza</div><div class=\"card-body\">Automatización consciente de las políticas que produce pistas de auditoría de primera clase.</div></div></div></div>"
         },
         "core-capabilities": {
-          "title": "Core Capabilities",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Structured orchestration across context, agent, SDLC, production, healing, architecture, and related modules</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Governance mode controls: <code>strict</code>, <code>adaptive</code>, <code>autonomous</code></div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Runtime control-plane posture, alerts, and recommendations</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Safety and architecture diagnostics on changed files</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Integration with SKIA intelligence services for reasoning and execution support</div></div></div></div>"
+          "title": "Capacidades principales",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Orquestación estructurada en contexto, agente, SDLC, producción, curación, arquitectura y módulos relacionados</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Controles del modo de gobernanza: <code>estricto</code>, <code>adaptivo</code>, <code>autónomo</code></div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Posición, alertas y recomendaciones del plano de control en tiempo de ejecución</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Diagnóstico de seguridad y arquitectura en caso de cambios archivos</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Integración con los servicios de inteligencia SKIA para soporte de razonamiento y ejecución</div></div></div></div>"
         },
         "value-proposition": {
-          "title": "Value Proposition",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Faster delivery with guardrails � ship confidently without sacrificing speed</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Reduced unsafe operations reaching production</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Better traceability for enterprise governance and audits</div></div></div></div>"
+          "title": "Propuesta de valor",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Entrega más rápida con barandillas: envío seguro sin sacrificar la velocidad</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Reducción de operaciones inseguras que llegan a producción</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Mejor trazabilidad para auditorías y gobierno empresarial</div></div></div></div>"
         },
         "product-boundaries": {
-          "title": "Product Boundaries",
-          "html": "SKIA Forge is a control and orchestration layer. It is not a replacement for your full application runtime � it integrates with upstream SKIA intelligence contracts and your existing deployment topology.</div>"
+          "title": "Límites del producto",
+          "html": "SKIA Forge es una capa de control y orquestación. No reemplaza el tiempo de ejecución completo de su aplicación: se integra con los contratos de inteligencia ascendentes de SKIA y su topología de implementación existente.</div>"
         }
       }
     },
     "security-guide": {
       "meta": {
-        "title": "Security Guide | SKIA Forge"
+        "title": "Guía de seguridad | SKIA Forge"
       },
-      "badge": "Security Model & Controls",
-      "title": "Security Guide",
-      "description": "Layered controls, key components, operational practices, and hardening checklist.",
+      "badge": "Modelo de seguridad y controles",
+      "title": "Guía de seguridad",
+      "description": "Controles en capas, componentes clave, prácticas operativas y lista de verificación de refuerzo.",
       "sections": {
         "security-model": {
-          "title": "Security Model",
-          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">Request Validation</div><div class=\"card-body\">All inputs validated against strict schemas before execution.</div></div><div class=\"card\"><div class=\"card-title\">Governance Enforcement</div><div class=\"card-body\">Strict, adaptive, and autonomous modes control agent permissions.</div></div><div class=\"card\"><div class=\"card-title\">Safety Gates</div><div class=\"card-body\">High-risk actions pass through safety gates with execution previews.</div></div><div class=\"card\"><div class=\"card-title\">Policy-Based Blocking</div><div class=\"card-body\">Policy violations are blocked, logged, and returned with remediation.</div></div></div></div>"
+          "title": "Modelo de seguridad",
+          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">Solicitud de validación</div><div class=\"card-body\">Todas las entradas validadas según esquemas estrictos antes de la ejecución.</div></div><div class=\"card\"><div class=\"card-title\">Cumplimiento de la gobernanza</div><div class=\"card-body\">Modos estrictos, adaptativos y autónomos controlan los permisos de los agentes.</div></div><div class=\"card\"><div class=\"card-title\">Puertas de seguridad</div><div class=\"card-body\">Las acciones de alto riesgo pasan a través de puertas de seguridad con vistas previas de ejecución.</div></div><div class=\"card\"><div class=\"card-title\">Bloqueo basado en políticas</div><div class=\"card-body\">Las infracciones de políticas se bloquean, se registran y se devuelven con corrección.</div></div></div></div>"
         },
         "authentication-accounts": {
-          "title": "Authentication & Accounts",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">All Forge API routes require authentication. Sign in via the SKIA Forge IDE or your API client.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Marketing HTML omits web sign-in/register CTAs; users authenticate in the <strong>SKIA Forge IDE</strong>.</div></div></div></div>"
+          "title": "Autenticación y cuentas",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Todas las rutas API de Forge requieren autenticación. Inicie sesión a través de SKIA Forge IDE o su cliente API.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">El HTML de marketing omite las CTA de inicio de sesión/registro web; los usuarios se autentican en <strong>SKIA Forge IDE</strong>.</div></div></div></div>"
         },
         "key-security-components": {
-          "title": "Key Security Components",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>SecurityAnalysisService</code> � scan and save-time checks on code and agent output</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Governance decision engine � strict / adaptive / autonomous control with audit trail</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Route and action-level safety modules � per-surface constraints that cannot be bypassed</div></div></div></div>"
+          "title": "Componentes clave de seguridad",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>SecurityAnalysisService</code>: escanea y ahorra tiempo en comprobaciones del código y la salida del agente</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Motor de decisiones de gobernanza: control estricto/adaptativo/autónomo con auditoría sendero</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Módulos de seguridad de ruta y nivel de acción: restricciones por superficie que no se pueden eludir</div></div></div></div>"
         },
         "operational-security-practices": {
-          "title": "Operational Security Practices",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Keep secrets out of repositories and logs � use your hosting provider's environment variables</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Validate all external integration responses � never trust third-party data without assertion</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Treat policy blocks as first-class security events � every block is logged and reviewable</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Record and monitor remediation outcomes � fixes without validation are incomplete</div></div></div></div>"
+          "title": "Prácticas de seguridad operativa",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Mantenga los secretos fuera de los repositorios y registros; utilice las variables de entorno de su proveedor de alojamiento</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Valide todas las respuestas de integración externa; nunca confíe en datos de terceros sin aserción</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Trate los bloques de políticas como eventos de seguridad de primera clase: cada bloque se registra y se puede revisar</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Registra y supervisa los resultados de las soluciones: las correcciones sin validación son incompleto</div></div></div></div>"
         },
         "hardening-checklist": {
-          "title": "Hardening Checklist",
-          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Run lint, typecheck, and tests before every release</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Keep all dependencies current</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Validate integration probe endpoints regularly</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Review audit trails after major orchestration runs</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Rotate JWT_SECRET and API keys on schedule</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Never commit secrets � use environment injection</div></div></div></div>"
+          "title": "Lista de verificación de endurecimiento",
+          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Ejecute lint, typecheck y pruebas antes de cada lanzamiento</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Mantenga todas las dependencias actualizadas</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Validar los puntos finales de la sonda de integración periódicamente</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Revisar los seguimientos de auditoría después de las principales ejecuciones de orquestación</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Rotar Claves JWT_SECRET y API según lo programado</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Nunca confirme secretos; utilice la inyección de entorno</div></div></div></div>"
         }
       }
     },
     "troubleshooting": {
       "meta": {
-        "title": "Troubleshooting | SKIA Forge"
+        "title": "Solución de problemas | SKIA Forge"
       },
-      "badge": "Common Failures & Fixes",
-      "title": "Troubleshooting",
-      "description": "Diagnostics and step-by-step fixes for the most common SKIA Forge issues.",
+      "badge": "Fallos y soluciones comunes",
+      "title": "Solución de problemas",
+      "description": "Diagnósticos y soluciones paso a paso para los problemas más comunes de SKIA Forge.",
       "sections": {
         "build-test-failures": {
-          "title": "Build / Test Failures",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><div class=\"code-block\">npm run typecheck</div></div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\"><div class=\"code-block\">npm run test</div></div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\"><div class=\"code-block\">npm run build</div></div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Fix schema and type mismatches before re-running orchestration endpoints.</div></div></div></div>"
+          "title": "Fallos de compilación/prueba",
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><div class=\"code-block\">npm ejecutar typecheck</div></div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\"><div class=\"code-block\">npm ejecutar prueba</div></div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\"><div class=\"code-block\">npm ejecutar compilación</div></div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Corregir esquemas y tipos de discrepancias antes de volver a ejecutar la orquestación puntos finales.</div></div></div></div>"
         },
         "skia-integration-unavailable": {
-          "title": "SKIA Integration Unavailable",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Check <code>/integration/skia-full</code> and <code>/integration/skia-full/probe</code>.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Verify upstream URL and environment configuration in your hosting provider.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Review adapter disabled flags and auth headers.</div></div></div></div>"
+          "title": "Integración SKIA no disponible",
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Compruebe <code>/integration/skia-full</code> y <code>/integration/skia-full/probe</code>.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Verifique la URL ascendente y configuración del entorno en su proveedor de alojamiento.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Revise los indicadores y encabezados de autenticación deshabilitados del adaptador.</div></div></div></div>"
         },
         "governance-blocks": {
-          "title": "Governance Blocks",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Expected in strict or adaptive mode for risky actions</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Read remediation recommendations from the block response</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Apply the suggested safe path and re-run the request</div></div></div></div>"
+          "title": "Bloques de gobernanza",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Esperado en modo estricto o adaptativo para acciones riesgosas</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Leer recomendaciones de corrección de la respuesta al bloqueo</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Aplique la ruta segura sugerida y vuelva a ejecutar la solicitud</div></div></div></div>"
         },
         "runtime-health-issues": {
-          "title": "Runtime Health Issues",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Validate <code>/health</code> and <code>/live</code> endpoints.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Check logs for failing module names and request IDs.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Isolate whether the issue is a local Forge module or an upstream contract failure.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">If unresolved, escalate via <a href='/contact' style='color:var(--gold)'>Contact & Support</a> with request ID and logs.</div></div></div></div>"
+          "title": "Problemas de salud en tiempo de ejecución",
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Validar los puntos finales <code>/health</code> y <code>/live</code>.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Compruebe los registros para detectar nombres de módulos fallidos y solicitar ID.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Aislar si el problema es un módulo Forge local o una falla del contrato ascendente.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Si no se resuelve, escalar a través de <a href='/contact' style='color:var(--gold)'>Contacto y soporte</a> con ID de solicitud y registros.</div></div></div></div>"
         }
       }
     },
     "changelog": {
       "meta": {
-        "title": "Changelog | SKIA Forge"
+        "title": "Registro de cambios | SKIA Forge"
       },
-      "badge": "Version History",
-      "title": "Changelog",
-      "description": "Notable changes to SKIA Forge, documented by release.",
+      "badge": "Historial de versiones",
+      "title": "Registro de cambios",
+      "description": "Cambios notables en SKIA Forge, documentados por lanzamiento.",
       "sections": {
         "v1-0-0-initial-release": {
-          "title": "v1.0.0 — Initial release",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge control plane with governance modes, orchestration APIs, and integration with SKIA intelligence services.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE (desktop) and web shell at <code>/forge/app</code> for browser-based access.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Public documentation, security guide, support model, and download hub at forge.skia.ca.</div></div></div></div>"
+          "title": "v1.0.0 — Lanzamiento inicial",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge plano de control con modos de gobernanza, API de orquestación e integración con los servicios de inteligencia SKIA.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE (escritorio) y shell web en <code>/forge/app</code> para acceso basado en navegador.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Documentación pública, guía de seguridad, modelo de soporte y centro de descargas en forge.skia.ca.</div></div></div></div>"
         }
       }
     },
     "support": {
       "meta": {
-        "title": "Support | SKIA Forge"
+        "title": "Soporte | SKIA Forge"
       },
-      "badge": "Support Model & Escalation",
-      "title": "Support",
-      "description": "SKIA Forge support covers the following areas:",
+      "badge": "Modelo de soporte y escalamiento",
+      "title": "Apoyo",
+      "description": "El soporte SKIA Forge cubre las siguientes áreas:",
       "sections": {
         "support-scope": {
-          "title": "Support Scope",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Runtime startup and health issues</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Integration contract failures</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Governance and policy flow debugging</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Build and test pipeline breakages</div></div></div></div>"
+          "title": "Alcance del soporte",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Problemas de estado y de inicio del tiempo de ejecución</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Errores en el contrato de integración</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Depuración de flujo de políticas y gobernanza</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Creación y prueba de roturas de canalización</div></div></div></div>"
         },
         "triage-information-to-collect": {
-          "title": "Triage Information to Collect",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Endpoint and HTTP method</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Request timestamp</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Request ID or correlation ID (if available)</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">What you were trying to do when the issue occurred</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Full error message and reproduction steps</div></div></div></div>"
+          "title": "Información de clasificación para recopilar",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Punto final y método HTTP</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Solicitud de marca de tiempo</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">ID de solicitud o ID de correlación (si está disponible)</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Qué estaba intentando hacer cuando ocurrió el problema</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Mensaje de error completo y reproducción pasos</div></div></div></div>"
         },
         "escalation-path": {
-          "title": "Escalation Path",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Reproduce locally and validate with <code>/health</code> and probe endpoints.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Apply remediation guidance from control-plane outputs.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Escalate with logs, payload shape, and expected vs actual behaviour.</div></div></div></div>"
+          "title": "Ruta de escalada",
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Reproducir localmente y validar con <code>/health</code> y puntos finales de sonda.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Aplicar guía de corrección desde las salidas del plano de control.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Escale con registros, forma de carga útil y comportamiento esperado versus real.</div></div></div></div>"
         },
         "enterprise-support-expectations": {
-          "title": "Enterprise Support Expectations",
-          "html": "<div class=\"sla-row\"><div class=\"sla-tier p1\">P1</div><div class=\"sla-body\"><div class=\"sla-label\">Critical Outage</div><div class=\"sla-desc\">Immediate response window.</div></div></div><div class=\"sla-row\"><div class=\"sla-tier p2\">P2</div><div class=\"sla-body\"><div class=\"sla-label\">Degraded Service</div><div class=\"sla-desc\">Same business day response.</div></div></div><div class=\"sla-row\"><div class=\"sla-tier p3\">P3</div><div class=\"sla-body\"><div class=\"sla-label\">Non-blocking Issue</div><div class=\"sla-desc\">Prioritized backlog response.</div></div></div></div>"
+          "title": "Expectativas de soporte empresarial",
+          "html": "<div class=\"sla-row\"><div class=\"sla-tier p1\">P1</div><div class=\"sla-body\"><div class=\"sla-label\">Corte crítico</div><div class=\"sla-desc\">Ventana de respuesta inmediata.</div></div></div><div class=\"sla-row\"><div class=\"sla-tier p2\">P2</div><div class=\"sla-body\"><div class=\"sla-label\">Servicio degradado</div><div class=\"sla-desc\">Respuesta el mismo día hábil.</div></div></div><div class=\"sla-row\"><div class=\"sla-tier p3\">P3</div><div class=\"sla-body\"><div class=\"sla-label\">Problema sin bloqueo</div><div class=\"sla-desc\">Acumulación priorizada respuesta.</div></div></div></div>"
         },
         "contact": {
-          "title": "Contact",
-          "html": "<div style=\"text-align:center;padding:20px;\"><a href=\"/contact\" style=\"display:inline-block;padding:10px 24px;border:1px solid var(--gold);border-radius:6px;color:var(--gold);text-decoration:none;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:rgba(212,175,55,0.08);\">Open Support Form</a></div></div>"
+          "title": "Contacto",
+          "html": "<div style=\"text-align:center;padding:20px;\"><a href=\"/contact\" style=\"display:inline-block;padding:10px 24px;border:1px sólido var(--gold);border-radius:6px;color:var(--gold);text-decoration:none;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:rgba(212,175,55,0.08);\">Abrir formulario de soporte</a></div></div>"
         }
       }
     },
     "pricing-and-packages": {
       "meta": {
-        "title": "Pricing & Packages | SKIA Forge"
+        "title": "Precios y paquetes | SKIA Forge"
       },
-      "badge": "Commercial Model",
-      "title": "Pricing & Packages",
-      "description": "SKIA Forge is available in three packages designed for individuals, teams, and enterprise organisations.",
+      "badge": "Modelo Comercial",
+      "title": "Precios y paquetes",
+      "description": "SKIA Forge está disponible en tres paquetes diseñados para individuos, equipos y organizaciones empresariales.",
       "sections": {
         "packages": {
-          "title": "Packages",
-          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">Developer</div><div class=\"pkg-tag\">Solo engineers & experiments</div><div class=\"pkg-body\">Core Forge runtime � Basic orchestration and governance modes � Standard API access � Community support</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Team</div><div class=\"pkg-tag\">Engineering teams adopting AI workflows</div><div class=\"pkg-body\">Everything in Developer � Team policy presets � Shared operational dashboards � Priority support � Collaboration-ready governance defaults</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Enterprise</div><div class=\"pkg-tag\">Organizations with compliance requirements</div><div class=\"pkg-body\">Everything in Team � Enterprise policy controls and hardening � Audit/export-ready reporting � Deployment architecture support � Defined SLAs and escalation path</div></div></div></div>"
+          "title": "Paquetes",
+          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">Desarrollador</div><div class=\"pkg-tag\">Ingenieros y experimentos en solitario</div><div class=\"pkg-body\">Tiempo de ejecución de Core Forge � Modos básicos de orquestación y gobernanza � Acceso API estándar � Soporte de la comunidad</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Equipo</div><div class=\"pkg-tag\">Equipos de ingeniería que adoptan flujos de trabajo de IA</div><div class=\"pkg-body\">Todo en Desarrollador � Ajustes preestablecidos de políticas de equipo � Paneles operativos compartidos � Soporte prioritario � Valores predeterminados de gobernanza listos para la colaboración</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Empresa</div><div class=\"pkg-tag\">Organizaciones con requisitos de cumplimiento</div><div class=\"pkg-body\">Todo en equipo � Controles y refuerzo de políticas empresariales � Informes de auditoría/listos para exportación � Soporte de arquitectura de implementación � Acuerdos de nivel de servicio definidos y ruta de escalamiento</div></div></div></div>"
         },
         "optional-add-ons": {
-          "title": "Optional Add-ons",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Custom policy packs</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Integration acceleration services</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Architecture and security review workshops</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Rollout training for platform and security teams</div></div></div></div>"
+          "title": "Complementos opcionales",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Paquetes de políticas personalizadas</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Servicios de aceleración de integración</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Talleres de revisión de arquitectura y seguridad</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Capacitación sobre implementación para equipos de plataforma y seguridad</div></div></div></div>"
         }
       }
     },
     "enterprise-readiness-checklist": {
       "meta": {
-        "title": "Enterprise Readiness Checklist | SKIA Forge"
+        "title": "Lista de verificación de preparación empresarial | SKIA Forge"
       },
-      "badge": "Enterprise Evaluation",
-      "title": "Enterprise Readiness Checklist",
-      "description": "Your guide to evaluating and deploying SKIA Forge at scale. Use this checklist when your organisation is deciding whether SKIA Forge fits your engineering, security, and operations requirements.",
+      "badge": "Evaluación empresarial",
+      "title": "Lista de verificación de preparación empresarial",
+      "description": "Su guía para evaluar e implementar SKIA Forge a escala. Utilice esta lista de verificación cuando su organización esté decidiendo si SKIA Forge se ajusta a sus requisitos de ingeniería, seguridad y operaciones.",
       "sections": {
         "product-architecture": {
-          "title": "Product & Architecture",
-          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm the product scope matches your expectations: governance and orchestration for AI-assisted development, aligned with your delivery stack.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm you have a clear picture of core capabilities from the product manual and public materials.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm integration expectations with your existing tools and workflows are documented internally.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm you have access to an up-to-date API reference for any automation or custom clients.</div></div></div></div>"
+          "title": "Producto y arquitectura",
+          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Su equipo debe confirmar que el alcance del producto coincide con sus expectativas: gobernanza y orquestación para el desarrollo asistido por IA, alineado con su pila de entrega.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Su equipo debe confirmar que tiene una idea clara de las capacidades principales del manual del producto y materiales públicos.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Su equipo debe confirmar que las expectativas de integración con sus herramientas existentes y los flujos de trabajo están documentados internamente.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Su equipo debe confirmar que tiene acceso a una API actualizada referencia para cualquier automatización o clientes personalizados.</div></div></div></div>"
         },
         "security-governance": {
-          "title": "Security & Governance",
-          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm security controls and threat assumptions are acceptable under your policies (Security Guide).</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm how governance modes map to your risk appetite and who can change them.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm high-risk operations, approvals, and audit expectations meet compliance needs.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm secret handling and access control for Forge hosts match your standards.</div></div></div></div>"
+          "title": "Seguridad y gobernanza",
+          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Su equipo debe confirmar que los controles de seguridad y las suposiciones de amenazas son aceptables según sus políticas (Guía de seguridad).</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Su equipo debe confirmar cómo los modos de gobernanza se adaptan a su apetito por el riesgo y quién puede cambiar ellos.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Su equipo debe confirmar que las operaciones de alto riesgo, las aprobaciones y las expectativas de auditoría satisfacen las necesidades de cumplimiento.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Su equipo debe confirmar que el manejo secreto y el control de acceso para los hosts de Forge coincidan con sus estándares.</div></div></div></div>"
         },
         "operations": {
-          "title": "Operations",
-          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm you have an operational runbook for deployment, upgrades, and rollback (Operator Manual).</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm health and readiness checks you rely on are defined and monitored.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm troubleshooting and escalation paths are understood (Support, Troubleshooting).</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm backup, recovery, and incident response procedures are assigned.</div></div></div></div>"
+          "title": "Operaciones",
+          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Su equipo debe confirmar que tiene un runbook operativo para implementación, actualizaciones y reversión (Manual del operador).</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Su equipo debe confirmar que las comprobaciones de estado y preparación en las que confía están definidas y monitoreados.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Su equipo debe confirmar que se comprenden las rutas de solución de problemas y escalamiento (Soporte, Solución de problemas).</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Su equipo debe confirmar que los procedimientos de respaldo, recuperación y respuesta a incidentes son asignado.</div></div></div></div>"
         },
         "quality-reliability": {
-          "title": "Quality & Reliability",
-          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm release quality expectations align with your internal gates.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm known limitations and non-goals are captured for stakeholders.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm performance and availability targets for your topology are documented.</div></div></div></div>"
+          "title": "Calidad y confiabilidad",
+          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Su equipo debe confirmar que las expectativas de calidad del lanzamiento están alineadas con sus puertas internas.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Su equipo debe confirmar que las limitaciones conocidas y los objetivos no objetivos se capturan para las partes interesadas.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Su equipo debe confirmar que los objetivos de rendimiento y disponibilidad para su topología estén documentados.</div></div></div></div>"
         },
         "commercial-support": {
-          "title": "Commercial & Support",
-          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm packaging and licensing match the seats or deployment model you intend (Pricing &amp; Packages).</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm support tiers and escalation contacts are agreed with SKIA.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm procurement items (security questionnaires, DPA, subprocessors if applicable) are tracked before go-live.</div></div></div></div>"
+          "title": "Comercial y soporte",
+          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Su equipo debe confirmar que el paquete y la licencia coinciden con los puestos o el modelo de implementación que desea (precios y paquetes).</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Su equipo debe confirmar que los niveles de soporte y los contactos de escalamiento están acordados SKIA.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Su equipo debe confirmar que se realiza un seguimiento de los elementos de adquisición (cuestionarios de seguridad, DPA, subprocesadores, si corresponde) antes de la entrada en funcionamiento.</div></div></div></div>"
         }
       }
     }

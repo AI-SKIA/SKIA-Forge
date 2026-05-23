@@ -1,58 +1,58 @@
 {
   "meta": {
-    "title": "Security | SKIA Forge"
+    "title": "安全| SKIA Forge"
   },
   "hero": {
-    "title": "Security",
-    "subtitle": "SKIA Forge applies layered controls across every surface — request, governance, and execution"
+    "title": "安全",
+    "subtitle": "SKIA Forge 在各个层面应用分层控制——请求、治理和执行"
   },
   "sections": {
-    "model": "Security Model",
-    "components": "Key Security Components",
-    "practices": "Operational Security Practices",
-    "checklist": "Hardening Checklist"
+    "model": "安全模型",
+    "components": "关键安全组件",
+    "practices": "运营安全实践",
+    "checklist": "强化检查表"
   },
   "controls": {
     "validation": {
-      "title": "Request Validation",
-      "desc": "All inputs validated against strict request and schema contracts before execution."
+      "title": "请求验证",
+      "desc": "在执行之前，所有输入都会根据严格的请求和模式契约进行验证。"
     },
     "governance": {
-      "title": "Governance Enforcement",
-      "desc": "Strict, adaptive, and autonomous governance modes control what agents can do."
+      "title": "治理执行",
+      "desc": "严格的、自适应的和自治的治理模式控制代理可以做什么。"
     },
     "safety": {
-      "title": "Safety Gates",
-      "desc": "High-risk actions pass through safety gates with preview and policy-based blocking."
+      "title": "安全门",
+      "desc": "高风险操作可通过具有预览和基于策略的阻止的安全门。"
     },
     "previews": {
-      "title": "Execution Previews",
-      "desc": "Every destructive or irreversible action is previewed before it runs."
+      "title": "执行预览",
+      "desc": "每个破坏性或不可逆转的操作都会在运行之前进行预览。"
     }
   },
   "components": {
-    "analysis": "Security analysis — runs scan and save-time checks on code and agent output before persistence.",
-    "governance": "Governance layer — enforces strict / adaptive / autonomous control based on user-defined policy. All mode transitions are logged.",
-    "routes": "Route & Action Modules — per-route and per-action safety constraints that cannot be bypassed at the API layer.",
-    "audit": "Audit Trail — all orchestration runs produce a structured audit trail. Reviewed after major agent operations."
+    "analysis": "安全分析 - 在持久化之前对代码和代理输出运行扫描和保存时间检查。",
+    "governance": "治理层——根据用户定义的策略实施严格/自适应/自主控制。 所有模式转换都会被记录。",
+    "routes": "路线和操作模块 - 每个路线和每个操作的安全约束，在 API 层无法绕过。",
+    "audit": "审计跟踪——所有编排运行都会产生结构化的审计跟踪。 主要代理操作后进行审查。"
   },
   "practices": {
-    "p1": "Keep secrets out of repositories and logs. Store all secrets using your secrets manager or hosting provider's secrets injection — never in plaintext config files.",
-    "p2": "Validate all external integration responses. Never trust third-party data without schema assertion.",
-    "p3": "Treat policy blocks as first-class security events. Every block is logged, reviewable, and feeds governance tuning.",
-    "p4": "Record and monitor remediation outcomes. Fixes without follow-up validation are not considered complete."
+    "p1": "将秘密保密在存储库和日志之外。 使用机密管理器或托管提供商的机密注入来存储所有机密 - 切勿存储在纯文本配置文件中。",
+    "p2": "验证所有外部集成响应。 切勿在没有架构断言的情况下信任第三方数据。",
+    "p3": "将策略块视为一流的安全事件。 每个区块都会被记录、可审查并提供治理调整。",
+    "p4": "记录并监控补救结果。 未经后续验证的修复不被认为是完整的。"
   },
   "checklist": {
-    "c1": "Run lint, typecheck, and tests before every release",
-    "c2": "Keep all dependencies current — patch within 48 hours of CVE",
-    "c3": "Validate integration probe endpoints regularly",
-    "c4": "Review audit trails after major orchestration runs",
-    "c5": "Rotate JWT_SECRET and API keys on a scheduled cadence",
-    "c6": "Never commit secrets — use environment variable injection"
+    "c1": "在每次发布之前运行 lint、类型检查和测试",
+    "c2": "保持所有依赖项最新——在 CVE 发生后 48 小时内打补丁",
+    "c3": "定期验证集成探针端点",
+    "c4": "主要编排运行后审查审计跟踪",
+    "c5": "按预定节奏轮换 JWT_SECRET 和 API 密钥",
+    "c6": "永远不要提交秘密——使用环境变量注入"
   },
   "disclosure": {
-    "title": "Responsible Disclosure",
-    "body": "Found a vulnerability in SKIA Forge? We take security reports seriously. Contact us privately and we will respond within one business day.",
-    "button": "Report a Vulnerability"
+    "title": "负责任的披露",
+    "body": "发现 SKIA Forge 中存在漏洞？ 我们认真对待安全报告。 请私下联系我们，我们将在一个工作日内回复。",
+    "button": "报告漏洞"
   }
 }

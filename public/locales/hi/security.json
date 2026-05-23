@@ -1,58 +1,58 @@
 {
   "meta": {
-    "title": "Security | SKIA Forge"
+    "title": "सुरक्षा | स्किया_फोर्ज"
   },
   "hero": {
-    "title": "Security",
-    "subtitle": "SKIA Forge applies layered controls across every surface — request, governance, and execution"
+    "title": "सुरक्षा",
+    "subtitle": "स्किया_फोर्ज हर सतह पर स्तरित नियंत्रण लागू करता है - अनुरोध, शासन और निष्पादन"
   },
   "sections": {
-    "model": "Security Model",
-    "components": "Key Security Components",
-    "practices": "Operational Security Practices",
-    "checklist": "Hardening Checklist"
+    "model": "सुरक्षा मॉडल",
+    "components": "प्रमुख सुरक्षा घटक",
+    "practices": "परिचालन सुरक्षा प्रथाएँ",
+    "checklist": "हार्डनिंग चेकलिस्ट"
   },
   "controls": {
     "validation": {
-      "title": "Request Validation",
-      "desc": "All inputs validated against strict request and schema contracts before execution."
+      "title": "सत्यापन का अनुरोध करें",
+      "desc": "निष्पादन से पहले सख्त अनुरोध और स्कीमा अनुबंध के विरुद्ध सभी इनपुट मान्य किए गए।"
     },
     "governance": {
-      "title": "Governance Enforcement",
-      "desc": "Strict, adaptive, and autonomous governance modes control what agents can do."
+      "title": "शासन प्रवर्तन",
+      "desc": "सख्त, अनुकूली और स्वायत्त शासन मोड नियंत्रित करते हैं कि एजेंट क्या कर सकते हैं।"
     },
     "safety": {
-      "title": "Safety Gates",
-      "desc": "High-risk actions pass through safety gates with preview and policy-based blocking."
+      "title": "सुरक्षा द्वार",
+      "desc": "उच्च जोखिम वाली कार्रवाइयाँ पूर्वावलोकन और नीति-आधारित अवरोधन के साथ सुरक्षा द्वारों से होकर गुजरती हैं।"
     },
     "previews": {
-      "title": "Execution Previews",
-      "desc": "Every destructive or irreversible action is previewed before it runs."
+      "title": "निष्पादन पूर्वावलोकन",
+      "desc": "प्रत्येक विनाशकारी या अपरिवर्तनीय कार्रवाई के चलने से पहले उसका पूर्वावलोकन किया जाता है।"
     }
   },
   "components": {
-    "analysis": "Security analysis — runs scan and save-time checks on code and agent output before persistence.",
-    "governance": "Governance layer — enforces strict / adaptive / autonomous control based on user-defined policy. All mode transitions are logged.",
-    "routes": "Route & Action Modules — per-route and per-action safety constraints that cannot be bypassed at the API layer.",
-    "audit": "Audit Trail — all orchestration runs produce a structured audit trail. Reviewed after major agent operations."
+    "analysis": "सुरक्षा विश्लेषण - दृढ़ता से पहले कोड और एजेंट आउटपुट पर स्कैन और सेव-टाइम जांच चलाता है।",
+    "governance": "शासन परत - उपयोगकर्ता द्वारा परिभाषित नीति के आधार पर सख्त/अनुकूली/स्वायत्त नियंत्रण लागू करती है। सभी मोड ट्रांज़िशन लॉग किए गए हैं।",
+    "routes": "रूट और एक्शन मॉड्यूल - प्रति-रूट और प्रति-एक्शन सुरक्षा बाधाएं जिन्हें API परत पर बायपास नहीं किया जा सकता है।",
+    "audit": "ऑडिट ट्रेल - सभी ऑर्केस्ट्रेशन रन एक संरचित ऑडिट ट्रेल उत्पन्न करते हैं। प्रमुख एजेंट संचालन के बाद समीक्षा की गई।"
   },
   "practices": {
-    "p1": "Keep secrets out of repositories and logs. Store all secrets using your secrets manager or hosting provider's secrets injection — never in plaintext config files.",
-    "p2": "Validate all external integration responses. Never trust third-party data without schema assertion.",
-    "p3": "Treat policy blocks as first-class security events. Every block is logged, reviewable, and feeds governance tuning.",
-    "p4": "Record and monitor remediation outcomes. Fixes without follow-up validation are not considered complete."
+    "p1": "रहस्यों को रिपॉजिटरी और लॉग से दूर रखें। अपने रहस्य प्रबंधक या होस्टिंग प्रदाता के रहस्य इंजेक्शन का उपयोग करके सभी रहस्यों को संग्रहीत करें - कभी भी सादे टेक्स्ट कॉन्फ़िगरेशन फ़ाइलों में नहीं।",
+    "p2": "सभी बाहरी एकीकरण प्रतिक्रियाओं को मान्य करें। स्कीमा दावे के बिना तीसरे पक्ष के डेटा पर कभी भरोसा न करें।",
+    "p3": "नीति अवरोधों को प्रथम श्रेणी की सुरक्षा घटनाओं के रूप में मानें। प्रत्येक ब्लॉक लॉग किया गया है, समीक्षा योग्य है, और शासन ट्यूनिंग फ़ीड करता है।",
+    "p4": "सुधारात्मक परिणामों को रिकॉर्ड और मॉनिटर करें। अनुवर्ती सत्यापन के बिना सुधारों को पूर्ण नहीं माना जाता है।"
   },
   "checklist": {
-    "c1": "Run lint, typecheck, and tests before every release",
-    "c2": "Keep all dependencies current — patch within 48 hours of CVE",
-    "c3": "Validate integration probe endpoints regularly",
-    "c4": "Review audit trails after major orchestration runs",
-    "c5": "Rotate JWT_SECRET and API keys on a scheduled cadence",
-    "c6": "Never commit secrets — use environment variable injection"
+    "c1": "प्रत्येक रिलीज़ से पहले लिंट, टाइपचेक और परीक्षण चलाएँ",
+    "c2": "सभी निर्भरताएँ चालू रखें - सीवीई के 48 घंटों के भीतर पैच करें",
+    "c3": "एकीकरण जांच समापन बिंदुओं को नियमित रूप से सत्यापित करें",
+    "c4": "प्रमुख ऑर्केस्ट्रेशन चलने के बाद ऑडिट ट्रेल्स की समीक्षा करें",
+    "c5": "JWT_SECRET और API कुंजियों को एक निर्धारित ताल पर घुमाएँ",
+    "c6": "कभी भी रहस्य न छिपाएँ - पर्यावरण चर इंजेक्शन का उपयोग करें"
   },
   "disclosure": {
-    "title": "Responsible Disclosure",
-    "body": "Found a vulnerability in SKIA Forge? We take security reports seriously. Contact us privately and we will respond within one business day.",
-    "button": "Report a Vulnerability"
+    "title": "जिम्मेदार खुलासा",
+    "body": "SKIA Forge में कोई भेद्यता मिली? हम सुरक्षा रिपोर्टों को गंभीरता से लेते हैं। हमसे निजी तौर पर संपर्क करें और हम एक व्यावसायिक दिन के भीतर जवाब देंगे।",
+    "button": "एक भेद्यता की रिपोर्ट करें"
   }
 }

@@ -1,67 +1,67 @@
 {
   "meta": {
-    "title": "Contact & Support | SKIA Forge"
+    "title": "الاتصال والدعم | SKIA Forge"
   },
   "hero": {
-    "title": "Contact & Support",
-    "subtitle": "SKIA Forge runtime and SKIA Forge IDE — startup, updates, integrations, governance, or getting started — we're here"
+    "title": "الاتصال والدعم",
+    "subtitle": "SKIA Forge وقت التشغيل وSKIA_FORGE_IDE — بدء التشغيل، أو التحديثات، أو عمليات التكامل، أو الإدارة، أو البدء — نحن هنا"
   },
   "sections": {
-    "scope": "Support Scope",
-    "sla": "Response Expectations",
-    "triage": "When Reporting an Issue — Include",
-    "escalation": "Escalation Path",
-    "form": "Send a Message"
+    "scope": "نطاق الدعم",
+    "sla": "توقعات الاستجابة",
+    "triage": "عند الإبلاغ عن مشكلة - قم بتضمينها",
+    "escalation": "مسار التصعيد",
+    "form": "أرسل رسالة"
   },
   "scope": {
-    "s1": "Runtime startup and health issues",
-    "s2": "Integration contract failures",
-    "s3": "Governance and policy flow debugging",
-    "s4": "Workflow failures and integration issues",
-    "s5": "SKIA Forge IDE install, updates, and desktop runtime",
-    "s6": "General usage and workflow questions"
+    "s1": "بدء تشغيل وقت التشغيل والقضايا الصحية",
+    "s2": "فشل عقد التكامل",
+    "s3": "تصحيح أخطاء الحوكمة وتدفق السياسات",
+    "s4": "فشل سير العمل ومشاكل التكامل",
+    "s5": "SKIA Forge IDE التثبيت والتحديثات ووقت تشغيل سطح المكتب",
+    "s6": "أسئلة الاستخدام العام وسير العمل"
   },
   "sla": {
     "p1": {
-      "label": "Critical Outage",
-      "desc": "Complete loss of service or data integrity risk. Immediate response window."
+      "label": "انقطاع حرج",
+      "desc": "الفقدان الكامل للخدمة أو خطر سلامة البيانات. نافذة الاستجابة الفورية."
     },
     "p2": {
-      "label": "Degraded Service",
-      "desc": "Core functionality impaired but workaround exists. Same business day response."
+      "label": "الخدمة المتدهورة",
+      "desc": "تم تعطيل الوظائف الأساسية ولكن الحل البديل موجود. نفس استجابة يوم العمل."
     },
     "p3": {
-      "label": "Non-blocking Issue",
-      "desc": "Minor issues, questions, feature requests. Prioritized backlog response."
+      "label": "مشكلة عدم الحظر",
+      "desc": "القضايا البسيطة والأسئلة وطلبات الميزات. الاستجابة ذات الأولوية للتراكم."
     }
   },
   "triage": {
-    "t1": "Endpoint and HTTP method",
-    "t2": "Request timestamp",
-    "t3": "Request ID or correlation ID (if available)",
-    "t4": "Governance mode: strict / adaptive / autonomous",
-    "t5": "Full error message and stack trace",
-    "t6": "Steps to reproduce reliably",
-    "t7": "SKIA Forge IDE version or build channel (if using the desktop app)"
+    "t1": "نقطة النهاية وطريقة HTTP",
+    "t2": "طلب الطابع الزمني",
+    "t3": "معرف الطلب أو معرف الارتباط (إن وجد)",
+    "t4": "وضع الحوكمة: صارم / متكيف / مستقل",
+    "t5": "رسالة خطأ كاملة وتتبع المكدس",
+    "t6": "خطوات التكاثر بشكل موثوق",
+    "t7": "SKIA Forge IDE الإصدار أو قناة البناء (في حالة استخدام تطبيق سطح المكتب)"
   },
   "escalation": {
-    "e1": "Reproduce locally and validate with health and probe endpoints to isolate the failure surface.",
-    "e2": "Apply remediation guidance from control-plane outputs and check the Troubleshooting docs.",
-    "e3": "Escalate via the form below with logs, payload shape, and expected vs actual behaviour."
+    "e1": "قم بالتكاثر محليًا والتحقق من صحة نقاط النهاية الصحية والتحقيق لعزل سطح الفشل.",
+    "e2": "قم بتطبيق إرشادات العلاج من مخرجات مستوى التحكم وتحقق من مستندات استكشاف الأخطاء وإصلاحها.",
+    "e3": "قم بالتصعيد عبر النموذج أدناه باستخدام السجلات وشكل الحمولة والسلوك المتوقع مقابل السلوك الفعلي."
   },
   "form": {
-    "namePlaceholder": "Name",
-    "emailPlaceholder": "Email",
-    "topicAria": "Topic",
-    "topicSupport": "Topic — Support (runtime, integration, governance)",
-    "topicCx": "Topic — Customer Service (account, billing, general)",
-    "subjectPlaceholder": "Subject",
-    "messagePlaceholder": "Describe your issue or question...",
-    "submit": "Send Message",
-    "sending": "Sending...",
-    "directPrefix": "Or reach us directly at:",
-    "fillAll": "Please fill in all fields.",
-    "success": "Message sent. We'll get back to you shortly.",
-    "failedPrefix": "Failed to send. Please email us at "
+    "namePlaceholder": "اسم",
+    "emailPlaceholder": "بريد إلكتروني",
+    "topicAria": "عنوان",
+    "topicSupport": "الموضوع - الدعم (وقت التشغيل، التكامل، الإدارة)",
+    "topicCx": "الموضوع - خدمة العملاء (الحساب، الفواتير، عام)",
+    "subjectPlaceholder": "موضوع",
+    "messagePlaceholder": "اوصف مشكلتك أو سؤالك...",
+    "submit": "أرسل رسالة",
+    "sending": "إرسال...",
+    "directPrefix": "أو تواصل معنا مباشرة على:",
+    "fillAll": "يرجى ملء جميع الحقول.",
+    "success": "تم إرسال الرسالة. سوف نعود اليكم قريبا.",
+    "failedPrefix": "فشل الإرسال. يرجى مراسلتنا عبر البريد الإلكتروني على "
   }
 }

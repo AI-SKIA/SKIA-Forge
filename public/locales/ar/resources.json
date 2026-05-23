@@ -1,68 +1,68 @@
 {
   "meta": {
-    "title": "Resources | SKIA Forge"
+    "title": "الموارد | SKIA Forge"
   },
   "hero": {
-    "title": "Resources",
-    "subtitle": "Everything you need to understand, deploy, and operate SKIA Forge"
+    "title": "موارد",
+    "subtitle": "كل ما تحتاجه لفهم ونشر وتشغيل SKIA Forge"
   },
   "quickLinks": {
-    "download": "Download SKIA Forge",
-    "releaseNotes": "Release Notes",
-    "contactSupport": "Contact Support"
+    "download": "تحميل SKIA Forge",
+    "releaseNotes": "ملاحظات الإصدار",
+    "contactSupport": "اتصل بالدعم"
   },
   "sections": {
-    "documentation": "Documentation",
-    "operators": "For operators"
+    "documentation": "التوثيق",
+    "operators": "للمشغلين"
   },
   "cards": {
     "productManual": {
-      "title": "Product Manual",
-      "desc": "Full product overview, capabilities, and feature positioning for SKIA Forge."
+      "title": "دليل المنتج",
+      "desc": "نظرة عامة كاملة على المنتج وإمكانياته وتحديد موضع ميزاته لـ SKIA Forge."
     },
     "quickstart": {
-      "title": "Quickstart",
-      "desc": "Download the IDE, sign in, and complete your first workflow."
+      "title": "بداية سريعة",
+      "desc": "قم بتنزيل IDE، وقم بتسجيل الدخول، وأكمل سير العمل الأول."
     },
     "userGuide": {
-      "title": "User Guide",
-      "desc": "Using the IDE: sign-in, daily workflows, governance modes, and help."
+      "title": "دليل المستخدم",
+      "desc": "استخدام IDE: تسجيل الدخول، وسير العمل اليومي، وأوضاع الإدارة، والمساعدة."
     },
     "developerGuide": {
-      "title": "Developer Guide",
-      "desc": "Local development setup, architecture conventions, and contribution patterns."
+      "title": "دليل المطور",
+      "desc": "إعداد التنمية المحلية، واتفاقيات الهندسة المعمارية، وأنماط المساهمة."
     },
     "apiReference": {
-      "title": "API Reference",
-      "desc": "Primary Forge API surfaces, endpoints, request shapes, and response contracts."
+      "title": "مرجع واجهة برمجة التطبيقات",
+      "desc": "أسطح الصياغة الأساسية لواجهة برمجة التطبيقات (API)، ونقاط النهاية، وأشكال الطلب، وعقود الاستجابة."
     },
     "troubleshooting": {
-      "title": "Troubleshooting",
-      "desc": "Common failure modes, diagnostics, and step-by-step fixes."
+      "title": "استكشاف الأخطاء وإصلاحها",
+      "desc": "أوضاع الفشل الشائعة والتشخيصات والإصلاحات خطوة بخطوة."
     },
     "changelog": {
-      "title": "Changelog",
-      "desc": "Versioned product change history. What changed, when, and why."
+      "title": "سجل التغيير",
+      "desc": "تاريخ تغيير المنتج الذي تم إصداره. ما الذي تغير ومتى ولماذا؟"
     },
     "pricing": {
-      "title": "Pricing & Packages",
-      "desc": "Product packaging, tiers, and commercial model overview."
+      "title": "التسعير والحزم",
+      "desc": "تعبئة المنتج، والطبقات، ونظرة عامة على النموذج التجاري."
     },
     "enterprise": {
-      "title": "Enterprise Readiness",
-      "desc": "Enterprise launch and pilot readiness checklist for IT and procurement teams."
+      "title": "جاهزية المؤسسة",
+      "desc": "إطلاق المؤسسة وقائمة مراجعة الاستعداد التجريبي لفرق تكنولوجيا المعلومات والمشتريات."
     },
     "securityGuide": {
-      "title": "Security Guide",
-      "desc": "Security model, controls, hardening checklist, and operational security practices."
+      "title": "دليل الأمان",
+      "desc": "نموذج الأمان، والضوابط، وقائمة المراجعة المتشددة، وممارسات الأمان التشغيلية."
     },
     "support": {
-      "title": "Support",
-      "desc": "Support scope, triage information, escalation path, and SLA expectations."
+      "title": "يدعم",
+      "desc": "نطاق الدعم ومعلومات الفرز ومسار التصعيد وتوقعات جيش تحرير السودان."
     },
     "operatorManual": {
-      "title": "Operator Manual",
-      "desc": "Deployment, runtime operations, health checks, and infrastructure guidance."
+      "title": "دليل التشغيل",
+      "desc": "النشر وعمليات وقت التشغيل والفحوصات الصحية وتوجيهات البنية التحتية."
     }
   }
 }

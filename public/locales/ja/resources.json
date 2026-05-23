@@ -1,68 +1,68 @@
 {
   "meta": {
-    "title": "Resources | SKIA Forge"
+    "title": "リソース | SKIA Forge"
   },
   "hero": {
-    "title": "Resources",
-    "subtitle": "Everything you need to understand, deploy, and operate SKIA Forge"
+    "title": "リソース",
+    "subtitle": "SKIA Forge を理解し、展開し、操作するために必要なものすべて"
   },
   "quickLinks": {
-    "download": "Download SKIA Forge",
-    "releaseNotes": "Release Notes",
-    "contactSupport": "Contact Support"
+    "download": "ダウンロード SKIA Forge",
+    "releaseNotes": "リリースノート",
+    "contactSupport": "サポートに連絡する"
   },
   "sections": {
-    "documentation": "Documentation",
-    "operators": "For operators"
+    "documentation": "ドキュメント",
+    "operators": "オペレーター向け"
   },
   "cards": {
     "productManual": {
-      "title": "Product Manual",
-      "desc": "Full product overview, capabilities, and feature positioning for SKIA Forge."
+      "title": "製品マニュアル",
+      "desc": "SKIA Forge の完全な製品概要、機能、および機能の位置付け。"
     },
     "quickstart": {
-      "title": "Quickstart",
-      "desc": "Download the IDE, sign in, and complete your first workflow."
+      "title": "クイックスタート",
+      "desc": "IDE をダウンロードし、サインインして、最初のワークフローを完了します。"
     },
     "userGuide": {
-      "title": "User Guide",
-      "desc": "Using the IDE: sign-in, daily workflows, governance modes, and help."
+      "title": "ユーザーガイド",
+      "desc": "IDE の使用: サインイン、日常のワークフロー、ガバナンス モード、およびヘルプ。"
     },
     "developerGuide": {
-      "title": "Developer Guide",
-      "desc": "Local development setup, architecture conventions, and contribution patterns."
+      "title": "開発者ガイド",
+      "desc": "ローカル開発セットアップ、アーキテクチャ規約、および貢献パターン。"
     },
     "apiReference": {
-      "title": "API Reference",
-      "desc": "Primary Forge API surfaces, endpoints, request shapes, and response contracts."
+      "title": "「API」リファレンス",
+      "desc": "プライマリ Forge API サーフェス、エンドポイント、リクエスト シェイプ、およびレスポンス コントラクト。"
     },
     "troubleshooting": {
-      "title": "Troubleshooting",
-      "desc": "Common failure modes, diagnostics, and step-by-step fixes."
+      "title": "トラブルシューティング",
+      "desc": "一般的な障害モード、診断、および段階的な修正。"
     },
     "changelog": {
-      "title": "Changelog",
-      "desc": "Versioned product change history. What changed, when, and why."
+      "title": "変更履歴",
+      "desc": "バージョン管理された製品の変更履歴。 何が、いつ、そしてなぜ変わったのか。"
     },
     "pricing": {
-      "title": "Pricing & Packages",
-      "desc": "Product packaging, tiers, and commercial model overview."
+      "title": "価格とパッケージ",
+      "desc": "製品パッケージ、階層、商用モデルの概要。"
     },
     "enterprise": {
-      "title": "Enterprise Readiness",
-      "desc": "Enterprise launch and pilot readiness checklist for IT and procurement teams."
+      "title": "エンタープライズ向けの準備状況",
+      "desc": "IT チームおよび調達チーム向けのエンタープライズ立ち上げおよびパイロット準備チェックリスト。"
     },
     "securityGuide": {
-      "title": "Security Guide",
-      "desc": "Security model, controls, hardening checklist, and operational security practices."
+      "title": "セキュリティガイド",
+      "desc": "セキュリティ モデル、制御、強化チェックリスト、運用上のセキュリティ実践。"
     },
     "support": {
-      "title": "Support",
-      "desc": "Support scope, triage information, escalation path, and SLA expectations."
+      "title": "サポート",
+      "desc": "サポート範囲、優先順位付け情報、エスカレーション パス、および SLA の期待。"
     },
     "operatorManual": {
-      "title": "Operator Manual",
-      "desc": "Deployment, runtime operations, health checks, and infrastructure guidance."
+      "title": "オペレーターマニュアル",
+      "desc": "導入、実行時操作、ヘルスチェック、インフラストラクチャのガイダンス。"
     }
   }
 }

@@ -4,129 +4,129 @@
   },
   "hero": {
     "title": "SKIA Forge",
-    "subtitle": "Governed intelligence for real software delivery — built for operators, developers, and production teams",
-    "downloadButton": "Download SKIA Forge"
+    "subtitle": "Inteligência governada para entrega real de software — criada para operadores, desenvolvedores e equipes de produção",
+    "downloadButton": "Baixar SKIA Forge"
   },
   "cards": {
     "frontier": {
-      "title": "Frontier-Ready Intelligence Layer",
+      "title": "Camada de inteligência pronta para fronteiras",
       "brand": "SKIA Forge",
-      "body": "SKIA Forge is built on a hardened intelligence stack validated across coding, tool use, reasoning, long context, vision, and multimodal workflows."
+      "body": "O SKIA Forge é construído em uma pilha de inteligência robusta validada em codificação, uso de ferramentas, raciocínio, contexto longo, visão e fluxos de trabalho multimodais."
     },
     "reliability": {
-      "title": "Verified Reliability",
+      "title": "Confiabilidade verificada",
       "brand": "SKIA Forge",
-      "body": "Every release is verified before it ships. Quality is protected end-to-end so you get stable, trustworthy outputs every time."
+      "body": "Cada versão é verificada antes de ser enviada. A qualidade é protegida de ponta a ponta para que você obtenha sempre resultados estáveis ​​e confiáveis."
     },
     "operations": {
-      "title": "Production-Grade Operations",
+      "title": "Operações de nível de produção",
       "brand": "SKIA Forge",
-      "body": "Forge ships with health checks, governance telemetry, status surfaces, and deterministic routing controls designed for operational trust."
+      "body": "O Forge vem com verificações de integridade, telemetria de governança, superfícies de status e controles de roteamento determinísticos projetados para confiança operacional."
     },
     "surfaces": {
-      "title": "One Intelligence Across Surfaces",
+      "title": "Uma inteligência em todas as superfícies",
       "brand": "SKIA Forge",
-      "body": "Use Forge on the web for API-powered execution, or install desktop for full local filesystem and terminal workflows."
+      "body": "Use o Forge na web para execução baseada em API ou instale o desktop para sistema de arquivos local completo e fluxos de trabalho de terminal."
     }
   },
   "docLinks": {
     "overview": {
-      "title": "Overview",
-      "sub": "PRODUCT OVERVIEW",
-      "desc": "Orientation and high-level view of SKIA Forge on the Forge site."
+      "title": "Visão geral",
+      "sub": "VISÃO GERAL DO PRODUTO",
+      "desc": "Orientação e visualização de alto nível de SKIA Forge no site Forge."
     },
     "api": {
-      "title": "API reference",
+      "title": "Referência API",
       "sub": "HTTP API",
-      "desc": "HTTP and integration endpoints for Forge-powered execution."
+      "desc": "HTTP e endpoints de integração para execução com tecnologia Forge."
     },
     "quickstart": {
-      "title": "Quickstart",
-      "sub": "GET STARTED",
-      "desc": "Download the IDE, sign in, and run your first governed workflow."
+      "title": "Início rápido",
+      "sub": "COMEÇAR",
+      "desc": "Baixe o IDE, faça login e execute seu primeiro fluxo de trabalho controlado."
     },
     "userGuide": {
-      "title": "User guide",
-      "sub": "DAY-TO-DAY USE",
-      "desc": "Using the IDE: sign-in, workflows, governance modes, and help."
+      "title": "Guia do usuário",
+      "sub": "USO DIÁRIO",
+      "desc": "Usando o IDE: login, fluxos de trabalho, modos de governança e ajuda."
     },
     "developerGuide": {
-      "title": "Developer guide",
-      "sub": "INTEGRATION & EXTENSION",
-      "desc": "Architecture, extension points, and integration patterns."
+      "title": "Guia do desenvolvedor",
+      "sub": "INTEGRAÇÃO E EXTENSÃO",
+      "desc": "Arquitetura, pontos de extensão e padrões de integração."
     },
     "productManual": {
-      "title": "Product manual",
-      "sub": "FULL PRODUCT REFERENCE",
-      "desc": "Deep product behavior, surfaces, and operational semantics."
+      "title": "Manual do produto",
+      "sub": "REFERÊNCIA COMPLETA DO PRODUTO",
+      "desc": "Comportamento profundo do produto, superfícies e semântica operacional."
     },
     "enterprise": {
-      "title": "Enterprise readiness",
-      "sub": "ENTERPRISE DEPLOYMENT",
-      "desc": "Checklist and signals for regulated or large-team rollout."
+      "title": "Preparação empresarial",
+      "sub": "IMPLANTAÇÃO EMPRESARIAL",
+      "desc": "Lista de verificação e sinais para implementação regulamentada ou em equipes grandes."
     },
     "pricing": {
-      "title": "Pricing & packages",
-      "sub": "PLANS & PRICING",
-      "desc": "Commercial packaging and procurement-facing detail."
+      "title": "Preços e pacotes",
+      "sub": "PLANOS E PREÇOS",
+      "desc": "Detalhes de embalagens comerciais e de compras."
     },
     "troubleshooting": {
-      "title": "Troubleshooting",
-      "sub": "DIAGNOSTICS & FIXES",
-      "desc": "Known failure modes, diagnostics, and recovery steps."
+      "title": "Solução de problemas",
+      "sub": "DIAGNÓSTICOS E CORREÇÕES",
+      "desc": "Modos de falha conhecidos, diagnósticos e etapas de recuperação."
     },
     "support": {
-      "title": "Support",
-      "sub": "GET HELP",
-      "desc": "How to get help and escalate issues through Forge support."
+      "title": "Apoiar",
+      "sub": "OBTER AJUDA",
+      "desc": "Como obter ajuda e encaminhar problemas por meio do suporte do Forge."
     },
     "securityGuide": {
-      "title": "Security guide",
-      "sub": "SECURITY & HARDENING",
-      "desc": "Threat model, hardening, and safe deployment practices."
+      "title": "Guia de segurança",
+      "sub": "SEGURANÇA E ENDURECIMENTO",
+      "desc": "Modelo de ameaças, proteção e práticas de implantação segura."
     }
   },
   "installers": {
-    "heading": "SKIA Forge PC app installers",
+    "heading": "SKIA Forge PC instaladores de aplicativos",
     "windows": {
-      "title": "Windows",
-      "sub": "PC APP INSTALLER",
+      "title": "Janelas",
+      "sub": "PC INSTALADOR DE APP",
       "desc": "Windows 10/11",
-      "hint": "64-bit installer (.exe)"
+      "hint": "Instalador de 64 bits (.exe)"
     },
     "macIntel": {
       "title": "macOS (Intel)",
-      "sub": "PC APP INSTALLER",
+      "sub": "PC INSTALADOR DE APP",
       "desc": "macOS 11+",
       "hint": "Intel x64"
     },
     "macArm": {
       "title": "macOS (Apple Silicon)",
-      "sub": "PC APP INSTALLER",
+      "sub": "PC INSTALADOR DE APP",
       "desc": "macOS 11+ M1/M2/M3",
-      "hint": "Apple Silicon (M1/M2/M3)"
+      "hint": "Silício Apple (M1/M2/M3)"
     },
     "linux": {
       "title": "Linux",
-      "sub": "PC APP INSTALLER",
+      "sub": "PC INSTALADOR DE APP",
       "desc": "Ubuntu, Fedora, Arch",
-      "hint": "AppImage (any distro)"
+      "hint": "AppImage (qualquer distro)"
     },
-    "windowsAria": "Download SKIA Forge for Windows",
-    "macIntelAria": "Download SKIA Forge for macOS Intel",
-    "macArmAria": "Download SKIA Forge for Apple Silicon",
-    "linuxAria": "Download SKIA Forge for Linux"
+    "windowsAria": "Baixe SKIA Forge para Windows",
+    "macIntelAria": "Baixe SKIA Forge para macOS Intel",
+    "macArmAria": "Baixe SKIA Forge para Apple Silicon",
+    "linuxAria": "Baixe SKIA Forge para Linux"
   },
   "howItWorks": {
-    "heading": "How Forge + SKIA works",
-    "step1": "Use Forge on the web for immediate access, or install desktop for full local workflow control.",
-    "step2": "Choose the right execution path: context, agent, SDLC, production, healing, and architecture.",
-    "step3": "Get structured outputs designed for real use, not generic draft text."
+    "heading": "Como funciona o Forge + SKIA",
+    "step1": "Use o Forge na web para acesso imediato ou instale o desktop para controle total do fluxo de trabalho local.",
+    "step2": "Escolha o caminho de execução correto: contexto, agente, SDLC, produção, recuperação e arquitetura.",
+    "step3": "Obtenha resultados estruturados projetados para uso real, e não para rascunhos de textos genéricos."
   },
   "whyTeams": {
-    "heading": "Why teams choose SKIA Forge",
-    "a": "Benchmark-aligned quality on your critical dimensions: coding, tools, reasoning, long context, vision, and TTS.",
-    "b": "System-level maturity beyond raw output: observability, health checks, and integration governance built for production environments.",
-    "c": "Truth-based release distribution: only published installers are shown for download."
+    "heading": "Por que as equipes escolhem SKIA Forge",
+    "a": "Qualidade alinhada ao benchmark em suas dimensões críticas: codificação, ferramentas, raciocínio, contexto longo, visão e TTS.",
+    "b": "Maturidade no nível do sistema além da produção bruta: observabilidade, verificações de integridade e governança de integração construída para ambientes de produção.",
+    "c": "Distribuição de lançamento baseada na verdade: apenas instaladores publicados são mostrados para download."
   }
 }

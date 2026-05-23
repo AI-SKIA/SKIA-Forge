@@ -1,58 +1,58 @@
 {
   "meta": {
-    "title": "Security | SKIA Forge"
+    "title": "Seguridad | SKIA Forge"
   },
   "hero": {
-    "title": "Security",
-    "subtitle": "SKIA Forge applies layered controls across every surface — request, governance, and execution"
+    "title": "Seguridad",
+    "subtitle": "SKIA Forge aplica controles en capas en todas las superficies: solicitud, gobernanza y ejecución."
   },
   "sections": {
-    "model": "Security Model",
-    "components": "Key Security Components",
-    "practices": "Operational Security Practices",
-    "checklist": "Hardening Checklist"
+    "model": "Modelo de seguridad",
+    "components": "Componentes clave de seguridad",
+    "practices": "Prácticas de seguridad operativa",
+    "checklist": "Lista de verificación de endurecimiento"
   },
   "controls": {
     "validation": {
-      "title": "Request Validation",
-      "desc": "All inputs validated against strict request and schema contracts before execution."
+      "title": "Solicitar validación",
+      "desc": "Todas las entradas se validaron según estrictos contratos de solicitud y esquema antes de la ejecución."
     },
     "governance": {
-      "title": "Governance Enforcement",
-      "desc": "Strict, adaptive, and autonomous governance modes control what agents can do."
+      "title": "Aplicación de la gobernanza",
+      "desc": "Los modos de gobernanza estrictos, adaptativos y autónomos controlan lo que los agentes pueden hacer."
     },
     "safety": {
-      "title": "Safety Gates",
-      "desc": "High-risk actions pass through safety gates with preview and policy-based blocking."
+      "title": "Puertas de seguridad",
+      "desc": "Las acciones de alto riesgo atraviesan puertas de seguridad con vista previa y bloqueo basado en políticas."
     },
     "previews": {
-      "title": "Execution Previews",
-      "desc": "Every destructive or irreversible action is previewed before it runs."
+      "title": "Vistas previas de ejecución",
+      "desc": "Cada acción destructiva o irreversible se previsualiza antes de ejecutarse."
     }
   },
   "components": {
-    "analysis": "Security analysis — runs scan and save-time checks on code and agent output before persistence.",
-    "governance": "Governance layer — enforces strict / adaptive / autonomous control based on user-defined policy. All mode transitions are logged.",
-    "routes": "Route & Action Modules — per-route and per-action safety constraints that cannot be bypassed at the API layer.",
-    "audit": "Audit Trail — all orchestration runs produce a structured audit trail. Reviewed after major agent operations."
+    "analysis": "Análisis de seguridad: ejecuta comprobaciones de escaneo y ahorro de tiempo en el código y la salida del agente antes de la persistencia.",
+    "governance": "Capa de gobernanza: aplica un control estricto, adaptable y autónomo basado en una política definida por el usuario. Todas las transiciones de modo se registran.",
+    "routes": "Módulos de ruta y acción: restricciones de seguridad por ruta y por acción que no se pueden eludir en la capa API.",
+    "audit": "Registro de auditoría: todas las ejecuciones de orquestación producen un registro de auditoría estructurado. Revisado después de operaciones importantes de agentes."
   },
   "practices": {
-    "p1": "Keep secrets out of repositories and logs. Store all secrets using your secrets manager or hosting provider's secrets injection — never in plaintext config files.",
-    "p2": "Validate all external integration responses. Never trust third-party data without schema assertion.",
-    "p3": "Treat policy blocks as first-class security events. Every block is logged, reviewable, and feeds governance tuning.",
-    "p4": "Record and monitor remediation outcomes. Fixes without follow-up validation are not considered complete."
+    "p1": "Mantenga los secretos fuera de los repositorios y registros. Almacene todos los secretos utilizando su administrador de secretos o la inyección de secretos de su proveedor de alojamiento, nunca en archivos de configuración de texto sin formato.",
+    "p2": "Validar todas las respuestas de integración externa. Nunca confíe en datos de terceros sin una afirmación de esquema.",
+    "p3": "Trate los bloques de políticas como eventos de seguridad de primera clase. Cada bloque se registra, se puede revisar y alimenta el ajuste de la gobernanza.",
+    "p4": "Registrar y monitorear los resultados de la remediación. Las correcciones sin validación de seguimiento no se consideran completas."
   },
   "checklist": {
-    "c1": "Run lint, typecheck, and tests before every release",
-    "c2": "Keep all dependencies current — patch within 48 hours of CVE",
-    "c3": "Validate integration probe endpoints regularly",
-    "c4": "Review audit trails after major orchestration runs",
-    "c5": "Rotate JWT_SECRET and API keys on a scheduled cadence",
-    "c6": "Never commit secrets — use environment variable injection"
+    "c1": "Ejecute pelusa, verificación de tipos y pruebas antes de cada lanzamiento",
+    "c2": "Mantenga todas las dependencias actualizadas: aplique el parche dentro de las 48 horas posteriores a CVE",
+    "c3": "Valide los puntos finales de la sonda de integración periódicamente",
+    "c4": "Revisar las pistas de auditoría después de ejecuciones importantes de orquestación",
+    "c5": "Gire las teclas JWT_SECRET y API en una cadencia programada",
+    "c6": "Nunca confirmes secretos: usa la inyección de variables de entorno"
   },
   "disclosure": {
-    "title": "Responsible Disclosure",
-    "body": "Found a vulnerability in SKIA Forge? We take security reports seriously. Contact us privately and we will respond within one business day.",
-    "button": "Report a Vulnerability"
+    "title": "Divulgación responsable",
+    "body": "¿Encontró una vulnerabilidad en SKIA Forge? Nos tomamos en serio los informes de seguridad. Contáctenos de forma privada y le responderemos dentro de un día hábil.",
+    "button": "Informar una vulnerabilidad"
   }
 }

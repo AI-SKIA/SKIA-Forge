@@ -1,67 +1,67 @@
 {
   "meta": {
-    "title": "Contact & Support | SKIA Forge"
+    "title": "İletişim ve Destek | SKIA Forge"
   },
   "hero": {
-    "title": "Contact & Support",
-    "subtitle": "SKIA Forge runtime and SKIA Forge IDE — startup, updates, integrations, governance, or getting started — we're here"
+    "title": "İletişim ve Destek",
+    "subtitle": "SKIA Forge çalışma zamanı ve SKIA Forge IDE — başlatma, güncellemeler, entegrasyonlar, yönetişim veya başlangıç ​​— buradayız"
   },
   "sections": {
-    "scope": "Support Scope",
-    "sla": "Response Expectations",
-    "triage": "When Reporting an Issue — Include",
-    "escalation": "Escalation Path",
-    "form": "Send a Message"
+    "scope": "Destek Kapsamı",
+    "sla": "Yanıt Beklentileri",
+    "triage": "Bir Sorun Bildirirken — Dahil Et",
+    "escalation": "İlerletme Yolu",
+    "form": "Mesaj Gönder"
   },
   "scope": {
-    "s1": "Runtime startup and health issues",
-    "s2": "Integration contract failures",
-    "s3": "Governance and policy flow debugging",
-    "s4": "Workflow failures and integration issues",
-    "s5": "SKIA Forge IDE install, updates, and desktop runtime",
-    "s6": "General usage and workflow questions"
+    "s1": "Çalışma zamanı başlatma ve sistem durumu sorunları",
+    "s2": "Entegrasyon sözleşmesi başarısızlıkları",
+    "s3": "Yönetişim ve politika akışında hata ayıklama",
+    "s4": "İş akışı hataları ve entegrasyon sorunları",
+    "s5": "SKIA Forge IDE yükleme, güncellemeler ve masaüstü çalışma zamanı",
+    "s6": "Genel kullanım ve iş akışı soruları"
   },
   "sla": {
     "p1": {
-      "label": "Critical Outage",
-      "desc": "Complete loss of service or data integrity risk. Immediate response window."
+      "label": "Kritik Kesinti",
+      "desc": "Hizmetin tamamen kaybedilmesi veya veri bütünlüğü riski. Anında yanıt penceresi."
     },
     "p2": {
-      "label": "Degraded Service",
-      "desc": "Core functionality impaired but workaround exists. Same business day response."
+      "label": "Düşük Hizmet",
+      "desc": "Temel işlevsellik bozulmuş ancak geçici çözüm mevcut. Aynı iş günü yanıtı."
     },
     "p3": {
-      "label": "Non-blocking Issue",
-      "desc": "Minor issues, questions, feature requests. Prioritized backlog response."
+      "label": "Engellenmeyen Sorun",
+      "desc": "Küçük sorunlar, sorular, özellik istekleri. Öncelikli biriktirilmiş yanıt."
     }
   },
   "triage": {
-    "t1": "Endpoint and HTTP method",
-    "t2": "Request timestamp",
-    "t3": "Request ID or correlation ID (if available)",
-    "t4": "Governance mode: strict / adaptive / autonomous",
-    "t5": "Full error message and stack trace",
-    "t6": "Steps to reproduce reliably",
-    "t7": "SKIA Forge IDE version or build channel (if using the desktop app)"
+    "t1": "Uç nokta ve HTTP yöntemi",
+    "t2": "Zaman damgası iste",
+    "t3": "İstek Kimliği veya korelasyon kimliği (varsa)",
+    "t4": "Yönetişim modu: katı / uyarlanabilir / özerk",
+    "t5": "Tam hata mesajı ve yığın izleme",
+    "t6": "Güvenilir şekilde çoğaltma adımları",
+    "t7": "SKIA Forge IDE sürümü veya derleme kanalı (masaüstü uygulamasını kullanıyorsanız)"
   },
   "escalation": {
-    "e1": "Reproduce locally and validate with health and probe endpoints to isolate the failure surface.",
-    "e2": "Apply remediation guidance from control-plane outputs and check the Troubleshooting docs.",
-    "e3": "Escalate via the form below with logs, payload shape, and expected vs actual behaviour."
+    "e1": "Arıza yüzeyini izole etmek için yerel olarak çoğaltın ve sistem durumu ve araştırma uç noktalarıyla doğrulayın.",
+    "e2": "Kontrol düzlemi çıkışlarından düzeltme kılavuzunu uygulayın ve Sorun Giderme belgelerini kontrol edin.",
+    "e3": "Günlükleri, yük şeklini ve beklenen ve gerçek davranışı içeren aşağıdaki formu kullanarak üst kademeye iletin."
   },
   "form": {
-    "namePlaceholder": "Name",
-    "emailPlaceholder": "Email",
-    "topicAria": "Topic",
-    "topicSupport": "Topic — Support (runtime, integration, governance)",
-    "topicCx": "Topic — Customer Service (account, billing, general)",
-    "subjectPlaceholder": "Subject",
-    "messagePlaceholder": "Describe your issue or question...",
-    "submit": "Send Message",
-    "sending": "Sending...",
-    "directPrefix": "Or reach us directly at:",
-    "fillAll": "Please fill in all fields.",
-    "success": "Message sent. We'll get back to you shortly.",
-    "failedPrefix": "Failed to send. Please email us at "
+    "namePlaceholder": "İsim",
+    "emailPlaceholder": "E-posta",
+    "topicAria": "Başlık",
+    "topicSupport": "Konu — Destek (çalışma zamanı, entegrasyon, yönetişim)",
+    "topicCx": "Konu — Müşteri Hizmetleri (hesap, faturalandırma, genel)",
+    "subjectPlaceholder": "Ders",
+    "messagePlaceholder": "Sorununuzu veya sorunuzu açıklayın...",
+    "submit": "Mesaj Gönder",
+    "sending": "Gönderiliyor...",
+    "directPrefix": "Veya bize doğrudan şu adresten ulaşın:",
+    "fillAll": "Lütfen tüm alanları doldurun.",
+    "success": "Mesaj gönderildi. Kısa süre içinde size geri döneceğiz.",
+    "failedPrefix": "Gönderilemedi. Lütfen bize e-posta gönderin "
   }
 }

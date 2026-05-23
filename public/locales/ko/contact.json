@@ -1,67 +1,67 @@
 {
   "meta": {
-    "title": "Contact & Support | SKIA Forge"
+    "title": "연락처 및 지원 | SKIA Forge"
   },
   "hero": {
-    "title": "Contact & Support",
-    "subtitle": "SKIA Forge runtime and SKIA Forge IDE — startup, updates, integrations, governance, or getting started — we're here"
+    "title": "연락처 및 지원",
+    "subtitle": "SKIA Forge 런타임 및 SKIA Forge IDE — 시작, 업데이트, 통합, 거버넌스 또는 시작 — 제공"
   },
   "sections": {
-    "scope": "Support Scope",
-    "sla": "Response Expectations",
-    "triage": "When Reporting an Issue — Include",
-    "escalation": "Escalation Path",
-    "form": "Send a Message"
+    "scope": "지원 범위",
+    "sla": "반응 기대",
+    "triage": "문제를 보고할 때 — 포함",
+    "escalation": "에스컬레이션 경로",
+    "form": "메시지 보내기"
   },
   "scope": {
-    "s1": "Runtime startup and health issues",
-    "s2": "Integration contract failures",
-    "s3": "Governance and policy flow debugging",
-    "s4": "Workflow failures and integration issues",
-    "s5": "SKIA Forge IDE install, updates, and desktop runtime",
-    "s6": "General usage and workflow questions"
+    "s1": "런타임 시작 및 상태 문제",
+    "s2": "통합 계약 실패",
+    "s3": "거버넌스 및 정책 흐름 디버깅",
+    "s4": "워크플로 실패 및 통합 문제",
+    "s5": "SKIA Forge IDE 설치, 업데이트 및 데스크톱 런타임",
+    "s6": "일반적인 사용법 및 작업 흐름 질문"
   },
   "sla": {
     "p1": {
-      "label": "Critical Outage",
-      "desc": "Complete loss of service or data integrity risk. Immediate response window."
+      "label": "심각한 정전",
+      "desc": "서비스 또는 데이터 무결성 위험이 완전히 손실됩니다. 즉시 응답 창."
     },
     "p2": {
-      "label": "Degraded Service",
-      "desc": "Core functionality impaired but workaround exists. Same business day response."
+      "label": "저하된 서비스",
+      "desc": "핵심 기능이 손상되었지만 해결 방법이 있습니다. 영업일 기준 당일 응답."
     },
     "p3": {
-      "label": "Non-blocking Issue",
-      "desc": "Minor issues, questions, feature requests. Prioritized backlog response."
+      "label": "논블로킹 문제",
+      "desc": "사소한 문제, 질문, 기능 요청. 우선순위 백로그 응답."
     }
   },
   "triage": {
-    "t1": "Endpoint and HTTP method",
-    "t2": "Request timestamp",
-    "t3": "Request ID or correlation ID (if available)",
-    "t4": "Governance mode: strict / adaptive / autonomous",
-    "t5": "Full error message and stack trace",
-    "t6": "Steps to reproduce reliably",
-    "t7": "SKIA Forge IDE version or build channel (if using the desktop app)"
+    "t1": "엔드포인트 및 HTTP 방법",
+    "t2": "요청 타임스탬프",
+    "t3": "요청 ID 또는 상관 ID(사용 가능한 경우)",
+    "t4": "거버넌스 모드: 엄격/적응/자율",
+    "t5": "전체 오류 메시지 및 스택 추적",
+    "t6": "안정적으로 재현하는 단계",
+    "t7": "SKIA Forge IDE 버전 또는 빌드 채널(데스크톱 앱을 사용하는 경우)"
   },
   "escalation": {
-    "e1": "Reproduce locally and validate with health and probe endpoints to isolate the failure surface.",
-    "e2": "Apply remediation guidance from control-plane outputs and check the Troubleshooting docs.",
-    "e3": "Escalate via the form below with logs, payload shape, and expected vs actual behaviour."
+    "e1": "로컬에서 재현하고 상태 및 프로브 엔드포인트로 유효성을 검사하여 오류 표면을 격리합니다.",
+    "e2": "제어 영역 출력에서 ​​해결 지침을 적용하고 문제 해결 문서를 확인하세요.",
+    "e3": "로그, 페이로드 형태, 예상 동작과 실제 동작을 포함하여 아래 양식을 통해 에스컬레이션하세요."
   },
   "form": {
-    "namePlaceholder": "Name",
-    "emailPlaceholder": "Email",
-    "topicAria": "Topic",
-    "topicSupport": "Topic — Support (runtime, integration, governance)",
-    "topicCx": "Topic — Customer Service (account, billing, general)",
-    "subjectPlaceholder": "Subject",
-    "messagePlaceholder": "Describe your issue or question...",
-    "submit": "Send Message",
-    "sending": "Sending...",
-    "directPrefix": "Or reach us directly at:",
-    "fillAll": "Please fill in all fields.",
-    "success": "Message sent. We'll get back to you shortly.",
-    "failedPrefix": "Failed to send. Please email us at "
+    "namePlaceholder": "이름",
+    "emailPlaceholder": "이메일",
+    "topicAria": "주제",
+    "topicSupport": "주제 — 지원(런타임, 통합, 거버넌스)",
+    "topicCx": "주제 — 고객 서비스(계정, 청구, 일반)",
+    "subjectPlaceholder": "주제",
+    "messagePlaceholder": "문제나 질문을 설명하세요...",
+    "submit": "메시지 보내기",
+    "sending": "배상...",
+    "directPrefix": "또는 다음 주소로 직접 문의하세요.",
+    "fillAll": "모든 필드를 작성해 주세요.",
+    "success": "메시지가 전송되었습니다. 곧 연락드리겠습니다.",
+    "failedPrefix": "전송하지 못했습니다. 다음 주소로 이메일을 보내주세요. "
   }
 }

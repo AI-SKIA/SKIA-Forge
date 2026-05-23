@@ -1,67 +1,67 @@
 {
   "meta": {
-    "title": "Contact & Support | SKIA Forge"
+    "title": "Kontakt & Support | SKIA Forge"
   },
   "hero": {
-    "title": "Contact & Support",
-    "subtitle": "SKIA Forge runtime and SKIA Forge IDE — startup, updates, integrations, governance, or getting started — we're here"
+    "title": "Kontakt & Support",
+    "subtitle": "SKIA Forge Runtime und SKIA Forge IDE – Startup, Updates, Integrationen, Governance oder Erste Schritte – wir sind hier"
   },
   "sections": {
-    "scope": "Support Scope",
-    "sla": "Response Expectations",
-    "triage": "When Reporting an Issue — Include",
-    "escalation": "Escalation Path",
-    "form": "Send a Message"
+    "scope": "Supportumfang",
+    "sla": "Antworterwartungen",
+    "triage": "Wenn Sie ein Problem melden, schließen Sie es ein",
+    "escalation": "Eskalationspfad",
+    "form": "Senden Sie eine Nachricht"
   },
   "scope": {
-    "s1": "Runtime startup and health issues",
-    "s2": "Integration contract failures",
-    "s3": "Governance and policy flow debugging",
-    "s4": "Workflow failures and integration issues",
-    "s5": "SKIA Forge IDE install, updates, and desktop runtime",
-    "s6": "General usage and workflow questions"
+    "s1": "Probleme beim Start der Laufzeit und beim Zustandszustand",
+    "s2": "Scheitern von Integrationsverträgen",
+    "s3": "Debuggen von Governance- und Richtlinienflüssen",
+    "s4": "Workflow-Fehler und Integrationsprobleme",
+    "s5": "SKIA Forge IDE Installation, Updates und Desktop-Runtime",
+    "s6": "Allgemeine Fragen zur Nutzung und zum Workflow"
   },
   "sla": {
     "p1": {
-      "label": "Critical Outage",
-      "desc": "Complete loss of service or data integrity risk. Immediate response window."
+      "label": "Kritischer Ausfall",
+      "desc": "Vollständiger Dienstausfall oder Risiko der Datenintegrität. Sofortiges Antwortfenster."
     },
     "p2": {
-      "label": "Degraded Service",
-      "desc": "Core functionality impaired but workaround exists. Same business day response."
+      "label": "Beeinträchtigter Service",
+      "desc": "Die Kernfunktionalität ist beeinträchtigt, es gibt jedoch eine Problemumgehung. Antwort am selben Werktag."
     },
     "p3": {
-      "label": "Non-blocking Issue",
-      "desc": "Minor issues, questions, feature requests. Prioritized backlog response."
+      "label": "Nicht blockierendes Problem",
+      "desc": "Kleinere Probleme, Fragen, Funktionswünsche. Priorisierte Rückstandsreaktion."
     }
   },
   "triage": {
-    "t1": "Endpoint and HTTP method",
-    "t2": "Request timestamp",
-    "t3": "Request ID or correlation ID (if available)",
-    "t4": "Governance mode: strict / adaptive / autonomous",
-    "t5": "Full error message and stack trace",
-    "t6": "Steps to reproduce reliably",
-    "t7": "SKIA Forge IDE version or build channel (if using the desktop app)"
+    "t1": "Endpunkt und HTTP-Methode",
+    "t2": "Zeitstempel anfordern",
+    "t3": "Anforderungs-ID oder Korrelations-ID (falls verfügbar)",
+    "t4": "Governance-Modus: streng / adaptiv / autonom",
+    "t5": "Vollständige Fehlermeldung und Stack-Trace",
+    "t6": "Schritte zur zuverlässigen Reproduktion",
+    "t7": "SKIA Forge IDE Version oder Build-Kanal (bei Verwendung der Desktop-App)"
   },
   "escalation": {
-    "e1": "Reproduce locally and validate with health and probe endpoints to isolate the failure surface.",
-    "e2": "Apply remediation guidance from control-plane outputs and check the Troubleshooting docs.",
-    "e3": "Escalate via the form below with logs, payload shape, and expected vs actual behaviour."
+    "e1": "Lokal reproduzieren und mit Integritäts- und Testendpunkten validieren, um die Fehleroberfläche zu isolieren.",
+    "e2": "Wenden Sie die Fehlerbehebungsanweisungen aus den Ausgaben der Steuerungsebene an und prüfen Sie die Dokumente zur Fehlerbehebung.",
+    "e3": "Eskalieren Sie über das Formular unten mit Protokollen, Nutzlastform und erwartetem vs. tatsächlichem Verhalten."
   },
   "form": {
     "namePlaceholder": "Name",
-    "emailPlaceholder": "Email",
-    "topicAria": "Topic",
-    "topicSupport": "Topic — Support (runtime, integration, governance)",
-    "topicCx": "Topic — Customer Service (account, billing, general)",
-    "subjectPlaceholder": "Subject",
-    "messagePlaceholder": "Describe your issue or question...",
-    "submit": "Send Message",
-    "sending": "Sending...",
-    "directPrefix": "Or reach us directly at:",
-    "fillAll": "Please fill in all fields.",
-    "success": "Message sent. We'll get back to you shortly.",
-    "failedPrefix": "Failed to send. Please email us at "
+    "emailPlaceholder": "E-Mail",
+    "topicAria": "Thema",
+    "topicSupport": "Thema – Support (Laufzeit, Integration, Governance)",
+    "topicCx": "Thema – Kundenservice (Konto, Abrechnung, Allgemein)",
+    "subjectPlaceholder": "Thema",
+    "messagePlaceholder": "Beschreiben Sie Ihr Problem oder Ihre Frage ...",
+    "submit": "Nachricht senden",
+    "sending": "Senden...",
+    "directPrefix": "Oder erreichen Sie uns direkt unter:",
+    "fillAll": "Bitte füllen Sie alle Felder aus.",
+    "success": "Nachricht gesendet. Wir werden uns in Kürze bei Ihnen melden.",
+    "failedPrefix": "Senden fehlgeschlagen. Bitte senden Sie uns eine E-Mail an "
   }
 }

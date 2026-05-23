@@ -1,67 +1,67 @@
 {
   "meta": {
-    "title": "Contact & Support | SKIA Forge"
+    "title": "Контакты и поддержка | SKIA Forge"
   },
   "hero": {
-    "title": "Contact & Support",
-    "subtitle": "SKIA Forge runtime and SKIA Forge IDE — startup, updates, integrations, governance, or getting started — we're here"
+    "title": "Контакты и поддержка",
+    "subtitle": "SKIA Forge среда выполнения и SKIA Forge IDE — запуск, обновления, интеграция, управление или начало работы — мы здесь"
   },
   "sections": {
-    "scope": "Support Scope",
-    "sla": "Response Expectations",
-    "triage": "When Reporting an Issue — Include",
-    "escalation": "Escalation Path",
-    "form": "Send a Message"
+    "scope": "Объем поддержки",
+    "sla": "Ожидания ответа",
+    "triage": "Сообщая о проблеме, включите",
+    "escalation": "Путь эскалации",
+    "form": "Отправить сообщение"
   },
   "scope": {
-    "s1": "Runtime startup and health issues",
-    "s2": "Integration contract failures",
-    "s3": "Governance and policy flow debugging",
-    "s4": "Workflow failures and integration issues",
-    "s5": "SKIA Forge IDE install, updates, and desktop runtime",
-    "s6": "General usage and workflow questions"
+    "s1": "Запуск во время выполнения и проблемы со здоровьем",
+    "s2": "Сбои интеграционного контракта",
+    "s3": "Отладка управления и политики",
+    "s4": "Сбои рабочего процесса и проблемы интеграции",
+    "s5": "SKIA Forge IDE установка, обновления и среда выполнения рабочего стола",
+    "s6": "Общие вопросы по использованию и рабочему процессу"
   },
   "sla": {
     "p1": {
-      "label": "Critical Outage",
-      "desc": "Complete loss of service or data integrity risk. Immediate response window."
+      "label": "Критический сбой",
+      "desc": "Полная потеря обслуживания или риск целостности данных. Окно немедленного ответа."
     },
     "p2": {
-      "label": "Degraded Service",
-      "desc": "Core functionality impaired but workaround exists. Same business day response."
+      "label": "Ухудшенное обслуживание",
+      "desc": "Основная функциональность нарушена, но существует обходной путь. Ответ в тот же рабочий день."
     },
     "p3": {
-      "label": "Non-blocking Issue",
-      "desc": "Minor issues, questions, feature requests. Prioritized backlog response."
+      "label": "Неблокирующая проблема",
+      "desc": "Мелкие проблемы, вопросы, пожелания. Приоритетный ответ на отставание."
     }
   },
   "triage": {
-    "t1": "Endpoint and HTTP method",
-    "t2": "Request timestamp",
-    "t3": "Request ID or correlation ID (if available)",
-    "t4": "Governance mode: strict / adaptive / autonomous",
-    "t5": "Full error message and stack trace",
-    "t6": "Steps to reproduce reliably",
-    "t7": "SKIA Forge IDE version or build channel (if using the desktop app)"
+    "t1": "Конечная точка и метод HTTP",
+    "t2": "Временная метка запроса",
+    "t3": "Идентификатор запроса или идентификатор корреляции (если имеется)",
+    "t4": "Режим управления: строгий/адаптивный/автономный",
+    "t5": "Полное сообщение об ошибке и трассировка стека",
+    "t6": "Шаги для надежного воспроизведения",
+    "t7": "SKIA Forge IDE версия или канал сборки (при использовании настольного приложения)"
   },
   "escalation": {
-    "e1": "Reproduce locally and validate with health and probe endpoints to isolate the failure surface.",
-    "e2": "Apply remediation guidance from control-plane outputs and check the Troubleshooting docs.",
-    "e3": "Escalate via the form below with logs, payload shape, and expected vs actual behaviour."
+    "e1": "Воспроизведите локально и проверьте работоспособность и проверьте конечные точки, чтобы изолировать поверхность сбоя.",
+    "e2": "Примените рекомендации по исправлению из выходных данных плоскости управления и проверьте документацию по устранению неполадок.",
+    "e3": "Передайте эскалацию через форму ниже, указав журналы, форму полезной нагрузки и ожидаемое и фактическое поведение."
   },
   "form": {
-    "namePlaceholder": "Name",
-    "emailPlaceholder": "Email",
-    "topicAria": "Topic",
-    "topicSupport": "Topic — Support (runtime, integration, governance)",
-    "topicCx": "Topic — Customer Service (account, billing, general)",
-    "subjectPlaceholder": "Subject",
-    "messagePlaceholder": "Describe your issue or question...",
-    "submit": "Send Message",
-    "sending": "Sending...",
-    "directPrefix": "Or reach us directly at:",
-    "fillAll": "Please fill in all fields.",
-    "success": "Message sent. We'll get back to you shortly.",
-    "failedPrefix": "Failed to send. Please email us at "
+    "namePlaceholder": "Имя",
+    "emailPlaceholder": "Электронная почта",
+    "topicAria": "Тема",
+    "topicSupport": "Тема — Поддержка (время выполнения, интеграция, управление)",
+    "topicCx": "Тема — Обслуживание клиентов (учетная запись, выставление счетов, общие сведения)",
+    "subjectPlaceholder": "Предмет",
+    "messagePlaceholder": "Опишите вашу проблему или вопрос...",
+    "submit": "Отправить сообщение",
+    "sending": "Отправка...",
+    "directPrefix": "Или свяжитесь с нами напрямую по адресу:",
+    "fillAll": "Пожалуйста, заполните все поля.",
+    "success": "Сообщение отправлено. Мы свяжемся с вами в ближайшее время.",
+    "failedPrefix": "Не удалось отправить. Пожалуйста, напишите нам по адресу "
   }
 }

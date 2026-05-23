@@ -1,68 +1,68 @@
 {
   "meta": {
-    "title": "Resources | SKIA Forge"
+    "title": "Ресурсы | SKIA Forge"
   },
   "hero": {
-    "title": "Resources",
-    "subtitle": "Everything you need to understand, deploy, and operate SKIA Forge"
+    "title": "Ресурсы",
+    "subtitle": "Все, что вам нужно для понимания, развертывания и эксплуатации SKIA Forge"
   },
   "quickLinks": {
-    "download": "Download SKIA Forge",
-    "releaseNotes": "Release Notes",
-    "contactSupport": "Contact Support"
+    "download": "Скачать SKIA Forge",
+    "releaseNotes": "Примечания к выпуску",
+    "contactSupport": "Обратиться в службу поддержки"
   },
   "sections": {
-    "documentation": "Documentation",
-    "operators": "For operators"
+    "documentation": "Документация",
+    "operators": "Для операторов"
   },
   "cards": {
     "productManual": {
-      "title": "Product Manual",
-      "desc": "Full product overview, capabilities, and feature positioning for SKIA Forge."
+      "title": "Руководство по продукту",
+      "desc": "Полный обзор продукта, возможностей и позиционирования функций для SKIA Forge."
     },
     "quickstart": {
-      "title": "Quickstart",
-      "desc": "Download the IDE, sign in, and complete your first workflow."
+      "title": "Быстрый старт",
+      "desc": "Загрузите IDE, войдите в систему и завершите свой первый рабочий процесс."
     },
     "userGuide": {
-      "title": "User Guide",
-      "desc": "Using the IDE: sign-in, daily workflows, governance modes, and help."
+      "title": "Руководство пользователя",
+      "desc": "Использование IDE: вход в систему, ежедневные рабочие процессы, режимы управления и помощь."
     },
     "developerGuide": {
-      "title": "Developer Guide",
-      "desc": "Local development setup, architecture conventions, and contribution patterns."
+      "title": "Руководство разработчика",
+      "desc": "Настройка локальной разработки, соглашения об архитектуре и шаблоны вклада."
     },
     "apiReference": {
-      "title": "API Reference",
-      "desc": "Primary Forge API surfaces, endpoints, request shapes, and response contracts."
+      "title": "API Справочник",
+      "desc": "Первичные поверхности API Forge, конечные точки, формы запросов и контракты ответов."
     },
     "troubleshooting": {
-      "title": "Troubleshooting",
-      "desc": "Common failure modes, diagnostics, and step-by-step fixes."
+      "title": "Поиск неисправностей",
+      "desc": "Распространенные режимы сбоев, диагностика и пошаговые исправления."
     },
     "changelog": {
-      "title": "Changelog",
-      "desc": "Versioned product change history. What changed, when, and why."
+      "title": "Журнал изменений",
+      "desc": "История изменений версий продукта. Что изменилось, когда и почему."
     },
     "pricing": {
-      "title": "Pricing & Packages",
-      "desc": "Product packaging, tiers, and commercial model overview."
+      "title": "Цены и пакеты",
+      "desc": "Упаковка продукта, уровни и обзор коммерческой модели."
     },
     "enterprise": {
-      "title": "Enterprise Readiness",
-      "desc": "Enterprise launch and pilot readiness checklist for IT and procurement teams."
+      "title": "Готовность предприятия",
+      "desc": "Контрольный список запуска предприятия и готовности к пилотному проекту для отделов ИТ и закупок."
     },
     "securityGuide": {
-      "title": "Security Guide",
-      "desc": "Security model, controls, hardening checklist, and operational security practices."
+      "title": "Руководство по безопасности",
+      "desc": "Модель безопасности, средства контроля, контрольный список усиления защиты и методы операционной безопасности."
     },
     "support": {
-      "title": "Support",
-      "desc": "Support scope, triage information, escalation path, and SLA expectations."
+      "title": "Поддерживать",
+      "desc": "Объем поддержки, информация о сортировке, путь эскалации и ожидания по SLA."
     },
     "operatorManual": {
-      "title": "Operator Manual",
-      "desc": "Deployment, runtime operations, health checks, and infrastructure guidance."
+      "title": "Руководство оператора",
+      "desc": "Развертывание, операции во время выполнения, проверки работоспособности и руководство по инфраструктуре."
     }
   }
 }

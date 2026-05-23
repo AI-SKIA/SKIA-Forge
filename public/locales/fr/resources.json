@@ -1,68 +1,68 @@
 {
   "meta": {
-    "title": "Resources | SKIA Forge"
+    "title": "Ressources | SKIA Forge"
   },
   "hero": {
-    "title": "Resources",
-    "subtitle": "Everything you need to understand, deploy, and operate SKIA Forge"
+    "title": "Ressources",
+    "subtitle": "Tout ce dont vous avez besoin pour comprendre, déployer et exploiter SKIA Forge"
   },
   "quickLinks": {
-    "download": "Download SKIA Forge",
-    "releaseNotes": "Release Notes",
-    "contactSupport": "Contact Support"
+    "download": "Télécharger SKIA Forge",
+    "releaseNotes": "Notes de version",
+    "contactSupport": "Contacter l'assistance"
   },
   "sections": {
     "documentation": "Documentation",
-    "operators": "For operators"
+    "operators": "Pour les opérateurs"
   },
   "cards": {
     "productManual": {
-      "title": "Product Manual",
-      "desc": "Full product overview, capabilities, and feature positioning for SKIA Forge."
+      "title": "Manuel du produit",
+      "desc": "Présentation complète du produit, des capacités et du positionnement des fonctionnalités pour SKIA Forge."
     },
     "quickstart": {
-      "title": "Quickstart",
-      "desc": "Download the IDE, sign in, and complete your first workflow."
+      "title": "Démarrage rapide",
+      "desc": "Téléchargez le IDE, connectez-vous et terminez votre premier flux de travail."
     },
     "userGuide": {
-      "title": "User Guide",
-      "desc": "Using the IDE: sign-in, daily workflows, governance modes, and help."
+      "title": "Guide de l'utilisateur",
+      "desc": "Utilisation du IDE : connexion, flux de travail quotidiens, modes de gouvernance et aide."
     },
     "developerGuide": {
-      "title": "Developer Guide",
-      "desc": "Local development setup, architecture conventions, and contribution patterns."
+      "title": "Guide du développeur",
+      "desc": "Configuration du développement local, conventions d'architecture et modèles de contribution."
     },
     "apiReference": {
-      "title": "API Reference",
-      "desc": "Primary Forge API surfaces, endpoints, request shapes, and response contracts."
+      "title": "Référence API",
+      "desc": "Surfaces API Primary Forge, points de terminaison, formes de requête et contrats de réponse."
     },
     "troubleshooting": {
-      "title": "Troubleshooting",
-      "desc": "Common failure modes, diagnostics, and step-by-step fixes."
+      "title": "Dépannage",
+      "desc": "Modes de défaillance courants, diagnostics et correctifs étape par étape."
     },
     "changelog": {
-      "title": "Changelog",
-      "desc": "Versioned product change history. What changed, when, and why."
+      "title": "Journal des modifications",
+      "desc": "Historique des modifications du produit versionné. Qu'est-ce qui a changé, quand et pourquoi."
     },
     "pricing": {
-      "title": "Pricing & Packages",
-      "desc": "Product packaging, tiers, and commercial model overview."
+      "title": "Tarifs et forfaits",
+      "desc": "Présentation de l'emballage du produit, des niveaux et du modèle commercial."
     },
     "enterprise": {
-      "title": "Enterprise Readiness",
-      "desc": "Enterprise launch and pilot readiness checklist for IT and procurement teams."
+      "title": "Préparation de l'entreprise",
+      "desc": "Liste de contrôle de préparation au lancement et au projet pilote d'entreprise pour les équipes IT et d'approvisionnement."
     },
     "securityGuide": {
-      "title": "Security Guide",
-      "desc": "Security model, controls, hardening checklist, and operational security practices."
+      "title": "Guide de sécurité",
+      "desc": "Modèle de sécurité, contrôles, liste de contrôle de renforcement et pratiques de sécurité opérationnelle."
     },
     "support": {
-      "title": "Support",
-      "desc": "Support scope, triage information, escalation path, and SLA expectations."
+      "title": "Soutien",
+      "desc": "Portée du support, informations de tri, chemin d’escalade et attentes SLA."
     },
     "operatorManual": {
-      "title": "Operator Manual",
-      "desc": "Deployment, runtime operations, health checks, and infrastructure guidance."
+      "title": "Manuel de l'opérateur",
+      "desc": "Déploiement, opérations d'exécution, vérifications de l'état et conseils en matière d'infrastructure."
     }
   }
 }

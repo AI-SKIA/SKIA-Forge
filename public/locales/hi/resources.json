@@ -1,68 +1,68 @@
 {
   "meta": {
-    "title": "Resources | SKIA Forge"
+    "title": "संसाधन | स्किया_फोर्ज"
   },
   "hero": {
-    "title": "Resources",
-    "subtitle": "Everything you need to understand, deploy, and operate SKIA Forge"
+    "title": "संसाधन",
+    "subtitle": "स्किया_फोर्ज को समझने, तैनात करने और संचालित करने के लिए आपको जो कुछ भी चाहिए वह सब कुछ"
   },
   "quickLinks": {
-    "download": "Download SKIA Forge",
-    "releaseNotes": "Release Notes",
-    "contactSupport": "Contact Support"
+    "download": "SKIA Forge डाउनलोड करें",
+    "releaseNotes": "रिलीज नोट्स",
+    "contactSupport": "समर्थन से संपर्क करें"
   },
   "sections": {
-    "documentation": "Documentation",
-    "operators": "For operators"
+    "documentation": "प्रलेखन",
+    "operators": "ऑपरेटरों के लिए"
   },
   "cards": {
     "productManual": {
-      "title": "Product Manual",
-      "desc": "Full product overview, capabilities, and feature positioning for SKIA Forge."
+      "title": "उत्पाद का मार्गदर्शन",
+      "desc": "स्किया_फोर्ज के लिए पूर्ण उत्पाद अवलोकन, क्षमताएं और सुविधा स्थिति।"
     },
     "quickstart": {
-      "title": "Quickstart",
-      "desc": "Download the IDE, sign in, and complete your first workflow."
+      "title": "त्वरित शुरुआत",
+      "desc": "IDE डाउनलोड करें, साइन इन करें और अपना पहला वर्कफ़्लो पूरा करें।"
     },
     "userGuide": {
-      "title": "User Guide",
-      "desc": "Using the IDE: sign-in, daily workflows, governance modes, and help."
+      "title": "उपयोगकर्ता गाइड",
+      "desc": "आईडी का उपयोग करना: साइन-इन, दैनिक वर्कफ़्लो, शासन मोड और सहायता।"
     },
     "developerGuide": {
-      "title": "Developer Guide",
-      "desc": "Local development setup, architecture conventions, and contribution patterns."
+      "title": "डेवलपर गाइड",
+      "desc": "स्थानीय विकास सेटअप, वास्तुकला सम्मेलन और योगदान पैटर्न।"
     },
     "apiReference": {
-      "title": "API Reference",
-      "desc": "Primary Forge API surfaces, endpoints, request shapes, and response contracts."
+      "title": "एपीआई संदर्भ",
+      "desc": "प्राथमिक फोर्ज एपीआई सतहें, समापन बिंदु, अनुरोध आकार और प्रतिक्रिया अनुबंध।"
     },
     "troubleshooting": {
-      "title": "Troubleshooting",
-      "desc": "Common failure modes, diagnostics, and step-by-step fixes."
+      "title": "समस्या निवारण",
+      "desc": "सामान्य विफलता मोड, निदान, और चरण-दर-चरण सुधार।"
     },
     "changelog": {
-      "title": "Changelog",
-      "desc": "Versioned product change history. What changed, when, and why."
+      "title": "बदलाव का",
+      "desc": "संस्करणित उत्पाद परिवर्तन इतिहास। क्या, कब और क्यों बदला।"
     },
     "pricing": {
-      "title": "Pricing & Packages",
-      "desc": "Product packaging, tiers, and commercial model overview."
+      "title": "मूल्य निर्धारण और पैकेज",
+      "desc": "उत्पाद पैकेजिंग, स्तर और वाणिज्यिक मॉडल का अवलोकन।"
     },
     "enterprise": {
-      "title": "Enterprise Readiness",
-      "desc": "Enterprise launch and pilot readiness checklist for IT and procurement teams."
+      "title": "उद्यम की तैयारी",
+      "desc": "आईटी और खरीद टीमों के लिए एंटरप्राइज़ लॉन्च और पायलट तैयारी चेकलिस्ट।"
     },
     "securityGuide": {
-      "title": "Security Guide",
-      "desc": "Security model, controls, hardening checklist, and operational security practices."
+      "title": "सुरक्षा गाइड",
+      "desc": "सुरक्षा मॉडल, नियंत्रण, सख्त चेकलिस्ट, और परिचालन सुरक्षा प्रथाएं।"
     },
     "support": {
-      "title": "Support",
-      "desc": "Support scope, triage information, escalation path, and SLA expectations."
+      "title": "सहायता",
+      "desc": "समर्थन का दायरा, ट्राइएज जानकारी, एस्केलेशन पथ और SLA अपेक्षाएँ।"
     },
     "operatorManual": {
-      "title": "Operator Manual",
-      "desc": "Deployment, runtime operations, health checks, and infrastructure guidance."
+      "title": "ऑपरेटर मैनुअल",
+      "desc": "तैनाती, रनटाइम संचालन, स्वास्थ्य जांच और बुनियादी ढांचा मार्गदर्शन।"
     }
   }
 }

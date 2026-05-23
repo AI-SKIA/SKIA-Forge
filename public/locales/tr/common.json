@@ -3,27 +3,27 @@
     "documentTitle": "SKIA FORGE"
   },
   "sidebar": {
-    "tagline": "She Knows It All"
+    "tagline": "O Her Şeyi Biliyor"
   },
   "nav": {
     "forgeHome": "Forge Home",
-    "product": "Product",
-    "resources": "Resources",
-    "security": "Security",
-    "contactSupport": "Contact & Support",
-    "downloadForge": "Download SKIA Forge"
+    "product": "Ürün",
+    "resources": "Kaynaklar",
+    "security": "Güvenlik",
+    "contactSupport": "İletişim ve Destek",
+    "downloadForge": "SKIA Forge'yi indirin"
   },
   "back": {
-    "label": "← Back"
+    "label": "← Geri"
   },
   "aria": {
-    "openNavigation": "Open navigation"
+    "openNavigation": "Gezinmeyi aç"
   },
   "footer": {
-    "tagline": "One ecosystem. One universe. All SKIA.",
-    "copyright": "© 2026 SKIA. All rights reserved.",
-    "resources": "Resources",
-    "security": "Security",
-    "contactSupport": "Contact & Support"
+    "tagline": "Tek ekosistem. Tek evren. Hepsi SKIA.",
+    "copyright": "© 2026 SKIA. Her hakkı saklıdır.",
+    "resources": "Kaynaklar",
+    "security": "Güvenlik",
+    "contactSupport": "İletişim ve Destek"
   }
 }

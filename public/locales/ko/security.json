@@ -1,58 +1,58 @@
 {
   "meta": {
-    "title": "Security | SKIA Forge"
+    "title": "보안 | SKIA Forge"
   },
   "hero": {
-    "title": "Security",
-    "subtitle": "SKIA Forge applies layered controls across every surface — request, governance, and execution"
+    "title": "보안",
+    "subtitle": "SKIA Forge는 요청, 거버넌스, 실행 등 모든 표면에 계층화된 제어를 적용합니다."
   },
   "sections": {
-    "model": "Security Model",
-    "components": "Key Security Components",
-    "practices": "Operational Security Practices",
-    "checklist": "Hardening Checklist"
+    "model": "보안 모델",
+    "components": "주요 보안 구성요소",
+    "practices": "운영 보안 관행",
+    "checklist": "강화 체크리스트"
   },
   "controls": {
     "validation": {
-      "title": "Request Validation",
-      "desc": "All inputs validated against strict request and schema contracts before execution."
+      "title": "요청 검증",
+      "desc": "모든 입력은 실행 전에 엄격한 요청 및 스키마 계약에 대해 검증됩니다."
     },
     "governance": {
-      "title": "Governance Enforcement",
-      "desc": "Strict, adaptive, and autonomous governance modes control what agents can do."
+      "title": "거버넌스 집행",
+      "desc": "엄격하고 적응적이며 자율적인 거버넌스 모드는 에이전트가 수행할 수 있는 작업을 제어합니다."
     },
     "safety": {
-      "title": "Safety Gates",
-      "desc": "High-risk actions pass through safety gates with preview and policy-based blocking."
+      "title": "안전 게이트",
+      "desc": "위험도가 높은 작업은 미리보기 및 정책 기반 차단을 통해 안전 게이트를 통과합니다."
     },
     "previews": {
-      "title": "Execution Previews",
-      "desc": "Every destructive or irreversible action is previewed before it runs."
+      "title": "실행 미리보기",
+      "desc": "파괴적이거나 되돌릴 수 없는 모든 작업을 실행하기 전에 미리 볼 수 있습니다."
     }
   },
   "components": {
-    "analysis": "Security analysis — runs scan and save-time checks on code and agent output before persistence.",
-    "governance": "Governance layer — enforces strict / adaptive / autonomous control based on user-defined policy. All mode transitions are logged.",
-    "routes": "Route & Action Modules — per-route and per-action safety constraints that cannot be bypassed at the API layer.",
-    "audit": "Audit Trail — all orchestration runs produce a structured audit trail. Reviewed after major agent operations."
+    "analysis": "보안 분석 — 지속성 전에 코드 및 에이전트 출력에 대한 스캔 및 저장 시간 검사를 실행합니다.",
+    "governance": "거버넌스 계층 — 사용자 정의 정책을 기반으로 엄격한/적응적/자율적 제어를 시행합니다. 모든 모드 전환이 기록됩니다.",
+    "routes": "경로 및 작업 모듈 - API 계층에서 우회할 수 없는 경로별 및 작업별 안전 제약 조건입니다.",
+    "audit": "감사 추적 — 모든 오케스트레이션 실행은 구조화된 감사 추적을 생성합니다. 주요 에이전트 작업 후 검토됩니다."
   },
   "practices": {
-    "p1": "Keep secrets out of repositories and logs. Store all secrets using your secrets manager or hosting provider's secrets injection — never in plaintext config files.",
-    "p2": "Validate all external integration responses. Never trust third-party data without schema assertion.",
-    "p3": "Treat policy blocks as first-class security events. Every block is logged, reviewable, and feeds governance tuning.",
-    "p4": "Record and monitor remediation outcomes. Fixes without follow-up validation are not considered complete."
+    "p1": "저장소와 로그에서 비밀을 유지하세요. 비밀 관리자 또는 호스팅 공급자의 비밀 삽입을 사용하여 모든 비밀을 저장하십시오. 절대 일반 텍스트 구성 파일에 저장하지 마십시오.",
+    "p2": "모든 외부 통합 응답을 검증합니다. 스키마 어설션 없이 타사 데이터를 신뢰하지 마세요.",
+    "p3": "정책 블록을 최고 수준의 보안 이벤트로 처리하십시오. 모든 블록은 기록되고 검토 가능하며 거버넌스 조정을 제공합니다.",
+    "p4": "교정 결과를 기록하고 모니터링합니다. 후속 검증이 없는 수정은 완료된 것으로 간주되지 않습니다."
   },
   "checklist": {
-    "c1": "Run lint, typecheck, and tests before every release",
-    "c2": "Keep all dependencies current — patch within 48 hours of CVE",
-    "c3": "Validate integration probe endpoints regularly",
-    "c4": "Review audit trails after major orchestration runs",
-    "c5": "Rotate JWT_SECRET and API keys on a scheduled cadence",
-    "c6": "Never commit secrets — use environment variable injection"
+    "c1": "매 릴리스 전에 Lint, TypeCheck 및 테스트를 실행하세요.",
+    "c2": "모든 종속성을 최신 상태로 유지 - CVE 후 48시간 이내에 패치 적용",
+    "c3": "통합 프로브 엔드포인트를 정기적으로 검증합니다.",
+    "c4": "주요 오케스트레이션 실행 후 감사 추적 검토",
+    "c5": "예정된 주기에 따라 JWT_SECRET 및 API 키 순환",
+    "c6": "비밀을 커밋하지 마세요. 환경 변수 주입을 사용하세요."
   },
   "disclosure": {
-    "title": "Responsible Disclosure",
-    "body": "Found a vulnerability in SKIA Forge? We take security reports seriously. Contact us privately and we will respond within one business day.",
-    "button": "Report a Vulnerability"
+    "title": "책임있는 공개",
+    "body": "SKIA Forge에서 취약점을 발견하셨나요? 우리는 보안 보고서를 진지하게 받아들입니다. 개인적으로 연락주시면 영업일 기준 1일 이내에 답변해 드리겠습니다.",
+    "button": "취약점 보고"
   }
 }

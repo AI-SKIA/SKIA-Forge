@@ -1,29 +1,29 @@
 {
   "meta": {
-    "documentTitle": "SKIA FORGE"
+    "documentTitle": "स्किया_फोर्ज_कैप्स"
   },
   "sidebar": {
-    "tagline": "She Knows It All"
+    "tagline": "वह यह सब जानती है"
   },
   "nav": {
-    "forgeHome": "Forge Home",
-    "product": "Product",
-    "resources": "Resources",
-    "security": "Security",
-    "contactSupport": "Contact & Support",
-    "downloadForge": "Download SKIA Forge"
+    "forgeHome": "फोर्ज_होम",
+    "product": "उत्पाद",
+    "resources": "संसाधन",
+    "security": "सुरक्षा",
+    "contactSupport": "समर्थन से संपर्क करें",
+    "downloadForge": "SKIA Forge डाउनलोड करें"
   },
   "back": {
-    "label": "← Back"
+    "label": "← वापस"
   },
   "aria": {
-    "openNavigation": "Open navigation"
+    "openNavigation": "नेविगेशन खोलें"
   },
   "footer": {
-    "tagline": "One ecosystem. One universe. All SKIA.",
-    "copyright": "© 2026 SKIA. All rights reserved.",
-    "resources": "Resources",
-    "security": "Security",
-    "contactSupport": "Contact & Support"
+    "tagline": "एक पारिस्थितिकी तंत्र. एक ब्रह्मांड. सभी स्किया।",
+    "copyright": "© 2026 स्किया. सर्वाधिकार सुरक्षित।",
+    "resources": "संसाधन",
+    "security": "सुरक्षा",
+    "contactSupport": "समर्थन से संपर्क करें"
   }
 }

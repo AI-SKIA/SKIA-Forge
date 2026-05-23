@@ -1,68 +1,68 @@
 {
   "meta": {
-    "title": "Resources | SKIA Forge"
+    "title": "자원 | SKIA Forge"
   },
   "hero": {
-    "title": "Resources",
-    "subtitle": "Everything you need to understand, deploy, and operate SKIA Forge"
+    "title": "자원",
+    "subtitle": "SKIA Forge를 이해하고 배포하고 운영하는 데 필요한 모든 것"
   },
   "quickLinks": {
-    "download": "Download SKIA Forge",
-    "releaseNotes": "Release Notes",
-    "contactSupport": "Contact Support"
+    "download": "SKIA Forge 다운로드",
+    "releaseNotes": "릴리스 노트",
+    "contactSupport": "지원팀에 문의"
   },
   "sections": {
-    "documentation": "Documentation",
-    "operators": "For operators"
+    "documentation": "선적 서류 비치",
+    "operators": "운영자용"
   },
   "cards": {
     "productManual": {
-      "title": "Product Manual",
-      "desc": "Full product overview, capabilities, and feature positioning for SKIA Forge."
+      "title": "제품 매뉴얼",
+      "desc": "SKIA Forge에 대한 전체 제품 개요, 기능 및 기능 포지셔닝."
     },
     "quickstart": {
-      "title": "Quickstart",
-      "desc": "Download the IDE, sign in, and complete your first workflow."
+      "title": "빠른 시작",
+      "desc": "IDE를 다운로드하고 로그인한 후 첫 번째 워크플로를 완료하세요."
     },
     "userGuide": {
-      "title": "User Guide",
-      "desc": "Using the IDE: sign-in, daily workflows, governance modes, and help."
+      "title": "사용자 가이드",
+      "desc": "IDE 사용: 로그인, 일일 워크플로, 거버넌스 모드 및 도움말."
     },
     "developerGuide": {
-      "title": "Developer Guide",
-      "desc": "Local development setup, architecture conventions, and contribution patterns."
+      "title": "개발자 가이드",
+      "desc": "로컬 개발 설정, 아키텍처 규칙 및 기여 패턴."
     },
     "apiReference": {
-      "title": "API Reference",
-      "desc": "Primary Forge API surfaces, endpoints, request shapes, and response contracts."
+      "title": "API 참조",
+      "desc": "기본 Forge API 표면, 엔드포인트, 요청 형태 및 응답 계약."
     },
     "troubleshooting": {
-      "title": "Troubleshooting",
-      "desc": "Common failure modes, diagnostics, and step-by-step fixes."
+      "title": "문제 해결",
+      "desc": "일반적인 오류 모드, 진단 및 단계별 수정."
     },
     "changelog": {
-      "title": "Changelog",
-      "desc": "Versioned product change history. What changed, when, and why."
+      "title": "변경 내역",
+      "desc": "버전이 지정된 제품 변경 내역입니다. 무엇이, 언제, 왜 바뀌었나요?"
     },
     "pricing": {
-      "title": "Pricing & Packages",
-      "desc": "Product packaging, tiers, and commercial model overview."
+      "title": "가격 및 패키지",
+      "desc": "제품 포장, 계층 및 상용 모델 개요."
     },
     "enterprise": {
-      "title": "Enterprise Readiness",
-      "desc": "Enterprise launch and pilot readiness checklist for IT and procurement teams."
+      "title": "엔터프라이즈 준비",
+      "desc": "IT 및 조달 팀을 위한 엔터프라이즈 출시 및 파일럿 준비 체크리스트입니다."
     },
     "securityGuide": {
-      "title": "Security Guide",
-      "desc": "Security model, controls, hardening checklist, and operational security practices."
+      "title": "보안 가이드",
+      "desc": "보안 모델, 제어, 강화 체크리스트 및 운영 보안 관행."
     },
     "support": {
-      "title": "Support",
-      "desc": "Support scope, triage information, escalation path, and SLA expectations."
+      "title": "지원하다",
+      "desc": "범위, 분류 정보, 에스컬레이션 경로 및 SLA 기대치를 지원합니다."
     },
     "operatorManual": {
-      "title": "Operator Manual",
-      "desc": "Deployment, runtime operations, health checks, and infrastructure guidance."
+      "title": "운영자 매뉴얼",
+      "desc": "배포, 런타임 작업, 상태 확인 및 인프라 지침."
     }
   }
 }

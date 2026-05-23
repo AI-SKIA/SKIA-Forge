@@ -1,67 +1,67 @@
 {
   "meta": {
-    "title": "Contact & Support | SKIA Forge"
+    "title": "संपर्क एवं सहयोग | स्किया_फोर्ज"
   },
   "hero": {
-    "title": "Contact & Support",
-    "subtitle": "SKIA Forge runtime and SKIA Forge IDE — startup, updates, integrations, governance, or getting started — we're here"
+    "title": "समर्थन से संपर्क करें",
+    "subtitle": "SKIA Forge रनटाइम और SKIA Forge IDE - स्टार्टअप, अपडेट, एकीकरण, प्रशासन, या आरंभ करना - हम यहां हैं"
   },
   "sections": {
-    "scope": "Support Scope",
-    "sla": "Response Expectations",
-    "triage": "When Reporting an Issue — Include",
-    "escalation": "Escalation Path",
-    "form": "Send a Message"
+    "scope": "समर्थन का दायरा",
+    "sla": "प्रतिक्रिया अपेक्षाएँ",
+    "triage": "किसी समस्या की रिपोर्ट करते समय - शामिल करें",
+    "escalation": "वृद्धि पथ",
+    "form": "एक संदेश भेजो"
   },
   "scope": {
-    "s1": "Runtime startup and health issues",
-    "s2": "Integration contract failures",
-    "s3": "Governance and policy flow debugging",
-    "s4": "Workflow failures and integration issues",
-    "s5": "SKIA Forge IDE install, updates, and desktop runtime",
-    "s6": "General usage and workflow questions"
+    "s1": "रनटाइम स्टार्टअप और स्वास्थ्य संबंधी समस्याएं",
+    "s2": "एकीकरण अनुबंध विफलताएँ",
+    "s3": "शासन और नीति प्रवाह डिबगिंग",
+    "s4": "वर्कफ़्लो विफलताएँ और एकीकरण समस्याएँ",
+    "s5": "SKIA Forge IDE इंस्टॉल, अपडेट और डेस्कटॉप रनटाइम",
+    "s6": "सामान्य उपयोग और कार्यप्रवाह प्रश्न"
   },
   "sla": {
     "p1": {
-      "label": "Critical Outage",
-      "desc": "Complete loss of service or data integrity risk. Immediate response window."
+      "label": "क्रिटिकल आउटेज",
+      "desc": "सेवा या डेटा अखंडता जोखिम का पूर्ण नुकसान। तत्काल प्रतिक्रिया विंडो."
     },
     "p2": {
-      "label": "Degraded Service",
-      "desc": "Core functionality impaired but workaround exists. Same business day response."
+      "label": "अपमानित सेवा",
+      "desc": "मुख्य कार्यक्षमता ख़राब है लेकिन समाधान मौजूद है। वही कार्य दिवस प्रतिक्रिया."
     },
     "p3": {
-      "label": "Non-blocking Issue",
-      "desc": "Minor issues, questions, feature requests. Prioritized backlog response."
+      "label": "गैर-अवरुद्ध मुद्दा",
+      "desc": "छोटे मुद्दे, प्रश्न, सुविधा अनुरोध। बैकलॉग प्रतिक्रिया को प्राथमिकता दी गई।"
     }
   },
   "triage": {
-    "t1": "Endpoint and HTTP method",
-    "t2": "Request timestamp",
-    "t3": "Request ID or correlation ID (if available)",
-    "t4": "Governance mode: strict / adaptive / autonomous",
-    "t5": "Full error message and stack trace",
-    "t6": "Steps to reproduce reliably",
-    "t7": "SKIA Forge IDE version or build channel (if using the desktop app)"
+    "t1": "समापन बिंदु और HTTP विधि",
+    "t2": "टाइमस्टैम्प का अनुरोध करें",
+    "t3": "अनुरोध आईडी या सहसंबंध आईडी (यदि उपलब्ध हो)",
+    "t4": "शासन मोड: सख्त/अनुकूली/स्वायत्त",
+    "t5": "पूर्ण त्रुटि संदेश और स्टैक ट्रेस",
+    "t6": "विश्वसनीय रूप से पुनरुत्पादन के लिए कदम",
+    "t7": "SKIA Forge IDE संस्करण या चैनल बनाएं (यदि डेस्कटॉप ऐप का उपयोग कर रहे हैं)"
   },
   "escalation": {
-    "e1": "Reproduce locally and validate with health and probe endpoints to isolate the failure surface.",
-    "e2": "Apply remediation guidance from control-plane outputs and check the Troubleshooting docs.",
-    "e3": "Escalate via the form below with logs, payload shape, and expected vs actual behaviour."
+    "e1": "स्थानीय स्तर पर पुनरुत्पादन करें और विफलता सतह को अलग करने के लिए स्वास्थ्य और जांच समापन बिंदुओं के साथ मान्य करें।",
+    "e2": "नियंत्रण-प्लेन आउटपुट से उपचारात्मक मार्गदर्शन लागू करें और समस्या निवारण दस्तावेज़ों की जाँच करें।",
+    "e3": "लॉग, पेलोड आकार और अपेक्षित बनाम वास्तविक व्यवहार के साथ नीचे दिए गए फॉर्म के माध्यम से आगे बढ़ें।"
   },
   "form": {
-    "namePlaceholder": "Name",
-    "emailPlaceholder": "Email",
-    "topicAria": "Topic",
-    "topicSupport": "Topic — Support (runtime, integration, governance)",
-    "topicCx": "Topic — Customer Service (account, billing, general)",
-    "subjectPlaceholder": "Subject",
-    "messagePlaceholder": "Describe your issue or question...",
-    "submit": "Send Message",
-    "sending": "Sending...",
-    "directPrefix": "Or reach us directly at:",
-    "fillAll": "Please fill in all fields.",
-    "success": "Message sent. We'll get back to you shortly.",
-    "failedPrefix": "Failed to send. Please email us at "
+    "namePlaceholder": "नाम",
+    "emailPlaceholder": "ईमेल",
+    "topicAria": "विषय",
+    "topicSupport": "विषय - समर्थन (रनटाइम, एकीकरण, शासन)",
+    "topicCx": "विषय - ग्राहक सेवा (खाता, बिलिंग, सामान्य)",
+    "subjectPlaceholder": "विषय",
+    "messagePlaceholder": "अपनी समस्या या प्रश्न का वर्णन करें...",
+    "submit": "मेसेज भेजें",
+    "sending": "भेजा जा रहा है...",
+    "directPrefix": "या सीधे हमसे संपर्क करें:",
+    "fillAll": "कृपया सभी स्थानों को भरें।",
+    "success": "संदेश भेजा गया। हम शीघ्र ही आपसे संपर्क करेंगे।",
+    "failedPrefix": "भेजने में विफल. कृपया हमें यहां ईमेल करें "
   }
 }

@@ -1,67 +1,67 @@
 {
   "meta": {
-    "title": "Contact & Support | SKIA Forge"
+    "title": "お問い合わせとサポート | SKIA Forge"
   },
   "hero": {
-    "title": "Contact & Support",
-    "subtitle": "SKIA Forge runtime and SKIA Forge IDE — startup, updates, integrations, governance, or getting started — we're here"
+    "title": "お問い合わせとサポート",
+    "subtitle": "SKIA Forge ランタイムおよび SKIA Forge IDE — 起動、更新、統合、ガバナンス、または開始 — 私たちはここにいます"
   },
   "sections": {
-    "scope": "Support Scope",
-    "sla": "Response Expectations",
-    "triage": "When Reporting an Issue — Include",
-    "escalation": "Escalation Path",
-    "form": "Send a Message"
+    "scope": "サポート範囲",
+    "sla": "期待される応答",
+    "triage": "問題を報告する場合 — 含める",
+    "escalation": "エスカレーションパス",
+    "form": "メッセージを送信する"
   },
   "scope": {
-    "s1": "Runtime startup and health issues",
-    "s2": "Integration contract failures",
-    "s3": "Governance and policy flow debugging",
-    "s4": "Workflow failures and integration issues",
-    "s5": "SKIA Forge IDE install, updates, and desktop runtime",
-    "s6": "General usage and workflow questions"
+    "s1": "ランタイムの起動と正常性の問題",
+    "s2": "統合契約の失敗",
+    "s3": "ガバナンスとポリシー フローのデバッグ",
+    "s4": "ワークフローの失敗と統合の問題",
+    "s5": "SKIA Forge IDE のインストール、アップデート、デスクトップ ランタイム",
+    "s6": "一般的な使用法とワークフローに関する質問"
   },
   "sla": {
     "p1": {
-      "label": "Critical Outage",
-      "desc": "Complete loss of service or data integrity risk. Immediate response window."
+      "label": "重大な停止",
+      "desc": "サービスの完全な損失またはデータ整合性のリスク。 即時応答ウィンドウ。"
     },
     "p2": {
-      "label": "Degraded Service",
-      "desc": "Core functionality impaired but workaround exists. Same business day response."
+      "label": "サービスの低下",
+      "desc": "コア機能が損なわれていますが、回避策は存在します。 同じ営業日対応。"
     },
     "p3": {
-      "label": "Non-blocking Issue",
-      "desc": "Minor issues, questions, feature requests. Prioritized backlog response."
+      "label": "非ブロッキング問題",
+      "desc": "軽微な問題、質問、機能のリクエスト。 未処理の対応に優先順位を付けます。"
     }
   },
   "triage": {
-    "t1": "Endpoint and HTTP method",
-    "t2": "Request timestamp",
-    "t3": "Request ID or correlation ID (if available)",
-    "t4": "Governance mode: strict / adaptive / autonomous",
-    "t5": "Full error message and stack trace",
-    "t6": "Steps to reproduce reliably",
-    "t7": "SKIA Forge IDE version or build channel (if using the desktop app)"
+    "t1": "エンドポイントと「HTTP」メソッド",
+    "t2": "リクエストのタイムスタンプ",
+    "t3": "リクエスト ID または相関 ID (利用可能な場合)",
+    "t4": "ガバナンスモード: 厳密 / 適応 / 自律",
+    "t5": "完全なエラー メッセージとスタック トレース",
+    "t6": "確実に再現するための手順",
+    "t7": "SKIA Forge IDE バージョンまたはビルド チャネル (デスクトップ アプリを使用している場合)"
   },
   "escalation": {
-    "e1": "Reproduce locally and validate with health and probe endpoints to isolate the failure surface.",
-    "e2": "Apply remediation guidance from control-plane outputs and check the Troubleshooting docs.",
-    "e3": "Escalate via the form below with logs, payload shape, and expected vs actual behaviour."
+    "e1": "ローカルで再現し、正常性とプローブのエンドポイントで検証して、障害面を分離します。",
+    "e2": "コントロール プレーンの出力から修復ガイダンスを適用し、トラブルシューティング ドキュメントを確認します。",
+    "e3": "以下のフォームから、ログ、ペイロードの形状、予想される動作と実際の動作を記録してエスカレーションしてください。"
   },
   "form": {
-    "namePlaceholder": "Name",
-    "emailPlaceholder": "Email",
-    "topicAria": "Topic",
-    "topicSupport": "Topic — Support (runtime, integration, governance)",
-    "topicCx": "Topic — Customer Service (account, billing, general)",
-    "subjectPlaceholder": "Subject",
-    "messagePlaceholder": "Describe your issue or question...",
-    "submit": "Send Message",
-    "sending": "Sending...",
-    "directPrefix": "Or reach us directly at:",
-    "fillAll": "Please fill in all fields.",
-    "success": "Message sent. We'll get back to you shortly.",
-    "failedPrefix": "Failed to send. Please email us at "
+    "namePlaceholder": "名前",
+    "emailPlaceholder": "電子メール",
+    "topicAria": "トピック",
+    "topicSupport": "トピック — サポート (ランタイム、統合、ガバナンス)",
+    "topicCx": "トピック — カスタマー サービス (アカウント、請求、一般)",
+    "subjectPlaceholder": "主題",
+    "messagePlaceholder": "問題や質問について説明してください...",
+    "submit": "メッセージを送信する",
+    "sending": "送信中...",
+    "directPrefix": "または、次のアドレスまで直接ご連絡ください。",
+    "fillAll": "すべてのフィールドに入力してください。",
+    "success": "メッセージが送信されました。 すぐにご連絡いたします。",
+    "failedPrefix": "送信に失敗しました。 までメールでお問い合わせください "
   }
 }

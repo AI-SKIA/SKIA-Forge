@@ -3,27 +3,27 @@
     "documentTitle": "SKIA FORGE"
   },
   "sidebar": {
-    "tagline": "She Knows It All"
+    "tagline": "彼女はそれをすべて知っている"
   },
   "nav": {
     "forgeHome": "Forge Home",
-    "product": "Product",
-    "resources": "Resources",
-    "security": "Security",
-    "contactSupport": "Contact & Support",
-    "downloadForge": "Download SKIA Forge"
+    "product": "製品",
+    "resources": "リソース",
+    "security": "安全",
+    "contactSupport": "お問い合わせとサポート",
+    "downloadForge": "ダウンロード SKIA Forge"
   },
   "back": {
-    "label": "← Back"
+    "label": "← 戻る"
   },
   "aria": {
-    "openNavigation": "Open navigation"
+    "openNavigation": "ナビゲーションを開く"
   },
   "footer": {
-    "tagline": "One ecosystem. One universe. All SKIA.",
-    "copyright": "© 2026 SKIA. All rights reserved.",
-    "resources": "Resources",
-    "security": "Security",
-    "contactSupport": "Contact & Support"
+    "tagline": "一つの生態系。 一つの宇宙。 すべてSKIA。",
+    "copyright": "© 2026 スキア. 無断転載を禁じます。",
+    "resources": "リソース",
+    "security": "安全",
+    "contactSupport": "お問い合わせとサポート"
   }
 }

@@ -1,58 +1,58 @@
 {
   "meta": {
-    "title": "Security | SKIA Forge"
+    "title": "セキュリティ | SKIA Forge"
   },
   "hero": {
-    "title": "Security",
-    "subtitle": "SKIA Forge applies layered controls across every surface — request, governance, and execution"
+    "title": "安全",
+    "subtitle": "SKIA Forge は、リクエスト、ガバナンス、実行などのあらゆる面に階層化された制御を適用します"
   },
   "sections": {
-    "model": "Security Model",
-    "components": "Key Security Components",
-    "practices": "Operational Security Practices",
-    "checklist": "Hardening Checklist"
+    "model": "セキュリティモデル",
+    "components": "主要なセキュリティコンポーネント",
+    "practices": "運用上のセキュリティ慣行",
+    "checklist": "強化チェックリスト"
   },
   "controls": {
     "validation": {
-      "title": "Request Validation",
-      "desc": "All inputs validated against strict request and schema contracts before execution."
+      "title": "検証のリクエスト",
+      "desc": "すべての入力は、実行前に厳密なリクエストとスキーマ コントラクトに対して検証されます。"
     },
     "governance": {
-      "title": "Governance Enforcement",
-      "desc": "Strict, adaptive, and autonomous governance modes control what agents can do."
+      "title": "ガバナンスの執行",
+      "desc": "厳格で適応性のある自律的なガバナンス モードにより、エージェントが実行できる内容が制御されます。"
     },
     "safety": {
-      "title": "Safety Gates",
-      "desc": "High-risk actions pass through safety gates with preview and policy-based blocking."
+      "title": "安全ゲート",
+      "desc": "高リスクのアクションは、プレビューとポリシーベースのブロックにより安全ゲートを通過します。"
     },
     "previews": {
-      "title": "Execution Previews",
-      "desc": "Every destructive or irreversible action is previewed before it runs."
+      "title": "実行プレビュー",
+      "desc": "すべての破壊的または元に戻せないアクションは、実行前にプレビューされます。"
     }
   },
   "components": {
-    "analysis": "Security analysis — runs scan and save-time checks on code and agent output before persistence.",
-    "governance": "Governance layer — enforces strict / adaptive / autonomous control based on user-defined policy. All mode transitions are logged.",
-    "routes": "Route & Action Modules — per-route and per-action safety constraints that cannot be bypassed at the API layer.",
-    "audit": "Audit Trail — all orchestration runs produce a structured audit trail. Reviewed after major agent operations."
+    "analysis": "セキュリティ分析 — 永続化の前に、コードとエージェントの出力に対してスキャンと保存時間のチェックを実行します。",
+    "governance": "ガバナンス層 — ユーザー定義のポリシーに基づいて、厳密/適応的/自律的な制御を強制します。 すべてのモード遷移がログに記録されます。",
+    "routes": "ルートおよびアクション モジュール - 「API」層でバイパスできないルートごとおよびアクションごとの安全制約。",
+    "audit": "監査証跡 - すべてのオーケストレーション実行により、構造化された監査証跡が生成されます。 大規模なエージェントの操作後にレビューされます。"
   },
   "practices": {
-    "p1": "Keep secrets out of repositories and logs. Store all secrets using your secrets manager or hosting provider's secrets injection — never in plaintext config files.",
-    "p2": "Validate all external integration responses. Never trust third-party data without schema assertion.",
-    "p3": "Treat policy blocks as first-class security events. Every block is logged, reviewable, and feeds governance tuning.",
-    "p4": "Record and monitor remediation outcomes. Fixes without follow-up validation are not considered complete."
+    "p1": "秘密をリポジトリやログに保管しないでください。 すべてのシークレットは、シークレット マネージャーまたはホスティング プロバイダーのシークレット インジェクションを使用して保存します。プレーンテキストの構成ファイルには決して保存しないでください。",
+    "p2": "すべての外部統合応答を検証します。 スキーマ アサーションのないサードパーティ データを決して信頼しないでください。",
+    "p3": "ポリシー ブロックを第一級のセキュリティ イベントとして扱います。 すべてのブロックはログに記録され、レビュー可能であり、ガバナンス調整にフィードされます。",
+    "p4": "修復結果を記録して監視します。 フォローアップ検証のない修正は完了したとはみなされません。"
   },
   "checklist": {
-    "c1": "Run lint, typecheck, and tests before every release",
-    "c2": "Keep all dependencies current — patch within 48 hours of CVE",
-    "c3": "Validate integration probe endpoints regularly",
-    "c4": "Review audit trails after major orchestration runs",
-    "c5": "Rotate JWT_SECRET and API keys on a scheduled cadence",
-    "c6": "Never commit secrets — use environment variable injection"
+    "c1": "毎回のリリース前に lint、typecheck、テストを実行する",
+    "c2": "すべての依存関係を最新の状態に保ちます。「CVE」から 48 時間以内にパッチを適用します。",
+    "c3": "統合プローブのエンドポイントを定期的に検証する",
+    "c4": "主要なオーケストレーションの実行後に監査証跡を確認する",
+    "c5": "スケジュールされた周期で JWT_SECRET キーと API キーをローテーションします",
+    "c6": "決してシークレットをコミットしないでください - 環境変数インジェクションを使用してください"
   },
   "disclosure": {
-    "title": "Responsible Disclosure",
-    "body": "Found a vulnerability in SKIA Forge? We take security reports seriously. Contact us privately and we will respond within one business day.",
-    "button": "Report a Vulnerability"
+    "title": "責任ある開示",
+    "body": "SKIA Forgeに脆弱性が見つかりましたか? 私たちはセキュリティ報告を真剣に受け止めています。 個別にご連絡いただければ、1営業日以内にご返答させていただきます。",
+    "button": "脆弱性を報告する"
   }
 }

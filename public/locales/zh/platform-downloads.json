@@ -1,132 +1,132 @@
 {
   "meta": {
-    "title": "SKIA FORGE"
+    "title": "SKIA FORGESKIA_FORGE_CAPS"
   },
   "hero": {
-    "title": "SKIA Forge",
-    "subtitle": "Governed intelligence for real software delivery — built for operators, developers, and production teams",
-    "downloadButton": "Download SKIA Forge"
+    "title": "SKIA Forge",
+    "subtitle": "真正软件交付的智能治理——为运营商、开发人员和生产团队构建",
+    "downloadButton": "下载SKIA Forge"
   },
   "cards": {
     "frontier": {
-      "title": "Frontier-Ready Intelligence Layer",
-      "brand": "SKIA Forge",
-      "body": "SKIA Forge is built on a hardened intelligence stack validated across coding, tool use, reasoning, long context, vision, and multimodal workflows."
+      "title": "前沿智能层",
+      "brand": "SKIA Forge",
+      "body": "SKIA Forge 基于经过编码、工具使用、推理、长上下文、视觉和多模式工作流程验证的强化智能堆栈。"
     },
     "reliability": {
-      "title": "Verified Reliability",
-      "brand": "SKIA Forge",
-      "body": "Every release is verified before it ships. Quality is protected end-to-end so you get stable, trustworthy outputs every time."
+      "title": "经验证的可靠性",
+      "brand": "SKIA Forge",
+      "body": "每个版本在发布之前都会经过验证。 质量受到端到端的保护，因此您每次都能获得稳定、值得信赖的输出。"
     },
     "operations": {
-      "title": "Production-Grade Operations",
-      "brand": "SKIA Forge",
-      "body": "Forge ships with health checks, governance telemetry, status surfaces, and deterministic routing controls designed for operational trust."
+      "title": "生产级运营",
+      "brand": "SKIA Forge",
+      "body": "Forge 附带健康检查、治理遥测、状态界面和专为操作信任而设计的确定性路由控制。"
     },
     "surfaces": {
-      "title": "One Intelligence Across Surfaces",
-      "brand": "SKIA Forge",
-      "body": "Use Forge on the web for API-powered execution, or install desktop for full local filesystem and terminal workflows."
+      "title": "跨表面的同一种智能",
+      "brand": "SKIA Forge",
+      "body": "使用 Web 上的 Forge 进行 API 支持的执行，或安装桌面以实现完整的本地文件系统和终端工作流程。"
     }
   },
   "docLinks": {
     "overview": {
-      "title": "Overview",
-      "sub": "PRODUCT OVERVIEW",
-      "desc": "Orientation and high-level view of SKIA Forge on the Forge site."
+      "title": "概述",
+      "sub": "产品概览",
+      "desc": "Forge 站点上 SKIA Forge 的方向和高级视图。"
     },
     "api": {
-      "title": "API reference",
-      "sub": "HTTP API",
-      "desc": "HTTP and integration endpoints for Forge-powered execution."
+      "title": "API参考",
+      "sub": "HTTPAPI",
+      "desc": "用于 Forge 驱动的执行的 HTTP 和集成端点。"
     },
     "quickstart": {
-      "title": "Quickstart",
-      "sub": "GET STARTED",
-      "desc": "Download the IDE, sign in, and run your first governed workflow."
+      "title": "快速入门",
+      "sub": "开始吧",
+      "desc": "下载IDE、登录并运行您的第一个受管理的工作流程。"
     },
     "userGuide": {
-      "title": "User guide",
-      "sub": "DAY-TO-DAY USE",
-      "desc": "Using the IDE: sign-in, workflows, governance modes, and help."
+      "title": "用户指南",
+      "sub": "日常使用",
+      "desc": "使用 IDE：登录、工作流程、治理模式和帮助。"
     },
     "developerGuide": {
-      "title": "Developer guide",
-      "sub": "INTEGRATION & EXTENSION",
-      "desc": "Architecture, extension points, and integration patterns."
+      "title": "开发者指南",
+      "sub": "集成与扩展",
+      "desc": "架构、扩展点和集成模式。"
     },
     "productManual": {
-      "title": "Product manual",
-      "sub": "FULL PRODUCT REFERENCE",
-      "desc": "Deep product behavior, surfaces, and operational semantics."
+      "title": "产品说明书",
+      "sub": "完整的产品参考",
+      "desc": "深层产品行为、表面和操作语义。"
     },
     "enterprise": {
-      "title": "Enterprise readiness",
-      "sub": "ENTERPRISE DEPLOYMENT",
-      "desc": "Checklist and signals for regulated or large-team rollout."
+      "title": "企业准备就绪",
+      "sub": "企业部署",
+      "desc": "受监管或大型团队推出的清单和信号。"
     },
     "pricing": {
-      "title": "Pricing & packages",
-      "sub": "PLANS & PRICING",
-      "desc": "Commercial packaging and procurement-facing detail."
+      "title": "定价和套餐",
+      "sub": "计划和定价",
+      "desc": "商业包装和面向采购的细节。"
     },
     "troubleshooting": {
-      "title": "Troubleshooting",
-      "sub": "DIAGNOSTICS & FIXES",
-      "desc": "Known failure modes, diagnostics, and recovery steps."
+      "title": "故障排除",
+      "sub": "诊断与修复",
+      "desc": "已知的故障模式、诊断和恢复步骤。"
     },
     "support": {
-      "title": "Support",
-      "sub": "GET HELP",
-      "desc": "How to get help and escalate issues through Forge support."
+      "title": "支持",
+      "sub": "寻求帮助",
+      "desc": "如何通过 Forge 支持获取帮助并升级问题。"
     },
     "securityGuide": {
-      "title": "Security guide",
-      "sub": "SECURITY & HARDENING",
-      "desc": "Threat model, hardening, and safe deployment practices."
+      "title": "安全指南",
+      "sub": "安全与强化",
+      "desc": "威胁模型、强化和安全部署实践。"
     }
   },
   "installers": {
-    "heading": "SKIA Forge PC app installers",
+    "heading": "SKIA ForgePC 应用程序安装程序",
     "windows": {
-      "title": "Windows",
-      "sub": "PC APP INSTALLER",
+      "title": "Windows",
+      "sub": "PC 应用程序安装程序",
       "desc": "Windows 10/11",
-      "hint": "64-bit installer (.exe)"
+      "hint": "64 位安装程序 (.exe)"
     },
     "macIntel": {
-      "title": "macOS (Intel)",
-      "sub": "PC APP INSTALLER",
+      "title": "macOS（英特尔）",
+      "sub": "PC 应用程序安装程序",
       "desc": "macOS 11+",
-      "hint": "Intel x64"
+      "hint": "英特尔x64"
     },
     "macArm": {
-      "title": "macOS (Apple Silicon)",
-      "sub": "PC APP INSTALLER",
+      "title": "macOS（苹果芯片）",
+      "sub": "PC 应用程序安装程序",
       "desc": "macOS 11+ M1/M2/M3",
-      "hint": "Apple Silicon (M1/M2/M3)"
+      "hint": "苹果芯片 (M1/M2/M3)"
     },
     "linux": {
-      "title": "Linux",
-      "sub": "PC APP INSTALLER",
-      "desc": "Ubuntu, Fedora, Arch",
-      "hint": "AppImage (any distro)"
+      "title": "Linux",
+      "sub": "PC 应用程序安装程序",
+      "desc": "Ubuntu、Fedora、Arch",
+      "hint": "AppImage（任何发行版）"
     },
-    "windowsAria": "Download SKIA Forge for Windows",
-    "macIntelAria": "Download SKIA Forge for macOS Intel",
-    "macArmAria": "Download SKIA Forge for Apple Silicon",
-    "linuxAria": "Download SKIA Forge for Linux"
+    "windowsAria": "下载 Windows 版 SKIA Forge",
+    "macIntelAria": "下载 SKIA ForgemacOSIntel",
+    "macArmAria": "下载适用于 Apple Silicon 的 SKIA _FORGE",
+    "linuxAria": "下载 Linux 版 SKIA Forge"
   },
   "howItWorks": {
-    "heading": "How Forge + SKIA works",
-    "step1": "Use Forge on the web for immediate access, or install desktop for full local workflow control.",
-    "step2": "Choose the right execution path: context, agent, SDLC, production, healing, and architecture.",
-    "step3": "Get structured outputs designed for real use, not generic draft text."
+    "heading": "Forge + SKIA 的工作原理",
+    "step1": "使用 Web 上的 Forge 进行即时访问，或安装桌面以进行完整的本地工作流程控制。",
+    "step2": "选择正确的执行路径：上下文、代理、SDLC、生产、修复和架构。",
+    "step3": "获得专为实际使用而设计的结构化输出，而不是通用的草稿文本。"
   },
   "whyTeams": {
-    "heading": "Why teams choose SKIA Forge",
-    "a": "Benchmark-aligned quality on your critical dimensions: coding, tools, reasoning, long context, vision, and TTS.",
-    "b": "System-level maturity beyond raw output: observability, health checks, and integration governance built for production environments.",
-    "c": "Truth-based release distribution: only published installers are shown for download."
+    "heading": "为什么团队选择 SKIA Forge",
+    "a": "在您的关键维度上实现与基准一致的质量：编码、工具、推理、长上下文、愿景和 TTS。",
+    "b": "超越原始输出的系统级成熟度：可观察性、运行状况检查和为生产环境构建的集成治理。",
+    "c": "基于事实的版本分发：仅显示已发布的安装程序以供下载。"
   }
 }

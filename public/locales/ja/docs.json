@@ -2,351 +2,351 @@
   "pages": {
     "readme": {
       "meta": {
-        "title": "SKIA Forge Documentation | SKIA Forge"
+        "title": "SKIA Forge ドキュメント | SKIA Forge"
       },
-      "badge": "SKIA Forge Docs",
-      "title": "SKIA Forge Documentation",
-      "description": "Browse product guides, API reference, security, support, and enterprise evaluation materials. Branded HTML pages are listed below; Markdown sources are available at the same paths with a .md suffix when served from the Forge host.",
+      "badge": "SKIA Forge ドキュメント",
+      "title": "SKIA Forge ドキュメント",
+      "description": "製品ガイド、「API」リファレンス、セキュリティ、サポート、エンタープライズ評価資料を参照してください。 ブランドの HTML ページは以下にリストされています。 「Markdown」ソースは、Forge ホストから提供される場合、.md サフィックスが付いた同じパスで利用できます。",
       "sections": {
         "all-documents": {
-          "title": "All Documents",
-          "html": "<div class=\"card-grid\"><a href=\"/docs/PRODUCT_MANUAL.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Product Manual</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">PRODUCT_MANUAL.html</div></div></a><a href=\"/docs/QUICKSTART.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Quickstart</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">QUICKSTART.html</div></div></a><a href=\"/docs/USER_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">User Guide</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">USER_GUIDE.html</div></div></a><a href=\"/docs/DEVELOPER_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Developer Guide</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">DEVELOPER_GUIDE.html</div></div></a><a href=\"/docs/OPERATOR_MANUAL.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Operator Manual</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">OPERATOR_MANUAL.html</div></div></a><a href=\"/docs/API_REFERENCE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">API Reference</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">API_REFERENCE.html</div></div></a><a href=\"/docs/SECURITY_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Security Guide</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">SECURITY_GUIDE.html</div></div></a><a href=\"/docs/TROUBLESHOOTING.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Troubleshooting</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">TROUBLESHOOTING.html</div></div></a><a href=\"/docs/CHANGELOG.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Changelog</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">CHANGELOG.html</div></div></a><a href=\"/docs/SUPPORT.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Support</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">SUPPORT.html</div></div></a><a href=\"/docs/PRICING_AND_PACKAGES.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Pricing & Packages</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">PRICING_AND_PACKAGES.html</div></div></a><a href=\"/docs/ENTERPRISE_READINESS_CHECKLIST.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">Enterprise Readiness</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">ENTERPRISE_READINESS_CHECKLIST.html</div></div></a></div></div>"
+          "title": "すべての文書",
+          "html": "<div class=\"card-grid\"><a href=\"/docs/PRODUCT_MANUAL.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">製品マニュアル</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">PRODUCT_MANUAL.html</div></div></a><a href=\"/docs/QUICKSTART.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">クイックスタート</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">QUICKSTART.html</div></div></a><a href=\"/docs/USER_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">ユーザー ガイド</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">USER_GUIDE.html</div></div></a><a href=\"/docs/DEVELOPER_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">開発者ガイド</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">DEVELOPER_GUIDE.html</div></div></a><a href=\"/docs/OPERATOR_MANUAL.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">オペレーター マニュアル</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">OPERATOR_MANUAL.html</div></div></a><a href=\"/docs/API_REFERENCE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">API リファレンス</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">API_REFERENCE.html</div></div></a><a href=\"/docs/SECURITY_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">セキュリティ ガイド</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">SECURITY_GUIDE.html</div></div></a><a href=\"/docs/TROUBLESHOOTING.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">トラブルシューティング</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">TROUBLESHOOTING.html</div></div></a><a href=\"/docs/CHANGELOG.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">変更ログ</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">CHANGELOG.html</div></div></a><a href=\"/docs/SUPPORT.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">サポート</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">SUPPORT.html</div></div></a><a href=\"/docs/PRICING_AND_PACKAGES.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">価格とパッケージ</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">PRICING_AND_PACKAGES.html</div></div></a><a href=\"/docs/ENTERPRISE_READINESS_CHECKLIST.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">エンタープライズ 準備状況</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">ENTERPRISE_READINESS_CHECKLIST.html</div></div></a></div></div>"
         }
       }
     },
     "quickstart": {
       "meta": {
-        "title": "Quickstart | SKIA Forge"
+        "title": "クイックスタート | SKIA Forge"
       },
-      "badge": "Get Started",
-      "title": "Quickstart",
-      "description": "Download SKIA Forge, sign in, and run your first governed workflow in the desktop IDE.",
+      "badge": "始めましょう",
+      "title": "クイックスタート",
+      "description": "SKIA Forge をダウンロードし、サインインして、デスクトップ IDE で最初の管理されたワークフローを実行します。",
       "sections": {
         "step-by-step": {
-          "title": "Step-by-Step",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Download SKIA Forge from <a href=\"https://forge.skia.ca/platform-downloads\" style=\"color:var(--gold)\">forge.skia.ca/platform-downloads</a> for your operating system.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Install the app, then open <strong>SKIA Forge</strong> from your applications menu or desktop shortcut.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Sign in with your SKIA account or create one when prompted � authentication happens inside the application.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Open or import a project, submit work, review governance output, and apply changes when you are ready.</div></div><div class=\"step\"><div class=\"step-num\">05</div><div class=\"step-text\">Explore deeper guides from the links below when you need more detail.</div></div></div></div>"
+          "title": "ステップバイステップ",
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><a href=\"https://forge.skia.ca/platform-downloads\" style=\"color:var(--gold)\">forge.skia.ca/platform-downloads</a> から SKIA Forge をダウンロードします。 </div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">アプリをインストールし、アプリケーション メニューまたはデスクトップ ショートカットから <strong>SKIA Forge</strong> を開きます。</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">SKIA アカウントでサインインするか、プロンプトが表示されたらアカウントを作成します。認証はアプリケーション内で行われます。</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">プロジェクトを開くかインポートし、作業を送信し、ガバナンス出力を確認し、準備ができたら変更を適用します。</div></div><div class=\"step\"><div class=\"step-num\">05</div><div class=\"step-text\">さらに詳細が必要な場合は、以下のリンクから詳細なガイドを参照してください。</div></div></div></div>"
         },
         "next-steps": {
-          "title": "Next Steps",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>User Guide</a> � day-to-day usage and governance modes</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API Reference</a> � HTTP APIs for developers and automation</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>Product Manual</a> � capabilities overview</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>Support</a> � how to get help</div></div></div></div>"
+          "title": "次のステップ",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>ユーザー ガイド</a> � 日常の使用法とガバナンス モード</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API リファレンス</a> HTTP 開発者と自動化のための API</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>製品マニュアル</a> � 機能の概要</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>サポート</a> � ヘルプの入手方法</div></div></div></div>"
         }
       }
     },
     "user-guide": {
       "meta": {
-        "title": "User Guide | SKIA Forge"
+        "title": "ユーザーガイド | SKIA Forge"
       },
-      "badge": "Using SKIA Forge",
-      "title": "User Guide",
-      "description": "What SKIA Forge does for you, how to install and sign in, daily workflows, governance modes in plain language, and where to get help.",
+      "badge": "SKIA Forgeの使用",
+      "title": "ユーザーガイド",
+      "description": "SKIA Forge の機能、インストールとサインインの方法、日常のワークフロー、平易な言葉でのガバナンス モード、およびヘルプの入手先。",
       "sections": {
         "what-skia-forge-does-for-you": {
-          "title": "What SKIA Forge Does For You",
-          "html": "SKIA Forge helps you build software with AI assistance under clear governance: planning, reviews, architecture insight, and safer apply paths so your team can move fast without bypassing policy.</div>"
+          "title": "SKIA Forgeがあなたに何をしてくれるか",
+          "html": "SKIA Forge は、明確なガバナンスの下で AI 支援を利用してソフトウェアを構築するのに役立ちます。計画、レビュー、アーキテクチャに関する洞察、より安全な適用パスにより、チームはポリシーを回避することなく迅速に行動できます。</div>"
         },
         "get-the-desktop-ide": {
-          "title": "Get the Desktop IDE",
-          "html": "Download installers from <a href=\"https://forge.skia.ca/platform-downloads\" style=\"color:var(--gold)\">forge.skia.ca/platform-downloads</a> and install <strong>SKIA Forge</strong> for your platform.</div>"
+          "title": "デスクトップ IDE を入手する",
+          "html": "<a href=\"https://forge.skia.ca/platform-downloads\" style=\"color:var(--gold)\">forge.skia.ca/platform-downloads</a> からインストーラーをダウンロードし、プラットフォームに合わせて <strong>SKIA Forge</strong> をインストールします。</div>"
         },
         "signing-in": {
-          "title": "Signing In",
-          "html": "Open the app and sign in or create a SKIA account when prompted. Authentication happens inside the application.</div>"
+          "title": "サインイン",
+          "html": "アプリを開いてサインインするか、プロンプトが表示されたら SKIA アカウントを作成します。 認証はアプリケーション内で行われます。</div>"
         },
         "daily-usage": {
-          "title": "Daily Usage",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Open or import the project you want to work on.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Submit work and review governance output before applying changes.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Follow in-app remediation when something is blocked, then try again.</div></div></div></div>"
+          "title": "毎日の使用量",
+          "html": "<div class=\"steps\"><div class=\"step-num\">01</div><div class=\"step-text\">作業するプロジェクトを開くかインポートします。</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">変更を適用する前に作業を送信し、ガバナンスの出力を確認します。</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">何かがブロックされている場合は、アプリ内の修復に従って、もう一度試してください。</div></div></div></div>"
         },
         "governance-modes": {
-          "title": "Governance Modes",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Strict</strong> � safest default; more steps require explicit approval.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Adaptive</strong> � balanced; routine work flows faster while higher-risk actions surface for review.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Autonomous</strong> � fastest path where enabled; use when your team accepts the trade-offs.</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">Labels in the product may vary; ask your admin which mode applies to your workspace.</p></div>"
+          "title": "ガバナンスモード",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>厳密</strong> � 最も安全なデフォルト。 それ以上の手順には明示的な承認が必要です。</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>適応性</strong> � バランスが取れています。 日常的な作業の流れが速くなり、リスクの高いアクションがレビューのために浮上します。</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>自律</strong> � 有効な場合は最速のパス。 チームがトレードオフを受け入れる場合に使用します。</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">製品内のラベルは異なる場合があります。 ワークスペースにどのモードが適用されるかを管理者に問い合わせてください。</p></div>"
         },
         "where-to-get-help": {
-          "title": "Where to Get Help",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href=\"/docs/SUPPORT.html\" style=\"color:var(--gold)\">Support</a> and <a href=\"/docs/TROUBLESHOOTING.html\" style=\"color:var(--gold)\">Troubleshooting</a></div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href=\"/contact\" style=\"color:var(--gold)\">Contact &amp; Support</a> on the Forge site for routed requests</div></div></div></div>"
+          "title": "どこで助けが得られるか",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href=\"/docs/SUPPORT.html\" style=\"color:var(--gold)\">サポート</a>および<a href=\"/docs/TROUBLESHOOTING.html\" style=\"color:var(--gold)\">トラブルシューティング</a></div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href=\"/contact\" style=\"color:var(--gold)\">お問い合わせと問い合わせ Forge サイトでのルーティングされたリクエストのサポート</a></div></div></div></div>"
         }
       }
     },
     "developer-guide": {
       "meta": {
-        "title": "Developer Guide | SKIA Forge"
+        "title": "開発者ガイド | SKIA Forge"
       },
-      "badge": "Local Dev & Architecture",
-      "title": "Developer Guide",
-      "description": "Local setup, project structure, coding conventions, and integration notes.",
+      "badge": "ローカル開発とアーキテクチャ",
+      "title": "開発者ガイド",
+      "description": "ローカル設定、プロジェクト構造、コーディング規約、統合メモ。",
       "sections": {
         "local-setup": {
-          "title": "Local Setup",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Ensure Node.js 20+ is installed</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\"><div class=\"code-block\">npm install</div></div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\"><div class=\"code-block\">npm run build</div></div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\"><div class=\"code-block\">npm run test</div></div></div></div></div>"
+          "title": "ローカルセットアップ",
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Node.js 20+ がインストールされていることを確認します</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\"><div class=\"code-block\">npm インストール</div></div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\"><div class=\"code-block\">npm ビルドの実行</div></div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\"><div class=\"code-block\">npm テストの実行</div></div></div></div></div>"
         },
         "project-structure": {
-          "title": "Project Structure",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">the Forge server � runtime entrypoint</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>src/forge/modules/</code> � module domains: governance, safety, context-engine, agent, production, healing, architecture</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE � IDE-facing integration surface</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> � product documentation set</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> � static assets and HTML pages</div></div></div></div>"
+          "title": "プロジェクトの構造",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Forge サーバー � ランタイムエントリーポイント</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>src/forge/modules/</code> � モジュールドメイン: ガバナンス、安全性、 コンテキスト エンジン、エージェント、プロダクション、ヒーリング、アーキテクチャ</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE IDE 側の統合サーフェス</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> � 製品ドキュメントセット</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> � 静的アセットおよび HTML ページ</div></div></div></div>"
         },
         "development-workflow": {
-          "title": "Development Workflow",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Implement scoped changes in <code>src/forge/modules/*</code>.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Run <code>npm run lint</code>, <code>npm run typecheck</code>, <code>npm run test</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Validate integration routes and control-plane behaviour.</div></div></div></div>"
+          "title": "開発ワークフロー",
+          "html": "<div class=\"steps\"><div class=\"step-num\">01</div><div class=\"step-text\">スコープ指定された変更を <code>src/forge/modules/*</code> に実装します。</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\"><code>npm を実行します。 lint を実行します</code>、<code>npm typecheck を実行します</code>、<code>npm テストを実行します</code>。</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">統合ルートとコントロール プレーンの動作を検証します。</div></div></div></div>"
         },
         "coding-conventions": {
-          "title": "Coding Conventions",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Use typed request/response schemas for all API surfaces</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Keep policy checks explicit and test-covered</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Prefer additive changes over implicit behaviour changes</div></div></div></div>"
+          "title": "コーディング規約",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">すべての API サーフェスに型指定されたリクエスト/レスポンス スキーマを使用する</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">ポリシー チェックを明示的に維持し、 テスト対象</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">暗黙的な動作変更よりも追加的な変更を優先する</div></div></div></div>"
         },
         "integration-notes": {
-          "title": "Integration Notes",
-          "html": "Forge can run with SKIA integration enabled or disabled. Adapter paths should fail clearly and return structured errors when upstream contracts are unavailable.</div>"
+          "title": "統合に関するメモ",
+          "html": "Forge は、SKIA 統合を有効または無効にしても実行できます。 上流のコントラクトが利用できない場合、アダプター パスは明らかに失敗し、構造化エラーを返す必要があります。</div>"
         }
       }
     },
     "api-reference": {
       "meta": {
-        "title": "API Reference | SKIA Forge"
+        "title": "「API」リファレンス | SKIA Forge"
       },
-      "badge": "Primary API Surfaces",
-      "title": "API Reference",
-      "description": "Forge HTTP API as implemented in the Forge server. Authenticated clients are required for control-plane routes under /api/forge/* . For the complete route index see docs/API_REFERENCE.md in the repository.",
+      "badge": "プライマリ API サーフェス",
+      "title": "「API」リファレンス",
+      "description": "Forge サーバーに実装されている Forge HTTP API。 /api/forge/* の下のコントロール プレーン ルートには、認証されたクライアントが必要です。 完全なルート インデックスについては、リポジトリの docs/API_REFERENCE.md を参照してください。",
       "sections": {
         "browser-static": {
-          "title": "Browser & Static",
-          "html": "<table class=\"tbl\"><thead><tr><th>Method</th><th>Path</th><th>Notes</th></tr></thead><tbody><tr><td>GET</td><td><code>/</code></td><td>Redirect to <code>/platform-downloads</code> (static <code>public/platform-downloads.html</code>)</td></tr><tr><td>GET</td><td><code>/forge</code></td><td>Same redirect (legacy path)</td></tr><tr><td>GET</td><td><code>/forge/app</code></td><td>Web IDE (build the SKIA Forge IDE bundle first)</td></tr><tr><td>GET</td><td><code>/resources</code>, <code>/security</code>, <code>/contact</code></td><td>Static pages</td></tr><tr><td>GET</td><td><code>/docs/*</code></td><td>Branded HTML then markdown fallback</td></tr></tbody></table></div>"
+          "title": "ブラウザと静的",
+          "html": "<table class=\"tbl\"><thead><tr><th>メソッド</th><th>パス</th><th>メモ</th></tr></thead><tbody><tr><td>GET</td><td><code>/</code></td><td><code>/platform-downloads</code> にリダイレクト (静的) <code>public/platform-downloads.html</code>)</td></tr><tr><td>GET</td><td><code>/forge</code></td><td>同じリダイレクト (レガシー パス)</td></tr><tr><td>GET</td><td><code>/forge/app</code></td><td>Web IDE (最初に SKIA Forge IDE バンドルを構築します)</td></tr><tr><td>GET</td><td><code>/resources</code>, <code>/security</code>, <code>/contact</code></td><td>Static ページ</td></tr><tr><td>GET</td><td><code>/docs/*</code></td><td>ブランド化された HTML とマークダウン フォールバック</td></tr></tbody></table></div>"
         },
         "auth-proxy": {
-          "title": "Auth Proxy",
-          "html": "<table class=\"tbl\"><thead><tr><th>Method</th><th>Path</th></tr></thead><tbody><tr><td>POST</td><td><code>/api/auth/login</code></td></tr><tr><td>POST</td><td><code>/api/auth/register</code></td></tr><tr><td>GET</td><td><code>/api/auth/session</code></td></tr></tbody></table><p style=\"margin-top:12px;font-size:13px;color:var(--text-soft)\">Proxied to <code>SKIA_BACKEND_URL</code>. Marketing pages omit web sign-in UI; use the SKIA Forge IDE.</p></div>"
+          "title": "認証プロキシ",
+          "html": "<テーブル class=\"tbl\"><thead><tr><th>メソッド</th><th>パス</th></tr></thead><tbody><tr><td>POST</td><td><code>/api/auth/login</code></td></tr><tr>< td>POST</td><td><code>/api/auth/register</code></td></tr><tr><td>GET</td><td><code>/api/auth/session</code></td></tr></tbody></table><p style=\"margin-top:12px;font-size:13px;color:var(--text-soft)\"><code>SKIA_BACKEND_URL</code> にプロキシされました。 マーケティング ページでは Web サインイン UI が省略されます。 SKIA Forge IDE を使用してください。</p></div>"
         },
         "app-distribution": {
-          "title": "App Distribution",
-          "html": "<table class=\"tbl\"><thead><tr><th>Method</th><th>Path</th></tr></thead><tbody><tr><td>GET</td><td><code>/api/app/version-check</code></td></tr><tr><td>GET</td><td><code>/api/app/release-assets</code></td></tr><tr><td>GET</td><td><code>/api/app/download</code></td></tr><tr><td>GET</td><td><code>/api/app/download/:platform</code></td></tr></tbody></table></div>"
+          "title": "アプリの配布",
+          "html": "<テーブル class=\"tbl\"><thead><tr><th>メソッド</th><th>パス</th></tr></thead><tbody><tr><td>GET</td><td><code>/api/app/version-check</code></td></tr><tr><td>GET</td><td><code>/api/app/releas e-assets</code></td></tr><tr><td>GET</td><td><code>/api/app/download</code></td></tr><tr><td>GET</td><td><code>/api/app/download/:platform</code></td></tr></tbody></table></div>"
         },
         "health-status": {
-          "title": "Health & Status",
-          "html": "<table class=\"tbl\"><thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead><tbody><tr><td>GET</td><td><code>/health</code></td><td>Service health check</td></tr><tr><td>GET</td><td><code>/live</code></td><td>Liveness probe</td></tr><tr><td>GET</td><td><code>/ready</code></td><td>Readiness probe</td></tr><tr><td>GET</td><td><code>/version</code></td><td>Service version</td></tr></tbody></table></div>"
+          "title": "健康状態とステータス",
+          "html": "<table class=\"tbl\"><thead><tr><th>メソッド</th><th>パス</th><th>説明</th></tr></thead><tbody><tr><td>GET</td><td><code>/health</code></td><td>サービスヘルス check</td></tr><tr><td>GET</td><td><code>/live</code></td><td>Liveness プローブ</td></tr><tr><td>GET</td><td><code>/ready</code></td><td>準備状況 プローブ</td></tr><tr><td>GET</td><td><code>/version</code></td><td>サービス バージョン</td></tr></tbody></table></div>"
         },
         "integration": {
-          "title": "Integration",
-          "html": "<table class=\"tbl\"><thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead><tbody><tr><td>GET</td><td><code>/integration/skia-full</code></td><td>Adapter status and contract map</td></tr><tr><td>GET</td><td><code>/integration/skia-full/probe</code></td><td>Live contract probe summary</td></tr><tr><td>GET</td><td><code>/integration/skia-full/probe/report</code></td><td>Detailed probe report</td></tr><tr><td>POST</td><td><code>/integration/skia-full/chat</code></td><td>Chat via SKIA brain</td></tr><tr><td>POST</td><td><code>/integration/skia-full/route</code></td><td>Reasoning router</td></tr><tr><td>POST</td><td><code>/integration/skia-full/routing-estimate</code></td><td>Routing estimate</td></tr></tbody></table></div>"
+          "title": "統合",
+          "html": "<table class=\"tbl\"><thead><tr><th>メソッド</th><th>パス</th><th>説明</th></tr></thead><tbody><tr><td>GET</td><td><code>/integration/skia-full</code></td><td>アダプターのステータスとコントラクト マップ</td></tr><tr><td>GET</td><td><code>/integration/skia-full/probe</code></td><td>ライブコントラクトプローブ概要</td></tr><tr><td>GET</td><td><code>/integration/skia-full/probe/report</code></td><td>詳細プローブ レポート</td></tr><tr><td>POST</td><td><code>/integration/skia-full/chat</code></td><td>SKIA 脳経由のチャット</td></tr><tr><td>POST</td><td><code>/integration/skia-full/route</code></td><td>推論 router</td></tr><tr><td>POST</td><td><code>/integration/skia-full/routing-estimate</code></td><td>ルーティング推定</td></tr></tbody></table></div>"
         },
         "forge-module-surfaces": {
-          "title": "Forge Module Surfaces",
-          "html": "<table class=\"tbl\"><thead><tr><th>Prefix</th><th>Domain</th></tr></thead><tbody><tr><td><code>/api/forge/context/*</code></td><td>Context engine, embeddings, semantic chunking</td></tr><tr><td><code>/api/forge/agent/*</code></td><td>Agent planner and executor</td></tr><tr><td><code>POST /api/forge/sdlc</code></td><td>SDLC intelligence</td></tr><tr><td><code>/api/forge/production/*</code></td><td>Production adapter</td></tr><tr><td><code>/api/forge/healing/*</code></td><td>Healing executor</td></tr><tr><td><code>/api/forge/architecture/*</code></td><td>Architecture diagnostics</td></tr><tr><td><code>/api/forge/orchestrate</code></td><td>Full orchestration flow</td></tr><tr><td><code>/api/forge/control-plane</code></td><td>Control plane snapshot</td></tr><tr><td><code>/api/forge/governance</code></td><td>Governance mode and policy</td></tr></tbody></table></div>"
+          "title": "モジュール表面の鍛造",
+          "html": "<table class=\"tbl\"><thead><tr><th>プレフィックス</th><th>ドメイン</th></tr></thead><tbody><tr><td><code>/api/forge/context/*</code></td><td>コンテキスト エンジン、埋め込み、セマンティック チャンキング</td></tr><tr><td><code>/api/forge/agent/*</code></td><td>エージェント プランナーと実行者</td></tr><tr><td><code>POST /api/forge/sdlc</code></td><td>SDLC インテリジェンス</td></tr><tr><td><code>/api/forge/production/*</code></td><td>プロダクション アダプター</td></tr><tr><td><code>/api/forge/healing/*</code></td><td>ヒーリング executor</td></tr><tr><td><code>/api/forge/architecture/*</code></td><td>アーキテクチャ診断</td></tr><tr><td><code>/api/forge/orchestrate</code></td><td>完全なオーケストレーション フロー</td></tr><tr><td><code>/api/forge/control-plane</code></td><td>コントロール プレーン スナップショット</td></tr><tr><td><code>/api/forge/governance</code></td><td>ガバナンス モードとポリシー</td></tr></tbody></table></div>"
         },
         "rpc": {
           "title": "RPC",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> � SKIA-backed operations with local fallbacks for unavailable upstream paths</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> � 使用できない上流パスに対するローカルフォールバックを使用した SKIA ベースの操作</div></div></div></div>"
         },
         "error-model": {
-          "title": "Error Model",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Schema validation errors return structured request feedback with field-level detail</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Upstream unavailability returns explicit SKIA unavailable errors</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Governance blocks return mode and policy-based decision context with remediation guidance</div></div></div></div>"
+          "title": "エラーモデル",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">スキーマ検証エラーにより、フィールドレベルの詳細を含む構造化リクエストフィードバックが返される</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">アップストリームが利用できない場合、明示的な SKIA が利用不可であることが返される エラー</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">ガバナンスは、修復ガイダンスを備えた返品モードとポリシーベースの意思決定コンテキストをブロックします</div></div></div></div>"
         }
       }
     },
     "operator-manual": {
       "meta": {
-        "title": "Operator Manual | SKIA Forge"
+        "title": "オペレーターマニュアル | SKIA Forge"
       },
-      "badge": "Deployment & Runtime Ops",
-      "title": "Operator Manual",
-      "description": "Deployment baseline, operational checks, and incident handling for SKIA Forge.",
+      "badge": "導入とランタイム運用",
+      "title": "オペレーターマニュアル",
+      "description": "SKIA Forgeの展開ベースライン、動作チェック、およびインシデント処理。",
       "sections": {
         "runtime-role": {
-          "title": "Runtime Role",
-          "html": "SKIA Forge operates as an orchestration and governance runtime service that augments development workflows with policy-aware controls.</div>"
+          "title": "ランタイムの役割",
+          "html": "SKIA Forge は、ポリシー対応の制御で開発ワークフローを強化するオーケストレーションおよびガバナンスのランタイム サービスとして動作します。</div>"
         },
         "deployment-baseline": {
-          "title": "Deployment Baseline",
-          "html": "<p style=\"margin-bottom:14px;font-size:13px;color:var(--text-soft)\">Production hostname: <code>forge.skia.ca</code>. Release baseline Forge <code>1.0.0</code> and SKIA Forge IDE <code>1.0.0</code>.</p><div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><div class=\"code-block\">npm run build</div></div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\"><div class=\"code-block\">npm run dev</div> (or your production process command)</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Listen on <code>SKIA_PORT</code> (default <code>4173</code>). Validate <code>/health</code>, <code>/live</code>, <code>/ready</code>, <code>/version</code></div></div></div><p style=\"margin-top:14px;font-size:13px;color:var(--text-soft)\">Additional environment variables for signing and GitHub integration are documented in your onboarding package.</p></div>"
+          "title": "導入ベースライン",
+          "html": "<p style=\"margin-bottom:14px;font-size:13px;color:var(--text-soft)\">本番ホスト名: <code>forge.skia.ca</code>。 ベースライン Forge <code>1.0.0</code> および SKIA Forge IDE <code>1.0.0</code> をリリースします。</p><div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><div class=\"code-block\">npm を実行します build</div></div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\"><div class=\"code-block\">npm run dev</div> (または運用プロセス コマンド)</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">リッスン <code>SKIA_PORT</code> (デフォルトは <code>4173</code>)。 <code>/health</code>、<code>/live</code>、<code>/ready</code>、<code>/version</code></div></div></div><p style=\"margin-top:14px;font-size:13px;color:var(--text-soft)\">署名と GitHub 統合のための追加の環境変数は、オンボーディング パッケージに文書化されています。</p></div>"
         },
         "environment-secrets": {
-          "title": "Environment & Secrets",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Keep all secrets in environment management � never commit credentials</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Configure SKIA integration values per deployment environment via your hosting provider's environment variables</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Use explicit mode controls for strict vs adaptive operations</div></div></div></div>"
+          "title": "環境と秘密",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">環境管理ではすべての秘密を保持し、資格情報を決してコミットしない</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">ホスティング経由で展開環境ごとに SKIA 統合値を構成する プロバイダの環境変数</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">厳密な操作と適応的な操作には明示的モード制御を使用する</div></div></div></div>"
         },
         "operational-checks": {
-          "title": "Operational Checks",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Health checks pass: <code>/health</code> returns <code>200 ok</code></div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Control-plane posture shows expected governance mode</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Governance recommendations are readable and actionable</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Audit logs are being produced after orchestration runs</div></div></div></div>"
+          "title": "動作確認",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">ヘルスチェックに合格しました: <code>/health</code> が <code>200 ok を返します</code></div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">コントロールプレーンの姿勢が期待されるガバナンスを示しています モード</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">ガバナンスの推奨事項は読みやすく、実行可能です</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">オーケストレーションの実行後に監査ログが生成されます</div></div></div></div>"
         },
         "incident-handling": {
-          "title": "Incident Handling",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Capture failure endpoint and payload metadata.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Review control-plane recommendations from <code>/api/forge/control-plane</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Apply remediation and re-run the failed request.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Escalate with logs and request IDs if unresolved � contact support.</div></div></div></div>"
+          "title": "インシデント処理",
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">障害エンドポイントとペイロードのメタデータをキャプチャします。</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">コントロール プレーンの推奨事項を確認します。 <code>/api/forge/control-plane</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">修復を適用し、失敗したリクエストを再実行します。</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">ログとリクエストをエスカレーションします。 ID が解決されない場合は、サポートにお問い合わせください。</div></div></div></div>"
         }
       }
     },
     "product-manual": {
       "meta": {
-        "title": "Product Manual | SKIA Forge"
+        "title": "製品マニュアル | SKIA Forge"
       },
-      "badge": "SKIA Forge Docs",
-      "title": "Product Manual",
-      "description": "The governance and orchestration control plane for AI-native software development. SKIA Forge connects to SKIA intelligence services for orchestration; it does not replace the full SKIA product runtime.",
+      "badge": "SKIA Forge ドキュメント",
+      "title": "製品マニュアル",
+      "description": "AI ネイティブ ソフトウェア開発のためのガバナンスおよびオーケストレーション コントロール プレーン。 SKIA ForgeはオーケストレーションのためにSKIAインテリジェンスサービスに接続します。 完全な SKIA 製品ランタイムを置き換えるものではありません。",
       "sections": {
         "what-skia-forge-is": {
-          "title": "What SKIA Forge Is",
-          "html": "SKIA Forge coordinates planning, execution safety, architecture checks, and remediation guidance around AI-assisted workflows.</div>"
+          "title": "SKIA Forgeとは",
+          "html": "SKIA Forge は、AI 支援ワークフローに関する計画、実行の安全性、アーキテクチャのチェック、修復ガイダンスを調整します。</div>"
         },
         "delivery-surfaces": {
-          "title": "Delivery Surfaces",
-          "html": "Public download and documentation live at <strong>forge.skia.ca</strong>, including <code>/platform-downloads</code>, <code>/resources</code>, <code>/security</code>, <code>/contact</code>, and <code>/docs/*</code>. The web IDE is available at <code>/forge/app</code> when the IDE bundle is built. Account sign-in and registration happen in the <strong>SKIA Forge IDE</strong> or other supported clients, not on static marketing pages. Desktop installers are served via <code>/api/app/download</code> routes.</div>"
+          "title": "配送面",
+          "html": "<code>/platform-downloads</code>、<code>/resources</code>、<code>/security</code>、<code>/contact</code>、<code>/docs/*</code> などのパブリック ダウンロードとドキュメントは <strong>forge.skia.ca</strong> にあります。 Web IDE は、IDE バンドルの構築時に <code>/forge/app</code> で利用できます。 アカウントのサインインと登録は、静的なマーケティング ページではなく、<strong>SKIA Forge IDE</strong> またはその他のサポートされているクライアントで行われます。 デスクトップ インストーラーは、<code>/api/app/download</code> ルート経由で提供されます。</div>"
         },
         "who-it-is-for": {
-          "title": "Who It Is For",
-          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">AI-First Engineering Teams</div><div class=\"card-body\">Build faster with safety guardrails baked into every workflow.</div></div><div class=\"card\"><div class=\"card-title\">Platform & Productivity Teams</div><div class=\"card-body\">Governance-aware automation for platform-level development workflows.</div></div><div class=\"card\"><div class=\"card-title\">Security & Governance Stakeholders</div><div class=\"card-body\">Policy-aware automation that produces first-class audit trails.</div></div></div></div>"
+          "title": "誰のためのものか",
+          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">AI ファースト エンジニアリング チーム</div><div class=\"card-body\">すべてのワークフローに組み込まれた安全ガードレールにより、より迅速に構築できます。</div></div><div class=\"card\"><div class=\"card-title\">プラットフォーム & 生産性チーム</div><div class=\"card-body\">プラットフォーム レベルの開発のためのガバナンスを意識した自動化 ワークフロー。</div></div><div class=\"card\"><div class=\"card-title\">セキュリティとガバナンス関係者</div><div class=\"card-body\">第一級の監査証跡を生成するポリシー対応の自動化。</div></div></div></div>"
         },
         "core-capabilities": {
-          "title": "Core Capabilities",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Structured orchestration across context, agent, SDLC, production, healing, architecture, and related modules</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Governance mode controls: <code>strict</code>, <code>adaptive</code>, <code>autonomous</code></div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Runtime control-plane posture, alerts, and recommendations</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Safety and architecture diagnostics on changed files</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Integration with SKIA intelligence services for reasoning and execution support</div></div></div></div>"
+          "title": "コア機能",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">コンテキスト、エージェント、SDLC、本番、修復、アーキテクチャ、および関連モジュールにわたる構造化されたオーケストレーション</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">ガバナンス モード制御: <code>strict</code>、<code>adaptive</code>、<code>autonomous</code></div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">ランタイム コントロール プレーンの状態、アラート、推奨事項</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">変更されたファイルの安全性とアーキテクチャの診断</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">推論と実行のサポートのための SKIA インテリジェンス サービスとの統合</div></div></div></div>"
         },
         "value-proposition": {
-          "title": "Value Proposition",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Faster delivery with guardrails � ship confidently without sacrificing speed</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Reduced unsafe operations reaching production</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Better traceability for enterprise governance and audits</div></div></div></div>"
+          "title": "価値提案",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">ガードレールによる迅速な配送 - 速度を犠牲にすることなく自信を持って出荷</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">生産に至るまでの危険な作業の削減</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">企業のガバナンスと監査のためのトレーサビリティの向上</div></div></div></div>"
         },
         "product-boundaries": {
-          "title": "Product Boundaries",
-          "html": "SKIA Forge is a control and orchestration layer. It is not a replacement for your full application runtime � it integrates with upstream SKIA intelligence contracts and your existing deployment topology.</div>"
+          "title": "製品の境界",
+          "html": "SKIA Forgeは、制御およびオーケストレーション層です。 これはアプリケーション ランタイム全体を置き換えるものではありません。上流の SKIA インテリジェンス コントラクトおよび既存の導入トポロジと統合されます。</div>"
         }
       }
     },
     "security-guide": {
       "meta": {
-        "title": "Security Guide | SKIA Forge"
+        "title": "セキュリティガイド | SKIA Forge"
       },
-      "badge": "Security Model & Controls",
-      "title": "Security Guide",
-      "description": "Layered controls, key components, operational practices, and hardening checklist.",
+      "badge": "セキュリティモデルと制御",
+      "title": "セキュリティガイド",
+      "description": "階層化されたコントロール、主要なコンポーネント、運用方法、強化チェックリスト。",
       "sections": {
         "security-model": {
-          "title": "Security Model",
-          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">Request Validation</div><div class=\"card-body\">All inputs validated against strict schemas before execution.</div></div><div class=\"card\"><div class=\"card-title\">Governance Enforcement</div><div class=\"card-body\">Strict, adaptive, and autonomous modes control agent permissions.</div></div><div class=\"card\"><div class=\"card-title\">Safety Gates</div><div class=\"card-body\">High-risk actions pass through safety gates with execution previews.</div></div><div class=\"card\"><div class=\"card-title\">Policy-Based Blocking</div><div class=\"card-body\">Policy violations are blocked, logged, and returned with remediation.</div></div></div></div>"
+          "title": "セキュリティモデル",
+          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">リクエストの検証</div><div class=\"card-body\">すべての入力は、実行前に厳密なスキーマに対して検証されます。</div></div><div class=\"card\"><div class=\"card-title\">ガバナンスの強制</div><div class=\"card-body\">厳密、適応、および自律モードの制御エージェント </div></div><div class=\"card\"><div class=\"card-title\">セーフティ ゲート</div><div class=\"card-body\">高リスクのアクションは、実行プレビュー付きのセーフティ ゲートを通過します。</div></div><div class=\"card\"><div class=\"card-title\">ポリシーベースのブロック</div><div class=\"card-body\">ポリシー違反はブロックされ、ログに記録され、返されます。 </div></div></div></div>"
         },
         "authentication-accounts": {
-          "title": "Authentication & Accounts",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">All Forge API routes require authentication. Sign in via the SKIA Forge IDE or your API client.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Marketing HTML omits web sign-in/register CTAs; users authenticate in the <strong>SKIA Forge IDE</strong>.</div></div></div></div>"
+          "title": "認証とアカウント",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">すべての Forge API ルートには認証が必要です。 SKIA Forge IDE または API クライアント経由でサインインします。</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">マーケティング HTML では Web サインイン/登録 CTA が省略されます。 ユーザーは <strong>SKIA Forge IDE</strong> で認証します。</div></div></div></div>"
         },
         "key-security-components": {
-          "title": "Key Security Components",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>SecurityAnalysisService</code> � scan and save-time checks on code and agent output</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Governance decision engine � strict / adaptive / autonomous control with audit trail</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Route and action-level safety modules � per-surface constraints that cannot be bypassed</div></div></div></div>"
+          "title": "主要なセキュリティコンポーネント",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>SecurityAnalysisService</code> � コードとエージェント出力のスキャンおよび保存時間チェック</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">ガバナンス意思決定エンジン � 厳密 / 適応 / 監査証跡による自律制御</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">ルートおよびアクションレベルの安全モジュール - バイパスできないサーフェスごとの制約</div></div></div></div>"
         },
         "operational-security-practices": {
-          "title": "Operational Security Practices",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Keep secrets out of repositories and logs � use your hosting provider's environment variables</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Validate all external integration responses � never trust third-party data without assertion</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Treat policy blocks as first-class security events � every block is logged and reviewable</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Record and monitor remediation outcomes � fixes without validation are incomplete</div></div></div></div>"
+          "title": "運用上のセキュリティ慣行",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">リポジトリやログに秘密を漏らさないようにします。ホスティング プロバイダの環境変数を使用します。</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">すべての外部統合応答を検証します。サードパーティを決して信頼しないでください。 アサーションのないデータ</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">ポリシー ブロックを第一級のセキュリティ イベントとして扱います。すべてのブロックがログに記録され、レビュー可能です。</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">修復結果を記録および監視します。検証なしの修正は、 不完全</div></div></div></div>"
         },
         "hardening-checklist": {
-          "title": "Hardening Checklist",
-          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Run lint, typecheck, and tests before every release</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Keep all dependencies current</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Validate integration probe endpoints regularly</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Review audit trails after major orchestration runs</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Rotate JWT_SECRET and API keys on schedule</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Never commit secrets � use environment injection</div></div></div></div>"
+          "title": "強化チェックリスト",
+          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">リリース前に lint、typecheck、テストを実行する</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">すべての依存関係を最新に保つ</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">統合プローブのエンドポイントを定期的に検証する</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">主要なオーケストレーションの実行後に監査証跡を確認する</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">スケジュールに従って JWT_SECRET キーと API キーをローテーションします</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">シークレットをコミットしないでください。環境インジェクションを使用してください</div></div></div></div>"
         }
       }
     },
     "troubleshooting": {
       "meta": {
-        "title": "Troubleshooting | SKIA Forge"
+        "title": "トラブルシューティング | SKIA Forge"
       },
-      "badge": "Common Failures & Fixes",
-      "title": "Troubleshooting",
-      "description": "Diagnostics and step-by-step fixes for the most common SKIA Forge issues.",
+      "badge": "よくある失敗と修正",
+      "title": "トラブルシューティング",
+      "description": "最も一般的な SKIA Forge の問題の診断と段階的な修正。",
       "sections": {
         "build-test-failures": {
-          "title": "Build / Test Failures",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><div class=\"code-block\">npm run typecheck</div></div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\"><div class=\"code-block\">npm run test</div></div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\"><div class=\"code-block\">npm run build</div></div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Fix schema and type mismatches before re-running orchestration endpoints.</div></div></div></div>"
+          "title": "ビルド/テストの失敗",
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><div class=\"code-block\">npm run typecheck</div></div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\"><div class=\"code-block\">npm テストの実行</div></div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\"><div class=\"code-block\">npm ビルドの実行</div></div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">オーケストレーション エンドポイントを再実行する前に、スキーマと型の不一致を修正してください。</div></div></div></div>"
         },
         "skia-integration-unavailable": {
-          "title": "SKIA Integration Unavailable",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Check <code>/integration/skia-full</code> and <code>/integration/skia-full/probe</code>.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Verify upstream URL and environment configuration in your hosting provider.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Review adapter disabled flags and auth headers.</div></div></div></div>"
+          "title": "SKIA 統合は利用できません",
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><code>/integration/skia-full</code> と <code>/integration/skia-full/probe</code> を確認します。</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">アップストリームを確認します ホスティングプロバイダーの「URL」と環境設定。</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">アダプターの無効化フラグと認証ヘッダーを確認します。</div></div></div></div>"
         },
         "governance-blocks": {
-          "title": "Governance Blocks",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Expected in strict or adaptive mode for risky actions</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Read remediation recommendations from the block response</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Apply the suggested safe path and re-run the request</div></div></div></div>"
+          "title": "ガバナンスブロック",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">危険なアクションについては厳密モードまたは適応モードで期待されます</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">ブロック応答から修復推奨事項を読み取る</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">提案された安全なパスを適用し、リクエストを再実行します</div></div></div></div>"
         },
         "runtime-health-issues": {
-          "title": "Runtime Health Issues",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Validate <code>/health</code> and <code>/live</code> endpoints.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Check logs for failing module names and request IDs.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Isolate whether the issue is a local Forge module or an upstream contract failure.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">If unresolved, escalate via <a href='/contact' style='color:var(--gold)'>Contact & Support</a> with request ID and logs.</div></div></div></div>"
+          "title": "実行時の健全性の問題",
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><code>/health</code> および <code>/live</code> エンドポイントを検証します。</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">失敗したモジュール名とリクエストのログを確認します。 ID。</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">問題がローカルの Forge モジュールであるか、上流の契約の失敗であるかを切り分けます。</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">未解決の場合は、<a href='/contact' 経由でエスカレーションします。 style='color:var(--gold)'>お問い合わせとサポート</a>にリクエスト ID とログを記載してください。</div></div></div></div>"
         }
       }
     },
     "changelog": {
       "meta": {
-        "title": "Changelog | SKIA Forge"
+        "title": "変更履歴 | SKIA Forge"
       },
-      "badge": "Version History",
-      "title": "Changelog",
-      "description": "Notable changes to SKIA Forge, documented by release.",
+      "badge": "バージョン履歴",
+      "title": "変更履歴",
+      "description": "SKIA Forge に対する注目すべき変更点はリリースごとに文書化されています。",
       "sections": {
         "v1-0-0-initial-release": {
-          "title": "v1.0.0 — Initial release",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge control plane with governance modes, orchestration APIs, and integration with SKIA intelligence services.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE (desktop) and web shell at <code>/forge/app</code> for browser-based access.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Public documentation, security guide, support model, and download hub at forge.skia.ca.</div></div></div></div>"
+          "title": "v1.0.0 — 初期リリース",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">ガバナンス モード、オーケストレーション API、SKIA インテリジェンス サービスとの統合を備えたSKIA Forge コントロール プレーン。</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE (デスクトップ) およびブラウザベースのアクセス用の Web シェル (<code>/forge/app</code>)。</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">公開ドキュメント、セキュリティ ガイド、サポート モデル、およびダウンロード ハブ: forge.skia.ca.</div></div></div></div>"
         }
       }
     },
     "support": {
       "meta": {
-        "title": "Support | SKIA Forge"
+        "title": "サポート | SKIA Forge"
       },
-      "badge": "Support Model & Escalation",
-      "title": "Support",
-      "description": "SKIA Forge support covers the following areas:",
+      "badge": "サポートモデルとエスカレーション",
+      "title": "サポート",
+      "description": "SKIA Forge のサポートは次の領域をカバーします。",
       "sections": {
         "support-scope": {
-          "title": "Support Scope",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Runtime startup and health issues</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Integration contract failures</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Governance and policy flow debugging</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Build and test pipeline breakages</div></div></div></div>"
+          "title": "サポート範囲",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">実行時の起動と正常性の問題</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">統合コントラクトの失敗</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">ガバナンスとポリシー フローのデバッグ</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">パイプラインの破損のビルドとテスト</div></div></div></div>"
         },
         "triage-information-to-collect": {
-          "title": "Triage Information to Collect",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Endpoint and HTTP method</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Request timestamp</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Request ID or correlation ID (if available)</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">What you were trying to do when the issue occurred</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Full error message and reproduction steps</div></div></div></div>"
+          "title": "収集すべきトリアージ情報",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">エンドポイントと HTTP メソッド</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">リクエストのタイムスタンプ</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">リクエスト ID または相関 ID (可能な場合)</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">問題が発生したときに実行しようとしていたこと</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">完全なエラー メッセージと再現手順</div></div></div></div>"
         },
         "escalation-path": {
-          "title": "Escalation Path",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Reproduce locally and validate with <code>/health</code> and probe endpoints.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Apply remediation guidance from control-plane outputs.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Escalate with logs, payload shape, and expected vs actual behaviour.</div></div></div></div>"
+          "title": "エスカレーションパス",
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">ローカルで再現し、<code>/health</code> で検証し、エンドポイントをプローブします。</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">コントロール プレーンから修復ガイダンスを適用します。 </div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">ログ、ペイロードの形状、予想される動作と実際の動作を比較してエスカレーションします。</div></div></div></div>"
         },
         "enterprise-support-expectations": {
-          "title": "Enterprise Support Expectations",
-          "html": "<div class=\"sla-row\"><div class=\"sla-tier p1\">P1</div><div class=\"sla-body\"><div class=\"sla-label\">Critical Outage</div><div class=\"sla-desc\">Immediate response window.</div></div></div><div class=\"sla-row\"><div class=\"sla-tier p2\">P2</div><div class=\"sla-body\"><div class=\"sla-label\">Degraded Service</div><div class=\"sla-desc\">Same business day response.</div></div></div><div class=\"sla-row\"><div class=\"sla-tier p3\">P3</div><div class=\"sla-body\"><div class=\"sla-label\">Non-blocking Issue</div><div class=\"sla-desc\">Prioritized backlog response.</div></div></div></div>"
+          "title": "エンタープライズサポートの期待",
+          "html": "<div class=\"sla-row\"><div class=\"sla-tier p1\">P1</div><div class=\"sla-body\"><div class=\"sla-label\">重大な停止</div><div class=\"sla-desc\">即時応答ウィンドウ。</div></div></div><div class=\"sla-row\"><div class=\"sla-tier p2\">P2</div><div class=\"sla-body\"><div class=\"sla-label\">サービス低下</div><div class=\"sla-desc\">同日対応。</div></div></div><div class=\"sla-row\"><div class=\"sla-tier p3\">P3</div><div class=\"sla-body\"><div class=\"sla-label\">非ブロッキング問題</div><div class=\"sla-desc\">優先順位付けされたバックログ対応。</div></div></div></div>"
         },
         "contact": {
-          "title": "Contact",
-          "html": "<div style=\"text-align:center;padding:20px;\"><a href=\"/contact\" style=\"display:inline-block;padding:10px 24px;border:1px solid var(--gold);border-radius:6px;color:var(--gold);text-decoration:none;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:rgba(212,175,55,0.08);\">Open Support Form</a></div></div>"
+          "title": "接触",
+          "html": "<div style=\"text-align:center;padding:20px;\"><a href=\"/contact\" style=\"display:inline-block;padding:10px 24px;border:1pxソリッド var(--gold);border-radius:6px;color:var(--gold);text-decoration:none;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;background:rgba(212,175,55,0.08);\">サポート フォームを開く</a></div></div>"
         }
       }
     },
     "pricing-and-packages": {
       "meta": {
-        "title": "Pricing & Packages | SKIA Forge"
+        "title": "価格とパッケージ | SKIA Forge"
       },
-      "badge": "Commercial Model",
-      "title": "Pricing & Packages",
-      "description": "SKIA Forge is available in three packages designed for individuals, teams, and enterprise organisations.",
+      "badge": "コマーシャルモデル",
+      "title": "価格とパッケージ",
+      "description": "SKIA Forge は、個人、チーム、企業組織向けに設計された 3 つのパッケージで利用できます。",
       "sections": {
         "packages": {
-          "title": "Packages",
-          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">Developer</div><div class=\"pkg-tag\">Solo engineers & experiments</div><div class=\"pkg-body\">Core Forge runtime � Basic orchestration and governance modes � Standard API access � Community support</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Team</div><div class=\"pkg-tag\">Engineering teams adopting AI workflows</div><div class=\"pkg-body\">Everything in Developer � Team policy presets � Shared operational dashboards � Priority support � Collaboration-ready governance defaults</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Enterprise</div><div class=\"pkg-tag\">Organizations with compliance requirements</div><div class=\"pkg-body\">Everything in Team � Enterprise policy controls and hardening � Audit/export-ready reporting � Deployment architecture support � Defined SLAs and escalation path</div></div></div></div>"
+          "title": "パッケージ",
+          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">開発者</div><div class=\"pkg-tag\">ソロ エンジニアと実験</div><div class=\"pkg-body\">Core Forge ランタイム 基本的なオーケストレーションおよびガバナンス モード 標準 API アクセス コミュニティ サポート</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">チーム</div><div class=\"pkg-tag\">AI ワークフローを採用するエンジニアリング チーム</div><div class=\"pkg-body\">Developer のすべて チーム ポリシーのプリセット 共有運用ダッシュボード 優先サポート コラボレーション対応のガバナンスのデフォルト</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">エンタープライズ</div><div class=\"pkg-tag\">コンプライアンス要件のある組織</div><div class=\"pkg-body\">チームのすべて � エンタープライズポリシーの制御と強化 � 監査/エクスポート対応のレポート � 導入アーキテクチャのサポート � 定義されたSLAおよびエスカレーションパス</div></div></div></div>"
         },
         "optional-add-ons": {
-          "title": "Optional Add-ons",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Custom policy packs</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Integration acceleration services</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Architecture and security review workshops</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Rollout training for platform and security teams</div></div></div></div>"
+          "title": "オプションのアドオン",
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">カスタム ポリシー パック</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">統合高速化サービス</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">アーキテクチャとセキュリティのレビュー ワークショップ</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">プラットフォーム チームとセキュリティ チーム向けのロールアウト トレーニング</div></div></div></div>"
         }
       }
     },
     "enterprise-readiness-checklist": {
       "meta": {
-        "title": "Enterprise Readiness Checklist | SKIA Forge"
+        "title": "エンタープライズ向け準備チェックリスト | SKIA Forge"
       },
-      "badge": "Enterprise Evaluation",
-      "title": "Enterprise Readiness Checklist",
-      "description": "Your guide to evaluating and deploying SKIA Forge at scale. Use this checklist when your organisation is deciding whether SKIA Forge fits your engineering, security, and operations requirements.",
+      "badge": "企業評価",
+      "title": "エンタープライズ向け準備チェックリスト",
+      "description": "SKIA Forge を大規模に評価および展開するためのガイド。 組織が SKIA Forge がエンジニアリング、セキュリティ、および運用の要件に適合するかどうかを判断する場合は、このチェックリストを使用してください。",
       "sections": {
         "product-architecture": {
-          "title": "Product & Architecture",
-          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm the product scope matches your expectations: governance and orchestration for AI-assisted development, aligned with your delivery stack.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm you have a clear picture of core capabilities from the product manual and public materials.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm integration expectations with your existing tools and workflows are documented internally.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm you have access to an up-to-date API reference for any automation or custom clients.</div></div></div></div>"
+          "title": "製品とアーキテクチャ",
+          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">チームは、製品範囲がお客様の期待と一致していることを確認する必要があります。つまり、デリバリー スタックに合わせた AI 支援開発のガバナンスとオーケストレーションです。</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">チームは確認する必要があります。 製品マニュアルや公開資料からコア機能を明確に理解してください。</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">チームは、既存のツールとの統合に関する期待とワークフローが内部で文書化されていることを確認する必要があります。</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">チームは、次のことを確認する必要があります。 オートメーションまたはカスタム クライアントの最新の API リファレンスへのアクセス。</div></div></div></div>"
         },
         "security-governance": {
-          "title": "Security & Governance",
-          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm security controls and threat assumptions are acceptable under your policies (Security Guide).</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm how governance modes map to your risk appetite and who can change them.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm high-risk operations, approvals, and audit expectations meet compliance needs.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm secret handling and access control for Forge hosts match your standards.</div></div></div></div>"
+          "title": "セキュリティとガバナンス",
+          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">チームは、セキュリティ管理と脅威の想定がポリシー (セキュリティ ガイド) で許容されることを確認する必要があります。</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">チームは、ガバナンス モードがリスク選好度にどのように対応しているか、また誰がどのように対応しているかを確認する必要があります。 </div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">チームは、リスクの高い操作、承認、監査の期待がコンプライアンスのニーズを満たしていることを確認する必要があります。</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">チームは、Forge ホストのシークレットの処理とアクセス制御がユーザーの要求に一致していることを確認する必要があります。 規格。</div></div></div></div>"
         },
         "operations": {
-          "title": "Operations",
-          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm you have an operational runbook for deployment, upgrades, and rollback (Operator Manual).</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm health and readiness checks you rely on are defined and monitored.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm troubleshooting and escalation paths are understood (Support, Troubleshooting).</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm backup, recovery, and incident response procedures are assigned.</div></div></div></div>"
+          "title": "運営",
+          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">チームは、展開、アップグレード、ロールバックのための運用ランブックがあることを確認する必要があります (オペレーター マニュアル)。</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">チームは、健全性と準備状況のチェックを確認する必要があります。 </div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">チームはトラブルシューティングとエスカレーション パスが理解されていることを確認する必要があります (サポート、トラブルシューティング)。</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">チームはバックアップを確認する必要があります。 回復とインシデント対応手順が割り当てられます。</div></div></div></div>"
         },
         "quality-reliability": {
-          "title": "Quality & Reliability",
-          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm release quality expectations align with your internal gates.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm known limitations and non-goals are captured for stakeholders.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm performance and availability targets for your topology are documented.</div></div></div></div>"
+          "title": "品質と信頼性",
+          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">チームは、リリース品質の期待が社内ゲートと一致していることを確認する必要があります。</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">チームは、既知の制限事項と目標以外が把握されていることを確認する必要があります。 </div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">チームは、トポロジのパフォーマンスと可用性の目標が文書化されていることを確認する必要があります。</div></div></div></div>"
         },
         "commercial-support": {
-          "title": "Commercial & Support",
-          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm packaging and licensing match the seats or deployment model you intend (Pricing &amp; Packages).</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm support tiers and escalation contacts are agreed with SKIA.</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Your team should confirm procurement items (security questionnaires, DPA, subprocessors if applicable) are tracked before go-live.</div></div></div></div>"
+          "title": "コマーシャルとサポート",
+          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">チームは、パッケージ化とライセンスが意図したシートまたは導入モデル (価格とパッケージ) と一致していることを確認する必要があります。</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">チームはサポート層を確認する必要があります。 </div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">チームは、運用開始前に調達項目 (セキュリティ質問票、DPA、該当する場合はサブプロセッサ) が追跡されていることを確認する必要があります。</div></div></div></div>"
         }
       }
     }

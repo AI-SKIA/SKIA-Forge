@@ -1,58 +1,58 @@
 {
   "meta": {
-    "title": "Security | SKIA Forge"
+    "title": "Güvenlik | SKIA Forge"
   },
   "hero": {
-    "title": "Security",
-    "subtitle": "SKIA Forge applies layered controls across every surface — request, governance, and execution"
+    "title": "Güvenlik",
+    "subtitle": "SKIA Forge istek, yönetişim ve yürütme olmak üzere her yüzeyde katmanlı kontroller uygular"
   },
   "sections": {
-    "model": "Security Model",
-    "components": "Key Security Components",
-    "practices": "Operational Security Practices",
-    "checklist": "Hardening Checklist"
+    "model": "Güvenlik Modeli",
+    "components": "Temel Güvenlik Bileşenleri",
+    "practices": "Operasyonel Güvenlik Uygulamaları",
+    "checklist": "Sertleştirme Kontrol Listesi"
   },
   "controls": {
     "validation": {
-      "title": "Request Validation",
-      "desc": "All inputs validated against strict request and schema contracts before execution."
+      "title": "Doğrulama İste",
+      "desc": "Tüm girdiler, yürütmeden önce katı istek ve şema sözleşmelerine göre doğrulandı."
     },
     "governance": {
-      "title": "Governance Enforcement",
-      "desc": "Strict, adaptive, and autonomous governance modes control what agents can do."
+      "title": "Yönetişim Uygulaması",
+      "desc": "Katı, uyarlanabilir ve özerk yönetişim modları, aracıların neler yapabileceğini kontrol eder."
     },
     "safety": {
-      "title": "Safety Gates",
-      "desc": "High-risk actions pass through safety gates with preview and policy-based blocking."
+      "title": "Emniyet Kapıları",
+      "desc": "Yüksek riskli eylemler, önizleme ve politika tabanlı engellemeyle güvenlik kapılarından geçer."
     },
     "previews": {
-      "title": "Execution Previews",
-      "desc": "Every destructive or irreversible action is previewed before it runs."
+      "title": "Yürütme Önizlemeleri",
+      "desc": "Her yıkıcı veya geri döndürülemez eylem, çalıştırılmadan önce önizlenir."
     }
   },
   "components": {
-    "analysis": "Security analysis — runs scan and save-time checks on code and agent output before persistence.",
-    "governance": "Governance layer — enforces strict / adaptive / autonomous control based on user-defined policy. All mode transitions are logged.",
-    "routes": "Route & Action Modules — per-route and per-action safety constraints that cannot be bypassed at the API layer.",
-    "audit": "Audit Trail — all orchestration runs produce a structured audit trail. Reviewed after major agent operations."
+    "analysis": "Güvenlik analizi — kalıcılıktan önce kod ve aracı çıktısı üzerinde tarama ve zamandan tasarruf kontrolleri gerçekleştirir.",
+    "governance": "Yönetişim katmanı — kullanıcı tanımlı politikaya dayalı olarak katı / uyarlanabilir / özerk kontrolü uygular. Tüm mod geçişleri günlüğe kaydedilir.",
+    "routes": "Rota ve Eylem Modülleri — API katmanında atlanamayan rota başına ve eylem başına güvenlik kısıtlamaları.",
+    "audit": "Denetim İzi — tüm düzenleme çalıştırmaları yapılandırılmış bir denetim izi oluşturur. Büyük acente operasyonlarından sonra gözden geçirildi."
   },
   "practices": {
-    "p1": "Keep secrets out of repositories and logs. Store all secrets using your secrets manager or hosting provider's secrets injection — never in plaintext config files.",
-    "p2": "Validate all external integration responses. Never trust third-party data without schema assertion.",
-    "p3": "Treat policy blocks as first-class security events. Every block is logged, reviewable, and feeds governance tuning.",
-    "p4": "Record and monitor remediation outcomes. Fixes without follow-up validation are not considered complete."
+    "p1": "Sırları depolardan ve günlüklerden uzak tutun. Tüm gizli dizileri, gizli dizi yöneticinizi veya barındırma sağlayıcınızın gizli dizi enjeksiyonunu kullanarak saklayın; asla düz metin yapılandırma dosyalarında değil.",
+    "p2": "Tüm harici entegrasyon yanıtlarını doğrulayın. Şema onayı olmadan asla üçüncü taraf verilerine güvenmeyin.",
+    "p3": "İlke bloklarını birinci sınıf güvenlik olayları olarak ele alın. Her blok günlüğe kaydedilir, incelenebilir ve yönetişim ayarlarını besler.",
+    "p4": "İyileştirme sonuçlarını kaydedin ve izleyin. Takip doğrulaması yapılmayan düzeltmeler tamamlanmış sayılmaz."
   },
   "checklist": {
-    "c1": "Run lint, typecheck, and tests before every release",
-    "c2": "Keep all dependencies current — patch within 48 hours of CVE",
-    "c3": "Validate integration probe endpoints regularly",
-    "c4": "Review audit trails after major orchestration runs",
-    "c5": "Rotate JWT_SECRET and API keys on a scheduled cadence",
-    "c6": "Never commit secrets — use environment variable injection"
+    "c1": "Her sürümden önce lint, typecheck ve testler çalıştırın",
+    "c2": "Tüm bağımlılıkları güncel tutun; CVE'den sonraki 48 saat içinde yama yapın",
+    "c3": "Entegrasyon araştırması uç noktalarını düzenli olarak doğrulayın",
+    "c4": "Büyük düzenleme çalıştırmalarından sonra denetim izlerini gözden geçirin",
+    "c5": "JWT_SECRET ve API tuşlarını planlanmış bir tempoda döndürün",
+    "c6": "Asla sırları saklamayın; ortam değişkeni enjeksiyonunu kullanın"
   },
   "disclosure": {
-    "title": "Responsible Disclosure",
-    "body": "Found a vulnerability in SKIA Forge? We take security reports seriously. Contact us privately and we will respond within one business day.",
-    "button": "Report a Vulnerability"
+    "title": "Sorumlu Açıklama",
+    "body": "SKIA Forge'de bir güvenlik açığı mı buldunuz? Güvenlik raporlarını ciddiye alıyoruz. Bizimle özel olarak iletişime geçin; bir iş günü içinde yanıt vereceğiz.",
+    "button": "Bir Güvenlik Açığı Bildirin"
   }
 }
