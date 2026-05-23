@@ -104,6 +104,10 @@ contextBridge.exposeInMainWorld("skiaElectron", {
         ipcRenderer.invoke("skia:getSavedCredentials"),
     clearSavedCredentials: (): Promise<boolean> => ipcRenderer.invoke("skia:clearSavedCredentials"),
 
+    notifyLocaleChanged: (locale: string) => {
+        ipcRenderer.send("locale-changed", locale);
+    },
+
     // ── Project root ─────────────────────────────────────────────────────────
     // Get the folder currently open in the IDE
     getProjectRoot: (): Promise<string | null> =>

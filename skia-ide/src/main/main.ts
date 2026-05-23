@@ -6,6 +6,7 @@ import https from "node:https";
 import { randomBytes } from "node:crypto";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
+import { getMenuLabels, isMenuLocale, type MenuLocale } from "./menuLocales";
 
 type SkiaConfig = {
     backendUrl: string;
@@ -37,6 +38,8 @@ type UpdateCheckResult =
 
 let mainWindow: BrowserWindow | null = null;
 let autoSaveEnabled = false;
+/** Mirrors renderer skia-ui-locale; updated via locale-changed IPC. */
+let menuLocale: MenuLocale = "fr";
 /** Last update check result — re-sent when renderer signals ready (startup check can finish before UI listeners attach). */
 let cachedUpdateCheckResult: UpdateCheckResult | null = null;
 
@@ -460,40 +463,40 @@ const stopBackendProcess = (): void => {
     });
 };
 
-/**
- * KNOWN LIMITATION — localized menu bar: top-level labels (File, Edit, Selection, View, Run,
- * Window, Help) and submenu entries are built here in English only. They do not follow
- * skia-ui-locale / Settings → UI language. Wiring locale-aware menus would require IPC from the
- * renderer on locale change plus translated label maps in main; not implemented yet.
- */
+const reapplyApplicationMenu = (): void => {
+    const target = BrowserWindow.getFocusedWindow() ?? mainWindow;
+    if (target) buildApplicationMenu(target);
+};
+
 const buildApplicationMenu = (win: BrowserWindow): void => {
+    const L = getMenuLabels(menuLocale);
     const menu = new Menu();
 
     const fileMenu = new Menu();
     fileMenu.append(
         new MenuItem({
-            label: "New File",
+            label: L.newFile,
             accelerator: "Ctrl+N",
             click: () => sendToRenderer(win, "new-file")
         })
     );
     fileMenu.append(
         new MenuItem({
-            label: "New Window",
+            label: L.newWindow,
             accelerator: "Ctrl+Shift+N",
             click: () => createWindow()
         })
     );
     fileMenu.append(
         new MenuItem({
-            label: "Open File...",
+            label: L.openFile,
             accelerator: "Ctrl+O",
             click: () => sendToRenderer(win, "open-file")
         })
     );
     fileMenu.append(
         new MenuItem({
-            label: "Open Folder...",
+            label: L.openFolder,
             accelerator: "Ctrl+K Ctrl+O",
             click: () => sendToRenderer(win, "open-folder")
         })
@@ -501,34 +504,34 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     const openRecentMenu = new Menu();
     openRecentMenu.append(
         new MenuItem({
-            label: "No recent files",
+            label: L.noRecentFiles,
             enabled: false
         })
     );
     fileMenu.append(
         new MenuItem({
-            label: "Open Recent",
+            label: L.openRecent,
             submenu: openRecentMenu
         })
     );
     fileMenu.append(new MenuItem({ type: "separator" }));
     fileMenu.append(
         new MenuItem({
-            label: "Save",
+            label: L.save,
             accelerator: "Ctrl+S",
             click: () => sendToRenderer(win, "save-file")
         })
     );
     fileMenu.append(
         new MenuItem({
-            label: "Save As...",
+            label: L.saveAs,
             accelerator: "Ctrl+Shift+S",
             click: () => sendToRenderer(win, "save-file-as")
         })
     );
     fileMenu.append(
         new MenuItem({
-            label: "Save All",
+            label: L.saveAll,
             accelerator: "Ctrl+K S",
             click: () => sendToRenderer(win, "save-all")
         })
@@ -536,7 +539,7 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     fileMenu.append(new MenuItem({ type: "separator" }));
     fileMenu.append(
         new MenuItem({
-            label: "Auto Save",
+            label: L.autoSave,
             type: "checkbox",
             checked: autoSaveEnabled,
             click: (item) => {
@@ -548,20 +551,20 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     fileMenu.append(new MenuItem({ type: "separator" }));
     fileMenu.append(
         new MenuItem({
-            label: "Close Editor",
+            label: L.closeEditor,
             accelerator: "Ctrl+F4",
             click: () => sendToRenderer(win, "close-editor")
         })
     );
     fileMenu.append(
         new MenuItem({
-            label: "Close Folder",
+            label: L.closeFolder,
             click: () => sendToRenderer(win, "close-folder")
         })
     );
     fileMenu.append(
         new MenuItem({
-            label: "Close Window",
+            label: L.closeWindow,
             accelerator: "Alt+F4",
             click: () => {
                 const targetWindow = getMenuTargetWindow(win);
@@ -572,7 +575,7 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     fileMenu.append(new MenuItem({ type: "separator" }));
     fileMenu.append(
         new MenuItem({
-            label: "Exit",
+            label: L.exit,
             click: () => app.quit()
         })
     );
@@ -580,14 +583,14 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     const editMenu = new Menu();
     editMenu.append(
         new MenuItem({
-            label: "Undo",
+            label: L.undo,
             accelerator: "Ctrl+Z",
             click: () => getMenuTargetWindow(win).webContents.undo()
         })
     );
     editMenu.append(
         new MenuItem({
-            label: "Redo",
+            label: L.redo,
             accelerator: "Ctrl+Shift+Z",
             click: () => getMenuTargetWindow(win).webContents.redo()
         })
@@ -595,28 +598,28 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     editMenu.append(new MenuItem({ type: "separator" }));
     editMenu.append(
         new MenuItem({
-            label: "Cut",
+            label: L.cut,
             accelerator: "Ctrl+X",
             click: () => getMenuTargetWindow(win).webContents.cut()
         })
     );
     editMenu.append(
         new MenuItem({
-            label: "Copy",
+            label: L.copy,
             accelerator: "Ctrl+C",
             click: () => getMenuTargetWindow(win).webContents.copy()
         })
     );
     editMenu.append(
         new MenuItem({
-            label: "Paste",
+            label: L.paste,
             accelerator: "Ctrl+V",
             click: () => getMenuTargetWindow(win).webContents.paste()
         })
     );
     editMenu.append(
         new MenuItem({
-            label: "Select All",
+            label: L.selectAll,
             accelerator: "Ctrl+A",
             click: () => getMenuTargetWindow(win).webContents.selectAll()
         })
@@ -624,21 +627,21 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     editMenu.append(new MenuItem({ type: "separator" }));
     editMenu.append(
         new MenuItem({
-            label: "Find",
+            label: L.find,
             accelerator: "Ctrl+F",
             click: () => sendToRenderer(win, "find")
         })
     );
     editMenu.append(
         new MenuItem({
-            label: "Find in Files",
+            label: L.findInFiles,
             accelerator: "Ctrl+Shift+F",
             click: () => sendToRenderer(win, "find-in-files")
         })
     );
     editMenu.append(
         new MenuItem({
-            label: "Replace",
+            label: L.replace,
             accelerator: "Ctrl+H",
             click: () => sendToRenderer(win, "replace")
         })
@@ -646,14 +649,14 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     editMenu.append(new MenuItem({ type: "separator" }));
     editMenu.append(
         new MenuItem({
-            label: "Toggle Line Comment",
+            label: L.toggleLineComment,
             accelerator: "Ctrl+/",
             click: () => sendToRenderer(win, "toggle-comment")
         })
     );
     editMenu.append(
         new MenuItem({
-            label: "Toggle Block Comment",
+            label: L.toggleBlockComment,
             accelerator: "Ctrl+Shift+A",
             click: () => sendToRenderer(win, "toggle-block-comment")
         })
@@ -662,21 +665,21 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     const selectionMenu = new Menu();
     selectionMenu.append(
         new MenuItem({
-            label: "Select All",
+            label: L.selectAll,
             accelerator: "Ctrl+A",
             click: () => getMenuTargetWindow(win).webContents.selectAll()
         })
     );
     selectionMenu.append(
         new MenuItem({
-            label: "Expand Selection",
+            label: L.expandSelection,
             accelerator: "Shift+Alt+Right",
             click: () => sendToRenderer(win, "expand-selection")
         })
     );
     selectionMenu.append(
         new MenuItem({
-            label: "Shrink Selection",
+            label: L.shrinkSelection,
             accelerator: "Shift+Alt+Left",
             click: () => sendToRenderer(win, "shrink-selection")
         })
@@ -684,28 +687,28 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     selectionMenu.append(new MenuItem({ type: "separator" }));
     selectionMenu.append(
         new MenuItem({
-            label: "Copy Line Up",
+            label: L.copyLineUp,
             accelerator: "Shift+Alt+Up",
             click: () => sendToRenderer(win, "copy-line-up")
         })
     );
     selectionMenu.append(
         new MenuItem({
-            label: "Copy Line Down",
+            label: L.copyLineDown,
             accelerator: "Shift+Alt+Down",
             click: () => sendToRenderer(win, "copy-line-down")
         })
     );
     selectionMenu.append(
         new MenuItem({
-            label: "Move Line Up",
+            label: L.moveLineUp,
             accelerator: "Alt+Up",
             click: () => sendToRenderer(win, "move-line-up")
         })
     );
     selectionMenu.append(
         new MenuItem({
-            label: "Move Line Down",
+            label: L.moveLineDown,
             accelerator: "Alt+Down",
             click: () => sendToRenderer(win, "move-line-down")
         })
@@ -713,14 +716,14 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     selectionMenu.append(new MenuItem({ type: "separator" }));
     selectionMenu.append(
         new MenuItem({
-            label: "Add Cursor Above",
+            label: L.addCursorAbove,
             accelerator: "Ctrl+Alt+Up",
             click: () => sendToRenderer(win, "add-cursor-above")
         })
     );
     selectionMenu.append(
         new MenuItem({
-            label: "Add Cursor Below",
+            label: L.addCursorBelow,
             accelerator: "Ctrl+Alt+Down",
             click: () => sendToRenderer(win, "add-cursor-below")
         })
@@ -729,35 +732,35 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     const viewMenu = new Menu();
     viewMenu.append(
         new MenuItem({
-            label: "Explorer",
+            label: L.explorer,
             accelerator: "Ctrl+Shift+E",
             click: () => sendToRenderer(win, "view-explorer")
         })
     );
     viewMenu.append(
         new MenuItem({
-            label: "Search",
+            label: L.search,
             accelerator: "Ctrl+Shift+F",
             click: () => sendToRenderer(win, "view-search")
         })
     );
     viewMenu.append(
         new MenuItem({
-            label: "Agent",
+            label: L.agent,
             accelerator: "Ctrl+Shift+A",
             click: () => sendToRenderer(win, "view-agent")
         })
     );
     viewMenu.append(
         new MenuItem({
-            label: "Forge",
+            label: L.forge,
             accelerator: "Ctrl+Shift+G",
             click: () => sendToRenderer(win, "view-forge")
         })
     );
     viewMenu.append(
         new MenuItem({
-            label: "Settings",
+            label: L.settings,
             accelerator: "Ctrl+,",
             click: () => sendToRenderer(win, "view-settings")
         })
@@ -765,28 +768,28 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     viewMenu.append(new MenuItem({ type: "separator" }));
     viewMenu.append(
         new MenuItem({
-            label: "Toggle Chat Panel",
+            label: L.toggleChatPanel,
             click: () => sendToRenderer(win, "toggle-chat")
         })
     );
     viewMenu.append(new MenuItem({ type: "separator" }));
     viewMenu.append(
         new MenuItem({
-            label: "Zoom In",
+            label: L.zoomIn,
             accelerator: "Ctrl+=",
             click: () => setZoomLevel(win, 1)
         })
     );
     viewMenu.append(
         new MenuItem({
-            label: "Zoom Out",
+            label: L.zoomOut,
             accelerator: "Ctrl+-",
             click: () => setZoomLevel(win, -1)
         })
     );
     viewMenu.append(
         new MenuItem({
-            label: "Reset Zoom",
+            label: L.resetZoom,
             accelerator: "Ctrl+0",
             click: () => {
                 const targetWindow = getMenuTargetWindow(win);
@@ -797,7 +800,7 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     viewMenu.append(new MenuItem({ type: "separator" }));
     viewMenu.append(
         new MenuItem({
-            label: "Toggle Full Screen",
+            label: L.toggleFullScreen,
             accelerator: "F11",
             click: () => {
                 const targetWindow = getMenuTargetWindow(win);
@@ -807,7 +810,7 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     );
     viewMenu.append(
         new MenuItem({
-            label: "Toggle Developer Tools",
+            label: L.toggleDevTools,
             accelerator: "Ctrl+Shift+I",
             click: () => getMenuTargetWindow(win).webContents.toggleDevTools()
         })
@@ -816,7 +819,7 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     const runMenu = new Menu();
     runMenu.append(
         new MenuItem({
-            label: "Run Agent Task",
+            label: L.runAgentTask,
             click: () => {
                 mainWindow?.webContents.send("run-agent-task");
             }
@@ -824,7 +827,7 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     );
     runMenu.append(
         new MenuItem({
-            label: "Cancel Task",
+            label: L.cancelTask,
             click: () => {
                 mainWindow?.webContents.send("run-cancel-task");
             }
@@ -833,7 +836,7 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     runMenu.append(new MenuItem({ type: "separator" }));
     runMenu.append(
         new MenuItem({
-            label: "Open Terminal",
+            label: L.openTerminal,
             accelerator: "CmdOrCtrl+`",
             click: () => {
                 // FIXED: pass the current project root so the renderer opens
@@ -848,20 +851,20 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     const windowMenu = new Menu();
     windowMenu.append(
         new MenuItem({
-            label: "Minimize",
+            label: L.minimize,
             accelerator: "Ctrl+M",
             click: () => getMenuTargetWindow(win).minimize()
         })
     );
     windowMenu.append(
         new MenuItem({
-            label: "Maximize",
+            label: L.maximize,
             click: () => getMenuTargetWindow(win).maximize()
         })
     );
     windowMenu.append(
         new MenuItem({
-            label: "Close",
+            label: L.close,
             accelerator: "Ctrl+W",
             click: () => getMenuTargetWindow(win).close()
         })
@@ -872,7 +875,7 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     const helpMenu = new Menu();
     helpMenu.append(
         new MenuItem({
-            label: "About SKIA FORGE",
+            label: L.aboutSkiaForge,
             click: () => {
                 showAboutWindow();
             }
@@ -881,14 +884,14 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     helpMenu.append(new MenuItem({ type: "separator" }));
     helpMenu.append(
         new MenuItem({
-            label: "My SKIA Account",
+            label: L.mySkiaAccount,
             click: () => { void shell.openExternal("https://skia.ca/settings"); }
         })
     );
     helpMenu.append(new MenuItem({ type: "separator" }));
     helpMenu.append(
         new MenuItem({
-            label: "Check for Updates",
+            label: L.checkForUpdates,
             click: () => {
                 void runUpdateCheck().then((result) => {
                     emitUpdateToRenderer(result);
@@ -899,12 +902,12 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     helpMenu.append(new MenuItem({ type: "separator" }));
     helpMenu.append(
         new MenuItem({
-            label: "Documentation",
+            label: L.documentation,
             click: () => {
                 const docsWin = new BrowserWindow({
                     width: 900,
                     height: 700,
-                    title: "SKIA FORGE — Documentation",
+                    title: L.documentationTitle,
                     ...browserWindowIconOptions(),
                     webPreferences: { contextIsolation: true, webSecurity: true, sandbox: true }
                 });
@@ -914,12 +917,12 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     );
     helpMenu.append(
         new MenuItem({
-            label: "Report Abuse or Issue",
+            label: L.reportIssue,
             click: () => {
                 const reportWin = new BrowserWindow({
                     width: 900,
                     height: 700,
-                    title: "SKIA — Report an Issue",
+                    title: L.reportIssueTitle,
                     ...browserWindowIconOptions(),
                     webPreferences: { contextIsolation: true, webSecurity: true, sandbox: true }
                 });
@@ -930,7 +933,7 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     helpMenu.append(new MenuItem({ type: "separator" }));
     helpMenu.append(
         new MenuItem({
-            label: "Release Notes",
+            label: L.releaseNotes,
             click: () => {
                 openLocalChangelog();
             }
@@ -939,50 +942,50 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
     helpMenu.append(new MenuItem({ type: "separator" }));
     helpMenu.append(
         new MenuItem({
-            label: "Toggle Developer Tools",
+            label: L.toggleDevTools,
             click: () => getMenuTargetWindow(win).webContents.toggleDevTools()
         })
     );
 
     menu.append(
         new MenuItem({
-            label: "File",
+            label: L.file,
             submenu: fileMenu
         })
     );
     menu.append(
         new MenuItem({
-            label: "Edit",
+            label: L.edit,
             submenu: editMenu
         })
     );
     menu.append(
         new MenuItem({
-            label: "Selection",
+            label: L.selection,
             submenu: selectionMenu
         })
     );
     menu.append(
         new MenuItem({
-            label: "View",
+            label: L.view,
             submenu: viewMenu
         })
     );
     menu.append(
         new MenuItem({
-            label: "Run",
+            label: L.run,
             submenu: runMenu
         })
     );
     menu.append(
         new MenuItem({
-            label: "Window",
+            label: L.window,
             submenu: windowMenu
         })
     );
     menu.append(
         new MenuItem({
-            label: "Help",
+            label: L.help,
             submenu: helpMenu
         })
     );
@@ -1254,6 +1257,12 @@ ipcMain.on("skia:rendererReady", () => {
     if (cachedUpdateCheckResult?.status === "update-available") {
         emitUpdateToRenderer(cachedUpdateCheckResult);
     }
+});
+
+ipcMain.on("locale-changed", (_event, locale: unknown) => {
+    if (!isMenuLocale(locale)) return;
+    menuLocale = locale;
+    reapplyApplicationMenu();
 });
 
 ipcMain.handle("skia:checkForUpdates", async () => {

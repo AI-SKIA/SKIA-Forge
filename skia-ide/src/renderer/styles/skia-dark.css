@@ -503,6 +503,25 @@ button {
     font-size: 11px;
 }
 
+#settings-locale-select {
+    background-color: #1a1510;
+    color: #e8e4dc;
+    border: 1px solid #d4af37;
+    min-width: 12rem;
+}
+
+#settings-locale-select:hover,
+#settings-locale-select:focus {
+    border-color: #d4af37;
+    outline: none;
+    box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.35);
+}
+
+#settings-locale-select option {
+    background-color: #1a1510;
+    color: #e8e4dc;
+}
+
 #terminal-panel {
     flex-shrink: 0;
     min-height: 220px;

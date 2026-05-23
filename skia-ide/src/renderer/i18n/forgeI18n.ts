@@ -70,6 +70,9 @@ export function setLocale(locale: Locale): void {
   }
   applyDocumentLocale(locale);
   localeListeners.forEach((fn) => fn());
+  if (typeof window !== 'undefined' && window.skiaElectron?.notifyLocaleChanged) {
+    window.skiaElectron.notifyLocaleChanged(locale);
+  }
 }
 
 export function subscribeLocaleChange(listener: () => void): () => void {
@@ -103,4 +106,7 @@ export function t(key: string, vars?: Record<string, string | number>): string {
 
 export function initForgeI18n(): void {
   applyDocumentLocale(currentLocale);
+  if (typeof window !== 'undefined' && window.skiaElectron?.notifyLocaleChanged) {
+    window.skiaElectron.notifyLocaleChanged(currentLocale);
+  }
 }

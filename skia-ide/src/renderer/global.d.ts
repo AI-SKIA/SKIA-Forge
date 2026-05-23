@@ -67,6 +67,8 @@ declare global {
       saveCredentials: (email: string, password: string) => Promise<boolean>;
       getSavedCredentials: () => Promise<{ email: string; password: string } | null>;
       clearSavedCredentials: () => Promise<boolean>;
+      /** Sync Electron menu bar with renderer UI language (skia-ui-locale). */
+      notifyLocaleChanged: (locale: string) => void;
     };
   }
 }
