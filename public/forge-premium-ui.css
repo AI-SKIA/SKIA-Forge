@@ -117,3 +117,64 @@ html.skia-scrollbar-premium {
         filter: drop-shadow(0 0 16px rgba(212, 175, 55, 0.4));
     }
 }
+
+/* ── Forge web layout (all 17 HTML pages, every locale) ───────────────────── */
+
+/* Prevent mobile browsers from shrinking translated copy */
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+/* Section headings: full-width block centering (works when text wraps) */
+.download-web-option {
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+
+.download-web-text {
+    display: block;
+    width: 100%;
+    max-width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.download-instructions,
+.wrap > .download-instruction-row {
+    width: 100%;
+    max-width: 980px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Footer: fixed px sizes — same on every locale regardless of string length */
+footer,
+.doc-footer {
+    width: 100%;
+    max-width: none;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.8;
+    white-space: normal;
+}
+
+footer .footer-tagline,
+.doc-footer .tagline {
+    font-size: 13px;
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+
+footer .footer-copy,
+.doc-footer .copy {
+    font-size: 12px;
+    white-space: normal;
+}
+
+footer .footer-links,
+.doc-footer .links {
+    font-size: 11px;
+}
