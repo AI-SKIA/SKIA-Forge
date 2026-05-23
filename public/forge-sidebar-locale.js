@@ -93,17 +93,10 @@
     var sidebar = document.getElementById('pcSidebar');
     if (!sidebar) return;
 
-    var logoBlock = sidebar.querySelector('.pc-sidebar-logo');
-    if (!logoBlock) return;
-
-    var divider = logoBlock.nextElementSibling;
-    if (!divider || !divider.classList.contains('pc-sidebar-divider')) {
-      divider = document.createElement('div');
-      divider.className = 'pc-sidebar-divider';
-      logoBlock.insertAdjacentElement('afterend', divider);
-    }
-
     if (sidebar.querySelector('.pc-sidebar-locale')) return;
+
+    var nav = sidebar.querySelector('.pc-sidebar-nav');
+    if (!nav) return;
 
     var locale = resolveClientLocale();
     applyDocumentLocale(locale);
@@ -132,7 +125,7 @@
       '<div class="skia-lang-switcher__menu" role="listbox" hidden></div>' +
       '</div>';
 
-    logoBlock.insertAdjacentElement('afterend', wrap);
+    nav.insertAdjacentElement('beforebegin', wrap);
 
     var root = wrap.querySelector('.skia-lang-switcher');
     var trigger = wrap.querySelector('.skia-lang-switcher__trigger');

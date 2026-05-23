@@ -460,6 +460,12 @@ const stopBackendProcess = (): void => {
     });
 };
 
+/**
+ * KNOWN LIMITATION — localized menu bar: top-level labels (File, Edit, Selection, View, Run,
+ * Window, Help) and submenu entries are built here in English only. They do not follow
+ * skia-ui-locale / Settings → UI language. Wiring locale-aware menus would require IPC from the
+ * renderer on locale change plus translated label maps in main; not implemented yet.
+ */
 const buildApplicationMenu = (win: BrowserWindow): void => {
     const menu = new Menu();
 

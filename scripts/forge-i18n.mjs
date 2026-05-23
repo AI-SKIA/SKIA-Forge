@@ -120,18 +120,16 @@ function extractDocPage(html, slug) {
 }
 
 function buildCommon() {
-  const sample = fs.readFileSync(path.join(PUBLIC, 'platform-downloads.html'), 'utf8');
-  const navTexts = [...sample.matchAll(/<a class="pc-sidebar-btn[^"]*"[^>]*>([^<]*)<\/a>/g)].map((m) => dec(m[1]));
   return {
     meta: { documentTitle: 'SKIA FORGE' },
     sidebar: { tagline: 'She Knows It All' },
     nav: {
-      forgeHome: navTexts[0] ?? 'Forge Home',
-      product: navTexts[1] ?? 'Product',
-      resources: navTexts[2] ?? 'Resources',
-      security: navTexts[3] ?? 'Security',
-      contactSupport: navTexts[4] ?? 'Contact & Support',
-      downloadForge: navTexts[5] ?? 'Download SKIA Forge',
+      forgeHome: 'Forge Home',
+      product: 'Product',
+      resources: 'Resources',
+      security: 'Security',
+      contactSupport: 'Contact & Support',
+      downloadForge: 'Download SKIA Forge',
     },
     back: { label: '← Back' },
     aria: { openNavigation: 'Open navigation' },
