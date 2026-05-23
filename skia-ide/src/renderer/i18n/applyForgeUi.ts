@@ -65,8 +65,6 @@ function applySettingsLabels(): void {
     ['[data-i18n="settings.languageGroup"]', 'settings.languageGroup'],
     ['[data-i18n="settings.uiLanguage"]', 'settings.uiLanguage'],
     ['[data-i18n="settings.uiLanguageHint"]', 'settings.uiLanguageHint'],
-    ['[data-i18n="settings.defaultNationality"]', 'settings.defaultNationality'],
-    ['[data-i18n="settings.defaultNationalityHint"]', 'settings.defaultNationalityHint'],
     ['[data-i18n="settings.appearance"]', 'settings.appearance'],
     ['[data-i18n="settings.theme"]', 'settings.theme'],
     ['[data-i18n="settings.themeValue"]', 'settings.themeValue'],

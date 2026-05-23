@@ -6,12 +6,12 @@
     "tagline": "She Knows It All"
   },
   "nav": {
-    "forgeHome": "",
-    "product": "",
-    "resources": "",
-    "security": "",
-    "contactSupport": "",
-    "downloadForge": ""
+    "forgeHome": "Forge Home",
+    "product": "Product",
+    "resources": "Resources",
+    "security": "Security",
+    "contactSupport": "Contact & Support",
+    "downloadForge": "Download SKIA Forge"
   },
   "back": {
     "label": "← Back"

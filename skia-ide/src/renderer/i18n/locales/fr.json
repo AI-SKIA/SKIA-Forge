@@ -1,20 +1,20 @@
 {
   "nav": {
-    "explorer": "EXPLORER",
-    "search": "SEARCH",
+    "explorer": "EXPLORATEUR",
+    "search": "RECHERCHE",
     "agent": "AGENT",
     "forge": "FORGE",
     "settings": "PARAMÈTRES",
     "terminal": "TERMINAL"
   },
   "explorer": {
-    "noFolder": "No folder open.",
-    "openFolder": "Open a folder",
-    "openFolderSuffix": " to get started."
+    "noFolder": "Aucun dossier ouvert.",
+    "openFolder": "Ouvrir un dossier",
+    "openFolderSuffix": " pour commencer."
   },
   "views": {
-    "search": "SEARCH",
-    "searchPlaceholder": "Search files and symbols...",
+    "search": "RECHERCHE",
+    "searchPlaceholder": "Rechercher des fichiers et symboles...",
     "agent": "AGENT",
     "agentHint": "SKIA work stream — tool steps and diffs appear here only (not in side chat).",
     "agentPlaceholder": "Describe a task for SKIA...",
@@ -23,7 +23,7 @@
     "forge": "FORGE CONTROL PLANE"
   },
   "settings": {
-    "title": "SETTINGS",
+    "title": "PARAMÈTRES",
     "languageGroup": "LANGUAGE & REGION",
     "uiLanguage": "UI language",
     "uiLanguageHint": "Shared with skia.ca (same browser storage key).",
