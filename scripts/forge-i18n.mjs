@@ -472,14 +472,14 @@ function patchPlatformDownloads(html) {
   let hi = 0;
   out = out.replace(/<div class="download-instructions">([\s\S]*?)<\/div>\s*<div class="download-web-option" style="margin-top:18px;">/g, (m, block) => {
     const patched = block.replace(/<span>([^<]*)<\/span>/g, () => `<span data-i18n="platform-downloads.howItWorks.${how[hi++]}"></span>`);
-    return `${patched}</div>\n\n  <div class="download-web-option" style="margin-top:18px;">`;
+    return `<div class="download-instructions">${patched}</div>\n\n  <div class="download-web-option" style="margin-top:18px;">`;
   });
   out = out.replace(/<p class="download-web-text">Why teams choose SKIA Forge<\/p>/, '<p class="download-web-text" data-i18n="platform-downloads.whyTeams.heading"></p>');
   const why = ['a', 'b', 'c'];
   let wi = 0;
   out = out.replace(/<div class="download-instructions">([\s\S]*?)<\/div>\s*<footer>/g, (m, block) => {
     const patched = block.replace(/<span>([^<]*)<\/span>/g, () => `<span data-i18n="platform-downloads.whyTeams.${why[wi++]}"></span>`);
-    return `${patched}</div>\n\n  <footer>`;
+    return `<div class="download-instructions">${patched}</div>\n\n  <footer>`;
   });
   return addScripts(out);
 }

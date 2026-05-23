@@ -139,11 +139,11 @@ html {
     max-width: 980px;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
+    text-align: center !important;
 }
 
 .download-instructions,
-.wrap > .download-instruction-row {
+.download-instruction-row {
     width: 100%;
     max-width: 980px;
     margin-left: auto;
@@ -163,14 +163,14 @@ footer,
 
 footer .footer-tagline,
 .doc-footer .tagline {
-    font-size: 13px;
+    font-size: 13px !important;
     white-space: normal;
     overflow-wrap: break-word;
 }
 
 footer .footer-copy,
 .doc-footer .copy {
-    font-size: 12px;
+    font-size: 12px !important;
     white-space: normal;
 }
 
