@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <script src="/forge-document-locale.js"></script>
 
-  <title>Operator Manual | SKIA Forge</title>
+  <title data-i18n="docs.pages.operator-manual.meta.title"></title>
   <link rel="icon" type="image/png" href="/favicon.png"/>
   <link rel="stylesheet" href="/forge-premium-ui.css" />
   <style>
@@ -112,47 +112,47 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
 </style>
   <link rel="stylesheet" href="/forge-sidebar-locale.css" />
 </head>
-<body>
+<body data-forge-i18n-page="docs" data-forge-i18n-slug="operator-manual">
 
 <div id="pcSidebarBackdrop" class="pc-sidebar-backdrop"></div>
-<button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation">
+<button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation" data-i18n-aria-label="common.aria.openNavigation">
   <span class="pc-sidebar-tab-icon">?</span>
 </button>
 <aside id="pcSidebar" class="pc-sidebar">
   <div class="pc-sidebar-logo">
     <img src="/sidebar-logo.png" alt="SKIA" class="pc-sidebar-logo-img" />
-    <span class="pc-sidebar-logo-tagline">She Knows It All</span>
+    <span class="pc-sidebar-logo-tagline" data-i18n="common.sidebar.tagline"></span>
   </div>
   <div class="pc-sidebar-divider"></div>
     <nav class="pc-sidebar-nav">
-    <a class="pc-sidebar-btn" href="/platform-downloads">Forge Home</a>
-    <a class="pc-sidebar-btn" href="/forge/platform" target="_blank" rel="noopener noreferrer">Product</a>
-    <a class="pc-sidebar-btn" href="/resources">Resources</a>
-    <a class="pc-sidebar-btn" href="/security">Security</a>
-    <a class="pc-sidebar-btn" href="/contact">Contact & Support</a>
+    <a class="pc-sidebar-btn" href="/platform-downloads" data-i18n="common.nav.forgeHome"></a>
+    <a class="pc-sidebar-btn" href="/forge/platform" target="_blank" rel="noopener noreferrer" data-i18n="common.nav.product"></a>
+    <a class="pc-sidebar-btn" href="/resources" data-i18n="common.nav.resources"></a>
+    <a class="pc-sidebar-btn" href="/security" data-i18n="common.nav.security"></a>
+    <a class="pc-sidebar-btn" href="/contact" data-i18n="common.nav.contactSupport"></a>
     <div class="pc-sidebar-divider"></div>
-    <a class="pc-sidebar-btn" href="/platform-downloads">Download SKIA Forge</a>
+    <a class="pc-sidebar-btn" href="/platform-downloads" data-i18n="common.nav.downloadForge"></a>
   </nav>
 </aside>
 
-<button type="button" class="back-btn" onclick="history.back()">? Back</button>
+<button type="button" class="back-btn" onclick="history.back()" data-i18n="common.back.label"></button>
 <div class="wrap">
   <img src="/sidebar-logo.png" alt="SKIA" class="page-logo" />
-  <div class="doc-badge">Deployment & Runtime Ops</div>
-  <h1 class="doc-title">Operator Manual</h1>
-  <p class="doc-desc">Deployment baseline, operational checks, and incident handling for SKIA Forge.</p>
+  <div class="doc-badge" data-i18n="docs.pages.operator-manual.badge"></div>
+  <h1 class="doc-title" data-i18n="docs.pages.operator-manual.title"></h1>
+  <p class="doc-desc" data-i18n="docs.pages.operator-manual.description"></p>
   <div class="doc-divider"></div>
-  <div class="section"><div class="section-title">Runtime Role</div><div class="section-body">SKIA Forge operates as an orchestration and governance runtime service that augments development workflows with policy-aware controls.</div></div><div class="section"><div class="section-title">Deployment Baseline</div><div class="section-body"><p style="margin-bottom:14px;font-size:13px;color:var(--text-soft)">Production hostname: <code>forge.skia.ca</code>. Release baseline Forge <code>1.0.0</code> and SKIA Forge IDE <code>1.0.0</code>.</p><div class="steps"><div class="step"><div class="step-num">01</div><div class="step-text"><div class="code-block">npm run build</div></div></div><div class="step"><div class="step-num">02</div><div class="step-text"><div class="code-block">npm run dev</div> (or your production process command)</div></div><div class="step"><div class="step-num">03</div><div class="step-text">Listen on <code>SKIA_PORT</code> (default <code>4173</code>). Validate <code>/health</code>, <code>/live</code>, <code>/ready</code>, <code>/version</code></div></div></div><p style="margin-top:14px;font-size:13px;color:var(--text-soft)">Additional environment variables for signing and GitHub integration are documented in your onboarding package.</p></div></div><div class="section"><div class="section-title">Environment & Secrets</div><div class="section-body"><div class="item-list"><div class="item"><div class="item-dot"></div><div class="item-text">Keep all secrets in environment management � never commit credentials</div></div><div class="item"><div class="item-dot"></div><div class="item-text">Configure SKIA integration values per deployment environment via your hosting provider's environment variables</div></div><div class="item"><div class="item-dot"></div><div class="item-text">Use explicit mode controls for strict vs adaptive operations</div></div></div></div></div><div class="section"><div class="section-title">Operational Checks</div><div class="section-body"><div class="item-list"><div class="item"><div class="item-dot"></div><div class="item-text">Health checks pass: <code>/health</code> returns <code>200 ok</code></div></div><div class="item"><div class="item-dot"></div><div class="item-text">Control-plane posture shows expected governance mode</div></div><div class="item"><div class="item-dot"></div><div class="item-text">Governance recommendations are readable and actionable</div></div><div class="item"><div class="item-dot"></div><div class="item-text">Audit logs are being produced after orchestration runs</div></div></div></div></div><div class="section"><div class="section-title">Incident Handling</div><div class="section-body"><div class="steps"><div class="step"><div class="step-num">01</div><div class="step-text">Capture failure endpoint and payload metadata.</div></div><div class="step"><div class="step-num">02</div><div class="step-text">Review control-plane recommendations from <code>/api/forge/control-plane</code>.</div></div><div class="step"><div class="step-num">03</div><div class="step-text">Apply remediation and re-run the failed request.</div></div><div class="step"><div class="step-num">04</div><div class="step-text">Escalate with logs and request IDs if unresolved � contact support.</div></div></div></div></div>
+  <div class="section"><div class="section-title" data-i18n="docs.pages.operator-manual.sections.runtime-role.title"></div><div class="section-body" data-i18n-html="docs.pages.operator-manual.sections.runtime-role.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.operator-manual.sections.deployment-baseline.title"></div><div class="section-body" data-i18n-html="docs.pages.operator-manual.sections.deployment-baseline.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.operator-manual.sections.environment-secrets.title"></div><div class="section-body" data-i18n-html="docs.pages.operator-manual.sections.environment-secrets.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.operator-manual.sections.operational-checks.title"></div><div class="section-body" data-i18n-html="docs.pages.operator-manual.sections.operational-checks.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.operator-manual.sections.incident-handling.title"></div><div class="section-body" data-i18n-html="docs.pages.operator-manual.sections.incident-handling.html"></div></div>
   
 <div class="doc-footer">
-  <div class="tagline">One ecosystem. One universe. All SKIA.</div>
-  <div class="copy">� 2026 SKIA. All rights reserved.</div>
+  <div class="tagline" data-i18n="common.footer.tagline"></div>
+  <div class="copy" data-i18n="common.footer.copyright"></div>
   <div class="links">
-    <a href="/resources">Resources</a>
+    <a href="/resources" data-i18n="common.footer.resources"></a>
     <span class="sep">|</span>
-    <a href="/security">Security</a>
+    <a href="/security" data-i18n="common.footer.security"></a>
     <span class="sep">|</span>
-    <a href="/contact">Contact & Support</a>
+    <a href="/contact" data-i18n="common.footer.contactSupport"></a>
   </div>
 </div>
 
@@ -172,6 +172,7 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
 })();
 </script>
 
+  <script src="/forge-page-locale.js" defer></script>
   <script src="/forge-sidebar-locale.js" defer></script>
 </body>
 </html>

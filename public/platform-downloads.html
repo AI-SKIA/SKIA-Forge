@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="/forge-document-locale.js"></script>
 
-  <title>SKIA FORGE</title>
+  <title data-i18n="platform-downloads.meta.title"></title>
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="stylesheet" href="/forge-premium-ui.css" />
   <link rel="stylesheet" href="/forge-lucide-icons.css" />
@@ -94,193 +94,189 @@
   </style>
   <link rel="stylesheet" href="/forge-sidebar-locale.css" />
 </head>
-<body>
+<body data-forge-i18n-page="platform-downloads">
 
 <div id="pcSidebarBackdrop" class="pc-sidebar-backdrop"></div>
-<button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation">
+<button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation" data-i18n-aria-label="common.aria.openNavigation">
   <span class="pc-sidebar-tab-icon">☰</span>
 </button>
 <aside id="pcSidebar" class="pc-sidebar">
   <div class="pc-sidebar-logo">
     <img src="/sidebar-logo.png" alt="SKIA" class="pc-sidebar-logo-img" />
-    <span class="pc-sidebar-logo-tagline">She Knows It All</span>
+    <span class="pc-sidebar-logo-tagline" data-i18n="common.sidebar.tagline"></span>
   </div>
   <div class="pc-sidebar-divider"></div>
   <nav class="pc-sidebar-nav">
-    <a class="pc-sidebar-btn pc-sidebar-btn--active" href="/platform-downloads">Forge Home</a>
-    <a class="pc-sidebar-btn" href="/forge/platform" target="_blank" rel="noopener noreferrer">Product</a>
-    <a class="pc-sidebar-btn" href="/resources">Resources</a>
-    <a class="pc-sidebar-btn" href="/security">Security</a>
-    <a class="pc-sidebar-btn" href="/contact">Contact &amp; Support</a>
+    <a class="pc-sidebar-btn" href="/platform-downloads" data-i18n="common.nav.forgeHome"></a>
+    <a class="pc-sidebar-btn" href="/forge/platform" target="_blank" rel="noopener noreferrer" data-i18n="common.nav.product"></a>
+    <a class="pc-sidebar-btn" href="/resources" data-i18n="common.nav.resources"></a>
+    <a class="pc-sidebar-btn" href="/security" data-i18n="common.nav.security"></a>
+    <a class="pc-sidebar-btn" href="/contact" data-i18n="common.nav.contactSupport"></a>
     <div class="pc-sidebar-divider"></div>
-    <a class="pc-sidebar-btn" href="/platform-downloads">Download SKIA Forge</a>
+    <a class="pc-sidebar-btn" href="/platform-downloads" data-i18n="common.nav.downloadForge"></a>
   </nav>
 </aside>
 
-<button type="button" class="back-btn" onclick="history.back()">← Back</button>
+<button type="button" class="back-btn" onclick="history.back()" data-i18n="common.back.label"></button>
 
 <div class="wrap">
   <img src="/sidebar-logo.png" alt="SKIA" class="page-logo" />
 
   <div class="feature-page-header">
-    <h1 class="page-title">SKIA Forge</h1>
-    <p class="page-subtitle">
-      Governed intelligence for real software delivery — built for operators, developers, and production teams
-    </p>
+    <h1 class="page-title" data-i18n="platform-downloads.hero.title"></h1>
+    <p class="page-subtitle" data-i18n="platform-downloads.hero.subtitle"></p>
     <div class="download-web-option" style="margin-top:18px;">
-      <a href="/api/app/download" class="feature-tab feature-tab--active">
-        Download SKIA Forge
-      </a>
+      <a href="/api/app/download" class="feature-tab feature-tab--active" data-i18n="platform-downloads.hero.downloadButton"></a>
     </div>
   </div>
 
   <div class="doc-grid">
     <article class="doc-card doc-card--panel">
-      <div class="doc-card-title">Frontier-Ready Intelligence Layer</div>
-      <div class="doc-card-sub">SKIA Forge</div>
-      <div class="doc-card-desc">SKIA Forge is built on a hardened intelligence stack validated across coding, tool use, reasoning, long context, vision, and multimodal workflows.</div>
+      <div class="doc-card-title" data-i18n="platform-downloads.cards.frontier.title"></div>
+      <div class="doc-card-sub" data-i18n="platform-downloads.cards.frontier.brand"></div>
+      <div class="doc-card-desc" data-i18n="platform-downloads.cards.frontier.body"></div>
     </article>
     <article class="doc-card doc-card--panel">
-      <div class="doc-card-title">Verified Reliability</div>
-      <div class="doc-card-sub">SKIA Forge</div>
-      <div class="doc-card-desc">Every release is verified before it ships. Quality is protected end-to-end so you get stable, trustworthy outputs every time.</div>
+      <div class="doc-card-title" data-i18n="platform-downloads.cards.reliability.title"></div>
+      <div class="doc-card-sub" data-i18n="platform-downloads.cards.reliability.brand"></div>
+      <div class="doc-card-desc" data-i18n="platform-downloads.cards.reliability.body"></div>
     </article>
     <article class="doc-card doc-card--panel">
-      <div class="doc-card-title">Production-Grade Operations</div>
-      <div class="doc-card-sub">SKIA Forge</div>
-      <div class="doc-card-desc">Forge ships with health checks, governance telemetry, status surfaces, and deterministic routing controls designed for operational trust.</div>
+      <div class="doc-card-title" data-i18n="platform-downloads.cards.operations.title"></div>
+      <div class="doc-card-sub" data-i18n="platform-downloads.cards.operations.brand"></div>
+      <div class="doc-card-desc" data-i18n="platform-downloads.cards.operations.body"></div>
     </article>
     <article class="doc-card doc-card--panel">
-      <div class="doc-card-title">One Intelligence Across Surfaces</div>
-      <div class="doc-card-sub">SKIA Forge</div>
-      <div class="doc-card-desc">Use Forge on the web for API-powered execution, or install desktop for full local filesystem and terminal workflows.</div>
+      <div class="doc-card-title" data-i18n="platform-downloads.cards.surfaces.title"></div>
+      <div class="doc-card-sub" data-i18n="platform-downloads.cards.surfaces.brand"></div>
+      <div class="doc-card-desc" data-i18n="platform-downloads.cards.surfaces.body"></div>
     </article>
 
     <a href="/docs/README.html" class="doc-card">
-      <div class="doc-card-title">Overview</div>
-      <div class="doc-card-sub">PRODUCT OVERVIEW</div>
-      <div class="doc-card-desc">Orientation and high-level view of SKIA Forge on the Forge site.</div>
+      <div class="doc-card-title" data-i18n="platform-downloads.docLinks.overview.title"></div>
+      <div class="doc-card-sub" data-i18n="platform-downloads.docLinks.overview.sub"></div>
+      <div class="doc-card-desc" data-i18n="platform-downloads.docLinks.overview.desc"></div>
       <div class="doc-card-arrow skia-li skia-li--arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
     </a>
     <a href="/docs/API_REFERENCE.html" class="doc-card">
-      <div class="doc-card-title">API reference</div>
-      <div class="doc-card-sub">HTTP API</div>
-      <div class="doc-card-desc">HTTP and integration endpoints for Forge-powered execution.</div>
+      <div class="doc-card-title" data-i18n="platform-downloads.docLinks.api.title"></div>
+      <div class="doc-card-sub" data-i18n="platform-downloads.docLinks.api.sub"></div>
+      <div class="doc-card-desc" data-i18n="platform-downloads.docLinks.api.desc"></div>
       <div class="doc-card-arrow skia-li skia-li--arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
     </a>
     <a href="/docs/QUICKSTART.html" class="doc-card">
-      <div class="doc-card-title">Quickstart</div>
-      <div class="doc-card-sub">GET STARTED</div>
-      <div class="doc-card-desc">Download the IDE, sign in, and run your first governed workflow.</div>
+      <div class="doc-card-title" data-i18n="platform-downloads.docLinks.quickstart.title"></div>
+      <div class="doc-card-sub" data-i18n="platform-downloads.docLinks.quickstart.sub"></div>
+      <div class="doc-card-desc" data-i18n="platform-downloads.docLinks.quickstart.desc"></div>
       <div class="doc-card-arrow skia-li skia-li--arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
     </a>
     <a href="/docs/USER_GUIDE.html" class="doc-card">
-      <div class="doc-card-title">User guide</div>
-      <div class="doc-card-sub">DAY-TO-DAY USE</div>
-      <div class="doc-card-desc">Using the IDE: sign-in, workflows, governance modes, and help.</div>
+      <div class="doc-card-title" data-i18n="platform-downloads.docLinks.userGuide.title"></div>
+      <div class="doc-card-sub" data-i18n="platform-downloads.docLinks.userGuide.sub"></div>
+      <div class="doc-card-desc" data-i18n="platform-downloads.docLinks.userGuide.desc"></div>
       <div class="doc-card-arrow skia-li skia-li--arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
     </a>
     <a href="/docs/DEVELOPER_GUIDE.html" class="doc-card">
-      <div class="doc-card-title">Developer guide</div>
-      <div class="doc-card-sub">INTEGRATION &amp; EXTENSION</div>
-      <div class="doc-card-desc">Architecture, extension points, and integration patterns.</div>
+      <div class="doc-card-title" data-i18n="platform-downloads.docLinks.developerGuide.title"></div>
+      <div class="doc-card-sub" data-i18n="platform-downloads.docLinks.developerGuide.sub"></div>
+      <div class="doc-card-desc" data-i18n="platform-downloads.docLinks.developerGuide.desc"></div>
       <div class="doc-card-arrow skia-li skia-li--arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
     </a>
     <a href="/docs/PRODUCT_MANUAL.html" class="doc-card">
-      <div class="doc-card-title">Product manual</div>
-      <div class="doc-card-sub">FULL PRODUCT REFERENCE</div>
-      <div class="doc-card-desc">Deep product behavior, surfaces, and operational semantics.</div>
+      <div class="doc-card-title" data-i18n="platform-downloads.docLinks.productManual.title"></div>
+      <div class="doc-card-sub" data-i18n="platform-downloads.docLinks.productManual.sub"></div>
+      <div class="doc-card-desc" data-i18n="platform-downloads.docLinks.productManual.desc"></div>
       <div class="doc-card-arrow skia-li skia-li--arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
     </a>
     <a href="/docs/ENTERPRISE_READINESS_CHECKLIST.html" class="doc-card">
-      <div class="doc-card-title">Enterprise readiness</div>
-      <div class="doc-card-sub">ENTERPRISE DEPLOYMENT</div>
-      <div class="doc-card-desc">Checklist and signals for regulated or large-team rollout.</div>
+      <div class="doc-card-title" data-i18n="platform-downloads.docLinks.enterprise.title"></div>
+      <div class="doc-card-sub" data-i18n="platform-downloads.docLinks.enterprise.sub"></div>
+      <div class="doc-card-desc" data-i18n="platform-downloads.docLinks.enterprise.desc"></div>
       <div class="doc-card-arrow skia-li skia-li--arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
     </a>
     <a href="/docs/PRICING_AND_PACKAGES.html" class="doc-card">
-      <div class="doc-card-title">Pricing &amp; packages</div>
-      <div class="doc-card-sub">PLANS &amp; PRICING</div>
-      <div class="doc-card-desc">Commercial packaging and procurement-facing detail.</div>
+      <div class="doc-card-title" data-i18n="platform-downloads.docLinks.pricing.title"></div>
+      <div class="doc-card-sub" data-i18n="platform-downloads.docLinks.pricing.sub"></div>
+      <div class="doc-card-desc" data-i18n="platform-downloads.docLinks.pricing.desc"></div>
       <div class="doc-card-arrow skia-li skia-li--arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
     </a>
     <a href="/docs/TROUBLESHOOTING.html" class="doc-card">
-      <div class="doc-card-title">Troubleshooting</div>
-      <div class="doc-card-sub">DIAGNOSTICS &amp; FIXES</div>
-      <div class="doc-card-desc">Known failure modes, diagnostics, and recovery steps.</div>
+      <div class="doc-card-title" data-i18n="platform-downloads.docLinks.troubleshooting.title"></div>
+      <div class="doc-card-sub" data-i18n="platform-downloads.docLinks.troubleshooting.sub"></div>
+      <div class="doc-card-desc" data-i18n="platform-downloads.docLinks.troubleshooting.desc"></div>
       <div class="doc-card-arrow skia-li skia-li--arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
     </a>
     <a href="/docs/SUPPORT.html" class="doc-card">
-      <div class="doc-card-title">Support</div>
-      <div class="doc-card-sub">GET HELP</div>
-      <div class="doc-card-desc">How to get help and escalate issues through Forge support.</div>
+      <div class="doc-card-title" data-i18n="platform-downloads.docLinks.support.title"></div>
+      <div class="doc-card-sub" data-i18n="platform-downloads.docLinks.support.sub"></div>
+      <div class="doc-card-desc" data-i18n="platform-downloads.docLinks.support.desc"></div>
       <div class="doc-card-arrow skia-li skia-li--arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
     </a>
     <a href="/docs/SECURITY_GUIDE.html" class="doc-card">
-      <div class="doc-card-title">Security guide</div>
-      <div class="doc-card-sub">SECURITY &amp; HARDENING</div>
-      <div class="doc-card-desc">Threat model, hardening, and safe deployment practices.</div>
+      <div class="doc-card-title" data-i18n="platform-downloads.docLinks.securityGuide.title"></div>
+      <div class="doc-card-sub" data-i18n="platform-downloads.docLinks.securityGuide.sub"></div>
+      <div class="doc-card-desc" data-i18n="platform-downloads.docLinks.securityGuide.desc"></div>
       <div class="doc-card-arrow skia-li skia-li--arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
     </a>
   </div>
 
   <div class="download-web-option" style="margin-top:28px;">
-    <p class="download-web-text">SKIA Forge PC app installers</p>
+    <p class="download-web-text" data-i18n="platform-downloads.installers.heading"></p>
   </div>
   <div class="doc-grid">
-    <a href="/api/app/download/windows" class="doc-card" aria-label="Download SKIA Forge for Windows">
-      <div class="doc-card-title">Windows</div>
-      <div class="doc-card-sub">PC APP INSTALLER</div>
-      <div class="doc-card-desc">Windows 10/11<span class="platform-downloads-installer-hint">64-bit installer (.exe)</span></div>
+    <a href="/api/app/download/windows" class="doc-card" data-i18n-aria-label="platform-downloads.installers.windowsAria">
+      <div class="doc-card-title" data-i18n="platform-downloads.installers.windows.title"></div>
+      <div class="doc-card-sub" data-i18n="platform-downloads.installers.windows.sub"></div>
+      <div class="doc-card-desc" data-i18n="platform-downloads.installers.windows.desc"></div>
       <div class="doc-card-arrow skia-li skia-li--arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
     </a>
-    <a href="/api/app/download/mac-intel" class="doc-card" aria-label="Download SKIA Forge for macOS Intel">
-      <div class="doc-card-title">macOS (Intel)</div>
-      <div class="doc-card-sub">PC APP INSTALLER</div>
-      <div class="doc-card-desc">macOS 11+<span class="platform-downloads-installer-hint">Intel x64</span></div>
+    <a href="/api/app/download/mac-intel" class="doc-card" data-i18n-aria-label="platform-downloads.installers.macIntelAria">
+      <div class="doc-card-title" data-i18n="platform-downloads.installers.macIntel.title"></div>
+      <div class="doc-card-sub" data-i18n="platform-downloads.installers.macIntel.sub"></div>
+      <div class="doc-card-desc" data-i18n="platform-downloads.installers.macIntel.desc"></div>
       <div class="doc-card-arrow skia-li skia-li--arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
     </a>
-    <a href="/api/app/download/mac-arm" class="doc-card" aria-label="Download SKIA Forge for Apple Silicon">
-      <div class="doc-card-title">macOS (Apple Silicon)</div>
-      <div class="doc-card-sub">PC APP INSTALLER</div>
-      <div class="doc-card-desc">macOS 11+ M1/M2/M3<span class="platform-downloads-installer-hint">Apple Silicon (M1/M2/M3)</span></div>
+    <a href="/api/app/download/mac-arm" class="doc-card" data-i18n-aria-label="platform-downloads.installers.macArmAria">
+      <div class="doc-card-title" data-i18n="platform-downloads.installers.macArm.title"></div>
+      <div class="doc-card-sub" data-i18n="platform-downloads.installers.macArm.sub"></div>
+      <div class="doc-card-desc" data-i18n="platform-downloads.installers.macArm.desc"></div>
       <div class="doc-card-arrow skia-li skia-li--arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
     </a>
-    <a href="/api/app/download/linux-appimage" class="doc-card" aria-label="Download SKIA Forge for Linux">
-      <div class="doc-card-title">Linux</div>
-      <div class="doc-card-sub">PC APP INSTALLER</div>
-      <div class="doc-card-desc">Ubuntu, Fedora, Arch<span class="platform-downloads-installer-hint">AppImage (any distro)</span></div>
+    <a href="/api/app/download/linux-appimage" class="doc-card" data-i18n-aria-label="platform-downloads.installers.linuxAria">
+      <div class="doc-card-title" data-i18n="platform-downloads.installers.linux.title"></div>
+      <div class="doc-card-sub" data-i18n="platform-downloads.installers.linux.sub"></div>
+      <div class="doc-card-desc" data-i18n="platform-downloads.installers.linux.desc"></div>
       <div class="doc-card-arrow skia-li skia-li--arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
     </a>
   </div>
 
   <div class="download-web-option" style="margin-top:28px;">
-    <p class="download-web-text">How Forge + SKIA works</p>
+    <p class="download-web-text" data-i18n="platform-downloads.howItWorks.heading"></p>
   </div>
-  <div class="download-instructions">
-    <div class="download-instruction-row"><span class="download-step">1</span><span>Use Forge on the web for immediate access, or install desktop for full local workflow control.</span></div>
-    <div class="download-instruction-row"><span class="download-step">2</span><span>Choose the right execution path: context, agent, SDLC, production, healing, and architecture.</span></div>
-    <div class="download-instruction-row"><span class="download-step">3</span><span>Get structured outputs designed for real use, not generic draft text.</span></div>
+  
+    <div class="download-instruction-row"><span class="download-step">1</span><span data-i18n="platform-downloads.howItWorks.step1"></span></div>
+    <div class="download-instruction-row"><span class="download-step">2</span><span data-i18n="platform-downloads.howItWorks.step2"></span></div>
+    <div class="download-instruction-row"><span class="download-step">3</span><span data-i18n="platform-downloads.howItWorks.step3"></span></div>
   </div>
 
   <div class="download-web-option" style="margin-top:18px;">
-    <p class="download-web-text">Why teams choose SKIA Forge</p>
+    <p class="download-web-text" data-i18n="platform-downloads.whyTeams.heading"></p>
   </div>
-  <div class="download-instructions">
-    <div class="download-instruction-row"><span class="download-step">A</span><span>Benchmark-aligned quality on your critical dimensions: coding, tools, reasoning, long context, vision, and TTS.</span></div>
-    <div class="download-instruction-row"><span class="download-step">B</span><span>System-level maturity beyond raw output: observability, health checks, and integration governance built for production environments.</span></div>
-    <div class="download-instruction-row"><span class="download-step">C</span><span>Truth-based release distribution: only published installers are shown for download.</span></div>
+  
+    <div class="download-instruction-row"><span class="download-step">A</span><span data-i18n="platform-downloads.whyTeams.a"></span></div>
+    <div class="download-instruction-row"><span class="download-step">B</span><span data-i18n="platform-downloads.whyTeams.b"></span></div>
+    <div class="download-instruction-row"><span class="download-step">C</span><span data-i18n="platform-downloads.whyTeams.c"></span></div>
   </div>
 
   <footer>
-    <div class="footer-tagline">One ecosystem. One universe. All SKIA.</div>
-    <div class="footer-copy">© 2026 SKIA. All rights reserved.</div>
+    <div class="footer-tagline" data-i18n="common.footer.tagline"></div>
+    <div class="footer-copy" data-i18n="common.footer.copyright"></div>
     <div class="footer-links">
-      <a href="/resources">Resources</a>
+      <a href="/resources" data-i18n="common.footer.resources"></a>
       <span class="sep">|</span>
-      <a href="/security">Security</a>
+      <a href="/security" data-i18n="common.footer.security"></a>
       <span class="sep">|</span>
-      <a href="/contact">Contact &amp; Support</a>
+      <a href="/contact" data-i18n="common.footer.contactSupport"></a>
     </div>
   </footer>
 </div>
@@ -298,6 +294,7 @@
     sidebar.addEventListener('click',e=>{if(e.target.tagName==='A')close();});
   })();
 </script>
+  <script src="/forge-page-locale.js" defer></script>
   <script src="/forge-sidebar-locale.js" defer></script>
 </body>
 </html>

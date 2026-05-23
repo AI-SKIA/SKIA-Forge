@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <script src="/forge-document-locale.js"></script>
 
-  <title>Contact & Support | SKIA Forge</title>
+  <title data-i18n="contact.meta.title"></title>
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="stylesheet" href="/forge-premium-ui.css" />
   <link rel="stylesheet" href="/forge-lucide-icons.css" />
@@ -161,133 +161,133 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
 </style>
   <link rel="stylesheet" href="/forge-sidebar-locale.css" />
 </head>
-<body>
+<body data-forge-i18n-page="contact">
 
 <div id="pcSidebarBackdrop" class="pc-sidebar-backdrop"></div>
-<button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation">
+<button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation" data-i18n-aria-label="common.aria.openNavigation">
   <span class="pc-sidebar-tab-icon skia-li skia-li--menu" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg></span>
 </button>
 <aside id="pcSidebar" class="pc-sidebar">
   <div class="pc-sidebar-logo">
     <img src="/sidebar-logo.png" alt="SKIA" class="pc-sidebar-logo-img" />
-    <span class="pc-sidebar-logo-tagline">She Knows It All</span>
+    <span class="pc-sidebar-logo-tagline" data-i18n="common.sidebar.tagline"></span>
   </div>
   <div class="pc-sidebar-divider"></div>
   <nav class="pc-sidebar-nav">
-    <a class="pc-sidebar-btn" href="/platform-downloads">Forge Home</a>
-    <a class="pc-sidebar-btn" href="/forge/platform" target="_blank" rel="noopener noreferrer">Product</a>
-    <a class="pc-sidebar-btn" href="/resources">Resources</a>
-    <a class="pc-sidebar-btn" href="/security">Security</a>
-    <a class="pc-sidebar-btn" href="/contact">Contact & Support</a>
+    <a class="pc-sidebar-btn" href="/platform-downloads" data-i18n="common.nav.forgeHome"></a>
+    <a class="pc-sidebar-btn" href="/forge/platform" target="_blank" rel="noopener noreferrer" data-i18n="common.nav.product"></a>
+    <a class="pc-sidebar-btn" href="/resources" data-i18n="common.nav.resources"></a>
+    <a class="pc-sidebar-btn" href="/security" data-i18n="common.nav.security"></a>
+    <a class="pc-sidebar-btn" href="/contact" data-i18n="common.nav.contactSupport"></a>
     <div class="pc-sidebar-divider"></div>
-    <a class="pc-sidebar-btn" href="/platform-downloads">Download SKIA Forge</a>
+    <a class="pc-sidebar-btn" href="/platform-downloads" data-i18n="common.nav.downloadForge"></a>
   </nav>
 </aside>
 
-<button type="button" class="back-btn" onclick="history.back()">? Back</button>
+<button type="button" class="back-btn" onclick="history.back()" data-i18n="common.back.label"></button>
 
 <div class="wrap">
   <img src="/sidebar-logo.png" alt="SKIA" class="page-logo" />
 
   <div class="page-header">
-    <h1 class="page-title">Contact & Support</h1>
-    <p class="page-subtitle">SKIA Forge runtime and SKIA Forge IDE � startup, updates, integrations, governance, or getting started � we're here</p>
+    <h1 class="page-title" data-i18n="contact.hero.title"></h1>
+    <p class="page-subtitle" data-i18n="contact.hero.subtitle"></p>
   </div>
 
   <!-- Support Scope -->
-  <div class="section-label">Support Scope</div>
+  <div class="section-label" data-i18n="contact.sections.scope"></div>
   <div class="scope-grid">
-    <div class="scope-card"><div class="scope-icon skia-li skia-li--scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg></div><div class="scope-text">Runtime startup and health issues</div></div>
-    <div class="scope-card"><div class="scope-icon skia-li skia-li--scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg></div><div class="scope-text">Integration contract failures</div></div>
-    <div class="scope-card"><div class="scope-icon skia-li skia-li--scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></div><div class="scope-text">Governance and policy flow debugging</div></div>
-    <div class="scope-card"><div class="scope-icon skia-li skia-li--scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 12-9.373 9.373a1 1 0 0 1-3.001-3L12 9"/><path d="m18 15 4-4"/><path d="m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172v-.344a2 2 0 0 0-.586-1.414l-1.657-1.657A6 6 0 0 0 12.516 3H9l1.243 1.243A6 6 0 0 1 12 8.485V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5"/></svg></div><div class="scope-text">Workflow failures and integration issues</div></div>
-    <div class="scope-card"><div class="scope-icon skia-li skia-li--scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/></svg></div><div class="scope-text">SKIA Forge IDE install, updates, and desktop runtime</div></div>
-    <div class="scope-card"><div class="scope-icon skia-li skia-li--scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></div><div class="scope-text">General usage and workflow questions</div></div>
+    <div class="scope-card"><div class="scope-icon skia-li skia-li--scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg></div><div class="scope-text" data-i18n="contact.scope.s1"></div></div>
+    <div class="scope-card"><div class="scope-icon skia-li skia-li--scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg></div><div class="scope-text" data-i18n="contact.scope.s2"></div></div>
+    <div class="scope-card"><div class="scope-icon skia-li skia-li--scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg></div><div class="scope-text" data-i18n="contact.scope.s3"></div></div>
+    <div class="scope-card"><div class="scope-icon skia-li skia-li--scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 12-9.373 9.373a1 1 0 0 1-3.001-3L12 9"/><path d="m18 15 4-4"/><path d="m21.5 11.5-1.914-1.914A2 2 0 0 1 19 8.172v-.344a2 2 0 0 0-.586-1.414l-1.657-1.657A6 6 0 0 0 12.516 3H9l1.243 1.243A6 6 0 0 1 12 8.485V10l2 2h1.172a2 2 0 0 1 1.414.586L18.5 14.5"/></svg></div><div class="scope-text" data-i18n="contact.scope.s4"></div></div>
+    <div class="scope-card"><div class="scope-icon skia-li skia-li--scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><polyline points="3.29 7 12 12 20.71 7"/><path d="m7.5 4.27 9 5.15"/></svg></div><div class="scope-text" data-i18n="contact.scope.s5"></div></div>
+    <div class="scope-card"><div class="scope-icon skia-li skia-li--scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></div><div class="scope-text" data-i18n="contact.scope.s6"></div></div>
   </div>
 
   <!-- SLA -->
-  <div class="section-label" style="margin-top:0">Response Expectations</div>
+  <div class="section-label" data-i18n="contact.sections.sla"></div>
   <div class="sla-list">
     <div class="sla-item">
       <div class="sla-tier p1">P1</div>
       <div class="sla-body">
-        <div class="sla-label">Critical Outage</div>
-        <div class="sla-desc">Complete loss of service or data integrity risk. Immediate response window.</div>
+        <div class="sla-label" data-i18n="contact.sla.p1.label"></div>
+        <div class="sla-desc" data-i18n="contact.sla.p1.desc"></div>
       </div>
     </div>
     <div class="sla-item">
       <div class="sla-tier p2">P2</div>
       <div class="sla-body">
-        <div class="sla-label">Degraded Service</div>
-        <div class="sla-desc">Core functionality impaired but workaround exists. Same business day response.</div>
+        <div class="sla-label" data-i18n="contact.sla.p2.label"></div>
+        <div class="sla-desc" data-i18n="contact.sla.p2.desc"></div>
       </div>
     </div>
     <div class="sla-item">
       <div class="sla-tier p3">P3</div>
       <div class="sla-body">
-        <div class="sla-label">Non-blocking Issue</div>
-        <div class="sla-desc">Minor issues, questions, feature requests. Prioritized backlog response.</div>
+        <div class="sla-label" data-i18n="contact.sla.p3.label"></div>
+        <div class="sla-desc" data-i18n="contact.sla.p3.desc"></div>
       </div>
     </div>
   </div>
 
   <!-- Triage Info -->
-  <div class="section-label">When Reporting an Issue � Include</div>
+  <div class="section-label" data-i18n="contact.sections.triage"></div>
   <div class="triage-grid">
-    <div class="triage-item"><div class="triage-dot"></div>Endpoint and HTTP method</div>
-    <div class="triage-item"><div class="triage-dot"></div>Request timestamp</div>
-    <div class="triage-item"><div class="triage-dot"></div>Request ID or correlation ID (if available)</div>
-    <div class="triage-item"><div class="triage-dot"></div>Governance mode: strict / adaptive / autonomous</div>
-    <div class="triage-item"><div class="triage-dot"></div>Full error message and stack trace</div>
-    <div class="triage-item"><div class="triage-dot"></div>Steps to reproduce reliably</div>
-    <div class="triage-item"><div class="triage-dot"></div>SKIA Forge IDE version or build channel (if using the desktop app)</div>
+    <div class="triage-item"><div class="triage-dot"></div><span data-i18n="contact.triage.t1"></span></div>
+    <div class="triage-item"><div class="triage-dot"></div><span data-i18n="contact.triage.t2"></span></div>
+    <div class="triage-item"><div class="triage-dot"></div><span data-i18n="contact.triage.t3"></span></div>
+    <div class="triage-item"><div class="triage-dot"></div><span data-i18n="contact.triage.t4"></span></div>
+    <div class="triage-item"><div class="triage-dot"></div><span data-i18n="contact.triage.t5"></span></div>
+    <div class="triage-item"><div class="triage-dot"></div><span data-i18n="contact.triage.t6"></span></div>
+    <div class="triage-item"><div class="triage-dot"></div><span data-i18n="contact.triage.t7"></span></div>
   </div>
 
   <!-- Escalation path -->
-  <div class="section-label" style="margin-top:32px">Escalation Path</div>
+  <div class="section-label" data-i18n="contact.sections.escalation"></div>
   <div class="escalation-list">
-    <div class="esc-item"><div class="esc-num">1</div><div class="esc-text">Reproduce locally and validate with health and probe endpoints to isolate the failure surface.</div></div>
-    <div class="esc-item"><div class="esc-num">2</div><div class="esc-text">Apply remediation guidance from control-plane outputs and check the Troubleshooting docs.</div></div>
-    <div class="esc-item"><div class="esc-num">3</div><div class="esc-text">Escalate via the form below with logs, payload shape, and expected vs actual behaviour.</div></div>
+    <div class="esc-item"><div class="esc-num">1</div><div class="esc-text" data-i18n="contact.escalation.e1"></div></div>
+    <div class="esc-item"><div class="esc-num">2</div><div class="esc-text" data-i18n="contact.escalation.e2"></div></div>
+    <div class="esc-item"><div class="esc-num">3</div><div class="esc-text" data-i18n="contact.escalation.e3"></div></div>
   </div>
 
   <!-- Contact Form -->
-  <div class="section-label" style="margin-top:32px">Send a Message</div>
+  <div class="section-label" data-i18n="contact.sections.form"></div>
   <div class="form-card">
     <div class="field">
-      <input type="text" id="f-name" placeholder="Name" />
+      <input type="text" id="f-name" placeholder="" data-i18n-placeholder="contact.form.namePlaceholder" />
     </div>
     <div class="field">
-      <input type="email" id="f-email" placeholder="Email" />
+      <input type="email" id="f-email" placeholder="" data-i18n-placeholder="contact.form.emailPlaceholder" />
     </div>
     <div class="field">
-      <select id="f-category" aria-label="Topic">
-        <option value="support">Topic � Support (runtime, integration, governance)</option>
-        <option value="cx">Topic � Customer Service (account, billing, general)</option>
+      <select id="f-category" aria-label="Topic" data-i18n-aria-label="contact.form.topicAria">
+        <option value="support" data-i18n="contact.form.topicSupport"></option>
+        <option value="cx" data-i18n="contact.form.topicCx"></option>
       </select>
     </div>
     <div class="field">
-      <input type="text" id="f-subject" placeholder="Subject" />
+      <input type="text" id="f-subject" placeholder="" data-i18n-placeholder="contact.form.subjectPlaceholder" />
     </div>
     <div class="field">
-      <textarea id="f-message" placeholder="Describe your issue or question..."></textarea>
+      <textarea id="f-message" placeholder="" data-i18n-placeholder="contact.form.messagePlaceholder"></textarea>
     </div>
-    <button class="submit-btn" id="submitBtn">Send Message</button>
+    <button class="submit-btn" id="submitBtn" data-i18n="contact.form.submit"></button>
     <div id="formStatus" class="form-status"></div>
     <div class="direct-contact" style="margin-top:14px">
-      Or reach us directly at: <a id="directContactLink" href="mailto:support_forge@skia.ca">support_forge@skia.ca</a>
+      <span data-i18n="contact.form.directPrefix"></span> <a id="directContactLink" href="mailto:support_forge@skia.ca">support_forge@skia.ca</a>
     </div>
   </div>
 
   <footer>
-    <div class="footer-tagline">One ecosystem. One universe. All SKIA.</div>
-    <div class="footer-copy">� 2026 SKIA. All rights reserved.</div>
+    <div class="footer-tagline" data-i18n="common.footer.tagline"></div>
+    <div class="footer-copy" data-i18n="common.footer.copyright"></div>
     <div class="footer-links">
-      <a href="/resources">Resources</a>
+      <a href="/resources" data-i18n="common.footer.resources"></a>
       <span class="sep">|</span>
-      <a href="/security">Security</a>
+      <a href="/security" data-i18n="common.footer.security"></a>
       <span class="sep">|</span>
-      <a href="/contact">Contact & Support</a>
+      <a href="/contact" data-i18n="common.footer.contactSupport"></a>
     </div>
   </footer>
 </div>
@@ -333,12 +333,12 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
 
     if(!name||!email||!subject||!message){
       status.className='form-status error';
-      status.textContent='Please fill in all fields.';
+      status.textContent=(window.__forgeContactI18n&&window.__forgeContactI18n.fillAll)||'Please fill in all fields.';
       return;
     }
 
     btn.disabled=true;
-    btn.textContent='Sending...';
+    btn.textContent=(window.__forgeContactI18n&&window.__forgeContactI18n.sending)||'Sending...';
     status.textContent='';
 
     try {
@@ -349,18 +349,19 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
       });
       if(!res.ok) throw new Error('Failed');
       status.className='form-status success';
-      status.textContent="Message sent. We'll get back to you shortly.";
+      status.textContent=(window.__forgeContactI18n&&window.__forgeContactI18n.success)||"Message sent.";
       document.getElementById('f-subject').value='';
       document.getElementById('f-message').value='';
     } catch {
       status.className='form-status error';
-      status.textContent='Failed to send. Please email us at ' + fallback;
+      status.textContent=((window.__forgeContactI18n&&window.__forgeContactI18n.failedPrefix)||'Failed to send. Please email us at ')+fallback;
     } finally {
       btn.disabled=false;
-      btn.textContent='Send Message';
+      btn.textContent=(window.__forgeContactI18n&&window.__forgeContactI18n.submit)||'Send Message';
     }
   });
 </script>
+  <script src="/forge-page-locale.js" defer></script>
   <script src="/forge-sidebar-locale.js" defer></script>
 </body>
 </html>

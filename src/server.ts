@@ -1554,6 +1554,13 @@ app.get("/forge-sidebar-locale.js", (_req, res) => {
   res.sendFile(path.join(projectRoot, "public", "forge-sidebar-locale.js"));
 });
 
+app.get("/forge-page-locale.js", (_req, res) => {
+  res.type("application/javascript");
+  res.sendFile(path.join(projectRoot, "public", "forge-page-locale.js"));
+});
+
+app.use("/locales", express.static(path.join(projectRoot, "public", "locales")));
+
 /** Hub + docs sidebar and hero logo (`public/*.html`, `public/docs/*.html`) */
 app.get("/sidebar-logo.png", (_req, res) => {
   res.sendFile(path.join(projectRoot, "public", "sidebar-logo.png"));

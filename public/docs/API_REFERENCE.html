@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <script src="/forge-document-locale.js"></script>
 
-  <title>API Reference | SKIA Forge</title>
+  <title data-i18n="docs.pages.api-reference.meta.title"></title>
   <link rel="icon" type="image/png" href="/favicon.png"/>
   <link rel="stylesheet" href="/forge-premium-ui.css" />
   <style>
@@ -112,47 +112,47 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
 </style>
   <link rel="stylesheet" href="/forge-sidebar-locale.css" />
 </head>
-<body>
+<body data-forge-i18n-page="docs" data-forge-i18n-slug="api-reference">
 
 <div id="pcSidebarBackdrop" class="pc-sidebar-backdrop"></div>
-<button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation">
+<button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation" data-i18n-aria-label="common.aria.openNavigation">
   <span class="pc-sidebar-tab-icon">?</span>
 </button>
 <aside id="pcSidebar" class="pc-sidebar">
   <div class="pc-sidebar-logo">
     <img src="/sidebar-logo.png" alt="SKIA" class="pc-sidebar-logo-img" />
-    <span class="pc-sidebar-logo-tagline">She Knows It All</span>
+    <span class="pc-sidebar-logo-tagline" data-i18n="common.sidebar.tagline"></span>
   </div>
   <div class="pc-sidebar-divider"></div>
     <nav class="pc-sidebar-nav">
-    <a class="pc-sidebar-btn" href="/platform-downloads">Forge Home</a>
-    <a class="pc-sidebar-btn" href="/forge/platform" target="_blank" rel="noopener noreferrer">Product</a>
-    <a class="pc-sidebar-btn" href="/resources">Resources</a>
-    <a class="pc-sidebar-btn" href="/security">Security</a>
-    <a class="pc-sidebar-btn" href="/contact">Contact & Support</a>
+    <a class="pc-sidebar-btn" href="/platform-downloads" data-i18n="common.nav.forgeHome"></a>
+    <a class="pc-sidebar-btn" href="/forge/platform" target="_blank" rel="noopener noreferrer" data-i18n="common.nav.product"></a>
+    <a class="pc-sidebar-btn" href="/resources" data-i18n="common.nav.resources"></a>
+    <a class="pc-sidebar-btn" href="/security" data-i18n="common.nav.security"></a>
+    <a class="pc-sidebar-btn" href="/contact" data-i18n="common.nav.contactSupport"></a>
     <div class="pc-sidebar-divider"></div>
-    <a class="pc-sidebar-btn" href="/platform-downloads">Download SKIA Forge</a>
+    <a class="pc-sidebar-btn" href="/platform-downloads" data-i18n="common.nav.downloadForge"></a>
   </nav>
 </aside>
 
-<button type="button" class="back-btn" onclick="history.back()">? Back</button>
+<button type="button" class="back-btn" onclick="history.back()" data-i18n="common.back.label"></button>
 <div class="wrap">
   <img src="/sidebar-logo.png" alt="SKIA" class="page-logo" />
-  <div class="doc-badge">Primary API Surfaces</div>
-  <h1 class="doc-title">API Reference</h1>
-  <p class="doc-desc">Forge HTTP API as implemented in the Forge server. Authenticated clients are required for control-plane routes under <code>/api/forge/*</code>. For the complete route index see <code>docs/API_REFERENCE.md</code> in the repository.</p>
+  <div class="doc-badge" data-i18n="docs.pages.api-reference.badge"></div>
+  <h1 class="doc-title" data-i18n="docs.pages.api-reference.title"></h1>
+  <p class="doc-desc" data-i18n="docs.pages.api-reference.description"></p>
   <div class="doc-divider"></div>
-  <div class="section"><div class="section-title">Browser &amp; Static</div><div class="section-body"><table class="tbl"><thead><tr><th>Method</th><th>Path</th><th>Notes</th></tr></thead><tbody><tr><td>GET</td><td><code>/</code></td><td>Redirect to <code>/platform-downloads</code> (static <code>public/platform-downloads.html</code>)</td></tr><tr><td>GET</td><td><code>/forge</code></td><td>Same redirect (legacy path)</td></tr><tr><td>GET</td><td><code>/forge/app</code></td><td>Web IDE (build the SKIA Forge IDE bundle first)</td></tr><tr><td>GET</td><td><code>/resources</code>, <code>/security</code>, <code>/contact</code></td><td>Static pages</td></tr><tr><td>GET</td><td><code>/docs/*</code></td><td>Branded HTML then markdown fallback</td></tr></tbody></table></div></div><div class="section"><div class="section-title">Auth Proxy</div><div class="section-body"><table class="tbl"><thead><tr><th>Method</th><th>Path</th></tr></thead><tbody><tr><td>POST</td><td><code>/api/auth/login</code></td></tr><tr><td>POST</td><td><code>/api/auth/register</code></td></tr><tr><td>GET</td><td><code>/api/auth/session</code></td></tr></tbody></table><p style="margin-top:12px;font-size:13px;color:var(--text-soft)">Proxied to <code>SKIA_BACKEND_URL</code>. Marketing pages omit web sign-in UI; use the SKIA Forge IDE.</p></div></div><div class="section"><div class="section-title">App Distribution</div><div class="section-body"><table class="tbl"><thead><tr><th>Method</th><th>Path</th></tr></thead><tbody><tr><td>GET</td><td><code>/api/app/version-check</code></td></tr><tr><td>GET</td><td><code>/api/app/release-assets</code></td></tr><tr><td>GET</td><td><code>/api/app/download</code></td></tr><tr><td>GET</td><td><code>/api/app/download/:platform</code></td></tr></tbody></table></div></div><div class="section"><div class="section-title">Health & Status</div><div class="section-body"><table class="tbl"><thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead><tbody><tr><td>GET</td><td><code>/health</code></td><td>Service health check</td></tr><tr><td>GET</td><td><code>/live</code></td><td>Liveness probe</td></tr><tr><td>GET</td><td><code>/ready</code></td><td>Readiness probe</td></tr><tr><td>GET</td><td><code>/version</code></td><td>Service version</td></tr></tbody></table></div></div><div class="section"><div class="section-title">Integration</div><div class="section-body"><table class="tbl"><thead><tr><th>Method</th><th>Path</th><th>Description</th></tr></thead><tbody><tr><td>GET</td><td><code>/integration/skia-full</code></td><td>Adapter status and contract map</td></tr><tr><td>GET</td><td><code>/integration/skia-full/probe</code></td><td>Live contract probe summary</td></tr><tr><td>GET</td><td><code>/integration/skia-full/probe/report</code></td><td>Detailed probe report</td></tr><tr><td>POST</td><td><code>/integration/skia-full/chat</code></td><td>Chat via SKIA brain</td></tr><tr><td>POST</td><td><code>/integration/skia-full/route</code></td><td>Reasoning router</td></tr><tr><td>POST</td><td><code>/integration/skia-full/routing-estimate</code></td><td>Routing estimate</td></tr></tbody></table></div></div><div class="section"><div class="section-title">Forge Module Surfaces</div><div class="section-body"><table class="tbl"><thead><tr><th>Prefix</th><th>Domain</th></tr></thead><tbody><tr><td><code>/api/forge/context/*</code></td><td>Context engine, embeddings, semantic chunking</td></tr><tr><td><code>/api/forge/agent/*</code></td><td>Agent planner and executor</td></tr><tr><td><code>POST /api/forge/sdlc</code></td><td>SDLC intelligence</td></tr><tr><td><code>/api/forge/production/*</code></td><td>Production adapter</td></tr><tr><td><code>/api/forge/healing/*</code></td><td>Healing executor</td></tr><tr><td><code>/api/forge/architecture/*</code></td><td>Architecture diagnostics</td></tr><tr><td><code>/api/forge/orchestrate</code></td><td>Full orchestration flow</td></tr><tr><td><code>/api/forge/control-plane</code></td><td>Control plane snapshot</td></tr><tr><td><code>/api/forge/governance</code></td><td>Governance mode and policy</td></tr></tbody></table></div></div><div class="section"><div class="section-title">RPC</div><div class="section-body"><div class="item-list"><div class="item"><div class="item-dot"></div><div class="item-text"><code>POST /rpc</code> � SKIA-backed operations with local fallbacks for unavailable upstream paths</div></div></div></div></div><div class="section"><div class="section-title">Error Model</div><div class="section-body"><div class="item-list"><div class="item"><div class="item-dot"></div><div class="item-text">Schema validation errors return structured request feedback with field-level detail</div></div><div class="item"><div class="item-dot"></div><div class="item-text">Upstream unavailability returns explicit SKIA unavailable errors</div></div><div class="item"><div class="item-dot"></div><div class="item-text">Governance blocks return mode and policy-based decision context with remediation guidance</div></div></div></div></div>
+  <div class="section"><div class="section-title" data-i18n="docs.pages.api-reference.sections.browser-static.title"></div><div class="section-body" data-i18n-html="docs.pages.api-reference.sections.browser-static.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.api-reference.sections.auth-proxy.title"></div><div class="section-body" data-i18n-html="docs.pages.api-reference.sections.auth-proxy.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.api-reference.sections.app-distribution.title"></div><div class="section-body" data-i18n-html="docs.pages.api-reference.sections.app-distribution.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.api-reference.sections.health-status.title"></div><div class="section-body" data-i18n-html="docs.pages.api-reference.sections.health-status.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.api-reference.sections.integration.title"></div><div class="section-body" data-i18n-html="docs.pages.api-reference.sections.integration.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.api-reference.sections.forge-module-surfaces.title"></div><div class="section-body" data-i18n-html="docs.pages.api-reference.sections.forge-module-surfaces.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.api-reference.sections.rpc.title"></div><div class="section-body" data-i18n-html="docs.pages.api-reference.sections.rpc.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.api-reference.sections.error-model.title"></div><div class="section-body" data-i18n-html="docs.pages.api-reference.sections.error-model.html"></div></div>
   
 <div class="doc-footer">
-  <div class="tagline">One ecosystem. One universe. All SKIA.</div>
-  <div class="copy">� 2026 SKIA. All rights reserved.</div>
+  <div class="tagline" data-i18n="common.footer.tagline"></div>
+  <div class="copy" data-i18n="common.footer.copyright"></div>
   <div class="links">
-    <a href="/resources">Resources</a>
+    <a href="/resources" data-i18n="common.footer.resources"></a>
     <span class="sep">|</span>
-    <a href="/security">Security</a>
+    <a href="/security" data-i18n="common.footer.security"></a>
     <span class="sep">|</span>
-    <a href="/contact">Contact & Support</a>
+    <a href="/contact" data-i18n="common.footer.contactSupport"></a>
   </div>
 </div>
 
@@ -172,6 +172,7 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
 })();
 </script>
 
+  <script src="/forge-page-locale.js" defer></script>
   <script src="/forge-sidebar-locale.js" defer></script>
 </body>
 </html>

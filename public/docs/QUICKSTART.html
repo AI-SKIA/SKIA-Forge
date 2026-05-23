@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <script src="/forge-document-locale.js"></script>
 
-  <title>Quickstart | SKIA Forge</title>
+  <title data-i18n="docs.pages.quickstart.meta.title"></title>
   <link rel="icon" type="image/png" href="/favicon.png"/>
   <link rel="stylesheet" href="/forge-premium-ui.css" />
   <style>
@@ -112,47 +112,47 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
 </style>
   <link rel="stylesheet" href="/forge-sidebar-locale.css" />
 </head>
-<body>
+<body data-forge-i18n-page="docs" data-forge-i18n-slug="quickstart">
 
 <div id="pcSidebarBackdrop" class="pc-sidebar-backdrop"></div>
-<button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation">
+<button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation" data-i18n-aria-label="common.aria.openNavigation">
   <span class="pc-sidebar-tab-icon">?</span>
 </button>
 <aside id="pcSidebar" class="pc-sidebar">
   <div class="pc-sidebar-logo">
     <img src="/sidebar-logo.png" alt="SKIA" class="pc-sidebar-logo-img" />
-    <span class="pc-sidebar-logo-tagline">She Knows It All</span>
+    <span class="pc-sidebar-logo-tagline" data-i18n="common.sidebar.tagline"></span>
   </div>
   <div class="pc-sidebar-divider"></div>
     <nav class="pc-sidebar-nav">
-    <a class="pc-sidebar-btn" href="/platform-downloads">Forge Home</a>
-    <a class="pc-sidebar-btn" href="/forge/platform" target="_blank" rel="noopener noreferrer">Product</a>
-    <a class="pc-sidebar-btn" href="/resources">Resources</a>
-    <a class="pc-sidebar-btn" href="/security">Security</a>
-    <a class="pc-sidebar-btn" href="/contact">Contact & Support</a>
+    <a class="pc-sidebar-btn" href="/platform-downloads" data-i18n="common.nav.forgeHome"></a>
+    <a class="pc-sidebar-btn" href="/forge/platform" target="_blank" rel="noopener noreferrer" data-i18n="common.nav.product"></a>
+    <a class="pc-sidebar-btn" href="/resources" data-i18n="common.nav.resources"></a>
+    <a class="pc-sidebar-btn" href="/security" data-i18n="common.nav.security"></a>
+    <a class="pc-sidebar-btn" href="/contact" data-i18n="common.nav.contactSupport"></a>
     <div class="pc-sidebar-divider"></div>
-    <a class="pc-sidebar-btn" href="/platform-downloads">Download SKIA Forge</a>
+    <a class="pc-sidebar-btn" href="/platform-downloads" data-i18n="common.nav.downloadForge"></a>
   </nav>
 </aside>
 
-<button type="button" class="back-btn" onclick="history.back()">? Back</button>
+<button type="button" class="back-btn" onclick="history.back()" data-i18n="common.back.label"></button>
 <div class="wrap">
   <img src="/sidebar-logo.png" alt="SKIA" class="page-logo" />
-  <div class="doc-badge">Get Started</div>
-  <h1 class="doc-title">Quickstart</h1>
-  <p class="doc-desc">Download SKIA Forge, sign in, and run your first governed workflow in the desktop IDE.</p>
+  <div class="doc-badge" data-i18n="docs.pages.quickstart.badge"></div>
+  <h1 class="doc-title" data-i18n="docs.pages.quickstart.title"></h1>
+  <p class="doc-desc" data-i18n="docs.pages.quickstart.description"></p>
   <div class="doc-divider"></div>
-  <div class="section"><div class="section-title">Step-by-Step</div><div class="section-body"><div class="steps"><div class="step"><div class="step-num">01</div><div class="step-text">Download SKIA Forge from <a href="https://forge.skia.ca/platform-downloads" style="color:var(--gold)">forge.skia.ca/platform-downloads</a> for your operating system.</div></div><div class="step"><div class="step-num">02</div><div class="step-text">Install the app, then open <strong>SKIA Forge</strong> from your applications menu or desktop shortcut.</div></div><div class="step"><div class="step-num">03</div><div class="step-text">Sign in with your SKIA account or create one when prompted � authentication happens inside the application.</div></div><div class="step"><div class="step-num">04</div><div class="step-text">Open or import a project, submit work, review governance output, and apply changes when you are ready.</div></div><div class="step"><div class="step-num">05</div><div class="step-text">Explore deeper guides from the links below when you need more detail.</div></div></div></div></div><div class="section"><div class="section-title">Next Steps</div><div class="section-body"><div class="item-list"><div class="item"><div class="item-dot"></div><div class="item-text"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>User Guide</a> � day-to-day usage and governance modes</div></div><div class="item"><div class="item-dot"></div><div class="item-text"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API Reference</a> � HTTP APIs for developers and automation</div></div><div class="item"><div class="item-dot"></div><div class="item-text"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>Product Manual</a> � capabilities overview</div></div><div class="item"><div class="item-dot"></div><div class="item-text"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>Support</a> � how to get help</div></div></div></div></div>
+  <div class="section"><div class="section-title" data-i18n="docs.pages.quickstart.sections.step-by-step.title"></div><div class="section-body" data-i18n-html="docs.pages.quickstart.sections.step-by-step.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.quickstart.sections.next-steps.title"></div><div class="section-body" data-i18n-html="docs.pages.quickstart.sections.next-steps.html"></div></div>
   
 <div class="doc-footer">
-  <div class="tagline">One ecosystem. One universe. All SKIA.</div>
-  <div class="copy">� 2026 SKIA. All rights reserved.</div>
+  <div class="tagline" data-i18n="common.footer.tagline"></div>
+  <div class="copy" data-i18n="common.footer.copyright"></div>
   <div class="links">
-    <a href="/resources">Resources</a>
+    <a href="/resources" data-i18n="common.footer.resources"></a>
     <span class="sep">|</span>
-    <a href="/security">Security</a>
+    <a href="/security" data-i18n="common.footer.security"></a>
     <span class="sep">|</span>
-    <a href="/contact">Contact & Support</a>
+    <a href="/contact" data-i18n="common.footer.contactSupport"></a>
   </div>
 </div>
 
@@ -172,6 +172,7 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
 })();
 </script>
 
+  <script src="/forge-page-locale.js" defer></script>
   <script src="/forge-sidebar-locale.js" defer></script>
 </body>
 </html>

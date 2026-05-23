@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <script src="/forge-document-locale.js"></script>
 
-  <title>Product Manual | SKIA Forge</title>
+  <title data-i18n="docs.pages.product-manual.meta.title"></title>
   <link rel="icon" type="image/png" href="/favicon.png"/>
   <link rel="stylesheet" href="/forge-premium-ui.css" />
   <style>
@@ -112,47 +112,47 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
 </style>
   <link rel="stylesheet" href="/forge-sidebar-locale.css" />
 </head>
-<body>
+<body data-forge-i18n-page="docs" data-forge-i18n-slug="product-manual">
 
 <div id="pcSidebarBackdrop" class="pc-sidebar-backdrop"></div>
-<button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation">
+<button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation" data-i18n-aria-label="common.aria.openNavigation">
   <span class="pc-sidebar-tab-icon">?</span>
 </button>
 <aside id="pcSidebar" class="pc-sidebar">
   <div class="pc-sidebar-logo">
     <img src="/sidebar-logo.png" alt="SKIA" class="pc-sidebar-logo-img" />
-    <span class="pc-sidebar-logo-tagline">She Knows It All</span>
+    <span class="pc-sidebar-logo-tagline" data-i18n="common.sidebar.tagline"></span>
   </div>
   <div class="pc-sidebar-divider"></div>
     <nav class="pc-sidebar-nav">
-    <a class="pc-sidebar-btn" href="/platform-downloads">Forge Home</a>
-    <a class="pc-sidebar-btn" href="/forge/platform" target="_blank" rel="noopener noreferrer">Product</a>
-    <a class="pc-sidebar-btn" href="/resources">Resources</a>
-    <a class="pc-sidebar-btn" href="/security">Security</a>
-    <a class="pc-sidebar-btn" href="/contact">Contact & Support</a>
+    <a class="pc-sidebar-btn" href="/platform-downloads" data-i18n="common.nav.forgeHome"></a>
+    <a class="pc-sidebar-btn" href="/forge/platform" target="_blank" rel="noopener noreferrer" data-i18n="common.nav.product"></a>
+    <a class="pc-sidebar-btn" href="/resources" data-i18n="common.nav.resources"></a>
+    <a class="pc-sidebar-btn" href="/security" data-i18n="common.nav.security"></a>
+    <a class="pc-sidebar-btn" href="/contact" data-i18n="common.nav.contactSupport"></a>
     <div class="pc-sidebar-divider"></div>
-    <a class="pc-sidebar-btn" href="/platform-downloads">Download SKIA Forge</a>
+    <a class="pc-sidebar-btn" href="/platform-downloads" data-i18n="common.nav.downloadForge"></a>
   </nav>
 </aside>
 
-<button type="button" class="back-btn" onclick="history.back()">? Back</button>
+<button type="button" class="back-btn" onclick="history.back()" data-i18n="common.back.label"></button>
 <div class="wrap">
   <img src="/sidebar-logo.png" alt="SKIA" class="page-logo" />
-  <div class="doc-badge">SKIA Forge Docs</div>
-  <h1 class="doc-title">Product Manual</h1>
-  <p class="doc-desc">The governance and orchestration control plane for AI-native software development. SKIA Forge connects to SKIA intelligence services for orchestration; it does not replace the full SKIA product runtime.</p>
+  <div class="doc-badge" data-i18n="docs.pages.product-manual.badge"></div>
+  <h1 class="doc-title" data-i18n="docs.pages.product-manual.title"></h1>
+  <p class="doc-desc" data-i18n="docs.pages.product-manual.description"></p>
   <div class="doc-divider"></div>
-  <div class="section"><div class="section-title">What SKIA Forge Is</div><div class="section-body">SKIA Forge coordinates planning, execution safety, architecture checks, and remediation guidance around AI-assisted workflows.</div></div><div class="section"><div class="section-title">Delivery Surfaces</div><div class="section-body">Public download and documentation live at <strong>forge.skia.ca</strong>, including <code>/platform-downloads</code>, <code>/resources</code>, <code>/security</code>, <code>/contact</code>, and <code>/docs/*</code>. The web IDE is available at <code>/forge/app</code> when the IDE bundle is built. Account sign-in and registration happen in the <strong>SKIA Forge IDE</strong> or other supported clients, not on static marketing pages. Desktop installers are served via <code>/api/app/download</code> routes.</div></div><div class="section"><div class="section-title">Who It Is For</div><div class="section-body"><div class="card-grid"><div class="card"><div class="card-title">AI-First Engineering Teams</div><div class="card-body">Build faster with safety guardrails baked into every workflow.</div></div><div class="card"><div class="card-title">Platform & Productivity Teams</div><div class="card-body">Governance-aware automation for platform-level development workflows.</div></div><div class="card"><div class="card-title">Security & Governance Stakeholders</div><div class="card-body">Policy-aware automation that produces first-class audit trails.</div></div></div></div></div><div class="section"><div class="section-title">Core Capabilities</div><div class="section-body"><div class="item-list"><div class="item"><div class="item-dot"></div><div class="item-text">Structured orchestration across context, agent, SDLC, production, healing, architecture, and related modules</div></div><div class="item"><div class="item-dot"></div><div class="item-text">Governance mode controls: <code>strict</code>, <code>adaptive</code>, <code>autonomous</code></div></div><div class="item"><div class="item-dot"></div><div class="item-text">Runtime control-plane posture, alerts, and recommendations</div></div><div class="item"><div class="item-dot"></div><div class="item-text">Safety and architecture diagnostics on changed files</div></div><div class="item"><div class="item-dot"></div><div class="item-text">Integration with SKIA intelligence services for reasoning and execution support</div></div></div></div></div><div class="section"><div class="section-title">Value Proposition</div><div class="section-body"><div class="item-list"><div class="item"><div class="item-dot"></div><div class="item-text">Faster delivery with guardrails � ship confidently without sacrificing speed</div></div><div class="item"><div class="item-dot"></div><div class="item-text">Reduced unsafe operations reaching production</div></div><div class="item"><div class="item-dot"></div><div class="item-text">Better traceability for enterprise governance and audits</div></div></div></div></div><div class="section"><div class="section-title">Product Boundaries</div><div class="section-body">SKIA Forge is a control and orchestration layer. It is not a replacement for your full application runtime � it integrates with upstream SKIA intelligence contracts and your existing deployment topology.</div></div>
+  <div class="section"><div class="section-title" data-i18n="docs.pages.product-manual.sections.what-skia-forge-is.title"></div><div class="section-body" data-i18n-html="docs.pages.product-manual.sections.what-skia-forge-is.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.product-manual.sections.delivery-surfaces.title"></div><div class="section-body" data-i18n-html="docs.pages.product-manual.sections.delivery-surfaces.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.product-manual.sections.who-it-is-for.title"></div><div class="section-body" data-i18n-html="docs.pages.product-manual.sections.who-it-is-for.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.product-manual.sections.core-capabilities.title"></div><div class="section-body" data-i18n-html="docs.pages.product-manual.sections.core-capabilities.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.product-manual.sections.value-proposition.title"></div><div class="section-body" data-i18n-html="docs.pages.product-manual.sections.value-proposition.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.product-manual.sections.product-boundaries.title"></div><div class="section-body" data-i18n-html="docs.pages.product-manual.sections.product-boundaries.html"></div></div>
   
 <div class="doc-footer">
-  <div class="tagline">One ecosystem. One universe. All SKIA.</div>
-  <div class="copy">� 2026 SKIA. All rights reserved.</div>
+  <div class="tagline" data-i18n="common.footer.tagline"></div>
+  <div class="copy" data-i18n="common.footer.copyright"></div>
   <div class="links">
-    <a href="/resources">Resources</a>
+    <a href="/resources" data-i18n="common.footer.resources"></a>
     <span class="sep">|</span>
-    <a href="/security">Security</a>
+    <a href="/security" data-i18n="common.footer.security"></a>
     <span class="sep">|</span>
-    <a href="/contact">Contact & Support</a>
+    <a href="/contact" data-i18n="common.footer.contactSupport"></a>
   </div>
 </div>
 
@@ -172,6 +172,7 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
 })();
 </script>
 
+  <script src="/forge-page-locale.js" defer></script>
   <script src="/forge-sidebar-locale.js" defer></script>
 </body>
 </html>

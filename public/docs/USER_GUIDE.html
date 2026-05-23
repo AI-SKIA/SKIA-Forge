@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <script src="/forge-document-locale.js"></script>
 
-  <title>User Guide | SKIA Forge</title>
+  <title data-i18n="docs.pages.user-guide.meta.title"></title>
   <link rel="icon" type="image/png" href="/favicon.png"/>
   <link rel="stylesheet" href="/forge-premium-ui.css" />
   <style>
@@ -112,47 +112,47 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
 </style>
   <link rel="stylesheet" href="/forge-sidebar-locale.css" />
 </head>
-<body>
+<body data-forge-i18n-page="docs" data-forge-i18n-slug="user-guide">
 
 <div id="pcSidebarBackdrop" class="pc-sidebar-backdrop"></div>
-<button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation">
+<button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation" data-i18n-aria-label="common.aria.openNavigation">
   <span class="pc-sidebar-tab-icon">?</span>
 </button>
 <aside id="pcSidebar" class="pc-sidebar">
   <div class="pc-sidebar-logo">
     <img src="/sidebar-logo.png" alt="SKIA" class="pc-sidebar-logo-img" />
-    <span class="pc-sidebar-logo-tagline">She Knows It All</span>
+    <span class="pc-sidebar-logo-tagline" data-i18n="common.sidebar.tagline"></span>
   </div>
   <div class="pc-sidebar-divider"></div>
     <nav class="pc-sidebar-nav">
-    <a class="pc-sidebar-btn" href="/platform-downloads">Forge Home</a>
-    <a class="pc-sidebar-btn" href="/forge/platform" target="_blank" rel="noopener noreferrer">Product</a>
-    <a class="pc-sidebar-btn" href="/resources">Resources</a>
-    <a class="pc-sidebar-btn" href="/security">Security</a>
-    <a class="pc-sidebar-btn" href="/contact">Contact & Support</a>
+    <a class="pc-sidebar-btn" href="/platform-downloads" data-i18n="common.nav.forgeHome"></a>
+    <a class="pc-sidebar-btn" href="/forge/platform" target="_blank" rel="noopener noreferrer" data-i18n="common.nav.product"></a>
+    <a class="pc-sidebar-btn" href="/resources" data-i18n="common.nav.resources"></a>
+    <a class="pc-sidebar-btn" href="/security" data-i18n="common.nav.security"></a>
+    <a class="pc-sidebar-btn" href="/contact" data-i18n="common.nav.contactSupport"></a>
     <div class="pc-sidebar-divider"></div>
-    <a class="pc-sidebar-btn" href="/platform-downloads">Download SKIA Forge</a>
+    <a class="pc-sidebar-btn" href="/platform-downloads" data-i18n="common.nav.downloadForge"></a>
   </nav>
 </aside>
 
-<button type="button" class="back-btn" onclick="history.back()">? Back</button>
+<button type="button" class="back-btn" onclick="history.back()" data-i18n="common.back.label"></button>
 <div class="wrap">
   <img src="/sidebar-logo.png" alt="SKIA" class="page-logo" />
-  <div class="doc-badge">Using SKIA Forge</div>
-  <h1 class="doc-title">User Guide</h1>
-  <p class="doc-desc">What SKIA Forge does for you, how to install and sign in, daily workflows, governance modes in plain language, and where to get help.</p>
+  <div class="doc-badge" data-i18n="docs.pages.user-guide.badge"></div>
+  <h1 class="doc-title" data-i18n="docs.pages.user-guide.title"></h1>
+  <p class="doc-desc" data-i18n="docs.pages.user-guide.description"></p>
   <div class="doc-divider"></div>
-  <div class="section"><div class="section-title">What SKIA Forge Does For You</div><div class="section-body">SKIA Forge helps you build software with AI assistance under clear governance: planning, reviews, architecture insight, and safer apply paths so your team can move fast without bypassing policy.</div></div><div class="section"><div class="section-title">Get the Desktop IDE</div><div class="section-body">Download installers from <a href="https://forge.skia.ca/platform-downloads" style="color:var(--gold)">forge.skia.ca/platform-downloads</a> and install <strong>SKIA Forge</strong> for your platform.</div></div><div class="section"><div class="section-title">Signing In</div><div class="section-body">Open the app and sign in or create a SKIA account when prompted. Authentication happens inside the application.</div></div><div class="section"><div class="section-title">Daily Usage</div><div class="section-body"><div class="steps"><div class="step"><div class="step-num">01</div><div class="step-text">Open or import the project you want to work on.</div></div><div class="step"><div class="step-num">02</div><div class="step-text">Submit work and review governance output before applying changes.</div></div><div class="step"><div class="step-num">03</div><div class="step-text">Follow in-app remediation when something is blocked, then try again.</div></div></div></div></div><div class="section"><div class="section-title">Governance Modes</div><div class="section-body"><div class="item-list"><div class="item"><div class="item-dot"></div><div class="item-text"><strong>Strict</strong> � safest default; more steps require explicit approval.</div></div><div class="item"><div class="item-dot"></div><div class="item-text"><strong>Adaptive</strong> � balanced; routine work flows faster while higher-risk actions surface for review.</div></div><div class="item"><div class="item-dot"></div><div class="item-text"><strong>Autonomous</strong> � fastest path where enabled; use when your team accepts the trade-offs.</div></div></div><p style="margin-top:12px;font-size:12px;color:var(--gold-muted)">Labels in the product may vary; ask your admin which mode applies to your workspace.</p></div></div><div class="section"><div class="section-title">Where to Get Help</div><div class="section-body"><div class="item-list"><div class="item"><div class="item-dot"></div><div class="item-text"><a href="/docs/SUPPORT.html" style="color:var(--gold)">Support</a> and <a href="/docs/TROUBLESHOOTING.html" style="color:var(--gold)">Troubleshooting</a></div></div><div class="item"><div class="item-dot"></div><div class="item-text"><a href="/contact" style="color:var(--gold)">Contact &amp; Support</a> on the Forge site for routed requests</div></div></div></div></div>
+  <div class="section"><div class="section-title" data-i18n="docs.pages.user-guide.sections.what-skia-forge-does-for-you.title"></div><div class="section-body" data-i18n-html="docs.pages.user-guide.sections.what-skia-forge-does-for-you.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.user-guide.sections.get-the-desktop-ide.title"></div><div class="section-body" data-i18n-html="docs.pages.user-guide.sections.get-the-desktop-ide.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.user-guide.sections.signing-in.title"></div><div class="section-body" data-i18n-html="docs.pages.user-guide.sections.signing-in.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.user-guide.sections.daily-usage.title"></div><div class="section-body" data-i18n-html="docs.pages.user-guide.sections.daily-usage.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.user-guide.sections.governance-modes.title"></div><div class="section-body" data-i18n-html="docs.pages.user-guide.sections.governance-modes.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.user-guide.sections.where-to-get-help.title"></div><div class="section-body" data-i18n-html="docs.pages.user-guide.sections.where-to-get-help.html"></div></div>
   
 <div class="doc-footer">
-  <div class="tagline">One ecosystem. One universe. All SKIA.</div>
-  <div class="copy">� 2026 SKIA. All rights reserved.</div>
+  <div class="tagline" data-i18n="common.footer.tagline"></div>
+  <div class="copy" data-i18n="common.footer.copyright"></div>
   <div class="links">
-    <a href="/resources">Resources</a>
+    <a href="/resources" data-i18n="common.footer.resources"></a>
     <span class="sep">|</span>
-    <a href="/security">Security</a>
+    <a href="/security" data-i18n="common.footer.security"></a>
     <span class="sep">|</span>
-    <a href="/contact">Contact & Support</a>
+    <a href="/contact" data-i18n="common.footer.contactSupport"></a>
   </div>
 </div>
 
@@ -172,6 +172,7 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
 })();
 </script>
 
+  <script src="/forge-page-locale.js" defer></script>
   <script src="/forge-sidebar-locale.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,58 @@
+{
+  "meta": {
+    "title": "Security | SKIA Forge"
+  },
+  "hero": {
+    "title": "Security",
+    "subtitle": "SKIA Forge applies layered controls across every surface — request, governance, and execution"
+  },
+  "sections": {
+    "model": "Security Model",
+    "components": "Key Security Components",
+    "practices": "Operational Security Practices",
+    "checklist": "Hardening Checklist"
+  },
+  "controls": {
+    "validation": {
+      "title": "Request Validation",
+      "desc": "All inputs validated against strict request and schema contracts before execution."
+    },
+    "governance": {
+      "title": "Governance Enforcement",
+      "desc": "Strict, adaptive, and autonomous governance modes control what agents can do."
+    },
+    "safety": {
+      "title": "Safety Gates",
+      "desc": "High-risk actions pass through safety gates with preview and policy-based blocking."
+    },
+    "previews": {
+      "title": "Execution Previews",
+      "desc": "Every destructive or irreversible action is previewed before it runs."
+    }
+  },
+  "components": {
+    "analysis": "Security analysis — runs scan and save-time checks on code and agent output before persistence.",
+    "governance": "Governance layer — enforces strict / adaptive / autonomous control based on user-defined policy. All mode transitions are logged.",
+    "routes": "Route & Action Modules — per-route and per-action safety constraints that cannot be bypassed at the API layer.",
+    "audit": "Audit Trail — all orchestration runs produce a structured audit trail. Reviewed after major agent operations."
+  },
+  "practices": {
+    "p1": "Keep secrets out of repositories and logs. Store all secrets using your secrets manager or hosting provider's secrets injection — never in plaintext config files.",
+    "p2": "Validate all external integration responses. Never trust third-party data without schema assertion.",
+    "p3": "Treat policy blocks as first-class security events. Every block is logged, reviewable, and feeds governance tuning.",
+    "p4": "Record and monitor remediation outcomes. Fixes without follow-up validation are not considered complete."
+  },
+  "checklist": {
+    "c1": "Run lint, typecheck, and tests before every release",
+    "c2": "Keep all dependencies current — patch within 48 hours of CVE",
+    "c3": "Validate integration probe endpoints regularly",
+    "c4": "Review audit trails after major orchestration runs",
+    "c5": "Rotate JWT_SECRET and API keys on a scheduled cadence",
+    "c6": "Never commit secrets — use environment variable injection"
+  },
+  "disclosure": {
+    "title": "Responsible Disclosure",
+    "body": "Found a vulnerability in SKIA Forge? We take security reports seriously. Contact us privately and we will respond within one business day.",
+    "button": "Report a Vulnerability"
+  }
+}

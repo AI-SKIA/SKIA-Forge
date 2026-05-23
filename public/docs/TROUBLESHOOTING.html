@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <script src="/forge-document-locale.js"></script>
 
-  <title>Troubleshooting | SKIA Forge</title>
+  <title data-i18n="docs.pages.troubleshooting.meta.title"></title>
   <link rel="icon" type="image/png" href="/favicon.png"/>
   <link rel="stylesheet" href="/forge-premium-ui.css" />
   <style>
@@ -112,47 +112,47 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
 </style>
   <link rel="stylesheet" href="/forge-sidebar-locale.css" />
 </head>
-<body>
+<body data-forge-i18n-page="docs" data-forge-i18n-slug="troubleshooting">
 
 <div id="pcSidebarBackdrop" class="pc-sidebar-backdrop"></div>
-<button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation">
+<button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation" data-i18n-aria-label="common.aria.openNavigation">
   <span class="pc-sidebar-tab-icon">?</span>
 </button>
 <aside id="pcSidebar" class="pc-sidebar">
   <div class="pc-sidebar-logo">
     <img src="/sidebar-logo.png" alt="SKIA" class="pc-sidebar-logo-img" />
-    <span class="pc-sidebar-logo-tagline">She Knows It All</span>
+    <span class="pc-sidebar-logo-tagline" data-i18n="common.sidebar.tagline"></span>
   </div>
   <div class="pc-sidebar-divider"></div>
     <nav class="pc-sidebar-nav">
-    <a class="pc-sidebar-btn" href="/platform-downloads">Forge Home</a>
-    <a class="pc-sidebar-btn" href="/forge/platform" target="_blank" rel="noopener noreferrer">Product</a>
-    <a class="pc-sidebar-btn" href="/resources">Resources</a>
-    <a class="pc-sidebar-btn" href="/security">Security</a>
-    <a class="pc-sidebar-btn" href="/contact">Contact & Support</a>
+    <a class="pc-sidebar-btn" href="/platform-downloads" data-i18n="common.nav.forgeHome"></a>
+    <a class="pc-sidebar-btn" href="/forge/platform" target="_blank" rel="noopener noreferrer" data-i18n="common.nav.product"></a>
+    <a class="pc-sidebar-btn" href="/resources" data-i18n="common.nav.resources"></a>
+    <a class="pc-sidebar-btn" href="/security" data-i18n="common.nav.security"></a>
+    <a class="pc-sidebar-btn" href="/contact" data-i18n="common.nav.contactSupport"></a>
     <div class="pc-sidebar-divider"></div>
-    <a class="pc-sidebar-btn" href="/platform-downloads">Download SKIA Forge</a>
+    <a class="pc-sidebar-btn" href="/platform-downloads" data-i18n="common.nav.downloadForge"></a>
   </nav>
 </aside>
 
-<button type="button" class="back-btn" onclick="history.back()">? Back</button>
+<button type="button" class="back-btn" onclick="history.back()" data-i18n="common.back.label"></button>
 <div class="wrap">
   <img src="/sidebar-logo.png" alt="SKIA" class="page-logo" />
-  <div class="doc-badge">Common Failures & Fixes</div>
-  <h1 class="doc-title">Troubleshooting</h1>
-  <p class="doc-desc">Diagnostics and step-by-step fixes for the most common SKIA Forge issues.</p>
+  <div class="doc-badge" data-i18n="docs.pages.troubleshooting.badge"></div>
+  <h1 class="doc-title" data-i18n="docs.pages.troubleshooting.title"></h1>
+  <p class="doc-desc" data-i18n="docs.pages.troubleshooting.description"></p>
   <div class="doc-divider"></div>
-  <div class="section"><div class="section-title">Build / Test Failures</div><div class="section-body"><div class="steps"><div class="step"><div class="step-num">01</div><div class="step-text"><div class="code-block">npm run typecheck</div></div></div><div class="step"><div class="step-num">02</div><div class="step-text"><div class="code-block">npm run test</div></div></div><div class="step"><div class="step-num">03</div><div class="step-text"><div class="code-block">npm run build</div></div></div><div class="step"><div class="step-num">04</div><div class="step-text">Fix schema and type mismatches before re-running orchestration endpoints.</div></div></div></div></div><div class="section"><div class="section-title">SKIA Integration Unavailable</div><div class="section-body"><div class="steps"><div class="step"><div class="step-num">01</div><div class="step-text">Check <code>/integration/skia-full</code> and <code>/integration/skia-full/probe</code>.</div></div><div class="step"><div class="step-num">02</div><div class="step-text">Verify upstream URL and environment configuration in your hosting provider.</div></div><div class="step"><div class="step-num">03</div><div class="step-text">Review adapter disabled flags and auth headers.</div></div></div></div></div><div class="section"><div class="section-title">Governance Blocks</div><div class="section-body"><div class="item-list"><div class="item"><div class="item-dot"></div><div class="item-text">Expected in strict or adaptive mode for risky actions</div></div><div class="item"><div class="item-dot"></div><div class="item-text">Read remediation recommendations from the block response</div></div><div class="item"><div class="item-dot"></div><div class="item-text">Apply the suggested safe path and re-run the request</div></div></div></div></div><div class="section"><div class="section-title">Runtime Health Issues</div><div class="section-body"><div class="steps"><div class="step"><div class="step-num">01</div><div class="step-text">Validate <code>/health</code> and <code>/live</code> endpoints.</div></div><div class="step"><div class="step-num">02</div><div class="step-text">Check logs for failing module names and request IDs.</div></div><div class="step"><div class="step-num">03</div><div class="step-text">Isolate whether the issue is a local Forge module or an upstream contract failure.</div></div><div class="step"><div class="step-num">04</div><div class="step-text">If unresolved, escalate via <a href='/contact' style='color:var(--gold)'>Contact & Support</a> with request ID and logs.</div></div></div></div></div>
+  <div class="section"><div class="section-title" data-i18n="docs.pages.troubleshooting.sections.build-test-failures.title"></div><div class="section-body" data-i18n-html="docs.pages.troubleshooting.sections.build-test-failures.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.troubleshooting.sections.skia-integration-unavailable.title"></div><div class="section-body" data-i18n-html="docs.pages.troubleshooting.sections.skia-integration-unavailable.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.troubleshooting.sections.governance-blocks.title"></div><div class="section-body" data-i18n-html="docs.pages.troubleshooting.sections.governance-blocks.html"></div></div><div class="section"><div class="section-title" data-i18n="docs.pages.troubleshooting.sections.runtime-health-issues.title"></div><div class="section-body" data-i18n-html="docs.pages.troubleshooting.sections.runtime-health-issues.html"></div></div>
   
 <div class="doc-footer">
-  <div class="tagline">One ecosystem. One universe. All SKIA.</div>
-  <div class="copy">� 2026 SKIA. All rights reserved.</div>
+  <div class="tagline" data-i18n="common.footer.tagline"></div>
+  <div class="copy" data-i18n="common.footer.copyright"></div>
   <div class="links">
-    <a href="/resources">Resources</a>
+    <a href="/resources" data-i18n="common.footer.resources"></a>
     <span class="sep">|</span>
-    <a href="/security">Security</a>
+    <a href="/security" data-i18n="common.footer.security"></a>
     <span class="sep">|</span>
-    <a href="/contact">Contact & Support</a>
+    <a href="/contact" data-i18n="common.footer.contactSupport"></a>
   </div>
 </div>
 
@@ -172,6 +172,7 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
 })();
 </script>
 
+  <script src="/forge-page-locale.js" defer></script>
   <script src="/forge-sidebar-locale.js" defer></script>
 </body>
 </html>
