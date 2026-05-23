@@ -27,8 +27,6 @@
     "languageGroup": "LANGUAGE & REGION",
     "uiLanguage": "UI language",
     "uiLanguageHint": "Shared with skia.ca (same browser storage key).",
-    "defaultNationality": "Default voice nationality",
-    "defaultNationalityHint": "Also change in the chat panel — used for spoken replies and chat language hints.",
     "appearance": "APPEARANCE",
     "theme": "Theme",
     "themeValue": "SKIA Dark (Default)",
