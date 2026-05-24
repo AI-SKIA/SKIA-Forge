@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "title": "SKIA Forge | Ausführungsplattform"
+  },
+  "header": {
+    "brand": "SKIA FORGE IDE",
+    "download": "SKIA FORGE HERUNTERLADEN",
+    "statusChecking": "Integration: Überprüfung...",
+    "statusConnected": "SKIA VERBUNDEN",
+    "statusUnavailable": "SKIA INTEGRATION NICHT VERFÜGBAR",
+    "statusNotAuthenticated": "SKIA INTEGRATION NICHT VERFÜGBAR – nicht authentifiziert"
+  },
+  "sidebar": {
+    "title": "IDE Module"
+  },
+  "modules": {
+    "agent": {
+      "label": "Agentin",
+      "title": "Agentin",
+      "desc": "Führen Sie eine autonome Agentenaufgabe aus – SKIA plant, begründet und führt Schritte aus, um Ihr Ziel zu erreichen."
+    },
+    "context": {
+      "label": "Kontext",
+      "title": "Kontext",
+      "desc": "Analysieren und laden Sie den Kontext aus Ihrer Codebasis oder Ihren Eingaben – SKIA baut ein strukturiertes Verständnis auf, bevor es handelt."
+    },
+    "sdlc": {
+      "label": "SDLC",
+      "title": "SDLC",
+      "desc": "Führen Sie eine Softwarebereitstellungs-Lebenszyklusaufgabe aus – von der Spezifikation bis zur Implementierung, durchgängig gesteuert."
+    },
+    "production": {
+      "label": "Produktion",
+      "title": "Produktion",
+      "desc": "Führen Sie produktionstaugliche Vorgänge aus – Bereitstellungen, Releases und Laufzeit-Governance."
+    },
+    "healing": {
+      "label": "Heilung",
+      "title": "Heilung",
+      "desc": "Probleme diagnostizieren und beheben – SKIA identifiziert Fehler und führt eine strukturierte Wiederherstellung durch."
+    },
+    "architecture": {
+      "label": "Architektur",
+      "title": "Architektur",
+      "desc": "Analysieren oder entwickeln Sie Ihre Systemarchitektur weiter – SKIA setzt Regeln durch und liefert strukturelle Erkenntnisse."
+    },
+    "orchestrate": {
+      "label": "Lebenszyklus-Orchestrierung",
+      "title": "Lebenszyklus-Orchestrierung",
+      "desc": "Führen Sie die gesamte Lebenszyklus-Pipeline aus – Agent, Kontext, SDLC, Produktion, Heilung und Architektur – nacheinander."
+    }
+  },
+  "hero": {
+    "defaultTitle": "SKIA Forge",
+    "subtitle": "Wählen Sie einen Ausführungsmodus und senden Sie Ihre Aufgabe – SKIA liefert eine geregelte, strukturierte Ausgabe.",
+    "fallbackDesc": "Wählen Sie eine Eingabeaufforderung aus und führen Sie dieses Modul aus."
+  },
+  "composer": {
+    "label": "Prompt",
+    "placeholder": "Beschreiben Sie, was Forge tun soll ...",
+    "runModule": "Ausgewähltes Modul ausführen",
+    "runLifecycle": "Führen Sie den vollständigen Lebenszyklus aus",
+    "checkHealth": "Überprüfen Sie den Zustand des Moduls"
+  },
+  "output": {
+    "ready": "Bereit.",
+    "noDiagnostics": "Noch keine Diagnose."
+  },
+  "runtime": {
+    "authUnavailablePrefix": "SKIA INTEGRATION NICHT VERFÜGBAR — ",
+    "authLoginLink": "Melden Sie sich bei skia.ca an",
+    "authLoginSuffix": ", dann laden Sie diese Seite neu.",
+    "sessionExpired": "Sitzung abgelaufen oder nicht angemeldet. Bitte melden Sie sich zuerst bei skia.ca an.",
+    "noToken": "Kein Token zurückgegeben. Bitte melden Sie sich zuerst bei skia.ca an.",
+    "authServiceUnreachable": "Der Authentifizierungsdienst konnte nicht erreicht werden.",
+    "notAuthenticated": "Nicht authentifiziert. Melden Sie sich bei skia.ca an und laden Sie diese Seite neu.",
+    "addPromptFirst": "Fügen Sie zuerst eine Eingabeaufforderung hinzu.",
+    "runningModule": "{{module}} wird ausgeführt...",
+    "sessionExpiredAction": "Sitzung abgelaufen. Melden Sie sich bei skia.ca an und laden Sie diese Seite neu.",
+    "orchestrationComplete": "Orchestrierung abgeschlossen ({{status}}).",
+    "moduleComplete": "Modul {{module}} abgeschlossen ({{status}}).",
+    "requestFailed": "Die Anfrage ist fehlgeschlagen.",
+    "runningLifecycle": "Lebenszyklus-Orchestrierung ausführen...",
+    "lifecycleComplete": "Lebenszyklus abgeschlossen ({{status}}).",
+    "lifecycleFailed": "Der Lebenszykluslauf ist fehlgeschlagen.",
+    "checkingHealth": "Gesundheit prüfen...",
+    "notAuthenticatedShort": "Nicht authentifiziert."
+  }
+}

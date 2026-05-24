@@ -16,6 +16,7 @@ const NAMESPACES = [
   'security.json',
   'contact.json',
   'docs.json',
+  'forge-platform.json',
 ];
 
 const TOKEN_TO_TERM = [

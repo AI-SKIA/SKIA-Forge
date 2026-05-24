@@ -84,7 +84,6 @@
       var href = a.getAttribute('href');
       if (!href || href.indexOf('//') === 0) continue;
       if (href.indexOf('/api') === 0) continue;
-      if (href.indexOf('/forge/platform') === 0) continue;
       a.setAttribute('href', withLocalePrefix(href, locale));
     }
   }

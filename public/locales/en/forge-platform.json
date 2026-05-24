@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "title": "SKIA Forge | Execution Platform"
+  },
+  "header": {
+    "brand": "SKIA FORGE IDE",
+    "download": "DOWNLOAD SKIA FORGE",
+    "statusChecking": "Integration: checking...",
+    "statusConnected": "SKIA CONNECTED",
+    "statusUnavailable": "SKIA INTEGRATION UNAVAILABLE",
+    "statusNotAuthenticated": "SKIA INTEGRATION UNAVAILABLE — not authenticated"
+  },
+  "sidebar": {
+    "title": "IDE Modules"
+  },
+  "modules": {
+    "agent": {
+      "label": "Agent",
+      "title": "Agent",
+      "desc": "Run an autonomous agent task — SKIA plans, reasons, and executes steps to complete your goal."
+    },
+    "context": {
+      "label": "Context",
+      "title": "Context",
+      "desc": "Analyze and load context from your codebase or inputs — SKIA builds a structured understanding before acting."
+    },
+    "sdlc": {
+      "label": "SDLC",
+      "title": "SDLC",
+      "desc": "Run a software delivery lifecycle task — from spec to implementation, governed end-to-end."
+    },
+    "production": {
+      "label": "Production",
+      "title": "Production",
+      "desc": "Execute production-grade operations — deployments, releases, and runtime governance."
+    },
+    "healing": {
+      "label": "Healing",
+      "title": "Healing",
+      "desc": "Diagnose and remediate issues — SKIA identifies failures and applies structured recovery."
+    },
+    "architecture": {
+      "label": "Architecture",
+      "title": "Architecture",
+      "desc": "Analyze or evolve your system architecture — SKIA enforces rules and surfaces structural insights."
+    },
+    "orchestrate": {
+      "label": "Lifecycle Orchestrate",
+      "title": "Lifecycle Orchestrate",
+      "desc": "Run the full lifecycle pipeline — agent, context, SDLC, production, healing, and architecture in sequence."
+    }
+  },
+  "hero": {
+    "defaultTitle": "SKIA Forge",
+    "subtitle": "Select an execution mode and submit your task — SKIA returns governed, structured output.",
+    "fallbackDesc": "Select a prompt and run this module."
+  },
+  "composer": {
+    "label": "Prompt",
+    "placeholder": "Describe what you want Forge to do...",
+    "runModule": "Run Selected Module",
+    "runLifecycle": "Run Full Lifecycle",
+    "checkHealth": "Check Module Health"
+  },
+  "output": {
+    "ready": "Ready.",
+    "noDiagnostics": "No diagnostics yet."
+  },
+  "runtime": {
+    "authUnavailablePrefix": "SKIA INTEGRATION UNAVAILABLE — ",
+    "authLoginLink": "Log in at skia.ca",
+    "authLoginSuffix": ", then reload this page.",
+    "sessionExpired": "Session expired or not logged in. Please log in at skia.ca first.",
+    "noToken": "No token returned. Please log in at skia.ca first.",
+    "authServiceUnreachable": "Could not reach auth service.",
+    "notAuthenticated": "Not authenticated. Log in at skia.ca and reload this page.",
+    "addPromptFirst": "Add a prompt first.",
+    "runningModule": "Running {{module}}...",
+    "sessionExpiredAction": "Session expired. Log in at skia.ca and reload this page.",
+    "orchestrationComplete": "Orchestration complete ({{status}}).",
+    "moduleComplete": "Module {{module}} complete ({{status}}).",
+    "requestFailed": "Request failed.",
+    "runningLifecycle": "Running lifecycle orchestration...",
+    "lifecycleComplete": "Lifecycle complete ({{status}}).",
+    "lifecycleFailed": "Lifecycle run failed.",
+    "checkingHealth": "Checking health...",
+    "notAuthenticatedShort": "Not authenticated."
+  }
+}

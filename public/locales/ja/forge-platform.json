@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "title": "SKIA Forge | 実行プラットフォーム"
+  },
+  "header": {
+    "brand": "SKIA FORGE IDE",
+    "download": "ダウンロード SKIA FORGE",
+    "statusChecking": "統合: チェック中...",
+    "statusConnected": "SKIA 接続されました",
+    "statusUnavailable": "SKIA 統合は利用できません",
+    "statusNotAuthenticated": "SKIA 統合が利用できません — 認証されていません"
+  },
+  "sidebar": {
+    "title": "IDE モジュール"
+  },
+  "modules": {
+    "agent": {
+      "label": "エージェント",
+      "title": "エージェント",
+      "desc": "自律エージェント タスクを実行します。SKIA は、目標を達成するための手順を計画、理由付け、実行します。"
+    },
+    "context": {
+      "label": "コンテクスト",
+      "title": "コンテクスト",
+      "desc": "コードベースまたは入力からコンテキストを分析して読み込みます。SKIA は、行動する前に構造化された理解を構築します。"
+    },
+    "sdlc": {
+      "label": "SDLC",
+      "title": "SDLC",
+      "desc": "仕様から実装まで、エンドツーエンドで管理されたソフトウェア配信ライフサイクル タスクを実行します。"
+    },
+    "production": {
+      "label": "生産",
+      "title": "生産",
+      "desc": "デプロイ、リリース、ランタイム ガバナンスといった運用グレードの運用を実行します。"
+    },
+    "healing": {
+      "label": "ヒーリング",
+      "title": "ヒーリング",
+      "desc": "問題の診断と修復 — SKIA は障害を特定し、構造化リカバリを適用します。"
+    },
+    "architecture": {
+      "label": "建築",
+      "title": "建築",
+      "desc": "システム アーキテクチャを分析または進化させます — SKIA はルールを適用し、構造的な洞察を明らかにします。"
+    },
+    "orchestrate": {
+      "label": "ライフサイクル オーケストレーション",
+      "title": "ライフサイクル オーケストレーション",
+      "desc": "ライフサイクル全体のパイプライン (エージェント、コンテキスト、「SDLC」、本番、修復、アーキテクチャ) を順番に実行します。"
+    }
+  },
+  "hero": {
+    "defaultTitle": "SKIA Forge",
+    "subtitle": "実行モードを選択し、タスクを送信します。SKIA は管理された構造化された出力を返します。",
+    "fallbackDesc": "プロンプトを選択して、このモジュールを実行します。"
+  },
+  "composer": {
+    "label": "プロンプト",
+    "placeholder": "Forge に何をしてもらいたいかを説明してください...",
+    "runModule": "選択したモジュールを実行",
+    "runLifecycle": "フルライフサイクルを実行する",
+    "checkHealth": "モジュールの健全性をチェックする"
+  },
+  "output": {
+    "ready": "準備ができて。",
+    "noDiagnostics": "まだ診断はありません。"
+  },
+  "runtime": {
+    "authUnavailablePrefix": "SKIA 統合は利用できません — ",
+    "authLoginLink": "Skia.ca にログインします",
+    "authLoginSuffix": "をクリックしてから、このページをリロードします。",
+    "sessionExpired": "セッションの有効期限が切れたか、ログインしていません。まず、skia.ca にログインしてください。",
+    "noToken": "トークンは返されませんでした。 まず Skia.ca にログインしてください。",
+    "authServiceUnreachable": "認証サービスに到達できませんでした。",
+    "notAuthenticated": "認証されていません。 Skia.ca にログインし、このページをリロードします。",
+    "addPromptFirst": "まずプロンプトを追加します。",
+    "runningModule": "{{モジュール}} を実行中...",
+    "sessionExpiredAction": "セッションの有効期限が切れました。 Skia.ca にログインし、このページをリロードします。",
+    "orchestrationComplete": "オーケストレーションが完了しました ({{status}})。",
+    "moduleComplete": "モジュール {{module}} が完了しました ({{status}})。",
+    "requestFailed": "リクエストは失敗しました。",
+    "runningLifecycle": "ライフサイクル オーケストレーションを実行しています...",
+    "lifecycleComplete": "ライフサイクルが完了しました ({{status}})。",
+    "lifecycleFailed": "ライフサイクルの実行に失敗しました。",
+    "checkingHealth": "健康状態をチェックしています...",
+    "notAuthenticatedShort": "認証されていません。"
+  }
+}

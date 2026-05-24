@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "title": "SKIA Forge_ | 执行平台"
+  },
+  "header": {
+    "brand": "SKIA FORGEIDE",
+    "download": "下载SKIA_FORGE_CAPS",
+    "statusChecking": "集成：检查...",
+    "statusConnected": "SKIA连接",
+    "statusUnavailable": "SKIA 集成不可用",
+    "statusNotAuthenticated": "SKIA 集成不可用 — 未经过身份验证"
+  },
+  "sidebar": {
+    "title": "IDE模块"
+  },
+  "modules": {
+    "agent": {
+      "label": "代理人",
+      "title": "代理人",
+      "desc": "运行自主代理任务 — SKIA 计划、推理并执行步骤以完成您的目标。"
+    },
+    "context": {
+      "label": "语境",
+      "title": "语境",
+      "desc": "从您的代码库或输入中分析并加载上下文 - SKIA在采取行动之前建立结构化的理解。"
+    },
+    "sdlc": {
+      "label": "SDLC",
+      "title": "SDLC",
+      "desc": "运行软件交付生命周期任务 - 从规范到实施，端到端管理。"
+    },
+    "production": {
+      "label": "生产",
+      "title": "生产",
+      "desc": "执行生产级操作——部署、发布和运行时治理。"
+    },
+    "healing": {
+      "label": "康复",
+      "title": "康复",
+      "desc": "诊断和修复问题 — SKIA 识别故障并应用结构化恢复。"
+    },
+    "architecture": {
+      "label": "建筑学",
+      "title": "建筑学",
+      "desc": "分析或改进您的系统架构 - SKIA 强制执行规则并揭示结构见解。"
+    },
+    "orchestrate": {
+      "label": "生命周期编排",
+      "title": "生命周期编排",
+      "desc": "按顺序运行完整的生命周期管道 — 代理、上下文、SDLC、生产、修复和架构。"
+    }
+  },
+  "hero": {
+    "defaultTitle": "SKIA Forge",
+    "subtitle": "选择执行模式并提交您的任务 — SKIA 返回受管理的结构化输出。",
+    "fallbackDesc": "选择提示并运行此模块。"
+  },
+  "composer": {
+    "label": "迅速的",
+    "placeholder": "描述一下您希望 Forge 做什么...",
+    "runModule": "运行选定的模块",
+    "runLifecycle": "运行完整生命周期",
+    "checkHealth": "检查模块健康状况"
+  },
+  "output": {
+    "ready": "准备好。",
+    "noDiagnostics": "还没有诊断。"
+  },
+  "runtime": {
+    "authUnavailablePrefix": "SKIA 集成不可用 — ",
+    "authLoginLink": "登录skia.ca",
+    "authLoginSuffix": "，然后重新加载此页面。",
+    "sessionExpired": "会话已过期或未登录。请先登录skia.ca。",
+    "noToken": "没有返回令牌。 请先登录skia.ca。",
+    "authServiceUnreachable": "无法访问身份验证服务。",
+    "notAuthenticated": "未经过验证。 登录skia.ca 并重新加载此页面。",
+    "addPromptFirst": "先添加提示​​。",
+    "runningModule": "正在运行{{模块}}...",
+    "sessionExpiredAction": "会话已过期。 登录skia.ca 并重新加载此页面。",
+    "orchestrationComplete": "编排完成（{{status}}）。",
+    "moduleComplete": "模块 {{module}} 完成 ({{status}})。",
+    "requestFailed": "请求失败。",
+    "runningLifecycle": "运行生命周期编排...",
+    "lifecycleComplete": "生命周期已完成 ({{status}})。",
+    "lifecycleFailed": "生命周期运行失败。",
+    "checkingHealth": "检查健康状况...",
+    "notAuthenticatedShort": "未经过验证。"
+  }
+}

@@ -65,6 +65,9 @@
     if (path === '/resources') return { namespaces: ['common', 'resources'], docSlug: null };
     if (path === '/security') return { namespaces: ['common', 'security'], docSlug: null };
     if (path === '/contact') return { namespaces: ['common', 'contact'], docSlug: null };
+    if (path === '/forge/platform' || path.endsWith('/forge/platform')) {
+      return { namespaces: ['common', 'forge-platform'], docSlug: null };
+    }
     var docM = path.match(/\/docs\/([A-Z0-9_]+)\.html$/i);
     if (docM) {
       var map = {
@@ -150,6 +153,9 @@
     if (key.indexOf('resources.') === 0) return getByPath(messages.resources, key.slice(10));
     if (key.indexOf('security.') === 0) return getByPath(messages.security, key.slice(9));
     if (key.indexOf('contact.') === 0) return getByPath(messages.contact, key.slice(8));
+    if (key.indexOf('forge-platform.') === 0) {
+      return getByPath(messages['forge-platform'], key.slice('forge-platform.'.length));
+    }
     if (key.indexOf('docs.') === 0) return getByPath(messages.docs, key.slice(5));
     return undefined;
   }
@@ -234,9 +240,15 @@
     loadNamespaces(locale, cfg.namespaces)
       .then(function (messages) {
         applyMessages(messages);
+        window.__forgeI18n = messages;
+        document.dispatchEvent(new CustomEvent('forge-i18n-ready', { detail: messages }));
       })
       .catch(function () {
-        loadNamespaces(FALLBACK_LOCALE, cfg.namespaces).then(applyMessages);
+        loadNamespaces(FALLBACK_LOCALE, cfg.namespaces).then(function (messages) {
+          applyMessages(messages);
+          window.__forgeI18n = messages;
+          document.dispatchEvent(new CustomEvent('forge-i18n-ready', { detail: messages }));
+        });
       });
   }
 

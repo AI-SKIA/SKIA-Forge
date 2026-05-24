@@ -1,9 +1,15 @@
 import { showForgeDownload } from './platformContext.js';
 
 /** Server-rendered HTML: include link when desktop forge-web is assumed; client script hides on mobile / IDE. */
-export function forgeDownloadAppLink(className: string, label = 'Download Skia Forge', href = '/api/app/download'): string {
+export function forgeDownloadAppLink(
+  className: string,
+  label = 'Download Skia Forge',
+  href = '/api/app/download',
+  i18nKey?: string,
+): string {
   if (!showForgeDownload()) return '';
-  return `<a class="${className}" href="${href}" data-skia-forge-download>${label}</a>`;
+  const i18nAttr = i18nKey ? ` data-i18n="${i18nKey}"` : '';
+  return `<a class="${className}" href="${href}" data-skia-forge-download${i18nAttr}>${label}</a>`;
 }
 
 /** Run in browser after static HTML loads — hides download CTAs on mobile UA and forge-ide. */

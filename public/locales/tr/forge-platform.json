@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "title": "SKIA Forge | Yürütme Platformu"
+  },
+  "header": {
+    "brand": "SKIA FORGE IDE",
+    "download": "SKIA FORGE İNDİRİN",
+    "statusChecking": "Entegrasyon: kontrol ediliyor...",
+    "statusConnected": "SKIA BAĞLANTILI",
+    "statusUnavailable": "SKIA ENTEGRASYON MEVCUT DEĞİL",
+    "statusNotAuthenticated": "SKIA ENTEGRASYON MEVCUT DEĞİL — kimliği doğrulanmadı"
+  },
+  "sidebar": {
+    "title": "IDE Modülleri"
+  },
+  "modules": {
+    "agent": {
+      "label": "Ajan",
+      "title": "Ajan",
+      "desc": "Otonom bir aracı görevi yürütün — SKIA, hedefinizi tamamlamak için planlar, nedenler belirler ve adımları yürütür."
+    },
+    "context": {
+      "label": "Bağlam",
+      "title": "Bağlam",
+      "desc": "Kod tabanınızdan veya girdilerinizden bağlamı analiz edin ve yükleyin — SKIA harekete geçmeden önce yapılandırılmış bir anlayış oluşturur."
+    },
+    "sdlc": {
+      "label": "SDLC",
+      "title": "SDLC",
+      "desc": "Spesifikasyondan uygulamaya, uçtan uca yönetilen bir yazılım teslim yaşam döngüsü görevi çalıştırın."
+    },
+    "production": {
+      "label": "Üretme",
+      "title": "Üretme",
+      "desc": "Üretim düzeyindeki işlemleri (dağıtımlar, yayınlar ve çalışma zamanı yönetimi) yürütün."
+    },
+    "healing": {
+      "label": "İyileştirme",
+      "title": "İyileştirme",
+      "desc": "Sorunları teşhis edin ve düzeltin — SKIA arızaları tanımlar ve yapılandırılmış kurtarma uygular."
+    },
+    "architecture": {
+      "label": "Mimarlık",
+      "title": "Mimarlık",
+      "desc": "Sistem mimarinizi analiz edin veya geliştirin — SKIA kuralları uygular ve yapısal içgörüleri ortaya çıkarır."
+    },
+    "orchestrate": {
+      "label": "Yaşam Döngüsü Düzenleme",
+      "title": "Yaşam Döngüsü Düzenleme",
+      "desc": "Aracı, bağlam, SDLC, üretim, iyileştirme ve mimariden oluşan tüm yaşam döngüsü hattını sırayla çalıştırın."
+    }
+  },
+  "hero": {
+    "defaultTitle": "SKIA Forge",
+    "subtitle": "Bir yürütme modu seçin ve görevinizi gönderin — SKIA yönetilen, yapılandırılmış çıktı döndürür.",
+    "fallbackDesc": "Bir istem seçin ve bu modülü çalıştırın."
+  },
+  "composer": {
+    "label": "Çabuk",
+    "placeholder": "Forge'un ne yapmasını istediğinizi açıklayın...",
+    "runModule": "Seçilen Modülü Çalıştır",
+    "runLifecycle": "Tam Yaşam Döngüsünü Çalıştır",
+    "checkHealth": "Modül Sağlığını Kontrol Edin"
+  },
+  "output": {
+    "ready": "Hazır.",
+    "noDiagnostics": "Henüz teşhis yok."
+  },
+  "runtime": {
+    "authUnavailablePrefix": "SKIA ENTEGRASYON MEVCUT DEĞİL — ",
+    "authLoginLink": "skia.ca'da oturum açın",
+    "authLoginSuffix": ", ardından bu sayfayı yeniden yükleyin.",
+    "sessionExpired": "Oturumun süresi doldu veya giriş yapılmadı. Lütfen önce skia.ca'da oturum açın.",
+    "noToken": "Hiçbir jeton geri dönmedi. Lütfen önce skia.ca'da oturum açın.",
+    "authServiceUnreachable": "Kimlik doğrulama hizmetine ulaşılamadı.",
+    "notAuthenticated": "Kimliği doğrulanmadı. skia.ca'da oturum açın ve bu sayfayı yeniden yükleyin.",
+    "addPromptFirst": "Önce bir bilgi istemi ekleyin.",
+    "runningModule": "{{module}} çalıştırılıyor...",
+    "sessionExpiredAction": "Oturumun süresi doldu. skia.ca'da oturum açın ve bu sayfayı yeniden yükleyin.",
+    "orchestrationComplete": "Düzenleme tamamlandı ({{status}}).",
+    "moduleComplete": "{{module}} modülü tamamlandı ({{status}}).",
+    "requestFailed": "İstek başarısız oldu.",
+    "runningLifecycle": "Yaşam döngüsü düzenlemesi çalıştırılıyor...",
+    "lifecycleComplete": "Yaşam döngüsü tamamlandı ({{status}}).",
+    "lifecycleFailed": "Yaşam döngüsü çalıştırması başarısız oldu.",
+    "checkingHealth": "Sağlık kontrolü yapılıyor...",
+    "notAuthenticatedShort": "Kimliği doğrulanmadı."
+  }
+}

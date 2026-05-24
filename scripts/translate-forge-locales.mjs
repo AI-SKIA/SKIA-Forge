@@ -20,6 +20,7 @@ const NAMESPACES = [
   'security.json',
   'contact.json',
   'docs.json',
+  'forge-platform.json',
 ];
 
 const LOCALE_CODES = ['fr', 'es', 'ar', 'zh', 'pt', 'de', 'ja', 'ko', 'hi', 'tr', 'ru'];

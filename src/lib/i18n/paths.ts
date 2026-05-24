@@ -36,6 +36,8 @@ export function resolveLocaleFromPath(path: string): Locale {
 /** Forge web pages with collapsible sidebar — only these get locale redirects. */
 export function shouldApplyForgeLocaleRouting(pathname: string): boolean {
   const internal = stripLocalePrefix(pathname);
+  if (internal.startsWith('/forge/app')) return false;
+  if (internal === '/forge/platform' || internal.startsWith('/forge/')) return true;
   return (
     internal === '/platform-downloads' ||
     internal === '/resources' ||

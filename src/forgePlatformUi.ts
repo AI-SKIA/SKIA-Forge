@@ -6,7 +6,8 @@ export function renderForgePlatformHtml(): string {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SKIA Forge | Execution Platform</title>
+  <title data-i18n="forge-platform.meta.title">SKIA Forge | Execution Platform</title>
+  <script src="/forge-document-locale.js"></script>
   <style>
     :root {
       --bg: #080400;
@@ -250,48 +251,49 @@ export function renderForgePlatformHtml(): string {
     }
   </style>
 </head>
-<body>
+<body data-forge-i18n-page="forge-platform">
   <div class="topbar">
     <div class="brand">
       <img src="/sidebar-logo.png" alt="Skia" height="28" class="brand-logo" />
-      SKIA FORGE IDE
+      <span data-i18n="forge-platform.header.brand">SKIA FORGE IDE</span>
     </div>
-    <div class="status" id="integrationStatus">Integration: checking...</div>
-    ${forgeDownloadAppLink("download-btn")}
+    <div class="status" id="integrationStatus" data-i18n="forge-platform.header.statusChecking">Integration: checking...</div>
+    ${forgeDownloadAppLink('download-btn', 'DOWNLOAD SKIA FORGE', '/api/app/download', 'forge-platform.header.download')}
   </div>
   <div id="authBanner" class="auth-banner" role="alert"></div>
   <div class="root">
     <aside class="left">
-      <div class="section-title">IDE Modules</div>
+      <div class="section-title" data-i18n="forge-platform.sidebar.title">IDE Modules</div>
       <div class="mod-list">
-        <button class="mod-btn active" data-module="agent">Agent</button>
-        <button class="mod-btn" data-module="context">Context</button>
-        <button class="mod-btn" data-module="sdlc">SDLC</button>
-        <button class="mod-btn" data-module="production">Production</button>
-        <button class="mod-btn" data-module="healing">Healing</button>
-        <button class="mod-btn" data-module="architecture">Architecture</button>
-        <button class="mod-btn" data-module="orchestrate">Lifecycle Orchestrate</button>
+        <button class="mod-btn active" data-module="agent" data-i18n="forge-platform.modules.agent.label">Agent</button>
+        <button class="mod-btn" data-module="context" data-i18n="forge-platform.modules.context.label">Context</button>
+        <button class="mod-btn" data-module="sdlc" data-i18n="forge-platform.modules.sdlc.label">SDLC</button>
+        <button class="mod-btn" data-module="production" data-i18n="forge-platform.modules.production.label">Production</button>
+        <button class="mod-btn" data-module="healing" data-i18n="forge-platform.modules.healing.label">Healing</button>
+        <button class="mod-btn" data-module="architecture" data-i18n="forge-platform.modules.architecture.label">Architecture</button>
+        <button class="mod-btn" data-module="orchestrate" data-i18n="forge-platform.modules.orchestrate.label">Lifecycle Orchestrate</button>
       </div>
     </aside>
     <main class="main">
       <section class="hero">
-        <h1>SKIA Forge</h1>
-        <p>Select an execution mode and submit your task — SKIA returns governed, structured output.</p>
+        <h1 data-i18n="forge-platform.hero.defaultTitle">SKIA Forge</h1>
+        <p data-i18n="forge-platform.hero.subtitle">Select an execution mode and submit your task — SKIA returns governed, structured output.</p>
       </section>
       <section class="composer">
-        <div class="label">Prompt</div>
-        <textarea id="prompt" class="textarea" placeholder="Describe what you want Forge to do..."></textarea>
+        <div class="label" data-i18n="forge-platform.composer.label">Prompt</div>
+        <textarea id="prompt" class="textarea" data-i18n-placeholder="forge-platform.composer.placeholder" placeholder="Describe what you want Forge to do..."></textarea>
         <div class="controls">
-          <button class="btn" id="runModule">Run Selected Module</button>
-          <button class="btn" id="runOrchestration">Run Full Lifecycle</button>
-          <button class="btn" id="checkHealth">Check Module Health</button>
+          <button class="btn" id="runModule" data-i18n="forge-platform.composer.runModule">Run Selected Module</button>
+          <button class="btn" id="runOrchestration" data-i18n="forge-platform.composer.runLifecycle">Run Full Lifecycle</button>
+          <button class="btn" id="checkHealth" data-i18n="forge-platform.composer.checkHealth">Check Module Health</button>
         </div>
       </section>
-      <section class="output" id="mainOutput">Ready.</section>
-      <div class="result" id="metaOutput">No diagnostics yet.</div>
+      <section class="output" id="mainOutput" data-i18n="forge-platform.output.ready">Ready.</section>
+      <div class="result" id="metaOutput" data-i18n="forge-platform.output.noDiagnostics">No diagnostics yet.</div>
     </main>
   </div>
-  <script>
+  <script src="/forge-page-locale.js" defer></script>
+  <script defer>
     const integrationStatus = document.getElementById("integrationStatus");
     const authBanner = document.getElementById("authBanner");
     const mainOutput = document.getElementById("mainOutput");
@@ -299,6 +301,31 @@ export function renderForgePlatformHtml(): string {
     const moduleButtons = Array.from(document.querySelectorAll(".mod-btn"));
     let activeModule = "agent";
     let _forgeToken = null;
+    let fpMessages = null;
+
+    function fp(path) {
+      const parts = path.split(".");
+      let cur = fpMessages;
+      for (const part of parts) {
+        if (cur == null || typeof cur !== "object") return undefined;
+        cur = cur[part];
+      }
+      return typeof cur === "string" ? cur : undefined;
+    }
+
+    function fpFormat(path, vars) {
+      let text = fp(path) || path;
+      if (vars) {
+        for (const [key, value] of Object.entries(vars)) {
+          text = text.replace(new RegExp("{{" + key + "}}", "g"), String(value));
+        }
+      }
+      return text;
+    }
+
+    function loadForgePlatformMessages() {
+      fpMessages = (window.__forgeI18n && window.__forgeI18n["forge-platform"]) || null;
+    }
 
     function authHeaders() {
       return _forgeToken
@@ -307,11 +334,14 @@ export function renderForgePlatformHtml(): string {
     }
 
     function showAuthError(message) {
-      integrationStatus.textContent = "SKIA INTEGRATION UNAVAILABLE — " + message;
+      integrationStatus.textContent = fpFormat("runtime.authUnavailablePrefix", {}) + message;
       if (authBanner) {
         authBanner.innerHTML =
           message +
-          ' <a href="https://skia.ca/login" target="_blank" rel="noopener noreferrer">Log in at skia.ca</a>, then reload this page.';
+          ' <a href="https://skia.ca/login" target="_blank" rel="noopener noreferrer">' +
+          (fp("runtime.authLoginLink") || "Log in at skia.ca") +
+          "</a>" +
+          (fp("runtime.authLoginSuffix") || ", then reload this page.");
         authBanner.classList.add("visible");
       }
     }
@@ -323,36 +353,42 @@ export function renderForgePlatformHtml(): string {
           credentials: "include"
         });
         if (!res.ok) {
-          showAuthError("Session expired or not logged in. Please log in at skia.ca first.");
+          showAuthError(fp("runtime.sessionExpired") || "Session expired or not logged in. Please log in at skia.ca first.");
           return;
         }
         const data = await res.json();
         _forgeToken = data.token ?? null;
         if (!_forgeToken) {
-          showAuthError("No token returned. Please log in at skia.ca first.");
+          showAuthError(fp("runtime.noToken") || "No token returned. Please log in at skia.ca first.");
         } else if (authBanner) {
           authBanner.classList.remove("visible");
           authBanner.textContent = "";
         }
       } catch {
-        showAuthError("Could not reach auth service.");
+        showAuthError(fp("runtime.authServiceUnreachable") || "Could not reach auth service.");
       }
     }
 
-    const moduleDescriptions = {
-      agent:        { title: "Agent",                 desc: "Run an autonomous agent task — SKIA plans, reasons, and executes steps to complete your goal." },
-      context:      { title: "Context",               desc: "Analyze and load context from your codebase or inputs — SKIA builds a structured understanding before acting." },
-      sdlc:         { title: "SDLC",                  desc: "Run a software delivery lifecycle task — from spec to implementation, governed end-to-end." },
-      production:   { title: "Production",            desc: "Execute production-grade operations — deployments, releases, and runtime governance." },
-      healing:      { title: "Healing",               desc: "Diagnose and remediate issues — SKIA identifies failures and applies structured recovery." },
-      architecture: { title: "Architecture",          desc: "Analyze or evolve your system architecture — SKIA enforces rules and surfaces structural insights." },
-      orchestrate:  { title: "Lifecycle Orchestrate", desc: "Run the full lifecycle pipeline — agent, context, SDLC, production, healing, and architecture in sequence." }
-    };
+    function buildModuleDescriptions() {
+      const modules = ["agent", "context", "sdlc", "production", "healing", "architecture", "orchestrate"];
+      const out = {};
+      for (const key of modules) {
+        out[key] = {
+          title: fp("modules." + key + ".title") || key,
+          desc: fp("modules." + key + ".desc") || ""
+        };
+      }
+      return out;
+    }
 
     function setActiveModule(next) {
       activeModule = next;
       moduleButtons.forEach((btn) => btn.classList.toggle("active", btn.dataset.module === next));
-      const info = moduleDescriptions[next] || { title: next, desc: "Select a prompt and run this module." };
+      const moduleDescriptions = buildModuleDescriptions();
+      const info = moduleDescriptions[next] || {
+        title: next,
+        desc: fp("hero.fallbackDesc") || "Select a prompt and run this module."
+      };
       document.querySelector(".hero h1").textContent = info.title;
       document.querySelector(".hero p").textContent = info.desc;
     }
@@ -371,22 +407,22 @@ export function renderForgePlatformHtml(): string {
         ]);
 
         if (integrationRes.status === 401 || modeRes.status === 401) {
-          integrationStatus.textContent = "SKIA INTEGRATION UNAVAILABLE — not authenticated";
+          integrationStatus.textContent = fp("header.statusNotAuthenticated") || "SKIA INTEGRATION UNAVAILABLE — not authenticated";
           return;
         }
 
         const integrationData = await integrationRes.json();
         integrationStatus.textContent = integrationData.enabled
-          ? "SKIA CONNECTED"
-          : "SKIA INTEGRATION UNAVAILABLE";
+          ? (fp("header.statusConnected") || "SKIA CONNECTED")
+          : (fp("header.statusUnavailable") || "SKIA INTEGRATION UNAVAILABLE");
       } catch {
-        integrationStatus.textContent = "SKIA INTEGRATION UNAVAILABLE";
+        integrationStatus.textContent = fp("header.statusUnavailable") || "SKIA INTEGRATION UNAVAILABLE";
       }
     }
 
     function requireAuthForAction() {
       if (_forgeToken) return true;
-      mainOutput.textContent = "Not authenticated. Log in at skia.ca and reload this page.";
+      mainOutput.textContent = fp("runtime.notAuthenticated") || "Not authenticated. Log in at skia.ca and reload this page.";
       return false;
     }
 
@@ -394,10 +430,10 @@ export function renderForgePlatformHtml(): string {
       if (!requireAuthForAction()) return;
       const prompt = String(document.getElementById("prompt").value || "").trim();
       if (!prompt) {
-        mainOutput.textContent = "Add a prompt first.";
+        mainOutput.textContent = fp("runtime.addPromptFirst") || "Add a prompt first.";
         return;
       }
-      mainOutput.textContent = "Running " + activeModule + "...";
+      mainOutput.textContent = fpFormat("runtime.runningModule", { module: activeModule });
       try {
         if (activeModule === "orchestrate") {
           const res = await fetch("/api/forge/orchestrate", {
@@ -406,12 +442,12 @@ export function renderForgePlatformHtml(): string {
             body: JSON.stringify({ intent: prompt, mode: "adaptive", approved: false })
           });
           if (res.status === 401) {
-            mainOutput.textContent = "Session expired. Log in at skia.ca and reload this page.";
+            mainOutput.textContent = fp("runtime.sessionExpiredAction") || "Session expired. Log in at skia.ca and reload this page.";
             return;
           }
           const data = await res.json();
           mainOutput.textContent = JSON.stringify(data, null, 2);
-          metaOutput.textContent = "Orchestration complete (" + res.status + ").";
+          metaOutput.textContent = fpFormat("runtime.orchestrationComplete", { status: res.status });
           return;
         }
 
@@ -421,14 +457,14 @@ export function renderForgePlatformHtml(): string {
           body: JSON.stringify({ query: prompt, task: prompt, mode: "adaptive", approved: false })
         });
         if (res.status === 401) {
-          mainOutput.textContent = "Session expired. Log in at skia.ca and reload this page.";
+          mainOutput.textContent = fp("runtime.sessionExpiredAction") || "Session expired. Log in at skia.ca and reload this page.";
           return;
         }
         const data = await res.json();
         mainOutput.textContent = JSON.stringify(data, null, 2);
-        metaOutput.textContent = "Module " + activeModule + " complete (" + res.status + ").";
+        metaOutput.textContent = fpFormat("runtime.moduleComplete", { module: activeModule, status: res.status });
       } catch (error) {
-        mainOutput.textContent = "Request failed.";
+        mainOutput.textContent = fp("runtime.requestFailed") || "Request failed.";
         metaOutput.textContent = String(error);
       }
     }
@@ -437,10 +473,10 @@ export function renderForgePlatformHtml(): string {
       if (!requireAuthForAction()) return;
       const prompt = String(document.getElementById("prompt").value || "").trim();
       if (!prompt) {
-        mainOutput.textContent = "Add a prompt first.";
+        mainOutput.textContent = fp("runtime.addPromptFirst") || "Add a prompt first.";
         return;
       }
-      mainOutput.textContent = "Running lifecycle orchestration...";
+      mainOutput.textContent = fp("runtime.runningLifecycle") || "Running lifecycle orchestration...";
       try {
         const res = await fetch("/api/forge/orchestrate", {
           method: "POST",
@@ -448,25 +484,25 @@ export function renderForgePlatformHtml(): string {
           body: JSON.stringify({ intent: prompt, mode: "adaptive", approved: false })
         });
         if (res.status === 401) {
-          mainOutput.textContent = "Session expired. Log in at skia.ca and reload this page.";
+          mainOutput.textContent = fp("runtime.sessionExpiredAction") || "Session expired. Log in at skia.ca and reload this page.";
           return;
         }
         const data = await res.json();
         mainOutput.textContent = JSON.stringify(data, null, 2);
-        metaOutput.textContent = "Lifecycle complete (" + res.status + ").";
+        metaOutput.textContent = fpFormat("runtime.lifecycleComplete", { status: res.status });
       } catch (error) {
-        mainOutput.textContent = "Lifecycle run failed.";
+        mainOutput.textContent = fp("runtime.lifecycleFailed") || "Lifecycle run failed.";
         metaOutput.textContent = String(error);
       }
     }
 
     async function checkHealth() {
       if (!requireAuthForAction()) return;
-      metaOutput.textContent = "Checking health...";
+      metaOutput.textContent = fp("runtime.checkingHealth") || "Checking health...";
       try {
         const res = await fetch("/api/forge/modules/status", { headers: authHeaders() });
         if (res.status === 401) {
-          metaOutput.textContent = "Not authenticated.";
+          metaOutput.textContent = fp("runtime.notAuthenticatedShort") || "Not authenticated.";
           return;
         }
         const data = await res.json();
@@ -481,12 +517,26 @@ export function renderForgePlatformHtml(): string {
     document.getElementById("checkHealth").addEventListener("click", checkHealth);
 
     async function init() {
+      loadForgePlatformMessages();
+      setActiveModule(activeModule);
       await bootstrapForgeSession();
       if (!_forgeToken) return;
       await refreshIntegration();
     }
 
-    document.addEventListener("DOMContentLoaded", init);
+    function startWhenI18nReady() {
+      if (window.__forgeI18n) {
+        init();
+      } else {
+        document.addEventListener("forge-i18n-ready", init, { once: true });
+      }
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", startWhenI18nReady);
+    } else {
+      startWhenI18nReady();
+    }
   </script>
   ${forgeDownloadClientGateScript()}
 </body>

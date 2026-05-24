@@ -4,19 +4,21 @@ import { renderForgePlatformHtml } from "./forgePlatformUi.js";
 
 test("forge platform html includes brand and core web IDE routes", () => {
     const html = renderForgePlatformHtml();
-    assert.ok(html.includes("SKIA FORGE IDE"));
+    assert.ok(html.includes('data-i18n="forge-platform.header.brand"'));
     assert.ok(html.includes('src="/sidebar-logo.png"'));
     assert.ok(html.includes('class="brand-logo"'));
     assert.ok(html.includes('height="28"'));
-    assert.ok(html.includes("<h1>SKIA Forge</h1>"));
+    assert.ok(html.includes('data-i18n="forge-platform.hero.defaultTitle"'));
     assert.ok(html.includes("/api/forge/orchestrate"));
     assert.ok(html.includes("/api/forge/module/"));
     assert.ok(html.includes("/api/forge/modules/status"));
     assert.ok(html.includes("/integration/skia-full"));
-    assert.ok(html.includes("SKIA CONNECTED"));
+    assert.ok(html.includes('fp("header.statusConnected")'));
     assert.ok(html.includes("/api/forge/mode"));
-    assert.ok(html.includes("Download Skia Forge"));
+    assert.ok(html.includes("DOWNLOAD SKIA FORGE"));
     assert.ok(html.includes("#d4af37"));
+    assert.ok(html.includes('data-forge-i18n-page="forge-platform"'));
+    assert.ok(html.includes("/forge-page-locale.js"));
 });
 
 test("forge platform html includes session bootstrap and bearer auth helpers", () => {
@@ -52,9 +54,7 @@ test("forge platform html includes all module buttons", () => {
 
 test("forge platform html includes module descriptions", () => {
     const html = renderForgePlatformHtml();
-    assert.ok(html.includes("moduleDescriptions"));
-    assert.ok(html.includes("Lifecycle Orchestrate"));
-    assert.ok(html.includes("autonomous agent task"));
-    assert.ok(html.includes("software delivery lifecycle"));
-    assert.ok(html.includes("production-grade operations"));
+    assert.ok(html.includes("buildModuleDescriptions"));
+    assert.ok(html.includes('data-i18n="forge-platform.modules.orchestrate.label"'));
+    assert.ok(html.includes('"modules." + key + ".desc"'));
 });

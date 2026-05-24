@@ -1,0 +1,89 @@
+{
+  "meta": {
+    "title": "SKIA Forge | Plataforma de Execução"
+  },
+  "header": {
+    "brand": "SKIA FORGE IDE",
+    "download": "BAIXAR SKIA FORGE",
+    "statusChecking": "Integração: verificando...",
+    "statusConnected": "SKIA CONECTADO",
+    "statusUnavailable": "INTEGRAÇÃO SKIA INDISPONÍVEL",
+    "statusNotAuthenticated": "INTEGRAÇÃO SKIA INDISPONÍVEL — não autenticada"
+  },
+  "sidebar": {
+    "title": "Módulos IDE"
+  },
+  "modules": {
+    "agent": {
+      "label": "Agente",
+      "title": "Agente",
+      "desc": "Execute uma tarefa de agente autônomo — o SKIA planeja, raciocina e executa etapas para completar seu objetivo."
+    },
+    "context": {
+      "label": "Contexto",
+      "title": "Contexto",
+      "desc": "Analise e carregue o contexto de sua base de código ou entradas — o SKIA constrói um entendimento estruturado antes de agir."
+    },
+    "sdlc": {
+      "label": "SDLC",
+      "title": "SDLC",
+      "desc": "Execute uma tarefa de ciclo de vida de entrega de software, desde a especificação até a implementação, controlada de ponta a ponta."
+    },
+    "production": {
+      "label": "Produção",
+      "title": "Produção",
+      "desc": "Execute operações de nível de produção — implantações, lançamentos e governança de tempo de execução."
+    },
+    "healing": {
+      "label": "Cura",
+      "title": "Cura",
+      "desc": "Diagnosticar e corrigir problemas — o SKIA identifica falhas e aplica recuperação estruturada."
+    },
+    "architecture": {
+      "label": "Arquitetura",
+      "title": "Arquitetura",
+      "desc": "Analise ou evolua a arquitetura do seu sistema — o SKIA aplica regras e apresenta insights estruturais."
+    },
+    "orchestrate": {
+      "label": "Orquestração do Ciclo de Vida",
+      "title": "Orquestração do Ciclo de Vida",
+      "desc": "Execute todo o pipeline do ciclo de vida — agente, contexto, SDLC, produção, recuperação e arquitetura em sequência."
+    }
+  },
+  "hero": {
+    "defaultTitle": "SKIA Forge",
+    "subtitle": "Selecione um modo de execução e envie sua tarefa — SKIA retorna uma saída governada e estruturada.",
+    "fallbackDesc": "Selecione um prompt e execute este módulo."
+  },
+  "composer": {
+    "label": "Incitar",
+    "placeholder": "Descreva o que você deseja que o Forge faça...",
+    "runModule": "Execute o módulo selecionado",
+    "runLifecycle": "Execute o ciclo de vida completo",
+    "checkHealth": "Verifique a integridade do módulo"
+  },
+  "output": {
+    "ready": "Preparar.",
+    "noDiagnostics": "Ainda não há diagnóstico."
+  },
+  "runtime": {
+    "authUnavailablePrefix": "INTEGRAÇÃO SKIA INDISPONÍVEL — ",
+    "authLoginLink": "Faça login em skia.ca",
+    "authLoginSuffix": "e recarregue esta página.",
+    "sessionExpired": "A sessão expirou ou não está conectado. Faça login primeiro em skia.ca.",
+    "noToken": "Nenhum token foi retornado. Faça login em skia.ca primeiro.",
+    "authServiceUnreachable": "Não foi possível acessar o serviço de autenticação.",
+    "notAuthenticated": "Não autenticado. Faça login em skia.ca e recarregue esta página.",
+    "addPromptFirst": "Adicione um prompt primeiro.",
+    "runningModule": "Executando {{módulo}}...",
+    "sessionExpiredAction": "A sessão expirou. Faça login em skia.ca e recarregue esta página.",
+    "orchestrationComplete": "Orquestração concluída ({{status}}).",
+    "moduleComplete": "Módulo {{module}} concluído ({{status}}).",
+    "requestFailed": "Falha na solicitação.",
+    "runningLifecycle": "Executando a orquestração do ciclo de vida...",
+    "lifecycleComplete": "Ciclo de vida concluído ({{status}}).",
+    "lifecycleFailed": "Falha na execução do ciclo de vida.",
+    "checkingHealth": "Verificando a saúde...",
+    "notAuthenticatedShort": "Não autenticado."
+  }
+}

@@ -21,6 +21,9 @@ test('withLocalePrefix builds localized paths', () => {
 test('shouldApplyForgeLocaleRouting whitelists hub pages only', () => {
   assert.equal(shouldApplyForgeLocaleRouting('/platform-downloads'), true);
   assert.equal(shouldApplyForgeLocaleRouting('/fr/docs/README.html'), true);
+  assert.equal(shouldApplyForgeLocaleRouting('/forge/platform'), true);
+  assert.equal(shouldApplyForgeLocaleRouting('/fr/forge/platform'), true);
+  assert.equal(shouldApplyForgeLocaleRouting('/forge/app'), false);
   assert.equal(shouldApplyForgeLocaleRouting('/health'), false);
   assert.equal(shouldApplyForgeLocaleRouting('/api/app/download'), false);
   assert.equal(shouldApplyForgeLocaleRouting('/chat'), false);
