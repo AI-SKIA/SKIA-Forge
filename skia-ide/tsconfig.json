@@ -8,6 +8,8 @@
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "lib": ["ES2020", "DOM"],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
     "types": ["node"]
   },
   "include": ["src/renderer/**/*"]
