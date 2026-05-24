@@ -24,7 +24,6 @@ type SkiaConfig = {
     localVideoServiceUrl?: string;
     localComfyuiUrl?: string;
     localSdWebuiUrl?: string;
-    localBackendMode?: boolean;
     localFounderOverride?: boolean;
     skiaOwnerEmail?: string;
 };
