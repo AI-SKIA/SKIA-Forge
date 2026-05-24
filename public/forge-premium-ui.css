@@ -150,7 +150,7 @@ html {
     margin-right: auto;
 }
 
-/* Footer: fixed px sizes — same on every locale regardless of string length */
+/* Footer: fixed px sizes — same on every locale regardless of string length (matches skia.ca) */
 footer,
 .doc-footer {
     width: 100%;
@@ -164,6 +164,8 @@ footer,
 footer .footer-tagline,
 .doc-footer .tagline {
     font-size: 14px !important;
+    font-weight: 600;
+    letter-spacing: 0.06em;
     white-space: normal;
     overflow-wrap: break-word;
 }
@@ -176,5 +178,5 @@ footer .footer-copy,
 
 footer .footer-links,
 .doc-footer .links {
-    font-size: 12px;
+    font-size: 14px;
 }

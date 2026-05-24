@@ -135,7 +135,7 @@ function buildCommon() {
     aria: { openNavigation: 'Open navigation' },
     footer: {
       tagline: 'One ecosystem. One universe. All SKIA.',
-      copyright: '© 2026 SKIA. All rights reserved.',
+      copyright: '© 2026 SKIA Singularity Continuum. The future is an understatement.',
       resources: 'Resources',
       security: 'Security',
       contactSupport: 'Contact & Support',
