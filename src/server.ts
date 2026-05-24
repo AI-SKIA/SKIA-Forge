@@ -37,6 +37,7 @@ import { renderForgeSignInHtml } from "./forgeSignInUi.js";
 import {
   buildHandoffRedirectUrl,
   buildSkiaLoginRedirect,
+  extractSessionTokenFromRequest,
   fetchSkiaSessionFromRequest,
   resolveSafeReturnTo,
   resolveSkiaClientHeader
@@ -642,8 +643,11 @@ app.get("/api/auth/handoff", async (req, res) => {
   if (session.setCookies.length > 0) {
     res.setHeader("set-cookie", session.setCookies);
   }
-  if (session.ok && session.token) {
-    return res.redirect(302, buildHandoffRedirectUrl(req, returnPath, session.token));
+  const cookieToken = extractSessionTokenFromRequest(req);
+  const handoffToken =
+    session.token || (session.ok && cookieToken ? cookieToken : null);
+  if (handoffToken && (session.ok || cookieToken)) {
+    return res.redirect(302, buildHandoffRedirectUrl(req, returnPath, handoffToken));
   }
 
   const host = req.get("host") || "localhost";

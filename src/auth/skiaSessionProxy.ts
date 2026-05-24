@@ -128,7 +128,44 @@ export function resolveSafeReturnTo(req: Request, fallbackPath = "/forge/platfor
   }
 }
 
-export function localePrefixFromPath(pathname: string): string {
+/** Parse `Cookie` header into a name → value map (no signing validation). */
+export function parseCookieHeader(cookieHeader: string | undefined): Record<string, string> {
+  if (!cookieHeader) return {};
+  const out: Record<string, string> = {};
+  for (const part of cookieHeader.split(";")) {
+    const idx = part.indexOf("=");
+    if (idx < 0) continue;
+    const key = part.slice(0, idx).trim();
+    const value = part.slice(idx + 1).trim();
+    if (key) {
+      try {
+        out[key] = decodeURIComponent(value);
+      } catch {
+        out[key] = value;
+      }
+    }
+  }
+  return out;
+}
+
+/** SKIA session JWT from shared `.skia.ca` httpOnly cookie (`token` / `token_dev`). */
+export function extractSessionTokenFromRequest(req: Request): string | null {
+  const cookies = parseCookieHeader(
+    typeof req.headers.cookie === "string" ? req.headers.cookie : undefined
+  );
+  const token = cookies.token || cookies.token_dev;
+  return typeof token === "string" && token.trim() ? token.trim() : null;
+}
+
+export function localePrefixFromPath(pathnameOrUrl: string): string {
+  let pathname = pathnameOrUrl;
+  try {
+    if (pathnameOrUrl.includes("://")) {
+      pathname = new URL(pathnameOrUrl).pathname;
+    }
+  } catch {
+    // Keep raw pathname when URL parsing fails.
+  }
   const match = pathname.match(/^\/([a-z]{2})(\/|$)/);
   return match ? `/${match[1]}` : "";
 }

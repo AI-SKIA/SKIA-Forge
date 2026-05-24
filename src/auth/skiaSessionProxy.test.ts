@@ -4,6 +4,8 @@ import test from "node:test";
 
 import {
   buildHandoffRedirectUrl,
+  buildSkiaLoginRedirect,
+  extractSessionTokenFromRequest,
   localePrefixFromPath,
   resolveSafeReturnTo
 } from "./skiaSessionProxy.js";
@@ -52,4 +54,30 @@ test("buildHandoffRedirectUrl appends token hash", () => {
 test("localePrefixFromPath reads leading locale segment", () => {
   assert.equal(localePrefixFromPath("/en/forge/platform"), "/en");
   assert.equal(localePrefixFromPath("/forge/platform"), "");
+  assert.equal(
+    localePrefixFromPath("https://forge.skia.ca/en/forge/platform"),
+    "/en"
+  );
+});
+
+test("extractSessionTokenFromRequest reads token cookie", () => {
+  const req = {
+    headers: { cookie: "token=abc.jwt; other=1" }
+  } as unknown as Request;
+  assert.equal(extractSessionTokenFromRequest(req), "abc.jwt");
+});
+
+test("buildSkiaLoginRedirect preserves locale from full returnTo URL", () => {
+  const req = {
+    protocol: "https",
+    get(name: string) {
+      if (name === "host") return "forge.skia.ca";
+      return undefined;
+    }
+  } as unknown as Request;
+  const url = buildSkiaLoginRedirect(
+    req,
+    "https://forge.skia.ca/en/forge/platform"
+  );
+  assert.ok(url.startsWith("https://skia.ca/en/login?returnTo="));
 });

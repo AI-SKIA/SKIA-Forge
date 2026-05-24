@@ -264,6 +264,7 @@ export function renderForgePlatformHtml(): string {
       .download-btn { font-size: 10px; padding: 7px 9px; }
     }
   </style>
+  <script src="/forge-skia-sso.js"></script>
 </head>
 <body data-forge-i18n-page="forge-platform">
   <div class="topbar">
