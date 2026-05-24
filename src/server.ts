@@ -1573,6 +1573,11 @@ app.get("/forge-page-locale.js", (_req, res) => {
   res.sendFile(path.join(projectRoot, "public", "forge-page-locale.js"));
 });
 
+app.get("/forge-skia-sso.js", (_req, res) => {
+  res.type("application/javascript");
+  res.sendFile(path.join(projectRoot, "public", "forge-skia-sso.js"));
+});
+
 app.use("/locales", express.static(path.join(projectRoot, "public", "locales")));
 
 /** Hub + docs sidebar and hero logo (`public/*.html`, `public/docs/*.html`) */
