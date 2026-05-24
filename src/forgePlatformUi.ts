@@ -145,6 +145,16 @@ export function renderForgePlatformHtml(): string {
       border-color: rgba(212, 175, 55, 0.55);
       background: rgba(212, 175, 55, 0.08);
     }
+    a.mod-btn {
+      display: block;
+      text-decoration: none;
+      text-align: left;
+    }
+    .mod-btn-home {
+      margin-top: 4px;
+      color: var(--gold);
+      border-color: rgba(212, 175, 55, 0.4);
+    }
 
     .hero {
       border: 1px solid var(--line);
@@ -276,6 +286,7 @@ export function renderForgePlatformHtml(): string {
         <button class="mod-btn" data-module="healing" data-i18n="forge-platform.modules.healing.label">Healing</button>
         <button class="mod-btn" data-module="architecture" data-i18n="forge-platform.modules.architecture.label">Architecture</button>
         <button class="mod-btn" data-module="orchestrate" data-i18n="forge-platform.modules.orchestrate.label">Lifecycle Orchestrate</button>
+        <a class="mod-btn mod-btn-home" id="forgeHomeLink" href="/platform-downloads" data-i18n="forge-platform.sidebar.forgeHome">Forge Home</a>
       </div>
     </aside>
     <main class="main">
@@ -331,6 +342,26 @@ export function renderForgePlatformHtml(): string {
       fpMessages = (window.__forgeI18n && window.__forgeI18n["forge-platform"]) || null;
     }
 
+    function forgeLocalePrefix() {
+      const match = window.location.pathname.match(/^\\/([a-z]{2})(\\/|$)/);
+      return match ? "/" + match[1] : "";
+    }
+
+    function forgeHomeHref() {
+      return forgeLocalePrefix() + "/platform-downloads";
+    }
+
+    function buildSkiaLoginUrl() {
+      const returnTo = encodeURIComponent(window.location.href);
+      const prefix = forgeLocalePrefix();
+      return "https://skia.ca" + prefix + "/login?returnTo=" + returnTo;
+    }
+
+    function wireForgeHomeLink() {
+      const home = document.getElementById("forgeHomeLink");
+      if (home) home.setAttribute("href", forgeHomeHref());
+    }
+
     function authHeaders() {
       return _forgeToken
         ? { "Content-Type": "application/json", "Authorization": "Bearer " + _forgeToken }
@@ -342,10 +373,10 @@ export function renderForgePlatformHtml(): string {
       if (authBanner) {
         authBanner.innerHTML =
           message +
-          ' <a href="https://skia.ca/login" target="_blank" rel="noopener noreferrer">' +
+          ' <a href="' + buildSkiaLoginUrl() + '" rel="noopener noreferrer">' +
           (fp("runtime.authLoginLink") || "Log in at skia.ca") +
           "</a>" +
-          (fp("runtime.authLoginSuffix") || ", then reload this page.");
+          (fp("runtime.authLoginSuffix") || ". You will return here after sign-in.");
         authBanner.classList.add("visible");
       }
     }
@@ -522,11 +553,19 @@ export function renderForgePlatformHtml(): string {
 
     async function init() {
       loadForgePlatformMessages();
+      wireForgeHomeLink();
       setActiveModule(activeModule);
       await bootstrapForgeSession();
       if (!_forgeToken) return;
       await refreshIntegration();
     }
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState !== "visible" || _forgeToken) return;
+      void bootstrapForgeSession().then(() => {
+        if (_forgeToken) void refreshIntegration();
+      });
+    });
 
     function startWhenI18nReady() {
       if (window.__forgeI18n) {

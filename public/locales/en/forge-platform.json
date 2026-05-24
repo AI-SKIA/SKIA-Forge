@@ -11,7 +11,8 @@
     "statusNotAuthenticated": "SKIA INTEGRATION UNAVAILABLE — not authenticated"
   },
   "sidebar": {
-    "title": "IDE Modules"
+    "title": "IDE Modules",
+    "forgeHome": "Forge Home"
   },
   "modules": {
     "agent": {
@@ -69,7 +70,7 @@
   "runtime": {
     "authUnavailablePrefix": "SKIA INTEGRATION UNAVAILABLE — ",
     "authLoginLink": "Log in at skia.ca",
-    "authLoginSuffix": ", then reload this page.",
+    "authLoginSuffix": ". You will return here after sign-in.",
     "sessionExpired": "Session expired or not logged in. Please log in at skia.ca first.",
     "noToken": "No token returned. Please log in at skia.ca first.",
     "authServiceUnreachable": "Could not reach auth service.",

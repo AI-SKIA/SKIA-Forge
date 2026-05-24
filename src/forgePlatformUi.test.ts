@@ -34,11 +34,20 @@ test("forge platform html includes session bootstrap and bearer auth helpers", (
     assert.ok(!html.includes("Authorization: Bearer hardcoded"));
 });
 
-test("forge platform html does not include back button", () => {
+test("forge platform html includes Forge Home under lifecycle module", () => {
     const html = renderForgePlatformHtml();
-    assert.ok(!html.includes("back-btn"));
-    assert.ok(!html.includes("history.back()"));
-    assert.ok(!html.includes("← Back"));
+    assert.ok(html.includes('id="forgeHomeLink"'));
+    assert.ok(html.includes("mod-btn-home"));
+    assert.ok(html.includes('data-i18n="forge-platform.sidebar.forgeHome"'));
+    assert.ok(html.includes("wireForgeHomeLink"));
+    assert.ok(html.includes("forgeHomeHref"));
+});
+
+test("forge platform login link uses returnTo and same-tab navigation", () => {
+    const html = renderForgePlatformHtml();
+    assert.ok(html.includes("buildSkiaLoginUrl"));
+    assert.ok(html.includes("/login?returnTo="));
+    assert.ok(!html.includes('href="https://skia.ca/login" target="_blank"'));
 });
 
 test("forge platform html includes all module buttons", () => {
