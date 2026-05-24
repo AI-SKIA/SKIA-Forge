@@ -46,7 +46,7 @@ test("forge platform html includes Forge Home under lifecycle module", () => {
 test("forge platform login uses skia session handoff with returnTo", () => {
     const html = renderForgePlatformHtml();
     assert.ok(html.includes("buildSkiaLoginUrl"));
-    assert.ok(html.includes("/api/auth/handoff?returnTo="));
+    assert.ok(html.includes("skia.ca/api/auth/forge-bridge?returnTo="));
     assert.ok(html.includes("redirectToSkiaHandoff"));
     assert.ok(html.includes("isArrivingFromSkiaSite"));
     assert.ok(html.includes("x-skia-client"));

@@ -62,12 +62,14 @@
     return url.origin + url.pathname + url.search;
   }
 
+  var SKIA_FORGE_BRIDGE = 'https://skia.ca/api/auth/forge-bridge?returnTo=';
+
   function redirectToHandoff() {
     try {
       sessionStorage.setItem(ATTEMPT_KEY, '1');
     } catch (e) {}
     var returnTo = encodeURIComponent(handoffReturnUrl());
-    window.location.replace('/api/auth/handoff?returnTo=' + returnTo);
+    window.location.replace(SKIA_FORGE_BRIDGE + returnTo);
   }
 
   var urlToken = readTokenFromUrl();

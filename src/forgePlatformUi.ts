@@ -362,14 +362,16 @@ export function renderForgePlatformHtml(): string {
       return url.origin + url.pathname + url.search;
     }
 
+    const SKIA_FORGE_BRIDGE = "https://skia.ca/api/auth/forge-bridge?returnTo=";
+
     function redirectToSkiaHandoff() {
       const returnTo = encodeURIComponent(buildHandoffReturnUrl());
-      window.location.replace("/api/auth/handoff?returnTo=" + returnTo);
+      window.location.replace(SKIA_FORGE_BRIDGE + returnTo);
     }
 
     function buildSkiaLoginUrl() {
       const returnTo = encodeURIComponent(buildHandoffReturnUrl());
-      return "/api/auth/handoff?returnTo=" + returnTo;
+      return SKIA_FORGE_BRIDGE + returnTo;
     }
 
     function isArrivingFromSkiaSite() {
