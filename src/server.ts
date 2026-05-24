@@ -33,6 +33,14 @@ import { registerForgeCodeIntelRoutes } from "./forgeCodeIntelRoutes.js";
 import { buildProbeReport } from "./integrationReport.js";
 import { runForgeOrchestration } from "./forgeOrchestrator.js";
 import { renderForgePlatformHtml } from "./forgePlatformUi.js";
+import { renderForgeSignInHtml } from "./forgeSignInUi.js";
+import {
+  buildHandoffRedirectUrl,
+  buildSkiaLoginRedirect,
+  fetchSkiaSessionFromRequest,
+  resolveSafeReturnTo,
+  resolveSkiaClientHeader
+} from "./auth/skiaSessionProxy.js";
 
 /** Downloads hub — static `public/platform-downloads.html` on this Forge host. */
 const PLATFORM_DOWNLOADS_PATH = "/platform-downloads";
@@ -562,6 +570,7 @@ async function proxyAuthToSkia(
       method,
       headers: {
         "content-type": "application/json",
+        "x-skia-client": resolveSkiaClientHeader(req),
         ...(typeof req.headers.cookie === "string" ? { cookie: req.headers.cookie } : {}),
         ...(typeof req.headers.authorization === "string"
           ? { authorization: req.headers.authorization }
@@ -608,57 +617,41 @@ app.post("/api/auth/contact", async (req, res) => {
 });
 
 app.get("/api/auth/session", async (req, res) => {
-  const base = resolveSkiaFullApiUrl().trim().replace(/\/+$/, "");
-  const target = `${base}/api/auth/session`;
-  try {
-    const upstream = await fetch(target, {
-      method: "GET",
-      headers: {
-        "content-type": "application/json",
-        "x-skia-client": "forge-desktop",
-        ...(typeof req.headers.cookie === "string" ? { cookie: req.headers.cookie } : {}),
-        ...(typeof req.headers.authorization === "string"
-          ? { authorization: req.headers.authorization }
-          : {}),
-        ...(req.ip ? { "x-forwarded-for": req.ip } : {})
-      }
-    });
-    const setCookies: string[] =
-      typeof (upstream.headers as { getSetCookie?: () => string[] }).getSetCookie === "function"
-        ? (upstream.headers as { getSetCookie: () => string[] }).getSetCookie()
-        : upstream.headers.get("set-cookie")
-          ? [upstream.headers.get("set-cookie") as string]
-          : [];
-    if (setCookies.length > 0) {
-      res.setHeader("set-cookie", setCookies);
-    }
-    const text = await upstream.text();
-    let data: Record<string, unknown> = {};
-    try {
-      data = text ? (JSON.parse(text) as Record<string, unknown>) : {};
-    } catch {
-      return res.status(502).json({ error: "Invalid session response from auth service" });
-    }
-    if (!upstream.ok) {
-      return res.status(upstream.status).json({
-        error: typeof data.error === "string" ? data.error : "Unauthorized",
-        token: null,
-        user: data.user ?? null
-      });
-    }
-    const token =
-      (typeof data.token === "string" && data.token) ||
-      (typeof data.accessToken === "string" && data.accessToken) ||
-      null;
-    const user = data.user ?? null;
-    if (!token && (user === null || user === undefined)) {
-      return res.status(401).json({ error: "Unauthorized", token: null, user: null });
-    }
-    return res.json({ token, user, ...(token ? {} : { error: "No token in session response" }) });
-  } catch (error) {
-    const message = error instanceof Error ? error.message : "Session service unavailable";
-    return res.status(500).json({ error: message, token: null });
+  const session = await fetchSkiaSessionFromRequest(req);
+  if (session.setCookies.length > 0) {
+    res.setHeader("set-cookie", session.setCookies);
   }
+  if (!session.ok) {
+    return res.status(session.status).json({
+      error: session.error ?? "Unauthorized",
+      token: null,
+      user: session.user ?? null
+    });
+  }
+  return res.json({
+    token: session.token,
+    user: session.user,
+    ...(session.token ? {} : { error: "No token in session response" })
+  });
+});
+
+/** Exchange skia.ca session cookies for a Forge bearer token, then redirect back to the IDE. */
+app.get("/api/auth/handoff", async (req, res) => {
+  const returnPath = resolveSafeReturnTo(req);
+  const session = await fetchSkiaSessionFromRequest(req, "forge-web");
+  if (session.setCookies.length > 0) {
+    res.setHeader("set-cookie", session.setCookies);
+  }
+  if (session.ok && session.token) {
+    return res.redirect(302, buildHandoffRedirectUrl(req, returnPath, session.token));
+  }
+
+  const host = req.get("host") || "localhost";
+  const proto =
+    req.get("x-forwarded-proto")?.split(",")[0]?.trim() ||
+    (req.protocol === "https" ? "https" : "http");
+  const returnTo = `${proto}://${host}${returnPath}`;
+  return res.redirect(302, buildSkiaLoginRedirect(req, returnTo));
 });
 
 app.get("/api/app/download/:platform", async (req, res) => {
@@ -1589,6 +1582,10 @@ app.get("/og/skia-forge-preview.svg", (_req, res) => {
 
 app.get("/forge/platform", (_req, res) => {
   res.type("html").send(renderForgePlatformHtml());
+});
+
+app.get("/forge/sign-in", (_req, res) => {
+  res.type("html").send(renderForgeSignInHtml());
 });
 
 // Serve branded HTML doc pages (public/docs/) before raw markdown

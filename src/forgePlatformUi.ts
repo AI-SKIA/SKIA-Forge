@@ -351,10 +351,106 @@ export function renderForgePlatformHtml(): string {
       return forgeLocalePrefix() + "/platform-downloads";
     }
 
+    const FORGE_SESSION_TOKEN_KEY = "skia_session_token";
+
+    function buildHandoffReturnUrl() {
+      const url = new URL(window.location.href);
+      for (const key of ["token", "accessToken", "access_token", "jwt"]) {
+        url.searchParams.delete(key);
+      }
+      return url.origin + url.pathname + url.search;
+    }
+
+    function redirectToSkiaHandoff() {
+      const returnTo = encodeURIComponent(buildHandoffReturnUrl());
+      window.location.replace("/api/auth/handoff?returnTo=" + returnTo);
+    }
+
     function buildSkiaLoginUrl() {
-      const returnTo = encodeURIComponent(window.location.href);
-      const prefix = forgeLocalePrefix();
-      return "https://skia.ca" + prefix + "/login?returnTo=" + returnTo;
+      const returnTo = encodeURIComponent(buildHandoffReturnUrl());
+      return "/api/auth/handoff?returnTo=" + returnTo;
+    }
+
+    function isArrivingFromSkiaSite() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("skia_sso") === "1") return true;
+      try {
+        return (document.referrer || "").includes("skia.ca");
+      } catch {
+        return false;
+      }
+    }
+
+    function readStoredForgeToken() {
+      try {
+        return sessionStorage.getItem(FORGE_SESSION_TOKEN_KEY);
+      } catch {
+        return null;
+      }
+    }
+
+    function persistForgeToken(token) {
+      if (!token) return;
+      try {
+        sessionStorage.setItem(FORGE_SESSION_TOKEN_KEY, token);
+      } catch {}
+      _forgeToken = token;
+    }
+
+    function readTokenFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const hash = new URLSearchParams(
+        (window.location.hash || "").replace(/^#/, "")
+      );
+      for (const source of [params, hash]) {
+        for (const key of ["token", "accessToken", "access_token", "jwt"]) {
+          const value = source.get(key);
+          if (value && value.trim()) return value.trim();
+        }
+      }
+      return null;
+    }
+
+    function scrubTokenFromUrl() {
+      const url = new URL(window.location.href);
+      let dirty = false;
+      for (const key of ["token", "accessToken", "access_token", "jwt"]) {
+        if (url.searchParams.has(key)) {
+          url.searchParams.delete(key);
+          dirty = true;
+        }
+      }
+      if (url.hash) {
+        const hash = new URLSearchParams(url.hash.replace(/^#/, ""));
+        for (const key of ["token", "accessToken", "access_token", "jwt"]) {
+          if (hash.has(key)) {
+            hash.delete(key);
+            dirty = true;
+          }
+        }
+        const nextHash = hash.toString();
+        url.hash = nextHash ? "#" + nextHash : "";
+      }
+      if (!dirty) return;
+      history.replaceState(null, "", url.pathname + url.search + url.hash);
+    }
+
+    function extractTokenFromPayload(payload) {
+      if (!payload || typeof payload !== "object") return null;
+      for (const key of ["token", "jwt", "accessToken", "access_token"]) {
+        if (typeof payload[key] === "string" && payload[key].trim()) {
+          return payload[key].trim();
+        }
+      }
+      const data = payload.data;
+      if (data && typeof data === "object") {
+        for (const key of ["token", "jwt", "accessToken", "access_token"]) {
+          if (typeof data[key] === "string" && data[key].trim()) {
+            return data[key].trim();
+          }
+        }
+      }
+      return null;
     }
 
     function wireForgeHomeLink() {
@@ -382,20 +478,79 @@ export function renderForgePlatformHtml(): string {
     }
 
     async function bootstrapForgeSession() {
+      const urlToken = readTokenFromUrl();
+      if (urlToken) {
+        persistForgeToken(urlToken);
+        scrubTokenFromUrl();
+        try {
+          sessionStorage.removeItem("forge_handoff_attempted");
+        } catch {}
+      } else {
+        const stored = readStoredForgeToken();
+        if (stored) _forgeToken = stored;
+      }
+
+      if (
+        !urlToken &&
+        !_forgeToken &&
+        isArrivingFromSkiaSite() &&
+        !sessionStorage.getItem("forge_handoff_attempted")
+      ) {
+        try {
+          sessionStorage.setItem("forge_handoff_attempted", "1");
+        } catch {}
+        redirectToSkiaHandoff();
+        return;
+      }
+
+      const sessionHeaders = {
+        "Content-Type": "application/json",
+        "x-skia-client": "forge-web"
+      };
+      if (_forgeToken) {
+        sessionHeaders.Authorization = "Bearer " + _forgeToken;
+      }
+
       try {
         const res = await fetch("/api/auth/session", {
           method: "GET",
-          credentials: "include"
+          credentials: "include",
+          headers: sessionHeaders
         });
         if (!res.ok) {
+          if (!sessionStorage.getItem("forge_handoff_attempted")) {
+            try {
+              sessionStorage.setItem("forge_handoff_attempted", "1");
+            } catch {}
+            redirectToSkiaHandoff();
+            return;
+          }
           showAuthError(fp("runtime.sessionExpired") || "Session expired or not logged in. Please log in at skia.ca first.");
           return;
         }
         const data = await res.json();
-        _forgeToken = data.token ?? null;
-        if (!_forgeToken) {
+        const token = extractTokenFromPayload(data) || data.token || data.accessToken || null;
+        if (token) {
+          persistForgeToken(token);
+          try {
+            sessionStorage.removeItem("forge_handoff_attempted");
+          } catch {}
+        } else if (data.user && _forgeToken) {
+          try {
+            sessionStorage.removeItem("forge_handoff_attempted");
+          } catch {}
+        } else if (!_forgeToken) {
+          if (!sessionStorage.getItem("forge_handoff_attempted")) {
+            try {
+              sessionStorage.setItem("forge_handoff_attempted", "1");
+            } catch {}
+            redirectToSkiaHandoff();
+            return;
+          }
           showAuthError(fp("runtime.noToken") || "No token returned. Please log in at skia.ca first.");
-        } else if (authBanner) {
+          return;
+        }
+        if (authBanner) {
           authBanner.classList.remove("visible");
           authBanner.textContent = "";
         }

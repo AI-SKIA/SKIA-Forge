@@ -43,10 +43,15 @@ test("forge platform html includes Forge Home under lifecycle module", () => {
     assert.ok(html.includes("forgeHomeHref"));
 });
 
-test("forge platform login link uses returnTo and same-tab navigation", () => {
+test("forge platform login uses skia session handoff with returnTo", () => {
     const html = renderForgePlatformHtml();
     assert.ok(html.includes("buildSkiaLoginUrl"));
-    assert.ok(html.includes("/login?returnTo="));
+    assert.ok(html.includes("/api/auth/handoff?returnTo="));
+    assert.ok(html.includes("redirectToSkiaHandoff"));
+    assert.ok(html.includes("isArrivingFromSkiaSite"));
+    assert.ok(html.includes("x-skia-client"));
+    assert.ok(html.includes("forge-web"));
+    assert.ok(html.includes("skia_session_token"));
     assert.ok(!html.includes('href="https://skia.ca/login" target="_blank"'));
 });
 
