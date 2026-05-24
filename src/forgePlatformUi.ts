@@ -10,12 +10,15 @@ export function renderForgePlatformHtml(): string {
   <script src="/forge-document-locale.js"></script>
   <style>
     :root {
-      --bg: #080400;
-      --panel: linear-gradient(135deg, rgba(15, 8, 0, 0.95) 0%, rgba(25, 14, 0, 0.95) 100%);
-      --line: rgba(212, 175, 55, 0.22);
-      --text: #f1e2ad;
-      --muted: rgba(255, 255, 255, 0.62);
+      --bg: #0a0a0a;
+      --panel: #1a1a1a;
+      --line: rgba(212, 175, 55, 0.3);
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.55);
       --gold: #d4af37;
+      --gold-accent: rgba(212, 175, 55, 0.7);
+      --card: #111111;
+      --danger: #ff5c5c;
       --font-heading: "Space Grotesk", "Sora", system-ui, sans-serif;
       --font-body: "Inter", "SF Pro Display", system-ui, sans-serif;
       --tracking-heading: 0.06em;
@@ -28,7 +31,7 @@ export function renderForgePlatformHtml(): string {
     * { box-sizing: border-box; }
     body {
       margin: 0;
-      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255, 180, 0, 0.06) 0%, transparent 70%), var(--bg);
+      background: var(--bg);
       color: var(--text);
       font-family: var(--font-body);
       height: 100dvh;
@@ -45,7 +48,7 @@ export function renderForgePlatformHtml(): string {
       border-radius: 4px;
       border: 1px solid rgba(212, 175, 55, 0.25);
     }
-    *::-webkit-scrollbar-thumb:hover { background: rgba(212, 175, 55, 0.75); }
+    *::-webkit-scrollbar-thumb:hover { background: var(--gold-accent); }
 
     .topbar {
       height: 58px;
@@ -90,17 +93,18 @@ export function renderForgePlatformHtml(): string {
     }
     .download-btn:hover {
       background: rgba(212, 175, 55, 0.16);
-      border-color: rgba(212, 175, 55, 0.7);
+      border-color: var(--gold-accent);
     }
     .auth-banner {
       display: none;
       margin: 0 16px 8px;
       padding: 10px 14px;
-      border: 1px solid rgba(251, 113, 133, 0.45);
+      border: 1px solid rgba(255, 92, 92, 0.45);
       border-radius: 8px;
-      background: rgba(40, 8, 12, 0.55);
-      color: rgba(255, 220, 220, 0.92);
+      background: rgba(255, 92, 92, 0.12);
+      color: var(--danger);
       font-size: 12px;
+      font-weight: 400;
       line-height: 1.5;
     }
     .auth-banner.visible { display: block; }
@@ -119,7 +123,7 @@ export function renderForgePlatformHtml(): string {
       padding: 16px;
       overflow: hidden;
     }
-    .section-title { color: var(--gold); padding: 12px; border-bottom: 1px solid var(--line); font-size: 12px; letter-spacing: var(--tracking-heading-display); text-transform: uppercase; font-family: var(--font-heading); font-weight: 600; }
+    .section-title { color: var(--gold); padding: 12px; border-bottom: 1px solid var(--line); font-size: 10px; letter-spacing: var(--tracking-heading-display); text-transform: uppercase; font-family: var(--font-heading); font-weight: 600; }
     .mod-list { padding: 10px; display: grid; gap: 8px; }
     .mod-btn {
       width: 100%;
@@ -150,7 +154,7 @@ export function renderForgePlatformHtml(): string {
     }
     .hero h1 {
       margin: 0 0 6px;
-      font-size: 18px;
+      font-size: 24px;
       color: var(--gold);
       letter-spacing: var(--tracking-heading-display);
       text-transform: uppercase;
@@ -189,13 +193,13 @@ export function renderForgePlatformHtml(): string {
       background: rgba(0, 0, 0, 0.55);
       border: 1px solid rgba(212, 175, 55, 0.25);
       border-radius: 8px;
-      color: #f5e8bc;
+      color: var(--text);
       padding: 10px;
       font-family: var(--font-body);
       font-size: 14px;
       letter-spacing: var(--tracking-body);
     }
-    .textarea:focus { outline: none; border-color: rgba(212, 175, 55, 0.6); }
+    .textarea:focus { outline: none; border-color: var(--gold-accent); }
 
     .controls { display: flex; gap: 8px; flex-wrap: wrap; }
     .btn {
@@ -211,7 +215,7 @@ export function renderForgePlatformHtml(): string {
       font-family: var(--font-heading);
       font-weight: 600;
     }
-    .btn:hover { border-color: rgba(212, 175, 55, 0.7); background: rgba(212, 175, 55, 0.16); }
+    .btn:hover { border-color: var(--gold-accent); background: rgba(212, 175, 55, 0.16); }
 
     .output {
       border: 1px solid var(--line);
@@ -223,7 +227,7 @@ export function renderForgePlatformHtml(): string {
       white-space: pre-wrap;
       font-family: var(--font-body);
       font-size: 14px;
-      color: rgba(255, 255, 255, 0.86);
+      color: var(--text);
       line-height: var(--line-body);
       letter-spacing: var(--tracking-body);
     }

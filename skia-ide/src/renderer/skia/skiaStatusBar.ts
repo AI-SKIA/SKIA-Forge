@@ -16,7 +16,7 @@ const createDropdown = (anchor: HTMLElement): void => {
   dropdown.style.position = "fixed";
   dropdown.style.bottom = `${window.innerHeight - rect.top + 6}px`;
   dropdown.style.right = "12px";
-  dropdown.style.background = "#161616";
+  dropdown.style.background = "#1a1a1a";
   dropdown.style.border = "1px solid #2a2a2a";
   dropdown.style.minWidth = "170px";
   dropdown.style.zIndex = "10000";
@@ -24,7 +24,7 @@ const createDropdown = (anchor: HTMLElement): void => {
 
   const dashboard = document.createElement("button");
   dashboard.textContent = "Open Dashboard";
-  dashboard.style.cssText = "display:block;width:100%;background:none;border:none;color:#e8d5a3;padding:8px 12px;text-align:left;cursor:pointer;";
+  dashboard.style.cssText = "display:block;width:100%;background:none;border:none;color:#ffffff;padding:8px 12px;text-align:left;cursor:pointer;font-size:12px;font-weight:400;";
   dashboard.addEventListener("click", () => {
     window.skiaElectron.openExternal("https://skia.ca/dashboard");
     removeDropdown();
@@ -32,7 +32,7 @@ const createDropdown = (anchor: HTMLElement): void => {
 
   const signOut = document.createElement("button");
   signOut.textContent = "Sign Out";
-  signOut.style.cssText = "display:block;width:100%;background:none;border:none;color:#e8d5a3;padding:8px 12px;text-align:left;cursor:pointer;";
+  signOut.style.cssText = "display:block;width:100%;background:none;border:none;color:#ffffff;padding:8px 12px;text-align:left;cursor:pointer;font-size:12px;font-weight:400;";
   signOut.addEventListener("click", () => {
     logout();
     location.reload();
@@ -58,7 +58,7 @@ const render = (): void => {
   const trigger = document.createElement("button");
   trigger.type = "button";
   trigger.textContent = `${user.email}  [↓]`;
-  trigger.style.cssText = "margin-left:10px;background:none;border:none;color:#e8d5a3;cursor:pointer;";
+  trigger.style.cssText = "margin-left:10px;background:none;border:none;color:#ffffff;cursor:pointer;font-size:12px;font-weight:400;";
   trigger.addEventListener("click", (event) => {
     event.stopPropagation();
     const open = Boolean(document.getElementById("skia-status-dropdown"));

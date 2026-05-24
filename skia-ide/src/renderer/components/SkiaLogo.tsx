@@ -26,7 +26,7 @@ const styles: Record<string, React.CSSProperties> = {
   },
   tagline: {
     fontSize: 12,
-    color: "rgba(212,175,55,0.55)",
+    color: "rgba(255,255,255,0.55)",
     letterSpacing: 3,
     marginTop: 2,
     marginBottom: 14,

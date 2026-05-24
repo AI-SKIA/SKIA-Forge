@@ -14,8 +14,8 @@ const buildOverlay = (): HTMLDivElement => {
 
   const panel = document.createElement("div");
   panel.style.width = "min(520px, 90vw)";
-  panel.style.border = "1px solid #2a1f00";
-  panel.style.background = "#120d00";
+  panel.style.border = "1px solid rgba(212,175,55,0.3)";
+  panel.style.background = "#111111";
   panel.style.color = "#d4af37";
   panel.style.padding = "24px";
   panel.style.borderRadius = "2px";
@@ -23,10 +23,10 @@ const buildOverlay = (): HTMLDivElement => {
   panel.style.letterSpacing = "0.1em";
   panel.innerHTML = `
     <img src="assets/sidebar-logo.png" alt="SKIA" onerror="this.style.display='none'" style="width: min(160px, 88vw); height: auto; object-fit: contain; display: block; margin: 0 0 14px; filter: drop-shadow(0 0 24px rgba(212,175,55,0.35));" />
-    <p style="margin: 0 0 20px; color: #d4af37; text-transform: none; letter-spacing: 0.03em;">I am SKIA. I see your codebase. Let me understand your architecture.</p>
+    <p style="margin: 0 0 20px; color: #ffffff; font-size: 14px; font-weight: 400; text-transform: none; letter-spacing: 0.03em;">I am SKIA. I see your codebase. Let me understand your architecture.</p>
     <div style="display:flex; gap:10px; flex-wrap:wrap;">
-      <button id="skia-open-project-btn" style="padding: 8px 12px; background: #1a1100; color: #d4af37; border: 1px solid #d4af37; border-radius: 2px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.1em;">OPEN A PROJECT</button>
-      <button id="skia-start-empty-btn" style="padding: 8px 12px; background: transparent; color: #d4af37; border: 1px solid #6e5412; border-radius: 2px; cursor: pointer; text-transform: uppercase; letter-spacing: 0.1em;">START EMPTY</button>
+      <button id="skia-open-project-btn" style="padding: 8px 12px; background: #1a1a1a; color: #d4af37; border: 1px solid #d4af37; border-radius: 2px; cursor: pointer; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">OPEN A PROJECT</button>
+      <button id="skia-start-empty-btn" style="padding: 8px 12px; background: transparent; color: #d4af37; border: 1px solid rgba(212,175,55,0.3); border-radius: 2px; cursor: pointer; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">START EMPTY</button>
     </div>
   `;
 

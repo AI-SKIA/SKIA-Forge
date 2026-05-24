@@ -1,17 +1,26 @@
 :root {
     --skia-bg: #0a0a0a;
     --skia-sidebar: #0d0d0a;
-    --skia-panel: #120d00;
-    --skia-button-bg: #1a1100;
-    --skia-input: #0f0d00;
-    --skia-border: #2a1f00;
+    --skia-panel: #111111;
+    --skia-button-bg: #1a1a1a;
+    --skia-input: #111111;
+    --skia-border: rgba(212, 175, 55, 0.3);
     --skia-gold: #d4af37;
-    --skia-muted-gold: #8a6f1e;
+    --skia-gold-accent: rgba(212, 175, 55, 0.7);
+    --skia-muted-gold: #999999;
+    --skia-text: #ffffff;
+    --skia-text-secondary: #999999;
+    --skia-text-muted: rgba(255, 255, 255, 0.55);
+    --skia-card: #111111;
+    --skia-surface: #1a1a1a;
+    --skia-success: #4ade80;
+    --skia-danger: #ff5c5c;
+    --skia-warning: #f2c94c;
 }
 
 body {
     background: var(--skia-bg);
-    color: var(--skia-gold);
+    color: var(--skia-text);
     font-family: "Segoe UI", system-ui, sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -66,7 +75,7 @@ body {
     text-transform: none;
     letter-spacing: 0.02em;
     scrollbar-width: thin;
-    scrollbar-color: #2a1f00 transparent;
+    scrollbar-color: var(--skia-border) transparent;
 }
 
 #explorer-tree-content {
@@ -85,7 +94,7 @@ body {
     }
 
     #explorer-tree-content::-webkit-scrollbar-thumb {
-        background: #2a1f00;
+        background: var(--skia-border);
         border-radius: 2px;
     }
 
@@ -97,7 +106,7 @@ body {
     color: var(--skia-gold);
     font-weight: 600;
     padding: 6px 10px;
-    border-bottom: 1px solid #1a1100;
+    border-bottom: 1px solid var(--skia-border);
 }
 
 .explorer-node {
@@ -116,11 +125,11 @@ body {
 
         .explorer-node.explorer-file:hover {
             color: var(--skia-gold);
-            background: #1a110066;
+            background: rgba(26, 26, 26, 0.4);
         }
 
     .explorer-node.explorer-directory {
-        color: #c9b37a;
+        color: var(--skia-text-secondary);
     }
 
 #skia-nav .nav-item {
@@ -196,18 +205,19 @@ body {
     }
 
 .view-header {
-    color: #d4af37;
+    color: var(--skia-gold);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     padding: 16px;
-    border-bottom: 1px solid #2a1f00;
-    font-size: 11px;
+    border-bottom: 1px solid var(--skia-border);
+    font-size: 24px;
+    font-weight: 700;
 }
 
 .center-view input {
-    background: #0f0d00;
-    border: 1px solid #2a1f00;
-    color: #d4af37;
+    background: var(--skia-input);
+    border: 1px solid var(--skia-border);
+    color: var(--skia-text);
     padding: 8px 12px;
     margin: 12px 16px;
     font-size: 14px;
@@ -219,9 +229,9 @@ body {
     }
 
 .center-view button {
-    background: #1a1100;
-    border: 1px solid #d4af37;
-    color: #d4af37;
+    background: var(--skia-surface);
+    border: 1px solid var(--skia-gold);
+    color: var(--skia-gold);
     text-transform: uppercase;
     letter-spacing: 0.1em;
     padding: 8px 16px;
@@ -232,20 +242,22 @@ body {
 
 .forge-row {
     padding: 8px 16px;
-    border-bottom: 1px solid #1a1100;
+    border-bottom: 1px solid var(--skia-border);
 }
 
 .forge-label {
-    color: #8a6f1e;
+    color: var(--skia-text-muted);
     font-size: 10px;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     display: block;
 }
 
 .forge-value {
-    color: #d4af37;
+    color: var(--skia-text);
     font-size: 12px;
+    font-weight: 400;
     word-break: break-all;
 }
 
@@ -293,14 +305,15 @@ body {
     flex-direction: column;
     gap: 10px;
     scrollbar-width: thin;
-    scrollbar-color: #2a1f00 transparent;
+    scrollbar-color: var(--skia-border) transparent;
 }
 
 .chat-message {
     border: 1px solid var(--skia-border);
     border-radius: 0;
     padding: 8px;
-    font-size: 11px;
+    font-size: 14px;
+    font-weight: 400;
     white-space: pre-wrap;
 }
 
@@ -329,8 +342,8 @@ body {
 #chat-controls {
     flex-shrink: 0;
     padding: 12px;
-    border-top: 1px solid #1a1200;
-    background: #0a0a0a;
+    border-top: 1px solid var(--skia-border);
+    background: var(--skia-bg);
 }
 
 .chat-attach-btn.chat-attach--queued {
@@ -340,9 +353,9 @@ body {
 
 #chat-input {
     width: 100%;
-    background: rgba(0,0,0,0.4);
-    border: 1px solid rgba(212,175,55,0.2);
-    color: #c9b37a;
+    background: var(--skia-card);
+    border: 1px solid var(--skia-border);
+    color: var(--skia-text);
     padding: 10px;
     font-size: 12px;
     resize: none;
@@ -359,7 +372,7 @@ body {
     }
 
     #chat-input:focus {
-        border-color: rgba(212,175,55,0.5);
+        border-color: var(--skia-gold-accent);
         outline: none;
     }
 
@@ -379,8 +392,9 @@ body {
 }
 
 .settings-hint {
-    font-size: 10px;
-    color: rgba(212, 175, 55, 0.45);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--skia-text-muted);
     line-height: 1.5;
     margin: 0 0 10px 0;
     padding: 0 4px;
@@ -398,6 +412,7 @@ button {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-size: 10px;
+    font-weight: 600;
     padding: 6px 8px;
     cursor: pointer;
 }
@@ -410,18 +425,19 @@ button {
 
 .settings-group {
     margin: 0 16px 24px;
-    border: 1px solid #1a1200;
+    border: 1px solid var(--skia-border);
     border-radius: 4px;
     overflow: hidden;
 }
 
 .settings-label {
-    background: #0d0d00;
-    color: rgba(212,175,55,0.4);
+    background: var(--skia-card);
+    color: var(--skia-text-muted);
     font-size: 10px;
+    font-weight: 600;
     letter-spacing: 0.15em;
     padding: 8px 16px;
-    border-bottom: 1px solid #1a1200;
+    border-bottom: 1px solid var(--skia-border);
 }
 
 .settings-row {
@@ -429,9 +445,10 @@ button {
     justify-content: space-between;
     align-items: center;
     padding: 10px 16px;
-    border-bottom: 1px solid #0d0d00;
-    color: #c9b37a;
-    font-size: 12px;
+    border-bottom: 1px solid var(--skia-border);
+    color: var(--skia-text);
+    font-size: 14px;
+    font-weight: 400;
 }
 
     .settings-row:last-child {
@@ -439,13 +456,14 @@ button {
     }
 
 .settings-value {
-    color: rgba(212,175,55,0.5);
-    font-size: 11px;
+    color: var(--skia-text-muted);
+    font-size: 12px;
+    font-weight: 400;
 }
 
 .settings-toggle {
     background: rgba(212,175,55,0.08);
-    border: 1px solid rgba(212,175,55,0.25);
+    border: 1px solid var(--skia-border);
     color: #d4af37;
     padding: 4px 12px;
     font-size: 10px;
@@ -455,9 +473,9 @@ button {
 }
 
 .settings-input {
-    background: rgba(0,0,0,0.4);
-    border: 1px solid rgba(212,175,55,0.2);
-    color: #c9b37a;
+    background: var(--skia-card);
+    border: 1px solid var(--skia-border);
+    color: var(--skia-text);
     padding: 6px 10px;
     font-size: 11px;
     width: 200px;
@@ -468,7 +486,7 @@ button {
     width: calc(100% - 32px);
     margin: 8px 16px 16px;
     background: rgba(212,175,55,0.08);
-    border: 1px solid rgba(212,175,55,0.3);
+    border: 1px solid var(--skia-border);
     color: #d4af37;
     padding: 10px;
     font-size: 10px;
@@ -485,7 +503,7 @@ button {
 
     .settings-controls button {
         background: rgba(212,175,55,0.08);
-        border: 1px solid rgba(212,175,55,0.25);
+        border: 1px solid var(--skia-border);
         color: #d4af37;
         width: 24px;
         height: 24px;
@@ -496,17 +514,17 @@ button {
     }
 
 .settings-select {
-    background: rgba(0,0,0,0.4);
-    border: 1px solid rgba(212,175,55,0.2);
-    color: #c9b37a;
+    background: var(--skia-card);
+    border: 1px solid var(--skia-border);
+    color: var(--skia-text);
     padding: 4px 8px;
     font-size: 11px;
 }
 
 #settings-locale-select {
-    background-color: #1a1510;
-    color: #e8e4dc;
-    border: 1px solid #d4af37;
+    background-color: var(--skia-surface);
+    color: var(--skia-text);
+    border: 1px solid var(--skia-gold);
     min-width: 12rem;
 }
 
@@ -518,8 +536,8 @@ button {
 }
 
 #settings-locale-select option {
-    background-color: #1a1510;
-    color: #e8e4dc;
+    background-color: var(--skia-surface);
+    color: var(--skia-text);
 }
 
 #terminal-panel {
@@ -527,7 +545,7 @@ button {
     min-height: 220px;
     height: 220px;
     background: #050500;
-    border-top: 1px solid #2a1f00;
+    border-top: 1px solid var(--skia-border);
     display: flex;
     flex-direction: column;
     font-family: "Consolas", "JetBrains Mono", monospace;
@@ -540,7 +558,7 @@ button {
     gap: 8px;
     padding: 4px 8px;
     background: #0d0d00;
-    border-bottom: 1px solid #1a1200;
+    border-bottom: 1px solid var(--skia-border);
     flex-shrink: 0;
 }
 
@@ -565,7 +583,7 @@ button {
     display: flex;
     align-items: center;
     gap: 2px;
-    border: 1px solid rgba(212,175,55,0.2);
+    border: 1px solid var(--skia-border);
     border-radius: 2px;
     background: rgba(0,0,0,0.35);
 }
@@ -578,7 +596,7 @@ button {
 .terminal-tab-label {
     background: transparent;
     border: none;
-    color: #c9b37a;
+    color: var(--skia-text);
     font-size: 10px;
     letter-spacing: 0.06em;
     padding: 4px 6px;
@@ -602,7 +620,7 @@ button {
 
 .terminal-toolbar-btn {
     background: rgba(212,175,55,0.08);
-    border: 1px solid rgba(212,175,55,0.25);
+    border: 1px solid var(--skia-border);
     color: #d4af37;
     font-size: 14px;
     line-height: 1;
@@ -667,16 +685,17 @@ button {
 }
 
 .forge-offline-title {
-    font-size: 11px;
+    font-size: 10px;
+    font-weight: 600;
     letter-spacing: 0.12em;
-    color: rgba(212,175,55,0.6);
+    color: var(--skia-gold-accent);
     text-transform: uppercase;
 }
 
 #forge-retry-btn {
     margin-top: 8px;
     background: transparent;
-    border: 1px solid rgba(212,175,55,0.3);
+    border: 1px solid var(--skia-border);
     color: #d4af37;
     padding: 6px 14px;
     font-size: 10px;
@@ -693,8 +712,9 @@ button {
 /* ── Forge IDE agent work panel (not side chat) ── */
 #view-agent .agent-hint {
     margin: 0 16px 8px;
-    font-size: 11px;
-    color: rgba(212, 175, 55, 0.65);
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--skia-text-muted);
     line-height: 1.45;
 }
 
@@ -719,30 +739,32 @@ button {
     margin: 0 16px 12px;
     max-height: 42vh;
     overflow-y: auto;
-    border: 1px solid #2a1f00;
-    background: #0a0900;
+    border: 1px solid var(--skia-border);
+    background: var(--skia-card);
     padding: 8px;
-    font-size: 11px;
+    font-size: 12px;
+    font-weight: 400;
 }
 
 .agent-log-row {
-    border-bottom: 1px solid #1a1100;
+    border-bottom: 1px solid var(--skia-border);
     padding: 8px 4px;
 }
 
 .agent-log-head {
-    color: #d4af37;
+    color: var(--skia-gold);
     font-size: 10px;
+    font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: 4px;
 }
 
 .agent-log-body {
-    color: rgba(255, 255, 255, 0.82);
+    color: var(--skia-text);
     white-space: pre-wrap;
     font-family: Consolas, "Cascadia Mono", monospace;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.4;
 }
 
@@ -759,16 +781,17 @@ button {
 }
 
 .agent-log-diff .agent-log-body {
-    color: rgba(200, 220, 200, 0.9);
+    color: var(--skia-success);
 }
 
 .agent-summary {
     margin: 0 16px 16px;
     padding: 10px;
-    border: 1px solid #2a1f00;
-    background: #0f0d00;
-    color: rgba(255, 255, 255, 0.88);
-    font-size: 12px;
+    border: 1px solid var(--skia-border);
+    background: var(--skia-card);
+    color: var(--skia-text);
+    font-size: 14px;
+    font-weight: 400;
     line-height: 1.5;
     white-space: pre-wrap;
     max-height: 28vh;

@@ -49,7 +49,7 @@ function attachAssistantDownloadButton(
     dl.title = t("chat.downloadTitle");
     dl.style.marginTop = "8px";
     dl.style.background = "rgba(212,175,55,0.1)";
-    dl.style.border = "1px solid rgba(212,175,55,0.35)";
+    dl.style.border = "1px solid rgba(212,175,55,0.3)";
     dl.style.color = "#d4af37";
     dl.style.borderRadius = "0";
     dl.style.padding = "4px 10px";
@@ -97,8 +97,8 @@ const renderMessage = (
             s.style.padding = "3px 8px";
             s.style.borderRadius = "4px";
             s.style.background = "rgba(212,175,55,0.12)";
-            s.style.border = "1px solid rgba(212,175,55,0.25)";
-            s.style.color = "rgba(212,175,55,0.85)";
+            s.style.border = "1px solid rgba(212,175,55,0.3)";
+            s.style.color = "#d4af37";
             chips.appendChild(s);
         }
         node.appendChild(chips);
@@ -167,8 +167,8 @@ function renderPendingAttachmentChips(
         wrap.style.padding = "3px 6px 3px 8px";
         wrap.style.borderRadius = "4px";
         wrap.style.background = "rgba(212,175,55,0.12)";
-        wrap.style.border = "1px solid rgba(212,175,55,0.28)";
-        wrap.style.color = "rgba(212,175,55,0.9)";
+        wrap.style.border = "1px solid rgba(212,175,55,0.3)";
+        wrap.style.color = "#d4af37";
 
         const name = document.createElement("span");
         name.textContent = file.name;
@@ -185,7 +185,7 @@ function renderPendingAttachmentChips(
         rm.setAttribute("aria-label", t("chat.removeAttachmentAria", { name: file.name }));
         rm.style.background = "transparent";
         rm.style.border = "none";
-        rm.style.color = "rgba(212,175,55,0.85)";
+        rm.style.color = "#d4af37";
         rm.style.cursor = "pointer";
         rm.style.fontSize = "14px";
         rm.style.lineHeight = "1";
@@ -283,7 +283,7 @@ const send = async (
     activeController = new AbortController();
     const verificationPanel = document.createElement("details");
     verificationPanel.style.marginTop = "8px";
-    verificationPanel.style.border = "1px solid #5f4f1f";
+    verificationPanel.style.border = "1px solid rgba(212,175,55,0.3)";
     verificationPanel.style.padding = "6px";
     const summary = document.createElement("summary");
     summary.textContent = "Verification Log";

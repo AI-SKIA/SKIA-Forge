@@ -35,34 +35,34 @@ function showPlanRequiredMessage(overlay: HTMLElement, email: string): void {
       <img src="../assets/sidebar-logo.png"
            style="width:80px; margin-bottom:20px; opacity:0.9;"
            alt="SKIA Forge" />
-      <h2 style="color:#d4af37; font-size:26px; font-weight:700;
+      <h2 style="color:#d4af37; font-size:28px; font-weight:700;
                  letter-spacing:0.08em; margin-bottom:12px;">
         FORGE IDE REQUIRES A PLAN
       </h2>
-      <p style="color:rgba(255,255,255,0.75); font-size: 14px;
+      <p style="color:#ffffff; font-size: 14px; font-weight:400;
                 line-height:1.6; margin-bottom:8px;">
         Signed in as <strong style="color:#d4af37;">${email}</strong>
       </p>
-      <p style="color:rgba(255,255,255,0.6); font-size: 14px;
+      <p style="color:rgba(255,255,255,0.55); font-size: 14px; font-weight:400;
                 line-height:1.6; margin-bottom:24px;">
         ${FORGE_PLAN_REQUIRED_MESSAGE}
       </p>
       <a href="https://skia.ca/settings"
-         style="display:block; background:#2a1f0d; border:1px solid #d4af37;
+         style="display:block; background:#1a1a1a; border:1px solid #d4af37;
                 border-radius:6px; color:#d4af37; font-size:11px;
-                font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
+                font-weight:600; letter-spacing:0.12em; text-transform:uppercase;
                 padding:14px 22px; text-decoration:none; margin-bottom:12px;
                 cursor:pointer;">
         UPGRADE YOUR PLAN
       </a>
       <button onclick="window.__skiaAuthPanel.signOut()"
-              style="background:transparent; border:1px solid rgba(201,146,42,0.3);
-                     border-radius:6px; color:rgba(201,146,42,0.6); font-size:11px;
-                     font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
+              style="background:transparent; border:1px solid rgba(212,175,55,0.3);
+                     border-radius:6px; color:#999999; font-size:11px;
+                     font-weight:600; letter-spacing:0.12em; text-transform:uppercase;
                      padding:10px 22px; cursor:pointer; width:100%;">
         SIGN OUT
       </button>
-      <p style="color:rgba(255,255,255,0.3); font-size:11px; margin-top:20px;">
+      <p style="color:rgba(255,255,255,0.55); font-size:12px; font-weight:400; margin-top:20px;">
         ONE ECOSYSTEM. ONE UNIVERSE. ALL SKIA.
       </p>
     </div>
@@ -398,14 +398,14 @@ const acquireTokenAfterAuth = async (
 
 const inputStyle = [
     "width:100%", "box-sizing:border-box", "margin-bottom:10px", "padding:11px 12px",
-    "background:#111111", "border:1px solid #2a2a2a", "color:#e8d5a3",
-    "font-size:14px", "outline:none", "font-family:inherit"
+    "background:#111111", "border:1px solid rgba(212,175,55,0.3)", "color:#ffffff",
+    "font-size:14px", "font-weight:400", "outline:none", "font-family:inherit"
 ].join(";");
 
 const btnStyle = [
     "width:100%", "padding:11px", "background:transparent",
     "border:1px solid #d4af37", "color:#d4af37", "cursor:pointer",
-    "letter-spacing:1.5px", "font-size: 14px", "font-family:inherit"
+    "letter-spacing:1.5px", "font-size:12px", "font-weight:600", "font-family:inherit"
 ].join(";");
 
 const showError = (id: string, message: string): void => {
@@ -442,23 +442,23 @@ const createOverlay = (): HTMLDivElement => {
     overlay.style.cssText = [
         "position:fixed", "inset:0", "background:#0d0d0d", "z-index:9999",
         "display:flex", "align-items:center", "justify-content:center",
-        "font-family:Segoe UI,sans-serif", "color:#e8d5a3"
+        "font-family:Segoe UI,sans-serif", "color:#ffffff"
     ].join(";");
 
     overlay.innerHTML = `
-    <div class="skia-auth-card" style="width:100%;max-width:420px;background:#161616;border:1px solid #2a2a2a;padding:32px 28px;">
+    <div class="skia-auth-card" style="width:100%;max-width:420px;background:#1a1a1a;border:1px solid rgba(212,175,55,0.3);padding:32px 28px;">
 
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
         <img src="assets/sidebar-logo.png" alt="SKIA"
              onerror="this.style.display='none'"
              style="width:32px;height:32px;" />
-        <span style="letter-spacing:2px;color:#d4af37;font-size:26px;font-weight:600;">SKIA FORGE</span>
+        <span style="letter-spacing:2px;color:#d4af37;font-size:28px;font-weight:700;">SKIA FORGE</span>
       </div>
 
       <div style="display:flex;border-bottom:1px solid #2a2a2a;margin-bottom:20px;">
         <button id="auth-tab-login"
           style="flex:1;background:transparent;border:none;border-bottom:2px solid #d4af37;
-                 color:#e8d5a3;padding:10px 0;cursor:pointer;letter-spacing:1px;font-size:12px;">LOGIN</button>
+                 color:#ffffff;padding:10px 0;cursor:pointer;letter-spacing:1px;font-size:12px;font-weight:600;">LOGIN</button>
         <button id="auth-tab-register"
           style="flex:1;background:transparent;border:none;border-bottom:2px solid transparent;
                  color:#555;padding:10px 0;cursor:pointer;letter-spacing:1px;font-size:12px;">REGISTER</button>
@@ -469,7 +469,7 @@ const createOverlay = (): HTMLDivElement => {
                autocomplete="email" style="${inputStyle}" />
         <input id="auth-password" type="password" placeholder="Password"
                autocomplete="current-password" style="${inputStyle}" />
-        <label style="display:flex;align-items:center;gap:8px;margin:-2px 0 12px;color:#b59752;font-size:12px;">
+        <label style="display:flex;align-items:center;gap:8px;margin:-2px 0 12px;color:rgba(255,255,255,0.55);font-size:12px;font-weight:400;">
           <input id="auth-remember" type="checkbox" checked />
           Remember credentials on this device
         </label>
@@ -490,7 +490,7 @@ const createOverlay = (): HTMLDivElement => {
              style="display:none;color:#ff5c5c;margin-top:10px;font-size:12px;line-height:1.5;"></div>
       </form>
 
-      <div style="margin-top:20px;text-align:center;font-size:11px;color:#3a3a3a;letter-spacing:0.5px;">
+      <div style="margin-top:20px;text-align:center;font-size:12px;font-weight:400;color:rgba(255,255,255,0.55);letter-spacing:0.5px;">
         ONE ECOSYSTEM. ONE UNIVERSE. ALL SKIA.
       </div>
     </div>
@@ -521,8 +521,8 @@ const wireOverlayHandlers = (): void => {
         const isLogin = tab === "login";
         loginForm.style.display = isLogin ? "block" : "none";
         registerForm.style.display = isLogin ? "none" : "block";
-        loginTab.style.color = isLogin ? "#e8d5a3" : "#555";
-        registerTab.style.color = isLogin ? "#555" : "#e8d5a3";
+        loginTab.style.color = isLogin ? "#ffffff" : "#999999";
+        registerTab.style.color = isLogin ? "#999999" : "#ffffff";
         loginTab.style.borderBottom = isLogin ? "2px solid #d4af37" : "2px solid transparent";
         registerTab.style.borderBottom = isLogin ? "2px solid transparent" : "2px solid #d4af37";
     };

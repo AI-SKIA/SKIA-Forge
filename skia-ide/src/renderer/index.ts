@@ -115,7 +115,7 @@ const wireInAppUpdateAction = (host: HTMLDivElement, downloadUrl: string): void 
         <div id="skia-update-bar-bg" style="height:8px;background:rgba(255,255,255,0.12);border-radius:4px;overflow:hidden;">
           <div id="skia-update-bar-fill" style="height:100%;width:0%;background:#d4af37;transition:width 0.12s ease;"></div>
         </div>
-        <div id="skia-update-status" style="margin-top:8px;font-size:11px;color:rgba(255,255,255,0.78);">Downloading…</div>
+        <div id="skia-update-status" style="margin-top:8px;font-size:12px;font-weight:400;color:rgba(255,255,255,0.55);">Downloading…</div>
       </div>`;
         const fill = actions.querySelector("#skia-update-bar-fill") as HTMLDivElement | null;
         const statusEl = actions.querySelector("#skia-update-status") as HTMLDivElement | null;
@@ -174,7 +174,7 @@ const showUpdateNotice = (title: string, message: string, actionLabel?: string, 
         host.style.border = "1px solid rgba(212,175,55,0.45)";
         host.style.borderRadius = "10px";
         host.style.padding = "12px";
-        host.style.color = "#f1e2ad";
+        host.style.color = "#ffffff";
         host.style.boxShadow = "0 8px 24px rgba(0,0,0,0.45)";
         document.body.appendChild(host);
     }
@@ -185,8 +185,8 @@ const showUpdateNotice = (title: string, message: string, actionLabel?: string, 
     </div>`
             : "";
     host.innerHTML = `
-      <div style="font-size:12px;letter-spacing:0.08em;color:#d4af37;text-transform:uppercase;margin-bottom:6px;">${title}</div>
-      <div style="font-size:12px;line-height:1.5;color:rgba(255,255,255,0.86);">${message}</div>
+      <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;color:#d4af37;text-transform:uppercase;margin-bottom:6px;">${title}</div>
+      <div style="font-size:14px;font-weight:400;line-height:1.5;color:#ffffff;">${message}</div>
       ${actionBlock}
       <button id="skia-update-dismiss" style="margin-top:10px;margin-left:8px;background:transparent;border:1px solid rgba(255,255,255,0.22);color:rgba(255,255,255,0.72);padding:8px 10px;cursor:pointer;">Dismiss</button>
     `;

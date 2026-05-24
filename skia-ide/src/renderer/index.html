@@ -102,9 +102,10 @@
         }
 
         .forge-offline-title {
-            font-size: 11px;
+            font-size: 10px;
+            font-weight: 600;
             letter-spacing: 0.12em;
-            color: rgba(212,175,55,0.6);
+            color: rgba(212,175,55,0.7);
             text-transform: uppercase;
         }
 
@@ -166,14 +167,14 @@
         .lh-header { display: flex; justify-content: space-between; align-items: center; }
         .lh-title { font-size: 10px; letter-spacing: 0.15em; color: rgba(212,175,55,0.55); text-transform: uppercase; }
         .lh-refresh { background: transparent; border: 1px solid rgba(212,175,55,0.3); color: #d4af37; padding: 4px 10px; font-size: 10px; cursor: pointer; }
-        .lh-mode { font-size: 11px; color: rgba(255,255,255,0.55); }
-        .lh-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+        .lh-mode { font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.55); }
+        .lh-table { width: 100%; border-collapse: collapse; font-size: 12px; font-weight: 400; }
         .lh-table th, .lh-table td { text-align: left; padding: 8px 6px; border-bottom: 1px solid rgba(212,175,55,0.12); }
         .lh-url { font-family: 'Cascadia Code', monospace; color: rgba(255,255,255,0.65); word-break: break-all; }
-        .lh-ok { color: #7fd99a; }
-        .lh-bad { color: #e8a0a0; }
+        .lh-ok { color: #4ade80; }
+        .lh-bad { color: #ff5c5c; }
         .lh-muted { color: rgba(255,255,255,0.35); }
-        .lh-loading { font-size: 11px; color: rgba(212,175,55,0.45); }
+        .lh-loading { font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.55); }
     </style>
 </head>
 <body>
@@ -192,7 +193,7 @@
                 <div class="nav-item" id="nav-terminal" data-view="terminal" title="Open integrated terminal (bottom panel)">TERMINAL</div>
             </nav>
             <div id="explorer-tree">
-                <div id="explorer-empty-state" style="padding: 18px 14px; color: rgba(212,175,55,0.45); font-size: 11px; letter-spacing: 0.08em; line-height: 1.7;">
+                <div id="explorer-empty-state" style="padding: 18px 14px; color: rgba(255,255,255,0.55); font-size: 12px; font-weight: 400; letter-spacing: 0.08em; line-height: 1.7;">
                     No folder open.<br />
                     <span style="cursor:pointer; color:#d4af37; text-decoration:underline;" id="explorer-open-folder-hint">Open a folder</span> to get started.
                 </div>
