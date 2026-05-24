@@ -210,7 +210,7 @@ body {
     color: #d4af37;
     padding: 8px 12px;
     margin: 12px 16px;
-    font-size: 13px;
+    font-size: 14px;
     outline: none;
 }
 
@@ -405,7 +405,7 @@ button {
 #chat-tagline {
     text-align: center;
     color: var(--skia-muted-gold);
-    font-size: 9px;
+    font-size: 10px;
 }
 
 .settings-group {
@@ -597,7 +597,7 @@ button {
 }
 
     .terminal-tab-delete:hover {
-        color: #e8a0a0;
+        color: #ff5c5c;
     }
 
 .terminal-toolbar-btn {

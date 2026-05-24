@@ -1,0 +1,24 @@
+# SKIA Forge pre-commit: color & typography normalization (check-only)
+#
+# Blocks commits when Forge UI files use non-canonical colors or font sizes/weights.
+# This hook does NOT rewrite files — it only reports violations.
+#
+# Fix violations locally:
+#   node scripts/normalize-forge-colors.mjs
+#   node scripts/normalize-forge-font-sizes.mjs
+
+node scripts/normalize-forge-colors.mjs --check || {
+  echo ""
+  echo "✗ Commit blocked: non-canonical Forge colors detected."
+  echo "  Run: node scripts/normalize-forge-colors.mjs"
+  exit 1
+}
+
+node scripts/normalize-forge-font-sizes.mjs --check || {
+  echo ""
+  echo "✗ Commit blocked: non-canonical Forge font sizes/weights detected."
+  echo "  Run: node scripts/normalize-forge-font-sizes.mjs"
+  exit 1
+}
+
+echo "✓ SKIA Forge color and font normalization passed"

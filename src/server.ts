@@ -71,6 +71,13 @@ import { createEmbeddingVectorStore } from "./forge/modules/context-engine/embed
 import { SKIA_FULL_EMBEDDING_PATH_DEFAULT } from "./skiaFullEmbeddingContract.js";
 import { requireAuth } from "./middleware/requireAuth.js";
 import { forgeLocaleMiddleware } from "./middleware/forgeLocaleMiddleware.js";
+import {
+  resolveSkiaBackendUrl,
+  resolveSkiaFullApiUrl,
+  isLocalFounderOverrideEnabled,
+  resolveLocalForgeSovereignMode,
+} from "./config/localBackend.js";
+import localHealthRoutes from "./routes/localHealthRoutes.js";
 
 /** Admin-only mutations: requires `x-skia-admin-secret` to match `SKIA_ADMIN_SECRET` (fail closed if unset). */
 function requireSkiaAdminSecret(req: express.Request, res: express.Response, next: express.NextFunction): void {
@@ -108,7 +115,7 @@ const providerRouter = new ProviderRouter();
 const telemetry = new TelemetryStore();
 const skiaFullAdapter = new SkiaFullAdapter({
   enabled: String(process.env.SKIA_FULL_ENABLED ?? "true") !== "false",
-  baseUrl: process.env.SKIA_FULL_API_URL ?? "https://api.skia.ca",
+  baseUrl: resolveSkiaFullApiUrl(),
   timeoutMs: Number(process.env.SKIA_FULL_TIMEOUT_MS ?? 15000),
   allowLocalFallback: String(process.env.SKIA_FULL_ALLOW_LOCAL_FALLBACK ?? "false") === "true",
   brainOnly: true,
@@ -143,7 +150,7 @@ const intentVerifier = new IntentSignatureVerifier({
   secondaryGraceUntilMs: Number.isFinite(secondaryGraceUntilMs) ? secondaryGraceUntilMs : null
 });
 let skiaStatus: SkiaStatus = providerRouter.getStatus();
-let sovereignMode: SovereignExecutionMode = "adaptive";
+let sovereignMode: SovereignExecutionMode = resolveLocalForgeSovereignMode();
 let governanceLockdown = false;
 let governancePolicy: ForgeGovernancePolicy = buildGovernancePolicy({});
 const governanceTelemetry = new GovernanceTelemetryStore();
@@ -430,29 +437,39 @@ if (incrementalWatcherEnabled) {
 void loadSkiaRules(projectRoot)
   .then(async (rules) => {
     governancePolicy = buildGovernancePolicy(rules);
-    sovereignMode = governancePolicy.defaultMode;
+    sovereignMode = isLocalFounderOverrideEnabled()
+      ? resolveLocalForgeSovereignMode()
+      : governancePolicy.defaultMode;
     await loadRuntimeState(projectRoot, providerRouter, telemetry, {
       setMode: (mode) => {
-        sovereignMode = mode;
+        sovereignMode = isLocalFounderOverrideEnabled() ? resolveLocalForgeSovereignMode() : mode;
       },
       setLockdown: (enabled) => {
-        governanceLockdown = enabled;
+        governanceLockdown = isLocalFounderOverrideEnabled() ? false : enabled;
       },
       governanceTelemetry
     });
+    if (isLocalFounderOverrideEnabled()) {
+      sovereignMode = resolveLocalForgeSovereignMode();
+      governanceLockdown = false;
+    }
     skiaStatus = providerRouter.getStatus();
   })
   .catch(async () => {
     // Keep defaults if rules are unavailable.
     await loadRuntimeState(projectRoot, providerRouter, telemetry, {
       setMode: (mode) => {
-        sovereignMode = mode;
+        sovereignMode = isLocalFounderOverrideEnabled() ? resolveLocalForgeSovereignMode() : mode;
       },
       setLockdown: (enabled) => {
-        governanceLockdown = enabled;
+        governanceLockdown = isLocalFounderOverrideEnabled() ? false : enabled;
       },
       governanceTelemetry
     });
+    if (isLocalFounderOverrideEnabled()) {
+      sovereignMode = resolveLocalForgeSovereignMode();
+      governanceLockdown = false;
+    }
     skiaStatus = providerRouter.getStatus();
   });
 
@@ -473,6 +490,8 @@ app.get("/health", (_req, res) => {
     timestamp: new Date().toISOString()
   });
 });
+
+app.use("/api/local", localHealthRoutes);
 
 app.get("/live", requireAuth, (_req, res) => {
   res.json(
@@ -536,7 +555,7 @@ async function proxyAuthToSkia(
   method: "GET" | "POST",
   pathSuffix: string
 ): Promise<void> {
-  const base = (process.env.SKIA_BACKEND_URL ?? "https://api.skia.ca").trim().replace(/\/+$/, "");
+  const base = resolveSkiaBackendUrl().trim().replace(/\/+$/, "");
   const target = `${base}${pathSuffix}`;
   try {
     const upstream = await fetch(target, {
@@ -589,9 +608,7 @@ app.post("/api/auth/contact", async (req, res) => {
 });
 
 app.get("/api/auth/session", async (req, res) => {
-  const base = (process.env.SKIA_FULL_API_URL ?? process.env.SKIA_BACKEND_URL ?? "https://api.skia.ca")
-    .trim()
-    .replace(/\/+$/, "");
+  const base = resolveSkiaFullApiUrl().trim().replace(/\/+$/, "");
   const target = `${base}/api/auth/session`;
   try {
     const upstream = await fetch(target, {

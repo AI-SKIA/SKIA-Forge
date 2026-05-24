@@ -3,7 +3,8 @@ import "./styles/skia-dark.css";
 import { applyForgeUiStrings, populateSettingsLocaleSelect } from "./i18n/applyForgeUi";
 import { getLocale, initForgeI18n, subscribeLocaleChange } from "./i18n/forgeI18n";
 import { getEditor, initializeMonaco } from "./editor/monacoSetup";
-import { loadConfig } from "./skia/skiaConfig";
+import { loadConfig, getBackendUrl, getLocalBackendMode, getLocalEngineConfig, getLocalFounderOverride, getSkiaOwnerEmail } from "./skia/skiaConfig";
+import { initializeLocalHealthPanel } from "./skia/localHealthPanel";
 import { initializeChatPanel } from "./skia/skiaChatPanel";
 import { cancelAgentTask, initializeAgentPanel } from "./skia/skiaAgentPanel";
 import { initializeStatusBar } from "./skia/skiaStatusBar";
@@ -59,11 +60,28 @@ const saveEditorSettings = (): void => {
     );
 };
 
+const refreshLocalHealthPanel = async (): Promise<void> => {
+    const engines = getLocalEngineConfig();
+    await initializeLocalHealthPanel({
+        backendUrl: getBackendUrl(),
+        skiaServeUrl: engines.skiaServeUrl,
+        embeddingEngineUrl: engines.embeddingEngineUrl,
+        vectorDbUrl: engines.vectorDbUrl,
+        videoServiceUrl: engines.videoServiceUrl,
+        comfyuiUrl: engines.comfyuiUrl,
+        sdWebuiUrl: engines.sdWebuiUrl,
+        localMode: getLocalBackendMode(),
+        founderOverride: getLocalFounderOverride(),
+        founderEmail: getSkiaOwnerEmail(),
+    });
+};
+
 const viewMap: Record<string, string> = {
     explorer: "editor-container",
     search: "view-search",
     agent: "view-agent",
     forge: "view-forge",
+    "local-health": "view-local-health",
     settings: "view-settings"
 };
 
@@ -114,7 +132,7 @@ const wireInAppUpdateAction = (host: HTMLDivElement, downloadUrl: string): void 
             const msg = document.createElement("div");
             msg.style.marginTop = "10px";
             msg.style.fontSize = "11px";
-            msg.style.color = "#e8a0a0";
+            msg.style.color = "#ff5c5c";
             msg.textContent = err.message;
             actions.appendChild(msg);
             const retry = document.createElement("button");
@@ -496,6 +514,7 @@ const setView = (view: string): void => {
     }
 
     if (view === "forge") void loadForgeStatus();
+    if (view === "local-health") void refreshLocalHealthPanel();
     if (view === "settings") loadSettings();
 };
 

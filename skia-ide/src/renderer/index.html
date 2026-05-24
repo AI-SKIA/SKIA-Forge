@@ -151,11 +151,29 @@
             min-height: 0;
         }
 
-            #view-settings.active {
-                flex: 1;
-                overflow-y: auto;
-                min-height: 0;
-            }
+        #view-settings.active {
+            flex: 1;
+            overflow-y: auto;
+            min-height: 0;
+        }
+
+        #view-local-health {
+            padding: 20px 16px;
+            overflow-y: auto;
+        }
+
+        .local-health-panel { display: flex; flex-direction: column; gap: 12px; }
+        .lh-header { display: flex; justify-content: space-between; align-items: center; }
+        .lh-title { font-size: 10px; letter-spacing: 0.15em; color: rgba(212,175,55,0.55); text-transform: uppercase; }
+        .lh-refresh { background: transparent; border: 1px solid rgba(212,175,55,0.3); color: #d4af37; padding: 4px 10px; font-size: 10px; cursor: pointer; }
+        .lh-mode { font-size: 11px; color: rgba(255,255,255,0.55); }
+        .lh-table { width: 100%; border-collapse: collapse; font-size: 11px; }
+        .lh-table th, .lh-table td { text-align: left; padding: 8px 6px; border-bottom: 1px solid rgba(212,175,55,0.12); }
+        .lh-url { font-family: 'Cascadia Code', monospace; color: rgba(255,255,255,0.65); word-break: break-all; }
+        .lh-ok { color: #7fd99a; }
+        .lh-bad { color: #e8a0a0; }
+        .lh-muted { color: rgba(255,255,255,0.35); }
+        .lh-loading { font-size: 11px; color: rgba(212,175,55,0.45); }
     </style>
 </head>
 <body>
@@ -169,6 +187,7 @@
                 <div class="nav-item" data-view="search">SEARCH</div>
                 <div class="nav-item" data-view="agent">AGENT</div>
                 <div class="nav-item" data-view="forge">FORGE</div>
+                <div class="nav-item" data-view="local-health">LOCAL</div>
                 <div class="nav-item" data-view="settings">SETTINGS</div>
                 <div class="nav-item" id="nav-terminal" data-view="terminal" title="Open integrated terminal (bottom panel)">TERMINAL</div>
             </nav>
@@ -210,6 +229,11 @@
                 <div id="forge-mode"></div>
                 <div id="forge-governance"></div>
                 <div id="forge-modules"></div>
+            </div>
+
+            <div id="view-local-health" class="center-view">
+                <div class="view-header">LOCAL STACK HEALTH</div>
+                <div id="local-health-root"></div>
             </div>
 
             <div id="view-settings" class="center-view">

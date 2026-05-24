@@ -150,3 +150,11 @@ skia-ide/release/
 skia-ide/release-eb-verify/
 # CI writes decoded signing cert here — never commit
 skia-ide/codesign.pfx
+
+# Local development environment (never push)
+local-dev/.env.local
+.env.local
+
+# Optional: ignore local machine overrides
+local-dev/.env.*
+*.local.env

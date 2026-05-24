@@ -1,0 +1,15 @@
+{
+  "LOCAL_SKIA_BACKEND_URL": "http://localhost:3000",
+  "LOCAL_SKIA_SERVE_URL": "http://localhost:11500",
+  "LOCAL_EMBEDDING_ENGINE_URL": "http://localhost:5003",
+  "LOCAL_VECTOR_DB_URL": "http://localhost:5004",
+  "LOCAL_VIDEO_SERVICE_URL": "http://localhost:5007",
+  "LOCAL_COMFYUI_URL": "",
+  "LOCAL_SD_WEBUI_URL": "",
+  "LOCAL_FORGE_URL": "http://localhost:4173",
+  "LOCAL_CHAT_PIPELINE_URL": "http://localhost:3000/api/skia/chat",
+  "LOCAL_FORGE_AGENT_PIPELINE_URL": "http://localhost:3000/api/skia/forge-agent",
+  "SKIA_OWNER_EMAIL": "dany.francis@consultant.com",
+  "LOCAL_FOUNDER_OVERRIDE": true,
+  "LOCAL_FORGE_SOVEREIGN_MODE": "autonomous"
+}

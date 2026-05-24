@@ -6,6 +6,15 @@ type RuntimeConfig = {
   chatPipelineUrl: string;
   /** Next `/api/skia/forge-agent` — Forge IDE agent work stream only. */
   forgeAgentPipelineUrl: string;
+  localBackendMode: boolean;
+  localSkiaServeUrl: string;
+  localEmbeddingEngineUrl: string;
+  localVectorDbUrl: string;
+  localVideoServiceUrl: string;
+  localComfyuiUrl: string | null;
+  localSdWebuiUrl: string | null;
+  localFounderOverride: boolean;
+  skiaOwnerEmail: string;
 };
 
 let cache: RuntimeConfig | null = null;
@@ -17,9 +26,18 @@ const defaults: RuntimeConfig = {
   timeout: 10000,
   chatPipelineUrl: "https://skia.ca/api/skia/chat",
   forgeAgentPipelineUrl: "https://skia.ca/api/skia/forge-agent",
+  localBackendMode: false,
+  localSkiaServeUrl: "http://localhost:11500",
+  localEmbeddingEngineUrl: "http://localhost:5003",
+  localVectorDbUrl: "http://localhost:5004",
+  localVideoServiceUrl: "http://localhost:5007",
+  localComfyuiUrl: null,
+  localSdWebuiUrl: null,
+  localFounderOverride: false,
+  skiaOwnerEmail: "dany.francis@consultant.com",
 };
 
-const normalizeUrl = (rawUrl: string | undefined, fallback: string): string => {
+const normalizeUrl = (rawUrl: string | undefined, fallback: string, allowLocal = false): string => {
   const candidate = (rawUrl || "").trim();
   if (!candidate) {
     return fallback;
@@ -29,7 +47,7 @@ const normalizeUrl = (rawUrl: string | undefined, fallback: string): string => {
     const parsed = new URL(candidate);
     const host = parsed.hostname.toLowerCase();
     const disallowedHosts = new Set(["127.0.0.1", "localhost", "0.0.0.0"]);
-    if (parsed.protocol === "file:" || disallowedHosts.has(host)) {
+    if (parsed.protocol === "file:" || (disallowedHosts.has(host) && !allowLocal)) {
       return fallback;
     }
     return parsed.origin;
@@ -38,10 +56,10 @@ const normalizeUrl = (rawUrl: string | undefined, fallback: string): string => {
   }
 };
 
-const normalizeBackendUrl = (rawUrl: string | undefined): string =>
-  normalizeUrl(rawUrl, defaults.backendUrl);
+const normalizeBackendUrl = (rawUrl: string | undefined, allowLocal: boolean): string =>
+  normalizeUrl(rawUrl, defaults.backendUrl, allowLocal);
 
-const normalizeChatPipelineUrl = (rawUrl: string | undefined): string => {
+const normalizeChatPipelineUrl = (rawUrl: string | undefined, allowLocal: boolean): string => {
   const candidate = (rawUrl || "").trim();
   const fallback = defaults.chatPipelineUrl;
   if (!candidate) {
@@ -51,7 +69,7 @@ const normalizeChatPipelineUrl = (rawUrl: string | undefined): string => {
     const parsed = new URL(candidate);
     const host = parsed.hostname.toLowerCase();
     const disallowedHosts = new Set(["127.0.0.1", "localhost", "0.0.0.0"]);
-    if (parsed.protocol === "file:" || disallowedHosts.has(host)) {
+    if (parsed.protocol === "file:" || (disallowedHosts.has(host) && !allowLocal)) {
       return fallback;
     }
     /**
@@ -67,14 +85,18 @@ const normalizeChatPipelineUrl = (rawUrl: string | undefined): string => {
   }
 };
 
-const normalizeForgeAgentPipelineUrl = (rawUrl: string | undefined, chatPipelineUrl: string): string => {
+const normalizeForgeAgentPipelineUrl = (
+  rawUrl: string | undefined,
+  chatPipelineUrl: string,
+  allowLocal: boolean
+): string => {
   const candidate = (rawUrl || "").trim();
   if (candidate) {
     try {
       const parsed = new URL(candidate);
       const host = parsed.hostname.toLowerCase();
       const disallowedHosts = new Set(["127.0.0.1", "localhost", "0.0.0.0"]);
-      if (parsed.protocol !== "file:" && !disallowedHosts.has(host)) {
+      if (parsed.protocol !== "file:" && (allowLocal || !disallowedHosts.has(host))) {
         if (host === "api.skia.ca") {
           return defaults.forgeAgentPipelineUrl;
         }
@@ -115,19 +137,39 @@ export const loadConfig = async (): Promise<RuntimeConfig> => {
     const configWithForge = config as typeof config & {
       forgeUrl?: string;
       forgeAgentPipelineUrl?: string;
+      localBackendMode?: boolean;
+      localSkiaServeUrl?: string;
+      localEmbeddingEngineUrl?: string;
+      localVectorDbUrl?: string;
+      localVideoServiceUrl?: string;
+      localComfyuiUrl?: string;
+      localSdWebuiUrl?: string;
+      localFounderOverride?: boolean;
+      skiaOwnerEmail?: string;
     };
-    const chatPipelineUrl = normalizeChatPipelineUrl(config.chatPipelineUrl);
+    const allowLocal = Boolean(configWithForge.localBackendMode);
+    const chatPipelineUrl = normalizeChatPipelineUrl(config.chatPipelineUrl, allowLocal);
     cache = {
-      backendUrl: normalizeBackendUrl(config.backendUrl),
+      backendUrl: normalizeBackendUrl(config.backendUrl, allowLocal),
       authToken: config.authToken || defaults.authToken,
       timeout: Number(config.timeout || defaults.timeout),
       chatPipelineUrl,
       forgeAgentPipelineUrl: normalizeForgeAgentPipelineUrl(
         configWithForge.forgeAgentPipelineUrl,
         chatPipelineUrl,
+        allowLocal,
       ),
+      localBackendMode: allowLocal,
+      localSkiaServeUrl: configWithForge.localSkiaServeUrl || defaults.localSkiaServeUrl,
+      localEmbeddingEngineUrl: configWithForge.localEmbeddingEngineUrl || defaults.localEmbeddingEngineUrl,
+      localVectorDbUrl: configWithForge.localVectorDbUrl || defaults.localVectorDbUrl,
+      localVideoServiceUrl: configWithForge.localVideoServiceUrl || defaults.localVideoServiceUrl,
+      localComfyuiUrl: configWithForge.localComfyuiUrl || null,
+      localSdWebuiUrl: configWithForge.localSdWebuiUrl || null,
+      localFounderOverride: configWithForge.localFounderOverride ?? false,
+      skiaOwnerEmail: (configWithForge.skiaOwnerEmail || "dany.francis@consultant.com").toLowerCase(),
     };
-    if (configWithForge.forgeUrl) forgeUrl = normalizeUrl(configWithForge.forgeUrl, forgeUrl);
+    if (configWithForge.forgeUrl) forgeUrl = normalizeUrl(configWithForge.forgeUrl, forgeUrl, allowLocal);
   } catch {
     cache = defaults;
   }
@@ -151,3 +193,18 @@ export const getChatPipelineUrl = (): string => cache?.chatPipelineUrl ?? defaul
 
 export const getForgeAgentPipelineUrl = (): string =>
   cache?.forgeAgentPipelineUrl ?? defaults.forgeAgentPipelineUrl;
+
+export const getLocalBackendMode = (): boolean => cache?.localBackendMode ?? false;
+
+export const getLocalEngineConfig = () => ({
+  skiaServeUrl: cache?.localSkiaServeUrl ?? defaults.localSkiaServeUrl,
+  embeddingEngineUrl: cache?.localEmbeddingEngineUrl ?? defaults.localEmbeddingEngineUrl,
+  vectorDbUrl: cache?.localVectorDbUrl ?? defaults.localVectorDbUrl,
+  videoServiceUrl: cache?.localVideoServiceUrl ?? defaults.localVideoServiceUrl,
+  comfyuiUrl: cache?.localComfyuiUrl ?? null,
+  sdWebuiUrl: cache?.localSdWebuiUrl ?? null,
+});
+
+export const getLocalFounderOverride = (): boolean => cache?.localFounderOverride ?? false;
+
+export const getSkiaOwnerEmail = (): string => cache?.skiaOwnerEmail ?? "dany.francis@consultant.com";

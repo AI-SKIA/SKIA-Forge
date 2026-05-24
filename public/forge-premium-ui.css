@@ -156,25 +156,25 @@ footer,
     width: 100%;
     max-width: none;
     text-align: center;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.8;
     white-space: normal;
 }
 
 footer .footer-tagline,
 .doc-footer .tagline {
-    font-size: 13px !important;
+    font-size: 14px !important;
     white-space: normal;
     overflow-wrap: break-word;
 }
 
 footer .footer-copy,
 .doc-footer .copy {
-    font-size: 12px !important;
+    font-size: 14px !important;
     white-space: normal;
 }
 
 footer .footer-links,
 .doc-footer .links {
-    font-size: 11px;
+    font-size: 12px;
 }

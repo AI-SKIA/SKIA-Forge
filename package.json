@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit -p tsconfig.json",
     "lint": "eslint src --ext .ts",
     "test": "tsx --test src/**/*.test.ts",
-    "preflight": "npm run lint && npm run build && npm test"
+    "preflight": "npm run lint && npm run build && npm test",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -47,6 +48,7 @@
     "@typescript-eslint/eslint-plugin": "^8.59.0",
     "@typescript-eslint/parser": "^8.59.0",
     "eslint": "^10.2.1",
+    "husky": "^9.1.7",
     "tsx": "^4.21.0"
   }
 }

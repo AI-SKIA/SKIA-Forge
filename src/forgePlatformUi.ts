@@ -62,7 +62,7 @@ export function renderForgePlatformHtml(): string {
       align-items: center;
       color: var(--gold);
       letter-spacing: var(--tracking-heading-display);
-      font-size: 20px;
+      font-size: 28px;
       font-family: var(--font-heading);
       font-weight: 700;
       text-transform: uppercase;
@@ -222,7 +222,7 @@ export function renderForgePlatformHtml(): string {
       min-height: 220px;
       white-space: pre-wrap;
       font-family: var(--font-body);
-      font-size: 13px;
+      font-size: 14px;
       color: rgba(255, 255, 255, 0.86);
       line-height: var(--line-body);
       letter-spacing: var(--tracking-body);
@@ -246,7 +246,7 @@ export function renderForgePlatformHtml(): string {
     }
     @media (max-width: 560px) {
       .status { display: none; }
-      .brand { font-size: 16px; }
+      .brand { font-size: 24px; }
       .download-btn { font-size: 10px; padding: 7px 9px; }
     }
   </style>

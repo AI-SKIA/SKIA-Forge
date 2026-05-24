@@ -35,21 +35,21 @@ function showPlanRequiredMessage(overlay: HTMLElement, email: string): void {
       <img src="../assets/sidebar-logo.png"
            style="width:80px; margin-bottom:20px; opacity:0.9;"
            alt="SKIA Forge" />
-      <h2 style="color:#c9922a; font-size:16px; font-weight:700;
+      <h2 style="color:#d4af37; font-size:26px; font-weight:700;
                  letter-spacing:0.08em; margin-bottom:12px;">
         FORGE IDE REQUIRES A PLAN
       </h2>
-      <p style="color:rgba(255,255,255,0.75); font-size:13px;
+      <p style="color:rgba(255,255,255,0.75); font-size: 14px;
                 line-height:1.6; margin-bottom:8px;">
-        Signed in as <strong style="color:#c9922a;">${email}</strong>
+        Signed in as <strong style="color:#d4af37;">${email}</strong>
       </p>
-      <p style="color:rgba(255,255,255,0.6); font-size:13px;
+      <p style="color:rgba(255,255,255,0.6); font-size: 14px;
                 line-height:1.6; margin-bottom:24px;">
         ${FORGE_PLAN_REQUIRED_MESSAGE}
       </p>
       <a href="https://skia.ca/settings"
-         style="display:block; background:#2a1f0d; border:1px solid #c9922a;
-                border-radius:6px; color:#c9922a; font-size:11px;
+         style="display:block; background:#2a1f0d; border:1px solid #d4af37;
+                border-radius:6px; color:#d4af37; font-size:11px;
                 font-weight:700; letter-spacing:0.12em; text-transform:uppercase;
                 padding:14px 22px; text-decoration:none; margin-bottom:12px;
                 cursor:pointer;">
@@ -398,14 +398,14 @@ const acquireTokenAfterAuth = async (
 
 const inputStyle = [
     "width:100%", "box-sizing:border-box", "margin-bottom:10px", "padding:11px 12px",
-    "background:#101010", "border:1px solid #2a2a2a", "color:#e8d5a3",
+    "background:#111111", "border:1px solid #2a2a2a", "color:#e8d5a3",
     "font-size:14px", "outline:none", "font-family:inherit"
 ].join(";");
 
 const btnStyle = [
     "width:100%", "padding:11px", "background:transparent",
-    "border:1px solid #c9922a", "color:#c9922a", "cursor:pointer",
-    "letter-spacing:1.5px", "font-size:13px", "font-family:inherit"
+    "border:1px solid #d4af37", "color:#d4af37", "cursor:pointer",
+    "letter-spacing:1.5px", "font-size: 14px", "font-family:inherit"
 ].join(";");
 
 const showError = (id: string, message: string): void => {
@@ -419,7 +419,7 @@ const showNotice = (id: string, message: string): void => {
     const node = document.getElementById(id);
     if (!node) return;
     node.textContent = message;
-    node.style.color = "#c9922a";
+    node.style.color = "#d4af37";
     node.style.display = "block";
 };
 
@@ -452,12 +452,12 @@ const createOverlay = (): HTMLDivElement => {
         <img src="assets/sidebar-logo.png" alt="SKIA"
              onerror="this.style.display='none'"
              style="width:32px;height:32px;" />
-        <span style="letter-spacing:2px;color:#c9922a;font-size:16px;font-weight:600;">SKIA FORGE</span>
+        <span style="letter-spacing:2px;color:#d4af37;font-size:26px;font-weight:600;">SKIA FORGE</span>
       </div>
 
       <div style="display:flex;border-bottom:1px solid #2a2a2a;margin-bottom:20px;">
         <button id="auth-tab-login"
-          style="flex:1;background:transparent;border:none;border-bottom:2px solid #c9922a;
+          style="flex:1;background:transparent;border:none;border-bottom:2px solid #d4af37;
                  color:#e8d5a3;padding:10px 0;cursor:pointer;letter-spacing:1px;font-size:12px;">LOGIN</button>
         <button id="auth-tab-register"
           style="flex:1;background:transparent;border:none;border-bottom:2px solid transparent;
@@ -475,7 +475,7 @@ const createOverlay = (): HTMLDivElement => {
         </label>
         <button id="auth-login-btn" type="submit" style="${btnStyle}">SIGN IN</button>
         <div id="auth-login-error"
-             style="display:none;color:#ff9f9f;margin-top:10px;font-size:12px;line-height:1.5;"></div>
+             style="display:none;color:#ff5c5c;margin-top:10px;font-size:12px;line-height:1.5;"></div>
       </form>
 
       <form id="auth-register-form" autocomplete="on" style="display:none;">
@@ -487,7 +487,7 @@ const createOverlay = (): HTMLDivElement => {
                autocomplete="new-password" style="${inputStyle}" />
         <button id="auth-register-btn" type="submit" style="${btnStyle}">CREATE ACCOUNT</button>
         <div id="auth-register-error"
-             style="display:none;color:#ff9f9f;margin-top:10px;font-size:12px;line-height:1.5;"></div>
+             style="display:none;color:#ff5c5c;margin-top:10px;font-size:12px;line-height:1.5;"></div>
       </form>
 
       <div style="margin-top:20px;text-align:center;font-size:11px;color:#3a3a3a;letter-spacing:0.5px;">
@@ -523,8 +523,8 @@ const wireOverlayHandlers = (): void => {
         registerForm.style.display = isLogin ? "none" : "block";
         loginTab.style.color = isLogin ? "#e8d5a3" : "#555";
         registerTab.style.color = isLogin ? "#555" : "#e8d5a3";
-        loginTab.style.borderBottom = isLogin ? "2px solid #c9922a" : "2px solid transparent";
-        registerTab.style.borderBottom = isLogin ? "2px solid transparent" : "2px solid #c9922a";
+        loginTab.style.borderBottom = isLogin ? "2px solid #d4af37" : "2px solid transparent";
+        registerTab.style.borderBottom = isLogin ? "2px solid transparent" : "2px solid #d4af37";
     };
 
     loginTab.addEventListener("click", () => setTab("login"));

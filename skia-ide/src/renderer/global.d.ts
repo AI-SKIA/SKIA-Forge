@@ -12,10 +12,17 @@ declare global {
         backendUrl: string;
         authToken: string;
         timeout: number;
-        /** Optional override; default pipeline is https://skia.ca/api/skia/chat */
         chatPipelineUrl?: string;
-        /** Optional override; default https://skia.ca/api/skia/forge-agent */
         forgeAgentPipelineUrl?: string;
+        localBackendMode?: boolean;
+        localSkiaServeUrl?: string;
+        localEmbeddingEngineUrl?: string;
+        localVectorDbUrl?: string;
+        localVideoServiceUrl?: string;
+        localComfyuiUrl?: string;
+        localSdWebuiUrl?: string;
+        localFounderOverride?: boolean;
+        skiaOwnerEmail?: string;
       }>;
       getAppVersion: () => string;
       openFolder: () => Promise<string | null>;

@@ -55,12 +55,12 @@ export function renderChatHtml(_releaseBase = "https://skia.ca/download"): strin
       text-transform: uppercase;
       line-height: 1.12;
     }
-    textarea, input { width: 100%; background: #111; color: #e8e8e8; border: 1px solid #444; padding: 8px; border-radius: 6px; }
+    textarea, input { width: 100%; background: #111111; color: #e8e8e8; border: 1px solid #444; padding: 8px; border-radius: 6px; }
     button { margin-top: 8px; background: #d4af37; color: #000; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; }
-    pre { background: #111; border: 1px solid #333; padding: 10px; white-space: pre-wrap; border-radius: 6px; }
-    .msg { margin: 8px 0; padding: 8px; background: #121212; border-left: 3px solid #d4af37; }
-    .added { color: #8ddf8d; }
-    .removed { color: #f08f8f; }
+    pre { background: #111111; border: 1px solid #333; padding: 10px; white-space: pre-wrap; border-radius: 6px; }
+    .msg { margin: 8px 0; padding: 8px; background: #111111; border-left: 3px solid #d4af37; }
+    .added { color: #4ade80; }
+    .removed { color: #ff5c5c; }
     .muted { color: #999; font-size: 12px; font-family: Inter, "SF Pro Display", system-ui, sans-serif; letter-spacing: 0.01em; text-transform: none; }
   </style>
 </head>
