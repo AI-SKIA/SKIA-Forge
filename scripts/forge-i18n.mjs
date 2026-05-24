@@ -128,7 +128,7 @@ function buildCommon() {
     sidebar: { tagline: 'She Knows It All' },
     nav: {
       forgeHome: 'Forge Home',
-      product: 'Product',
+      product: 'Forge Web',
       resources: 'Resources',
       security: 'Security',
       contactSupport: 'Contact & Support',
@@ -348,6 +348,10 @@ function buildContact() {
 
 function patchCommonChrome(html) {
   let out = html;
+  out = out.replace(
+    /href="\/forge\/platform" target="_blank" rel="noopener noreferrer"/g,
+    'href="/forge/platform"',
+  );
   out = out.replace(/<span class="pc-sidebar-tab-icon">\?<\/span>/g, SIDEBAR_MENU_ICON);
   out = out.replace(/<span class="pc-sidebar-tab-icon">☰<\/span>/g, SIDEBAR_MENU_ICON);
   if (!out.includes('forge-lucide-icons.css')) {
