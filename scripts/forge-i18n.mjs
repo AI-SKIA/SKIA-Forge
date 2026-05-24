@@ -9,6 +9,9 @@ const PUBLIC = path.join(ROOT, 'public');
 const EN = path.join(PUBLIC, 'locales', 'en');
 const LOCALES = ['fr', 'zh', 'es', 'ar', 'pt', 'de', 'ja', 'ko', 'hi', 'tr', 'ru'];
 
+const SIDEBAR_MENU_ICON =
+  '<span class="pc-sidebar-tab-icon skia-li skia-li--menu" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16"/><path d="M4 12h16"/><path d="M4 19h16"/></svg></span>';
+
 const DOC_FILES = {
   README: 'readme',
   QUICKSTART: 'quickstart',
@@ -345,6 +348,14 @@ function buildContact() {
 
 function patchCommonChrome(html) {
   let out = html;
+  out = out.replace(/<span class="pc-sidebar-tab-icon">\?<\/span>/g, SIDEBAR_MENU_ICON);
+  out = out.replace(/<span class="pc-sidebar-tab-icon">☰<\/span>/g, SIDEBAR_MENU_ICON);
+  if (!out.includes('forge-lucide-icons.css')) {
+    out = out.replace(
+      '<link rel="stylesheet" href="/forge-premium-ui.css" />',
+      '<link rel="stylesheet" href="/forge-lucide-icons.css" />\n  <link rel="stylesheet" href="/forge-premium-ui.css" />',
+    );
+  }
   out = out.replace(/<html lang="[^"]*"/i, '<html lang="en"');
   if (!/<title[^>]*data-i18n=/.test(out)) {
     out = out.replace(/<title>[^<]*<\/title>/i, '<title data-i18n="common.meta.documentTitle"></title>');
