@@ -39,6 +39,12 @@ Values below are **representative** — see the Forge server for the full set.
 | `SKIA_FORGE_LATEST_VERSION` | Override “latest” version for `/api/app/version-check`. |
 | `SKIA_IDE_RELEASE_BASE_URL` | Base URL for chat UI download links. |
 | `SKIA_ENABLE_WATCHER` | File watcher behavior (`1` enables). |
+| `GOOGLE_AI_API_KEY` | Gemini API fallback when sovereign engines are unavailable (set on **skia-forge** in production; use AI Studio key, not Agent Platform `AQ.` tokens). |
+| `GOOGLE_API_KEY` | Optional alias accepted by upstream SKIA login for the same Gemini key. |
+| `SKIA_ADMIN_SECRET` | Guards Forge mutation/admin endpoints when enabled in your deployment. |
+| `JWT_SECRET` | Session validation when Forge verifies tokens locally (must match login service in integrated deployments). |
+
+See **`docs/ENV_REFERENCE.md`** for the full Northflank-aligned variable list.
 
 Additional environment variables for signing and GitHub integration are documented in your onboarding package.
 

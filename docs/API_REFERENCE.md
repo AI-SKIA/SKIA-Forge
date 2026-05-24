@@ -18,7 +18,7 @@ These routes serve HTML, redirects, or static assets for the Forge site and IDE 
 
 | Method | Path | Notes |
 |--------|------|--------|
-| GET | `/` | Redirects to **`https://forge.skia.ca/platform-downloads`** (canonical download UI on the SKIA platform). |
+| GET | `/` | Redirects to **`/platform-downloads`** (canonical download UI on the Forge site). |
 | GET | `/forge` | Same redirect (legacy path; formerly served HTML from removed `src/downloadUi.ts`). |
 | GET | `/download` | Same redirect. |
 | GET | `/forge/platform` | Forge platform overview (`renderForgePlatformHtml`). |

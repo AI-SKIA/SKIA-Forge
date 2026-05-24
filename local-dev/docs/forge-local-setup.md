@@ -8,6 +8,8 @@ Run SKIA Forge against a **local SKIA backend** (Skia-FULL `local-dev/` stack) w
 2. Node.js 20+
 3. `npm install` at Forge repo root and in `skia-ide/`
 
+See also **`run-forge-locally.md`** in this directory for the full Forge + SKIA stack walkthrough.
+
 ## Quick start
 
 ```bash

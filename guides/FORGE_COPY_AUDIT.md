@@ -1,5 +1,7 @@
 # SKIA Forge — User-facing copy audit
 
+> **Status (2026-05-24):** Partially superseded. i18n-driven hub pages and `public/locales/en/docs.json` resolved several items flagged below. Re-run greps before the next copy pass.
+
 **Repository:** `c:\SKIA-Forge`  
 **Audit date:** 2026-05-10  
 **Scope:** Read-only inventory of user-accessible HTML, Express-served pages, dynamic HTML from TypeScript, documentation under `docs/` and `public/docs/`, and forbidden-string greps. No source files were modified except this report.
