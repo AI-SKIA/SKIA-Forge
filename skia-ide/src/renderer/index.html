@@ -9,7 +9,8 @@
     <script>
         require.config({ paths: { vs: 'vs' } });
     </script>
-    <style>
+    <style>strong, b { font-weight: 400; }
+
         /* ── Resizable panel system ───────────────────────────────────────── */
         #app-shell {
             display: flex;
@@ -78,7 +79,7 @@
             .forge-status-card .forge-card-title {
                 font-size: 10px;
                 letter-spacing: 0.15em;
-                color: rgba(212,175,55,0.55);
+                color: #d4af37;
                 text-transform: uppercase;
                 margin-bottom: 8px;
             }
@@ -86,7 +87,7 @@
             .forge-status-card .forge-card-value {
                 font-size: 13px;
                 color: #d4af37;
-                font-family: 'Cascadia Code', 'Fira Code', monospace;
+                font-family: "Centaur", "Centaur MT", serif;
                 white-space: pre-wrap;
                 word-break: break-word;
             }
@@ -103,9 +104,9 @@
 
         .forge-offline-title {
             font-size: 10px;
-            font-weight: 600;
+            font-weight: 400;
             letter-spacing: 0.12em;
-            color: rgba(212,175,55,0.7);
+            color: #d4af37;
             text-transform: uppercase;
         }
 
@@ -117,7 +118,7 @@
 
         .forge-offline-hint {
             font-size: 11px;
-            color: rgba(212,175,55,0.4);
+            color: #d4af37;
             margin-top: 4px;
         }
 
@@ -165,12 +166,12 @@
 
         .local-health-panel { display: flex; flex-direction: column; gap: 12px; }
         .lh-header { display: flex; justify-content: space-between; align-items: center; }
-        .lh-title { font-size: 10px; letter-spacing: 0.15em; color: rgba(212,175,55,0.55); text-transform: uppercase; }
+        .lh-title { font-size: 10px; letter-spacing: 0.15em; color: #d4af37; text-transform: uppercase; }
         .lh-refresh { background: transparent; border: 1px solid rgba(212,175,55,0.3); color: #d4af37; padding: 4px 10px; font-size: 10px; cursor: pointer; }
         .lh-mode { font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.55); }
         .lh-table { width: 100%; border-collapse: collapse; font-size: 12px; font-weight: 400; }
         .lh-table th, .lh-table td { text-align: left; padding: 8px 6px; border-bottom: 1px solid rgba(212,175,55,0.12); }
-        .lh-url { font-family: 'Cascadia Code', monospace; color: rgba(255,255,255,0.65); word-break: break-all; }
+        .lh-url { font-family: "Centaur", "Centaur MT", serif; color: rgba(255,255,255,0.65); word-break: break-all; }
         .lh-ok { color: #4ade80; }
         .lh-bad { color: #ff5c5c; }
         .lh-muted { color: rgba(255,255,255,0.35); }

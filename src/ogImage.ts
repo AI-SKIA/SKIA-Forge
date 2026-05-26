@@ -32,21 +32,21 @@ export function renderOgImageSvg(): string {
   <rect x="0" y="152" width="1200" height="2" fill="url(#line)"/>
   <rect x="0" y="282" width="1200" height="1.5" fill="url(#line)"/>
 
-  <text x="600" y="208" text-anchor="middle" fill="#f7e0a1" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="76" font-weight="700" letter-spacing="8">SKIA FORGE</text>
-  <text x="600" y="256" text-anchor="middle" fill="#d4af37" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="36" font-style="italic" filter="url(#softGlow)">She Knows It All</text>
+  <text x="600" y="208" text-anchor="middle" fill="#d4af37" font-family=""Centaur", "Centaur MT", serif" font-size="76" font-weight="400" letter-spacing="8">SKIA FORGE</text>
+  <text x="600" y="256" text-anchor="middle" fill="#d4af37" font-family=""Centaur", "Centaur MT", serif" font-size="36" font-style="italic" filter="url(#softGlow)">She Knows It All</text>
 
-  <text x="600" y="352" text-anchor="middle" fill="#f1d27a" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="34" font-weight="600" letter-spacing="1.2">
+  <text x="600" y="352" text-anchor="middle" fill="#d4af37" font-family=""Centaur", "Centaur MT", serif" font-size="34" font-weight="400" letter-spacing="1.2">
     The Sovereign AI Coding Platform
   </text>
-  <text x="600" y="400" text-anchor="middle" fill="#c8aa5a" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24">
+  <text x="600" y="400" text-anchor="middle" fill="#d4af37" font-family=""Centaur", "Centaur MT", serif" font-size="24">
     One intelligence across desktop, web, mobile, and voice
   </text>
-  <text x="600" y="438" text-anchor="middle" fill="#c8aa5a" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22">
+  <text x="600" y="438" text-anchor="middle" fill="#d4af37" font-family=""Centaur", "Centaur MT", serif" font-size="22">
     Governed orchestration • Structured output • Enterprise controls
   </text>
 
   <rect x="300" y="478" width="600" height="54" rx="0" fill="#15110a" stroke="#6b5420" stroke-width="1.5"/>
-  <text x="600" y="513" text-anchor="middle" fill="#d4af37" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="600" letter-spacing="1.1">
+  <text x="600" y="513" text-anchor="middle" fill="#d4af37" font-family=""Centaur", "Centaur MT", serif" font-size="24" font-weight="400" letter-spacing="1.1">
     DOWNLOAD THE IDE • SKIA.CA/DOWNLOAD
   </text>
 </svg>`;

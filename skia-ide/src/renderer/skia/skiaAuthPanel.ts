@@ -35,7 +35,7 @@ function showPlanRequiredMessage(overlay: HTMLElement, email: string): void {
       <img src="../assets/sidebar-logo.png"
            style="width:80px; margin-bottom:20px; opacity:0.9;"
            alt="SKIA Forge" />
-      <h2 style="color:#d4af37; font-size:28px; font-weight:700;
+      <h2 style="color:#d4af37; font-size:28px; font-weight: 400;
                  letter-spacing:0.08em; margin-bottom:12px;">
         FORGE IDE REQUIRES A PLAN
       </h2>
@@ -50,7 +50,7 @@ function showPlanRequiredMessage(overlay: HTMLElement, email: string): void {
       <a href="https://skia.ca/settings"
          style="display:block; background:#1a1a1a; border:1px solid #d4af37;
                 border-radius:6px; color:#d4af37; font-size:11px;
-                font-weight:600; letter-spacing:0.12em; text-transform:uppercase;
+                font-weight: 400; letter-spacing:0.12em; text-transform:uppercase;
                 padding:14px 22px; text-decoration:none; margin-bottom:12px;
                 cursor:pointer;">
         UPGRADE YOUR PLAN
@@ -58,7 +58,7 @@ function showPlanRequiredMessage(overlay: HTMLElement, email: string): void {
       <button onclick="window.__skiaAuthPanel.signOut()"
               style="background:transparent; border:1px solid rgba(212,175,55,0.3);
                      border-radius:6px; color:#999999; font-size:11px;
-                     font-weight:600; letter-spacing:0.12em; text-transform:uppercase;
+                     font-weight: 400; letter-spacing:0.12em; text-transform:uppercase;
                      padding:10px 22px; cursor:pointer; width:100%;">
         SIGN OUT
       </button>
@@ -399,13 +399,13 @@ const acquireTokenAfterAuth = async (
 const inputStyle = [
     "width:100%", "box-sizing:border-box", "margin-bottom:10px", "padding:11px 12px",
     "background:#111111", "border:1px solid rgba(212,175,55,0.3)", "color:#ffffff",
-    "font-size:14px", "font-weight:400", "outline:none", "font-family:inherit"
+    "font-size:14px", "font-weight:400", "outline:none", "font-family: inherit"
 ].join(";");
 
 const btnStyle = [
     "width:100%", "padding:11px", "background:transparent",
     "border:1px solid #d4af37", "color:#d4af37", "cursor:pointer",
-    "letter-spacing:1.5px", "font-size:12px", "font-weight:600", "font-family:inherit"
+    "letter-spacing:1.5px", "font-size:12px", "font-weight: 400", "font-family: inherit"
 ].join(";");
 
 const showError = (id: string, message: string): void => {
@@ -442,8 +442,7 @@ const createOverlay = (): HTMLDivElement => {
     overlay.style.cssText = [
         "position:fixed", "inset:0", "background:#0d0d0d", "z-index:9999",
         "display:flex", "align-items:center", "justify-content:center",
-        "font-family:Segoe UI,sans-serif", "color:#ffffff"
-    ].join(";");
+        "font-family: "Centaur", "Centaur MT", serif;");
 
     overlay.innerHTML = `
     <div class="skia-auth-card" style="width:100%;max-width:420px;background:#1a1a1a;border:1px solid rgba(212,175,55,0.3);padding:32px 28px;">
@@ -452,13 +451,13 @@ const createOverlay = (): HTMLDivElement => {
         <img src="assets/sidebar-logo.png" alt="SKIA"
              onerror="this.style.display='none'"
              style="width:32px;height:32px;" />
-        <span style="letter-spacing:2px;color:#d4af37;font-size:28px;font-weight:700;">SKIA FORGE</span>
+        <span style="letter-spacing:2px;color:#d4af37;font-size:28px;font-weight: 400;">SKIA FORGE</span>
       </div>
 
       <div style="display:flex;border-bottom:1px solid #2a2a2a;margin-bottom:20px;">
         <button id="auth-tab-login"
           style="flex:1;background:transparent;border:none;border-bottom:2px solid #d4af37;
-                 color:#ffffff;padding:10px 0;cursor:pointer;letter-spacing:1px;font-size:12px;font-weight:600;">LOGIN</button>
+                 color:#ffffff;padding:10px 0;cursor:pointer;letter-spacing:1px;font-size:12px;font-weight: 400;">LOGIN</button>
         <button id="auth-tab-register"
           style="flex:1;background:transparent;border:none;border-bottom:2px solid transparent;
                  color:#555;padding:10px 0;cursor:pointer;letter-spacing:1px;font-size:12px;">REGISTER</button>

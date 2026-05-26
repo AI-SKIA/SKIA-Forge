@@ -1,4 +1,5 @@
-:root {
+:root {strong, b { font-weight: 400; }
+
     --skia-bg: #0a0a0a;
     --skia-sidebar: #0d0d0a;
     --skia-panel: #111111;
@@ -21,7 +22,7 @@
 body {
     background: var(--skia-bg);
     color: var(--skia-text);
-    font-family: "Segoe UI", system-ui, sans-serif;
+    font-family: "Centaur", "Centaur MT", serif;
     text-transform: uppercase;
     letter-spacing: 0.1em;
 }
@@ -104,7 +105,7 @@ body {
 
 .explorer-root {
     color: var(--skia-gold);
-    font-weight: 600;
+    font-weight: 400;
     padding: 6px 10px;
     border-bottom: 1px solid var(--skia-border);
 }
@@ -211,7 +212,7 @@ body {
     padding: 16px;
     border-bottom: 1px solid var(--skia-border);
     font-size: 24px;
-    font-weight: 700;
+    font-weight: 400;
 }
 
 .center-view input {
@@ -248,7 +249,7 @@ body {
 .forge-label {
     color: var(--skia-text-muted);
     font-size: 10px;
-    font-weight: 600;
+    font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 0.1em;
     display: block;
@@ -347,7 +348,7 @@ body {
 }
 
 .chat-attach-btn.chat-attach--queued {
-    border-color: rgba(212, 175, 55, 0.85);
+    border-color: #d4af37;
     box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.12);
 }
 
@@ -372,7 +373,7 @@ body {
     }
 
     #chat-input:focus {
-        border-color: var(--skia-gold-accent);
+        border-color: #d4af37;
         outline: none;
     }
 
@@ -412,7 +413,7 @@ button {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-size: 10px;
-    font-weight: 600;
+    font-weight: 400;
     padding: 6px 8px;
     cursor: pointer;
 }
@@ -434,7 +435,7 @@ button {
     background: var(--skia-card);
     color: var(--skia-text-muted);
     font-size: 10px;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: 0.15em;
     padding: 8px 16px;
     border-bottom: 1px solid var(--skia-border);
@@ -563,7 +564,7 @@ button {
 }
 
 #terminal-brand {
-    color: rgba(212,175,55,0.5);
+    color: #d4af37;
     font-size: 10px;
     letter-spacing: 0.12em;
     flex-shrink: 0;
@@ -589,7 +590,7 @@ button {
 }
 
     .terminal-tab.is-active {
-        border-color: rgba(212,175,55,0.45);
+        border-color: #d4af37;
         background: rgba(212,175,55,0.08);
     }
 
@@ -607,7 +608,7 @@ button {
 .terminal-tab-delete {
     background: transparent;
     border: none;
-    color: rgba(212,175,55,0.45);
+    color: #d4af37;
     font-size: 14px;
     line-height: 1;
     padding: 2px 6px;
@@ -686,9 +687,9 @@ button {
 
 .forge-offline-title {
     font-size: 10px;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: 0.12em;
-    color: var(--skia-gold-accent);
+    color: #d4af37;
     text-transform: uppercase;
 }
 
@@ -754,7 +755,7 @@ button {
 .agent-log-head {
     color: var(--skia-gold);
     font-size: 10px;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     margin-bottom: 4px;

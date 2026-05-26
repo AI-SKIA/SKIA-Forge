@@ -677,7 +677,7 @@ app.get("/api/app/download/:platform", async (req, res) => {
   return res
     .status(503)
     .type("html")
-    .send(`<!doctype html><html><body style="font-family:Arial;background:#080400;color:#d4af37;padding:24px">
+    .send(`<!doctype html><html><body style="font-family:'Centaur','Centaur MT',serif;background:#080400;color:#d4af37;padding:24px">
       <h2 style="margin-top:0">Forge installer unavailable</h2>
       <p>The ${platform} desktop installer is not published yet for this release.</p>
       <p><a href="/forge/app/?resetOnboarding=1" style="color:#d4af37">Open Forge Web IDE</a></p>
@@ -1517,7 +1517,7 @@ async function sendForgeAppHtml(res: express.Response) {
     res.type("html").send(withShim);
   } catch {
     res.status(503).type("html").send(
-      "<!doctype html><html><body style='font-family:Arial;background:#080400;color:#d4af37;padding:24px'>SKIA IDE web assets are not built yet. Run <code>npm run build</code> in <code>skia-ide</code> first.</body></html>"
+      "<!doctype html><html><body style=\"font-family:'Centaur','Centaur MT',serif;background:#080400;color:#d4af37;padding:24px\">SKIA IDE web assets are not built yet. Run <code>npm run build</code> in <code>skia-ide</code> first.</body></html>"
     );
   }
 }

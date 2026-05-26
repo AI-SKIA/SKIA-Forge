@@ -15,7 +15,7 @@ export function renderForgeSignInHtml(): string {
       --muted: rgba(255, 255, 255, 0.55);
       --gold: #d4af37;
       --danger: #ff5c5c;
-      --font-body: "Inter", "SF Pro Display", system-ui, sans-serif;
+      --font-body: "Centaur", "Centaur MT", serif;
     }
     * { box-sizing: border-box; }
     body {
@@ -25,7 +25,7 @@ export function renderForgeSignInHtml(): string {
       place-items: center;
       background: var(--bg);
       color: var(--text);
-      font-family: var(--font-body);
+      font-family: "Centaur", "Centaur MT", serif;
       padding: 24px;
     }
     .card {
@@ -60,7 +60,7 @@ export function renderForgeSignInHtml(): string {
       padding: 12px;
       border-radius: 6px;
       font-size: 11px;
-      font-weight: 600;
+      font-weight: 400;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       cursor: pointer;

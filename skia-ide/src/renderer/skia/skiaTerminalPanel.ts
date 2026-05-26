@@ -158,7 +158,7 @@ const createTab = async (): Promise<void> => {
     const term = new Terminal({
         cursorBlink: true,
         fontSize: 13,
-        fontFamily: "Cascadia Code, Consolas, JetBrains Mono, monospace",
+        fontFamily: "Centaur", "Centaur MT", serif, "Centaur MT", serif,
         theme: {
             background: "#050500",
             foreground: "#c9b37a",

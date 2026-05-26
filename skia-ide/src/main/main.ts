@@ -353,8 +353,8 @@ const showAboutWindow = (): void => {
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
     background: #0a0a0a;
-    color: #c9b37a;
-    font-family: 'Segoe UI', sans-serif;
+    color: #d4af37;
+    font-family: "Centaur", "Centaur MT", serif;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -379,13 +379,13 @@ const showAboutWindow = (): void => {
   }
   .version {
     font-size: 11px;
-    color: rgba(212,175,55,0.5);
+    color: #d4af37;
     letter-spacing: 0.1em;
     margin-bottom: 4px;
   }
   .tagline {
     font-size: 11px;
-    color: rgba(212,175,55,0.35);
+    color: #d4af37;
     letter-spacing: 0.08em;
     margin-bottom: 24px;
   }

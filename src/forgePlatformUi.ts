@@ -19,8 +19,8 @@ export function renderForgePlatformHtml(): string {
       --gold-accent: rgba(212, 175, 55, 0.7);
       --card: #111111;
       --danger: #ff5c5c;
-      --font-heading: "Space Grotesk", "Sora", system-ui, sans-serif;
-      --font-body: "Inter", "SF Pro Display", system-ui, sans-serif;
+      --font-heading: "Agency FB", "AgencyFB", sans-serif;
+      --font-body: "Centaur", "Centaur MT", serif;
       --tracking-heading: 0.06em;
       --tracking-heading-display: 0.08em;
       --tracking-body: 0.01em;
@@ -33,7 +33,7 @@ export function renderForgePlatformHtml(): string {
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font-family: var(--font-body);
+      font-family: "Centaur", "Centaur MT", serif;
       height: 100dvh;
       overflow: hidden;
       line-height: var(--line-body);
@@ -66,8 +66,8 @@ export function renderForgePlatformHtml(): string {
       color: var(--gold);
       letter-spacing: var(--tracking-heading-display);
       font-size: 28px;
-      font-family: var(--font-heading);
-      font-weight: 700;
+      font-family: "Agency FB", "AgencyFB", sans-serif;
+      font-weight: 400;
       text-transform: uppercase;
     }
     .brand-logo {
@@ -77,7 +77,7 @@ export function renderForgePlatformHtml(): string {
       margin-right: 8px;
       flex-shrink: 0;
     }
-    .status { color: var(--muted); font-size: 12px; letter-spacing: var(--tracking-heading-display); text-transform: uppercase; font-family: var(--font-heading); font-weight: 600; line-height: 1.15; }
+    .status { color: var(--muted); font-size: 12px; letter-spacing: var(--tracking-heading-display); text-transform: uppercase; font-family: "Agency FB", "AgencyFB", sans-serif; font-weight: 400; line-height: 1.15; }
     .download-btn {
       text-decoration: none;
       color: var(--gold);
@@ -88,12 +88,12 @@ export function renderForgePlatformHtml(): string {
       font-size: 11px;
       letter-spacing: var(--tracking-heading-display);
       text-transform: uppercase;
-      font-family: var(--font-heading);
-      font-weight: 600;
+      font-family: "Agency FB", "AgencyFB", sans-serif;
+      font-weight: 400;
     }
     .download-btn:hover {
       background: rgba(212, 175, 55, 0.16);
-      border-color: var(--gold-accent);
+      border-color: #d4af37;
     }
     .auth-banner {
       display: none;
@@ -123,7 +123,7 @@ export function renderForgePlatformHtml(): string {
       padding: 16px;
       overflow: hidden;
     }
-    .section-title { color: var(--gold); padding: 12px; border-bottom: 1px solid var(--line); font-size: 10px; letter-spacing: var(--tracking-heading-display); text-transform: uppercase; font-family: var(--font-heading); font-weight: 600; }
+    .section-title { color: var(--gold); padding: 12px; border-bottom: 1px solid var(--line); font-size: 10px; letter-spacing: var(--tracking-heading-display); text-transform: uppercase; font-family: "Agency FB", "AgencyFB", sans-serif; font-weight: 400; }
     .mod-list { padding: 10px; display: grid; gap: 8px; }
     .mod-btn {
       width: 100%;
@@ -134,15 +134,15 @@ export function renderForgePlatformHtml(): string {
       border-radius: 8px;
       padding: 10px;
       cursor: pointer;
-      font-family: var(--font-heading);
+      font-family: "Agency FB", "AgencyFB", sans-serif;
       font-size: 12px;
-      font-weight: 600;
+      font-weight: 400;
       letter-spacing: var(--tracking-heading);
       text-transform: uppercase;
     }
     .mod-btn:hover, .mod-btn.active {
       color: var(--gold);
-      border-color: rgba(212, 175, 55, 0.55);
+      border-color: #d4af37;
       background: rgba(212, 175, 55, 0.08);
     }
     a.mod-btn {
@@ -153,7 +153,7 @@ export function renderForgePlatformHtml(): string {
     .mod-btn-home {
       margin-top: 4px;
       color: var(--gold);
-      border-color: rgba(212, 175, 55, 0.4);
+      border-color: #d4af37;
     }
 
     .hero {
@@ -168,13 +168,13 @@ export function renderForgePlatformHtml(): string {
       color: var(--gold);
       letter-spacing: var(--tracking-heading-display);
       text-transform: uppercase;
-      font-family: var(--font-heading);
-      font-weight: 700;
+      font-family: "Agency FB", "AgencyFB", sans-serif;
+      font-weight: 400;
     }
     .hero p {
       margin: 0;
       color: var(--muted);
-      font-family: var(--font-body);
+      font-family: "Centaur", "Centaur MT", serif;
       font-size: 14px;
       letter-spacing: var(--tracking-body);
       line-height: var(--line-body);
@@ -193,8 +193,8 @@ export function renderForgePlatformHtml(): string {
       font-size: 11px;
       letter-spacing: var(--tracking-heading-display);
       text-transform: uppercase;
-      font-family: var(--font-heading);
-      font-weight: 600;
+      font-family: "Agency FB", "AgencyFB", sans-serif;
+      font-weight: 400;
     }
     .textarea {
       width: 100%;
@@ -205,11 +205,11 @@ export function renderForgePlatformHtml(): string {
       border-radius: 8px;
       color: var(--text);
       padding: 10px;
-      font-family: var(--font-body);
+      font-family: "Centaur", "Centaur MT", serif;
       font-size: 14px;
       letter-spacing: var(--tracking-body);
     }
-    .textarea:focus { outline: none; border-color: var(--gold-accent); }
+    .textarea:focus { outline: none; border-color: #d4af37; }
 
     .controls { display: flex; gap: 8px; flex-wrap: wrap; }
     .btn {
@@ -222,10 +222,10 @@ export function renderForgePlatformHtml(): string {
       font-size: 11px;
       letter-spacing: var(--tracking-heading-display);
       text-transform: uppercase;
-      font-family: var(--font-heading);
-      font-weight: 600;
+      font-family: "Agency FB", "AgencyFB", sans-serif;
+      font-weight: 400;
     }
-    .btn:hover { border-color: var(--gold-accent); background: rgba(212, 175, 55, 0.16); }
+    .btn:hover { border-color: #d4af37; background: rgba(212, 175, 55, 0.16); }
 
     .output {
       border: 1px solid var(--line);
@@ -235,7 +235,7 @@ export function renderForgePlatformHtml(): string {
       overflow: auto;
       min-height: 220px;
       white-space: pre-wrap;
-      font-family: var(--font-body);
+      font-family: "Centaur", "Centaur MT", serif;
       font-size: 14px;
       color: var(--text);
       line-height: var(--line-body);

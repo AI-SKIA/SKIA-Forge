@@ -1,5 +1,6 @@
 @import "./styles/skia-dark.css";
 
-:root {
+:root {strong, b { font-weight: 400; }
+
   --skia-text: var(--skia-gold);
 }

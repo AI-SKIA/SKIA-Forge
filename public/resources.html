@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="/forge-lucide-icons.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet" />
-    <style>
+    <style>strong, b { font-weight: 400; }
+
 
         :root {
-            --forge-font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            --forge-font-heading: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --forge-font-sans: "Centaur", "Centaur MT", serif;
+            --forge-font-heading: "Agency FB", "AgencyFB", sans-serif;
             --gold: #d4af37;
             --gold-muted: rgba(212,175,55,0.62);
             --gold-dim: rgba(212,175,55,0.25);
@@ -35,7 +35,7 @@
         body {
             background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(255,180,0,0.06) 0%, transparent 70%), var(--bg);
             color: var(--gold);
-            font-family: var(--forge-font-sans);
+            font-family: "Centaur", "Centaur MT", serif;
             min-height: 100vh;
         }
 
@@ -110,7 +110,7 @@
 
         .pc-sidebar-logo-tagline {
             font-size: 10px;
-            color: rgba(212,175,55,0.55);
+            color: #d4af37;
             letter-spacing: 0.12em;
             margin-top: 8px;
             text-transform: uppercase;
@@ -133,7 +133,7 @@
             display: block;
             padding: 10px 14px;
             border-radius: 6px;
-            color: rgba(212,175,55,0.85);
+            color: #d4af37;
             text-decoration: none;
             font-size: 11px;
             letter-spacing: 0.08em;
@@ -193,7 +193,7 @@
 
         .page-title {
             font-size: 30px;
-            font-weight: 700;
+            font-weight: 400;
             letter-spacing: 0.18em;
             text-transform: uppercase;
             color: var(--gold);
@@ -204,7 +204,7 @@
             font-size: 13px;
             color: var(--text-soft);
             letter-spacing: 0.05em;
-            font-family: var(--forge-font-sans);
+            font-family: "Centaur", "Centaur MT", serif;
         }
 
         /* ── Section label ── */
@@ -240,7 +240,7 @@
         }
 
             .doc-card:hover {
-                border-color: rgba(212,175,55,0.7);
+                border-color: #d4af37;
                 background: linear-gradient(135deg,rgba(20,10,0,0.98) 0%,rgba(35,18,0,0.98) 100%);
             }
 
@@ -248,19 +248,19 @@
             font-size: 11px;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            font-weight: 600;
+            font-weight: 400;
         }
 
         .doc-card-desc {
             font-size: 12px;
             color: var(--text-soft);
-            font-family: var(--forge-font-sans);
+            font-family: "Centaur", "Centaur MT", serif;
             line-height: 1.5;
         }
 
         .doc-card-tag {
             font-size: 10px;
-            color: var(--gold-muted);
+            color: #d4af37;
             letter-spacing: 0.08em;
             margin-top: 4px;
         }
@@ -291,7 +291,7 @@
 
             .ql:hover {
                 background: rgba(212,175,55,0.12);
-                border-color: rgba(212,175,55,0.6);
+                border-color: #d4af37;
             }
 
         /* Matches skia.ca platform-downloads — feature-tab / feature-tab--active (Download SKIA Forge) */
@@ -301,8 +301,8 @@
             border-radius: 6px;
             border: 1px solid rgba(212,175,55,0.2);
             background: transparent;
-            color: rgba(212,175,55,0.7);
-            font-family: 'Orbitron',var(--forge-font-heading),sans-serif;
+            color: #d4af37;
+            font-family: "Agency FB", "AgencyFB", sans-serif;
             font-size: 10px;
             font-weight: 400;
             letter-spacing: 1.5px;
@@ -313,21 +313,21 @@
         }
 
             .feature-tab:hover {
-                border-color: rgba(212,175,55,0.4);
-                color: rgba(212,175,55,0.7);
+                border-color: #d4af37;
+                color: #d4af37;
             }
 
         .feature-tab--active {
-            border-color: rgba(212,175,55,0.7);
+            border-color: #d4af37;
             background: rgba(212,175,55,0.08);
-            color: rgba(212,175,55,0.7);
+            color: #d4af37;
         }
 
         /* ── Footer ── */
         footer {
             margin-top: 60px;
             text-align: center;
-            font-family: var(--forge-font-sans);
+            font-family: "Centaur", "Centaur MT", serif;
             font-size: 15px;
             line-height: 1.8;
         }
@@ -339,7 +339,7 @@
         }
 
         .footer-copy {
-            color: var(--gold-muted);
+            color: #d4af37;
         }
 
         .footer-links {
@@ -361,7 +361,7 @@
                 }
 
             .footer-links .sep {
-                color: rgba(212,175,55,0.35);
+                color: #d4af37;
             }
 
         @media(max-width:680px) {
@@ -379,16 +379,16 @@
         }
         /* SKIA typography normalization */
         body {
-            font-family: var(--forge-font-sans) !important;
+            font-family: "Centaur", "Centaur MT", serif !important;
             letter-spacing: 0.01em !important;
             line-height: 1.6 !important;
         }
 
         h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
-            font-family: var(--forge-font-heading) !important;
+            font-family: "Agency FB", "AgencyFB", sans-serif !important;
             letter-spacing: 0.08em !important;
             text-transform: uppercase;
-            font-weight: 600 !important;
+            font-weight: 400 !important;
             line-height: 1.15 !important;
         }
     </style>

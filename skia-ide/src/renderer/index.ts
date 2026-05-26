@@ -185,7 +185,7 @@ const showUpdateNotice = (title: string, message: string, actionLabel?: string, 
     </div>`
             : "";
     host.innerHTML = `
-      <div style="font-size:10px;font-weight:600;letter-spacing:0.08em;color:#d4af37;text-transform:uppercase;margin-bottom:6px;">${title}</div>
+      <div style="font-size:10px;font-weight: 400;letter-spacing:0.08em;color:#d4af37;text-transform:uppercase;margin-bottom:6px;">${title}</div>
       <div style="font-size:14px;font-weight:400;line-height:1.5;color:#ffffff;">${message}</div>
       ${actionBlock}
       <button id="skia-update-dismiss" style="margin-top:10px;margin-left:8px;background:transparent;border:1px solid rgba(255,255,255,0.22);color:rgba(255,255,255,0.72);padding:8px 10px;cursor:pointer;">Dismiss</button>

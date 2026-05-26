@@ -107,7 +107,7 @@ export const initializeMonaco = (): void => {
             theme: "vs-dark",
             language: "typescript",
             fontSize: 13,
-            fontFamily: "JetBrains Mono, Fira Code, Consolas, monospace",
+            fontFamily: "Centaur", "Centaur MT", serif, "Centaur MT", serif,
             lineNumbers: "on",
             minimap: { enabled: true },
             scrollBeyondLastLine: false,

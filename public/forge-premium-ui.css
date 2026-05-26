@@ -1,3 +1,4 @@
+strong, b { font-weight: 400; }
 /**
  * SKIA Forge — gold scrollbars + shared hub logo sizing.
  * Scrollbars match Skia-FULL globals (.skia-scrollbar-premium).
@@ -9,7 +10,7 @@
 html.skia-scrollbar-premium {
     scrollbar-gutter: stable;
     scrollbar-width: thin;
-    scrollbar-color: rgba(212, 175, 55, 0.45) rgba(0, 0, 0, 0.35);
+    scrollbar-color: #d4af37 rgba(0, 0, 0, 0.35);
 }
 
     html.skia-scrollbar-premium::-webkit-scrollbar {
@@ -46,7 +47,7 @@ html.skia-scrollbar-premium {
 .skia-scrollbar-premium,
 .code-block {
     scrollbar-width: thin;
-    scrollbar-color: rgba(212, 175, 55, 0.45) rgba(0, 0, 0, 0.35);
+    scrollbar-color: #d4af37 rgba(0, 0, 0, 0.35);
 }
 
     .skia-scrollbar-premium::-webkit-scrollbar,
@@ -164,7 +165,7 @@ footer,
 footer .footer-tagline,
 .doc-footer .tagline {
     font-size: 14px !important;
-    font-weight: 600;
+    font-weight: 400;
     letter-spacing: 0.06em;
     white-space: normal;
     overflow-wrap: break-word;

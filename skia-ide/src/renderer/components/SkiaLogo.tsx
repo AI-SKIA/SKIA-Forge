@@ -20,7 +20,7 @@ const styles: Record<string, React.CSSProperties> = {
   },
   logoText: {
     fontSize: 44,
-    fontWeight: "bold",
+    fontWeight: 400,
     color: "#d4af37",
     letterSpacing: 10,
   },
