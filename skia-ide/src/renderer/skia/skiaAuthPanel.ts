@@ -442,7 +442,8 @@ const createOverlay = (): HTMLDivElement => {
     overlay.style.cssText = [
         "position:fixed", "inset:0", "background:#0d0d0d", "z-index:9999",
         "display:flex", "align-items:center", "justify-content:center",
-        "font-family: "Centaur", "Centaur MT", serif;");
+        "font-family: \"Centaur\", \"Centaur MT\", serif;"
+    ].join("");
 
     overlay.innerHTML = `
     <div class="skia-auth-card" style="width:100%;max-width:420px;background:#1a1a1a;border:1px solid rgba(212,175,55,0.3);padding:32px 28px;">

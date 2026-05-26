@@ -158,7 +158,8 @@ const createTab = async (): Promise<void> => {
     const term = new Terminal({
         cursorBlink: true,
         fontSize: 13,
-        fontFamily: "Centaur", "Centaur MT", serif, "Centaur MT", serif,
+        // xterm expects a single CSS font-family string
+        fontFamily: "\"Centaur\", \"Centaur MT\", serif",
         theme: {
             background: "#050500",
             foreground: "#c9b37a",
