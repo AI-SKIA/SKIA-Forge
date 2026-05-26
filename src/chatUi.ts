@@ -7,6 +7,7 @@ export function renderChatHtml(_releaseBase = "https://skia.ca/download"): strin
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SKIA Forge | Intelligence Console</title>
+  <link rel="stylesheet" href="/forge-premium-ui.css" />
   <style>
     body {
       margin: 0;

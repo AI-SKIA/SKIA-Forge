@@ -6,6 +6,7 @@ export function renderForgeSignInHtml(): string {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SKIA Forge | Sign in</title>
+  <link rel="stylesheet" href="/forge-premium-ui.css" />
   <style>
     :root {
       --bg: #0a0a0a;

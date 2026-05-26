@@ -1579,6 +1579,7 @@ app.get("/forge-skia-sso.js", (_req, res) => {
 });
 
 app.use("/locales", express.static(path.join(projectRoot, "public", "locales")));
+app.use("/fonts", express.static(path.join(projectRoot, "public", "fonts")));
 
 /** Hub + docs sidebar and hero logo (`public/*.html`, `public/docs/*.html`) */
 app.get("/sidebar-logo.png", (_req, res) => {

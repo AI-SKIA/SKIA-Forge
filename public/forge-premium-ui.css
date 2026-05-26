@@ -6,6 +6,23 @@ strong, b { font-weight: 400; }
  * mobile overrides in mobile.css).
  */
 
+/* Brand fonts (self-hosted; served at /fonts/*) */
+@font-face {
+    font-family: "Agency FB";
+    src: url("/fonts/agency-fb/AgencyFB-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Centaur";
+    src: url("/fonts/centaur/Centaur-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* Viewport scrollbar (document scroll) */
 html.skia-scrollbar-premium {
     scrollbar-gutter: stable;

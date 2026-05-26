@@ -7,6 +7,7 @@ export function renderForgePlatformHtml(): string {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title data-i18n="forge-platform.meta.title">SKIA Forge | Execution Platform</title>
+  <link rel="stylesheet" href="/forge-premium-ui.css" />
   <script src="/forge-document-locale.js"></script>
   <style>
     :root {
