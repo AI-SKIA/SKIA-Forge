@@ -22,7 +22,7 @@ export const validateCommandSchema = z.object({
 });
 
 export const providerHealthSchema = z.object({
-  name: z.enum(["gemini", "google", "skia", "skia-serve"]).default("gemini"),
+  name: z.enum(["gemini", "google", "skia", "skia-serve"]).default("skia-serve"),
   healthy: z.boolean(),
   latencyMs: z.number().finite().min(0).default(150)
 });

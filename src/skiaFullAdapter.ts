@@ -33,8 +33,10 @@ export type SkiaFullAdapterConfig = {
   brainOnly: boolean;
   authBearer?: string;
   apiKey?: string;
-  /** POST path for D1-03 embedding (SKIA-FULL). */
+  /** POST path on embedding-engine (default `/embed`). */
   embeddingPath?: string;
+  /** Base URL for embedding-engine (defaults to `baseUrl` when unset). */
+  embeddingBaseUrl?: string;
   embedModel?: string;
 };
 
@@ -100,7 +102,19 @@ export class SkiaFullAdapter {
     payload: Record<string, unknown>,
     passthroughHeaders?: Record<string, string>
   ): Promise<SkiaFullSovereignCoreResponse> {
-    return this.postJson<SkiaFullSovereignCoreResponse>("/api/sovereign-core", payload, passthroughHeaders);
+    const message =
+      typeof payload.message === "string"
+        ? payload.message
+        : typeof payload.directive === "string"
+          ? payload.directive
+          : typeof payload.query === "string"
+            ? payload.query
+            : "sovereign probe";
+    return this.postJson<SkiaFullSovereignCoreResponse>(
+      "/api/agents/sovereign/run",
+      { message, ...payload },
+      passthroughHeaders
+    );
   }
 
   async routeReasoning(
@@ -192,13 +206,14 @@ export class SkiaFullAdapter {
       return { ok: false, reason: "SKIA-FULL adapter is disabled" };
     }
     const path = this.config.embeddingPath ?? SKIA_FULL_EMBEDDING_PATH_DEFAULT;
+    const base = (this.config.embeddingBaseUrl ?? this.config.baseUrl).replace(/\/$/, "");
     try {
       const body = buildSkiaFullEmbeddingRequestRecord({
         text,
         source: "skia-forge",
         model: this.config.embedModel
       });
-      const data = await this.postJson<SkiaFullEmbeddingResponse>(path, body, passthroughHeaders);
+      const data = await this.postJsonToBase<SkiaFullEmbeddingResponse>(base, path, body, passthroughHeaders);
       const parsed = parseSkiaFullEmbeddingVector(data);
       if (!parsed) {
         return { ok: true, data, vector: [], model: undefined };
@@ -223,12 +238,13 @@ export class SkiaFullAdapter {
       throw new Error("SKIA-FULL adapter is disabled");
     }
     const path = this.config.embeddingPath ?? SKIA_FULL_EMBEDDING_PATH_DEFAULT;
+    const base = (this.config.embeddingBaseUrl ?? this.config.baseUrl).replace(/\/$/, "");
     const body = buildSkiaFullEmbeddingRequestRecord({
       text,
       source: "skia-forge",
       model: this.config.embedModel
     });
-    const data = await this.postJson<SkiaFullEmbeddingResponse>(path, body, passthroughHeaders);
+    const data = await this.postJsonToBase<SkiaFullEmbeddingResponse>(base, path, body, passthroughHeaders);
     const parsed = parseSkiaFullEmbeddingVector(data);
     if (!parsed?.vector.length) {
       throw new Error("Invalid embedding response: no vector in contract shape");
@@ -295,6 +311,38 @@ export class SkiaFullAdapter {
       }
     }
     return out;
+  }
+
+  private async postJsonToBase<TResponse = Record<string, unknown>>(
+    baseUrl: string,
+    path: string,
+    body: Record<string, unknown>,
+    passthroughHeaders?: Record<string, string>
+  ): Promise<TResponse> {
+    if (!this.config.enabled) {
+      throw new Error("SKIA-FULL adapter is disabled.");
+    }
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), this.config.timeoutMs);
+    try {
+      const res = await fetch(`${baseUrl}${path}`, {
+        method: "POST",
+        headers: this.buildHeaders(passthroughHeaders),
+        body: JSON.stringify(body),
+        signal: controller.signal
+      });
+      const data = (await res.json()) as Record<string, unknown>;
+      if (!res.ok) {
+        throw new Error(
+          `Embedding upstream error ${res.status}: ${
+            typeof data.error === "string" ? data.error : "unknown"
+          }`
+        );
+      }
+      return data as TResponse;
+    } finally {
+      clearTimeout(timer);
+    }
   }
 
   private async postJson<TResponse = Record<string, unknown>>(

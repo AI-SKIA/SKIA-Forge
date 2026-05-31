@@ -1,11 +1,12 @@
 import { z } from "zod";
 
 /**
- * Locked contract for SKIA-FULL `POST /api/skia/embedding` (D1-03).
+ * Locked contract for embedding-engine `POST /embed`.
  * Request: `input` is canonical; `text` is duplicated for older gateways that expect `text`.
  * Response: `embedding` or `vector` (or nested `data.embedding`).
+ * Base URL: `EMBEDDING_ENGINE_URL` / `LOCAL_EMBEDDING_ENGINE_URL` — not Skia-Serve or api.skia.ca.
  */
-export const SKIA_FULL_EMBEDDING_PATH_DEFAULT = "/api/skia/embedding";
+export const SKIA_FULL_EMBEDDING_PATH_DEFAULT = "/embed";
 export const SKIA_FULL_EMBED_DIM_DEFAULT = 1536;
 
 export const skiaFullEmbeddingRequestBodySchema = z.object({

@@ -83,6 +83,7 @@ import { forgeLocaleMiddleware } from "./middleware/forgeLocaleMiddleware.js";
 import {
   resolveSkiaBackendUrl,
   resolveSkiaFullApiUrl,
+  resolveLocalEngineConfig,
   isLocalFounderOverrideEnabled,
   resolveLocalForgeSovereignMode,
 } from "./config/localBackend.js";
@@ -130,6 +131,9 @@ const skiaFullAdapter = new SkiaFullAdapter({
   brainOnly: true,
   authBearer: process.env.SKIA_FULL_AUTH_BEARER,
   apiKey: process.env.SKIA_FULL_API_KEY,
+  embeddingBaseUrl:
+    (process.env.EMBEDDING_ENGINE_URL ?? process.env.LOCAL_EMBEDDING_ENGINE_URL ?? "").trim().replace(/\/+$/, "") ||
+    resolveLocalEngineConfig().embeddingEngineUrl,
   embeddingPath: process.env.SKIA_FULL_EMBEDDING_PATH ?? SKIA_FULL_EMBEDDING_PATH_DEFAULT,
   embedModel: process.env.SKIA_FULL_EMBED_MODEL
 });

@@ -1,16 +1,29 @@
 # SKIA Forge — User-facing copy audit
 
-> **Status (2026-05-24):** Partially superseded. i18n-driven hub pages and `public/locales/en/docs.json` resolved several items flagged below. Re-run greps before the next copy pass.
+> **Status (2026-05-31):** Refreshed post Phase 2 / Skia-FULL cleanup. i18n hub pages (`platform-downloads`, `security`, `public/docs/*.html`) resolved most CRITICAL items from the 2026-05-10 pass. Sovereign vocabulary: **Skia-Serve primary, Google Gemini continuity fallback** — see `docs/ENV_REFERENCE.md`.
 
-**Repository:** `c:\SKIA-Forge`  
-**Audit date:** 2026-05-10  
-**Scope:** Read-only inventory of user-accessible HTML, Express-served pages, dynamic HTML from TypeScript, documentation under `docs/` and `public/docs/`, and forbidden-string greps. No source files were modified except this report.
+**Repository:** `C:\SKIA-Forge`  
+**Original audit date:** 2026-05-10  
+**Last refreshed:** 2026-05-31  
 
-**Brand lens (from brief):** SKIA Forge is the developer/operator surface of the SKIA Sovereign Intelligence Platform — not a generic AI tool. Anthropomorphize SKIA as “she” where appropriate. Avoid internal repo names, vendor LLM brands, CI/eval jargon, and generic “chatbot/assistant/LLM” framing in customer copy.
+### Resolved since 2026-05-10 (DONE)
+
+| Area | Status |
+|------|--------|
+| `platform-downloads` eval-gated / Northflank copy | ✅ i18n locales |
+| `security.html` vendor-specific hosting copy | ✅ neutral wording in `public/locales/en/security.json` |
+| `public/docs/*.html` `Skia-FULL` leaks | ✅ removed from public HTML |
+| Provider default in API contracts | ✅ `providerHealthSchema` defaults to `skia-serve` |
+
+### Still open (lower priority)
+
+- `docs/TROUBLESHOOTING.md` — “SKIA-full Integration Unavailable” heading refresh
+- `skia-ide/README.md` — internal repo naming for onboarding
+- Re-run greps in appendix before next marketing release
 
 ---
 
-## Step 1 — Page inventory & URL mapping
+## Historical inventory (2026-05-10)
 
 ### Static files under `public/` (served as files or via explicit routes)
 
