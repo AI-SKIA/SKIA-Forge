@@ -28,7 +28,7 @@
         },
         "next-steps": {
           "title": "다음 단계",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>사용자 가이드</a> � 일상적인 사용 및 거버넌스 모드</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API 참조</a> � HTTP 개발자 및 자동화용 API</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>제품 설명서</a> � 기능 개요</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>지원</a> � 도움을 받는 방법</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>사용자 가이드</a> — 일상적인 사용 및 거버넌스 모드</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API 참조</a> — HTTP 개발자 및 자동화용 API</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>제품 설명서</a> — 기능 개요</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>지원</a> — 도움을 받는 방법</div></div></div></div>"
         }
       }
     },
@@ -58,7 +58,7 @@
         },
         "governance-modes": {
           "title": "거버넌스 모드",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>엄격</strong> � 가장 안전한 기본값; 더 많은 단계에는 명시적인 승인이 필요합니다.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>적응형</strong> � 균형 잡힌; 일상적인 작업은 더 빠르게 진행되고 위험도가 높은 작업은 검토 대상으로 표시됩니다.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>자율</strong> � 활성화된 경우 가장 빠른 경로; 팀이 절충안을 받아들일 때 사용하세요.</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">제품의 라벨은 다를 수 있습니다. 작업공간에 어떤 모드가 적용되는지 관리자에게 문의하세요.</p></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>엄격</strong> — 가장 안전한 기본값; 더 많은 단계에는 명시적인 승인이 필요합니다.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>적응형</strong> — 균형 잡힌; 일상적인 작업은 더 빠르게 진행되고 위험도가 높은 작업은 검토 대상으로 표시됩니다.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>자율</strong> — 활성화된 경우 가장 빠른 경로; 팀이 절충안을 받아들일 때 사용하세요.</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">제품의 라벨은 다를 수 있습니다. 작업공간에 어떤 모드가 적용되는지 관리자에게 문의하세요.</p></div>"
         },
         "where-to-get-help": {
           "title": "도움을 받을 수 있는 곳",
@@ -80,7 +80,7 @@
         },
         "project-structure": {
           "title": "프로젝트 구조",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Forge 서버 � 런타임 진입점</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>src/forge/modules/</code> � 모듈 도메인: 거버넌스, 안전, 컨텍스트 엔진, 에이전트, 생산, 치유, 아키텍처</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE � IDE 방향 통합 표면</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> � 제품 설명서 세트</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> � 정적 자산 및 HTML 페이지</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Forge 서버 — 런타임 진입점</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>src/forge/modules/</code> — 모듈 도메인: 거버넌스, 안전, 컨텍스트 엔진, 에이전트, 생산, 치유, 아키텍처</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE — IDE 방향 통합 표면</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> — 제품 설명서 세트</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> — 정적 자산 및 HTML 페이지</div></div></div></div>"
         },
         "development-workflow": {
           "title": "개발 워크플로",
@@ -130,7 +130,7 @@
         },
         "rpc": {
           "title": "RPC",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> � 사용할 수 없는 업스트림 경로에 대한 로컬 폴백을 사용한 SKIA 지원 작업</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> — 사용할 수 없는 업스트림 경로에 대한 로컬 폴백을 사용한 SKIA 지원 작업</div></div></div></div>"
         },
         "error-model": {
           "title": "오류 모델",
@@ -164,7 +164,7 @@
         },
         "incident-handling": {
           "title": "사고 처리",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">실패 엔드포인트 및 페이로드 메타데이터를 캡처합니다.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">제어 플레인 권장 사항을 검토하세요. <code>/api/forge/control-plane</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">수정을 적용하고 실패한 요청을 다시 실행하세요.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">다음과 같은 경우 로그 및 요청 ID로 에스컬레이션하세요. 해결되지 않은 문제 � 지원팀에 문의하세요.</div></div></div></div>"
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">실패 엔드포인트 및 페이로드 메타데이터를 캡처합니다.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">제어 플레인 권장 사항을 검토하세요. <code>/api/forge/control-plane</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">수정을 적용하고 실패한 요청을 다시 실행하세요.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">다음과 같은 경우 로그 및 요청 ID로 에스컬레이션하세요. 해결되지 않은 문제 — 지원팀에 문의하세요.</div></div></div></div>"
         }
       }
     },
@@ -194,7 +194,7 @@
         },
         "value-proposition": {
           "title": "가치 제안",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">가드레일로 더욱 빠른 배송 � 속도 저하 없이 자신 있게 배송</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">위험한 작업 감소 생산</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">기업 거버넌스 및 감사를 위한 향상된 추적성</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">가드레일로 더욱 빠른 배송 — 속도 저하 없이 자신 있게 배송</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">위험한 작업 감소 생산</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">기업 거버넌스 및 감사를 위한 향상된 추적성</div></div></div></div>"
         },
         "product-boundaries": {
           "title": "제품 경계",
@@ -220,15 +220,15 @@
         },
         "key-security-components": {
           "title": "주요 보안 구성요소",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>SecurityAnalyticService</code> � 코드 및 에이전트 출력에 대한 스캔 및 저장 시간 확인</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">거버넌스 결정 엔진 � 감사 추적을 통한 엄격한/적응형/자율 제어</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">경로 및 작업 수준 안전 모듈 � 우회할 수 없는 표면별 제약</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>SecurityAnalyticService</code> — 코드 및 에이전트 출력에 대한 스캔 및 저장 시간 확인</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">거버넌스 결정 엔진 — 감사 추적을 통한 엄격한/적응형/자율 제어</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">경로 및 작업 수준 안전 모듈 — 우회할 수 없는 표면별 제약</div></div></div></div>"
         },
         "operational-security-practices": {
           "title": "운영 보안 관행",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">저장소와 로그에서 비밀을 유지하십시오. 호스팅 공급자의 환경 변수를 사용하십시오.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">모든 외부 통합 응답을 검증하십시오. 주장 없이 제3자 데이터 신뢰</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">정책 블록을 최고 수준의 보안 이벤트로 처리합니다. 모든 블록은 기록되고 검토 가능합니다.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">교정 결과 기록 및 모니터링 � 검증 없는 수정은 불완전합니다.</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">저장소와 로그에서 비밀을 유지하십시오. 호스팅 공급자의 환경 변수를 사용하십시오.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">모든 외부 통합 응답을 검증하십시오. 주장 없이 제3자 데이터 신뢰</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">정책 블록을 최고 수준의 보안 이벤트로 처리합니다. 모든 블록은 기록되고 검토 가능합니다.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">교정 결과 기록 및 모니터링 — 검증 없는 수정은 불완전합니다.</div></div></div></div>"
         },
         "hardening-checklist": {
           "title": "강화 체크리스트",
-          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">매 릴리스 전에 Lint, TypeCheck 및 테스트 실행</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">모든 종속성을 최신 상태로 유지</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">통합 프로브 엔드포인트를 정기적으로 검증</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">주요 오케스트레이션 실행 후 감사 추적 검토</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">일정에 따라 JWT_SECRET 및 API 키 순환</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">비밀을 커밋하지 마세요 � 환경을 사용하세요 주입</div></div></div></div>"
+          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">매 릴리스 전에 Lint, TypeCheck 및 테스트 실행</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">모든 종속성을 최신 상태로 유지</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">통합 프로브 엔드포인트를 정기적으로 검증</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">주요 오케스트레이션 실행 후 감사 추적 검토</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">일정에 따라 JWT_SECRET 및 API 키 순환</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">비밀을 커밋하지 마세요 — 환경을 사용하세요 주입</div></div></div></div>"
         }
       }
     },
@@ -312,7 +312,7 @@
       "sections": {
         "packages": {
           "title": "패키지",
-          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">개발자</div><div class=\"pkg-tag\">솔로 엔지니어 및 실험</div><div class=\"pkg-body\">Core Forge 런타임 � 기본 오케스트레이션 및 거버넌스 모드 � 표준 API 액세스 � 커뮤니티 지원</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">팀</div><div class=\"pkg-tag\">AI 워크플로를 채택하는 엔지니어링 팀</div><div class=\"pkg-body\">개발자의 모든 것 � 팀 정책 사전 설정 � 공유 운영 대시보드 � 우선 순위 지원 � 공동 작업을 위한 거버넌스 기본값</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">엔터프라이즈</div><div class=\"pkg-tag\">규정 준수 요구 사항이 있는 조직</div><div class=\"pkg-body\">팀의 모든 것 � 기업 정책 제어 및 강화 � 감사/내보내기 가능 보고 � 배포 아키텍처 지원 � 정의된 SLA 및 에스컬레이션 경로</div></div></div></div>"
+          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">개발자</div><div class=\"pkg-tag\">솔로 엔지니어 및 실험</div><div class=\"pkg-body\">Core Forge 런타임 — 기본 오케스트레이션 및 거버넌스 모드 — 표준 API 액세스 — 커뮤니티 지원</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">팀</div><div class=\"pkg-tag\">AI 워크플로를 채택하는 엔지니어링 팀</div><div class=\"pkg-body\">개발자의 모든 것 — 팀 정책 사전 설정 — 공유 운영 대시보드 — 우선 순위 지원 — 공동 작업을 위한 거버넌스 기본값</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">엔터프라이즈</div><div class=\"pkg-tag\">규정 준수 요구 사항이 있는 조직</div><div class=\"pkg-body\">팀의 모든 것 — 기업 정책 제어 및 강화 — 감사/내보내기 가능 보고 — 배포 아키텍처 지원 — 정의된 SLA 및 에스컬레이션 경로</div></div></div></div>"
         },
         "optional-add-ons": {
           "title": "선택적 추가 기능",

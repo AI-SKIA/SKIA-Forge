@@ -2,21 +2,21 @@
   "pages": {
     "readme": {
       "meta": {
-        "title": "SKIA Forge 文档| SKIA Forge"
+        "title": "SKIA Forge 文档| SKIA Forge"
       },
-      "badge": "SKIA Forge 文档",
-      "title": "SKIA Forge 文档",
+      "badge": "SKIA Forge 文档",
+      "title": "SKIA Forge 文档",
       "description": "浏览产品指南、API参考、安全、支持和企业评估材料。 下面列出了品牌 HTML 页面； 当从 Forge 主机提供服务时，可以在具有 .md 后缀的相同路径中使用 Markdown 源。",
       "sections": {
         "all-documents": {
           "title": "所有文件",
-          "html": "<div class=\"card-grid\"><a href=\"/docs/PRODUCT_MANUAL.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">产品手册</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">PRODUCT_MANUAL.html</div></div></a><a href=\"/docs/QUICKSTART.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">快速入门</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">QUICKSTART.html</div></div></a><a href=\"/docs/USER_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">用户指南</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">USER_GUIDE.html</div></div></a><a href=\"/docs/DEVELOPER_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">开发人员指南</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">DEVELOPER_GUIDE.html</div></div></a><a href=\"/docs/OPERATOR_MANUAL.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">操作手册</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">OPERATOR_MANUAL.html</div></div></a><a href=\"/docs/API_REFERENCE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">API 参考</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">API_REFERENCE.html</div></div></a><a href=\"/docs/SECURITY_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">安全指南</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">SECURITY_GUIDE.html</div></div></a><a href=\"/docs/TROUBLESHOOTING.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">疑难解答</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">TROUBLESHOOTING.html</div></div></a><a href=\"/docs/CHANGELOG.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">变更日志</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">CHANGELOG.html</div></div></a><a href=\"/docs/SUPPORT.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">支持</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">SUPPORT.html</div></div></a><a href=\"/docs/PRICING_AND_PACKAGES.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">定价和套餐</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">PRICING_AND_PACKAGES.html</div></div></a><a href=\"/docs/ENTERPRISE_READINESS_CHECKLIST.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">企业准备情况</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">ENTERPRISE_READINESS_CHECKLIST.html</div></div></a></div></div>"
+          "html": "<div class=\"card-grid\"><a href=\"/docs/PRODUCT_MANUAL.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">产品手册</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">PRODUCT_MANUAL.html</div></div></a><a href=\"/docs/QUICKSTART.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">快速入门</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">QUICKSTART.html</div></div></a><a href=\"/docs/USER_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">用户指南</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">USER_GUIDE.html</div></div></a><a href=\"/docs/DEVELOPER_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">开发人员指南</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">DEVELOPER_GUIDE.html</div></div></a><a href=\"/docs/OPERATOR_MANUAL.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">操作手册</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">OPERATOR_MANUAL.html</div></div></a><a href=\"/docs/API_REFERENCE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">API 参考</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">API_REFERENCE.html</div></div></a><a href=\"/docs/SECURITY_GUIDE.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">安全指南</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">SECURITY_GUIDE.html</div></div></a><a href=\"/docs/TROUBLESHOOTING.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">疑难解答</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">TROUBLESHOOTING.html</div></div></a><a href=\"/docs/CHANGELOG.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">变更日志</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">CHANGELOG.html</div></div></a><a href=\"/docs/SUPPORT.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">支持</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">SUPPORT.html</div></div></a><a href=\"/docs/PRICING_AND_PACKAGES.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">定价和套餐</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">PRICING_AND_PACKAGES.html</div></div></a><a href=\"/docs/ENTERPRISE_READINESS_CHECKLIST.html\" style=\"text-decoration:none\"><div class=\"card\"><div class=\"card-title\">企业准备情况</div><div class=\"card-body\" style=\"color:var(--gold-muted);font-size:11px;letter-spacing:0.05em\">ENTERPRISE_READINESS_CHECKLIST.html</div></div></a></div></div>"
         }
       }
     },
     "quickstart": {
       "meta": {
-        "title": "快速入门 | SKIA Forge"
+        "title": "快速入门 | SKIA Forge"
       },
       "badge": "开始使用",
       "title": "快速入门",
@@ -24,25 +24,25 @@
       "sections": {
         "step-by-step": {
           "title": "一步一步",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">从<a href=\"https://FORGE_HOST/platform-downloads\" style=\"color:var(--gold)\">FORGE_HOST/platform-downloads</a>下载SKIA_FORGEFORGE_HOST/platform-downloads</a>以供您操作 </div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">安装应用程序，然后从应用程序菜单或桌面快捷方式打开<strong>SKIA _FORGE </strong>。</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">使用您的 SKIA 帐户登录或创建一个帐户 提示 � 身份验证在应用程序内部进行。</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">打开或导入项目、提交工作、查看治理输出，并在准备好后应用更改。</div></div><div class=\"step\"><div class=\"step-num\">05</div><div class=\"step-text\">当您需要更多信息时，可以通过以下链接探索更深入的指南 详细信息。</div></div></div></div>"
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">从<a href=\"https://FORGE_HOST/platform-downloads\" style=\"color:var(--gold)\">FORGE_HOST/platform-downloads</a>下载SKIA_FORGEFORGE_HOST/platform-downloads</a>以供您操作 </div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">安装应用程序，然后从应用程序菜单或桌面快捷方式打开<strong>SKIA _FORGE </strong>。</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">使用您的 SKIA 帐户登录或创建一个帐户 提示 — 身份验证在应用程序内部进行。</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">打开或导入项目、提交工作、查看治理输出，并在准备好后应用更改。</div></div><div class=\"step\"><div class=\"step-num\">05</div><div class=\"step-text\">当您需要更多信息时，可以通过以下链接探索更深入的指南 详细信息。</div></div></div></div>"
         },
         "next-steps": {
           "title": "下一步",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>用户指南</a> � 日常使用和治理模式</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API 参考</a> . HTTP 面向开发人员和自动化的 API</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>产品手册</a>�功能概述</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>支持</a>�如何获取帮助</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>用户指南</a> — 日常使用和治理模式</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API 参考</a> . HTTP 面向开发人员和自动化的 API</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>产品手册</a>—功能概述</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>支持</a>—如何获取帮助</div></div></div></div>"
         }
       }
     },
     "user-guide": {
       "meta": {
-        "title": "用户指南 | SKIA Forge"
+        "title": "用户指南 | SKIA Forge"
       },
       "badge": "使用 SKIA Forge",
       "title": "用户指南",
       "description": "SKIA Forge 能为您做什么、如何安装和登录、日常工作流程、简明语言的治理模式以及从何处获取帮助。",
       "sections": {
         "what-skia-forge-does-for-you": {
-          "title": "SKIA _FORGE 能为您做什么",
-          "html": "SKIA _FORGE 可以帮助您在明确的治理下利用人工智能辅助构建软件：规划、审查、架构洞察和更安全的应用路径，以便您的团队可以快速行动而无需绕过政策。</div>"
+          "title": "SKIA _FORGE 能为您做什么",
+          "html": "SKIA _FORGE 可以帮助您在明确的治理下利用人工智能辅助构建软件：规划、审查、架构洞察和更安全的应用路径，以便您的团队可以快速行动而无需绕过政策。</div>"
         },
         "get-the-desktop-ide": {
           "title": "获取桌面IDE",
@@ -58,7 +58,7 @@
         },
         "governance-modes": {
           "title": "治理模式",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>严格</strong> � 最安全的默认值； 更多步骤需要明确批准。</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>自适应</strong> � 平衡； 日常工作流程更快，同时更高风险的操作浮出水面供审查。</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>自主</strong> � 启用时的最快路径； 当您的团队接受权衡时使用。</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">产品中的标签可能有所不同； 询问您的管理员哪种模式适用于您的工作区。</p></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>严格</strong> — 最安全的默认值； 更多步骤需要明确批准。</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>自适应</strong> — 平衡； 日常工作流程更快，同时更高风险的操作浮出水面供审查。</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>自主</strong> — 启用时的最快路径； 当您的团队接受权衡时使用。</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">产品中的标签可能有所不同； 询问您的管理员哪种模式适用于您的工作区。</p></div>"
         },
         "where-to-get-help": {
           "title": "从哪里获得帮助",
@@ -68,7 +68,7 @@
     },
     "developer-guide": {
       "meta": {
-        "title": "开发者指南 | SKIA Forge"
+        "title": "开发者指南 | SKIA Forge"
       },
       "badge": "本地开发与架构",
       "title": "开发者指南",
@@ -80,7 +80,7 @@
         },
         "project-structure": {
           "title": "项目结构",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Forge 服务器 � 运行时入口点</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>src/forge/modules/</code> � 模块域：治理、安全、上下文引擎、代理、生产、修复、 架构</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA _FORGE_IDE � 面向IDE的集成界面</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> � 产品文档集</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> � 静态资源和 HTML 页面</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Forge 服务器 — 运行时入口点</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>src/forge/modules/</code> — 模块域：治理、安全、上下文引擎、代理、生产、修复、 架构</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA _FORGE_IDE — 面向IDE的集成界面</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> — 产品文档集</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> — 静态资源和 HTML 页面</div></div></div></div>"
         },
         "development-workflow": {
           "title": "开发流程",
@@ -98,10 +98,10 @@
     },
     "api-reference": {
       "meta": {
-        "title": "API 参考| SKIA Forge"
+        "title": "API 参考| SKIA Forge"
       },
       "badge": "主要API表面",
-      "title": "API参考",
+      "title": "API参考",
       "description": "Forge 在 Forge 服务器中实现的 HTTP API。 /api/forge/* 下的控制平面路由需要经过身份验证的客户端。 有关完整的路由索引，请参阅存储库中的 docs/API_REFERENCE.md。",
       "sections": {
         "browser-static": {
@@ -110,7 +110,7 @@
         },
         "auth-proxy": {
           "title": "身份验证代理",
-          "html": "<表 class=\"tbl\"><thead><tr><th>方法</th><th>路径</th></tr></thead><tbody><tr><td>POST</td><td><code>/api/auth/login</code></td></tr><tr>< td>POST</td><td><code>/api/auth/register</code></td></tr><tr><td>GET</td><td><code>/api/auth/session</code></td></tr></tbody></table><p style=\"margin-top:12px;font-size:13px;color:var(--text-soft)\">代理到 <code>SKIA _BACKEND_URL</code>。 营销页面省略了网络登录UI； 使用SKIA _FORGE_IDE 。</p></div>"
+          "html": "<表 class=\"tbl\"><thead><tr><th>方法</th><th>路径</th></tr></thead><tbody><tr><td>POST</td><td><code>/api/auth/login</code></td></tr><tr>< td>POST</td><td><code>/api/auth/register</code></td></tr><tr><td>GET</td><td><code>/api/auth/session</code></td></tr></tbody></table><p style=\"margin-top:12px;font-size:13px;color:var(--text-soft)\">代理到 <code>SKIA _BACKEND_URL</code>。 营销页面省略了网络登录UI； 使用SKIA _FORGE_IDE 。</p></div>"
         },
         "app-distribution": {
           "title": "应用程序分发",
@@ -130,17 +130,17 @@
         },
         "rpc": {
           "title": "远程过程调用",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> � SKIA 支持的操作，针对不可用的上游路径提供本地后备</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> — SKIA 支持的操作，针对不可用的上游路径提供本地后备</div></div></div></div>"
         },
         "error-model": {
           "title": "误差模型",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">架构验证错误返回包含字段级详细信息的结构化请求反馈</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">上游不可用返回显式 SKIA 不可用错误</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">治理通过补救指导阻止回报模式和基于策略的决策环境</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">架构验证错误返回包含字段级详细信息的结构化请求反馈</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">上游不可用返回显式 SKIA 不可用错误</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">治理通过补救指导阻止回报模式和基于策略的决策环境</div></div></div></div>"
         }
       }
     },
     "operator-manual": {
       "meta": {
-        "title": "操作手册| SKIA Forge"
+        "title": "操作手册| SKIA Forge"
       },
       "badge": "部署和运行时操作",
       "title": "操作手册",
@@ -152,11 +152,11 @@
         },
         "deployment-baseline": {
           "title": "部署基线",
-          "html": "<p style=\"margin-bottom:14px;font-size:13px;color:var(--text-soft)\">生产主机名：<code>FORGE_HOST </code>。 发布基线 Forge <code>1.0.0</code> 和 SKIA Forge IDE <code>1.0.0</code>。</p><div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><div class=\"code-block\">npm run build</div></div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\"><div class=\"code-block\">npm run dev</div>（或您的生产过程命令）</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">监听<code>SKIA_PORT</code>（默认<code>4173</code>）。 验证 <code>/health</code>、<code>/live</code>、<code>/ready</code>、<code>/version</code></div></div></div><p style=\"margin-top:14px;font-size:13px;color:var(--text-soft)\">用于签名和 GitHub 集成的其他环境变量记录在您的入门包中。</p></div>"
+          "html": "<p style=\"margin-bottom:14px;font-size:13px;color:var(--text-soft)\">生产主机名：<code>FORGE_HOST </code>。 发布基线 Forge <code>1.0.0</code> 和 SKIA Forge IDE <code>1.0.0</code>。</p><div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><div class=\"code-block\">npm run build</div></div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\"><div class=\"code-block\">npm run dev</div>（或您的生产过程命令）</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">监听<code>SKIA_PORT</code>（默认<code>4173</code>）。 验证 <code>/health</code>、<code>/live</code>、<code>/ready</code>、<code>/version</code></div></div></div><p style=\"margin-top:14px;font-size:13px;color:var(--text-soft)\">用于签名和 GitHub 集成的其他环境变量记录在您的入门包中。</p></div>"
         },
         "environment-secrets": {
           "title": "环境与秘密",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">保留环境管理中的所有秘密，切勿提交凭据</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">通过托管提供商的环境变量配置每个部署环境的 SKIA 集成值</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">使用显式模式控制进行严格与自适应操作</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">保留环境管理中的所有秘密，切勿提交凭据</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">通过托管提供商的环境变量配置每个部署环境的 SKIA 集成值</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">使用显式模式控制进行严格与自适应操作</div></div></div></div>"
         },
         "operational-checks": {
           "title": "操作检查",
@@ -170,19 +170,19 @@
     },
     "product-manual": {
       "meta": {
-        "title": "产品手册| SKIA Forge"
+        "title": "产品手册| SKIA Forge"
       },
-      "badge": "SKIA Forge 文档",
+      "badge": "SKIA Forge 文档",
       "title": "产品手册",
       "description": "用于人工智能原生软件开发的治理和编排控制平面。 SKIA Forge 连接到 SKIA 情报服务进行编排； 它不会取代完整的 SKIA 产品运行时间。",
       "sections": {
         "what-skia-forge-is": {
           "title": "SKIA Forge是什么",
-          "html": "SKIA _FORGE 围绕人工智能辅助工作流程协调规划、执行安全、架构检查和补救指导。</div>"
+          "html": "SKIA _FORGE 围绕人工智能辅助工作流程协调规划、执行安全、架构检查和补救指导。</div>"
         },
         "delivery-surfaces": {
           "title": "交货面",
-          "html": "公共下载和文档位于 <strong>FORGE_HOST </strong>，包括 <code>/platform-downloads</code>、<code>/resources</code>、<code>/security</code>、<code>/contact</code> 和 <code>/docs/*</code>。 构建 IDE 捆绑包后，可以在 <code>/forge/app</code> 中使用 Web IDE。 帐户登录和注册发生在 <strong>SKIA _FORGE_IDE </strong> 或其他支持的客户端中，而不是在静态营销页面上。 桌面安装程序通过 <code>/api/app/download</code> 路线提供。</div>"
+          "html": "公共下载和文档位于 <strong>FORGE_HOST </strong>，包括 <code>/platform-downloads</code>、<code>/resources</code>、<code>/security</code>、<code>/contact</code> 和 <code>/docs/*</code>。 构建 IDE 捆绑包后，可以在 <code>/forge/app</code> 中使用 Web IDE。 帐户登录和注册发生在 <strong>SKIA _FORGE_IDE </strong> 或其他支持的客户端中，而不是在静态营销页面上。 桌面安装程序通过 <code>/api/app/download</code> 路线提供。</div>"
         },
         "who-it-is-for": {
           "title": "它适合谁",
@@ -204,7 +204,7 @@
     },
     "security-guide": {
       "meta": {
-        "title": "安全指南| SKIA Forge"
+        "title": "安全指南| SKIA Forge"
       },
       "badge": "安全模型和控制",
       "title": "安全指南",
@@ -216,11 +216,11 @@
         },
         "authentication-accounts": {
           "title": "身份验证和帐户",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">所有 Forge API 路由都需要身份验证。 通过 SKIA _FORGE_IDE 或你的 API 客户端登录。</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">营销 HTML 省略网络登录/注册 CTA； 用户在<strong>SKIA _FORGE_IDE </strong>中进行身份验证。</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">所有 Forge API 路由都需要身份验证。 通过 SKIA _FORGE_IDE 或你的 API 客户端登录。</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">营销 HTML 省略网络登录/注册 CTA； 用户在<strong>SKIA _FORGE_IDE </strong>中进行身份验证。</div></div></div></div>"
         },
         "key-security-components": {
           "title": "关键安全组件",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>SecurityAnalysisService</code> � 对代码和代理输出进行扫描和保存时间检查</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">治理决策引擎� 严格/自适应/自主控制与审核 Trail</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">路线和操作级安全模块 - 无法绕过的每个表面约束</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>SecurityAnalysisService</code> — 对代码和代理输出进行扫描和保存时间检查</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">治理决策引擎— 严格/自适应/自主控制与审核 Trail</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">路线和操作级安全模块 - 无法绕过的每个表面约束</div></div></div></div>"
         },
         "operational-security-practices": {
           "title": "运营安全实践",
@@ -234,7 +234,7 @@
     },
     "troubleshooting": {
       "meta": {
-        "title": "故障排除 | SKIA Forge"
+        "title": "故障排除 | SKIA Forge"
       },
       "badge": "常见故障及修复",
       "title": "故障排除",
@@ -245,7 +245,7 @@
           "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><div class=\"code-block\">npm运行类型检查</div></div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\"><div class=\"code-block\">npm运行测试</div></div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\"><div class=\"code-block\">npm run build</div></div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">在重新运行编排端点之前修复架构和类型不匹配。</div></div></div></div>"
         },
         "skia-integration-unavailable": {
-          "title": "SKIA 集成不可用",
+          "title": "SKIA 集成不可用",
           "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">检查 <code>/integration/skia-full</code> 和 <code>/integration/skia-full/probe</code>。</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">验证您的上游 URL 和环境配置 托管提供商。</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">查看适配器禁用标志和身份验证标头。</div></div></div></div>"
         },
         "governance-blocks": {
@@ -260,7 +260,7 @@
     },
     "changelog": {
       "meta": {
-        "title": "更新日志 | SKIA Forge"
+        "title": "更新日志 | SKIA Forge"
       },
       "badge": "版本历史",
       "title": "变更日志",
@@ -268,17 +268,17 @@
       "sections": {
         "v1-0-0-initial-release": {
           "title": "v1.0.0 — 初始版本",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA _FORGE 控制平面，具有治理模式、编排 API 以及与 SKIA 智能服务的集成。</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA_FORGE_IDE（桌面）和位于 <code>/forge/app</code> 的 Web shell，用于基于浏览器的访问。</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">公共文档、安全指南、支持模型和下载中心位于 FORGE_HOST·。</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA _FORGE 控制平面，具有治理模式、编排 API 以及与 SKIA 智能服务的集成。</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA_FORGE_IDE（桌面）和位于 <code>/forge/app</code> 的 Web shell，用于基于浏览器的访问。</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">公共文档、安全指南、支持模型和下载中心位于 FORGE_HOST·。</div></div></div></div>"
         }
       }
     },
     "support": {
       "meta": {
-        "title": "支持| SKIA Forge"
+        "title": "支持| SKIA Forge"
       },
       "badge": "支持模型和升级",
       "title": "支持",
-      "description": "SKIA Forge支持涵盖以下领域：",
+      "description": "SKIA Forge支持涵盖以下领域：",
       "sections": {
         "support-scope": {
           "title": "支持范围",
@@ -304,7 +304,7 @@
     },
     "pricing-and-packages": {
       "meta": {
-        "title": "定价和套餐| SKIA Forge"
+        "title": "定价和套餐| SKIA Forge"
       },
       "badge": "商业模式",
       "title": "定价和套餐",
@@ -312,7 +312,7 @@
       "sections": {
         "packages": {
           "title": "套餐",
-          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">开发人员</div><div class=\"pkg-tag\">独立工程师和实验</div><div class=\"pkg-body\">Core Forge 运行时 � 基本编排和治理模式 � 标准 API 访问 � 社区支持</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">团队</div><div class=\"pkg-tag\">采用 AI 工作流程的工程团队</div><div class=\"pkg-body\">开发人员中的一切 � 团队政策预设 � 共享操作仪表板 � 优先支持 � 协作就绪治理默认值</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">企业</div><div class=\"pkg-tag\">有合规性要求的组织</div><div class=\"pkg-body\">团队中的一切 � 企业策略控制和强化 � 审计/导出就绪报告 � 部署架构支持 � 定义的 SLA 和升级路径</div></div></div></div>"
+          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">开发人员</div><div class=\"pkg-tag\">独立工程师和实验</div><div class=\"pkg-body\">Core Forge 运行时 — 基本编排和治理模式 — 标准 API 访问 — 社区支持</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">团队</div><div class=\"pkg-tag\">采用 AI 工作流程的工程团队</div><div class=\"pkg-body\">开发人员中的一切 — 团队政策预设 — 共享操作仪表板 — 优先支持 — 协作就绪治理默认值</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">企业</div><div class=\"pkg-tag\">有合规性要求的组织</div><div class=\"pkg-body\">团队中的一切 — 企业策略控制和强化 — 审计/导出就绪报告 — 部署架构支持 — 定义的 SLA 和升级路径</div></div></div></div>"
         },
         "optional-add-ons": {
           "title": "可选附加组件",
@@ -322,11 +322,11 @@
     },
     "enterprise-readiness-checklist": {
       "meta": {
-        "title": "企业准备清单| SKIA Forge"
+        "title": "企业准备清单| SKIA Forge"
       },
       "badge": "企业评价",
       "title": "企业准备清单",
-      "description": "大规模评估和部署 SKIA _FORGE 的指南。 当您的组织决定 SKIA Forge 是否符合您的工程、安全和操作要求时，请使用此清单。",
+      "description": "大规模评估和部署 SKIA _FORGE 的指南。 当您的组织决定 SKIA Forge 是否符合您的工程、安全和操作要求时，请使用此清单。",
       "sections": {
         "product-architecture": {
           "title": "产品与架构",
@@ -346,7 +346,7 @@
         },
         "commercial-support": {
           "title": "商业与支持",
-          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">您的团队应确认打包和许可与您想要的席位或部署模型相匹配（定价和套餐）。</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">您的团队应确认已同意支持级别和升级联系人 SKIA·。</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">您的团队应确认采购项目（安全调查问卷、DPA、子处理商（如果适用））在上线前得到跟踪。</div></div></div></div>"
+          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">您的团队应确认打包和许可与您想要的席位或部署模型相匹配（定价和套餐）。</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">您的团队应确认已同意支持级别和升级联系人 SKIA·。</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">您的团队应确认采购项目（安全调查问卷、DPA、子处理商（如果适用））在上线前得到跟踪。</div></div></div></div>"
         }
       }
     }

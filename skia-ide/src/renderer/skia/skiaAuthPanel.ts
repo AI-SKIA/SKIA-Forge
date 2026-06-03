@@ -457,7 +457,7 @@ const createOverlay = (): HTMLDivElement => {
     overlay.style.cssText = [
         "position:fixed", "inset:0", "background:#0d0d0d", "z-index:9999",
         "display:flex", "align-items:center", "justify-content:center",
-        "font-family: \"Centaur\", \"Centaur MT\", serif;"
+        "font-family: \"Centaur\";"
     ].join("");
 
     overlay.innerHTML = `

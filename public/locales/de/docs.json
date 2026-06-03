@@ -20,7 +20,7 @@
       },
       "badge": "Legen Sie los",
       "title": "Schnellstart",
-      "description": "Laden Sie SKIA Forge herunter, melden Sie sich an und führen Sie Ihren ersten geregelten Workflow in der Desktop-IDE aus.",
+      "description": "Laden Sie SKIA Forge herunter, melden Sie sich an und führen Sie Ihren ersten geregelten Workflow in der Desktop-IDE aus.",
       "sections": {
         "step-by-step": {
           "title": "Schritt für Schritt",
@@ -28,7 +28,7 @@
         },
         "next-steps": {
           "title": "Nächste Schritte",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>Benutzerhandbuch</a> – alltägliche Nutzung und Governance-Modi</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API Referenz</a> � HTTP APIs für Entwickler und Automatisierung</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>Produkthandbuch</a> � Funktionsübersicht</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>Support</a> � wie Sie Hilfe erhalten</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>Benutzerhandbuch</a> – alltägliche Nutzung und Governance-Modi</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API Referenz</a> — HTTP APIs für Entwickler und Automatisierung</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>Produkthandbuch</a> — Funktionsübersicht</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>Support</a> — wie Sie Hilfe erhalten</div></div></div></div>"
         }
       }
     },
@@ -45,7 +45,7 @@
           "html": "SKIA Forge hilft Ihnen bei der Entwicklung von Software mit KI-Unterstützung unter klarer Governance: Planung, Überprüfungen, Architektureinblicke und sicherere Anwendungspfade, damit Ihr Team schnell vorankommen kann, ohne Richtlinien zu umgehen.</div>"
         },
         "get-the-desktop-ide": {
-          "title": "Holen Sie sich die Desktop-IDE",
+          "title": "Holen Sie sich die Desktop-IDE",
           "html": "Laden Sie Installationsprogramme von <a href=\"https://forge.skia.ca/platform-downloads\" style=\"color:var(--gold)\">forge.skia.ca/platform-downloads</a> herunter und installieren Sie <strong>SKIA Forge</strong> für Ihre Plattform.</div>"
         },
         "signing-in": {
@@ -58,7 +58,7 @@
         },
         "governance-modes": {
           "title": "Governance-Modi",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Streng</strong> – sicherste Standardeinstellung; Weitere Schritte erfordern eine ausdrückliche Genehmigung.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Adaptiv</strong> � ausgewogen; Routinearbeiten laufen schneller ab, während risikoreichere Aktionen zur Überprüfung auftauchen.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Autonom</strong> – schnellster Weg, sofern aktiviert; Verwenden Sie diese Option, wenn Ihr Team die Kompromisse akzeptiert.</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">Beschriftungen im Produkt können variieren; Fragen Sie Ihren Administrator, welcher Modus für Ihren Arbeitsbereich gilt.</p></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Streng</strong> – sicherste Standardeinstellung; Weitere Schritte erfordern eine ausdrückliche Genehmigung.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Adaptiv</strong> — ausgewogen; Routinearbeiten laufen schneller ab, während risikoreichere Aktionen zur Überprüfung auftauchen.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Autonom</strong> – schnellster Weg, sofern aktiviert; Verwenden Sie diese Option, wenn Ihr Team die Kompromisse akzeptiert.</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">Beschriftungen im Produkt können variieren; Fragen Sie Ihren Administrator, welcher Modus für Ihren Arbeitsbereich gilt.</p></div>"
         },
         "where-to-get-help": {
           "title": "Wo Sie Hilfe bekommen",
@@ -80,7 +80,7 @@
         },
         "project-structure": {
           "title": "Projektstruktur",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">der Forge-Server – Laufzeit-Einstiegspunkt</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>src/forge/modules/</code> � Moduldomänen: Governance, Sicherheit, Kontext-Engine, Agent, Produktion, Heilung, Architektur</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE � IDE-zugewandte Integrationsoberfläche</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> � Produktdokumentation set</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> – statische Assets und HTML-Seiten</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">der Forge-Server – Laufzeit-Einstiegspunkt</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>src/forge/modules/</code> — Moduldomänen: Governance, Sicherheit, Kontext-Engine, Agent, Produktion, Heilung, Architektur</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE — IDE-zugewandte Integrationsoberfläche</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> — Produktdokumentation set</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> – statische Assets und HTML-Seiten</div></div></div></div>"
         },
         "development-workflow": {
           "title": "Entwicklungsworkflow",
@@ -130,7 +130,7 @@
         },
         "rpc": {
           "title": "RPC",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> � SKIA-gestützte Vorgänge mit lokalen Fallbacks für nicht verfügbare Upstream-Pfade</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> — SKIA-gestützte Vorgänge mit lokalen Fallbacks für nicht verfügbare Upstream-Pfade</div></div></div></div>"
         },
         "error-model": {
           "title": "Fehlermodell",
@@ -182,7 +182,7 @@
         },
         "delivery-surfaces": {
           "title": "Lieferflächen",
-          "html": "Öffentlicher Download und Dokumentation live unter <strong>forge.skia.ca</strong>, einschließlich <code>/platform-downloads</code>, <code>/resources</code>, <code>/security</code>, <code>/contact</code> und <code>/docs/*</code>. Die Web-IDE ist unter <code>/forge/app</code> verfügbar, wenn das IDE-Bundle erstellt wird. Die Kontoanmeldung und -registrierung erfolgt im <strong>SKIA Forge IDE</strong> oder anderen unterstützten Clients, nicht auf statischen Marketingseiten. Desktop-Installationsprogramme werden über <code>/api/app/download</code>-Routen bereitgestellt.</div>"
+          "html": "Öffentlicher Download und Dokumentation live unter <strong>forge.skia.ca</strong>, einschließlich <code>/platform-downloads</code>, <code>/resources</code>, <code>/security</code>, <code>/contact</code> und <code>/docs/*</code>. Die Web-IDE ist unter <code>/forge/app</code> verfügbar, wenn das IDE-Bundle erstellt wird. Die Kontoanmeldung und -registrierung erfolgt im <strong>SKIA Forge IDE</strong> oder anderen unterstützten Clients, nicht auf statischen Marketingseiten. Desktop-Installationsprogramme werden über <code>/api/app/download</code>-Routen bereitgestellt.</div>"
         },
         "who-it-is-for": {
           "title": "Für wen es ist",
@@ -312,7 +312,7 @@
       "sections": {
         "packages": {
           "title": "Pakete",
-          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">Entwickler</div><div class=\"pkg-tag\">Solo-Ingenieure und Experimente</div><div class=\"pkg-body\">Core Forge-Laufzeit � Grundlegende Orchestrierungs- und Governance-Modi � Standard-API-Zugriff � Community-Unterstützung</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Team</div><div class=\"pkg-tag\">Engineering-Teams, die KI-Workflows übernehmen</div><div class=\"pkg-body\">Alles in Developer � Teamrichtlinienvoreinstellungen � Gemeinsame Betriebs-Dashboards � Prioritärer Support � Kollaborationsbereite Governance-Standards</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Enterprise</div><div class=\"pkg-tag\">Organisationen mit Compliance-Anforderungen</div><div class=\"pkg-body\">Alles im Team � Unternehmensrichtlinienkontrollen und -härtung � Audit-/exportfähige Berichterstattung � Unterstützung der Bereitstellungsarchitektur � Definierte SLAs und Eskalationspfad</div></div></div></div>"
+          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">Entwickler</div><div class=\"pkg-tag\">Solo-Ingenieure und Experimente</div><div class=\"pkg-body\">Core Forge-Laufzeit — Grundlegende Orchestrierungs- und Governance-Modi — Standard-API-Zugriff — Community-Unterstützung</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Team</div><div class=\"pkg-tag\">Engineering-Teams, die KI-Workflows übernehmen</div><div class=\"pkg-body\">Alles in Developer — Teamrichtlinienvoreinstellungen — Gemeinsame Betriebs-Dashboards — Prioritärer Support — Kollaborationsbereite Governance-Standards</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Enterprise</div><div class=\"pkg-tag\">Organisationen mit Compliance-Anforderungen</div><div class=\"pkg-body\">Alles im Team — Unternehmensrichtlinienkontrollen und -härtung — Audit-/exportfähige Berichterstattung — Unterstützung der Bereitstellungsarchitektur — Definierte SLAs und Eskalationspfad</div></div></div></div>"
         },
         "optional-add-ons": {
           "title": "Optionale Add-ons",

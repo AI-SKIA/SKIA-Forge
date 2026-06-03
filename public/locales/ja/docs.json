@@ -28,7 +28,7 @@
         },
         "next-steps": {
           "title": "次のステップ",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>ユーザー ガイド</a> � 日常の使用法とガバナンス モード</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API リファレンス</a> HTTP 開発者と自動化のための API</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>製品マニュアル</a> � 機能の概要</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>サポート</a> � ヘルプの入手方法</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>ユーザー ガイド</a> — 日常の使用法とガバナンス モード</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API リファレンス</a> HTTP 開発者と自動化のための API</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>製品マニュアル</a> — 機能の概要</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>サポート</a> — ヘルプの入手方法</div></div></div></div>"
         }
       }
     },
@@ -58,7 +58,7 @@
         },
         "governance-modes": {
           "title": "ガバナンスモード",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>厳密</strong> � 最も安全なデフォルト。 それ以上の手順には明示的な承認が必要です。</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>適応性</strong> � バランスが取れています。 日常的な作業の流れが速くなり、リスクの高いアクションがレビューのために浮上します。</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>自律</strong> � 有効な場合は最速のパス。 チームがトレードオフを受け入れる場合に使用します。</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">製品内のラベルは異なる場合があります。 ワークスペースにどのモードが適用されるかを管理者に問い合わせてください。</p></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>厳密</strong> — 最も安全なデフォルト。 それ以上の手順には明示的な承認が必要です。</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>適応性</strong> — バランスが取れています。 日常的な作業の流れが速くなり、リスクの高いアクションがレビューのために浮上します。</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>自律</strong> — 有効な場合は最速のパス。 チームがトレードオフを受け入れる場合に使用します。</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">製品内のラベルは異なる場合があります。 ワークスペースにどのモードが適用されるかを管理者に問い合わせてください。</p></div>"
         },
         "where-to-get-help": {
           "title": "どこで助けが得られるか",
@@ -80,7 +80,7 @@
         },
         "project-structure": {
           "title": "プロジェクトの構造",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Forge サーバー � ランタイムエントリーポイント</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>src/forge/modules/</code> � モジュールドメイン: ガバナンス、安全性、 コンテキスト エンジン、エージェント、プロダクション、ヒーリング、アーキテクチャ</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE IDE 側の統合サーフェス</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> � 製品ドキュメントセット</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> � 静的アセットおよび HTML ページ</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Forge サーバー — ランタイムエントリーポイント</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>src/forge/modules/</code> — モジュールドメイン: ガバナンス、安全性、 コンテキスト エンジン、エージェント、プロダクション、ヒーリング、アーキテクチャ</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE IDE 側の統合サーフェス</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> — 製品ドキュメントセット</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> — 静的アセットおよび HTML ページ</div></div></div></div>"
         },
         "development-workflow": {
           "title": "開発ワークフロー",
@@ -130,7 +130,7 @@
         },
         "rpc": {
           "title": "RPC",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> � 使用できない上流パスに対するローカルフォールバックを使用した SKIA ベースの操作</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> — 使用できない上流パスに対するローカルフォールバックを使用した SKIA ベースの操作</div></div></div></div>"
         },
         "error-model": {
           "title": "エラーモデル",
@@ -220,7 +220,7 @@
         },
         "key-security-components": {
           "title": "主要なセキュリティコンポーネント",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>SecurityAnalysisService</code> � コードとエージェント出力のスキャンおよび保存時間チェック</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">ガバナンス意思決定エンジン � 厳密 / 適応 / 監査証跡による自律制御</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">ルートおよびアクションレベルの安全モジュール - バイパスできないサーフェスごとの制約</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>SecurityAnalysisService</code> — コードとエージェント出力のスキャンおよび保存時間チェック</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">ガバナンス意思決定エンジン — 厳密 / 適応 / 監査証跡による自律制御</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">ルートおよびアクションレベルの安全モジュール - バイパスできないサーフェスごとの制約</div></div></div></div>"
         },
         "operational-security-practices": {
           "title": "運用上のセキュリティ慣行",
@@ -312,7 +312,7 @@
       "sections": {
         "packages": {
           "title": "パッケージ",
-          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">開発者</div><div class=\"pkg-tag\">ソロ エンジニアと実験</div><div class=\"pkg-body\">Core Forge ランタイム 基本的なオーケストレーションおよびガバナンス モード 標準 API アクセス コミュニティ サポート</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">チーム</div><div class=\"pkg-tag\">AI ワークフローを採用するエンジニアリング チーム</div><div class=\"pkg-body\">Developer のすべて チーム ポリシーのプリセット 共有運用ダッシュボード 優先サポート コラボレーション対応のガバナンスのデフォルト</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">エンタープライズ</div><div class=\"pkg-tag\">コンプライアンス要件のある組織</div><div class=\"pkg-body\">チームのすべて � エンタープライズポリシーの制御と強化 � 監査/エクスポート対応のレポート � 導入アーキテクチャのサポート � 定義されたSLAおよびエスカレーションパス</div></div></div></div>"
+          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">開発者</div><div class=\"pkg-tag\">ソロ エンジニアと実験</div><div class=\"pkg-body\">Core Forge ランタイム 基本的なオーケストレーションおよびガバナンス モード 標準 API アクセス コミュニティ サポート</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">チーム</div><div class=\"pkg-tag\">AI ワークフローを採用するエンジニアリング チーム</div><div class=\"pkg-body\">Developer のすべて チーム ポリシーのプリセット 共有運用ダッシュボード 優先サポート コラボレーション対応のガバナンスのデフォルト</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">エンタープライズ</div><div class=\"pkg-tag\">コンプライアンス要件のある組織</div><div class=\"pkg-body\">チームのすべて — エンタープライズポリシーの制御と強化 — 監査/エクスポート対応のレポート — 導入アーキテクチャのサポート — 定義されたSLAおよびエスカレーションパス</div></div></div></div>"
         },
         "optional-add-ons": {
           "title": "オプションのアドオン",

@@ -12,7 +12,7 @@ Use this guide for Forge **service** and **integration** issues. Product-runtime
   - `npm run build`
 - Fix schema/type mismatches before re-running orchestration endpoints.
 
-## SKIA-full Integration Unavailable
+## SKIA integration unavailable
 
 - Check `GET /integration/skia-full` and `GET /integration/skia-full/probe`.
 - Verify `SKIA_FULL_API_URL`, `SKIA_FULL_ENABLED`, `SKIA_FULL_AUTH_BEARER` / `SKIA_FULL_API_KEY` as appropriate.
@@ -30,7 +30,7 @@ Use this guide for Forge **service** and **integration** issues. Product-runtime
 
 - Validate **`GET /health`**, **`GET /live`**, **`GET /ready`**, and **`GET /version`** on the Forge process.
 - Check logs for failing module names and request IDs.
-- Isolate whether the issue is a local Forge module vs upstream SKIA-full contracts.
+- Isolate whether the issue is a local Forge module vs upstream SKIA API contracts.
 
 ## Web IDE shows “assets not built”
 

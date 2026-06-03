@@ -7,83 +7,9 @@ export function renderForgeSignInHtml(): string {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SKIA Forge | Sign in</title>
   <link rel="stylesheet" href="/forge-premium-ui.css" />
-  <style>
-    :root {
-      --bg: #0a0a0a;
-      --panel: #1a1a1a;
-      --line: rgba(212, 175, 55, 0.3);
-      --text: #ffffff;
-      --muted: rgba(255, 255, 255, 0.55);
-      --gold: #d4af37;
-      --danger: #ff5c5c;
-      --font-body: "Centaur", "Centaur MT", serif;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      min-height: 100dvh;
-      display: grid;
-      place-items: center;
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Centaur", "Centaur MT", serif;
-      padding: 24px;
-    }
-    .card {
-      width: min(420px, 100%);
-      border: 1px solid var(--line);
-      background: var(--panel);
-      border-radius: 8px;
-      padding: 28px 24px;
-    }
-    h1 {
-      margin: 0 0 8px;
-      font-size: 18px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-    p { margin: 0 0 20px; color: var(--muted); font-size: 14px; line-height: 1.5; }
-    label { display: block; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-    input {
-      width: 100%;
-      margin-bottom: 14px;
-      padding: 12px;
-      border-radius: 6px;
-      border: 1px solid var(--line);
-      background: #111;
-      color: var(--text);
-      font-size: 14px;
-    }
-    button, .link-btn {
-      display: block;
-      width: 100%;
-      padding: 12px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-    }
-    button {
-      border: 1px solid var(--gold);
-      background: #1a1a1a;
-      color: var(--gold);
-    }
-    button:disabled { opacity: 0.6; cursor: wait; }
-    .link-btn {
-      margin-top: 10px;
-      border: 1px solid rgba(212, 175, 55, 0.35);
-      background: transparent;
-      color: var(--muted);
-    }
-    #error { display: none; color: var(--danger); font-size: 14px; margin-top: 12px; line-height: 1.5; }
-  </style>
+  <link rel="stylesheet" href="/forge-platform-console.css" />
 </head>
-<body>
+<body class="forge-context-b forge-sign-in-shell">
   <div class="card">
     <h1>Sign in to Forge Web</h1>
     <p>Use your SKIA account. Your session stays on forge.skia.ca so the IDE can connect after sign-in.</p>

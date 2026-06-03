@@ -1,5 +1,5 @@
 {
-  "LOCAL_SKIA_BACKEND_URL": "http://localhost:3000",
+  "_comment": "Copy to forge.local.config.json (gitignored). Used only when LOCAL_SKIA_BACKEND_URL is set via load-forge-local-env or .env.forge.local.",
   "LOCAL_SKIA_SERVE_URL": "http://localhost:11500",
   "LOCAL_EMBEDDING_ENGINE_URL": "http://localhost:5003",
   "LOCAL_VECTOR_DB_URL": "http://localhost:5004",

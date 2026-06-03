@@ -40,10 +40,14 @@ const LEAKED = [
   ['SKIA_FORGE_IDE', 'SKIA Forge IDE'],
   ['SKIA_FORGE_CAPS', 'SKIA FORGE'],
   ['SKIA_FORGE', 'SKIA Forge'],
+  ['FORJA_INICIO', 'Inicio de Forge'],
+  ['FORGE_HOME', 'Forge Home'],
+  ['फोर्ज_होम', 'Forge होम'],
 ];
 
 function restoreString(s) {
   let out = s;
+  out = out.replace(/\uFFFD/g, '—');
   out = out.replace(/\uE002([^\uE003]+)\uE003/g, '$1');
   for (const [token, term] of TOKEN_TO_TERM) {
     out = out.split(token).join(term);
@@ -51,6 +55,8 @@ function restoreString(s) {
   for (const [leaked, term] of LEAKED) {
     out = out.split(leaked).join(term);
   }
+  // Remove orphaned machine-translation shield bytes (never show in UI)
+  out = out.replace(/[\uE000-\uE0FF]/g, '');
   return out;
 }
 

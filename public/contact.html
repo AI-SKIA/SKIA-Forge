@@ -8,161 +8,11 @@
   <title data-i18n="contact.meta.title"></title>
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="stylesheet" href="/forge-lucide-icons.css" />
-  <style>strong, b { font-weight: 400; }
-
-
-    :root {
-      --forge-font-sans: "Centaur", "Centaur MT", serif;
-      --forge-font-heading: "Agency FB", "AgencyFB", sans-serif;
-      --gold: #d4af37;
-      --gold-muted: rgba(212,175,55,0.62);
-      --gold-dim: rgba(212,175,55,0.25);
-      --bg: #080400;
-      --card-bg: linear-gradient(135deg,rgba(15,8,0,0.95) 0%,rgba(25,14,0,0.95) 100%);
-      --border: rgba(212,175,55,0.3);
-      --text-soft: rgba(255,255,255,0.68);
-      --text-dim: rgba(255,255,255,0.38);
-    }
-
-    * { box-sizing:border-box;margin:0;padding:0; }
-
-    body {
-      background: radial-gradient(ellipse 80% 60% at 50% 0%,rgba(255,180,0,0.06) 0%,transparent 70%), var(--bg);
-      color: var(--gold);
-      font-family: "Centaur", "Centaur MT", serif;
-      min-height: 100vh;
-    }
-
-    .pc-sidebar-backdrop { position:fixed;inset:0;background:rgba(0,0,0,0.55);backdrop-filter:blur(2px);z-index:199;cursor:pointer;display:none; }
-    .pc-sidebar-tab { position:fixed;top:50%;left:0;transform:translateY(-50%);z-index:200;display:flex;align-items:center;justify-content:center;width:36px;height:72px;background:linear-gradient(180deg,rgba(20,10,0,0.95) 0%,rgba(40,20,0,0.98) 50%,rgba(20,10,0,0.95) 100%);border:1px solid rgba(212,175,55,0.4);border-left:none;border-radius:0 10px 10px 0;cursor:pointer;box-shadow:4px 0 20px rgba(212,175,55,0.15); }
-    .pc-sidebar-tab-icon { font-size:20px;color:var(--gold); }
-    .pc-sidebar { position:fixed;top:0;left:0;width:260px;height:100vh;background:linear-gradient(180deg,rgba(12,6,0,0.98) 0%,rgba(20,10,0,0.99) 100%);border-right:1px solid rgba(212,175,55,0.25);z-index:201;transform:translateX(-100%);transition:transform 0.25s ease;display:flex;flex-direction:column;padding:24px 0 32px; }
-    .pc-sidebar--open { transform:translateX(0); }
-    .pc-sidebar-logo { display:flex;flex-direction:column;align-items:center;padding:0 20px 20px; }
-    .pc-sidebar-logo-img { width:56px;height:56px;border-radius:50%;object-fit:cover; }
-    .pc-sidebar-logo-tagline { font-size:10px;color: #d4af37;letter-spacing:0.12em;margin-top:8px;text-transform:uppercase; }
-    .pc-sidebar-divider { height:1px;background:rgba(212,175,55,0.18);margin:8px 16px; }
-    .pc-sidebar-nav { display:flex;flex-direction:column;gap:2px;padding:8px 12px; }
-    .pc-sidebar-btn { display:block;padding:10px 14px;border-radius:6px;color: #d4af37;text-decoration:none;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;transition:background 0.15s,color 0.15s; }
-    .pc-sidebar-btn:hover { background:rgba(212,175,55,0.1);color:#d4af37; }
-
-    .back-btn { position:fixed;top:24px;left:24px;z-index:100;display:flex;align-items:center;gap:8px;color:var(--gold);text-decoration:none;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;border:1px solid var(--border);border-radius:6px;padding:8px 14px;background:rgba(0,0,0,0.55);transition:background 0.15s; }
-    .back-btn:hover { background:rgba(212,175,55,0.08); }
-    button.back-btn { appearance:none;-webkit-appearance:none;font:inherit;color:inherit;cursor:pointer; }
-
-    .wrap { max-width:760px;margin:0 auto;padding:80px 24px 72px; }
-
-    .page-header { text-align:center;margin-bottom:40px; }
-    .page-title { font-size:28px;font-weight: 400;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold);margin-bottom:10px; }
-    .page-subtitle { font-size:13px;color:var(--text-soft);letter-spacing:0.05em;font-family: "Centaur", "Centaur MT", serif; }
-
-    .section-label { font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;padding-bottom:8px;border-bottom:1px solid var(--border); }
-
-    /* Support scope cards */
-    .scope-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:40px; }
-    .scope-card { background:var(--card-bg);border:1px solid var(--border);border-radius:8px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start; }
-    .scope-icon { flex-shrink:0;margin-top:1px;display:flex;align-items:flex-start; }
-    .scope-text { font-size:12px;color:var(--text-soft);font-family: "Centaur", "Centaur MT", serif;line-height:1.5; }
-
-    /* SLA table */
-    .sla-list { display:flex;flex-direction:column;gap:8px;margin-bottom:40px; }
-    .sla-item { display:flex;gap:0;border:1px solid var(--border);border-radius:8px;overflow:hidden; }
-    .sla-tier { min-width:80px;padding:14px 16px;background:rgba(212,175,55,0.08);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight: 400;letter-spacing:0.1em;color:var(--gold); }
-    .sla-tier.p1 { background:rgba(212,55,55,0.12);color:#f87171; }
-    .sla-tier.p2 { background:rgba(212,140,55,0.12);color: #d4af37; }
-    .sla-tier.p3 { background:rgba(212,175,55,0.08);color:var(--gold); }
-    .sla-body { padding:14px 18px;background:var(--card-bg); }
-    .sla-label { font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--gold);margin-bottom:3px; }
-    .sla-desc { font-size:12px;color:var(--text-soft);font-family: "Centaur", "Centaur MT", serif;line-height:1.5; }
-
-    /* Escalation steps */
-    .escalation-list { display:flex;flex-direction:column;gap:8px;margin-bottom:40px; }
-    .esc-item { display:flex;gap:14px;align-items:flex-start;padding:12px 16px;background:rgba(212,175,55,0.04);border:1px solid rgba(212,175,55,0.18);border-radius:8px; }
-    .esc-num { font-size:11px;font-weight: 400;color:var(--gold);min-width:20px;margin-top:1px; }
-    .esc-text { font-size:12px;color:var(--text-soft);font-family: "Centaur", "Centaur MT", serif;line-height:1.5; }
-
-    /* Contact form card */
-    .form-card { background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:28px 24px;margin-bottom:32px; }
-
-    .field { margin-bottom:12px; }
-    .field input,
-    .field textarea,
-    .field select {
-      width:100%;
-      background:rgba(0,0,0,0.65);
-      border:1px solid rgba(212,175,55,0.25);
-      border-radius:8px;
-      color:#fff;
-      padding:10px 14px;
-      font-size:14px;
-      font-family: "Centaur", "Centaur MT", serif;
-      outline:none;
-      transition:border-color 0.15s;
-      resize:vertical;
-      box-sizing:border-box;
-    }
-    .field input:focus,
-    .field textarea:focus,
-    .field select:focus { border-color: #d4af37; }
-    .field textarea { height:120px; }
-    .field input::placeholder,
-    .field textarea::placeholder { color:rgba(255,255,255,0.28); }
-    .field select {
-      appearance:none;
-      -webkit-appearance:none;
-      background-image:linear-gradient(45deg, transparent 50%, rgba(212,175,55,0.7) 50%), linear-gradient(135deg, rgba(212,175,55,0.7) 50%, transparent 50%);
-      background-position:calc(100% - 18px) 50%, calc(100% - 13px) 50%;
-      background-size:5px 5px, 5px 5px;
-      background-repeat:no-repeat;
-      padding-right:36px;
-      cursor:pointer;
-    }
-    .field select option { background:#0a0500; color:#fff; }
-
-    .submit-btn { width:100%;padding:12px;background:rgba(212,175,55,0.12);border:1px solid var(--gold);border-radius:8px;color:var(--gold);font-family: "Centaur", "Centaur MT", serif;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:background 0.15s; }
-    .submit-btn:hover { background:rgba(212,175,55,0.22); }
-    .submit-btn:disabled { opacity:0.5;cursor:default; }
-
-    .form-status { font-size:12px;margin-top:8px;font-family: "Centaur", "Centaur MT", serif; }
-    .form-status.success { color:#34d399; }
-    .form-status.error { color:#fb7185; }
-
-    .direct-contact { margin-top:12px;font-size:11px;color: #d4af37;letter-spacing:0.06em;text-align:center; }
-    .direct-contact a { color:var(--gold);text-decoration:none; }
-    .direct-contact a:hover { text-decoration:underline; }
-
-    /* Triage info */
-    .triage-grid { display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:40px; }
-    .triage-item { background:rgba(212,175,55,0.04);border:1px solid rgba(212,175,55,0.18);border-radius:8px;padding:12px 14px;font-size:12px;color:var(--text-soft);font-family: "Centaur", "Centaur MT", serif;display:flex;gap:8px;align-items:flex-start; }
-    .triage-dot { width:5px;height:5px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:5px; }
-
-    footer { margin-top:60px;text-align:center;font-family: "Centaur", "Centaur MT", serif;font-size:15px;line-height:1.8; }
-    .footer-tagline { color:var(--gold);font-size:16px;margin-bottom:4px; }
-    .footer-copy { color: #d4af37; }
-    .footer-links { display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:14px; }
-    .footer-links a { color:var(--gold);text-decoration:none; }
-    .footer-links a:hover { text-decoration:underline; }
-    .footer-links .sep { color: #d4af37; }
-
-    @media(max-width:680px){ .wrap{padding:70px 16px 48px;} .page-title{font-size:22px;} .triage-grid{grid-template-columns:1fr;} }
-/* SKIA typography normalization */
-body {
-  font-family: "Centaur", "Centaur MT", serif !important;
-  letter-spacing: 0.01em !important;
-  line-height: 1.6 !important;
-}
-h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
-  font-family: "Agency FB", "AgencyFB", sans-serif !important;
-  letter-spacing: 0.08em !important;
-  text-transform: uppercase;
-  font-weight: 400 !important;
-  line-height: 1.15 !important;
-}
-</style>
   <link rel="stylesheet" href="/forge-premium-ui.css" />
+  <link rel="stylesheet" href="/forge-hub-design.css" />
   <link rel="stylesheet" href="/forge-sidebar-locale.css" />
 </head>
-<body data-forge-i18n-page="contact">
+<body class="forge-context-a" data-forge-i18n-page="contact">
 
 <div id="pcSidebarBackdrop" class="pc-sidebar-backdrop"></div>
 <button id="pcSidebarTab" class="pc-sidebar-tab" aria-label="Open navigation" data-i18n-aria-label="common.aria.openNavigation">
@@ -187,7 +37,7 @@ h1, h2, h3, h4, h5, h6, button, .btn, .title, .heading, .label, .badge {
 
 <button type="button" class="back-btn" onclick="history.back()" data-i18n="common.back.label"></button>
 
-<div class="wrap">
+<div class="wrap wrap--narrow">
   <img src="/sidebar-logo.png" alt="SKIA" class="page-logo" />
 
   <div class="page-header">

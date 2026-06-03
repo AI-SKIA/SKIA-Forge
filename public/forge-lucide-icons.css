@@ -1,6 +1,6 @@
 strong, b { font-weight: 400; }
 /**
- * Lucide-style stroke icons for static Forge HTML (parity with Skia-FULL FeatureIcon).
+ * Lucide-style stroke icons for static Forge HTML (parity with SKIA FeatureIcon).
  * Paths align with lucide v1.8 icon definitions (stroke, round caps/joins).
  */
 .skia-li {

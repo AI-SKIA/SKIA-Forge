@@ -1,0 +1,15 @@
+/**
+ * Brand font CSS variables — @font-face lives in index.html (file://-safe paths).
+ */
+:root {
+  --font-agency: "Agency FB";
+  --font-centaur: "Centaur";
+  --font-heading: "Agency FB";
+  --font-body: "Centaur";
+}
+
+html,
+body,
+#app-shell {
+  font-family: "Centaur";
+}

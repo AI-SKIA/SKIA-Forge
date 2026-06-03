@@ -59,7 +59,7 @@ Forge forwards auth to the configured SKIA backend (`SKIA_BACKEND_URL`, default 
 
 ---
 
-## SKIA-full integration
+## SKIA API integration (`/integration/skia-full`)
 
 | Method | Path |
 |--------|------|
@@ -150,7 +150,7 @@ The adapter may probe upstream paths such as `/api/health` **on the SKIA API hos
 ## Other notable surfaces
 
 - `POST /rpc` — Internal RPC / streaming bridge (rate limited).
-- `POST /sovereign-core` — Sovereign core passthrough to SKIA-full.
+- `POST /sovereign-core` — Sovereign core passthrough to the SKIA API.
 - `GET /stream/:method` — SSE streaming for SKIA methods (rate limited).
 - `GET /providers/status` — Provider routing status snapshot.
 - Index, search, and agent audit: `GET /index`, `GET /search`, `GET /agent/audit-log`, `POST /agent/log`, `POST /agent/validate-command`.
@@ -161,6 +161,6 @@ The adapter may probe upstream paths such as `/api/health` **on the SKIA API hos
 ## Error model
 
 - JSON schema validation failures return `400` with structured errors.
-- Upstream SKIA-full failures typically return `502` with an error message.
+- Upstream SKIA API failures typically return `502` with an error message.
 - Governance blocks return mode/policy context (`403`, `423` lockdown, etc.).
 - Readiness failures use `503` on `/ready`.

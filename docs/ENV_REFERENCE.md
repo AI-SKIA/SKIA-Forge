@@ -1,8 +1,8 @@
 # SKIA Forge environment reference
 
-<!-- last-reviewed: 2026-05-31 -->
+<!-- last-reviewed: 2026-06-03 -->
 
-Operator-facing variables for **`skia-forge`** (production host `forge.skia.ca`, port **4173**). Values are set in Northflank — never commit secrets.
+Operator-facing variables for **`skia-forge`** (production host `forge.skia.ca`, port **4173**). Values are set in your hosting provider's secret injection — never commit secrets.
 
 ## HTTP service
 
@@ -25,13 +25,13 @@ Operator-facing variables for **`skia-forge`** (production host `forge.skia.ca`,
 
 ## Sovereign inference (primary)
 
-Forge routes LLM traffic through Skia-FULL / Skia-Serve when healthy (`providerRouter` prefers **`skia-serve`**). Production Northflank: sovereign brain on **`skia-serve:11500`**.
+Forge routes LLM traffic through the SKIA API and Skia-Serve when healthy (`providerRouter` prefers **`skia-serve`**). Production: sovereign brain on **`skia-serve:11500`**.
 
 | Variable | Default / example | Purpose |
 |----------|-------------------|---------|
 | `LOCAL_SKIA_SERVE_URL` | `http://localhost:11500` | Local Skia-Serve probe (see `local-dev/docs/forge-local-setup.md`) |
 
-Skia-Serve is the **primary** LLM runtime. Do not document Google Gemini as the default provider.
+Skia-Serve is the **primary** LLM runtime. Continuity fallback env vars below are **operator-only** — see `docs/architecture/SOVEREIGN_PLATFORM.md`.
 
 ## Embeddings (embedding-engine — not Skia-Serve)
 
@@ -41,13 +41,15 @@ Vector indexing uses the **embedding-engine** service, not `api.skia.ca`.
 |----------|-------------------|---------|
 | `EMBEDDING_ENGINE_URL` | `http://embedding-engine:5003` | Production embedding-engine base URL |
 | `LOCAL_EMBEDDING_ENGINE_URL` | `http://localhost:5003` | Local embedding-engine |
-| `SKIA_FULL_EMBEDDING_PATH` | `/embed` | HTTP path on embedding-engine (not Skia-FULL API) |
+| `SKIA_FULL_EMBEDDING_PATH` | `/embed` | HTTP path on embedding-engine (not the main SKIA API host) |
 
-## Google fallback (continuity only)
+## Continuity fallback (operator — Skia-FULL runtime only)
+
+When **Skia-Serve or sovereign image/video engines** are unreachable, Skia-FULL may activate continuity fallback. Forge may mirror these for local parity — **not** as Forge’s primary brain. See Skia-FULL `docs/architecture/SOVEREIGN_PLATFORM.md` and `provider-fallback-truth-table.md`.
 
 | Variable | Purpose |
 |----------|---------|
-| `GOOGLE_AI_API_KEY` | Gemini API when Skia-Serve/sovereign engines unavailable — **continuity fallback only** |
+| `GOOGLE_AI_API_KEY` | Continuity fallback when sovereign engines unavailable (Skia-FULL runtime) |
 | `GOOGLE_API_KEY` | Optional alias on login; Forge may mirror for local parity |
 
 Do **not** use Agent Platform `AQ.` tokens as `GOOGLE_AI_API_KEY`.
@@ -71,6 +73,8 @@ Do **not** use Agent Platform `AQ.` tokens as `GOOGLE_AI_API_KEY`.
 
 | Variable | Purpose |
 |----------|---------|
-| `LOCAL_SKIA_BACKEND_URL` | Point Forge at local login (see `local-dev/docs/run-forge-locally.md`) |
+| `LOCAL_SKIA_BACKEND_URL` | Point Forge at local login — **must be set in process env** (via `local-dev/scripts/load-forge-local-env.ps1` or `.env.forge.local`). Ignored when `NODE_ENV=production`. |
 
-See also `docs/OPERATOR_MANUAL.md` and Skia-FULL `northflank-services.md` (private operator copy).
+See `local-dev/docs/forge-local-setup.md`. Optional defaults: copy `local-dev/forge.local.config.example.json` → `local-dev/forge.local.config.json` (gitignored).
+
+See also `docs/OPERATOR_MANUAL.md`. Private operator topology notes live outside this repository.

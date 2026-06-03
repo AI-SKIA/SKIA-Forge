@@ -11,7 +11,8 @@
     "statusNotAuthenticated": "INTÉGRATION SKIA INDISPONIBLE — non authentifié"
   },
   "sidebar": {
-    "title": "Modules IDE"
+    "title": "Modules IDE",
+    "forgeHome": "Accueil Forge"
   },
   "modules": {
     "agent": {

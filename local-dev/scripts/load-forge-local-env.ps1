@@ -32,10 +32,30 @@ Get-Content $EnvFile | ForEach-Object {
   Set-Item -Path "Env:$name" -Value $value
 }
 
-if ($env:LOCAL_SKIA_BACKEND_URL) {
-  $env:SKIA_BACKEND_URL = $env:LOCAL_SKIA_BACKEND_URL
-  $env:SKIA_FULL_API_URL = $env:LOCAL_SKIA_BACKEND_URL
+# Optional JSON defaults (gitignored copy of forge.local.config.example.json)
+$JsonConfig = Join-Path $Root "forge.local.config.json"
+$JsonExample = Join-Path $Root "forge.local.config.example.json"
+if (-not (Test-Path $JsonConfig) -and (Test-Path $JsonExample)) {
+  Write-Host "[load-forge-local-env] Tip: copy forge.local.config.example.json to forge.local.config.json for extra LOCAL_* defaults."
 }
+if (Test-Path $JsonConfig) {
+  $json = Get-Content $JsonConfig -Raw | ConvertFrom-Json
+  foreach ($prop in $json.PSObject.Properties) {
+    if ($prop.Name -eq "_comment" -or $prop.Name -eq "LOCAL_SKIA_BACKEND_URL") { continue }
+    $existing = (Get-Item -Path "Env:$($prop.Name)" -ErrorAction SilentlyContinue).Value
+    if ($existing) { continue }
+    if ($null -ne $prop.Value -and "$($prop.Value)" -ne "") {
+      Set-Item -Path "Env:$($prop.Name)" -Value "$($prop.Value)"
+    }
+  }
+}
+
+if (-not $env:LOCAL_SKIA_BACKEND_URL) {
+  throw "LOCAL_SKIA_BACKEND_URL is required for local mode. Set it in local-dev/.env.forge.local (copy from .env.forge.local.example)."
+}
+
+$env:SKIA_BACKEND_URL = $env:LOCAL_SKIA_BACKEND_URL
+$env:SKIA_FULL_API_URL = $env:LOCAL_SKIA_BACKEND_URL
 if ($env:LOCAL_FORGE_URL) {
   $env:SKIA_FORGE_URL = $env:LOCAL_FORGE_URL
 }

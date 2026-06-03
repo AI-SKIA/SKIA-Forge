@@ -6,7 +6,7 @@ Standalone Electron + Monaco desktop IDE shell for SKIA-Forge integration.
 
 ## Scope
 
-This IDE shell targets Forge control-plane workflows. Product runtime features continue to execute in `Skia-FULL`; public status publication remains in `Skia-Status`. The IDE talks to **`Skia-FULL`**-hosted APIs (not a replacement runtime).
+This IDE shell targets Forge control-plane workflows. Product runtime features continue to execute in the SKIA product stack; public status publication remains in Skia-Status. The IDE talks to **`https://api.skia.ca`** (and related SKIA API routes) — not a replacement runtime.
 
 ## Authentication
 

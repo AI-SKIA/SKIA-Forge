@@ -28,7 +28,7 @@
         },
         "next-steps": {
           "title": "الخطوات التالية",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>دليل المستخدم</a> � أوضاع الاستخدام والإدارة اليومية</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>مرجع واجهة برمجة التطبيقات</a> � HTTP واجهات برمجة التطبيقات للمطورين والأتمتة</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>دليل المنتج</a> � نظرة عامة على القدرات</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>الدعم</a> � كيفية الحصول على المساعدة</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>دليل المستخدم</a> — أوضاع الاستخدام والإدارة اليومية</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>مرجع واجهة برمجة التطبيقات</a> — HTTP واجهات برمجة التطبيقات للمطورين والأتمتة</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>دليل المنتج</a> — نظرة عامة على القدرات</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>الدعم</a> — كيفية الحصول على المساعدة</div></div></div></div>"
         }
       }
     },
@@ -58,7 +58,7 @@
         },
         "governance-modes": {
           "title": "أوضاع الحوكمة",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>صارم</strong> � الأكثر أمانًا افتراضيًا؛ تتطلب المزيد من الخطوات موافقة صريحة.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>متكيف</strong> � متوازن؛ يتدفق العمل الروتيني بشكل أسرع بينما تظهر الإجراءات عالية المخاطر للمراجعة.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>مستقل</strong> � أسرع مسار حيثما يكون ممكنًا؛ استخدمه عندما يقبل فريقك المقايضة.</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">قد تختلف الملصقات الموجودة في المنتج؛ اسأل مشرفك عن الوضع الذي ينطبق على مساحة العمل الخاصة بك.</p></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>صارم</strong> — الأكثر أمانًا افتراضيًا؛ تتطلب المزيد من الخطوات موافقة صريحة.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>متكيف</strong> — متوازن؛ يتدفق العمل الروتيني بشكل أسرع بينما تظهر الإجراءات عالية المخاطر للمراجعة.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>مستقل</strong> — أسرع مسار حيثما يكون ممكنًا؛ استخدمه عندما يقبل فريقك المقايضة.</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">قد تختلف الملصقات الموجودة في المنتج؛ اسأل مشرفك عن الوضع الذي ينطبق على مساحة العمل الخاصة بك.</p></div>"
         },
         "where-to-get-help": {
           "title": "أين يمكن الحصول على المساعدة",
@@ -80,7 +80,7 @@
         },
         "project-structure": {
           "title": "هيكل المشروع",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">نقطة دخول وقت تشغيل خادم Forge</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>src/forge/modules/</code> � مجالات الوحدة: الإدارة، السلامة، محرك السياق، الوكيل، الإنتاج، الشفاء، الهندسة المعمارية</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE � IDE سطح التكامل المواجه</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> � مجموعة وثائق المنتج</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>عام/</code> � الأصول الثابتة وصفحات HTML</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">نقطة دخول وقت تشغيل خادم Forge</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>src/forge/modules/</code> — مجالات الوحدة: الإدارة، السلامة، محرك السياق، الوكيل، الإنتاج، الشفاء، الهندسة المعمارية</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE — IDE سطح التكامل المواجه</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> — مجموعة وثائق المنتج</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>عام/</code> — الأصول الثابتة وصفحات HTML</div></div></div></div>"
         },
         "development-workflow": {
           "title": "سير عمل التطوير",
@@ -130,7 +130,7 @@
         },
         "rpc": {
           "title": "RPC",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> � عمليات مدعومة من SKIA مع احتياطيات محلية لمسارات المنبع غير المتاحة</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> — عمليات مدعومة من SKIA مع احتياطيات محلية لمسارات المنبع غير المتاحة</div></div></div></div>"
         },
         "error-model": {
           "title": "نموذج الخطأ",
@@ -190,7 +190,7 @@
         },
         "core-capabilities": {
           "title": "القدرات الأساسية",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">التنسيق المنظم عبر السياق والوكيل وSDLC والإنتاج والشفاء والهندسة المعمارية والوحدات ذات الصلة</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">عناصر التحكم في وضع الحوكمة: <code>صارمة</code>، <code>متكيفة</code>، <code>مستقلة</code></div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">وضعية مستوى التحكم في وقت التشغيل والتنبيهات والتوصيات</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">تشخيصات السلامة والبنية في الملفات التي تم تغييرها</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">التكامل مع خدمات الاستخبارات SKIA لدعم التفكير والتنفيذ</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">التنسيق المنظم عبر السياق والوكيل وSDLC والإنتاج والشفاء والهندسة المعمارية والوحدات ذات الصلة</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">عناصر التحكم في وضع الحوكمة: <code>صارمة</code>، <code>متكيفة</code>، <code>مستقلة</code></div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">وضعية مستوى التحكم في وقت التشغيل والتنبيهات والتوصيات</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">تشخيصات السلامة والبنية في الملفات التي تم تغييرها</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">التكامل مع خدمات الاستخبارات SKIA لدعم التفكير والتنفيذ</div></div></div></div>"
         },
         "value-proposition": {
           "title": "عرض القيمة",
@@ -216,15 +216,15 @@
         },
         "authentication-accounts": {
           "title": "المصادقة والحسابات",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">تتطلب جميع مسارات Forge API المصادقة. قم بتسجيل الدخول عبر SKIA Forge IDE أو عميل API الخاص بك.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">يحذف HTML التسويقي تسجيل الدخول/تسجيل عبارات الحث على اتخاذ إجراء؛ تتم مصادقة المستخدمين في <strong>SKIA Forge IDE</strong>.</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">تتطلب جميع مسارات Forge API المصادقة. قم بتسجيل الدخول عبر SKIA Forge IDE أو عميل API الخاص بك.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">يحذف HTML التسويقي تسجيل الدخول/تسجيل عبارات الحث على اتخاذ إجراء؛ تتم مصادقة المستخدمين في <strong>SKIA Forge IDE</strong>.</div></div></div></div>"
         },
         "key-security-components": {
           "title": "مكونات الأمان الرئيسية",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>SecurityAnalogyService</code> � فحص وحفظ الوقت لعمليات التحقق من الكود ومخرجات الوكيل</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">قرار الحوكمة المحرك � تحكم صارم / تكيفي / مستقل مع مسار التدقيق </div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">وحدات السلامة على مستوى المسار والإجراء - القيود على السطح التي لا يمكن تجاوزها</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>SecurityAnalogyService</code> — فحص وحفظ الوقت لعمليات التحقق من الكود ومخرجات الوكيل</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">قرار الحوكمة المحرك — تحكم صارم / تكيفي / مستقل مع مسار التدقيق </div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">وحدات السلامة على مستوى المسار والإجراء - القيود على السطح التي لا يمكن تجاوزها</div></div></div></div>"
         },
         "operational-security-practices": {
           "title": "ممارسات الأمن التشغيلي",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">احتفظ بالأسرار خارج المستودعات والسجلات - استخدم متغيرات البيئة الخاصة بموفر الاستضافة</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">التحقق من صحة جميع استجابات التكامل الخارجي � لا تثق مطلقًا في بيانات الطرف الثالث دون تأكيد</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">تعامل مع عمليات حظر السياسة كأحداث أمنية من الدرجة الأولى � يتم تسجيل كل كتلة وقابلة للمراجعة</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">التسجيل والمراقبة نتائج العلاج - الإصلاحات بدون التحقق من الصحة غير مكتملة</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">احتفظ بالأسرار خارج المستودعات والسجلات - استخدم متغيرات البيئة الخاصة بموفر الاستضافة</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">التحقق من صحة جميع استجابات التكامل الخارجي — لا تثق مطلقًا في بيانات الطرف الثالث دون تأكيد</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">تعامل مع عمليات حظر السياسة كأحداث أمنية من الدرجة الأولى — يتم تسجيل كل كتلة وقابلة للمراجعة</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">التسجيل والمراقبة نتائج العلاج - الإصلاحات بدون التحقق من الصحة غير مكتملة</div></div></div></div>"
         },
         "hardening-checklist": {
           "title": "قائمة مراجعة تصلب",
@@ -312,7 +312,7 @@
       "sections": {
         "packages": {
           "title": "الحزم",
-          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">المطور</div><div class=\"pkg-tag\">المهندسون المنفردون والتجارب</div><div class=\"pkg-body\">وقت تشغيل Core Forge � أوضاع التنسيق والإدارة الأساسية � الوصول القياسي إلى واجهة برمجة التطبيقات � دعم المجتمع</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">الفريق</div><div class=\"pkg-tag\">الفرق الهندسية التي تتبنى سير عمل الذكاء الاصطناعي</div><div class=\"pkg-body\">كل شيء في المطور � الإعدادات المسبقة لسياسة الفريق � لوحات المعلومات التشغيلية المشتركة � دعم الأولويات � الإعدادات الافتراضية للحوكمة الجاهزة للتعاون</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">المؤسسات</div><div class=\"pkg-tag\">المؤسسات ذات متطلبات الامتثال</div><div class=\"pkg-body\">كل شيء في الفريق � ضوابط سياسة المؤسسة وتعزيزها � تقارير جاهزة للتدقيق/التصدير � دعم بنية النشر � اتفاقيات مستوى الخدمة المحددة ومسار التصعيد</div></div></div></div>"
+          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">المطور</div><div class=\"pkg-tag\">المهندسون المنفردون والتجارب</div><div class=\"pkg-body\">وقت تشغيل Core Forge — أوضاع التنسيق والإدارة الأساسية — الوصول القياسي إلى واجهة برمجة التطبيقات — دعم المجتمع</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">الفريق</div><div class=\"pkg-tag\">الفرق الهندسية التي تتبنى سير عمل الذكاء الاصطناعي</div><div class=\"pkg-body\">كل شيء في المطور — الإعدادات المسبقة لسياسة الفريق — لوحات المعلومات التشغيلية المشتركة — دعم الأولويات — الإعدادات الافتراضية للحوكمة الجاهزة للتعاون</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">المؤسسات</div><div class=\"pkg-tag\">المؤسسات ذات متطلبات الامتثال</div><div class=\"pkg-body\">كل شيء في الفريق — ضوابط سياسة المؤسسة وتعزيزها — تقارير جاهزة للتدقيق/التصدير — دعم بنية النشر — اتفاقيات مستوى الخدمة المحددة ومسار التصعيد</div></div></div></div>"
         },
         "optional-add-ons": {
           "title": "الإضافات الاختيارية",

@@ -90,6 +90,7 @@ import {
   resolveLocalEngineConfig,
   isLocalFounderOverrideEnabled,
   resolveLocalForgeSovereignMode,
+  describeBackendMode,
 } from "./config/localBackend.js";
 import localHealthRoutes from "./routes/localHealthRoutes.js";
 
@@ -685,7 +686,7 @@ app.get("/api/app/download/:platform", async (req, res) => {
   return res
     .status(503)
     .type("html")
-    .send(`<!doctype html><html><body style="font-family:'Centaur','Centaur MT',serif;background:#080400;color:#d4af37;padding:24px">
+    .send(`<!doctype html><html><head><style>@font-face{font-family:"Centaur";src:url("/fonts/centaur/Centaur-Regular.ttf") format("truetype");font-weight:400;font-display:swap}</style></head><body style="font-family:'Centaur';background:#080400;color:#d4af37;padding:24px">
       <h2 style="margin-top:0">Forge installer unavailable</h2>
       <p>The ${platform} desktop installer is not published yet for this release.</p>
       <p><a href="/forge/app/?resetOnboarding=1" style="color:#d4af37">Open Forge Web IDE</a></p>
@@ -1525,7 +1526,7 @@ async function sendForgeAppHtml(res: express.Response) {
     res.type("html").send(withShim);
   } catch {
     res.status(503).type("html").send(
-      "<!doctype html><html><body style=\"font-family:'Centaur','Centaur MT',serif;background:#080400;color:#d4af37;padding:24px\">SKIA IDE web assets are not built yet. Run <code>npm run build</code> in <code>skia-ide</code> first.</body></html>"
+      "<!doctype html><html><head><style>@font-face{font-family:\"Centaur\";src:url(\"/fonts/centaur/Centaur-Regular.ttf\") format(\"truetype\");font-weight:400;font-display:swap}</style></head><body style=\"font-family:'Centaur';background:#080400;color:#d4af37;padding:24px\">SKIA IDE web assets are not built yet. Run <code>npm run build</code> in <code>skia-ide</code> first.</body></html>"
     );
   }
 }
@@ -1554,6 +1555,16 @@ app.get("/favicon.ico", (_req, res) => {
 app.get("/forge-premium-ui.css", (_req, res) => {
   res.type("text/css");
   res.sendFile(path.join(projectRoot, "public", "forge-premium-ui.css"));
+});
+
+app.get("/forge-hub-design.css", (_req, res) => {
+  res.type("text/css");
+  res.sendFile(path.join(projectRoot, "public", "forge-hub-design.css"));
+});
+
+app.get("/forge-platform-console.css", (_req, res) => {
+  res.type("text/css");
+  res.sendFile(path.join(projectRoot, "public", "forge-platform-console.css"));
 });
 
 app.get("/forge-lucide-icons.css", (_req, res) => {
@@ -1606,6 +1617,15 @@ app.get("/forge/sign-in", (_req, res) => {
   res.type("html").send(renderForgeSignInHtml());
 });
 
+// Internal contract artifacts must not be served from /docs (see guides/FORGE_COPY_AUDIT.md)
+app.use("/docs", (req, res, next) => {
+  const p = req.path.replace(/\\/g, "/");
+  if (p === "/contracts" || p.startsWith("/contracts/")) {
+    res.status(404).end();
+    return;
+  }
+  next();
+});
 // Serve branded HTML doc pages (public/docs/) before raw markdown
 app.use("/docs", express.static(path.join(projectRoot, "public", "docs")));
 // Fallback: raw .md files
@@ -2276,8 +2296,20 @@ if (!(process.env.SKIA_ADMIN_SECRET ?? "").trim()) {
   );
 }
 server.listen(port, () => {
-  // Intentional startup log to simplify local diagnostics.
-  console.log(`SKIA Intelligence listening on http://localhost:${port}`);
+  const backend = describeBackendMode();
+  console.log(`SKIA Forge listening on http://localhost:${port} (${backend.mode} backend: ${backend.backendUrl})`);
+  if (
+    (process.env.NODE_ENV ?? "").trim().toLowerCase() === "production" &&
+    (process.env.LOCAL_SKIA_BACKEND_URL ?? "").trim()
+  ) {
+    console.warn(
+      JSON.stringify({
+        level: "warn",
+        event: "config.local_backend_ignored",
+        message: "LOCAL_SKIA_BACKEND_URL is set but ignored because NODE_ENV=production.",
+      })
+    );
+  }
 });
 
 async function shutdown(signal: string) {

@@ -16,6 +16,12 @@ const ROOTS = [
 
 const SKIP_DIRS = new Set(['node_modules', 'dist', 'types', 'docs', 'skia-reference']);
 const SKIP_FILE_PATTERNS = [/sidebar/i, /incident/i, /api-keys/i, /status/i, /monacoSetup/i, /TerminalPanel/i, /\.test\./i, /ogImage/i];
+/** Canonical design-bible stylesheets — do not auto-normalize (§2 type scale lives here). */
+const DESIGN_CSS_FILES = new Set([
+  'public/forge-premium-ui.css',
+  'public/forge-hub-design.css',
+  'public/forge-platform-console.css',
+]);
 const EXTS = new Set(['.css', '.tsx', '.ts', '.jsx', '.js']);
 
 const SIDEBAR_CSS_MARKERS = [
@@ -30,6 +36,7 @@ const SIDEBAR_CSS_MARKERS = [
 function shouldSkipFile(rel) {
   const norm = rel.split(path.sep).join('/');
   if (norm.includes('types/skia-reference')) return true;
+  if (DESIGN_CSS_FILES.has(norm)) return true;
   return SKIP_FILE_PATTERNS.some((p) => p.test(norm));
 }
 

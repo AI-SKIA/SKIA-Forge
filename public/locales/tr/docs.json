@@ -28,7 +28,7 @@
         },
         "next-steps": {
           "title": "Sonraki Adımlar",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>Kullanıcı Kılavuzu</a> � günlük kullanım ve yönetim modları</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API Referansı</a> � HTTP Geliştiriciler ve otomasyon için API'ler</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/product_MANUAL.html' style='color:var(--gold)'>Ürün Kılavuzu</a> - yeteneklere genel bakış</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>Destek</a> � nasıl yardım alınır</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>Kullanıcı Kılavuzu</a> — günlük kullanım ve yönetim modları</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API Referansı</a> — HTTP Geliştiriciler ve otomasyon için API'ler</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/product_MANUAL.html' style='color:var(--gold)'>Ürün Kılavuzu</a> - yeteneklere genel bakış</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>Destek</a> — nasıl yardım alınır</div></div></div></div>"
         }
       }
     },
@@ -58,7 +58,7 @@
         },
         "governance-modes": {
           "title": "Yönetişim Modları",
-          "html": "<div class = \"item-list\"><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\"><strong>Katı</strong> - en güvenli varsayılan; daha fazla adım için açık onay gerekir.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Uyarlanabilir</strong> � dengeli; rutin işler daha hızlı akarken, yüksek riskli eylemler inceleme için ortaya çıkar.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Otonom</strong> - etkinleştirildiğinde en hızlı yol; ekibiniz ödünleri kabul ettiğinde kullanın.</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">Üründeki etiketler değişiklik gösterebilir; yöneticinize çalışma alanınız için hangi modun geçerli olduğunu sorun.</p></div>"
+          "html": "<div class = \"item-list\"><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\"><strong>Katı</strong> - en güvenli varsayılan; daha fazla adım için açık onay gerekir.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Uyarlanabilir</strong> — dengeli; rutin işler daha hızlı akarken, yüksek riskli eylemler inceleme için ortaya çıkar.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Otonom</strong> - etkinleştirildiğinde en hızlı yol; ekibiniz ödünleri kabul ettiğinde kullanın.</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">Üründeki etiketler değişiklik gösterebilir; yöneticinize çalışma alanınız için hangi modun geçerli olduğunu sorun.</p></div>"
         },
         "where-to-get-help": {
           "title": "Nereden Yardım Alınır?",
@@ -80,7 +80,7 @@
         },
         "project-structure": {
           "title": "Proje Yapısı",
-          "html": "<div class = \"item-list\"><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\">Forge sunucusu - çalışma zamanı giriş noktası</div></div><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\"><code>src/forge/modules/</code> - modül alanları: yönetişim, güvenlik, bağlam motoru, aracı, üretim, iyileştirme, mimari</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE � IDE'ye bakan entegrasyon yüzeyi</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> � ürün dokümantasyon seti</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> � statik varlıklar ve HTML sayfaları</div></div></div></div>"
+          "html": "<div class = \"item-list\"><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\">Forge sunucusu - çalışma zamanı giriş noktası</div></div><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\"><code>src/forge/modules/</code> - modül alanları: yönetişim, güvenlik, bağlam motoru, aracı, üretim, iyileştirme, mimari</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE — IDE'ye bakan entegrasyon yüzeyi</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> — ürün dokümantasyon seti</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> — statik varlıklar ve HTML sayfaları</div></div></div></div>"
         },
         "development-workflow": {
           "title": "Geliştirme İş Akışı",
@@ -130,7 +130,7 @@
         },
         "rpc": {
           "title": "RPC",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> � Kullanılamayan yukarı akış yolları için yerel yedeklerle SKIA destekli işlemler</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> — Kullanılamayan yukarı akış yolları için yerel yedeklerle SKIA destekli işlemler</div></div></div></div>"
         },
         "error-model": {
           "title": "Hata Modeli",
@@ -220,11 +220,11 @@
         },
         "key-security-components": {
           "title": "Temel Güvenlik Bileşenleri",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>SecurityAnalyticService</code> � kod ve aracı çıktısında tarama ve zamandan tasarruf kontrolleri</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Yönetişim karar motoru � Denetim takibi ile sıkı / uyarlanabilir / otonom kontrol</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Yön ve eylem düzeyinde güvenlik modülleri - atlanamayan yüzey kısıtlamaları</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>SecurityAnalyticService</code> — kod ve aracı çıktısında tarama ve zamandan tasarruf kontrolleri</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Yönetişim karar motoru — Denetim takibi ile sıkı / uyarlanabilir / otonom kontrol</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Yön ve eylem düzeyinde güvenlik modülleri - atlanamayan yüzey kısıtlamaları</div></div></div></div>"
         },
         "operational-security-practices": {
           "title": "Operasyonel Güvenlik Uygulamaları",
-          "html": "<div class = \"item-list\"><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\">Gizli bilgileri depolardan ve günlüklerden uzak tutun - barındırma sağlayıcınızın ortam değişkenlerini kullanın</div></div><div class=\"item\"><div class = \"item-dot\"></div><div class = \"item-text\">Tüm harici entegrasyon yanıtlarını doğrulayın - asla güvenmeyin iddiasız üçüncü taraf verileri</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Politika bloklarını birinci sınıf güvenlik olayları olarak ele alın; her blok günlüğe kaydedilir ve incelenebilir</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">İyileştirme sonuçlarını kaydetme ve izleme � olmadan düzeltmeler doğrulama tamamlanmadı</div></div></div></div>"
+          "html": "<div class = \"item-list\"><div class = \"item\"><div class = \"item-dot\"></div><div class = \"item-text\">Gizli bilgileri depolardan ve günlüklerden uzak tutun - barındırma sağlayıcınızın ortam değişkenlerini kullanın</div></div><div class=\"item\"><div class = \"item-dot\"></div><div class = \"item-text\">Tüm harici entegrasyon yanıtlarını doğrulayın - asla güvenmeyin iddiasız üçüncü taraf verileri</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Politika bloklarını birinci sınıf güvenlik olayları olarak ele alın; her blok günlüğe kaydedilir ve incelenebilir</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">İyileştirme sonuçlarını kaydetme ve izleme — olmadan düzeltmeler doğrulama tamamlanmadı</div></div></div></div>"
         },
         "hardening-checklist": {
           "title": "Sertleştirme Kontrol Listesi",
@@ -312,7 +312,7 @@
       "sections": {
         "packages": {
           "title": "Paketler",
-          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">Geliştirici</div><div class=\"pkg-tag\">Yalnız mühendisler ve deneyler</div><div class=\"pkg-body\">Core Forge çalışma zamanı � Temel düzenleme ve yönetim modları � Standart API erişimi � Topluluk desteği</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Ekip</div><div class=\"pkg-tag\">Yapay zeka iş akışlarını benimseyen mühendislik ekipleri</div><div class=\"pkg-body\">Geliştiricideki her şey � Ekip politikası ön ayarları � Paylaşılan operasyonel kontrol panelleri � Öncelikli destek � İşbirliğine hazır yönetişim varsayılanları</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Enterprise</div><div class=\"pkg-tag\">Uyumluluk gereksinimleri olan kuruluşlar</div><div class=\"pkg-body\">Ekipteki her şey � Kurumsal politika kontrolleri ve güçlendirme � Denetime/dışa aktarmaya hazır raporlama � Dağıtım mimarisi desteği � Tanımlı SLA'lar ve yükseltme yolu</div></div></div></div>"
+          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">Geliştirici</div><div class=\"pkg-tag\">Yalnız mühendisler ve deneyler</div><div class=\"pkg-body\">Core Forge çalışma zamanı — Temel düzenleme ve yönetim modları — Standart API erişimi — Topluluk desteği</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Ekip</div><div class=\"pkg-tag\">Yapay zeka iş akışlarını benimseyen mühendislik ekipleri</div><div class=\"pkg-body\">Geliştiricideki her şey — Ekip politikası ön ayarları — Paylaşılan operasyonel kontrol panelleri — Öncelikli destek — İşbirliğine hazır yönetişim varsayılanları</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Enterprise</div><div class=\"pkg-tag\">Uyumluluk gereksinimleri olan kuruluşlar</div><div class=\"pkg-body\">Ekipteki her şey — Kurumsal politika kontrolleri ve güçlendirme — Denetime/dışa aktarmaya hazır raporlama — Dağıtım mimarisi desteği — Tanımlı SLA'lar ve yükseltme yolu</div></div></div></div>"
         },
         "optional-add-ons": {
           "title": "İsteğe Bağlı Eklentiler",

@@ -24,11 +24,11 @@
       "sections": {
         "step-by-step": {
           "title": "Step-by-Step",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Download SKIA Forge from <a href=\"https://forge.skia.ca/platform-downloads\" style=\"color:var(--gold)\">forge.skia.ca/platform-downloads</a> for your operating system.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Install the app, then open <strong>SKIA Forge</strong> from your applications menu or desktop shortcut.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Sign in with your SKIA account or create one when prompted � authentication happens inside the application.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Open or import a project, submit work, review governance output, and apply changes when you are ready.</div></div><div class=\"step\"><div class=\"step-num\">05</div><div class=\"step-text\">Explore deeper guides from the links below when you need more detail.</div></div></div></div>"
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Download SKIA Forge from <a href=\"https://forge.skia.ca/platform-downloads\" style=\"color:var(--gold)\">forge.skia.ca/platform-downloads</a> for your operating system.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Install the app, then open <strong>SKIA Forge</strong> from your applications menu or desktop shortcut.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Sign in with your SKIA account or create one when prompted — authentication happens inside the application.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Open or import a project, submit work, review governance output, and apply changes when you are ready.</div></div><div class=\"step\"><div class=\"step-num\">05</div><div class=\"step-text\">Explore deeper guides from the links below when you need more detail.</div></div></div></div>"
         },
         "next-steps": {
           "title": "Next Steps",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>User Guide</a> � day-to-day usage and governance modes</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API Reference</a> � HTTP APIs for developers and automation</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>Product Manual</a> � capabilities overview</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>Support</a> � how to get help</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>User Guide</a> — day-to-day usage and governance modes</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API Reference</a> — HTTP APIs for developers and automation</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>Product Manual</a> — capabilities overview</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>Support</a> — how to get help</div></div></div></div>"
         }
       }
     },
@@ -58,7 +58,7 @@
         },
         "governance-modes": {
           "title": "Governance Modes",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Strict</strong> � safest default; more steps require explicit approval.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Adaptive</strong> � balanced; routine work flows faster while higher-risk actions surface for review.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Autonomous</strong> � fastest path where enabled; use when your team accepts the trade-offs.</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">Labels in the product may vary; ask your admin which mode applies to your workspace.</p></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Strict</strong> — safest default; more steps require explicit approval.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Adaptive</strong> — balanced; routine work flows faster while higher-risk actions surface for review.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Autonomous</strong> — fastest path where enabled; use when your team accepts the trade-offs.</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">Labels in the product may vary; ask your admin which mode applies to your workspace.</p></div>"
         },
         "where-to-get-help": {
           "title": "Where to Get Help",
@@ -80,7 +80,7 @@
         },
         "project-structure": {
           "title": "Project Structure",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">the Forge server � runtime entrypoint</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>src/forge/modules/</code> � module domains: governance, safety, context-engine, agent, production, healing, architecture</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE � IDE-facing integration surface</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> � product documentation set</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> � static assets and HTML pages</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">the Forge server — runtime entrypoint</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>src/forge/modules/</code> — module domains: governance, safety, context-engine, agent, production, healing, architecture</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE — IDE-facing integration surface</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> — product documentation set</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> — static assets and HTML pages</div></div></div></div>"
         },
         "development-workflow": {
           "title": "Development Workflow",
@@ -130,7 +130,7 @@
         },
         "rpc": {
           "title": "RPC",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> � SKIA-backed operations with local fallbacks for unavailable upstream paths</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> — SKIA-backed operations with local fallbacks for unavailable upstream paths</div></div></div></div>"
         },
         "error-model": {
           "title": "Error Model",
@@ -156,7 +156,7 @@
         },
         "environment-secrets": {
           "title": "Environment & Secrets",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Keep all secrets in environment management � never commit credentials</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Configure SKIA integration values per deployment environment via your hosting provider's environment variables</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Use explicit mode controls for strict vs adaptive operations</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Keep all secrets in environment management — never commit credentials</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Configure SKIA integration values per deployment environment via your hosting provider's environment variables</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Use explicit mode controls for strict vs adaptive operations</div></div></div></div>"
         },
         "operational-checks": {
           "title": "Operational Checks",
@@ -164,7 +164,7 @@
         },
         "incident-handling": {
           "title": "Incident Handling",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Capture failure endpoint and payload metadata.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Review control-plane recommendations from <code>/api/forge/control-plane</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Apply remediation and re-run the failed request.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Escalate with logs and request IDs if unresolved � contact support.</div></div></div></div>"
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Capture failure endpoint and payload metadata.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Review control-plane recommendations from <code>/api/forge/control-plane</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Apply remediation and re-run the failed request.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Escalate with logs and request IDs if unresolved — contact support.</div></div></div></div>"
         }
       }
     },
@@ -194,11 +194,11 @@
         },
         "value-proposition": {
           "title": "Value Proposition",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Faster delivery with guardrails � ship confidently without sacrificing speed</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Reduced unsafe operations reaching production</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Better traceability for enterprise governance and audits</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Faster delivery with guardrails — ship confidently without sacrificing speed</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Reduced unsafe operations reaching production</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Better traceability for enterprise governance and audits</div></div></div></div>"
         },
         "product-boundaries": {
           "title": "Product Boundaries",
-          "html": "SKIA Forge is a control and orchestration layer. It is not a replacement for your full application runtime � it integrates with upstream SKIA intelligence contracts and your existing deployment topology.</div>"
+          "html": "SKIA Forge is a control and orchestration layer. It is not a replacement for your full application runtime — it integrates with upstream SKIA intelligence contracts and your existing deployment topology.</div>"
         }
       }
     },
@@ -220,15 +220,15 @@
         },
         "key-security-components": {
           "title": "Key Security Components",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>SecurityAnalysisService</code> � scan and save-time checks on code and agent output</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Governance decision engine � strict / adaptive / autonomous control with audit trail</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Route and action-level safety modules � per-surface constraints that cannot be bypassed</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>SecurityAnalysisService</code> — scan and save-time checks on code and agent output</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Governance decision engine — strict / adaptive / autonomous control with audit trail</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Route and action-level safety modules — per-surface constraints that cannot be bypassed</div></div></div></div>"
         },
         "operational-security-practices": {
           "title": "Operational Security Practices",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Keep secrets out of repositories and logs � use your hosting provider's environment variables</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Validate all external integration responses � never trust third-party data without assertion</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Treat policy blocks as first-class security events � every block is logged and reviewable</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Record and monitor remediation outcomes � fixes without validation are incomplete</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Keep secrets out of repositories and logs — use your hosting provider's environment variables</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Validate all external integration responses — never trust third-party data without assertion</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Treat policy blocks as first-class security events — every block is logged and reviewable</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Record and monitor remediation outcomes — fixes without validation are incomplete</div></div></div></div>"
         },
         "hardening-checklist": {
           "title": "Hardening Checklist",
-          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Run lint, typecheck, and tests before every release</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Keep all dependencies current</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Validate integration probe endpoints regularly</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Review audit trails after major orchestration runs</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Rotate JWT_SECRET and API keys on schedule</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Never commit secrets � use environment injection</div></div></div></div>"
+          "html": "<div class=\"check-grid\"><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Run lint, typecheck, and tests before every release</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Keep all dependencies current</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Validate integration probe endpoints regularly</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Review audit trails after major orchestration runs</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Rotate JWT_SECRET and API keys on schedule</div></div><div class=\"check-item\"><div class=\"check-box\"></div><div class=\"check-text\">Never commit secrets — use environment injection</div></div></div></div>"
         }
       }
     },
@@ -312,7 +312,7 @@
       "sections": {
         "packages": {
           "title": "Packages",
-          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">Developer</div><div class=\"pkg-tag\">Solo engineers & experiments</div><div class=\"pkg-body\">Core Forge runtime � Basic orchestration and governance modes � Standard API access � Community support</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Team</div><div class=\"pkg-tag\">Engineering teams adopting AI workflows</div><div class=\"pkg-body\">Everything in Developer � Team policy presets � Shared operational dashboards � Priority support � Collaboration-ready governance defaults</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Enterprise</div><div class=\"pkg-tag\">Organizations with compliance requirements</div><div class=\"pkg-body\">Everything in Team � Enterprise policy controls and hardening � Audit/export-ready reporting � Deployment architecture support � Defined SLAs and escalation path</div></div></div></div>"
+          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">Developer</div><div class=\"pkg-tag\">Solo engineers & experiments</div><div class=\"pkg-body\">Core Forge runtime — Basic orchestration and governance modes — Standard API access — Community support</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Team</div><div class=\"pkg-tag\">Engineering teams adopting AI workflows</div><div class=\"pkg-body\">Everything in Developer — Team policy presets — Shared operational dashboards — Priority support — Collaboration-ready governance defaults</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Enterprise</div><div class=\"pkg-tag\">Organizations with compliance requirements</div><div class=\"pkg-body\">Everything in Team — Enterprise policy controls and hardening — Audit/export-ready reporting — Deployment architecture support — Defined SLAs and escalation path</div></div></div></div>"
         },
         "optional-add-ons": {
           "title": "Optional Add-ons",

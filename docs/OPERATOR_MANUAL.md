@@ -44,7 +44,7 @@ Values below are **representative** — see the Forge server for the full set.
 | `SKIA_ADMIN_SECRET` | Guards Forge mutation/admin endpoints when enabled in your deployment. |
 | `JWT_SECRET` | Session validation when Forge verifies tokens locally (must match login service in integrated deployments). |
 
-See **`docs/ENV_REFERENCE.md`** for the full Northflank-aligned variable list.
+See **`docs/ENV_REFERENCE.md`** for the full hosting-environment variable list.
 
 Additional environment variables for signing and GitHub integration are documented in your onboarding package.
 

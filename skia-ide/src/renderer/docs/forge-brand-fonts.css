@@ -1,0 +1,27 @@
+/**
+ * Self-hosted brand fonts for IDE embedded help pages (file://).
+ * Paths relative to docs/*.html → ../fonts/
+ */
+@font-face {
+  font-family: "Agency FB";
+  src: url("../fonts/agency-fb/AgencyFB-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Agency FB";
+  src: url("../fonts/agency-fb/AgencyFB-Regular.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Centaur";
+  src: url("../fonts/centaur/Centaur-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}

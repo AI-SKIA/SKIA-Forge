@@ -1,16 +1,24 @@
 strong, b { font-weight: 400; }
 /**
  * SKIA Forge — gold scrollbars + shared hub logo sizing.
- * Scrollbars match Skia-FULL globals (.skia-scrollbar-premium).
- * Hero logos match Skia-FULL dashboard / feature pages (.feature-page-logo in app.css;
+ * Scrollbars match SKIA platform globals (.skia-scrollbar-premium).
+ * Hero logos match SKIA dashboard / feature pages (.feature-page-logo in app.css;
  * mobile overrides in mobile.css).
  */
 
-/* Brand fonts (self-hosted; served at /fonts/*) */
+/* Brand fonts (self-hosted; served at /fonts/*) — matches Skia-FULL styles/skia-brand-fonts.css */
 @font-face {
     font-family: "Agency FB";
     src: url("/fonts/agency-fb/AgencyFB-Regular.ttf") format("truetype");
     font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Agency FB";
+    src: url("/fonts/agency-fb/AgencyFB-Regular.ttf") format("truetype");
+    font-weight: 500;
     font-style: normal;
     font-display: swap;
 }
@@ -23,84 +31,87 @@ strong, b { font-weight: 400; }
     font-display: swap;
 }
 
-/* Viewport scrollbar (document scroll) */
+:root {
+    --font-agency: "Agency FB";
+    --font-centaur: "Centaur";
+    --font-heading: "Agency FB";
+    --font-body: "Centaur";
+    /* Legacy aliases used in hub HTML */
+    --forge-font-heading: "Agency FB";
+    --forge-font-sans: "Centaur";
+}
+
+html,
+body {
+    font-family: "Centaur";
+}
+
+/* Design bible §2 type scale tokens */
+:root {
+    --skia-font-display-size: 42px;
+    --skia-font-page-title-size: 34px;
+    --skia-font-section-title-size: 26px;
+    --skia-font-section-number-size: 20px;
+    --skia-font-section-subtitle-size: 18px;
+    --skia-font-card-title-size: 16px;
+    --skia-font-body-size: 15px;
+    --skia-font-nav-size: 15px;
+    --skia-font-button-size: 14px;
+    --skia-font-metadata-size: 13px;
+    --skia-font-caption-size: 12px;
+}
+
+/* Canonical scrollbars — design bible §3 */
 html.skia-scrollbar-premium {
     scrollbar-gutter: stable;
     scrollbar-width: thin;
-    scrollbar-color: #d4af37 rgba(0, 0, 0, 0.35);
+    scrollbar-color: rgba(212, 175, 55, 0.7) #0a0a0a;
 }
 
-    html.skia-scrollbar-premium::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
-    }
-
-    html.skia-scrollbar-premium::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.35);
-    }
-
-    html.skia-scrollbar-premium::-webkit-scrollbar-thumb {
-        background: rgba(212, 175, 55, 0.45);
-        border-radius: 4px;
-        border: 1px solid rgba(212, 175, 55, 0.25);
-    }
-
-        html.skia-scrollbar-premium::-webkit-scrollbar-thumb:hover {
-            background: rgba(212, 175, 55, 0.7);
-        }
-
-@media (max-width: 768px) {
-    html.skia-scrollbar-premium::-webkit-scrollbar {
-        width: 5px;
-        height: 5px;
-    }
-
-    html.skia-scrollbar-premium::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.45);
-    }
+html.skia-scrollbar-premium::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
 }
 
-/* Overflow regions (code blocks, optional wrappers) */
+html.skia-scrollbar-premium::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
+
+html.skia-scrollbar-premium::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.7);
+    border-radius: 8px;
+}
+
+html.skia-scrollbar-premium::-webkit-scrollbar-thumb:hover {
+    background: rgba(212, 175, 55, 0.85);
+}
+
 .skia-scrollbar-premium,
 .code-block {
     scrollbar-width: thin;
-    scrollbar-color: #d4af37 rgba(0, 0, 0, 0.35);
+    scrollbar-color: rgba(212, 175, 55, 0.7) #0a0a0a;
 }
 
-    .skia-scrollbar-premium::-webkit-scrollbar,
-    .code-block::-webkit-scrollbar {
-        width: 6px;
-        height: 6px;
-    }
+.skia-scrollbar-premium::-webkit-scrollbar,
+.code-block::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
 
-    .skia-scrollbar-premium::-webkit-scrollbar-track,
-    .code-block::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.35);
-    }
+.skia-scrollbar-premium::-webkit-scrollbar-track,
+.code-block::-webkit-scrollbar-track {
+    background: #0a0a0a;
+}
 
-    .skia-scrollbar-premium::-webkit-scrollbar-thumb,
-    .code-block::-webkit-scrollbar-thumb {
-        background: rgba(212, 175, 55, 0.45);
-        border-radius: 4px;
-        border: 1px solid rgba(212, 175, 55, 0.25);
-    }
+.skia-scrollbar-premium::-webkit-scrollbar-thumb,
+.code-block::-webkit-scrollbar-thumb {
+    background: rgba(212, 175, 55, 0.7);
+    border-radius: 8px;
+}
 
-        .skia-scrollbar-premium::-webkit-scrollbar-thumb:hover,
-        .code-block::-webkit-scrollbar-thumb:hover {
-            background: rgba(212, 175, 55, 0.7);
-        }
-
-@media (max-width: 768px) {
-    .skia-scrollbar-premium::-webkit-scrollbar,
-    .code-block::-webkit-scrollbar {
-        width: 5px;
-        height: 5px;
-    }
-
-    .skia-scrollbar-premium::-webkit-scrollbar-track,
-    .code-block::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.45);
-    }
+.skia-scrollbar-premium::-webkit-scrollbar-thumb:hover,
+.code-block::-webkit-scrollbar-thumb:hover {
+    background: rgba(212, 175, 55, 0.85);
 }
 
 /* Sidebar logo — show full logo, no circle crop */
@@ -112,7 +123,7 @@ html.skia-scrollbar-premium {
     filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.35));
 }
 
-/* Top-of-page hero logo — same as Skia-FULL .feature-page-logo (dashboard, hubs) */
+/* Top-of-page hero logo — same as SKIA .feature-page-logo (dashboard, hubs) */
 .page-logo,
 .feature-page-logo {
     display: block;
@@ -174,27 +185,30 @@ footer,
     width: 100%;
     max-width: none;
     text-align: center;
-    font-size: 14px;
+    font-family: "Centaur";
+    font-size: 15px;
     line-height: 1.8;
     white-space: normal;
 }
 
 footer .footer-tagline,
 .doc-footer .tagline {
-    font-size: 14px !important;
+    font-size: 15px !important;
     font-weight: 400;
     letter-spacing: 0.06em;
+    color: rgba(212, 175, 55, 0.7);
     white-space: normal;
     overflow-wrap: break-word;
 }
 
 footer .footer-copy,
 .doc-footer .copy {
-    font-size: 14px !important;
+    font-size: 15px !important;
+    color: rgba(212, 175, 55, 0.62);
     white-space: normal;
 }
 
 footer .footer-links,
 .doc-footer .links {
-    font-size: 14px;
+    font-size: 15px;
 }

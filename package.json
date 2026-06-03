@@ -11,6 +11,12 @@
     "lint": "eslint src --ext .ts",
     "test": "tsx --test src/**/*.test.ts",
     "preflight": "npm run lint && npm run build && npm test",
+    "locales:propagate": "node scripts/propagate-locale-keys-from-en.mjs",
+    "locales:validate": "node scripts/validate-locale-parity.mjs",
+    "locales:restore-tokens": "node scripts/restore-forge-locale-tokens.mjs",
+    "locales:maintain": "node scripts/apply-maintainer-translations.mjs",
+    "locales:sync": "npm run locales:restore-tokens && npm run locales:propagate && npm run locales:maintain && npm run locales:validate",
+    "fonts:check": "node scripts/normalize-forge-font-families.mjs --check",
     "prepare": "husky"
   },
   "repository": {

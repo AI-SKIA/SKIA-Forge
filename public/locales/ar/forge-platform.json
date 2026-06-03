@@ -11,7 +11,8 @@
     "statusNotAuthenticated": "تكامل SKIA غير متاح — غير مصادق عليه"
   },
   "sidebar": {
-    "title": "وحدات IDE"
+    "title": "وحدات IDE",
+    "forgeHome": "Forge الرئيسية"
   },
   "modules": {
     "agent": {

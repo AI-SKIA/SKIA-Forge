@@ -1,0 +1,573 @@
+/**
+ * SKIA Forge — Context B tool surfaces (design_bible.md §6.4).
+ * Execution console, sign-in, intelligence console.
+ */
+strong, b { font-weight: 400; }
+
+:root {
+  --skia-page-bg-context-b: #0a0a0a;
+  --skia-gold-full: #d4af37;
+  --skia-gold-text: rgba(212, 175, 55, 0.7);
+  --skia-gold-hover: rgba(212, 175, 55, 0.85);
+  --skia-gold-border: rgba(212, 175, 55, 0.2);
+  --skia-gold-border-strong: rgba(212, 175, 55, 0.3);
+  --skia-gold-subtle: rgba(212, 175, 55, 0.08);
+  --skia-text-body: #ffffff;
+  --skia-text-muted: rgba(255, 255, 255, 0.55);
+  --skia-tier3-bg: #111111;
+  --skia-danger: #ff5c5c;
+  --skia-success: #4ade80;
+  --skia-font-body-size: 15px;
+  --skia-font-button-size: 14px;
+  --skia-font-caption-size: 12px;
+  --skia-font-nav-size: 15px;
+  --skia-font-section-title-size: 26px;
+  --font-heading: "Agency FB";
+  --font-body: "Centaur";
+  --tracking-heading: 0.06em;
+  --tracking-heading-display: 0.08em;
+  --tracking-body: 0.01em;
+  --line-body: 1.6;
+  --bg: var(--skia-page-bg-context-b);
+  --line: var(--skia-gold-border-strong);
+  --text: var(--skia-text-body);
+  --muted: var(--skia-text-muted);
+  --gold: var(--skia-gold-full);
+  --gold-accent: var(--skia-gold-text);
+  --card: var(--skia-tier3-bg);
+  --danger: var(--skia-danger);
+}
+
+* { box-sizing: border-box; }
+
+body.forge-context-b {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Centaur";
+  font-size: var(--skia-font-body-size);
+  font-weight: 400;
+  letter-spacing: var(--tracking-body);
+  line-height: var(--line-body);
+}
+
+/* Canonical scrollbars (Forge Web Context B) */
+body.forge-context-b,
+body.forge-context-b * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--skia-gold-text) var(--bg);
+}
+
+body.forge-context-b::-webkit-scrollbar,
+body.forge-context-b *::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+body.forge-context-b::-webkit-scrollbar-track,
+body.forge-context-b *::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+body.forge-context-b::-webkit-scrollbar-thumb,
+body.forge-context-b *::-webkit-scrollbar-thumb {
+  background: var(--skia-gold-text);
+  border-radius: 8px;
+}
+
+body.forge-context-b::-webkit-scrollbar-thumb:hover,
+body.forge-context-b *::-webkit-scrollbar-thumb:hover {
+  background: var(--skia-gold-hover);
+}
+
+/* ── Execution console (/forge/platform) ── */
+body.forge-context-b.forge-platform-shell {
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.forge-platform-shell .topbar {
+  height: 58px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+}
+
+.forge-platform-shell .brand {
+  display: flex;
+  align-items: center;
+  color: var(--gold);
+  letter-spacing: var(--tracking-heading-display);
+  font-size: 28px;
+  font-family: "Agency FB";
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.forge-platform-shell .brand-logo {
+  height: 28px;
+  width: auto;
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.forge-platform-shell .status {
+  color: var(--muted);
+  font-family: "Agency FB";
+  font-size: var(--skia-font-caption-size);
+  font-weight: 500;
+  letter-spacing: var(--tracking-heading-display);
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+
+.forge-platform-shell .download-btn {
+  text-decoration: none;
+  color: var(--skia-gold-text);
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  background: var(--skia-gold-subtle);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: "Agency FB";
+  font-size: var(--skia-font-button-size);
+  font-weight: 500;
+  letter-spacing: var(--tracking-heading-display);
+  text-transform: uppercase;
+}
+
+.forge-platform-shell .download-btn:hover {
+  background: rgba(212, 175, 55, 0.16);
+  border-color: var(--gold);
+  color: var(--skia-gold-hover);
+}
+
+.forge-platform-shell .auth-banner {
+  display: none;
+  margin: 0 16px 8px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 92, 92, 0.45);
+  border-radius: 8px;
+  background: rgba(255, 92, 92, 0.12);
+  color: var(--danger);
+  font-size: var(--skia-font-caption-size);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.forge-platform-shell .auth-banner.visible { display: block; }
+.forge-platform-shell .auth-banner a { color: var(--gold); }
+
+.forge-platform-shell .root {
+  height: calc(100dvh - 58px);
+  display: grid;
+  grid-template-columns: 280px 1fr;
+}
+
+.forge-platform-shell .left {
+  border-right: 1px solid var(--line);
+  background: rgba(0, 0, 0, 0.4);
+  overflow: auto;
+}
+
+.forge-platform-shell .main {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 12px;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.forge-platform-shell .section-title {
+  color: var(--skia-gold-text);
+  padding: 12px;
+  border-bottom: 1px solid var(--line);
+  font-family: "Agency FB";
+  font-size: var(--skia-font-metadata-size, 13px);
+  font-weight: 500;
+  letter-spacing: var(--tracking-heading-display);
+  text-transform: uppercase;
+}
+
+.forge-platform-shell .mod-list { padding: 10px; display: grid; gap: 8px; }
+
+.forge-platform-shell .mod-btn {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid rgba(212, 175, 55, 0.16);
+  border-radius: 8px;
+  padding: 10px;
+  cursor: pointer;
+  font-family: "Agency FB";
+  font-size: var(--skia-font-button-size);
+  font-weight: 500;
+  letter-spacing: var(--tracking-heading);
+  text-transform: uppercase;
+}
+
+.forge-platform-shell .mod-btn:hover,
+.forge-platform-shell .mod-btn.active {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: var(--skia-gold-subtle);
+}
+
+.forge-platform-shell a.mod-btn {
+  display: block;
+  text-decoration: none;
+}
+
+.forge-platform-shell .mod-btn-home {
+  margin-top: 4px;
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+.forge-platform-shell .hero {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+  padding: 14px;
+}
+
+.forge-platform-shell .hero h1 {
+  margin: 0 0 6px;
+  font-family: "Agency FB";
+  font-size: var(--skia-font-section-title-size);
+  font-weight: 500;
+  color: var(--gold);
+  letter-spacing: var(--tracking-heading-display);
+  text-transform: uppercase;
+}
+
+.forge-platform-shell .hero p {
+  margin: 0;
+  color: var(--muted);
+  font-family: "Centaur";
+  font-size: var(--skia-font-body-size);
+  letter-spacing: var(--tracking-body);
+  line-height: var(--line-body);
+}
+
+.forge-platform-shell .composer {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.42);
+  padding: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.forge-platform-shell .label {
+  color: var(--skia-gold-text);
+  font-family: "Agency FB";
+  font-size: var(--skia-font-button-size);
+  font-weight: 500;
+  letter-spacing: var(--tracking-heading-display);
+  text-transform: uppercase;
+}
+
+.forge-platform-shell .textarea {
+  width: 100%;
+  min-height: 110px;
+  resize: vertical;
+  background: var(--card);
+  border: 1px solid var(--skia-gold-border-strong);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 10px;
+  font-family: "Centaur";
+  font-size: var(--skia-font-body-size);
+  letter-spacing: var(--tracking-body);
+}
+
+.forge-platform-shell .textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.forge-platform-shell .controls { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.forge-platform-shell .btn {
+  padding: 9px 14px;
+  border-radius: 8px;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  background: var(--skia-gold-subtle);
+  color: var(--skia-gold-text);
+  cursor: pointer;
+  font-family: "Agency FB";
+  font-size: var(--skia-font-button-size);
+  font-weight: 500;
+  letter-spacing: var(--tracking-heading-display);
+  text-transform: uppercase;
+}
+
+.forge-platform-shell .btn:hover {
+  border-color: var(--gold);
+  background: rgba(212, 175, 55, 0.16);
+  color: var(--skia-gold-hover);
+}
+
+.forge-platform-shell .output {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 12px;
+  overflow: auto;
+  min-height: 220px;
+  white-space: pre-wrap;
+  font-family: "Centaur";
+  font-size: var(--skia-font-body-size);
+  color: var(--text);
+  line-height: var(--line-body);
+}
+
+.forge-platform-shell .result {
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 8px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.45);
+  color: var(--muted);
+  font-family: "Centaur";
+  font-size: var(--skia-font-caption-size);
+  white-space: pre-wrap;
+  max-height: 34vh;
+  overflow: auto;
+}
+
+/* ── Sign-in ── */
+body.forge-sign-in-shell {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.forge-sign-in-shell .card {
+  width: min(420px, 100%);
+  border: 1px solid var(--line);
+  background: var(--card);
+  border-radius: 8px;
+  padding: 28px 24px;
+}
+
+.forge-sign-in-shell h1 {
+  margin: 0 0 8px;
+  font-family: "Agency FB";
+  font-size: var(--skia-font-card-title-size, 16px);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.forge-sign-in-shell p {
+  margin: 0 0 20px;
+  color: var(--muted);
+  font-family: "Centaur";
+  font-size: var(--skia-font-body-size);
+  line-height: 1.5;
+}
+
+.forge-sign-in-shell label {
+  display: block;
+  font-family: "Agency FB";
+  font-size: var(--skia-font-metadata-size, 13px);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.forge-sign-in-shell input {
+  width: 100%;
+  margin-bottom: 14px;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  color: var(--text);
+  font-family: "Centaur";
+  font-size: var(--skia-font-body-size);
+}
+
+.forge-sign-in-shell input:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.forge-sign-in-shell button,
+.forge-sign-in-shell .link-btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border-radius: 6px;
+  font-family: "Agency FB";
+  font-size: var(--skia-font-button-size);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.forge-sign-in-shell button {
+  border: 1px solid var(--gold);
+  background: var(--skia-gold-subtle);
+  color: var(--skia-gold-text);
+}
+
+.forge-sign-in-shell button:disabled { opacity: 0.6; cursor: wait; }
+
+.forge-sign-in-shell .link-btn {
+  margin-top: 10px;
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  background: transparent;
+  color: var(--muted);
+}
+
+.forge-sign-in-shell #error {
+  display: none;
+  color: var(--danger);
+  font-family: "Centaur";
+  font-size: var(--skia-font-body-size);
+  margin-top: 12px;
+  line-height: 1.5;
+}
+
+/* ── Intelligence console (chat UI) ── */
+body.forge-chat-shell { height: 100vh; overflow: hidden; }
+
+.forge-chat-shell .ide-download-app {
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  border-radius: 6px;
+  background: var(--skia-gold-subtle);
+  color: var(--skia-gold-text);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-family: "Agency FB";
+  font-size: var(--skia-font-button-size);
+  font-weight: 500;
+}
+
+.forge-chat-shell .ide-download-app:hover {
+  border-color: var(--gold);
+  background: rgba(212, 175, 55, 0.18);
+  color: var(--skia-gold-hover);
+}
+
+.forge-chat-shell .root {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+}
+
+.forge-chat-shell .panel {
+  border-right: 1px solid var(--skia-gold-border-strong);
+  padding: 16px;
+  overflow: auto;
+}
+
+.forge-chat-shell .panel:last-child { border-right: none; }
+
+.forge-chat-shell h2 {
+  margin: 0 0 10px;
+  color: var(--gold);
+  font-family: "Agency FB";
+  font-size: var(--skia-font-section-title-size);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.12;
+}
+
+.forge-chat-shell textarea,
+.forge-chat-shell input {
+  width: 100%;
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--skia-gold-border-strong);
+  padding: 10px;
+  border-radius: 6px;
+  font-family: "Centaur";
+  font-size: var(--skia-font-body-size);
+  font-weight: 400;
+}
+
+.forge-chat-shell textarea:focus,
+.forge-chat-shell input:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+.forge-chat-shell button {
+  margin-top: 8px;
+  background: var(--skia-gold-subtle);
+  color: var(--skia-gold-text);
+  border: 1px solid var(--gold);
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: "Agency FB";
+  font-size: var(--skia-font-button-size);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.forge-chat-shell pre {
+  background: var(--card);
+  border: 1px solid var(--skia-gold-border);
+  padding: 10px;
+  white-space: pre-wrap;
+  border-radius: 6px;
+  font-family: "Centaur";
+  font-size: var(--skia-font-caption-size);
+}
+
+.forge-chat-shell .msg {
+  margin: 8px 0;
+  padding: 8px;
+  background: var(--card);
+  border-left: 3px solid var(--gold);
+}
+
+.forge-chat-shell .added { color: var(--skia-success); }
+.forge-chat-shell .removed { color: var(--danger); }
+
+.forge-chat-shell .muted {
+  color: var(--muted);
+  font-family: "Centaur";
+  font-size: var(--skia-font-caption-size);
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  text-transform: none;
+}
+
+@media (max-width: 980px) {
+  .forge-platform-shell .root { grid-template-columns: 1fr; }
+  .forge-platform-shell .left { display: none; }
+  .forge-chat-shell .root { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 560px) {
+  .forge-platform-shell .status { display: none; }
+  .forge-platform-shell .brand { font-size: 24px; }
+  .forge-platform-shell .download-btn { font-size: var(--skia-font-caption-size); padding: 7px 9px; }
+}

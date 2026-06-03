@@ -5,7 +5,7 @@
 Enterprise messaging should distinguish:
 
 - Forge control-plane governance value (`SKIA-Forge`)
-- Product runtime value (`Skia-FULL`)
+- Product runtime value (SKIA platform APIs)
 - External reliability communication (`Skia-Status`)
 
 ## Enterprise value proposition
@@ -29,9 +29,9 @@ SKIA-Forge enables enterprise AI development with governance, traceability, and 
 - Structured remediation recommendations and execution hooks.
 
 ## Deployment model
-- Northflank-aligned service topology (frontend/login/backend/TTS and supporting services).
+- Hosted service topology (frontend/login/backend/TTS and supporting services).
 - Forge web/control-plane hostname **`forge.skia.ca`** in production [CONFIRM] — validate against your Domains mapping.
-- Runtime contract integration via SKIA-full endpoints (**`SkiaFullAdapter`**, default **`https://api.skia.ca`**).
+- Runtime contract integration via **`/integration/skia-full/*`** (**`SkiaFullAdapter`**, default **`https://api.skia.ca`**).
 - Works as control layer without requiring full rewrite of existing SDLC.
 
 ## Enterprise buying triggers

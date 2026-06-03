@@ -1,10 +1,10 @@
 # SKIA Forge — User-facing copy audit
 
-> **Status (2026-05-31):** Refreshed post Phase 2 / Skia-FULL cleanup. i18n hub pages (`platform-downloads`, `security`, `public/docs/*.html`) resolved most CRITICAL items from the 2026-05-10 pass. Sovereign vocabulary: **Skia-Serve primary, Google Gemini continuity fallback** — see `docs/ENV_REFERENCE.md`.
+> **Status (2026-06-03):** Customer-facing copy pass complete. i18n hub pages (`platform-downloads`, `security`, `public/docs/*.html`) and Markdown docs use operator-grade vocabulary. Sovereign vocabulary: **Skia-Serve primary** — continuity fallback is operator-only (`docs/ENV_REFERENCE.md`, Skia-FULL `SOVEREIGN_PLATFORM.md`).
 
 **Repository:** `C:\SKIA-Forge`  
 **Original audit date:** 2026-05-10  
-**Last refreshed:** 2026-05-31  
+**Last refreshed:** 2026-06-03  
 
 ### Resolved since 2026-05-10 (DONE)
 
@@ -14,12 +14,14 @@
 | `security.html` vendor-specific hosting copy | ✅ neutral wording in `public/locales/en/security.json` |
 | `public/docs/*.html` `Skia-FULL` leaks | ✅ removed from public HTML |
 | Provider default in API contracts | ✅ `providerHealthSchema` defaults to `skia-serve` |
+| `docs/TROUBLESHOOTING.md` integration heading | ✅ “SKIA integration unavailable” |
+| `skia-ide/README.md` onboarding copy | ✅ SKIA API wording |
+| `docs/contracts/capability-parity.json` public exposure | ✅ moved to `internal/contracts/`; `/docs/contracts/*` returns 404 |
 
-### Still open (lower priority)
+### Pre-release checklist
 
-- `docs/TROUBLESHOOTING.md` — “SKIA-full Integration Unavailable” heading refresh
-- `skia-ide/README.md` — internal repo naming for onboarding
-- Re-run greps in appendix before next marketing release
+- Re-run appendix greps before the next marketing release
+- Confirm `public/locales/*/docs.json` troubleshooting titles stay aligned with `docs/TROUBLESHOOTING.md`
 
 ---
 
@@ -331,7 +333,7 @@ Common shell across these pages:
 | `PRICING_AND_PACKAGES.md` | Yes | **Yes** — `Skia-FULL` | **REWRITE** |
 | `ENTERPRISE_READINESS_CHECKLIST.md` | Yes | **Yes** — `Skia-FULL` | **REWRITE** |
 | `SUPPORT.md` | Linked as `.md`; Resources card points to `/contact` | **Yes** — `Skia-FULL` | **REWRITE** |
-| `contracts/capability-parity.json` | Not linked from audited HTML | Internal artifact | **REMOVE** from public static serve **or** exclude via server config — **internal-only** |
+| `internal/contracts/capability-parity.json` | Not linked from audited HTML | Internal artifact | ✅ **internal-only** (was `docs/contracts/`; server blocks `/docs/contracts/*`) |
 
 ### `public/docs/*.html`
 

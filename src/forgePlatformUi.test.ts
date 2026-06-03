@@ -16,7 +16,8 @@ test("forge platform html includes brand and core web IDE routes", () => {
     assert.ok(html.includes('fp("header.statusConnected")'));
     assert.ok(html.includes("/api/forge/mode"));
     assert.ok(html.includes("DOWNLOAD SKIA FORGE"));
-    assert.ok(html.includes("#d4af37"));
+    assert.ok(html.includes("/forge-platform-console.css"));
+    assert.ok(html.includes('class="forge-context-b forge-platform-shell"'));
     assert.ok(html.includes('data-forge-i18n-page="forge-platform"'));
     assert.ok(html.includes("/forge-page-locale.js"));
 });

@@ -4,6 +4,7 @@
   "description": "SKIA FORGE — Desktop IDE",
   "main": "dist/main/main.js",
   "scripts": {
+    "prebuild": "node ../scripts/assert-no-local-ide-patch.mjs",
     "start": "electron dist/main/main.js",
     "build": "tsc -p tsconfig.main.json && webpack --config webpack.config.js",
     "rebuild:native": "electron-rebuild -f -w node-pty",

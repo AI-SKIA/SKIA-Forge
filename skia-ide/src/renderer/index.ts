@@ -1,3 +1,4 @@
+import "./styles/skia-brand-fonts.css";
 import "./styles/app.css";
 import "./styles/skia-dark.css";
 import { applyForgeUiStrings, populateSettingsLocaleSelect } from "./i18n/applyForgeUi";

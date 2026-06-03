@@ -17,7 +17,7 @@ The symptom (**generic white document icon on the Desktop shortcut only**, while
 
 ## Step 1 — Icon-related files (`.ico`, `.png`, `.icns`)
 
-Sizes were measured on disk **2026-05-10** (workspace: `c:\SKIA-Forge`). Duplicate paths from build output are listed because they affect packaged layout.
+Sizes were measured on disk **2026-05-10** (workspace: `c:\SKIA-Forge`). Re-validated **2026-06-03** — conclusions unchanged; no source changes applied for shortcut icon fix. Duplicate paths from build output are listed because they affect packaged layout.
 
 | Full path | Size (bytes) | Referenced by |
 |-----------|----------------|----------------|

@@ -11,7 +11,8 @@
     "statusNotAuthenticated": "SKIA ENTEGRASYON MEVCUT DEĞİL — kimliği doğrulanmadı"
   },
   "sidebar": {
-    "title": "IDE Modülleri"
+    "title": "IDE Modülleri",
+    "forgeHome": "Forge Ana Sayfa"
   },
   "modules": {
     "agent": {

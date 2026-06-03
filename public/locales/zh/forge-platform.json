@@ -1,17 +1,18 @@
 {
   "meta": {
-    "title": "SKIA Forge_ | 执行平台"
+    "title": "SKIA Forge_ | 执行平台"
   },
   "header": {
-    "brand": "SKIA FORGEIDE",
-    "download": "下载SKIA_FORGE_CAPS",
+    "brand": "SKIA FORGEIDE",
+    "download": "下载SKIA_FORGE_CAPS",
     "statusChecking": "集成：检查...",
-    "statusConnected": "SKIA连接",
-    "statusUnavailable": "SKIA 集成不可用",
-    "statusNotAuthenticated": "SKIA 集成不可用 — 未经过身份验证"
+    "statusConnected": "SKIA连接",
+    "statusUnavailable": "SKIA 集成不可用",
+    "statusNotAuthenticated": "SKIA 集成不可用 — 未经过身份验证"
   },
   "sidebar": {
-    "title": "IDE模块"
+    "title": "IDE模块",
+    "forgeHome": "Forge 首页"
   },
   "modules": {
     "agent": {
@@ -22,11 +23,11 @@
     "context": {
       "label": "语境",
       "title": "语境",
-      "desc": "从您的代码库或输入中分析并加载上下文 - SKIA在采取行动之前建立结构化的理解。"
+      "desc": "从您的代码库或输入中分析并加载上下文 - SKIA在采取行动之前建立结构化的理解。"
     },
     "sdlc": {
-      "label": "SDLC",
-      "title": "SDLC",
+      "label": "SDLC",
+      "title": "SDLC",
       "desc": "运行软件交付生命周期任务 - 从规范到实施，端到端管理。"
     },
     "production": {
@@ -51,7 +52,7 @@
     }
   },
   "hero": {
-    "defaultTitle": "SKIA Forge",
+    "defaultTitle": "SKIA Forge",
     "subtitle": "选择执行模式并提交您的任务 — SKIA 返回受管理的结构化输出。",
     "fallbackDesc": "选择提示并运行此模块。"
   },
@@ -67,7 +68,7 @@
     "noDiagnostics": "还没有诊断。"
   },
   "runtime": {
-    "authUnavailablePrefix": "SKIA 集成不可用 — ",
+    "authUnavailablePrefix": "SKIA 集成不可用 — ",
     "authLoginLink": "登录skia.ca",
     "authLoginSuffix": "，然后重新加载此页面。",
     "sessionExpired": "会话已过期或未登录。请先登录skia.ca。",

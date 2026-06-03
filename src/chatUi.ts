@@ -8,64 +8,9 @@ export function renderChatHtml(_releaseBase = "https://skia.ca/download"): strin
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SKIA Forge | Intelligence Console</title>
   <link rel="stylesheet" href="/forge-premium-ui.css" />
-  <style>
-    body {
-      margin: 0;
-      font-family: "Centaur", "Centaur MT", serif;
-      background: #0a0a0a;
-      color: #ffffff;
-      letter-spacing: 0.01em;
-      line-height: 1.6;
-    }
-    .ide-download-app {
-      position: fixed;
-      top: 12px;
-      right: 12px;
-      z-index: 50;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 8px 14px;
-      border: 1px solid rgba(212, 175, 55, 0.45);
-      border-radius: 6px;
-      background: rgba(212, 175, 55, 0.08);
-      color: #d4af37;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 11px;
-      font-weight: 400;
-      backdrop-filter: blur(3px);
-      transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
-    }
-    .ide-download-app:hover {
-      border-color: #d4af37;
-      background: rgba(212, 175, 55, 0.18);
-      color: #d4af37;
-    }
-    .root { display: grid; grid-template-columns: 1fr 1fr; height: 100vh; }
-    .panel { border-right: 1px solid #2a2a2a; padding: 14px; overflow: auto; }
-    .panel:last-child { border-right: none; }
-    h2 {
-      margin: 0 0 10px;
-      color: #d4af37;
-      font-size: 24px;
-      font-family: "Agency FB", "AgencyFB", sans-serif;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      line-height: 1.12;
-    }
-    textarea, input { width: 100%; background: #111111; color: #ffffff; border: 1px solid #444; padding: 8px; border-radius: 6px; font-size: 14px; font-weight: 400; }
-    button { margin-top: 8px; background: #d4af37; color: #000; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 11px; font-weight: 400; }
-    pre { background: #111111; border: 1px solid #333; padding: 10px; white-space: pre-wrap; border-radius: 6px; }
-    .msg { margin: 8px 0; padding: 8px; background: #111111; border-left: 3px solid #d4af37; }
-    .added { color: #4ade80; }
-    .removed { color: #ff5c5c; }
-    .muted { color: #999999; font-size: 12px; font-weight: 400; font-family: "Centaur", "Centaur MT", serif; letter-spacing: 0.01em; text-transform: none; }
-  </style>
+  <link rel="stylesheet" href="/forge-platform-console.css" />
 </head>
-<body>
+<body class="forge-context-b forge-chat-shell">
   ${forgeDownloadAppLink("ide-download-app")}
   <div class="root">
     <section class="panel">

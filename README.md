@@ -49,6 +49,8 @@ npm install
 npm run dev
 ```
 
+Uses **production** backends (`https://api.skia.ca`) unless you load local env first — see **`local-dev/docs/forge-local-setup.md`**.
+
 ### Build
 
 ```bash
@@ -64,9 +66,9 @@ npm test
 
 ## Module system
 
-Forge modules in `src/forge/modules/` are organized by capability. **Wired in `src/server.ts` (live execution path):** `context-engine`, `agent-planner`, `agent-executor`, `production`, `healing`, `architecture`, `skiarules`, `security`, `sdlc`, `tools`.
+Forge code under `src/forge/modules/` is organized by capability (context-engine, agent-planner, agent-executor, production, healing, architecture, skiarules, security, sdlc, tools, and additional in-repo families).
 
-This layout enables targeted evolution and operational isolation by domain.
+**Live HTTP module execution** (`POST /api/forge/module/:module` and the Forge platform UI) supports: `context`, `agent`, `sdlc`, `production`, `healing`, `architecture`. Additional module families are wired through dedicated routes (for example context embeddings, agent plan/execute, production/healing/architecture routers) — see **`docs/API_REFERENCE.md`**.
 
 ## Desktop IDE (`skia-ide`)
 

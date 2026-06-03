@@ -1,17 +1,17 @@
 {
   "meta": {
-    "documentTitle": "SKIA FORGESKIA_FORGE_CAPS"
+    "documentTitle": "SKIA FORGE"
   },
   "sidebar": {
     "tagline": "她知道这一切"
   },
   "nav": {
-    "forgeHome": "FORGE_HOME",
+    "forgeHome": "Forge 首页",
     "product": "Forge Web",
     "resources": "资源",
     "security": "安全",
     "contactSupport": "联系与支持",
-    "downloadForge": "下载SKIA Forge"
+    "downloadForge": "下载SKIA Forge"
   },
   "back": {
     "label": "← 返回"

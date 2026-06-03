@@ -2,10 +2,10 @@
   "pages": {
     "readme": {
       "meta": {
-        "title": "स्किया_फोर्ज दस्तावेज़ीकरण | स्किया_फोर्ज"
+        "title": "स्किया_फोर्ज दस्तावेज़ीकरण | स्किया_फोर्ज"
       },
-      "badge": "स्किया_फोर्ज डॉक्स",
-      "title": "स्किया_फोर्ज दस्तावेज़ीकरण",
+      "badge": "स्किया_फोर्ज डॉक्स",
+      "title": "स्किया_फोर्ज दस्तावेज़ीकरण",
       "description": "उत्पाद मार्गदर्शिकाएँ, एपीआई संदर्भ, सुरक्षा, समर्थन और उद्यम मूल्यांकन सामग्री ब्राउज़ करें। ब्रांडेड HTML पृष्ठ नीचे सूचीबद्ध हैं; फोर्ज होस्ट से परोसे जाने पर मार्कडाउन स्रोत .md प्रत्यय के साथ उन्हीं पथों पर उपलब्ध होते हैं।",
       "sections": {
         "all-documents": {
@@ -16,11 +16,11 @@
     },
     "quickstart": {
       "meta": {
-        "title": "त्वरित शुरुआत | स्किया_फोर्ज"
+        "title": "त्वरित शुरुआत | स्किया_फोर्ज"
       },
       "badge": "शुरू हो जाओ",
       "title": "त्वरित शुरुआत",
-      "description": "SKIA Forge डाउनलोड करें, साइन इन करें और डेस्कटॉप IDE में अपना पहला नियंत्रित वर्कफ़्लो चलाएँ।",
+      "description": "SKIA Forge डाउनलोड करें, साइन इन करें और डेस्कटॉप IDE में अपना पहला नियंत्रित वर्कफ़्लो चलाएँ।",
       "sections": {
         "step-by-step": {
           "title": "क्रमशः",
@@ -28,20 +28,20 @@
         },
         "next-steps": {
           "title": "अगले कदम",
-          "html": "<div class='item-list'><div class='item'><div class='item-dot'></div><div class='item-text'><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>उपयोगकर्ता गाइड</a> - दैनिक उपयोग और प्रशासन मोड</div></div><div class='item'><div class='item-dot'></div><div class='item-text'><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API Reference</a> � HTTP डेवलपर्स और ऑटोमेशन के लिए एपीआई</div></div><div class='item'><div class='item-dot'></div><div class='आइटम-टेक्स्ट'><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>उत्पाद मैनुअल</a> � क्षमताओं का अवलोकन</div></div><div class='item'><div class='item-dot'></div><div class='आइटम-टेक्स्ट'><a href='/docs/SUPPORT.html' style='color:var(--gold)'>समर्थन</a> - सहायता कैसे प्राप्त करें</div></div></div></div>"
+          "html": "<div class='item-list'><div class='item'><div class='item-dot'></div><div class='item-text'><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>उपयोगकर्ता गाइड</a> - दैनिक उपयोग और प्रशासन मोड</div></div><div class='item'><div class='item-dot'></div><div class='item-text'><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API Reference</a> — HTTP डेवलपर्स और ऑटोमेशन के लिए एपीआई</div></div><div class='item'><div class='item-dot'></div><div class='आइटम-टेक्स्ट'><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>उत्पाद मैनुअल</a> — क्षमताओं का अवलोकन</div></div><div class='item'><div class='item-dot'></div><div class='आइटम-टेक्स्ट'><a href='/docs/SUPPORT.html' style='color:var(--gold)'>समर्थन</a> - सहायता कैसे प्राप्त करें</div></div></div></div>"
         }
       }
     },
     "user-guide": {
       "meta": {
-        "title": "उपयोगकर्ता गाइड | स्किया_फोर्ज"
+        "title": "उपयोगकर्ता गाइड | स्किया_फोर्ज"
       },
-      "badge": "स्किया_फोर्ज का उपयोग करना",
+      "badge": "स्किया_फोर्ज का उपयोग करना",
       "title": "उपयोगकर्ता गाइड",
       "description": "SKIA Forge आपके लिए क्या करता है, कैसे इंस्टॉल करें और साइन इन करें, दैनिक वर्कफ़्लो, सरल भाषा में शासन मोड, और सहायता कहाँ से प्राप्त करें।",
       "sections": {
         "what-skia-forge-does-for-you": {
-          "title": "स्किया_फोर्ज आपके लिए क्या करता है",
+          "title": "स्किया_फोर्ज आपके लिए क्या करता है",
           "html": "SKIA Forge आपको स्पष्ट प्रशासन के तहत AI सहायता के साथ सॉफ़्टवेयर बनाने में मदद करता है: योजना, समीक्षा, वास्तुकला अंतर्दृष्टि और सुरक्षित अनुप्रयोग पथ ताकि आपकी टीम नीति को दरकिनार किए बिना तेज़ी से आगे बढ़ सके।</div>"
         },
         "get-the-desktop-ide": {
@@ -68,7 +68,7 @@
     },
     "developer-guide": {
       "meta": {
-        "title": "डेवलपर गाइड | स्किया_फोर्ज"
+        "title": "डेवलपर गाइड | स्किया_फोर्ज"
       },
       "badge": "स्थानीय देव एवं वास्तुकला",
       "title": "डेवलपर गाइड",
@@ -80,7 +80,7 @@
         },
         "project-structure": {
           "title": "परियोजना संरचना",
-          "html": "<div class='item-list'><div class='item'><div class='item-dot'></div><div class='item-text'>फोर्ज सर्वर - रनटाइम एंट्रीपॉइंट</div></div><div class='item'><div class='item-dot'></div><div class='item-text'><code>src/forge/modules/</code> � मॉड्यूल डोमेन: गवर्नेंस, सुरक्षा, संदर्भ-इंजन, एजेंट, उत्पादन, उपचार, वास्तुकला</div></div><div class='item'><div class='item-dot'></div><div class='item-text'>SKIA Forge IDE � IDE-सामना करने वाली एकीकरण सतह</div></div><div class='item'><div class='item-dot'></div><div class='item-text'><code>docs/</code> � उत्पाद दस्तावेज़ीकरण सेट</div></div><div class='item'><div class='item-dot'></div><div class='item-text'><code>public/</code> � स्थैतिक संपत्तियां और HTML पृष्ठ</div></div></div></div>"
+          "html": "<div class='item-list'><div class='item'><div class='item-dot'></div><div class='item-text'>फोर्ज सर्वर - रनटाइम एंट्रीपॉइंट</div></div><div class='item'><div class='item-dot'></div><div class='item-text'><code>src/forge/modules/</code> — मॉड्यूल डोमेन: गवर्नेंस, सुरक्षा, संदर्भ-इंजन, एजेंट, उत्पादन, उपचार, वास्तुकला</div></div><div class='item'><div class='item-dot'></div><div class='item-text'>SKIA Forge IDE — IDE-सामना करने वाली एकीकरण सतह</div></div><div class='item'><div class='item-dot'></div><div class='item-text'><code>docs/</code> — उत्पाद दस्तावेज़ीकरण सेट</div></div><div class='item'><div class='item-dot'></div><div class='item-text'><code>public/</code> — स्थैतिक संपत्तियां और HTML पृष्ठ</div></div></div></div>"
         },
         "development-workflow": {
           "title": "विकास कार्यप्रवाह",
@@ -98,7 +98,7 @@
     },
     "api-reference": {
       "meta": {
-        "title": "एपीआई संदर्भ | स्किया_फोर्ज"
+        "title": "एपीआई संदर्भ | स्किया_फोर्ज"
       },
       "badge": "प्राथमिक एपीआई सतहें",
       "title": "एपीआई संदर्भ",
@@ -140,7 +140,7 @@
     },
     "operator-manual": {
       "meta": {
-        "title": "ऑपरेटर मैनुअल | स्किया_फोर्ज"
+        "title": "ऑपरेटर मैनुअल | स्किया_फोर्ज"
       },
       "badge": "परिनियोजन और रनटाइम ऑप्स",
       "title": "ऑपरेटर मैनुअल",
@@ -152,7 +152,7 @@
         },
         "deployment-baseline": {
           "title": "परिनियोजन बेसलाइन",
-          "html": "<p style=\"margin-bottom:14px;font-size:13px;color:var(--text-soft)\">प्रोडक्शन होस्टनाम: <code>forge.skia.ca</code>। बेसलाइन फोर्ज <कोड>1.0.0</कोड> और SKIA Forge IDE <code>1.0.0</code> जारी करें।</p><div class='steps'><div class='step'><div class='step-num'>01</div><div class='step-text'><div class='code-block'>npm run बिल्ड</div></div></div><div class=”step”><div class=”step-num”>02</div><div class=”step-text”><div class=”code-block”>npm रन देव</div> (या अपनी उत्पादन प्रक्रिया कमांड)</div></div><div class=”step”><div class=”step-num”>03</div><div class=”step-text”>सुनें <कोड>एसकेआईए_पोर्ट</कोड> (डिफ़ॉल्ट <कोड>4173</कोड>)। सत्यापित करें <code>/health</code>, <code>/live</code>, <code>/ready</code>, <code>/version</code></div></div></div><p style=\"margin-top:14px;font-size:13px;color:var(--text-soft)\">हस्ताक्षर और GitHub एकीकरण के लिए अतिरिक्त पर्यावरण चर आपके ऑनबोर्डिंग में प्रलेखित हैं पैकेज.</p></div>"
+          "html": "<p style=\"margin-bottom:14px;font-size:13px;color:var(--text-soft)\">प्रोडक्शन होस्टनाम: <code>forge.skia.ca</code>। बेसलाइन फोर्ज <कोड>1.0.0</कोड> और SKIA Forge IDE <code>1.0.0</code> जारी करें।</p><div class='steps'><div class='step'><div class='step-num'>01</div><div class='step-text'><div class='code-block'>npm run बिल्ड</div></div></div><div class=”step”><div class=”step-num”>02</div><div class=”step-text”><div class=”code-block”>npm रन देव</div> (या अपनी उत्पादन प्रक्रिया कमांड)</div></div><div class=”step”><div class=”step-num”>03</div><div class=”step-text”>सुनें <कोड>एसकेआईए_पोर्ट</कोड> (डिफ़ॉल्ट <कोड>4173</कोड>)। सत्यापित करें <code>/health</code>, <code>/live</code>, <code>/ready</code>, <code>/version</code></div></div></div><p style=\"margin-top:14px;font-size:13px;color:var(--text-soft)\">हस्ताक्षर और GitHub एकीकरण के लिए अतिरिक्त पर्यावरण चर आपके ऑनबोर्डिंग में प्रलेखित हैं पैकेज.</p></div>"
         },
         "environment-secrets": {
           "title": "पर्यावरण एवं रहस्य",
@@ -170,19 +170,19 @@
     },
     "product-manual": {
       "meta": {
-        "title": "उत्पाद मैनुअल | स्किया_फोर्ज"
+        "title": "उत्पाद मैनुअल | स्किया_फोर्ज"
       },
-      "badge": "स्किया_फोर्ज डॉक्स",
+      "badge": "स्किया_फोर्ज डॉक्स",
       "title": "उत्पाद का मार्गदर्शन",
-      "description": "एआई-नेटिव सॉफ्टवेयर विकास के लिए शासन और ऑर्केस्ट्रेशन नियंत्रण विमान। स्किया_फोर्ज ऑर्केस्ट्रेशन के लिए स्किया ख़ुफ़िया सेवाओं से जुड़ता है; यह संपूर्ण SKIA उत्पाद रनटाइम को प्रतिस्थापित नहीं करता है।",
+      "description": "एआई-नेटिव सॉफ्टवेयर विकास के लिए शासन और ऑर्केस्ट्रेशन नियंत्रण विमान। स्किया_फोर्ज ऑर्केस्ट्रेशन के लिए स्किया ख़ुफ़िया सेवाओं से जुड़ता है; यह संपूर्ण SKIA उत्पाद रनटाइम को प्रतिस्थापित नहीं करता है।",
       "sections": {
         "what-skia-forge-is": {
-          "title": "स्किया_फोर्ज क्या है?",
+          "title": "स्किया_फोर्ज क्या है?",
           "html": "SKIA Forge AI-सहायता प्राप्त वर्कफ़्लो के आसपास योजना, निष्पादन सुरक्षा, वास्तुकला जांच और उपचारात्मक मार्गदर्शन का समन्वय करता है।</div>"
         },
         "delivery-surfaces": {
           "title": "डिलिवरी सतहें",
-          "html": "सार्वजनिक डाउनलोड और दस्तावेज़ीकरण <strong>forge.skia.ca</strong> पर रहते हैं, जिसमें <code>/platform-downloads</code>, <code>/resources</code>, <code>/security</code>, <code>/contact</code>, और <code>/docs/*</code> शामिल हैं। IDE बंडल बनने पर वेब IDE <code>/forge/app</code> पर उपलब्ध होता है। खाता साइन-इन और पंजीकरण <strong>SKIA Forge IDE</strong> या अन्य समर्थित क्लाइंट में होता है, स्थिर विपणन पृष्ठों पर नहीं। डेस्कटॉप इंस्टालर को <code>/api/app/download</code> मार्गों</div> के माध्यम से सेवा प्रदान की जाती है"
+          "html": "सार्वजनिक डाउनलोड और दस्तावेज़ीकरण <strong>forge.skia.ca</strong> पर रहते हैं, जिसमें <code>/platform-downloads</code>, <code>/resources</code>, <code>/security</code>, <code>/contact</code>, और <code>/docs/*</code> शामिल हैं। IDE बंडल बनने पर वेब IDE <code>/forge/app</code> पर उपलब्ध होता है। खाता साइन-इन और पंजीकरण <strong>SKIA Forge IDE</strong> या अन्य समर्थित क्लाइंट में होता है, स्थिर विपणन पृष्ठों पर नहीं। डेस्कटॉप इंस्टालर को <code>/api/app/download</code> मार्गों</div> के माध्यम से सेवा प्रदान की जाती है"
         },
         "who-it-is-for": {
           "title": "यह किसके लिए है",
@@ -198,13 +198,13 @@
         },
         "product-boundaries": {
           "title": "उत्पाद सीमाएँ",
-          "html": "स्किया_फोर्ज एक नियंत्रण और ऑर्केस्ट्रेशन परत है। यह आपके पूर्ण एप्लिकेशन रनटाइम का प्रतिस्थापन नहीं है - यह अपस्ट्रीम SKIA इंटेलिजेंस अनुबंध और आपके मौजूदा परिनियोजन टोपोलॉजी के साथ एकीकृत होता है।</div>"
+          "html": "स्किया_फोर्ज एक नियंत्रण और ऑर्केस्ट्रेशन परत है। यह आपके पूर्ण एप्लिकेशन रनटाइम का प्रतिस्थापन नहीं है - यह अपस्ट्रीम SKIA इंटेलिजेंस अनुबंध और आपके मौजूदा परिनियोजन टोपोलॉजी के साथ एकीकृत होता है।</div>"
         }
       }
     },
     "security-guide": {
       "meta": {
-        "title": "सुरक्षा गाइड | स्किया_फोर्ज"
+        "title": "सुरक्षा गाइड | स्किया_फोर्ज"
       },
       "badge": "सुरक्षा मॉडल एवं नियंत्रण",
       "title": "सुरक्षा गाइड",
@@ -234,7 +234,7 @@
     },
     "troubleshooting": {
       "meta": {
-        "title": "समस्या निवारण | स्किया_फोर्ज"
+        "title": "समस्या निवारण | स्किया_फोर्ज"
       },
       "badge": "सामान्य विफलताएँ एवं सुधार",
       "title": "समस्या निवारण",
@@ -245,7 +245,7 @@
           "html": "<div class='steps'><div class='step'><div class='step-num'>01</div><div class='step-text'><div class='code-block'>npm टाइपचेक चलाएं</div></div></div><div class='step'><div class='step-num'>02</div><div class='step-text'><div class='code-block'>npm रन टेस्ट</div></div></div><div class='step'><div class='step-num'>03</div><div class='step-text'><div class='code-block'>npm रन बिल्ड</div></div></div><div class='step'><div class='step-num'>04</div><div class='step-text'>ऑर्केस्ट्रेशन एंडपॉइंट को दोबारा चलाने से पहले स्कीमा और प्रकार के बेमेल को ठीक करें।</div></div></div></div>"
         },
         "skia-integration-unavailable": {
-          "title": "स्किया एकीकरण अनुपलब्ध",
+          "title": "स्किया एकीकरण अनुपलब्ध",
           "html": "<div class='steps'><div class='step'><div class='step-num'>01</div><div class='step-text'><code>/integration/skia-full</code> और <code>/integration/skia-full/probe</code> जांचें।</div></div><div class='step'><div class='step-num'>02</div><div class='step-text'>अपने होस्टिंग प्रदाता में अपस्ट्रीम URL और पर्यावरण कॉन्फ़िगरेशन को सत्यापित करें।</div></div><div class='step'><div class='step-num'>03</div><div class='step-text'>एडेप्टर अक्षम फ़्लैग और ऑथ हेडर की समीक्षा करें।</div></div></div></div>"
         },
         "governance-blocks": {
@@ -260,11 +260,11 @@
     },
     "changelog": {
       "meta": {
-        "title": "चेंजलॉग | स्किया_फोर्ज"
+        "title": "चेंजलॉग | स्किया_फोर्ज"
       },
       "badge": "संस्करण इतिहास",
       "title": "बदलाव का",
-      "description": "स्किया_फोर्ज में उल्लेखनीय परिवर्तन, रिलीज़ द्वारा प्रलेखित।",
+      "description": "स्किया_फोर्ज में उल्लेखनीय परिवर्तन, रिलीज़ द्वारा प्रलेखित।",
       "sections": {
         "v1-0-0-initial-release": {
           "title": "v1.0.0 — प्रारंभिक रिलीज़",
@@ -274,11 +274,11 @@
     },
     "support": {
       "meta": {
-        "title": "समर्थन | स्किया_फोर्ज"
+        "title": "समर्थन | स्किया_फोर्ज"
       },
       "badge": "समर्थन मॉडल और वृद्धि",
       "title": "सहायता",
-      "description": "स्किया_फोर्ज समर्थन निम्नलिखित क्षेत्रों को कवर करता है:",
+      "description": "स्किया_फोर्ज समर्थन निम्नलिखित क्षेत्रों को कवर करता है:",
       "sections": {
         "support-scope": {
           "title": "समर्थन का दायरा",
@@ -304,11 +304,11 @@
     },
     "pricing-and-packages": {
       "meta": {
-        "title": "मूल्य निर्धारण एवं पैकेज | स्किया_फोर्ज"
+        "title": "मूल्य निर्धारण एवं पैकेज | स्किया_फोर्ज"
       },
       "badge": "वाणिज्यिक मॉडल",
       "title": "मूल्य निर्धारण और पैकेज",
-      "description": "स्किया_फोर्ज व्यक्तियों, टीमों और उद्यम संगठनों के लिए डिज़ाइन किए गए तीन पैकेजों में उपलब्ध है।",
+      "description": "स्किया_फोर्ज व्यक्तियों, टीमों और उद्यम संगठनों के लिए डिज़ाइन किए गए तीन पैकेजों में उपलब्ध है।",
       "sections": {
         "packages": {
           "title": "संकुल",
@@ -322,7 +322,7 @@
     },
     "enterprise-readiness-checklist": {
       "meta": {
-        "title": "एंटरप्राइज़ तैयारी चेकलिस्ट | स्किया_फोर्ज"
+        "title": "एंटरप्राइज़ तैयारी चेकलिस्ट | स्किया_फोर्ज"
       },
       "badge": "उद्यम मूल्यांकन",
       "title": "एंटरप्राइज़ तैयारी चेकलिस्ट",

@@ -155,7 +155,10 @@ skia-ide/codesign.pfx
 local-dev/.env.local
 .env.local
 .local-dev-ide-patch-applied
+local-dev/forge.local.config.json
 
-# Optional: ignore local machine overrides
+# Optional: ignore local machine overrides (keep examples tracked)
 local-dev/.env.*
+!local-dev/.env.forge.local.example
+!local-dev/forge.local.config.example.json
 *.local.env

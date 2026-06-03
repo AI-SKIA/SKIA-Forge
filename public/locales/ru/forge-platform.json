@@ -11,7 +11,8 @@
     "statusNotAuthenticated": "SKIA ИНТЕГРАЦИЯ НЕДОСТУПНА — не аутентифицировано"
   },
   "sidebar": {
-    "title": "IDE Модули"
+    "title": "IDE Модули",
+    "forgeHome": "Главная Forge"
   },
   "modules": {
     "agent": {

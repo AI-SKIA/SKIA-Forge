@@ -125,7 +125,7 @@
   },
   "whyTeams": {
     "heading": "Ekipler neden SKIA Forge'yi seçiyor?",
-    "a": "Kritik boyutlarınızda karşılaştırmalı kalite: kodlama, araçlar, akıl yürütme, uzun bağlam, vizyon ve ?TTS.",
+    "a": "Kritik boyutlarınızda karşılaştırmalı kalite: kodlama, araçlar, akıl yürütme, uzun bağlam, vizyon ve ?TTS.",
     "b": "Ham çıktının ötesinde sistem düzeyinde olgunluk: üretim ortamları için oluşturulmuş gözlemlenebilirlik, durum denetimleri ve entegrasyon yönetimi.",
     "c": "Gerçeğe dayalı sürüm dağıtımı: yalnızca yayınlanan yükleyiciler indirilmek üzere gösterilir."
   }

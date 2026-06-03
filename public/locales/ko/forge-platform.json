@@ -11,7 +11,8 @@
     "statusNotAuthenticated": "SKIA 통합 불가 — 인증되지 않음"
   },
   "sidebar": {
-    "title": "IDE 모듈"
+    "title": "IDE 모듈",
+    "forgeHome": "Forge 홈"
   },
   "modules": {
     "agent": {

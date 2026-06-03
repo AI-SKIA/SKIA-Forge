@@ -48,6 +48,10 @@ function trimUrl(value: string | undefined): string | null {
   return trimmed ? trimmed.replace(/\/+$/, "") : null;
 }
 
+function isProductionRuntime(): boolean {
+  return (process.env.NODE_ENV ?? "").trim().toLowerCase() === "production";
+}
+
 function readForgeLocalConfigFile(): ForgeLocalConfigFile | null {
   if (cachedFileConfig !== undefined) {
     return cachedFileConfig;
@@ -71,24 +75,33 @@ function readForgeLocalConfigFile(): ForgeLocalConfigFile | null {
   return null;
 }
 
+/** Local mode trigger — env only; never inferred from committed config files. */
+function localBackendUrlFromEnv(): string | null {
+  if (isProductionRuntime()) {
+    return null;
+  }
+  return trimUrl(process.env.LOCAL_SKIA_BACKEND_URL);
+}
+
 function envOrFile(key: ForgeLocalConfigStringKey): string | null {
   const fromEnv = trimUrl(process.env[key]);
   if (fromEnv) return fromEnv;
+  if (!isLocalBackendMode()) return null;
   const file = readForgeLocalConfigFile();
   return file ? trimUrl(file[key]) : null;
 }
 
-/** True when LOCAL_SKIA_BACKEND_URL is set (env or local-dev config file). */
+/** True when LOCAL_SKIA_BACKEND_URL is set in the process environment (not from config file). */
 export function isLocalBackendMode(): boolean {
-  return Boolean(envOrFile("LOCAL_SKIA_BACKEND_URL"));
+  return Boolean(localBackendUrlFromEnv());
 }
 
 /**
  * SKIA API base URL for Forge auth proxy and SkiaFullAdapter.
- * Local when LOCAL_SKIA_BACKEND_URL is set; otherwise production default.
+ * Local when LOCAL_SKIA_BACKEND_URL is set in env; otherwise production default.
  */
 export function resolveSkiaBackendUrl(): string {
-  return envOrFile("LOCAL_SKIA_BACKEND_URL") ?? PRODUCTION_SKIA_BACKEND_URL;
+  return localBackendUrlFromEnv() ?? PRODUCTION_SKIA_BACKEND_URL;
 }
 
 /** Same resolution as backend URL for upstream SKIA-FULL calls. */
@@ -150,13 +163,16 @@ export function isAllowedLocalHost(hostname: string): boolean {
   return host === "localhost" || host === "127.0.0.1" || host === "0.0.0.0";
 }
 
-/** Founder email — must match SKIA backend SKIA_OWNER_EMAIL for Founder Override on API calls. */
+/** Founder email — only from env or local config file when local mode is active. */
 export function resolveFounderEmail(): string {
   const fromEnv = (process.env.SKIA_OWNER_EMAIL || "").trim().toLowerCase();
   if (fromEnv) return fromEnv;
-  const file = readForgeLocalConfigFile();
-  const fromFile = (file?.SKIA_OWNER_EMAIL || "").trim().toLowerCase();
-  return fromFile || "dany.francis@consultant.com";
+  if (isLocalBackendMode()) {
+    const file = readForgeLocalConfigFile();
+    const fromFile = (file?.SKIA_OWNER_EMAIL || "").trim().toLowerCase();
+    if (fromFile) return fromFile;
+  }
+  return "dany.francis@consultant.com";
 }
 
 function parseTruthy(value: string | boolean | undefined, defaultValue: boolean): boolean {
@@ -168,7 +184,7 @@ function parseTruthy(value: string | boolean | undefined, defaultValue: boolean)
 
 /**
  * Local Founder Override — Forge governance runs in autonomous mode (no approval gates).
- * Only active when LOCAL_SKIA_BACKEND_URL is set. Does not change production Forge.
+ * Only active when LOCAL_SKIA_BACKEND_URL is set in env. Does not change production Forge.
  */
 export function isLocalFounderOverrideEnabled(): boolean {
   if (!isLocalBackendMode()) return false;
@@ -189,4 +205,13 @@ export function resolveLocalForgeSovereignMode(): "strict" | "adaptive" | "auton
     "autonomous";
   if (raw === "strict" || raw === "adaptive" || raw === "autonomous") return raw;
   return "autonomous";
+}
+
+/** Startup diagnostics — local vs production backend resolution. */
+export function describeBackendMode(): { mode: "local" | "production"; backendUrl: string } {
+  const backendUrl = resolveSkiaBackendUrl();
+  return {
+    mode: isLocalBackendMode() ? "local" : "production",
+    backendUrl,
+  };
 }

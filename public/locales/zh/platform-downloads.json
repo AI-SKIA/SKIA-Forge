@@ -1,31 +1,31 @@
 {
   "meta": {
-    "title": "SKIA FORGESKIA_FORGE_CAPS"
+    "title": "SKIA FORGESKIA_FORGE_CAPS"
   },
   "hero": {
-    "title": "SKIA Forge",
+    "title": "SKIA Forge",
     "subtitle": "真正软件交付的智能治理——为运营商、开发人员和生产团队构建",
-    "downloadButton": "下载SKIA Forge"
+    "downloadButton": "下载SKIA Forge"
   },
   "cards": {
     "frontier": {
       "title": "前沿智能层",
-      "brand": "SKIA Forge",
+      "brand": "SKIA Forge",
       "body": "SKIA Forge 基于经过编码、工具使用、推理、长上下文、视觉和多模式工作流程验证的强化智能堆栈。"
     },
     "reliability": {
       "title": "经验证的可靠性",
-      "brand": "SKIA Forge",
+      "brand": "SKIA Forge",
       "body": "每个版本在发布之前都会经过验证。 质量受到端到端的保护，因此您每次都能获得稳定、值得信赖的输出。"
     },
     "operations": {
       "title": "生产级运营",
-      "brand": "SKIA Forge",
+      "brand": "SKIA Forge",
       "body": "Forge 附带健康检查、治理遥测、状态界面和专为操作信任而设计的确定性路由控制。"
     },
     "surfaces": {
       "title": "跨表面的同一种智能",
-      "brand": "SKIA Forge",
+      "brand": "SKIA Forge",
       "body": "使用 Web 上的 Forge 进行 API 支持的执行，或安装桌面以实现完整的本地文件系统和终端工作流程。"
     }
   },
@@ -36,8 +36,8 @@
       "desc": "Forge 站点上 SKIA Forge 的方向和高级视图。"
     },
     "api": {
-      "title": "API参考",
-      "sub": "HTTPAPI",
+      "title": "API参考",
+      "sub": "HTTPAPI",
       "desc": "用于 Forge 驱动的执行的 HTTP 和集成端点。"
     },
     "quickstart": {
@@ -87,9 +87,9 @@
     }
   },
   "installers": {
-    "heading": "SKIA ForgePC 应用程序安装程序",
+    "heading": "SKIA ForgePC 应用程序安装程序",
     "windows": {
-      "title": "Windows",
+      "title": "Windows",
       "sub": "PC 应用程序安装程序",
       "desc": "Windows 10/11",
       "hint": "64 位安装程序 (.exe)"
@@ -98,7 +98,7 @@
       "title": "macOS（英特尔）",
       "sub": "PC 应用程序安装程序",
       "desc": "macOS 11+",
-      "hint": "英特尔x64"
+      "hint": "英特尔x64"
     },
     "macArm": {
       "title": "macOS（苹果芯片）",
@@ -107,18 +107,18 @@
       "hint": "苹果芯片 (M1/M2/M3)"
     },
     "linux": {
-      "title": "Linux",
+      "title": "Linux",
       "sub": "PC 应用程序安装程序",
       "desc": "Ubuntu、Fedora、Arch",
       "hint": "AppImage（任何发行版）"
     },
-    "windowsAria": "下载 Windows 版 SKIA Forge",
-    "macIntelAria": "下载 SKIA ForgemacOSIntel",
+    "windowsAria": "下载 Windows 版 SKIA Forge",
+    "macIntelAria": "下载 SKIA ForgemacOSIntel",
     "macArmAria": "下载适用于 Apple Silicon 的 SKIA _FORGE",
-    "linuxAria": "下载 Linux 版 SKIA Forge"
+    "linuxAria": "下载 Linux 版 SKIA Forge"
   },
   "howItWorks": {
-    "heading": "Forge + SKIA 的工作原理",
+    "heading": "Forge + SKIA 的工作原理",
     "step1": "使用 Web 上的 Forge 进行即时访问，或安装桌面以进行完整的本地工作流程控制。",
     "step2": "选择正确的执行路径：上下文、代理、SDLC、生产、修复和架构。",
     "step3": "获得专为实际使用而设计的结构化输出，而不是通用的草稿文本。"

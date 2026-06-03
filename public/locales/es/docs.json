@@ -28,7 +28,7 @@
         },
         "next-steps": {
           "title": "Próximos pasos",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>Guía del usuario</a> � modos de gobierno y uso diario</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API Referencia</a> � HTTP API para desarrolladores y automatización</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>Manual del producto</a> � descripción general de capacidades</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>Soporte</a> � cómo obtener ayuda</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>Guía del usuario</a> — modos de gobierno y uso diario</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API Referencia</a> — HTTP API para desarrolladores y automatización</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>Manual del producto</a> — descripción general de capacidades</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>Soporte</a> — cómo obtener ayuda</div></div></div></div>"
         }
       }
     },
@@ -58,7 +58,7 @@
         },
         "governance-modes": {
           "title": "Modos de gobernanza",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Estricto</strong>: valor predeterminado más seguro; más pasos requieren aprobación explícita.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Adaptable</strong> � equilibrado; el trabajo rutinario fluye más rápido mientras que las acciones de mayor riesgo surgen para su revisión.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Autónoma</strong>: ruta más rápida cuando está habilitada; utilícelo cuando su equipo acepte las compensaciones.</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">Las etiquetas del producto pueden variar; Pregúntele a su administrador qué modo se aplica a su espacio de trabajo.</p></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Estricto</strong>: valor predeterminado más seguro; más pasos requieren aprobación explícita.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Adaptable</strong> — equilibrado; el trabajo rutinario fluye más rápido mientras que las acciones de mayor riesgo surgen para su revisión.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Autónoma</strong>: ruta más rápida cuando está habilitada; utilícelo cuando su equipo acepte las compensaciones.</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">Las etiquetas del producto pueden variar; Pregúntele a su administrador qué modo se aplica a su espacio de trabajo.</p></div>"
         },
         "where-to-get-help": {
           "title": "Dónde obtener ayuda",
@@ -80,7 +80,7 @@
         },
         "project-structure": {
           "title": "Estructura del proyecto",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">el servidor Forge � punto de entrada de tiempo de ejecución</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>src/forge/modules/</code> � dominios del módulo: gobernanza, seguridad, motor de contexto, agente, producción, curación, arquitectura</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE � Superficie de integración orientada hacia IDE</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> � producto conjunto de documentación</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> � activos estáticos y páginas HTML</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">el servidor Forge — punto de entrada de tiempo de ejecución</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>src/forge/modules/</code> — dominios del módulo: gobernanza, seguridad, motor de contexto, agente, producción, curación, arquitectura</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE — Superficie de integración orientada hacia IDE</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> — producto conjunto de documentación</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> — activos estáticos y páginas HTML</div></div></div></div>"
         },
         "development-workflow": {
           "title": "Flujo de trabajo de desarrollo",
@@ -130,7 +130,7 @@
         },
         "rpc": {
           "title": "RPC",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> � Operaciones respaldadas por SKIA con respaldos locales para rutas ascendentes no disponibles</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> — Operaciones respaldadas por SKIA con respaldos locales para rutas ascendentes no disponibles</div></div></div></div>"
         },
         "error-model": {
           "title": "Modelo de error",
@@ -312,7 +312,7 @@
       "sections": {
         "packages": {
           "title": "Paquetes",
-          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">Desarrollador</div><div class=\"pkg-tag\">Ingenieros y experimentos en solitario</div><div class=\"pkg-body\">Tiempo de ejecución de Core Forge � Modos básicos de orquestación y gobernanza � Acceso API estándar � Soporte de la comunidad</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Equipo</div><div class=\"pkg-tag\">Equipos de ingeniería que adoptan flujos de trabajo de IA</div><div class=\"pkg-body\">Todo en Desarrollador � Ajustes preestablecidos de políticas de equipo � Paneles operativos compartidos � Soporte prioritario � Valores predeterminados de gobernanza listos para la colaboración</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Empresa</div><div class=\"pkg-tag\">Organizaciones con requisitos de cumplimiento</div><div class=\"pkg-body\">Todo en equipo � Controles y refuerzo de políticas empresariales � Informes de auditoría/listos para exportación � Soporte de arquitectura de implementación � Acuerdos de nivel de servicio definidos y ruta de escalamiento</div></div></div></div>"
+          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">Desarrollador</div><div class=\"pkg-tag\">Ingenieros y experimentos en solitario</div><div class=\"pkg-body\">Tiempo de ejecución de Core Forge — Modos básicos de orquestación y gobernanza — Acceso API estándar — Soporte de la comunidad</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Equipo</div><div class=\"pkg-tag\">Equipos de ingeniería que adoptan flujos de trabajo de IA</div><div class=\"pkg-body\">Todo en Desarrollador — Ajustes preestablecidos de políticas de equipo — Paneles operativos compartidos — Soporte prioritario — Valores predeterminados de gobernanza listos para la colaboración</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Empresa</div><div class=\"pkg-tag\">Organizaciones con requisitos de cumplimiento</div><div class=\"pkg-body\">Todo en equipo — Controles y refuerzo de políticas empresariales — Informes de auditoría/listos para exportación — Soporte de arquitectura de implementación — Acuerdos de nivel de servicio definidos y ruta de escalamiento</div></div></div></div>"
         },
         "optional-add-ons": {
           "title": "Complementos opcionales",

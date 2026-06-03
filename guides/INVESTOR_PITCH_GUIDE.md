@@ -5,7 +5,7 @@
 Present Forge as one part of the SKIA ecosystem:
 
 - `SKIA-Forge`: governance/orchestration control plane
-- `Skia-FULL`: core runtime and product delivery
+- SKIA platform: core runtime and product delivery
 - `Skia-Status`: public operational transparency
 
 ## One-line thesis
@@ -19,7 +19,7 @@ SKIA-Forge is the orchestration and governance control plane for AI-native softw
 ## SKIA-Forge solution
 - Unified control plane for planning, execution preview, governance, and remediation.
 - Policy-aware orchestration across **live-wired** module families (`context-engine`, agent planner/executor, production, healing, architecture, skiarules, security, sdlc, tools); additional in-repo families remain **scaffold** until mounted [CONFIRM].
-- Contract-based integration with SKIA runtime intelligence via **`SkiaFullAdapter`** (`/integration/skia-full/*` and related surfaces) — Forge **calls** `Skia-FULL`; it does not replace the product runtime.
+- Contract-based integration with SKIA runtime intelligence via **`SkiaFullAdapter`** (`/integration/skia-full/*` and related surfaces) — Forge **calls** the SKIA API; it does not replace the product runtime.
 - Operational APIs for health, posture, and audit-friendly recommendations.
 - SKIA Forge IDE (desktop, **`1.0.0`**) for authenticated developer workflows; Forge HTTP serves control-plane APIs (**`/api/forge/*`** authenticated), **`/api/app/download*`** installers, and docs (`docs/API_REFERENCE.md`).
 

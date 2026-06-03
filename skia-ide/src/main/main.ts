@@ -354,7 +354,7 @@ const showAboutWindow = (): void => {
   body {
     background: #0a0a0a;
     color: #d4af37;
-    font-family: "Centaur", "Centaur MT", serif;
+    font-family: "Centaur";
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1083,14 +1083,20 @@ const createWindow = (): void => {
 };
 
 ipcMain.handle("skia:getConfig", (): SkiaConfig => {
-    const localBackend = (process.env.LOCAL_SKIA_BACKEND_URL ?? "").trim();
+    const isProduction = (process.env.NODE_ENV ?? "").trim().toLowerCase() === "production";
+    const localBackend = isProduction ? "" : (process.env.LOCAL_SKIA_BACKEND_URL ?? "").trim();
     const productionBackend = (process.env.SKIA_BACKEND_URL ?? "https://api.skia.ca").trim();
     const backendUrl = localBackend || productionBackend;
-    const localChat = (process.env.LOCAL_CHAT_PIPELINE_URL ?? "").trim();
-    const localAgent = (process.env.LOCAL_FORGE_AGENT_PIPELINE_URL ?? "").trim();
+    const localChat = localBackend ? (process.env.LOCAL_CHAT_PIPELINE_URL ?? "").trim() : "";
+    const localAgent = localBackend ? (process.env.LOCAL_FORGE_AGENT_PIPELINE_URL ?? "").trim() : "";
+    const localFounderOverride =
+      Boolean(localBackend) &&
+      (process.env.LOCAL_FOUNDER_OVERRIDE ?? "true").trim().toLowerCase() !== "false";
     return {
         backendUrl,
-        forgeUrl: (process.env.LOCAL_FORGE_URL ?? process.env.SKIA_FORGE_URL ?? "https://forge.skia.ca").trim(),
+        forgeUrl: localBackend
+          ? (process.env.LOCAL_FORGE_URL ?? process.env.SKIA_FORGE_URL ?? "http://localhost:4173").trim()
+          : (process.env.SKIA_FORGE_URL ?? "https://forge.skia.ca").trim(),
         authToken: process.env.SKIA_AUTH_TOKEN ?? "",
         timeout: Number(process.env.SKIA_TIMEOUT_MS ?? "10000"),
         chatPipelineUrl: localChat || process.env.SKIA_CHAT_PIPELINE_URL,
@@ -1102,7 +1108,7 @@ ipcMain.handle("skia:getConfig", (): SkiaConfig => {
         localVideoServiceUrl: (process.env.LOCAL_VIDEO_SERVICE_URL ?? "http://localhost:5007").trim(),
         localComfyuiUrl: (process.env.LOCAL_COMFYUI_URL ?? "").trim() || undefined,
         localSdWebuiUrl: (process.env.LOCAL_SD_WEBUI_URL ?? "").trim() || undefined,
-        localFounderOverride: (process.env.LOCAL_FOUNDER_OVERRIDE ?? "true").toLowerCase() !== "false",
+        localFounderOverride,
         skiaOwnerEmail: (process.env.SKIA_OWNER_EMAIL ?? "dany.francis@consultant.com").trim().toLowerCase(),
     };
 });

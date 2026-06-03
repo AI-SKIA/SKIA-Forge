@@ -28,7 +28,7 @@
         },
         "next-steps": {
           "title": "Próximas etapas",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>Guia do usuário</a> � uso diário e modos de governança</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API Reference</a> � HTTP APIs para desenvolvedores e automação</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>Manual do produto</a> � visão geral dos recursos</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>Suporte</a> � como obter ajuda</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/USER_GUIDE.html' style='color:var(--gold)'>Guia do usuário</a> — uso diário e modos de governança</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/API_REFERENCE.html' style='color:var(--gold)'>API Reference</a> — HTTP APIs para desenvolvedores e automação</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/PRODUCT_MANUAL.html' style='color:var(--gold)'>Manual do produto</a> — visão geral dos recursos</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><a href='/docs/SUPPORT.html' style='color:var(--gold)'>Suporte</a> — como obter ajuda</div></div></div></div>"
         }
       }
     },
@@ -58,7 +58,7 @@
         },
         "governance-modes": {
           "title": "Modos de governança",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Estrito</strong> � padrão mais seguro; mais etapas exigem aprovação explícita.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Adaptável</strong> � equilibrado; o trabalho de rotina flui mais rápido enquanto ações de maior risco surgem para revisão.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Autônomo</strong> � caminho mais rápido quando habilitado; use quando sua equipe aceitar as compensações.</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">Os rótulos do produto podem variar; pergunte ao seu administrador qual modo se aplica ao seu espaço de trabalho.</p></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Estrito</strong> — padrão mais seguro; mais etapas exigem aprovação explícita.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Adaptável</strong> — equilibrado; o trabalho de rotina flui mais rápido enquanto ações de maior risco surgem para revisão.</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><strong>Autônomo</strong> — caminho mais rápido quando habilitado; use quando sua equipe aceitar as compensações.</div></div></div><p style=\"margin-top:12px;font-size:12px;color:var(--gold-muted)\">Os rótulos do produto podem variar; pergunte ao seu administrador qual modo se aplica ao seu espaço de trabalho.</p></div>"
         },
         "where-to-get-help": {
           "title": "Onde obter ajuda",
@@ -80,7 +80,7 @@
         },
         "project-structure": {
           "title": "Estrutura do Projeto",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">o servidor Forge – ponto de entrada do tempo de execução</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>src/forge/modules/</code> � domínios de módulo: governança, segurança, mecanismo de contexto, agente, produção, cura, arquitetura</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE � Superfície de integração voltada para IDE</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> � product conjunto de documentação</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> � ativos estáticos e páginas HTML</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">o servidor Forge – ponto de entrada do tempo de execução</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>src/forge/modules/</code> — domínios de módulo: governança, segurança, mecanismo de contexto, agente, produção, cura, arquitetura</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">SKIA Forge IDE — Superfície de integração voltada para IDE</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>docs/</code> — product conjunto de documentação</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>public/</code> — ativos estáticos e páginas HTML</div></div></div></div>"
         },
         "development-workflow": {
           "title": "Fluxo de trabalho de desenvolvimento",
@@ -106,7 +106,7 @@
       "sections": {
         "browser-static": {
           "title": "Navegador e estático",
-          "html": "<table class=\"tbl\"><thead><tr><th>Método</th><th>Caminho</th><th>Notas</th></tr></thead><tbody><tr><td>GET</td><td><code>/</code></td><td>Redirecionar para <code>/platform-downloads</code> (estático <code>public/platform-downloads.html</code>)</td></tr><tr><td>GET</td><td><code>/forge</code></td><td>Mesmo redirecionamento (caminho legado)</td></tr><tr><td>GET</td><td><code>/forge/app</code></td><td>Web IDE (crie o SKIA Forge IDE pacote primeiro)</td></tr><tr><td>GET</td><td><code>/resources</code>, <code>/security</code>, <code>/contact</code></td><td>Estático páginas</td></tr><tr><td>GET</td><td><code>/docs/*</code></td><td>HTML de marca e substituto de marcação</td></tr></tbody></table></div>"
+          "html": "<table class=\"tbl\"><thead><tr><th>Método</th><th>Caminho</th><th>Notas</th></tr></thead><tbody><tr><td>GET</td><td><code>/</code></td><td>Redirecionar para <code>/platform-downloads</code> (estático <code>public/platform-downloads.html</code>)</td></tr><tr><td>GET</td><td><code>/forge</code></td><td>Mesmo redirecionamento (caminho legado)</td></tr><tr><td>GET</td><td><code>/forge/app</code></td><td>Web IDE (crie o SKIA Forge IDE pacote primeiro)</td></tr><tr><td>GET</td><td><code>/resources</code>, <code>/security</code>, <code>/contact</code></td><td>Estático páginas</td></tr><tr><td>GET</td><td><code>/docs/*</code></td><td>HTML de marca e substituto de marcação</td></tr></tbody></table></div>"
         },
         "auth-proxy": {
           "title": "Proxy de autenticação",
@@ -130,7 +130,7 @@
         },
         "rpc": {
           "title": "RPC",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> � Operações apoiadas por SKIA com substitutos locais para caminhos upstream indisponíveis</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>POST /rpc</code> — Operações apoiadas por SKIA com substitutos locais para caminhos upstream indisponíveis</div></div></div></div>"
         },
         "error-model": {
           "title": "Modelo de erro",
@@ -220,11 +220,11 @@
         },
         "key-security-components": {
           "title": "Principais componentes de segurança",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>SecurityAnalysisService</code> � verificações de verificação e economia de tempo no código e na saída do agente</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Mecanismo de decisão de governança - controle estrito/adaptativo/autônomo com auditoria trilha</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Módulos de segurança em nível de rota e ação – restrições por superfície que não podem ser ignoradas</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\"><code>SecurityAnalysisService</code> — verificações de verificação e economia de tempo no código e na saída do agente</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Mecanismo de decisão de governança - controle estrito/adaptativo/autônomo com auditoria trilha</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Módulos de segurança em nível de rota e ação – restrições por superfície que não podem ser ignoradas</div></div></div></div>"
         },
         "operational-security-practices": {
           "title": "Práticas de Segurança Operacional",
-          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Mantenha segredos fora de repositórios e registros - use as variáveis de ambiente do seu provedor de hospedagem</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Valide todas as respostas de integração externa - nunca confie em dados de terceiros sem afirmação</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Trate os bloqueios de políticas como eventos de segurança de primeira classe � cada bloco é registrado e revisável</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Registre e monitore os resultados da correção � correções sem validação são incompleto</div></div></div></div>"
+          "html": "<div class=\"item-list\"><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Mantenha segredos fora de repositórios e registros - use as variáveis de ambiente do seu provedor de hospedagem</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Valide todas as respostas de integração externa - nunca confie em dados de terceiros sem afirmação</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Trate os bloqueios de políticas como eventos de segurança de primeira classe — cada bloco é registrado e revisável</div></div><div class=\"item\"><div class=\"item-dot\"></div><div class=\"item-text\">Registre e monitore os resultados da correção — correções sem validação são incompleto</div></div></div></div>"
         },
         "hardening-checklist": {
           "title": "Lista de verificação de endurecimento",
@@ -312,7 +312,7 @@
       "sections": {
         "packages": {
           "title": "Pacotes",
-          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">Desenvolvedor</div><div class=\"pkg-tag\">Engenheiros e experimentos individuais</div><div class=\"pkg-body\">Tempo de execução do Core Forge � Modos básicos de orquestração e governança � Acesso API padrão � Suporte da comunidade</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Equipe</div><div class=\"pkg-tag\">Equipes de engenharia adotando fluxos de trabalho de IA</div><div class=\"pkg-body\">Tudo no desenvolvedor � Predefinições de políticas de equipe � Painéis operacionais compartilhados � Suporte prioritário � Padrões de governança prontos para colaboração</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Empresa</div><div class=\"pkg-tag\">Organizações com requisitos de conformidade</div><div class=\"pkg-body\">Tudo em equipe � Controles e fortalecimento de políticas corporativas � Relatórios prontos para auditoria/exportação � Suporte à arquitetura de implantação � SLAs definidos e caminho de escalonamento</div></div></div></div>"
+          "html": "<div class=\"pkg-grid\"><div class=\"pkg-card\"><div class=\"pkg-name\">Desenvolvedor</div><div class=\"pkg-tag\">Engenheiros e experimentos individuais</div><div class=\"pkg-body\">Tempo de execução do Core Forge — Modos básicos de orquestração e governança — Acesso API padrão — Suporte da comunidade</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Equipe</div><div class=\"pkg-tag\">Equipes de engenharia adotando fluxos de trabalho de IA</div><div class=\"pkg-body\">Tudo no desenvolvedor — Predefinições de políticas de equipe — Painéis operacionais compartilhados — Suporte prioritário — Padrões de governança prontos para colaboração</div></div><div class=\"pkg-card\"><div class=\"pkg-name\">Empresa</div><div class=\"pkg-tag\">Organizações com requisitos de conformidade</div><div class=\"pkg-body\">Tudo em equipe — Controles e fortalecimento de políticas corporativas — Relatórios prontos para auditoria/exportação — Suporte à arquitetura de implantação — SLAs definidos e caminho de escalonamento</div></div></div></div>"
         },
         "optional-add-ons": {
           "title": "Complementos opcionais",

@@ -6,13 +6,15 @@ Run SKIA Forge against a **local SKIA backend** (Skia-FULL `local-dev/` stack) w
 
 | Layer | Production | Local only |
 |---|---|---|
-| Forge server URLs | `https://api.skia.ca`, Northflank env | `local-dev/.env.forge.local`, `LOCAL_SKIA_BACKEND_URL` |
+| Forge server URLs | `https://api.skia.ca` (hosting env) | `local-dev/.env.forge.local` must set **`LOCAL_SKIA_BACKEND_URL`** |
+| Default `npm run dev` | Production backends | **Does not** read gitignored local config unless env is loaded |
 | IDE `skia-ide/` source | Ship as built from repo (`npm run build`) | Optional overlay via `apply-forge-ide-local-patch.ps1` |
-| IDE overlay tree | — | `local-dev/ide-overrides/` (never used in CI/production packaging) |
+| IDE overlay tree | — | `local-dev/ide-overrides/` (blocked in CI; `prebuild` fails if patch marker exists) |
 
-- **Never** run `apply-forge-ide-local-patch.ps1` before a production IDE build or release.
+- **Never** run `apply-forge-ide-local-patch.ps1` before a production IDE build or release (`skia-ide` runs `assert-no-local-ide-patch` on build).
 - After local work, restore canonical IDE sources: `. .\local-dev\scripts\revert-forge-ide-local-patch.ps1` (runs `git checkout -- skia-ide/`).
-- Unset `LOCAL_SKIA_BACKEND_URL` (or do not load `load-forge-local-env.ps1`) to keep Forge on production backends.
+- **`npm run dev` without loading local env** always uses production backends — local mode requires `LOCAL_SKIA_BACKEND_URL` in the **process environment** (via `load-forge-local-env.ps1` or `start-forge-local.*`).
+- **`NODE_ENV=production`** ignores `LOCAL_SKIA_BACKEND_URL` even if set (Northflank safety).
 
 ## Prerequisites
 
@@ -37,9 +39,9 @@ In the IDE, open the **LOCAL** sidebar view for the health panel.
 
 | File | Purpose |
 |---|---|
-| `local-dev/forge.local.config.json` | Default local service URLs |
-| `local-dev/.env.forge.local` | Runtime env (gitignored — copy from example) |
-| `src/config/localBackend.ts` | Resolves backend URL when `LOCAL_SKIA_BACKEND_URL` is set |
+| `local-dev/.env.forge.local.example` | Template — copy to `.env.forge.local` (gitignored) |
+| `local-dev/forge.local.config.example.json` | Optional LOCAL_* defaults — copy to `forge.local.config.json` (gitignored) |
+| `src/config/localBackend.ts` | Local mode only when **`LOCAL_SKIA_BACKEND_URL` is in env**; never from committed JSON alone |
 
 ## Local env vars
 
@@ -53,7 +55,7 @@ In the IDE, open the **LOCAL** sidebar view for the health panel.
 | `LOCAL_COMFYUI_URL` | (optional) | ComfyUI probe |
 | `LOCAL_SD_WEBUI_URL` | (optional) | SD WebUI probe |
 
-When `LOCAL_SKIA_BACKEND_URL` is **unset**, Forge keeps production URLs (`https://api.skia.ca`).
+When `LOCAL_SKIA_BACKEND_URL` is **unset in the process environment**, Forge keeps production URLs (`https://api.skia.ca`) — including plain `npm run dev` at repo root.
 
 ## Founder Override (local)
 

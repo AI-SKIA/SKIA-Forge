@@ -22,7 +22,7 @@
 body {
     background: var(--skia-bg);
     color: var(--skia-text);
-    font-family: "Centaur", "Centaur MT", serif;
+    font-family: "Centaur";
     text-transform: uppercase;
     letter-spacing: 0.1em;
 }

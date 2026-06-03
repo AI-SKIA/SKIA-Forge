@@ -56,6 +56,10 @@ module.exports = {
                     to: "vs"
                 },
                 {
+                    from: path.resolve(__dirname, "../public/fonts"),
+                    to: "fonts"
+                },
+                {
                     from: path.resolve(__dirname, "assets/logo.png"),
                     to: "assets/logo.png"
                 },

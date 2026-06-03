@@ -1,12 +1,12 @@
 {
   "meta": {
-    "documentTitle": "स्किया_फोर्ज_कैप्स"
+    "documentTitle": "SKIA FORGE"
   },
   "sidebar": {
     "tagline": "वह यह सब जानती है"
   },
   "nav": {
-    "forgeHome": "फोर्ज_होम",
+    "forgeHome": "Forge होम",
     "product": "Forge Web",
     "resources": "संसाधन",
     "security": "सुरक्षा",
@@ -20,7 +20,7 @@
     "openNavigation": "नेविगेशन खोलें"
   },
   "footer": {
-    "tagline": "एक पारिस्थितिकी तंत्र. एक ब्रह्मांड. सभी स्किया।",
+    "tagline": "एक पारिस्थितिकी तंत्र. एक ब्रह्मांड. सभी स्किया।",
     "copyright": "© 2026 SKIA Singularity Continuum. भविष्य एक अल्पकथन है।",
     "resources": "संसाधन",
     "security": "सुरक्षा",
