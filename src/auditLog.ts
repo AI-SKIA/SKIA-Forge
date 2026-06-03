@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import type { ForgeAuditV1 } from "./types.js";
 import { AgentAuditLogRecord } from "./types.js";
+import { scrubObject } from "./lib/scrubPii.js";
 
 const AUDIT_DIR = ".skia";
 const AUDIT_FILE = "agent-log.json";
@@ -17,7 +18,14 @@ export async function appendAuditLog(
 
     await fs.mkdir(dir, { recursive: true });
     const existing = await readAuditLog(projectRoot);
-    existing.push(record);
+    const scrubbed: AgentAuditLogRecord = {
+      ...record,
+      parameters:
+        record.parameters && typeof record.parameters === "object"
+          ? scrubObject(record.parameters as Record<string, unknown>)
+          : record.parameters
+    };
+    existing.push(scrubbed);
     await fs.writeFile(filePath, JSON.stringify(existing, null, 2), "utf8");
   });
   await auditWriteQueue;
@@ -104,7 +112,7 @@ export async function appendEpaasEvent(
   const record: AgentAuditLogRecord = {
     timestamp: adversaryEvent.timestamp,
     action: `epaas.${adversaryEvent.eventType}`,
-    parameters: {
+    parameters: scrubObject({
       epaas: true,
       category: "epaas",
       eventId: adversaryEvent.eventId,
@@ -115,7 +123,7 @@ export async function appendEpaasEvent(
       deviceFingerprint: adversaryEvent.deviceFingerprint,
       riskBandAtEvent: adversaryEvent.riskBandAtEvent,
       detail: adversaryEvent.detail
-    },
+    }),
     result: "success",
     details: `EPAAS adversary event: ${adversaryEvent.eventType}`
   };

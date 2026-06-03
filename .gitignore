@@ -154,6 +154,7 @@ skia-ide/codesign.pfx
 # Local development environment (never push)
 local-dev/.env.local
 .env.local
+.local-dev-ide-patch-applied
 
 # Optional: ignore local machine overrides
 local-dev/.env.*
