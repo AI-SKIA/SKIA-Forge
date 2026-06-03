@@ -42,6 +42,7 @@
     "status": "Status",
     "disconnected": "Disconnected",
     "connected": "Connected",
+    "signIn": "تسجيل الدخول",
     "signOut": "SIGN OUT",
     "signedOut": "SIGNED OUT",
     "checkUpdates": "CHECK FOR UPDATES",
