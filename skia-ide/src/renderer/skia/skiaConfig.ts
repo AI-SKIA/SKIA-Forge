@@ -4,7 +4,7 @@ type RuntimeConfig = {
   timeout: number;
   /** Full URL to Next `/api/skia/chat` (document extraction + live search + upstream). */
   chatPipelineUrl: string;
-  /** Next `/api/skia/forge-agent` — Forge IDE agent work stream only. */
+  /** Side Chat SSE — `/api/skia/forge-agent` (conversational stream; not Agent plan/decompose/execute). */
   forgeAgentPipelineUrl: string;
   localBackendMode: boolean;
   localSkiaServeUrl: string;

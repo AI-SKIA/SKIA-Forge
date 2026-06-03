@@ -37,3 +37,13 @@ Inline tab completion uses the Forge server WebSocket (`/inline-completion`) wit
 ## Distribution
 
 Published installers are consumed via Forge **`GET /api/app/download`** and **`GET /api/app/download/:platform`**, and via the canonical web page **`https://forge.skia.ca/platform-downloads`**.
+
+## Local development (SKIA-Forge repo)
+
+Local Forge + IDE against a laptop SKIA stack lives under **`../local-dev/`** — not this package’s production defaults.
+
+- Start: `../local-dev/scripts/start-forge-local.ps1` (loads `local-dev/.env.forge.local`, may apply IDE overrides).
+- Overrides: `../local-dev/ide-overrides/` → copied into `skia-ide/` only by the patch script; **do not** ship or build releases after patching without reverting.
+- Revert IDE to repo source: `../local-dev/scripts/revert-forge-ide-local-patch.ps1`
+
+Production builds use **`npm run build`** on unpatched `skia-ide/` with default `skiaConfig.ts` URLs (`api.skia.ca`, `forge.skia.ca`).

@@ -2,6 +2,18 @@
 
 Run SKIA Forge against a **local SKIA backend** (Skia-FULL `local-dev/` stack) without changing production Northflank configuration.
 
+## Production vs local (do not mix)
+
+| Layer | Production | Local only |
+|---|---|---|
+| Forge server URLs | `https://api.skia.ca`, Northflank env | `local-dev/.env.forge.local`, `LOCAL_SKIA_BACKEND_URL` |
+| IDE `skia-ide/` source | Ship as built from repo (`npm run build`) | Optional overlay via `apply-forge-ide-local-patch.ps1` |
+| IDE overlay tree | — | `local-dev/ide-overrides/` (never used in CI/production packaging) |
+
+- **Never** run `apply-forge-ide-local-patch.ps1` before a production IDE build or release.
+- After local work, restore canonical IDE sources: `. .\local-dev\scripts\revert-forge-ide-local-patch.ps1` (runs `git checkout -- skia-ide/`).
+- Unset `LOCAL_SKIA_BACKEND_URL` (or do not load `load-forge-local-env.ps1`) to keep Forge on production backends.
+
 ## Prerequisites
 
 1. SKIA local stack running — see `Skia-FULL/local-dev/docs/local-setup.md`

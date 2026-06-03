@@ -28,5 +28,10 @@ foreach ($file in $files) {
     Copy-Item -Path $file.FullName -Destination $dest -Force
 }
 
+if ($env:CI -eq "true" -or $env:GITHUB_ACTIONS -eq "true") {
+    throw "Refusing IDE local patch in CI — production builds must use unpatched skia-ide/."
+}
+
 Set-Content -Path $Marker -Value (Get-Date -Format "o")
 Write-Host ("[apply-forge-ide-local-patch] Applied {0} override file(s) into skia-ide/." -f $files.Count)
+Write-Host "[apply-forge-ide-local-patch] Revert before release: . .\local-dev\scripts\revert-forge-ide-local-patch.ps1"
