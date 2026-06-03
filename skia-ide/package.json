@@ -34,6 +34,7 @@
       "assets/skia-forge-app.ico",
       "assets/skia-forge-app.png",
       "assets/skia-forge-app.icns",
+      "dist/main/preload.js",
       "**/node_modules/node-pty/**/*"
     ],
     "extraResources": [

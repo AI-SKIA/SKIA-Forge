@@ -52,6 +52,7 @@ type AmdRequire = {
 declare global {
     interface Window {
         require?: AmdRequire;
+        __monacoAmdRequire?: AmdRequire;
         monaco?: MonacoApi;
     }
 }
@@ -93,7 +94,7 @@ export const initializeMonaco = (): void => {
     const container = document.getElementById("editor-container");
     if (!container) return;
 
-    const amdRequire = window.require;
+    const amdRequire = window.__monacoAmdRequire ?? window.require;
     if (!amdRequire) {
         console.error("SKIA: Monaco AMD loader is unavailable");
         return;

@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="vs/loader.js"></script>
     <script>
-        require.config({ paths: { vs: 'vs' } });
+        window.__monacoAmdRequire = window.require;
+        window.__monacoAmdRequire.config({ paths: { vs: 'vs' } });
     </script>
     <style>
         @font-face {
@@ -201,6 +202,25 @@
     </style>
 </head>
 <body>
+    <script>
+        (function () {
+            if (typeof global === "undefined") {
+                window.global = globalThis;
+            }
+            window.__skiaBootstrapError = null;
+            window.addEventListener("error", function (event) {
+                window.__skiaBootstrapError = event.message || "Renderer script error";
+                var banner = document.getElementById("skia-script-error-banner");
+                if (!banner) {
+                    banner = document.createElement("div");
+                    banner.id = "skia-script-error-banner";
+                    banner.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:30000;background:#2a1200;color:#ffb4b4;padding:10px 14px;font:12px/1.5 Centaur,serif;border-bottom:1px solid rgba(212,175,55,0.45);";
+                    document.body.appendChild(banner);
+                }
+                banner.textContent = "SKIA FORGE script error: " + window.__skiaBootstrapError;
+            });
+        })();
+    </script>
     <div id="app-shell">
         <aside id="sidebar" class="skia-sidebar">
             <div id="sidebar-logo-wrap">
@@ -393,6 +413,54 @@
         <span id="status-architecture">ARCH: --</span>
     </footer>
 
+    <script>
+        (function () {
+            var viewMap = {
+                explorer: "editor-container",
+                search: "view-search",
+                agent: "view-agent",
+                forge: "view-forge",
+                "local-health": "view-local-health",
+                settings: "view-settings"
+            };
+
+            function setShellView(view) {
+                var navItems = document.querySelectorAll("#skia-nav .nav-item");
+                navItems.forEach(function (item) {
+                    item.classList.toggle("is-active", item.dataset.view === view);
+                });
+                Object.keys(viewMap).forEach(function (key) {
+                    var el = document.getElementById(viewMap[key]);
+                    if (!el) return;
+                    el.style.display = "none";
+                    el.classList.remove("active");
+                });
+                var targetId = viewMap[view] || "editor-container";
+                var target = document.getElementById(targetId);
+                if (target) {
+                    target.style.display = targetId === "view-settings" ? "block" : "flex";
+                    target.classList.add("active");
+                }
+                window.dispatchEvent(new CustomEvent("skia-shell-view", { detail: { view: view } }));
+            }
+
+            document.querySelectorAll("#skia-nav .nav-item").forEach(function (item) {
+                item.addEventListener("click", function () {
+                    setShellView(item.dataset.view || "explorer");
+                });
+            });
+
+            document.getElementById("explorer-tree")?.addEventListener("click", function (event) {
+                var target = event.target;
+                if (!target || target.id !== "explorer-open-folder-hint") return;
+                if (window.skiaElectron && typeof window.skiaElectron.openFolder === "function") {
+                    void window.skiaElectron.openFolder();
+                }
+            });
+
+            window.__skiaShellSetView = setShellView;
+        })();
+    </script>
     <script src="bundle.js"></script>
 
     <script>

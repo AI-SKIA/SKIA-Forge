@@ -1069,6 +1069,8 @@ const bootstrap = async (): Promise<void> => {
         wireCoreUi();
         if (process.env.NODE_ENV !== "production") console.log("SKIA: core UI wired");
 
+        initializeAutoUpdateListener();
+
         await loadConfigWithTimeout(8000);
         if (process.env.NODE_ENV !== "production") console.log("SKIA: config loaded");
 
@@ -1122,7 +1124,6 @@ const bootstrap = async (): Promise<void> => {
     }
 };
 
-initializeAutoUpdateListener();
 void bootstrap().catch((error) => {
     console.error("SKIA: unhandled bootstrap rejection", error);
     showBootstrapFailure("Startup failed before the UI could finish loading. Please reload SKIA FORGE.");

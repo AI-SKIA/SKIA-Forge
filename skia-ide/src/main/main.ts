@@ -1055,7 +1055,8 @@ const createWindow = (): void => {
             // Tracked as: IPC bridge migration.
             webSecurity: false,
             // sandbox: true — preload exposes only contextBridge APIs (see preload.ts); no require() in preload.
-            sandbox: true,
+            // sandbox disabled on Windows packaged builds: preload bridge must load reliably for all UI IPC.
+            sandbox: false,
             preload: preloadPath,
             devTools: true
         }
@@ -1072,6 +1073,34 @@ const createWindow = (): void => {
 
     mainWindow.webContents.on("did-finish-load", () => {
         void runUpdateCheck().then((result) => emitUpdateToRenderer(result));
+        void mainWindow?.webContents
+            .executeJavaScript(
+                `({
+                    hasBridge: typeof window.skiaElectron !== "undefined",
+                    coreUiWired: document.getElementById("skia-nav")?.dataset?.coreUiWired ?? null,
+                    bootstrapError: window.__skiaBootstrapError ?? null
+                })`
+            )
+            .then((diag) => {
+                console.log("SKIA: renderer diagnostics", diag);
+            })
+            .catch((error) => {
+                console.error("SKIA: renderer diagnostics failed", error);
+            });
+    });
+
+    mainWindow.webContents.on("console-message", (_event, level, message, line, sourceId) => {
+        if (level >= 2) {
+            console.error(`SKIA renderer [${level}] ${message} (${sourceId}:${line})`);
+        }
+    });
+
+    mainWindow.webContents.on("preload-error", (_event, preloadPath, error) => {
+        console.error("SKIA: preload error", preloadPath, error);
+    });
+
+    mainWindow.webContents.on("render-process-gone", (_event, details) => {
+        console.error("SKIA: render process gone", details);
     });
 
     // Open DevTools automatically in development

@@ -37,6 +37,11 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.BannerPlugin({
+            banner: "var global=globalThis;",
+            raw: true,
+            entryOnly: true
+        }),
         new webpack.DefinePlugin({
             global: "globalThis"
         }),
