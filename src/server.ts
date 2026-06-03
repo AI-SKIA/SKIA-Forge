@@ -42,6 +42,14 @@ import {
   resolveSafeReturnTo,
   resolveSkiaClientHeader
 } from "./auth/skiaSessionProxy.js";
+import {
+  compareSemver,
+  fetchLatestForgeReleaseTag,
+  normalizeSemver,
+  resolveForgeReleaseCatalog,
+  resolvePlatformDownloadUrl,
+  type DownloadPlatformId
+} from "./lib/forgeReleaseDownloads.js";
 
 /** Downloads hub — static `public/platform-downloads.html` on this Forge host. */
 const PLATFORM_DOWNLOADS_PATH = "/platform-downloads";
@@ -177,260 +185,29 @@ const runtimeState = {
   ready: false,
   shuttingDown: false
 };
-type ReleaseVersionCache = {
-  atMs: number;
-  latestVersion: string | null;
-};
-let releaseVersionCache: ReleaseVersionCache = { atMs: 0, latestVersion: null };
-type ReleaseAssetsCache = {
-  atMs: number;
-  latestVersion: string | null;
-  files: string[];
-  assets: Array<{ name: string; url: string }>;
-};
-let releaseAssetsCache: ReleaseAssetsCache = { atMs: 0, latestVersion: null, files: [], assets: [] };
-type DownloadPlatformId = "windows" | "mac-intel" | "mac-arm" | "linux-appimage";
 const RELEASE_REPO = (process.env.SKIA_FORGE_RELEASE_REPO ?? "AI-SKIA/SKIA-Forge").trim();
-const RELEASE_TAG = (process.env.SKIA_FORGE_RELEASE_TAG ?? "v1.0.0").trim();
 
-function githubApiHeaders(): Record<string, string> {
-  const token = (process.env.GITHUB_TOKEN ?? process.env.SKIA_GITHUB_TOKEN ?? "").trim();
-  const headers: Record<string, string> = {
-    Accept: "application/vnd.github+json",
-    "User-Agent": "skia-forge-release-assets"
+function forgeReleaseConfig() {
+  return {
+    repo: RELEASE_REPO,
+    releaseTagFallback: (process.env.SKIA_FORGE_RELEASE_TAG ?? "v1.0.0").trim(),
+    latestVersionEnv: (process.env.SKIA_FORGE_LATEST_VERSION ?? "").trim() || undefined,
+    githubToken: (process.env.GITHUB_TOKEN ?? process.env.SKIA_GITHUB_TOKEN ?? "").trim() || undefined
   };
-  if (token) {
-    headers.Authorization = `Bearer ${token}`;
-  }
-  return headers;
 }
 
-function normalizeSemver(version: string): string {
-  return version.trim().replace(/^v/i, "");
-}
-
-function compareSemver(aRaw: string, bRaw: string): number {
-  const a = normalizeSemver(aRaw).split(".").map((part) => Number(part.replace(/\D.*/, "")) || 0);
-  const b = normalizeSemver(bRaw).split(".").map((part) => Number(part.replace(/\D.*/, "")) || 0);
-  const len = Math.max(a.length, b.length);
-  for (let i = 0; i < len; i += 1) {
-    const av = a[i] ?? 0;
-    const bv = b[i] ?? 0;
-    if (av > bv) return 1;
-    if (av < bv) return -1;
-  }
-  return 0;
-}
-
-async function fetchLatestForgeReleaseTag(timeoutMs = 3000): Promise<string | null> {
-  const now = Date.now();
-  if (now - releaseVersionCache.atMs < 300_000) {
-    return releaseVersionCache.latestVersion;
-  }
-
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), timeoutMs);
-  try {
-    const response = await fetch(`https://api.github.com/repos/${RELEASE_REPO}/releases/latest`, {
-      headers: {
-        ...githubApiHeaders(),
-        "User-Agent": "skia-forge-version-check"
-      },
-      signal: controller.signal
-    });
-    if (!response.ok) {
-      releaseVersionCache = { atMs: now, latestVersion: null };
-      return null;
-    }
-    const payload = (await response.json()) as { tag_name?: unknown };
-    const tag = typeof payload.tag_name === "string" ? payload.tag_name.trim() : "";
-    const latest = tag || null;
-    releaseVersionCache = { atMs: now, latestVersion: latest };
-    return latest;
-  } catch {
-    releaseVersionCache = { atMs: now, latestVersion: null };
-    return null;
-  } finally {
-    clearTimeout(timeout);
-  }
-}
-
-async function fetchReleaseAssetsFromRecentReleases(
-  timeoutMs: number
-): Promise<Array<{ name: string; url: string }>> {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), timeoutMs);
-  try {
-    const response = await fetch(
-      `https://api.github.com/repos/${RELEASE_REPO}/releases?per_page=25`,
-      { headers: githubApiHeaders(), signal: controller.signal }
-    );
-    if (!response.ok) {
-      return [];
-    }
-    const list = (await response.json()) as Array<{
-      assets?: Array<{ name?: unknown; browser_download_url?: unknown }>;
-    }>;
-    const merged: Array<{ name: string; url: string }> = [];
-    const seen = new Set<string>();
-    for (const rel of Array.isArray(list) ? list : []) {
-      const rowAssets = Array.isArray(rel.assets) ? rel.assets : [];
-      for (const asset of rowAssets) {
-        const name = typeof asset.name === "string" ? asset.name.trim() : "";
-        const url = typeof asset.browser_download_url === "string" ? asset.browser_download_url.trim() : "";
-        if (name && url && !seen.has(name)) {
-          seen.add(name);
-          merged.push({ name, url });
-        }
-      }
-    }
-    return merged;
-  } catch {
-    return [];
-  } finally {
-    clearTimeout(timeout);
-  }
-}
-
-async function fetchLatestForgeReleaseAssets(
-  timeoutMs = 4000
-): Promise<{ latestVersion: string | null; files: string[]; assets: Array<{ name: string; url: string }> }> {
-  const now = Date.now();
-  if (now - releaseAssetsCache.atMs < 300_000) {
-    return {
-      latestVersion: releaseAssetsCache.latestVersion,
-      files: releaseAssetsCache.files,
-      assets: releaseAssetsCache.assets
-    };
-  }
-
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), timeoutMs);
-  try {
-    const response = await fetch(`https://api.github.com/repos/${RELEASE_REPO}/releases/latest`, {
-      headers: githubApiHeaders(),
-      signal: controller.signal
-    });
-    if (!response.ok) {
-      releaseAssetsCache = { atMs: now, latestVersion: null, files: [], assets: [] };
-      return { latestVersion: null, files: [], assets: [] };
-    }
-    const payload = (await response.json()) as {
-      tag_name?: unknown;
-      assets?: Array<{ name?: unknown; browser_download_url?: unknown }>;
-    };
-    const latestVersion = typeof payload.tag_name === "string" && payload.tag_name.trim()
-      ? payload.tag_name.trim()
-      : null;
-    let assets = Array.isArray(payload.assets)
-      ? payload.assets
-          .map((asset) => ({
-            name: typeof asset.name === "string" ? asset.name.trim() : "",
-            url: typeof asset.browser_download_url === "string" ? asset.browser_download_url.trim() : ""
-          }))
-          .filter((asset) => Boolean(asset.name) && Boolean(asset.url))
-      : [];
-    if (assets.length === 0) {
-      const merged = await fetchReleaseAssetsFromRecentReleases(timeoutMs);
-      if (merged.length > 0) {
-        assets = merged;
-      }
-    }
-    const files = assets.map((asset) => asset.name);
-    releaseAssetsCache = { atMs: now, latestVersion, files, assets };
-    return { latestVersion, files, assets };
-  } catch {
-    releaseAssetsCache = { atMs: now, latestVersion: null, files: [], assets: [] };
-    return { latestVersion: null, files: [], assets: [] };
-  } finally {
-    clearTimeout(timeout);
-  }
-}
-
-function pickReleaseAssetUrlForPlatform(
-  platform: DownloadPlatformId,
-  assets: Array<{ name: string; url: string }>
-): string | null {
-  const isArmMac = (name: string) => /(arm64|aarch64|apple[-_. ]?silicon|m1|m2|m3)/i.test(name);
-  const byName = (predicate: (name: string) => boolean): string | null => {
-    const hit = assets.find((asset) => predicate(asset.name));
-    return hit?.url ?? null;
-  };
-
-  if (platform === "windows") {
-    const setupExe = assets.find(
-      (a) => /\.exe$/i.test(a.name) && /(setup|nsis|installer|forge)/i.test(a.name)
-    );
-    if (setupExe) {
-      return setupExe.url;
-    }
-    const exeHit = byName((name) => /\.exe$/i.test(name));
-    if (exeHit) {
-      return exeHit;
-    }
-    const msiHit = byName((name) => /\.msi$/i.test(name));
-    if (msiHit) {
-      return msiHit;
-    }
-    const anyInstaller = assets.find((a) => /\.(exe|msi)$/i.test(a.name));
-    if (anyInstaller) {
-      return anyInstaller.url;
-    }
-    const loose = assets.find(
-      (a) =>
-        /(win|windows|nsis|setup|x64|amd64)/i.test(a.name) && !/\.(dmg|appimage|zip|tar)/i.test(a.name)
-    );
-    return loose?.url ?? null;
-  }
-  if (platform === "mac-arm") {
-    return byName((name) => /\.dmg$/i.test(name) && isArmMac(name));
-  }
-  if (platform === "mac-intel") {
-    return (
-      byName((name) => /\.dmg$/i.test(name) && /(intel|x64|amd64)/i.test(name)) ??
-      byName((name) => /\.dmg$/i.test(name) && !isArmMac(name))
-    );
-  }
-  if (platform === "linux-appimage") {
-    return byName((name) => /\.appimage$/i.test(name));
-  }
-  return null;
-}
-
-function fallbackReleaseAssetUrl(platform: DownloadPlatformId): string {
-  const fileByPlatform: Record<DownloadPlatformId, string> = {
-    windows: "SKIA-FORGE-Setup-1.0.0-win-x64.exe",
-    "mac-intel": "Skia-Forge-1.0.0-mac-x64.dmg",
-    "mac-arm": "Skia-Forge-1.0.0-mac-arm64.dmg",
-    "linux-appimage": "Skia-Forge-1.0.0-linux-x64.AppImage"
-  };
-  const file = fileByPlatform[platform];
-  return `https://github.com/${RELEASE_REPO}/releases/download/${RELEASE_TAG}/${encodeURIComponent(file)}`;
-}
-
-async function canDownloadFromUrl(url: string): Promise<boolean> {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 12_000);
-  try {
-    const response = await fetch(url, {
-      method: "GET",
-      redirect: "follow",
-      signal: controller.signal
-    });
-    if (!response.ok) {
-      return false;
-    }
-    try {
-      await response.body?.cancel();
-    } catch {
-      // ignore cancel errors
-    }
-    return true;
-  } catch {
-    return false;
-  } finally {
-    clearTimeout(timeout);
-  }
+function renderInstallerUnavailableHtml(platform: DownloadPlatformId, catalog: Awaited<ReturnType<typeof resolveForgeReleaseCatalog>>): string {
+  const windowsAvailable = Boolean(resolvePlatformDownloadUrl(catalog, "windows", RELEASE_REPO));
+  const windowsLink = windowsAvailable
+    ? `<p><a href="/api/app/download/windows" style="color:#d4af37">Download Windows installer</a></p>`
+    : "";
+  return `<!doctype html><html><head><style>@font-face{font-family:"Centaur";src:url("/fonts/centaur/Centaur-Regular.ttf") format("truetype");font-weight:400;font-display:swap}</style></head><body style="font-family:'Centaur';background:#080400;color:#d4af37;padding:24px">
+      <h2 style="margin-top:0">Forge installer unavailable</h2>
+      <p>The ${platform} desktop installer is not published yet for this release.</p>
+      ${windowsLink}
+      <p><a href="/forge/app/?resetOnboarding=1" style="color:#d4af37">Open Forge Web IDE</a></p>
+      <p><a href="/platform-downloads" style="color:#d4af37">Back to downloads</a></p>
+    </body></html>`;
 }
 
 function persistAllState(): void {
@@ -541,7 +318,7 @@ app.get("/version", (_req, res) => {
 app.get("/api/app/version-check", async (_req, res) => {
   const currentVersion = process.env.npm_package_version ?? "0.0.0-dev";
   const latestFromEnv = (process.env.SKIA_FORGE_LATEST_VERSION ?? "").trim();
-  const latestVersion = latestFromEnv || (await fetchLatestForgeReleaseTag()) || null;
+  const latestVersion = latestFromEnv || (await fetchLatestForgeReleaseTag(forgeReleaseConfig())) || null;
   const updateAvailable =
     latestVersion != null &&
     compareSemver(normalizeSemver(latestVersion), normalizeSemver(currentVersion)) > 0;
@@ -557,13 +334,14 @@ app.get("/api/app/version-check", async (_req, res) => {
 
 app.get("/api/app/release-assets", async (_req, res) => {
   const latestFromEnv = (process.env.SKIA_FORGE_LATEST_VERSION ?? "").trim() || null;
-  const { latestVersion, files, assets } = await fetchLatestForgeReleaseAssets();
+  const catalog = await resolveForgeReleaseCatalog(forgeReleaseConfig());
   res.json({
     app: "skia-forge",
-    latestVersion: latestFromEnv || latestVersion,
-    files,
-    assets,
-    source: latestFromEnv ? "env+github-assets" : "github"
+    latestVersion: latestFromEnv || catalog.latestVersion,
+    latestTag: catalog.latestTag,
+    files: catalog.files,
+    assets: catalog.assets,
+    source: latestFromEnv ? "env+release-catalog" : catalog.source
   });
 });
 
@@ -673,24 +451,13 @@ app.get("/api/app/download/:platform", async (req, res) => {
     return res.status(400).json({ error: "Unsupported platform." });
   }
 
-  const { assets } = await fetchLatestForgeReleaseAssets();
-  const directUrl = pickReleaseAssetUrlForPlatform(platform, assets);
-  if (directUrl) {
-    return res.redirect(302, directUrl);
-  }
-  const fallbackUrl = fallbackReleaseAssetUrl(platform);
-  if (await canDownloadFromUrl(fallbackUrl)) {
-    return res.redirect(302, fallbackUrl);
+  const catalog = await resolveForgeReleaseCatalog(forgeReleaseConfig());
+  const downloadUrl = resolvePlatformDownloadUrl(catalog, platform, RELEASE_REPO);
+  if (downloadUrl) {
+    return res.redirect(302, downloadUrl);
   }
 
-  return res
-    .status(503)
-    .type("html")
-    .send(`<!doctype html><html><head><style>@font-face{font-family:"Centaur";src:url("/fonts/centaur/Centaur-Regular.ttf") format("truetype");font-weight:400;font-display:swap}</style></head><body style="font-family:'Centaur';background:#080400;color:#d4af37;padding:24px">
-      <h2 style="margin-top:0">Forge installer unavailable</h2>
-      <p>The ${platform} desktop installer is not published yet for this release.</p>
-      <p><a href="/forge/app/?resetOnboarding=1" style="color:#d4af37">Open Forge Web IDE</a></p>
-    </body></html>`);
+  return res.status(503).type("html").send(renderInstallerUnavailableHtml(platform, catalog));
 });
 
 app.get("/api/app/download", (req, res) => {

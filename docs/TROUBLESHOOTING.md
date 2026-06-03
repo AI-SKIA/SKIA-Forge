@@ -38,7 +38,7 @@ Use this guide for Forge **service** and **integration** issues. Product-runtime
 
 ## Download redirects fail
 
-- Confirm GitHub release assets exist (`SKIA_FORGE_RELEASE_REPO`, `SKIA_FORGE_RELEASE_TAG`, optional `GITHUB_TOKEN` / `SKIA_GITHUB_TOKEN`).
+- Confirm GitHub release assets exist (`SKIA_FORGE_RELEASE_REPO`, optional `GITHUB_TOKEN` / `SKIA_GITHUB_TOKEN` for API enrichment). Windows downloads also resolve via the published `latest.yml` on GitHub Releases (no API token required).
 - Optional override: `SKIA_FORGE_LATEST_VERSION` for version-check UI.
 
 ## Auth from IDE or API client
