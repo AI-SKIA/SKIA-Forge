@@ -132,6 +132,11 @@ export const loadConfig = async (): Promise<RuntimeConfig> => {
     return cache;
   }
 
+  if (typeof window.skiaElectron === "undefined") {
+    cache = defaults;
+    return cache;
+  }
+
   try {
     const config = await window.skiaElectron.getConfig();
     const configWithForge = config as typeof config & {

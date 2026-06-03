@@ -207,9 +207,74 @@ const showUpdateNotice = (title: string, message: string, actionLabel?: string, 
     }
 };
 
+const getSkiaBridge = (): typeof window.skiaElectron | null => {
+    if (typeof window.skiaElectron === "undefined") {
+        console.error("SKIA: skiaElectron preload bridge is unavailable");
+        showBootstrapFailure(
+            "The desktop bridge failed to load. Quit SKIA FORGE completely and reopen it. If this persists, reinstall the latest build."
+        );
+        return null;
+    }
+    return window.skiaElectron;
+};
+
+const showBootstrapFailure = (message: string): void => {
+    let host = document.getElementById("skia-bootstrap-error");
+    if (!host) {
+        host = document.createElement("div");
+        host.id = "skia-bootstrap-error";
+        host.style.cssText = [
+            "position:fixed", "inset:0", "z-index:20000", "display:grid", "place-items:center",
+            "padding:24px", "background:rgba(8,4,0,0.94)", "color:#d4af37",
+            'font-family:"Centaur","Centaur MT",serif'
+        ].join(";");
+        document.body.appendChild(host);
+    }
+    host.innerHTML = `
+      <div style="max-width:520px;text-align:center;line-height:1.6;">
+        <div style="font-size:11px;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:10px;">Startup issue</div>
+        <div style="font-size: 14px;color:#ffffff;font-weight:400;">${message}</div>
+        <button type="button" id="skia-bootstrap-reload" style="margin-top:18px;padding:10px 16px;background:transparent;border:1px solid rgba(212,175,55,0.55);color:#d4af37;cursor:pointer;">Reload</button>
+      </div>`;
+    document.getElementById("skia-bootstrap-reload")?.addEventListener("click", () => {
+        location.reload();
+    });
+};
+
+/** Wire sidebar, chat, agent, status bar, terminal, and menu IPC before async startup work. */
+const wireCoreUi = (): void => {
+    if (document.getElementById("skia-nav")?.dataset.coreUiWired === "1") {
+        return;
+    }
+    const nav = document.getElementById("skia-nav");
+    if (nav) nav.dataset.coreUiWired = "1";
+
+    initializeSidebarNavigation();
+    initializeChatPanel();
+    initializeAgentPanel();
+    initializeStatusBar();
+    registerMenuIpcHandlers();
+    initSkiaTerminalPanel();
+};
+
+const loadConfigWithTimeout = async (timeoutMs: number): Promise<void> => {
+    await Promise.race([
+        loadConfig(),
+        new Promise<never>((_resolve, reject) => {
+            window.setTimeout(() => reject(new Error("SKIA config load timed out")), timeoutMs);
+        })
+    ]).catch((error) => {
+        console.warn("SKIA: continuing with default config", error);
+    });
+};
+
 /** Register before bootstrap so startup update checks are not missed (main emits on did-finish-load). */
 const initializeAutoUpdateListener = (): void => {
-    window.skiaElectron.onUpdateStatus((payload) => {
+    const bridge = getSkiaBridge();
+    if (!bridge) {
+        return;
+    }
+    bridge.onUpdateStatus((payload) => {
         if (payload.status === "update-available" && payload.latestVersion && payload.downloadUrl) {
             showUpdateNotice(
                 "Update Available",
@@ -224,7 +289,7 @@ const initializeAutoUpdateListener = (): void => {
             return;
         }
     });
-    window.skiaElectron.notifyRendererReady();
+    bridge.notifyRendererReady();
 };
 
 const getLanguageFromPath = (filePath: string): string => {
@@ -985,64 +1050,81 @@ const registerMenuIpcHandlers = (): void => {
 
 const bootstrap = async (): Promise<void> => {
     if (process.env.NODE_ENV !== "production") console.log("SKIA: bootstrap starting");
-    initForgeI18n();
-    populateSettingsLocaleSelect();
-    applyForgeUiStrings();
-    subscribeLocaleChange(() => {
+    try {
+        initForgeI18n();
+        populateSettingsLocaleSelect();
         applyForgeUiStrings();
-        syncSettingsAuthButton();
-        const select = document.getElementById("settings-locale-select") as HTMLSelectElement | null;
-        if (select) select.value = getLocale();
-    });
-    await loadConfig();
-    if (process.env.NODE_ENV !== "production") console.log("SKIA: config loaded");
-    initializeAuthPanel();
-    initializeMonaco();
-    if (process.env.NODE_ENV !== "production") console.log("SKIA: monaco initialized");
-    const editorSettings = loadEditorSettings();
-    autoSaveEnabled = editorSettings.autoSave;
-    window.skiaElectron.setAutoSave(autoSaveEnabled);
-    wireMonacoEditorPersistence();
-    initializeSettingsControlsOnce();
-    initializeSidebarNavigation();
-    if (process.env.NODE_ENV !== "production") console.log("SKIA: sidebar navigation initialized");
-    initializeChatPanel();
-    if (process.env.NODE_ENV !== "production") console.log("SKIA: chat panel initialized");
-    initializeAgentPanel();
-    if (process.env.NODE_ENV !== "production") console.log("SKIA: agent panel initialized");
-    initializeStatusBar();
-    syncSettingsAuthButton();
-    if (process.env.NODE_ENV !== "production") console.log("SKIA: status bar initialized");
-    window.addEventListener("skia-auth-ready", () => {
-        syncSettingsConnectionStatus();
-        syncSettingsAuthButton();
-        if (activeView === "forge") {
-            void loadForgeStatus();
+        subscribeLocaleChange(() => {
+            applyForgeUiStrings();
+            syncSettingsAuthButton();
+            const select = document.getElementById("settings-locale-select") as HTMLSelectElement | null;
+            if (select) select.value = getLocale();
+        });
+
+        const bridge = getSkiaBridge();
+        if (!bridge) {
+            return;
         }
-    });
-    window.addEventListener("skia-auth-logout", () => {
-        syncSettingsConnectionStatus();
+
+        wireCoreUi();
+        if (process.env.NODE_ENV !== "production") console.log("SKIA: core UI wired");
+
+        await loadConfigWithTimeout(8000);
+        if (process.env.NODE_ENV !== "production") console.log("SKIA: config loaded");
+
+        initializeAuthPanel();
+        initializeMonaco();
+        if (process.env.NODE_ENV !== "production") console.log("SKIA: monaco initialized");
+
+        const editorSettings = loadEditorSettings();
+        autoSaveEnabled = editorSettings.autoSave;
+        bridge.setAutoSave(autoSaveEnabled);
+        wireMonacoEditorPersistence();
+        initializeSettingsControlsOnce();
         syncSettingsAuthButton();
-    });
-    window.addEventListener("skia-onboarding-folder-selected", (event) => {
-        const custom = event as CustomEvent<{ folderPath?: string }>;
-        const folderPath = custom.detail?.folderPath;
-        if (!folderPath) return;
-        void openOnboardingFolderInExplorer(folderPath);
-    });
-    window.addEventListener("skia-onboarding-start-empty", (event) => {
-        const custom = event as CustomEvent<{ workspacePath?: string }>;
-        const workspacePath = custom.detail?.workspacePath ?? "browser-workspace";
-        startEmptyWorkspace(workspacePath);
-    });
-    initializeOnboarding();
-    if (process.env.NODE_ENV !== "production") console.log("SKIA: onboarding initialized");
-    initSkiaTerminalPanel();
-    if (process.env.NODE_ENV !== "production") console.log("SKIA: terminal panel initialized");
-    registerMenuIpcHandlers();
-    if (process.env.NODE_ENV !== "production") console.log("SKIA: menu IPC handlers initialized");
-    if (process.env.NODE_ENV !== "production") console.log("SKIA: bootstrap complete");
+        if (process.env.NODE_ENV !== "production") console.log("SKIA: settings initialized");
+
+        window.addEventListener("skia-auth-ready", () => {
+            syncSettingsConnectionStatus();
+            syncSettingsAuthButton();
+            if (activeView === "forge") {
+                void loadForgeStatus();
+            }
+        });
+        window.addEventListener("skia-auth-logout", () => {
+            syncSettingsConnectionStatus();
+            syncSettingsAuthButton();
+        });
+        window.addEventListener("skia-onboarding-folder-selected", (event) => {
+            const custom = event as CustomEvent<{ folderPath?: string }>;
+            const folderPath = custom.detail?.folderPath;
+            if (!folderPath) return;
+            void openOnboardingFolderInExplorer(folderPath);
+        });
+        window.addEventListener("skia-onboarding-start-empty", (event) => {
+            const custom = event as CustomEvent<{ workspacePath?: string }>;
+            const workspacePath = custom.detail?.workspacePath ?? "browser-workspace";
+            startEmptyWorkspace(workspacePath);
+        });
+        initializeOnboarding();
+        if (process.env.NODE_ENV !== "production") console.log("SKIA: onboarding initialized");
+        if (process.env.NODE_ENV !== "production") console.log("SKIA: bootstrap complete");
+    } catch (error) {
+        console.error("SKIA: bootstrap failed", error);
+        const message =
+            error instanceof Error
+                ? error.message
+                : "An unexpected error blocked SKIA FORGE startup.";
+        showBootstrapFailure(
+            `${message} You can reload the app or restart SKIA FORGE. Sidebar and chat should still respond if only a secondary step failed.`
+        );
+        wireCoreUi();
+    }
 };
 
 initializeAutoUpdateListener();
-void bootstrap();
+void bootstrap().catch((error) => {
+    console.error("SKIA: unhandled bootstrap rejection", error);
+    showBootstrapFailure("Startup failed before the UI could finish loading. Please reload SKIA FORGE.");
+    wireCoreUi();
+});
