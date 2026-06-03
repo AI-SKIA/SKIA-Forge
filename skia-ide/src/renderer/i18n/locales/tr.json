@@ -16,7 +16,7 @@
     "search": "SEARCH",
     "searchPlaceholder": "Search files and symbols...",
     "agent": "AGENT",
-    "agentHint": "SKIA work stream — tool steps and diffs appear here only (not in side chat).",
+    "agentHint": "Agent: plan → forge.skia.ca araç yürütücü (APPLY/REJECT). Yan sohbet konuşma akışı — yerel araç kaydı değil.",
     "agentPlaceholder": "Describe a task for SKIA...",
     "agentRun": "RUN TASK",
     "agentCancel": "CANCEL",

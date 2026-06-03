@@ -16,7 +16,7 @@
     "search": "SEARCH",
     "searchPlaceholder": "Search files and symbols...",
     "agent": "AGENT",
-    "agentHint": "SKIA work stream — tool steps and diffs appear here only (not in side chat).",
+    "agentHint": "Agent-Panel: Plan → Tool-Executor auf forge.skia.ca (APPLY/REJECT). Seiten-Chat nutzt den Konversationsstream — nicht die lokale Tool-Registry.",
     "agentPlaceholder": "Describe a task for SKIA...",
     "agentRun": "RUN TASK",
     "agentCancel": "CANCEL",

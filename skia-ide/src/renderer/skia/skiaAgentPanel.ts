@@ -1,26 +1,34 @@
 import { getEditor } from "../editor/monacoSetup";
 import { getAuthToken } from "./skiaAuthPanel";
-import { getForgeAgentPipelineUrl } from "./skiaConfig";
-import { applyIdeBrainToMessagesPayload } from "./skiaIdeBrainContext";
-import { getWorkspacePath, setActiveFile } from "./skiaSessionStore";
+import { setActiveFile } from "./skiaSessionStore";
+import {
+    runForgeAgentDecompose,
+    runForgeAgentExecute,
+    runForgeAgentPlan,
+    type FileMutationPreview
+} from "./skiaForgeAgentClient";
 import {
     applyUnifiedDiffToText,
-    consumeForgeAgentSseStream,
     contentFromDiffPayload,
     type ForgeIdeAgentStreamEvent
 } from "./skiaForgeAgentStream";
 
 let activeAgentController: AbortController | null = null;
+const pendingPreviews = new Map<string, FileMutationPreview>();
 
 const resolveFilePath = (relPath: string): string => {
-    const root = getWorkspacePath().trim().replace(/\\/g, "/").replace(/\/$/, "");
+    const root = (localStorage.getItem("skia_workspace_path") || "").trim().replace(/\\/g, "/").replace(/\/$/, "");
     const rel = relPath.replace(/\\/g, "/").replace(/^\//, "");
     if (!root || root === "browser-workspace") return relPath;
     if (/^[a-zA-Z]:\//.test(rel) || rel.startsWith("/")) return rel;
     return `${root}/${rel}`;
 };
 
-const appendLogRow = (logHost: HTMLElement, event: ForgeIdeAgentStreamEvent): void => {
+const appendLogRow = (
+    logHost: HTMLElement,
+    event: ForgeIdeAgentStreamEvent,
+    onPreviewAction?: (preview: FileMutationPreview, action: "apply" | "reject") => void
+): void => {
     const row = document.createElement("div");
     row.className = `agent-log-row agent-log-${event.type}${event.type === "diff" ? " agent-log-diff" : ""}`;
 
@@ -39,7 +47,33 @@ const appendLogRow = (logHost: HTMLElement, event: ForgeIdeAgentStreamEvent): vo
     }
     row.appendChild(body);
 
-    if (event.type === "diff" && event.path) {
+    if (event.type === "diff" && event.path && event.previewKey) {
+        const preview = pendingPreviews.get(event.previewKey);
+        const actions = document.createElement("div");
+        actions.className = "agent-log-actions";
+        const applyBtn = document.createElement("button");
+        applyBtn.type = "button";
+        applyBtn.textContent = "APPLY";
+        applyBtn.addEventListener("click", () => {
+            if (preview && onPreviewAction) onPreviewAction(preview, "apply");
+            else void applyAgentEdit(event.path!, event.payload);
+        });
+        const rejectBtn = document.createElement("button");
+        rejectBtn.type = "button";
+        rejectBtn.textContent = "REJECT";
+        rejectBtn.addEventListener("click", () => {
+            if (preview && onPreviewAction) onPreviewAction(preview, "reject");
+            row.classList.add("agent-log-rejected");
+        });
+        const openBtn = document.createElement("button");
+        openBtn.type = "button";
+        openBtn.textContent = "OPEN";
+        openBtn.addEventListener("click", () => {
+            void openAgentFile(event.path!);
+        });
+        actions.append(applyBtn, rejectBtn, openBtn);
+        row.appendChild(actions);
+    } else if (event.type === "diff" && event.path) {
         const actions = document.createElement("div");
         actions.className = "agent-log-actions";
         const applyBtn = document.createElement("button");
@@ -76,13 +110,13 @@ async function openAgentFile(relPath: string): Promise<void> {
     }
 }
 
-async function applyAgentEdit(relPath: string, diffPayload: string): Promise<void> {
+async function applyAgentEdit(relPath: string, diffPayload: string, afterOverride?: string): Promise<void> {
     const abs = resolveFilePath(relPath);
-    let nextContent = contentFromDiffPayload(diffPayload);
+    let nextContent = afterOverride ?? contentFromDiffPayload(diffPayload);
     try {
         const existing = await window.skiaElectron.readFileText(abs);
         const merged = applyUnifiedDiffToText(existing, diffPayload);
-        if (merged !== null) nextContent = merged;
+        if (merged !== null) nextContent = afterOverride ?? merged;
     } catch {
         /* new file */
     }
@@ -104,64 +138,117 @@ const runAgentTask = async (goal: string, logHost: HTMLElement, summaryEl: HTMLE
     }
 
     logHost.innerHTML = "";
+    pendingPreviews.clear();
     if (summaryEl) summaryEl.textContent = "";
 
-    const messagesPayload = await applyIdeBrainToMessagesPayload([{ role: "user", content: goal }]);
-
     activeAgentController = new AbortController();
+    const signal = activeAgentController.signal;
 
-    const response = await fetch(getForgeAgentPipelineUrl(), {
-        method: "POST",
-        headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-            Accept: "text/event-stream",
-            "x-skia-client": "forge-desktop"
-        },
-        body: JSON.stringify({
-            goal,
-            messages: messagesPayload,
-            source: "skia-forge-ide",
-            style: "Sovereign",
-            includeReasoning: false,
-            responseDepth: "Balanced",
-            mode: "agent"
-        }),
-        signal: activeAgentController.signal
-    });
+    appendLogRow(logHost, { type: "thought", payload: "Planning with Forge agent (context + tools)…" });
+    if (signal.aborted) return;
 
-    if (response.status === 401) {
-        appendLogRow(logHost, { type: "error", payload: "Session expired — sign in again." });
-        return;
-    }
-    if (!response.ok || !response.body) {
-        let err = `Agent request failed (${response.status})`;
-        try {
-            const j = (await response.json()) as { error?: string };
-            if (j.error) err = j.error;
-        } catch {
-            /* ignore */
-        }
-        appendLogRow(logHost, { type: "error", payload: err });
+    const planned = await runForgeAgentPlan(goal);
+    if (!planned.ok || !planned.plan) {
+        appendLogRow(logHost, { type: "error", payload: planned.error ?? "Plan failed." });
+        activeAgentController = null;
         return;
     }
 
-    let answer = "";
-    await consumeForgeAgentSseStream(response.body, (ev) => {
-        if (ev.type === "token") {
-            answer += ev.payload;
-            if (summaryEl) summaryEl.textContent = answer;
-            return;
-        }
-        if (ev.type === "done") {
-            answer = ev.payload || answer;
-            if (summaryEl) summaryEl.textContent = answer;
-            appendLogRow(logHost, { type: "thought", payload: "Task complete.", status: "ok" });
-            return;
-        }
-        appendLogRow(logHost, ev);
+    if (summaryEl) {
+        summaryEl.textContent = `${planned.plan.title}\n${planned.plan.goalRestatement ?? ""}`.trim();
+    }
+    appendLogRow(logHost, {
+        type: "thought",
+        payload: `Plan: ${planned.plan.steps.map((s) => s.title).join(" → ")}`
     });
 
+    if (signal.aborted) return;
+    appendLogRow(logHost, { type: "thought", payload: "Decomposing plan into tool steps…" });
+    const decomposed = await runForgeAgentDecompose(goal, planned.path, planned.plan);
+    if (!decomposed.ok) {
+        appendLogRow(logHost, { type: "error", payload: decomposed.error ?? "Decompose failed." });
+        activeAgentController = null;
+        return;
+    }
+    if (decomposed.usedFallback) {
+        appendLogRow(logHost, {
+            type: "thought",
+            payload: `Using server fallback tool steps${decomposed.error ? ` (${decomposed.error})` : ""}.`
+        });
+    }
+
+    if (signal.aborted) return;
+    appendLogRow(logHost, { type: "thought", payload: "Running executor preview (tool registry)…" });
+    const preview = await runForgeAgentExecute({
+        path: planned.path,
+        plan: decomposed.plan,
+        steps: decomposed.steps,
+        mode: "preview"
+    });
+
+    if (!preview.ok && preview.result.error) {
+        appendLogRow(logHost, { type: "error", payload: preview.result.error });
+    }
+
+    const sessionPath = planned.path;
+    const sessionPlan = decomposed.plan;
+    const sessionSteps = decomposed.steps;
+
+    const handlePreviewAction = async (p: FileMutationPreview, action: "apply" | "reject"): Promise<void> => {
+        if (action === "reject") {
+            pendingPreviews.delete(`${p.stepId}:${p.path}`);
+            appendLogRow(logHost, { type: "thought", payload: `Rejected ${p.path}` });
+            return;
+        }
+        appendLogRow(logHost, { type: "tool_start", payload: `Applying ${p.path}…`, tool: "write_file" });
+        const applied = await runForgeAgentExecute({
+            path: sessionPath,
+            plan: sessionPlan,
+            steps: sessionSteps,
+            mode: "apply",
+            fileMutationApprovals: { [p.stepId]: true }
+        });
+        if (applied.ok) {
+            await applyAgentEdit(p.path, p.diff, p.after);
+            pendingPreviews.delete(`${p.stepId}:${p.path}`);
+            appendLogRow(logHost, { type: "tool_end", payload: `Applied ${p.path}`, status: "ok" });
+        } else {
+            appendLogRow(logHost, {
+                type: "error",
+                payload: applied.result.error || applied.result.stopReason || "Apply failed."
+            });
+        }
+    };
+
+    for (const p of preview.previews) {
+        const key = `${p.stepId}:${p.path}`;
+        pendingPreviews.set(key, p);
+        appendLogRow(
+            logHost,
+            {
+                type: "diff",
+                path: p.path,
+                payload: p.diff,
+                step: 0,
+                previewKey: key
+            },
+            handlePreviewAction
+        );
+    }
+
+    if (!preview.previews.length) {
+        appendLogRow(logHost, {
+            type: "thought",
+            payload: preview.result.stopReason || "Preview complete (no file mutations)."
+        });
+    } else {
+        appendLogRow(logHost, {
+            type: "thought",
+            payload: `${preview.previews.length} file(s) ready — APPLY or REJECT each diff.`
+        });
+    }
+
+    appendLogRow(logHost, { type: "thought", payload: "Task complete.", status: "ok" });
     activeAgentController = null;
 };
 
@@ -197,6 +284,7 @@ export const initializeAgentPanel = (): void => {
     cancelBtn?.addEventListener("click", () => {
         activeAgentController?.abort();
         activeAgentController = null;
+        pendingPreviews.clear();
         appendLogRow(logHost, { type: "error", payload: "Task cancelled." });
     });
 };
@@ -204,4 +292,5 @@ export const initializeAgentPanel = (): void => {
 export const cancelAgentTask = (): void => {
     activeAgentController?.abort();
     activeAgentController = null;
+    pendingPreviews.clear();
 };

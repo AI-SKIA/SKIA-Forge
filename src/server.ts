@@ -67,7 +67,11 @@ import { runForgeContextSemanticChunks } from "./forge/modules/context-engine/se
 import { runEmbedIndexRequest } from "./forge/modules/context-engine/embedIndexRequest.js";
 import { runEmbedSearchRequest } from "./forge/modules/context-engine/embedSearchRequest.js";
 import { runForgeContextRetrieval } from "./forge/modules/context-engine/contextRetrievalRequest.js";
-import { runAgentPlannerRequest } from "./forge/modules/agent-planner/agentPlannerRequest.js";
+import {
+  runAgentPlannerRequest,
+  type AgentTaskPlanV1
+} from "./forge/modules/agent-planner/agentPlannerRequest.js";
+import { runAgentDecomposeRequest } from "./forge/modules/agent-planner/agentPlanDecomposition.js";
 import { runAgentExecutorRequest } from "./forge/modules/agent-executor/agentExecutorRequest.js";
 import { ProductionAdapterV1, createProductionRouter } from "./forge/modules/production/index.js";
 import { HealingExecutorV1, createHealingRouter } from "./forge/modules/healing/index.js";
@@ -1943,6 +1947,27 @@ app.post("/api/forge/agent/plan", async (req, res) => {
   return res.status(status).json(body);
 });
 
+/** Decompose v1 plan → tool steps (SKIA chat); IDE calls before preview/apply execute. */
+app.post("/api/forge/agent/decompose", async (req, res) => {
+  const access = await enforceForgeModuleAccess(req, res, "agent");
+  if (!access) {
+    return;
+  }
+  const body = req.body && typeof req.body === "object" ? req.body : {};
+  const goal = String((body as { goal?: string }).goal ?? "").trim();
+  const relPath = String((body as { path?: string }).path ?? "").trim();
+  const plan = (body as { plan?: unknown }).plan;
+  if (!goal || !relPath || !plan) {
+    return res.status(400).json({ error: "Invalid body: { goal, path, plan }" });
+  }
+  const { status, body: out } = await runAgentDecomposeRequest(
+    { goal, path: relPath, plan: plan as AgentTaskPlanV1 },
+    skiaFullAdapter,
+    pickSkiaHeaders(req)
+  );
+  return res.status(status).json(out);
+});
+
 /** D1-10: run v1 plan + tool steps with preview/apply, gating, and audit to `.skia/agent-log.json`. */
 app.post("/api/forge/agent/execute", async (req, res) => {
   const access = await enforceForgeModuleAccess(req, res, "agent");
@@ -2231,7 +2256,15 @@ app.use((error: unknown, req: express.Request, res: express.Response, _next: exp
 
 const port = Number(process.env.SKIA_PORT ?? 4173);
 const server = http.createServer(app);
-attachInlineCompletionServer(server, providerRouter, () => skiaStatus);
+attachInlineCompletionServer(server, {
+  providerRouter,
+  getStatus: () => skiaStatus,
+  skia: skiaFullAdapter,
+  contextEngine,
+  projectRoot,
+  telemetry,
+  pickHeaders: () => ({})
+});
 if (!(process.env.SKIA_ADMIN_SECRET ?? "").trim()) {
   console.warn(
     JSON.stringify({

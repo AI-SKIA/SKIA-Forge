@@ -37,6 +37,12 @@ type MonacoApi = {
         setTheme: (name: string) => void;
         setModelLanguage: (model: MonacoModel, language: string) => void;
     };
+    languages?: {
+        registerInlineCompletionsProvider?: (
+            languageId: string,
+            provider: unknown
+        ) => { dispose: () => void };
+    };
 };
 type AmdRequire = {
     (modules: string[], onLoad: (value: unknown) => void): void;
@@ -124,6 +130,13 @@ export const initializeMonaco = (): void => {
 
         monaco.editor.setTheme("skia-dark");
         editorInstance.focus();
+
+        void import("./skiaInlineCompletion").then(({ registerSkiaInlineCompletions }) => {
+            if (monaco.languages?.registerInlineCompletionsProvider) {
+                registerSkiaInlineCompletions({ languages: monaco.languages });
+            }
+        });
+
         if (process.env.NODE_ENV !== "production") console.log("SKIA: Monaco editor initialized");
     });
 };

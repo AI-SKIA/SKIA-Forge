@@ -23,6 +23,17 @@ Sign-in and account creation run **inside this application** against the configu
 
 See `src/renderer/skia/skiaConfig.ts` for backend URL (**default `https://api.skia.ca`**), chat pipeline (**default `https://skia.ca/api/skia/chat`**), timeout, and related defaults.
 
+## Agent panel vs Chat panel
+
+| Panel | API path | Purpose |
+|-------|----------|---------|
+| **Agent** (AGENT view) | `forgeUrl` → `POST /api/forge/agent/plan`, `/decompose`, `/execute` | Structured plan, 8-tool executor, diff preview with APPLY/REJECT |
+| **Chat** (side panel) | `https://skia.ca/api/skia/forge-agent` (SSE) | Conversational stream; edits parsed from model text — not the Forge tool registry |
+
+Use **Agent** for repo changes with governance and explicit approvals. Use **Chat** for Q&A and narrative assistance.
+
+Inline tab completion uses the Forge server WebSocket (`/inline-completion`) with SKIA code mode + repo context — not the chat stream.
+
 ## Distribution
 
 Published installers are consumed via Forge **`GET /api/app/download`** and **`GET /api/app/download/:platform`**, and via the canonical web page **`https://forge.skia.ca/platform-downloads`**.

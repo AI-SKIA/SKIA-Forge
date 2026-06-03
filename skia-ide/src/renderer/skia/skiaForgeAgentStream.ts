@@ -16,6 +16,8 @@ export type ForgeIdeAgentStreamEvent = {
     path?: string;
     status?: "ok" | "failed" | "pending";
     step?: number;
+    /** Links diff row to executor preview for apply/reject. */
+    previewKey?: string;
 };
 
 export type ForgeIdeAgentStreamDone = {
