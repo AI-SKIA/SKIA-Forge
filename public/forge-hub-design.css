@@ -2,6 +2,8 @@
  * SKIA Forge — Context A hub + documentation (design_bible.md §6).
  * Load after forge-premium-ui.css on all public/*.html and public/docs/*.html.
  */
+@import url("/forge-crest-bullet.css");
+
 strong, b { font-weight: 400; }
 
 :root {
@@ -423,17 +425,13 @@ a.doc-card:hover {
 .escalation-list,
 .kc-list { display: flex; flex-direction: column; gap: 8px; }
 
-.item-dot,
-.kc-bullet {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--skia-gold-full);
-  flex-shrink: 0;
-  margin-top: 7px;
+.kc-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 16px 18px;
+  border-radius: 8px;
 }
-
-.kc-bullet { width: 6px; height: 6px; margin-top: 6px; }
 
 .item-text,
 .step-text,
@@ -485,16 +483,12 @@ a.doc-card:hover {
 .checklist { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 
 .check-item { gap: 10px; padding: 11px 14px; }
-.check-box {
-  width: 16px;
-  height: 16px;
-  border: 1px solid var(--gold-muted);
-  border-radius: 3px;
+.check-icon {
+  color: var(--skia-gold-full);
   flex-shrink: 0;
-  margin-top: 1px;
+  display: flex;
+  align-items: flex-start;
 }
-
-.check-icon { color: var(--skia-gold-full); flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; }
 
 .code-block {
   background: rgba(0, 0, 0, 0.6);
@@ -618,15 +612,6 @@ a.doc-card:hover {
   font-size: var(--skia-font-body-size);
   color: var(--skia-text-soft);
   line-height: 1.6;
-}
-
-.triage-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--skia-gold-full);
-  flex-shrink: 0;
-  margin-top: 7px;
 }
 
 .scope-icon {

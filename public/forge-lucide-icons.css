@@ -42,3 +42,16 @@ strong, b { font-weight: 400; }
   width: 14px;
   height: 14px;
 }
+
+/* SKIA Crest bullet — Skia-FULL SkiaCrestBulletIcon (design_bible §4) */
+.skia-li--crest {
+  width: 12px;
+  height: 12px;
+  color: #d4af37;
+}
+
+.skia-li--crest-body {
+  width: 18px;
+  height: 18px;
+  color: #d4af37;
+}

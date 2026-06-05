@@ -1,0 +1,94 @@
+/**
+ * SKIA Crest bullet — parity with Skia-FULL components/icons/SkiaCrestBulletIcon.tsx
+ * Default 12×12; card-body copy rows 18×18 (Skia-FULL design_bible.md §4).
+ */
+strong, b { font-weight: 400; }
+
+:root {
+  --skia-crest-bullet-color: #d4af37;
+  --skia-crest-bullet-size: 12px;
+  --skia-crest-bullet-size-body: 18px;
+  --skia-crest-bullet-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M6 0.5 L10.5 2.5 V6.5 L6 11.5 L1.5 6.5 V2.5 Z' stroke='%23d4af37' stroke-width='1'/%3E%3Cpath d='M6 2.5 V9' stroke='%23d4af37' stroke-width='1'/%3E%3Crect x='5' y='5' width='2' height='2' fill='%23d4af37'/%3E%3C/svg%3E");
+}
+
+/* Explicit crest row — matches Skia-FULL .skia-crest-bullet-row */
+.skia-crest-bullet-row {
+  display: grid;
+  grid-template-columns: 22px minmax(0, 1fr);
+  column-gap: 10px;
+  align-items: start;
+  width: 100%;
+}
+
+.skia-crest-bullet-icon {
+  width: var(--skia-crest-bullet-size);
+  height: var(--skia-crest-bullet-size);
+  margin-top: 3px;
+  line-height: 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--skia-crest-bullet-color);
+}
+
+.skia-crest-bullet-icon--body {
+  width: var(--skia-crest-bullet-size-body);
+  height: var(--skia-crest-bullet-size-body);
+}
+
+.skia-crest-bullet-icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  flex-shrink: 0;
+}
+
+/* Legacy empty div markers → crest (locale HTML, hub pages) */
+.item-dot,
+.triage-dot,
+.kc-bullet,
+.check-box {
+  border-radius: 0;
+  background-color: transparent;
+  background-image: var(--skia-crest-bullet-svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center top;
+  flex-shrink: 0;
+}
+
+.item-dot {
+  width: var(--skia-crest-bullet-size);
+  height: var(--skia-crest-bullet-size);
+  margin-top: 3px;
+}
+
+.kc-bullet,
+.triage-dot,
+.check-box {
+  width: var(--skia-crest-bullet-size-body);
+  height: var(--skia-crest-bullet-size-body);
+  margin-top: 3px;
+}
+
+/* Replace Lucide checklist icons with crest on security / doc checklists */
+.check-item .check-icon {
+  width: var(--skia-crest-bullet-size-body);
+  height: var(--skia-crest-bullet-size-body);
+  margin-top: 3px;
+  background-image: var(--skia-crest-bullet-svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center top;
+}
+
+.check-item .check-icon svg {
+  display: none;
+}
+
+.check-box {
+  border: none;
+}

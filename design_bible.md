@@ -172,7 +172,7 @@ Canonical copy: `public/forge-premium-ui.css` (also sets `html, body { font-fami
 | Ceiling | **38px maximum** for all readable text on Forge Web |
 | Tokens | `--skia-font-*` in `public/forge-premium-ui.css` + `public/forge-hub-design.css` (must match table below) |
 | Forbidden (floor) | Hardcoded `font-size` below 15px on Forge Web user-facing copy |
-| Allowed exception | Icon/dot dimensions only (5×5 gold dots, Lucide SVG sizing) — not text |
+| Allowed exception | Icon/dot dimensions only (crest SVG 12×12 / 18×18, Lucide SVG sizing) — not user-facing text |
 | IDE exception | §7 may use 10–14px on explorer, status bar, terminal — documented IDE chrome only |
 
 | Role | Size | Font | Weight | Color |
@@ -408,17 +408,18 @@ Matches Skia-FULL `globals.css` lines 112–133. Implemented in `public/forge-pr
 
 ### Forge Web (`public/`)
 
-- **Lucide-style stroke icons only** — no filled marketing icons
-- Stylesheet: `public/forge-lucide-icons.css`
+- **Lucide-style stroke icons** for marketing chrome, nav, and feature cards — stylesheet: `public/forge-lucide-icons.css`
+- **SKIA Crest SVG** for all list bullets (§4 documentation bullets) — stylesheet: `public/forge-crest-bullet.css`; only documented filled element is the 2×2 sovereign core in the crest
 - Color: `#d4af37` / `currentColor` inherited from gold text
 - Sidebar tab, nav accents, inline doc icons: stroke width ~1.75, round caps
 - No emoji, no unicode bullets, no hyphens as bullets in customer-facing copy
 
-### Documentation bullets (Forge Web — target skia.ca §4)
+### Documentation bullets (Forge Web — Skia-FULL §4)
 
-- **Default list bullets:** gold dot (5×5 circle) — current `.item-dot`, `.triage-dot` pattern ✔
-- **SKIA Crest SVG** (12×12, `#d4af37`) — use on new doc lists where skia.ca uses crest bullets
-- **Card-body crest rows** (18×18) — match skia.ca `WhoIsSkiaCrestBulletBody` / `.skia-crest-bullet-row` when adding feature-style copy blocks
+- **Default list bullets:** SKIA Crest SVG (**12×12**, `#d4af37`) — `.item-dot` via `public/forge-crest-bullet.css` ✔
+- **Card-body crest rows** (**18×18**) — `.kc-bullet`, `.triage-dot`, `.check-box`, `.check-icon` + `.skia-crest-bullet-icon--body` ✔
+- **Canonical asset:** `public/icons/skia-crest-bullet.svg` (paths from Skia-FULL `SkiaCrestBulletIcon.tsx`)
+- **Row layout:** `.skia-crest-bullet-row` grid (22px icon column) for new copy blocks
 - No emoji, no unicode bullets, no hyphens as bullets in customer-facing copy
 
 ### Forge IDE
@@ -705,8 +706,8 @@ Standalone help pages inside the app — Context B styling:
 - ❌ No system font fallbacks as primary UI fonts on Forge Web
 - ❌ **No Forge Web user-facing font size below 15px or above 38px** (after alignment pass — §2.0)
 - ❌ No unapproved colors on new Forge Web surfaces (§3 documented exceptions only)
-- ❌ No filled marketing icons on Forge Web (Lucide stroke only)
-- ❌ No emoji or unicode bullets in customer-facing copy
+- ❌ No filled marketing icons on Forge Web (Lucide stroke only) — **except** SKIA Crest bullet sovereign core (§4)
+- ❌ No emoji, unicode bullets, hyphens as bullets, or **gold-dot circle bullets** (`border-radius: 50%` on `.item-dot` / `.kc-bullet` / `.triage-dot`) in customer-facing copy — SKIA Crest SVG only (§4)
 - ❌ No spacing values outside §5 without justification
 - ❌ No gold values brighter than `#d4af37`
 - ❌ No `#111111` flat cards on Context A Forge Web pages
@@ -725,7 +726,7 @@ Standalone help pages inside the app — Context B styling:
 - ✔ All Forge Web typography uses `--skia-font-*` tokens — no hardcoded sizes outside §2
 - ✔ All colors must use §3 palette tokens
 - ✔ All spacing must use §5 system
-- ✔ Forge Web icons: Lucide stroke, sovereign gold
+- ✔ Forge Web icons: Lucide stroke for chrome; **SKIA Crest SVG for all list bullets** (12×12 default, 18×18 card-body — §4, `public/forge-crest-bullet.css`)
 - ✔ Every Forge Web page assigned Context A or B in §6.1
 - ✔ All gold text uses one of the 5 defined gold values (IDE §7 grays are IDE-only)
 - ✔ Headings, nav, card titles, buttons on Forge Web: Agency FB 400 or 500 only
@@ -780,6 +781,7 @@ Standalone help pages inside the app — Context B styling:
 | Context B console Tier 3 panels | `forge-platform-console.css` |
 | Fonts self-hosted, no CDN | `forge-premium-ui.css` `@font-face` |
 | Static HTML external CSS only | `scripts/apply-forge-hub-design.mjs` |
+| List bullets — SKIA Crest SVG (12×12 / 18×18) | `public/forge-crest-bullet.css`, `public/icons/skia-crest-bullet.svg`, `scripts/check-forge-crest-bullets.mjs` ✔ |
 | **Forge IDE** | `skia-dark.css` — unchanged per §7 |
 
 ### 12.2 Token alignment ✔ (2026-06-05 pass)
@@ -812,6 +814,7 @@ Enforcement: `node scripts/normalize-forge-font-sizes.mjs --check` (Forge Web on
 - `npm run fonts:check` — only `"Agency FB"` / `"Centaur"` in Forge Web paths (IDE exempt)
 - `node scripts/normalize-forge-colors.mjs --check` — gold token drift in `public/`, `src/`
 - `node scripts/normalize-forge-font-sizes.mjs --check` — 15px floor / 38px ceiling on Forge Web
+- `node scripts/check-forge-crest-bullets.mjs` — bullets use SKIA Crest SVG, not gold dots
 
 ---
 

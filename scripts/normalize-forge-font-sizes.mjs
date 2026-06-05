@@ -26,11 +26,12 @@ const DESIGN_CSS_FILES = new Set([
   'public/forge-platform-console.css',
   'public/forge-sidebar-locale.css',
   'public/forge-lucide-icons.css',
+  'public/forge-crest-bullet.css',
 ]);
 const EXTS = new Set(['.css', '.tsx', '.ts', '.jsx', '.js', '.html']);
 
 const SIZE_RE = /font-size:\s*(\d+(?:\.\d+)?)px/g;
-const ICON_CONTEXT_RE = /globe-svg|item-dot|triage-dot|pc-sidebar-tab-icon|skia-li|caret|opacity:\s*0\./i;
+const ICON_CONTEXT_RE = /globe-svg|skia-crest|item-dot|triage-dot|kc-bullet|check-box|pc-sidebar-tab-icon|skia-li|caret|opacity:\s*0\./i;
 
 function shouldSkipFile(rel) {
   const norm = rel.split(path.sep).join('/');
