@@ -20,7 +20,7 @@ strong, b { font-weight: 400; }
   background: rgba(8, 5, 0, 0.55);
   color: #d4af37;
   font-family: "Centaur";
-  font-size: 12px;
+  font-size: var(--skia-font-body-size, 15px);
   font-weight: 400;
   letter-spacing: 0.04em;
   cursor: pointer;
@@ -78,7 +78,7 @@ strong, b { font-weight: 400; }
   border: none;
   background: transparent;
   color: rgba(255, 255, 255, 0.82);
-  font-size: 13px;
+  font-size: var(--skia-font-body-size, 15px);
   text-align: start;
   cursor: pointer;
 }

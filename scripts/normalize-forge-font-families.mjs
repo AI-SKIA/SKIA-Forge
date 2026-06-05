@@ -10,8 +10,8 @@ import path from 'path';
 
 const CHECK = process.argv.includes('--check');
 
+/** Forge Web + server only — Forge IDE (skia-ide/) is exempt per design_bible.md §7. */
 const ROOTS = [
-  path.join(process.cwd(), 'skia-ide', 'src', 'renderer'),
   path.join(process.cwd(), 'public'),
   path.join(process.cwd(), 'src'),
 ];

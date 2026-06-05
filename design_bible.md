@@ -6,7 +6,7 @@ This file is the design law for **SKIA-Forge** only.
 
 **Shared authority:** `Skia-FULL/design_bible.md` **v4.4** (fonts, gold palette, sovereign type scale 15–38px, card tiers, spacing, scrollbars, semantic colors). Skia-FULL describes what skia.ca implements; **Forge Web must match skia.ca** for every rule in Skia-FULL §1–§5 and the Forge Hub shell in Skia-FULL §14 (`/resources`, `/contact`, `/security`, `/download`, doc embeds).
 
-**Forge-specific authority:** This file’s **§12** records what **Forge CSS actually ships today** vs the skia.ca target. If Forge CSS and this bible disagree, **Forge CSS wins** until a CSS alignment pass updates the files and §12.
+**Forge-specific authority:** This file’s **§12** records **Forge CSS alignment status** vs the skia.ca target. Forge Web CSS was aligned 2026-06-05 (§12.2–§12.3); Forge IDE (§7) remains documented as-is.
 
 **Skia-FULL §3 extended palette:** Route-specific colors in Skia-FULL v4.4 (verify CTAs, settings, admin, incidents, etc.) are **skia.ca-only** unless Forge mirrors that page. Forge Web already uses **`#f87171`** for contact SLA P1 (`.sla-tier.p1` in `forge-hub-design.css`) — matches Skia-FULL §14 contact.
 
@@ -16,7 +16,7 @@ All Forge pages, components, styles, and generators must comply.
 
 **Not in scope for this repo:** skia.ca React app, React Native mobile, workspace hub pages, SKIA Echo / Video / Image, marketplace, onboarding, or any surface outside Forge Web + Forge IDE.
 
-**This document does not implement CSS** — it records the **target** (skia.ca parity) and **current Forge CSS state** (§12). Code changes happen in `public/*.css` on a separate alignment pass.
+**This document records design law** — shared targets (skia.ca parity §1–§6) and **alignment status** (§12). Forge Web CSS in `public/*.css` was updated to match §12.2–§12.3; Forge IDE is exempt (§7).
 
 ---
 
@@ -210,7 +210,7 @@ Canonical copy: `public/forge-premium-ui.css` (also sets `html, body { font-fami
 --skia-font-placeholder-size: 15px;
 ```
 
-**Current Forge CSS (2026-06-05):** `forge-premium-ui.css` and `forge-hub-design.css` still declare legacy tokens (`display: 42px`, `button: 14px`, `metadata: 13px`, `caption: 12px`). See §12 alignment table.
+**Forge CSS (2026-06-05):** `forge-premium-ui.css`, `forge-hub-design.css`, and `forge-platform-console.css` declare sovereign tokens (`display: 38px`, `button/metadata/caption/placeholder: 15px`). See §12 alignment table.
 
 ### Size reasoning (shared with skia.ca)
 
@@ -472,9 +472,9 @@ Doc slugs: `readme`, `quickstart`, `user-guide`, `developer-guide`, `operator-ma
 
 | Property | skia.ca (`§6.1`) | Forge Web current | Target |
 |----------|------------------|-------------------|--------|
-| Max width | `800px` centered | `.wrap` **820px** | **800px** (align on CSS pass) |
-| Padding | `40px` | `.wrap` `80px 24px` top/sides | Reduce top padding toward skia.ca `40px` shell |
-| Back control | In-column `PageShellBackButton` | Fixed `.back-btn` top-left | In-column flow above logo (skia.ca pattern) |
+| Max width | `800px` centered | `.wrap` **800px** ✔ | **800px** |
+| Padding | `40px` | `.wrap` **40px** top ✔ | skia.ca shell |
+| Back control | In-column `PageShellBackButton` | `.back-btn` inside `.wrap` ✔ | In-column flow above logo |
 
 **PC sidebar (`#pcSidebar`):**
 
@@ -511,9 +511,9 @@ Doc pages share classes in `public/forge-hub-design.css` (linked from all `publi
 | `.section-body` | 15px Centaur prose | 15px Context A body | ✔ |
 | `.doc-card-title`, `.card-title` | 16px Agency FB | 16px card title | ✔ |
 | `.doc-card-desc`, `.item-text` | 15px Centaur | 15px body | ✔ |
-| `.doc-badge`, `.field label`, `.sla-label` | **13px** via `--skia-font-metadata-size` | **15px** metadata | ⚠ token update §12 |
-| `.code-block`, `.form-status` | **12px** via `--skia-font-caption-size` | **15px** caption | ⚠ token update §12 |
-| `.submit-btn`, `.feature-tab`, `.back-btn` | **14px** via `--skia-font-button-size` | **15px** button | ⚠ token update §12 |
+| `.doc-badge`, `.field label`, `.sla-label` | **15px** via `--skia-font-metadata-size` | **15px** metadata | ✔ |
+| `.code-block`, `.form-status` | **15px** via `--skia-font-caption-size` | **15px** caption | ✔ |
+| `.submit-btn`, `.feature-tab`, `.back-btn` | **15px** via `--skia-font-button-size` | **15px** button | ✔ |
 | `.item`, `.step`, `.check-item` | Tier 2 light cards | Tier 2 | ✔ |
 | `.doc-card`, `.card`, `.pkg-card` | Tier 1 heavy gradient | Tier 1 | ✔ |
 | Body background | `#080400` + radial | Context A | ✔ |
@@ -533,7 +533,7 @@ Rendered by `src/forgePlatformUi.ts`. Cold tool layout:
 | Cards / panels | Tier 3 `#111111`, border `rgba(212,175,55,0.3)` |
 | Download CTA | `.download-btn` — gold border, Gold Subtle fill, desktop only |
 | Auth error banner | `#ff5c5c` semantic danger |
-| Status line | 15px Agency FB uppercase muted (target; currently 12px token — §12) |
+| Status line | 15px Agency FB uppercase muted via `--skia-font-caption-size` | ✔ |
 
 Uses `forge-premium-ui.css` + `forge-platform-console.css` (no inline styles in `forgePlatformUi.ts`).
 
@@ -782,34 +782,36 @@ Standalone help pages inside the app — Context B styling:
 | Static HTML external CSS only | `scripts/apply-forge-hub-design.mjs` |
 | **Forge IDE** | `skia-dark.css` — unchanged per §7 |
 
-### 12.2 Token gap — update on alignment pass ⚠
+### 12.2 Token alignment ✔ (2026-06-05 pass)
 
-Update `:root` tokens in **`public/forge-premium-ui.css`** and **`public/forge-hub-design.css`** (and **`public/forge-platform-console.css`** for Context B secondary roles):
+`:root` tokens in **`public/forge-premium-ui.css`**, **`public/forge-hub-design.css`**, and **`public/forge-platform-console.css`**:
 
-| Token | skia.ca (v4.4) | Forge CSS today | Files |
-|-------|----------------|-----------------|-------|
-| `--skia-font-display-size` | **38px** | 42px | `forge-premium-ui.css`, `forge-hub-design.css` |
-| `--skia-font-button-size` | **15px** | 14px | all three design CSS files |
-| `--skia-font-metadata-size` | **15px** | 13px | hub + console |
-| `--skia-font-caption-size` | **15px** | 12px | hub + console |
-| `--skia-font-placeholder-size` | **15px** | (implicit via caption) | add on pass |
+| Token | skia.ca (v4.4) | Forge CSS | Files |
+|-------|----------------|-----------|-------|
+| `--skia-font-display-size` | **38px** | 38px ✔ | `forge-premium-ui.css`, `forge-hub-design.css` |
+| `--skia-font-button-size` | **15px** | 15px ✔ | all three design CSS files |
+| `--skia-font-metadata-size` | **15px** | 15px ✔ | hub + console + `forge-sidebar-locale.css` |
+| `--skia-font-caption-size` | **15px** | 15px ✔ | hub + console |
+| `--skia-font-placeholder-size` | **15px** | 15px ✔ | premium + hub + console |
 
-After token update, run `node scripts/normalize-forge-font-sizes.mjs` and remove skip exceptions for design CSS if script enforces floor.
+Enforcement: `node scripts/normalize-forge-font-sizes.mjs --check` (Forge Web only; IDE exempt).
 
-### 12.3 Layout gap — skia.ca shell parity ⚠
+### 12.3 Layout alignment ✔ (2026-06-05 pass)
 
-| Item | skia.ca | Forge Web today |
-|------|---------|-----------------|
-| Content max-width | 800px | `.wrap` 820px — change to 800px |
-| Back button | In-column above content | Fixed `.back-btn` top-left — refactor to in-column |
+| Item | skia.ca | Forge Web |
+|------|---------|-----------|
+| Content max-width | 800px | `.wrap` **800px** ✔ |
+| Shell padding | `40px` | `.wrap` **40px** top ✔ |
+| Back button | In-column above content | `.back-btn` inside `.wrap` ✔ (`scripts/migrate-forge-back-btn.mjs`) |
 | Section labels on hub | `.skia-forge-hub__section-label` metadata 15px | `.section-label` 16px card title — acceptable or align to metadata uppercase |
 
 ### 12.4 Maintenance scripts
 
-- `node scripts/apply-forge-hub-design.mjs --check` — hub HTML still links shared CSS
-- `npm run fonts:check` — only `"Agency FB"` / `"Centaur"` in user-facing paths
-- `scripts/normalize-forge-colors.mjs` — gold token drift in `public/`, `src/`
-- `scripts/normalize-forge-font-sizes.mjs` — legacy drift cleanup (update skips after §12.2)
+- `node scripts/apply-forge-hub-design.mjs --check` — hub HTML links shared CSS + in-column back control
+- `node scripts/migrate-forge-back-btn.mjs --check` — back button inside `.wrap`
+- `npm run fonts:check` — only `"Agency FB"` / `"Centaur"` in Forge Web paths (IDE exempt)
+- `node scripts/normalize-forge-colors.mjs --check` — gold token drift in `public/`, `src/`
+- `node scripts/normalize-forge-font-sizes.mjs --check` — 15px floor / 38px ceiling on Forge Web
 
 ---
 

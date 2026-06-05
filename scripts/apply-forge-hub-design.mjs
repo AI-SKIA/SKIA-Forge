@@ -69,25 +69,60 @@ function addBodyClass(html) {
 function setWrapClass(html, basename) {
   const wrapClasses = WRAP_CLASS[basename];
   if (!wrapClasses) return html;
+  if (html.includes(`class="${wrapClasses}"`)) return html;
   const from = 'class="wrap"';
-  const to = `class="${wrapClasses}"`;
-  if (html.includes(from)) return html.replace(from, to);
-  return html.replace(/class="wrap(\s[^"]*)?"/, `class="${wrapClasses}$1"`);
+  if (html.includes(from)) return html.replace(from, `class="${wrapClasses}"`);
+  return html;
+}
+
+const BACK_RE = /<button\s+type="button"\s+class="back-btn"[^>]*><\/button>\s*/i;
+const IN_WRAP_RE = /<div class="wrap[^"]*">\s*<button[^>]*class="back-btn"/i;
+
+function moveBackBtnInColumn(html) {
+  if (!BACK_RE.test(html) || IN_WRAP_RE.test(html)) return html;
+  const match = html.match(BACK_RE);
+  if (!match) return html;
+  const btn = match[0].trim();
+  let out = html.replace(BACK_RE, "");
+  return out.replace(/(<div class="wrap[^"]*">)/i, (_, open) => `${open}\n        ${btn}`);
 }
 
 function migrateFile(filePath) {
   const basename = path.basename(filePath);
   const original = fs.readFileSync(filePath, "utf8");
-  if (!original.includes("<style")) {
-    return { filePath, changed: false, reason: "no inline style" };
+  let html = original;
+  let changed = false;
+
+  if (html.includes("<style")) {
+    html = stripFirstStyleBlock(html);
+    changed = true;
   }
 
-  let html = stripFirstStyleBlock(original);
-  html = ensureCssLinks(html);
-  html = addBodyClass(html);
-  html = setWrapClass(html, basename);
+  const linked = ensureCssLinks(html);
+  if (linked !== html) {
+    html = linked;
+    changed = true;
+  }
 
-  if (html === original) {
+  const withBody = addBodyClass(html);
+  if (withBody !== html) {
+    html = withBody;
+    changed = true;
+  }
+
+  const withWrap = setWrapClass(html, basename);
+  if (withWrap !== html) {
+    html = withWrap;
+    changed = true;
+  }
+
+  const withBack = moveBackBtnInColumn(html);
+  if (withBack !== html) {
+    html = withBack;
+    changed = true;
+  }
+
+  if (!changed) {
     return { filePath, changed: false, reason: "unchanged" };
   }
 

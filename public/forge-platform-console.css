@@ -18,8 +18,10 @@ strong, b { font-weight: 400; }
   --skia-danger: #ff5c5c;
   --skia-success: #4ade80;
   --skia-font-body-size: 15px;
-  --skia-font-button-size: 14px;
-  --skia-font-caption-size: 12px;
+  --skia-font-button-size: 15px;
+  --skia-font-metadata-size: 15px;
+  --skia-font-caption-size: 15px;
+  --skia-font-placeholder-size: 15px;
   --skia-font-nav-size: 15px;
   --skia-font-section-title-size: 26px;
   --font-heading: "Agency FB";
@@ -186,7 +188,7 @@ body.forge-context-b.forge-platform-shell {
   padding: 12px;
   border-bottom: 1px solid var(--line);
   font-family: "Agency FB";
-  font-size: var(--skia-font-metadata-size, 13px);
+  font-size: var(--skia-font-metadata-size);
   font-weight: 500;
   letter-spacing: var(--tracking-heading-display);
   text-transform: uppercase;
@@ -377,7 +379,7 @@ body.forge-sign-in-shell {
 .forge-sign-in-shell label {
   display: block;
   font-family: "Agency FB";
-  font-size: var(--skia-font-metadata-size, 13px);
+  font-size: var(--skia-font-metadata-size);
   font-weight: 400;
   letter-spacing: 0.08em;
   text-transform: uppercase;

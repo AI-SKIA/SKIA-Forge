@@ -18,16 +18,18 @@ strong, b { font-weight: 400; }
   --skia-text-caption: rgba(255, 255, 255, 0.45);
   --skia-text-placeholder: rgba(255, 255, 255, 0.35);
   --skia-prose: rgba(232, 228, 220, 0.82);
-  --skia-font-display-size: 42px;
+  --skia-font-display-size: 38px;
   --skia-font-page-title-size: 34px;
   --skia-font-section-title-size: 26px;
   --skia-font-section-number-size: 20px;
+  --skia-font-section-subtitle-size: 18px;
   --skia-font-card-title-size: 16px;
   --skia-font-body-size: 15px;
   --skia-font-nav-size: 15px;
-  --skia-font-button-size: 14px;
-  --skia-font-metadata-size: 13px;
-  --skia-font-caption-size: 12px;
+  --skia-font-button-size: 15px;
+  --skia-font-metadata-size: 15px;
+  --skia-font-caption-size: 15px;
+  --skia-font-placeholder-size: 15px;
   --forge-card-bg: linear-gradient(135deg, rgba(15, 8, 0, 0.95) 0%, rgba(25, 14, 0, 0.95) 100%);
   --forge-card-bg-solid: #120a04;
   --forge-tier2-bg: rgba(212, 175, 55, 0.04);
@@ -174,13 +176,10 @@ button, .btn, .title, .heading, .label, .badge {
 }
 
 .back-btn {
-  position: fixed;
-  top: 24px;
-  left: 24px;
-  z-index: 100;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 8px;
+  margin: 0 0 24px;
   color: var(--skia-gold-full);
   text-decoration: none;
   font-family: "Agency FB";
@@ -207,9 +206,9 @@ button.back-btn {
 
 /* ── Layout ── */
 .wrap {
-  max-width: 820px;
+  max-width: 800px;
   margin: 0 auto;
-  padding: 80px 24px 80px;
+  padding: 40px 24px 80px;
 }
 
 .wrap--wide { max-width: 1080px; }
@@ -890,7 +889,7 @@ footer,
 .doc-footer .links .sep { color: var(--skia-gold-text); }
 
 @media (max-width: 680px) {
-  .wrap { padding: 70px 16px 48px; }
+  .wrap { padding: 32px 16px 48px; }
   .page-title,
   .doc-title { font-size: 28px; }
   .check-grid,
