@@ -18,51 +18,63 @@
   "cards": {
     "productManual": {
       "title": "Ürün Kılavuzu",
-      "desc": "SKIA Forge için tam ürüne genel bakış, yetenekler ve özellik konumlandırma."
+      "desc": "SKIA Forge için tam ürüne genel bakış, yetenekler ve özellik konumlandırma.",
+      "tag": "Genel bakış"
     },
     "quickstart": {
       "title": "Hızlı başlangıç",
-      "desc": "IDE'yi indirin, oturum açın ve ilk iş akışınızı tamamlayın."
+      "desc": "IDE'yi indirin, oturum açın ve ilk iş akışınızı tamamlayın.",
+      "tag": "Buradan başlayın"
     },
     "userGuide": {
       "title": "Kullanım Kılavuzu",
-      "desc": "IDE'yi kullanma: oturum açma, günlük iş akışları, yönetim modları ve yardım."
+      "desc": "IDE'yi kullanma: oturum açma, günlük iş akışları, yönetim modları ve yardım.",
+      "tag": "Forge kullanımı"
     },
     "developerGuide": {
       "title": "Geliştirici Kılavuzu",
-      "desc": "Yerel kalkınma düzeni, mimari sözleşmeler ve katkı modelleri."
+      "desc": "Yerel kalkınma düzeni, mimari sözleşmeler ve katkı modelleri.",
+      "tag": "Geliştiriciler"
     },
     "apiReference": {
       "title": "API Referansı",
-      "desc": "Birincil Forge API yüzeyleri, uç noktalar, istek şekilleri ve yanıt sözleşmeleri."
+      "desc": "Birincil Forge API yüzeyleri, uç noktalar, istek şekilleri ve yanıt sözleşmeleri.",
+      "tag": "API"
     },
     "troubleshooting": {
       "title": "Sorun giderme",
-      "desc": "Yaygın hata modları, tanılamalar ve adım adım düzeltmeler."
+      "desc": "Yaygın hata modları, tanılamalar ve adım adım düzeltmeler.",
+      "tag": "Yardım"
     },
     "changelog": {
       "title": "Değişiklik günlüğü",
-      "desc": "Sürümlendirilmiş ürün değişiklik geçmişi. Ne, ne zaman ve neden değişti?"
+      "desc": "Sürümlendirilmiş ürün değişiklik geçmişi. Ne, ne zaman ve neden değişti?",
+      "tag": "Sürüm notları"
     },
     "pricing": {
       "title": "Fiyatlandırma ve Paketler",
-      "desc": "Ürün ambalajına, katmanlara ve ticari modele genel bakış."
+      "desc": "Ürün ambalajına, katmanlara ve ticari modele genel bakış.",
+      "tag": "Faturalandırma"
     },
     "enterprise": {
       "title": "Kurumsal Hazırlık",
-      "desc": "BT ve satın alma ekipleri için kurumsal lansman ve pilot hazırlık kontrol listesi."
+      "desc": "BT ve satın alma ekipleri için kurumsal lansman ve pilot hazırlık kontrol listesi.",
+      "tag": "Kurumsal"
     },
     "securityGuide": {
       "title": "Güvenlik Rehberi",
-      "desc": "Güvenlik modeli, kontroller, sağlamlaştırma kontrol listesi ve operasyonel güvenlik uygulamaları."
+      "desc": "Güvenlik modeli, kontroller, sağlamlaştırma kontrol listesi ve operasyonel güvenlik uygulamaları.",
+      "tag": "Güvenlik"
     },
     "support": {
       "title": "Destek",
-      "desc": "Destek kapsamı, önceliklendirme bilgileri, yükseltme yolu ve SLA beklentileri."
+      "desc": "Destek kapsamı, önceliklendirme bilgileri, yükseltme yolu ve SLA beklentileri.",
+      "tag": "Destek"
     },
     "operatorManual": {
       "title": "Kullanım Kılavuzu",
-      "desc": "Dağıtım, çalışma zamanı işlemleri, durum denetimleri ve altyapı rehberliği."
+      "desc": "Dağıtım, çalışma zamanı işlemleri, durum denetimleri ve altyapı rehberliği.",
+      "tag": "Operasyon"
     }
   }
 }

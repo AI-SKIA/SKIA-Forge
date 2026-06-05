@@ -1,45 +1,83 @@
 /**
- * SKIA Crest bullet — parity with Skia-FULL SkiaCrestBulletIcon.tsx + doc-embed .item-crest inline SVG.
- * Default 12×12 list rows; Tier 2 card-body rows 18×18 (Skia-FULL design_bible.md §4).
+ * SKIA Crest bullets — brand standard (§4 design_bible.md).
+ * Card-body rows: 18×18, 22px icon column, 3px top offset vs 15px body copy.
+ * Compact prose lists: 12×12 (rare — prefer card-body size in Tier 2 rows).
  */
 strong, b { font-weight: 400; }
 
 :root {
   --skia-crest-bullet-color: #d4af37;
-  --skia-crest-bullet-size: 12px;
+  --skia-crest-bullet-size-compact: 12px;
   --skia-crest-bullet-size-body: 18px;
+  --skia-crest-bullet-col-width: 22px;
+  --skia-crest-bullet-col-gap: 10px;
+  --skia-crest-bullet-offset: 3px;
 }
 
-/* Inline SVG crest — canonical (matches skia.ca doc-embed) */
+/* ── Crest wrapper ── */
 .item-crest {
   flex-shrink: 0;
-  margin-top: 2px;
   line-height: 0;
   display: inline-flex;
   align-items: flex-start;
+  justify-content: flex-start;
+  color: var(--skia-crest-bullet-color);
 }
 
 .item-crest svg {
   display: block;
+  flex-shrink: 0;
 }
 
-.item-crest--body {
-  margin-top: 3px;
+/* Compact 12×12 — inline prose only (not Tier 2 card rows) */
+.item-crest:not(.item-crest--body) {
+  margin-top: 2px;
 }
 
-/* Explicit crest row — matches Skia-FULL .skia-crest-bullet-row */
+.item-crest:not(.item-crest--body) svg {
+  width: var(--skia-crest-bullet-size-compact);
+  height: var(--skia-crest-bullet-size-compact);
+  max-width: var(--skia-crest-bullet-size-compact);
+  max-height: var(--skia-crest-bullet-size-compact);
+}
+
+/* Card-body 18×18 — crest beside 15px copy (docs .item, checklists, triage, kc rows) */
+.item-crest--body,
+.item > .item-crest,
+.check-item > .item-crest,
+.triage-item > .item-crest,
+.kc-item > .item-crest,
+.kc-item--row > .item-crest {
+  margin-top: var(--skia-crest-bullet-offset);
+  width: var(--skia-crest-bullet-size-body);
+  height: var(--skia-crest-bullet-size-body);
+}
+
+.item-crest--body svg,
+.item > .item-crest svg,
+.check-item > .item-crest svg,
+.triage-item > .item-crest svg,
+.kc-item > .item-crest svg,
+.kc-item--row > .item-crest svg {
+  width: var(--skia-crest-bullet-size-body) !important;
+  height: var(--skia-crest-bullet-size-body) !important;
+  max-width: var(--skia-crest-bullet-size-body);
+  max-height: var(--skia-crest-bullet-size-body);
+}
+
+/* Explicit crest row — matches skia.ca .skia-crest-bullet-row */
 .skia-crest-bullet-row {
   display: grid;
-  grid-template-columns: 22px minmax(0, 1fr);
-  column-gap: 10px;
+  grid-template-columns: var(--skia-crest-bullet-col-width) minmax(0, 1fr);
+  column-gap: var(--skia-crest-bullet-col-gap);
   align-items: start;
   width: 100%;
 }
 
 .skia-crest-bullet-icon {
-  width: var(--skia-crest-bullet-size);
-  height: var(--skia-crest-bullet-size);
-  margin-top: 3px;
+  width: var(--skia-crest-bullet-size-body);
+  height: var(--skia-crest-bullet-size-body);
+  margin-top: var(--skia-crest-bullet-offset);
   line-height: 0;
   display: flex;
   align-items: flex-start;
@@ -55,11 +93,15 @@ strong, b { font-weight: 400; }
 
 .skia-crest-bullet-icon svg {
   display: block;
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  max-height: 100%;
+  width: var(--skia-crest-bullet-size-body) !important;
+  height: var(--skia-crest-bullet-size-body) !important;
+  max-width: var(--skia-crest-bullet-size-body);
+  max-height: var(--skia-crest-bullet-size-body);
   flex-shrink: 0;
+}
+
+.skia-crest-bullet-text {
+  min-width: 0;
 }
 
 /* Legacy empty div markers — background fallback if any remain */
@@ -80,9 +122,9 @@ strong, b { font-weight: 400; }
 }
 
 .item-dot {
-  width: var(--skia-crest-bullet-size);
-  height: var(--skia-crest-bullet-size);
-  margin-top: 3px;
+  width: var(--skia-crest-bullet-size-body);
+  height: var(--skia-crest-bullet-size-body);
+  margin-top: var(--skia-crest-bullet-offset);
 }
 
 .item .item-dot,
@@ -91,7 +133,7 @@ strong, b { font-weight: 400; }
 .check-box {
   width: var(--skia-crest-bullet-size-body);
   height: var(--skia-crest-bullet-size-body);
-  margin-top: 3px;
+  margin-top: var(--skia-crest-bullet-offset);
 }
 
 .check-item .check-icon svg {

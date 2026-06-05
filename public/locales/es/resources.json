@@ -18,51 +18,63 @@
   "cards": {
     "productManual": {
       "title": "Manual del producto",
-      "desc": "Descripción completa del producto, capacidades y posicionamiento de funciones para SKIA Forge."
+      "desc": "Descripción completa del producto, capacidades y posicionamiento de funciones para SKIA Forge.",
+      "tag": "Resumen"
     },
     "quickstart": {
       "title": "Inicio rápido",
-      "desc": "Descargue IDE, inicie sesión y complete su primer flujo de trabajo."
+      "desc": "Descargue IDE, inicie sesión y complete su primer flujo de trabajo.",
+      "tag": "Empieza aquí"
     },
     "userGuide": {
       "title": "Guía del usuario",
-      "desc": "Uso del IDE: inicio de sesión, flujos de trabajo diarios, modos de gobierno y ayuda."
+      "desc": "Uso del IDE: inicio de sesión, flujos de trabajo diarios, modos de gobierno y ayuda.",
+      "tag": "Usar Forge"
     },
     "developerGuide": {
       "title": "Guía para desarrolladores",
-      "desc": "Configuración del desarrollo local, convenciones arquitectónicas y patrones de contribución."
+      "desc": "Configuración del desarrollo local, convenciones arquitectónicas y patrones de contribución.",
+      "tag": "Desarrolladores"
     },
     "apiReference": {
       "title": "Referencia API",
-      "desc": "Superficies, puntos finales, formas de solicitud y contratos de respuesta de Primary Forge API."
+      "desc": "Superficies, puntos finales, formas de solicitud y contratos de respuesta de Primary Forge API.",
+      "tag": "API"
     },
     "troubleshooting": {
       "title": "Solución de problemas",
-      "desc": "Modos de falla comunes, diagnósticos y soluciones paso a paso."
+      "desc": "Modos de falla comunes, diagnósticos y soluciones paso a paso.",
+      "tag": "Ayuda"
     },
     "changelog": {
       "title": "Registro de cambios",
-      "desc": "Historial de cambios de producto versionado. Qué cambió, cuándo y por qué."
+      "desc": "Historial de cambios de producto versionado. Qué cambió, cuándo y por qué.",
+      "tag": "Notas de la versión"
     },
     "pricing": {
       "title": "Precios y paquetes",
-      "desc": "Presentación del producto, niveles y descripción general del modelo comercial."
+      "desc": "Presentación del producto, niveles y descripción general del modelo comercial.",
+      "tag": "Facturación"
     },
     "enterprise": {
       "title": "Preparación empresarial",
-      "desc": "Lista de verificación de preparación piloto y lanzamiento empresarial para equipos de IT y adquisiciones."
+      "desc": "Lista de verificación de preparación piloto y lanzamiento empresarial para equipos de IT y adquisiciones.",
+      "tag": "Empresa"
     },
     "securityGuide": {
       "title": "Guía de seguridad",
-      "desc": "Modelo de seguridad, controles, lista de verificación de refuerzo y prácticas de seguridad operativa."
+      "desc": "Modelo de seguridad, controles, lista de verificación de refuerzo y prácticas de seguridad operativa.",
+      "tag": "Seguridad"
     },
     "support": {
       "title": "Apoyo",
-      "desc": "Alcance del soporte, información de clasificación, ruta de escalamiento y expectativas de SLA."
+      "desc": "Alcance del soporte, información de clasificación, ruta de escalamiento y expectativas de SLA.",
+      "tag": "Soporte"
     },
     "operatorManual": {
       "title": "Manual del operador",
-      "desc": "Implementación, operaciones en tiempo de ejecución, controles de estado y orientación de infraestructura."
+      "desc": "Implementación, operaciones en tiempo de ejecución, controles de estado y orientación de infraestructura.",
+      "tag": "Operaciones"
     }
   }
 }

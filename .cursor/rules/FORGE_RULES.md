@@ -11,8 +11,7 @@ Before any edit, read these files in full. They override stale docs and audit sn
 
 - **`docs/architecture/SOVEREIGN_PLATFORM.md`** — **agent law:** SKIA owns translations, fonts, TTS, Skia-Serve, IDE; never suggest vendor APIs or Google except continuity fallback when sovereign engines are down.
 - **`.cursor/rules/FORGE_RULES.md` §6** — any task that adds/changes user-visible text (mandatory translation playbook).
-- **`design_bible.md`** — Forge design law v2.1 (Forge Web §6, Forge IDE §7, shared tokens §1–§5, alignment status §12). Never deviate on typography, gold, backgrounds.
-- **`Skia-FULL/design_bible.md` v4.4** — cross-product authority for forge-web parity with skia.ca Forge Hub pages (§14).
+- **`design_bible.md`** — **sole Forge design law** v2.2 (brand tokens §1–§5, Forge Web §6, Forge IDE §7, CSS status §12). Never deviate on typography, gold, backgrounds. When changing §1–§5 brand tokens, also update **`Skia-FULL/design_bible.md`** §1–§5 per Forge bible §13.
 - `docs/ENV_REFERENCE.md` — operator env vars, sovereign inference (Skia-Serve primary; continuity fallback operator-only — **§0.5**).
 - `docs/API_REFERENCE.md` — canonical HTTP route index; verify against `src/server.ts` if routes changed.
 - `local-dev/docs/forge-local-setup.md` — local vs production isolation (must not cross-contaminate).
@@ -25,7 +24,7 @@ Before any edit, read these files in full. They override stale docs and audit sn
 | Deploy, env, ports, PATs, Northflank | **`Skia-FULL/northflank-services.md`** |
 | Continuity fallback / provider chain docs | **`Skia-FULL/docs/provider-fallback-truth-table.md`** + `northflank-services.md` |
 | Client fetch in `forgePlatformUi.ts`, `chatUi.ts`, browser bundles | **`Skia-FULL/docs/architecture/skia-routing-invariants.md`** (browser rules — **§7.1**) |
-| Forge-web CSS / hub HTML / typography | `design_bible.md` §12 alignment table |
+| Forge-web CSS / hub HTML / typography | **`design_bible.md`** §1–§6 + §12 implementation status |
 
 **Deployment truth:** production host `forge.skia.ca`, port **4173** (`SKIA_PORT`). Upstream auth/brain default **`https://api.skia.ca`**. Private operator topology notes live in **Skia-FULL** `northflank-services.md` — never commit secrets or `.nf-*.json`.
 
@@ -79,21 +78,25 @@ If a change affects shared locale keys, `MOBILE_APP_APPROVED`, platform gates, d
 
 **Forge boundary:** Forge **calls** the SKIA API (`SkiaFullAdapter`, `/integration/skia-full/*`). It does **not** replace Skia-FULL as the product runtime. Do not add a production local-LLM bypass in Forge server code.
 
-### forge-web ↔ skia.ca user-facing parity (mandatory target)
+### forge-web ↔ skia.ca brand consistency (separate bibles, same brand)
 
-**forge.skia.ca** hub and doc pages must stay visually and typographically consistent with **skia.ca** Forge Hub equivalents:
+**Each repo has its own design bible.** Forge work follows **`design_bible.md` only**; skia.ca work follows **`Skia-FULL/design_bible.md` only**. Both document the **same brand** (fonts, 15–38px scale, gold palette, card tiers, crest bullets, 800px hub shell) so the products look like one SKIA family.
 
-| forge.skia.ca | skia.ca mirror | Skia-FULL reference |
-|---------------|----------------|---------------------|
-| `/resources` | `/resources` | `frontend/pages/resources.tsx`, design_bible §14 |
-| `/security` | `/security` | `frontend/pages/security.tsx` |
-| `/contact` | `/contact` | `frontend/pages/contact.tsx` |
-| `/platform-downloads` | `/download` | `frontend/pages/download.tsx` |
-| `/docs/*.html` | `/docs/[doc]` | `DocEmbedShell.tsx` |
+**forge.skia.ca** hub and doc pages must stay visually consistent with **skia.ca** equivalent routes:
 
-**When updating hub nav, footer links, or forge marketing copy:** cross-check **`Skia-FULL/frontend/lib/sidebarNav.ts`** and the matching skia.ca page. Mirror label/key changes in **`public/locales/*`** and hub HTML sidebar.
+| forge.skia.ca | skia.ca equivalent | Forge bible |
+|---------------|-------------------|-------------|
+| `/resources` | `/resources` | §6 hub shell |
+| `/security` | `/security` | §6 |
+| `/contact` | `/contact` | §6 |
+| `/platform-downloads` | `/download` | §6 + download cards |
+| `/docs/*.html` | `/docs/[doc]` | §6 doc layout |
 
-**Design target:** Skia-FULL `design_bible.md` v4.4 §1–§5 + Forge `design_bible.md` §12 (15–38px type scale, gold palette, Tier 1/2 cards, 8px scrollbars, 15px footer). Documented Forge-only layout gaps (fixed `.back-btn`, 820px `.wrap`) are in Forge `design_bible.md` §12.3 — close them on CSS alignment passes, do not treat as permanent without product sign-off.
+**When updating hub nav, footer links, or forge marketing copy:** cross-check **`Skia-FULL/frontend/lib/sidebarNav.ts`** and the matching skia.ca page for **label parity** — not as design authority. Mirror label/key changes in **`public/locales/*`** and hub HTML sidebar.
+
+**Design law (Forge):** Forge `design_bible.md` §1–§6 (15–38px type scale, gold palette, Tier 1/2 cards, 8px scrollbars, 15px footer). Documented Forge-only layout differences (260px sidebar, `.back-btn` vs React back button) are in §1 and §6 — intentional, not drift.
+
+**Token sync:** When changing brand tokens in either repo, update **both** bibles §1–§5 in the same maintenance window — Forge bible §13.
 
 **Not applicable:** skia.ca workspace hubs, feature leaves, ECHO, mobile app — Forge does not ship those surfaces.
 
@@ -110,7 +113,7 @@ Before editing any file:
 
 - Never touch hub page layout, colours, spacing, or component structure unless the user explicitly authorises UI changes.
 - Design bible is law: Agency FB **400/500 only** (600+ forbidden), Centaur **400** body, gold **`#d4af37` only**, black-based backgrounds, CSS tokens — no ad-hoc inline styles on marketing surfaces.
-- **Forge Web type bounds:** no user-facing text below **15px** or above **38px** (Skia-FULL v4.4 §2.0; Forge `design_bible.md` §2). **Forge IDE §7 is exempt** (dense chrome may use smaller sizes).
+- **Forge Web type bounds:** no user-facing text below **15px** or above **38px** (`design_bible.md` §2). **Forge IDE §7 is exempt** (dense chrome may use smaller sizes).
 - IDE Monaco/terminal surfaces may use monospace; still follow Forge gold/background tokens in chrome.
 
 ## 5. Platform parity — two Forge surfaces
@@ -419,13 +422,13 @@ npm run test
 
 ## 11. Design bible is law (Forge profile)
 
-- **Forge spec:** `design_bible.md` **v2.1** — shared tokens (§1–§5), **Forge Web** (§6), **Forge IDE as-is** (§7), alignment status (§12).
-- **Cross-product authority:** **`Skia-FULL/design_bible.md` v4.4** — forge-web must match skia.ca Forge Hub (§14) on typography, palette, cards, footer, scrollbars.
-- **Type scale (forge-web):** **15px floor / 38px ceiling** — all `--skia-font-*` tokens must converge on Skia-FULL values (see Forge `design_bible.md` §12.2 for current CSS gaps).
+- **Forge spec:** `design_bible.md` **v2.2** — **sole design law for this repo**: brand tokens (§1–§5), **Forge Web** (§6), **Forge IDE as-is** (§7), CSS implementation status (§12).
+- **Cross-product consistency:** skia.ca uses **`Skia-FULL/design_bible.md`** as its sole law. Same brand tokens; **neither bible is upstream**. Sync §1–§5 when brand tokens change — Forge bible §13.
+- **Type scale (forge-web):** **15px floor / 38px ceiling** — all `--skia-font-*` tokens per Forge `design_bible.md` §2 (see §12.2 for CSS verification).
 - Gold: `#d4af37` and the five approved rgba variants only — no `#ffd700`, `#ffcc33`, Tailwind yellows.
 - Background: Context A hub `#080400`; Context B tool/IDE `#0a0a0a`.
 - Fonts: **self-hosted only** — exact names `"Agency FB"` and `"Centaur"` (see `design_bible.md` §1); `npm run fonts:check` after font/CSS changes.
-- Icons: Lucide stroke on static HTML (`public/forge-lucide-icons.css`); doc lists use gold dots or **12×12 SKIA Crest** when matching skia.ca — no filled marketing icons.
+- Icons: Lucide stroke on static HTML (`public/forge-lucide-icons.css`); doc lists use **inline SKIA Crest SVG** (§4) — no filled marketing icons.
 - Do not retro-fit Forge IDE to web marketing patterns unless §7 is intentionally updated.
 - **`Skia-FULL/THE SINGLE STANDARD EVERY FILE MUST MEET.md`** applies to skia.ca generative feature pages only — not Forge module/agent internals unless a Forge surface ships customer-facing generative deliverables with brand/style injection (then align with Skia-FULL quality bar, do not copy Next.js-specific patterns verbatim).
 
@@ -451,7 +454,7 @@ Reply or hand off only when you can state:
 3. **Backend mode:** production vs local — confirm no accidental localhost in production paths.
 4. **Sovereign law:** no vendor API / Google suggestions in copy or docs edited — **`§0.5`**.
 5. **Scripts run:** at minimum `npm run typecheck` and `npm test`; `npm run locales:sync` when locales changed.
-6. **forge-web design (if CSS/fonts/HTML):** normalize `--check` scripts + `fonts:check`; alignment with Forge `design_bible.md` §12 considered.
+6. **forge-web design (if CSS/fonts/HTML):** normalize `--check` scripts + `fonts:check`; compliance with Forge `design_bible.md` §1–§6 verified.
 7. **Client routing (if browser UI changed):** confirm **§7.1** — same-origin fetches only in browser bundles.
 
 ## 14. On-demand procedures

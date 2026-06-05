@@ -18,51 +18,63 @@
   "cards": {
     "productManual": {
       "title": "Manuel du produit",
-      "desc": "Présentation complète du produit, des capacités et du positionnement des fonctionnalités pour SKIA Forge."
+      "desc": "Présentation complète du produit, des capacités et du positionnement des fonctionnalités pour SKIA Forge.",
+      "tag": "Aperçu"
     },
     "quickstart": {
       "title": "Démarrage rapide",
-      "desc": "Téléchargez le IDE, connectez-vous et terminez votre premier flux de travail."
+      "desc": "Téléchargez le IDE, connectez-vous et terminez votre premier flux de travail.",
+      "tag": "Commencez ici"
     },
     "userGuide": {
       "title": "Guide de l'utilisateur",
-      "desc": "Utilisation du IDE : connexion, flux de travail quotidiens, modes de gouvernance et aide."
+      "desc": "Utilisation du IDE : connexion, flux de travail quotidiens, modes de gouvernance et aide.",
+      "tag": "Utiliser Forge"
     },
     "developerGuide": {
       "title": "Guide du développeur",
-      "desc": "Configuration du développement local, conventions d'architecture et modèles de contribution."
+      "desc": "Configuration du développement local, conventions d'architecture et modèles de contribution.",
+      "tag": "Développeurs"
     },
     "apiReference": {
       "title": "Référence API",
-      "desc": "Surfaces API Primary Forge, points de terminaison, formes de requête et contrats de réponse."
+      "desc": "Surfaces API Primary Forge, points de terminaison, formes de requête et contrats de réponse.",
+      "tag": "API"
     },
     "troubleshooting": {
       "title": "Dépannage",
-      "desc": "Modes de défaillance courants, diagnostics et correctifs étape par étape."
+      "desc": "Modes de défaillance courants, diagnostics et correctifs étape par étape.",
+      "tag": "Aide"
     },
     "changelog": {
       "title": "Journal des modifications",
-      "desc": "Historique des modifications du produit versionné. Qu'est-ce qui a changé, quand et pourquoi."
+      "desc": "Historique des modifications du produit versionné. Qu'est-ce qui a changé, quand et pourquoi.",
+      "tag": "Notes de version"
     },
     "pricing": {
       "title": "Tarifs et forfaits",
-      "desc": "Présentation de l'emballage du produit, des niveaux et du modèle commercial."
+      "desc": "Présentation de l'emballage du produit, des niveaux et du modèle commercial.",
+      "tag": "Facturation"
     },
     "enterprise": {
       "title": "Préparation de l'entreprise",
-      "desc": "Liste de contrôle de préparation au lancement et au projet pilote d'entreprise pour les équipes IT et d'approvisionnement."
+      "desc": "Liste de contrôle de préparation au lancement et au projet pilote d'entreprise pour les équipes IT et d'approvisionnement.",
+      "tag": "Entreprise"
     },
     "securityGuide": {
       "title": "Guide de sécurité",
-      "desc": "Modèle de sécurité, contrôles, liste de contrôle de renforcement et pratiques de sécurité opérationnelle."
+      "desc": "Modèle de sécurité, contrôles, liste de contrôle de renforcement et pratiques de sécurité opérationnelle.",
+      "tag": "Sécurité"
     },
     "support": {
       "title": "Soutien",
-      "desc": "Portée du support, informations de tri, chemin d’escalade et attentes SLA."
+      "desc": "Portée du support, informations de tri, chemin d’escalade et attentes SLA.",
+      "tag": "Assistance"
     },
     "operatorManual": {
       "title": "Manuel de l'opérateur",
-      "desc": "Déploiement, opérations d'exécution, vérifications de l'état et conseils en matière d'infrastructure."
+      "desc": "Déploiement, opérations d'exécution, vérifications de l'état et conseils en matière d'infrastructure.",
+      "tag": "Opérations"
     }
   }
 }

@@ -621,16 +621,28 @@ a.doc-card:hover {
 .control-card { padding: 18px 16px; border-radius: 10px; gap: 12px; }
 .form-card { border-radius: 12px; padding: 28px 24px; margin-bottom: 32px; }
 
-/* Tier 2 rows */
+/* Tier 2 rows — crest + copy (grid aligns icon to first line of 15px body) */
 .item,
-.step,
 .check-item,
-.practice-item,
-.esc-item,
+.triage-item,
+.kc-item,
 .kc-item--row {
+  display: grid;
+  grid-template-columns: var(--skia-crest-bullet-col-width, 22px) minmax(0, 1fr);
+  column-gap: var(--skia-crest-bullet-col-gap, 10px);
+  align-items: start;
+  padding: 12px 16px;
+  background: var(--forge-tier2-bg);
+  border: 1px solid var(--forge-tier2-border);
+  border-radius: 8px;
+}
+
+.step,
+.practice-item,
+.esc-item {
   display: flex;
-  gap: 12px;
-  align-items: flex-start;
+  gap: 14px;
+  align-items: baseline;
   padding: 12px 16px;
   background: var(--forge-tier2-bg);
   border: 1px solid var(--forge-tier2-border);
@@ -644,9 +656,6 @@ a.doc-card:hover {
 .kc-list { display: flex; flex-direction: column; gap: 8px; }
 
 .kc-item {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
   padding: 16px 18px;
   border-radius: 8px;
 }
@@ -661,7 +670,8 @@ a.doc-card:hover {
   font-size: var(--skia-font-body-size);
   font-weight: 400;
   color: var(--skia-text-soft);
-  line-height: 1.6;
+  line-height: 1.55;
+  min-width: 0;
 }
 
 .kc-text strong {
@@ -683,24 +693,38 @@ a.doc-card:hover {
   border-radius: 4px;
 }
 
-.step-num,
-.practice-num,
-.esc-num {
+/* Numbered copy rows — 15px label aligns with 15px body (skia.ca doc-embed parity) */
+.step-num {
   font-family: "Agency FB";
-  font-size: var(--skia-font-section-number-size);
-  font-weight: 500;
+  font-size: var(--skia-font-body-size);
+  font-weight: 400;
   color: var(--skia-gold-full);
-  min-width: 20px;
-  margin-top: 1px;
+  min-width: 22px;
+  line-height: 1.55;
+  flex-shrink: 0;
 }
 
 .practice-num,
-.esc-num { font-size: var(--skia-font-metadata-size); letter-spacing: 0.1em; }
+.esc-num {
+  font-family: "Agency FB";
+  font-size: var(--skia-font-body-size);
+  font-weight: 400;
+  color: var(--skia-gold-text);
+  min-width: 22px;
+  line-height: 1.55;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+}
+
+.esc-num {
+  min-width: 20px;
+  letter-spacing: 0;
+}
 
 .check-grid,
 .checklist { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 
-.check-item { gap: 10px; padding: 11px 14px; }
+.check-item { padding: 11px 14px; }
 .check-icon {
   color: var(--skia-gold-full);
   flex-shrink: 0;
@@ -819,17 +843,11 @@ a.doc-card:hover {
 }
 
 .triage-item {
-  display: flex;
-  gap: 8px;
-  align-items: flex-start;
   padding: 12px 14px;
-  background: var(--forge-tier2-bg);
-  border: 1px solid var(--forge-tier2-border);
-  border-radius: 8px;
   font-family: "Centaur";
   font-size: var(--skia-font-body-size);
   color: var(--skia-text-soft);
-  line-height: 1.6;
+  line-height: 1.55;
 }
 
 .scope-icon {

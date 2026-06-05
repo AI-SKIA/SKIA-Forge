@@ -6,7 +6,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { CREST_MARKUP_12, CREST_MARKUP_18 } from "./forge-crest-bullet-markup.mjs";
+import { CREST_MARKUP_ITEM, CREST_MARKUP_18 } from "./forge-crest-bullet-markup.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
@@ -14,25 +14,41 @@ const publicDir = path.join(root, "public");
 const checkOnly = process.argv.includes("--check");
 
 const REPLACEMENTS = [
-  { from: '<div class="item-dot"></div>', to: CREST_MARKUP_12 },
-  { from: '<span class="item-dot"></span>', to: CREST_MARKUP_12 },
+  { from: '<div class="item-dot"></div>', to: CREST_MARKUP_ITEM },
+  { from: '<span class="item-dot"></span>', to: CREST_MARKUP_ITEM },
   { from: '<div class="check-box"></div>', to: CREST_MARKUP_18 },
   { from: '<div class="triage-dot"></div>', to: CREST_MARKUP_18 },
-  { from: "<div class='item-dot'></div>", to: CREST_MARKUP_12 },
+  { from: "<div class='item-dot'></div>", to: CREST_MARKUP_ITEM },
   { from: "<div class='check-box'></div>", to: CREST_MARKUP_18 },
   { from: "<div class='triage-dot'></div>", to: CREST_MARKUP_18 },
   { from: "<div class='kc-bullet'></div>", to: CREST_MARKUP_18 },
 ];
 
 const REPLACEMENT_REGEX = [
-  { re: /<div\s+class\s*=\s*"item-dot"\s*>\s*<\/div>/g, to: CREST_MARKUP_12 },
-  { re: /<div\s+class\s*=\s*'item-dot'\s*>\s*<\/div>/g, to: CREST_MARKUP_12 },
+  { re: /<div\s+class\s*=\s*"item-dot"\s*>\s*<\/div>/g, to: CREST_MARKUP_ITEM },
+  { re: /<div\s+class\s*=\s*'item-dot'\s*>\s*<\/div>/g, to: CREST_MARKUP_ITEM },
   { re: /<div\s+class\s*=\s*"check-box"\s*>\s*<\/div>/g, to: CREST_MARKUP_18 },
   { re: /<div\s+class\s*=\s*'check-box'\s*>\s*<\/div>/g, to: CREST_MARKUP_18 },
   { re: /<div\s+class\s*=\s*"triage-dot"\s*>\s*<\/div>/g, to: CREST_MARKUP_18 },
   { re: /<div\s+class\s*=\s*'triage-dot'\s*>\s*<\/div>/g, to: CREST_MARKUP_18 },
   { re: /<div\s+class\s*=\s*"kc-bullet"\s*>\s*<\/div>/g, to: CREST_MARKUP_18 },
   { re: /<div\s+class\s*=\s*'kc-bullet'\s*>\s*<\/div>/g, to: CREST_MARKUP_18 },
+];
+
+/** Upgrade legacy 12×12 .item-crest in Tier 2 rows → 18×18 card-body markup */
+const UPGRADE_ITEM_CREST_RES = [
+  {
+    re: /<span class="item-crest" aria-hidden="true"><svg width="12" height="12"/g,
+    to: '<span class="item-crest item-crest--body" aria-hidden="true"><svg width="18" height="18"',
+  },
+  {
+    re: /<span class='item-crest' aria-hidden='true'><svg width='12' height='12'/g,
+    to: "<span class='item-crest item-crest--body' aria-hidden='true'><svg width='18' height='18'",
+  },
+  {
+    re: /<span class=\\"item-crest\\" aria-hidden=\\"true\\"><svg width=\\"12\\" height=\\"12\\"/g,
+    to: '<span class=\\"item-crest item-crest--body\\" aria-hidden=\\"true\\"><svg width=\\"18\\" height=\\"18\\"',
+  },
 ];
 
 function collectLocaleDocsJson() {
@@ -62,6 +78,13 @@ function patchText(text) {
     }
   }
   for (const { re, to } of REPLACEMENT_REGEX) {
+    const matches = out.match(re);
+    if (matches) {
+      count += matches.length;
+      out = out.replace(re, to);
+    }
+  }
+  for (const { re, to } of UPGRADE_ITEM_CREST_RES) {
     const matches = out.match(re);
     if (matches) {
       count += matches.length;

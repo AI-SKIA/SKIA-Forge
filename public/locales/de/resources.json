@@ -18,51 +18,63 @@
   "cards": {
     "productManual": {
       "title": "Produkthandbuch",
-      "desc": "Vollständige Produktübersicht, Funktionen und Funktionspositionierung für SKIA Forge."
+      "desc": "Vollständige Produktübersicht, Funktionen und Funktionspositionierung für SKIA Forge.",
+      "tag": "Überblick"
     },
     "quickstart": {
       "title": "Schnellstart",
-      "desc": "Laden Sie die IDE herunter, melden Sie sich an und schließen Sie Ihren ersten Workflow ab."
+      "desc": "Laden Sie die IDE herunter, melden Sie sich an und schließen Sie Ihren ersten Workflow ab.",
+      "tag": "Hier starten"
     },
     "userGuide": {
       "title": "Benutzerhandbuch",
-      "desc": "Verwendung der IDE: Anmeldung, tägliche Arbeitsabläufe, Governance-Modi und Hilfe."
+      "desc": "Verwendung der IDE: Anmeldung, tägliche Arbeitsabläufe, Governance-Modi und Hilfe.",
+      "tag": "Forge nutzen"
     },
     "developerGuide": {
       "title": "Entwicklerhandbuch",
-      "desc": "Lokale Entwicklungseinrichtung, Architekturkonventionen und Beitragsmuster."
+      "desc": "Lokale Entwicklungseinrichtung, Architekturkonventionen und Beitragsmuster.",
+      "tag": "Entwickler"
     },
     "apiReference": {
       "title": "API Referenz",
-      "desc": "Primary Forge API-Oberflächen, Endpunkte, Anforderungsformen und Antwortverträge."
+      "desc": "Primary Forge API-Oberflächen, Endpunkte, Anforderungsformen und Antwortverträge.",
+      "tag": "API"
     },
     "troubleshooting": {
       "title": "Fehlerbehebung",
-      "desc": "Häufige Fehlermodi, Diagnose und schrittweise Fehlerbehebungen."
+      "desc": "Häufige Fehlermodi, Diagnose und schrittweise Fehlerbehebungen.",
+      "tag": "Hilfe"
     },
     "changelog": {
       "title": "Änderungsprotokoll",
-      "desc": "Versionierter Produktänderungsverlauf. Was hat sich wann und warum geändert?"
+      "desc": "Versionierter Produktänderungsverlauf. Was hat sich wann und warum geändert?",
+      "tag": "Versionshinweise"
     },
     "pricing": {
       "title": "Preise und Pakete",
-      "desc": "Übersicht über Produktverpackungen, Ebenen und kommerzielle Modelle."
+      "desc": "Übersicht über Produktverpackungen, Ebenen und kommerzielle Modelle.",
+      "tag": "Abrechnung"
     },
     "enterprise": {
       "title": "Unternehmensbereitschaft",
-      "desc": "Checkliste zur Unternehmenseinführung und Pilotbereitschaft für IT- und Beschaffungsteams."
+      "desc": "Checkliste zur Unternehmenseinführung und Pilotbereitschaft für IT- und Beschaffungsteams.",
+      "tag": "Unternehmen"
     },
     "securityGuide": {
       "title": "Sicherheitsleitfaden",
-      "desc": "Sicherheitsmodell, Kontrollen, Härtungscheckliste und betriebliche Sicherheitspraktiken."
+      "desc": "Sicherheitsmodell, Kontrollen, Härtungscheckliste und betriebliche Sicherheitspraktiken.",
+      "tag": "Sicherheit"
     },
     "support": {
       "title": "Unterstützung",
-      "desc": "Supportumfang, Triage-Informationen, Eskalationspfad und SLA-Erwartungen."
+      "desc": "Supportumfang, Triage-Informationen, Eskalationspfad und SLA-Erwartungen.",
+      "tag": "Support"
     },
     "operatorManual": {
       "title": "Bedienungsanleitung",
-      "desc": "Bereitstellung, Laufzeitbetrieb, Zustandsprüfungen und Infrastrukturanleitung."
+      "desc": "Bereitstellung, Laufzeitbetrieb, Zustandsprüfungen und Infrastrukturanleitung.",
+      "tag": "Betrieb"
     }
   }
 }

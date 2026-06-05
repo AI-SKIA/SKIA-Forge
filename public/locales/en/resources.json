@@ -18,51 +18,63 @@
   "cards": {
     "productManual": {
       "title": "Product Manual",
-      "desc": "Full product overview, capabilities, and feature positioning for SKIA Forge."
+      "desc": "Full product overview, capabilities, and feature positioning for SKIA Forge.",
+      "tag": "Overview"
     },
     "quickstart": {
       "title": "Quickstart",
-      "desc": "Download the IDE, sign in, and complete your first workflow."
+      "desc": "Download the IDE, sign in, and complete your first workflow.",
+      "tag": "Start here"
     },
     "userGuide": {
       "title": "User Guide",
-      "desc": "Using the IDE: sign-in, daily workflows, governance modes, and help."
+      "desc": "Using the IDE: sign-in, daily workflows, governance modes, and help.",
+      "tag": "How to use Forge"
     },
     "developerGuide": {
       "title": "Developer Guide",
-      "desc": "Local development setup, architecture conventions, and contribution patterns."
+      "desc": "Local development setup, architecture conventions, and contribution patterns.",
+      "tag": "Developers"
     },
     "apiReference": {
       "title": "API Reference",
-      "desc": "Primary Forge API surfaces, endpoints, request shapes, and response contracts."
+      "desc": "Primary Forge API surfaces, endpoints, request shapes, and response contracts.",
+      "tag": "API"
     },
     "troubleshooting": {
       "title": "Troubleshooting",
-      "desc": "Common failure modes, diagnostics, and step-by-step fixes."
+      "desc": "Common failure modes, diagnostics, and step-by-step fixes.",
+      "tag": "Help"
     },
     "changelog": {
       "title": "Changelog",
-      "desc": "Versioned product change history. What changed, when, and why."
+      "desc": "Versioned product change history. What changed, when, and why.",
+      "tag": "Release notes"
     },
     "pricing": {
       "title": "Pricing & Packages",
-      "desc": "Product packaging, tiers, and commercial model overview."
+      "desc": "Product packaging, tiers, and commercial model overview.",
+      "tag": "Billing"
     },
     "enterprise": {
       "title": "Enterprise Readiness",
-      "desc": "Enterprise launch and pilot readiness checklist for IT and procurement teams."
+      "desc": "Enterprise launch and pilot readiness checklist for IT and procurement teams.",
+      "tag": "Enterprise"
     },
     "securityGuide": {
       "title": "Security Guide",
-      "desc": "Security model, controls, hardening checklist, and operational security practices."
+      "desc": "Security model, controls, hardening checklist, and operational security practices.",
+      "tag": "Security"
     },
     "support": {
       "title": "Support",
-      "desc": "Support scope, triage information, escalation path, and SLA expectations."
+      "desc": "Support scope, triage information, escalation path, and SLA expectations.",
+      "tag": "Support"
     },
     "operatorManual": {
       "title": "Operator Manual",
-      "desc": "Deployment, runtime operations, health checks, and infrastructure guidance."
+      "desc": "Deployment, runtime operations, health checks, and infrastructure guidance.",
+      "tag": "Operations"
     }
   }
 }

@@ -18,51 +18,63 @@
   "cards": {
     "productManual": {
       "title": "产品手册",
-      "desc": "SKIA Forge 的完整产品概述、功能和功能定位。"
+      "desc": "SKIA Forge 的完整产品概述、功能和功能定位。",
+      "tag": "概览"
     },
     "quickstart": {
       "title": "快速入门",
-      "desc": "下载IDE、登录并完成您的第一个工作流程。"
+      "desc": "下载IDE、登录并完成您的第一个工作流程。",
+      "tag": "从这里开始"
     },
     "userGuide": {
       "title": "用户指南",
-      "desc": "使用 IDE：登录、日常工作流程、治理模式和帮助。"
+      "desc": "使用 IDE：登录、日常工作流程、治理模式和帮助。",
+      "tag": "如何使用 Forge"
     },
     "developerGuide": {
       "title": "开发者指南",
-      "desc": "本地开发设置、架构约定和贡献模式。"
+      "desc": "本地开发设置、架构约定和贡献模式。",
+      "tag": "开发者"
     },
     "apiReference": {
       "title": "API参考",
-      "desc": "Primary Forge API 表面、端点、请求形状和响应契约。"
+      "desc": "Primary Forge API 表面、端点、请求形状和响应契约。",
+      "tag": "API"
     },
     "troubleshooting": {
       "title": "故障排除",
-      "desc": "常见故障模式、诊断和逐步修复。"
+      "desc": "常见故障模式、诊断和逐步修复。",
+      "tag": "帮助"
     },
     "changelog": {
       "title": "变更日志",
-      "desc": "版本化的产品变更历史记录。 发生了什么变化、何时发生以及为什么发生变化。"
+      "desc": "版本化的产品变更历史记录。 发生了什么变化、何时发生以及为什么发生变化。",
+      "tag": "发行说明"
     },
     "pricing": {
       "title": "定价和套餐",
-      "desc": "产品包装、层级和商业模式概述。"
+      "desc": "产品包装、层级和商业模式概述。",
+      "tag": "计费"
     },
     "enterprise": {
       "title": "企业准备情况",
-      "desc": "面向 IT 和采购团队的企业启动和试点准备清单。"
+      "desc": "面向 IT 和采购团队的企业启动和试点准备清单。",
+      "tag": "企业"
     },
     "securityGuide": {
       "title": "安全指南",
-      "desc": "安全模型、控制、强化清单和操作安全实践。"
+      "desc": "安全模型、控制、强化清单和操作安全实践。",
+      "tag": "安全"
     },
     "support": {
       "title": "支持",
-      "desc": "支持范围、分类信息、升级路径和 SLA 期望。"
+      "desc": "支持范围、分类信息、升级路径和 SLA 期望。",
+      "tag": "支持"
     },
     "operatorManual": {
       "title": "操作手册",
-      "desc": "部署、运行时操作、运行状况检查和基础设施指导。"
+      "desc": "部署、运行时操作、运行状况检查和基础设施指导。",
+      "tag": "运维"
     }
   }
 }
