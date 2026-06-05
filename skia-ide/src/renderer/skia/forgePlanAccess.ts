@@ -1,3 +1,5 @@
+import { getSkiaOwnerEmail } from "./skiaConfig";
+
 /**
  * Keep in sync with Skia-FULL `src/utils/forgePlanAccess.ts` (plan-gated Forge IDE; not credits).
  */
@@ -39,8 +41,8 @@ function normalizePlanId(user: ForgeAccessUser): string | null {
 export function userHasForgePlanAccess(user: ForgeAccessUser | null | undefined): boolean {
     if (!user) return false;
 
-    const FOUNDER_EMAIL = "dany.francis@consultant.com";
-    if (user.email?.trim().toLowerCase() === FOUNDER_EMAIL) return true;
+    const founderEmail = getSkiaOwnerEmail().trim().toLowerCase();
+    if (founderEmail && user.email?.trim().toLowerCase() === founderEmail) return true;
 
     if (user.enterprisePlan === true) return true;
 

@@ -96,6 +96,13 @@ contextBridge.exposeInMainWorld("skiaElectron", {
     },
     setAutoSave: (enabled: boolean) => ipcRenderer.send("skia:setAutoSave", enabled),
     openDocs: () => ipcRenderer.send("open-docs"),
+    authRequest: (input: {
+        path: string;
+        method: "GET" | "POST";
+        body?: Record<string, unknown>;
+        bearerToken?: string;
+    }): Promise<{ ok: boolean; status: number; text: string }> =>
+        ipcRenderer.invoke("skia:authRequest", input),
     getCookies: (url: string): Promise<Array<{ name: string; value: string }>> =>
         ipcRenderer.invoke("skia:getCookies", url),
     openExternal: (url: string) => ipcRenderer.send("open-external", url),

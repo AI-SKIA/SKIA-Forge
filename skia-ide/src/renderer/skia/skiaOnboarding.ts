@@ -7,7 +7,12 @@ const buildOverlay = (): HTMLDivElement => {
   const overlay = document.createElement("div");
   overlay.id = "skia-onboarding-overlay";
   overlay.style.position = "fixed";
-  overlay.style.inset = "0";
+  overlay.style.top = "0";
+  overlay.style.left = "0";
+  overlay.style.right = "0";
+  overlay.style.bottom = "0";
+  overlay.style.width = "100%";
+  overlay.style.height = "100%";
   overlay.style.background = "rgba(10, 10, 10, 0.9)";
   overlay.style.display = "grid";
   overlay.style.placeItems = "center";

@@ -840,3 +840,155 @@ button {
     max-height: 28vh;
     overflow-y: auto;
 }
+
+/* Full-screen auth modal (do not rely on inset — older Electron builds ignore it) */
+#skia-modal-root {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50000;
+    pointer-events: none;
+}
+
+#skia-modal-root > * {
+    pointer-events: auto;
+}
+
+#skia-auth-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 50001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    box-sizing: border-box;
+    background: rgba(8, 8, 6, 0.96);
+    font-family: "Centaur", serif;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+#skia-auth-overlay .skia-auth-card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--skia-surface);
+    border: 1px solid var(--skia-border);
+    padding: 32px 28px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.65);
+}
+
+#skia-auth-overlay .skia-auth-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+#skia-auth-overlay .skia-auth-brand img {
+    width: 32px;
+    height: 32px;
+}
+
+#skia-auth-overlay .skia-auth-brand span {
+    letter-spacing: 2px;
+    color: var(--skia-gold);
+    font-size: 28px;
+    font-weight: 400;
+}
+
+#skia-auth-overlay .skia-auth-tabs {
+    display: flex;
+    border-bottom: 1px solid #2a2a2a;
+    margin-bottom: 20px;
+}
+
+#skia-auth-overlay .skia-auth-tab {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--skia-muted-gold);
+    padding: 10px 0;
+    cursor: pointer;
+    letter-spacing: 1px;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+#skia-auth-overlay .skia-auth-tab.is-active {
+    color: var(--skia-text);
+    border-bottom-color: var(--skia-gold);
+}
+
+#skia-auth-overlay .skia-auth-input {
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    padding: 11px 12px;
+    background: var(--skia-input);
+    border: 1px solid var(--skia-border);
+    color: var(--skia-text);
+    font-size: 14px;
+    font-weight: 400;
+    outline: none;
+    font-family: inherit;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+#skia-auth-overlay .skia-auth-remember {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: -2px 0 12px;
+    color: var(--skia-text-muted);
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+#skia-auth-overlay .skia-auth-submit {
+    width: 100%;
+    padding: 11px;
+    background: transparent;
+    border: 1px solid var(--skia-gold);
+    color: var(--skia-gold);
+    cursor: pointer;
+    letter-spacing: 1.5px;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: inherit;
+    text-transform: uppercase;
+}
+
+#skia-auth-overlay .skia-auth-error {
+    display: none;
+    color: var(--skia-danger);
+    margin-top: 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+#skia-auth-overlay .skia-auth-footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--skia-text-muted);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}

@@ -7,6 +7,7 @@ import { randomBytes } from "node:crypto";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import { getMenuLabels, isMenuLocale, type MenuLocale } from "./menuLocales";
+import { performSkiaAuthRequest, type SkiaAuthRequestInput } from "./authBridge";
 
 type SkiaConfig = {
     backendUrl: string;
@@ -1287,6 +1288,22 @@ ipcMain.on("open-docs", () => {
 
 ipcMain.on("get-app-version", (event) => {
     event.returnValue = app.getVersion();
+});
+
+const resolveAuthBackendUrl = (): string => {
+    const isProduction = (process.env.NODE_ENV ?? "").trim().toLowerCase() === "production";
+    const localBackend = isProduction ? "" : (process.env.LOCAL_SKIA_BACKEND_URL ?? "").trim();
+    const productionBackend = (process.env.SKIA_BACKEND_URL ?? "https://api.skia.ca").trim();
+    return (localBackend || productionBackend).replace(/\/+$/, "");
+};
+
+ipcMain.handle("skia:authRequest", async (_event, input: SkiaAuthRequestInput) => {
+    try {
+        return await performSkiaAuthRequest(resolveAuthBackendUrl(), input);
+    } catch (error) {
+        const message = error instanceof Error ? error.message : "Auth request failed";
+        return { ok: false, status: 0, text: JSON.stringify({ error: message }) };
+    }
 });
 
 ipcMain.handle("skia:getCookies", async (_event, url: string) => {

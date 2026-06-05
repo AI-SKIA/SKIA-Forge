@@ -69,6 +69,13 @@ declare global {
       notifyRendererReady: () => void;
       setAutoSave: (enabled: boolean) => void;
       openDocs: () => void;
+      /** Auth via main process (avoids file:// CORS blocking api.skia.ca). */
+      authRequest: (input: {
+        path: string;
+        method: "GET" | "POST";
+        body?: Record<string, unknown>;
+        bearerToken?: string;
+      }) => Promise<{ ok: boolean; status: number; text: string }>;
       getCookies: (url: string) => Promise<Array<{ name: string; value: string }>>;
       openExternal: (url: string) => void;
       saveCredentials: (email: string, password: string) => Promise<boolean>;

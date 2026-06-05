@@ -84,7 +84,44 @@ type AuthUser = {
 
 const getApiOrigin = (): string => getBackendUrl().replace(/\/+$/, "");
 
+const readBearerToken = (init?: RequestInit): string | undefined => {
+    if (!init?.headers) return undefined;
+    if (init.headers instanceof Headers) {
+        const raw = init.headers.get("Authorization");
+        return raw?.replace(/^Bearer\s+/i, "").trim() || undefined;
+    }
+    const record = init.headers as Record<string, string>;
+    const raw = record.Authorization ?? record.authorization;
+    return raw?.replace(/^Bearer\s+/i, "").trim() || undefined;
+};
+
+/** Desktop IDE loads from file:// — browser fetch to api.skia.ca is blocked by CORS; use main-process bridge. */
 const authFetch = async (url: string, init?: RequestInit): Promise<Response> => {
+    const parsed = new URL(url);
+    const path = `${parsed.pathname}${parsed.search}`;
+    const method = ((init?.method || "GET").toUpperCase() === "POST" ? "POST" : "GET") as "GET" | "POST";
+    let body: Record<string, unknown> | undefined;
+    if (typeof init?.body === "string" && init.body.trim()) {
+        try {
+            body = JSON.parse(init.body) as Record<string, unknown>;
+        } catch {
+            body = undefined;
+        }
+    }
+
+    if (window.skiaElectron?.authRequest) {
+        const result = await window.skiaElectron.authRequest({
+            path,
+            method,
+            body,
+            bearerToken: readBearerToken(init),
+        });
+        return new Response(result.text, {
+            status: result.status || (result.ok ? 200 : 500),
+            headers: { "Content-Type": "application/json" },
+        });
+    }
+
     const ms = Math.min(Math.max(getTimeout(), 3000), 15000);
     const controller = new AbortController();
     const timer = window.setTimeout(() => controller.abort(), ms);
@@ -224,7 +261,7 @@ const hydrateUserIfNeeded = async (user: AuthUser, token: string | null): Promis
     if (!token) return user;
     let sessionResp: Response;
     try {
-        sessionResp = await fetch(`${getApiOrigin()}/api/auth/session`, {
+        sessionResp = await authFetch(`${getApiOrigin()}/api/auth/session`, {
             method: "GET",
             credentials: "include",
             headers: {
@@ -267,6 +304,10 @@ const getTokenFromElectronCookies = async (): Promise<string | null> => {
 
 const removeOverlay = (): void => {
     document.getElementById(OVERLAY_ID)?.remove();
+    const modalRoot = document.getElementById("skia-modal-root");
+    if (modalRoot && modalRoot.childElementCount === 0) {
+        modalRoot.setAttribute("aria-hidden", "true");
+    }
 };
 
 const denyForgeAccess = (user: AuthUser): boolean => {
@@ -295,7 +336,7 @@ const setAuthenticated = (user: AuthUser): boolean => {
 const refetchForgeDesktopSessionToken = async (): Promise<string | null> => {
     let response: Response;
     try {
-        response = await fetch(`${getApiOrigin()}/api/auth/session`, {
+        response = await authFetch(`${getApiOrigin()}/api/auth/session`, {
             method: "GET",
             credentials: "include",
             headers: {
@@ -382,7 +423,7 @@ const acquireTokenAfterAuth = async (
     }
 
     // 3. Cookie-only fallback — httpOnly cookie sent automatically
-    const sessionResp = await fetch(`${getApiOrigin()}/api/auth/session`, {
+    const sessionResp = await authFetch(`${getApiOrigin()}/api/auth/session`, {
         method: "GET",
         credentials: "include",
         headers: {
@@ -410,18 +451,6 @@ const acquireTokenAfterAuth = async (
 };
 
 // ─── Overlay UI ───────────────────────────────────────────────────────────────
-
-const inputStyle = [
-    "width:100%", "box-sizing:border-box", "margin-bottom:10px", "padding:11px 12px",
-    "background:#111111", "border:1px solid rgba(212,175,55,0.3)", "color:#ffffff",
-    "font-size:14px", "font-weight:400", "outline:none", "font-family: inherit"
-].join(";");
-
-const btnStyle = [
-    "width:100%", "padding:11px", "background:transparent",
-    "border:1px solid #d4af37", "color:#d4af37", "cursor:pointer",
-    "letter-spacing:1.5px", "font-size:12px", "font-weight: 400", "font-family: inherit"
-].join(";");
 
 const showError = (id: string, message: string): void => {
     const node = document.getElementById(id);
@@ -451,61 +480,63 @@ const setButtonLoading = (btn: HTMLButtonElement, loading: boolean, label: strin
     btn.style.opacity = loading ? "0.6" : "1";
 };
 
+const getModalRoot = (): HTMLElement => {
+    let root = document.getElementById("skia-modal-root");
+    if (!root) {
+        root = document.createElement("div");
+        root.id = "skia-modal-root";
+        root.setAttribute("aria-hidden", "true");
+        document.body.appendChild(root);
+    }
+    return root;
+};
+
 const createOverlay = (): HTMLDivElement => {
     const overlay = document.createElement("div");
     overlay.id = OVERLAY_ID;
-    overlay.style.cssText = [
-        "position:fixed", "inset:0", "background:#0d0d0d", "z-index:9999",
-        "display:flex", "align-items:center", "justify-content:center",
-        "font-family: \"Centaur\";"
-    ].join("");
+    overlay.setAttribute("role", "dialog");
+    overlay.setAttribute("aria-modal", "true");
+    overlay.setAttribute("aria-label", "Sign in to SKIA FORGE");
 
     overlay.innerHTML = `
-    <div class="skia-auth-card" style="width:100%;max-width:420px;background:#1a1a1a;border:1px solid rgba(212,175,55,0.3);padding:32px 28px;">
+    <div class="skia-auth-card">
 
-      <div style="display:flex;align-items:center;gap:10px;margin-bottom:24px;">
+      <div class="skia-auth-brand">
         <img src="assets/sidebar-logo.png" alt="SKIA"
-             onerror="this.style.display='none'"
-             style="width:32px;height:32px;" />
-        <span style="letter-spacing:2px;color:#d4af37;font-size:28px;font-weight: 400;">SKIA FORGE</span>
+             onerror="this.style.display='none'" />
+        <span>SKIA FORGE</span>
       </div>
 
-      <div style="display:flex;border-bottom:1px solid #2a2a2a;margin-bottom:20px;">
-        <button id="auth-tab-login"
-          style="flex:1;background:transparent;border:none;border-bottom:2px solid #d4af37;
-                 color:#ffffff;padding:10px 0;cursor:pointer;letter-spacing:1px;font-size:12px;font-weight: 400;">LOGIN</button>
-        <button id="auth-tab-register"
-          style="flex:1;background:transparent;border:none;border-bottom:2px solid transparent;
-                 color:#555;padding:10px 0;cursor:pointer;letter-spacing:1px;font-size:12px;">REGISTER</button>
+      <div class="skia-auth-tabs">
+        <button id="auth-tab-login" type="button" class="skia-auth-tab is-active">LOGIN</button>
+        <button id="auth-tab-register" type="button" class="skia-auth-tab">REGISTER</button>
       </div>
 
       <form id="auth-login-form" autocomplete="on">
         <input id="auth-email" type="email" placeholder="Email"
-               autocomplete="email" style="${inputStyle}" />
+               autocomplete="email" class="skia-auth-input" />
         <input id="auth-password" type="password" placeholder="Password"
-               autocomplete="current-password" style="${inputStyle}" />
-        <label style="display:flex;align-items:center;gap:8px;margin:-2px 0 12px;color:rgba(255,255,255,0.55);font-size:12px;font-weight:400;">
+               autocomplete="current-password" class="skia-auth-input" />
+        <label class="skia-auth-remember">
           <input id="auth-remember" type="checkbox" checked />
           Remember credentials on this device
         </label>
-        <button id="auth-login-btn" type="submit" style="${btnStyle}">SIGN IN</button>
-        <div id="auth-login-error"
-             style="display:none;color:#ff5c5c;margin-top:10px;font-size:12px;line-height:1.5;"></div>
+        <button id="auth-login-btn" type="submit" class="skia-auth-submit">SIGN IN</button>
+        <div id="auth-login-error" class="skia-auth-error"></div>
       </form>
 
       <form id="auth-register-form" autocomplete="on" style="display:none;">
         <input id="auth-name" type="text" placeholder="First name (optional)"
-               autocomplete="given-name" style="${inputStyle}" />
+               autocomplete="given-name" class="skia-auth-input" />
         <input id="auth-reg-email" type="email" placeholder="Email"
-               autocomplete="email" style="${inputStyle}" />
+               autocomplete="email" class="skia-auth-input" />
         <input id="auth-reg-password" type="password" placeholder="Password"
-               autocomplete="new-password" style="${inputStyle}" />
-        <button id="auth-register-btn" type="submit" style="${btnStyle}">CREATE ACCOUNT</button>
-        <div id="auth-register-error"
-             style="display:none;color:#ff5c5c;margin-top:10px;font-size:12px;line-height:1.5;"></div>
+               autocomplete="new-password" class="skia-auth-input" />
+        <button id="auth-register-btn" type="submit" class="skia-auth-submit">CREATE ACCOUNT</button>
+        <div id="auth-register-error" class="skia-auth-error"></div>
       </form>
 
-      <div style="margin-top:20px;text-align:center;font-size:12px;font-weight:400;color:rgba(255,255,255,0.55);letter-spacing:0.5px;">
+      <div class="skia-auth-footer">
         ONE ECOSYSTEM. ONE UNIVERSE. ALL SKIA.
       </div>
     </div>
@@ -542,10 +573,8 @@ const wireOverlayHandlers = (): void => {
         const isLogin = tab === "login";
         loginForm.style.display = isLogin ? "block" : "none";
         registerForm.style.display = isLogin ? "none" : "block";
-        loginTab.style.color = isLogin ? "#ffffff" : "#999999";
-        registerTab.style.color = isLogin ? "#999999" : "#ffffff";
-        loginTab.style.borderBottom = isLogin ? "2px solid #d4af37" : "2px solid transparent";
-        registerTab.style.borderBottom = isLogin ? "2px solid transparent" : "2px solid #d4af37";
+        loginTab.classList.toggle("is-active", isLogin);
+        registerTab.classList.toggle("is-active", !isLogin);
     };
 
     loginTab.addEventListener("click", () => setTab("login"));
@@ -597,7 +626,7 @@ const wireOverlayHandlers = (): void => {
         if (!email || !password) return;
         if (registerBtn) setButtonLoading(registerBtn, true, "CREATE ACCOUNT");
         try {
-            const response = await fetch(`${getApiOrigin()}/api/auth/register`, {
+            const response = await authFetch(`${getApiOrigin()}/api/auth/register`, {
                 method: "POST",
                 credentials: "include",
                 headers: {
@@ -635,7 +664,9 @@ const mountAuthOverlay = (): void => {
     removeOverlay();
     hideOnboardingOverlay();
     const overlay = createOverlay();
-    document.body.appendChild(overlay);
+    const modalRoot = getModalRoot();
+    modalRoot.setAttribute("aria-hidden", "false");
+    modalRoot.appendChild(overlay);
     wireOverlayHandlers();
     window.requestAnimationFrame(() => {
         (document.getElementById("auth-email") as HTMLInputElement | null)?.focus();
