@@ -32,13 +32,7 @@ function requirePattern(label, content, pattern) {
 const hubCss = fs.readFileSync(hubCssPath, "utf8");
 const premiumCss = fs.readFileSync(premiumCssPath, "utf8");
 
-requirePattern("forge-hub-design.css", hubCss, /background-color:\s*#120c08/);
-requirePattern("forge-hub-design.css", hubCss, /body\.forge-context-a::before/);
-requirePattern(
-  "forge-hub-design.css",
-  hubCss,
-  /\.wrap[\s\S]*?linear-gradient\(180deg,\s*#040302/,
-);
+requirePattern("forge-hub-design.css", hubCss, /background:[\s\S]*?radial-gradient\(ellipse 80% 50%/);
 requirePattern("forge-hub-design.css", hubCss, /\.skia-forge-hub__logo[\s\S]*?width:\s*170px/);
 requirePattern("forge-premium-ui.css", premiumCss, /\.pc-sidebar-logo-img[\s\S]*?width:\s*120px/);
 requirePattern("forge-premium-ui.css", premiumCss, /\.page-logo[\s\S]*?width:\s*170px/);
@@ -92,5 +86,5 @@ if (errors.length) {
 }
 
 console.log(
-  `[check-forge-hub-shell] OK — ${htmlFiles.length} Context A page(s), CSS two-layer + 170px hero`,
+  `[check-forge-hub-shell] OK — ${htmlFiles.length} Context A page(s), flat Context A background + 170px hero`,
 );
