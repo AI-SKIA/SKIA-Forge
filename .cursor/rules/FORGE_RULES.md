@@ -9,15 +9,25 @@ alwaysApply: true
 
 Before any edit, read these files in full. They override stale docs and audit snapshots:
 
-- **`docs/architecture/SOVEREIGN_PLATFORM.md`** — **agent law:** SKIA owns translations, fonts, TTS, Skia-Serve, IDE; never suggest vendor APIs or Google except continuity fallback when sovereign engines are down (see Skia-FULL `northflank-services.md`).
+- **`docs/architecture/SOVEREIGN_PLATFORM.md`** — **agent law:** SKIA owns translations, fonts, TTS, Skia-Serve, IDE; never suggest vendor APIs or Google except continuity fallback when sovereign engines are down.
 - **`.cursor/rules/FORGE_RULES.md` §6** — any task that adds/changes user-visible text (mandatory translation playbook).
-- `design_bible.md` — Forge design law (Forge Web §6, Forge IDE §7, shared tokens §1–§5). Never deviate on typography, gold, backgrounds.
+- **`design_bible.md`** — Forge design law v2.1 (Forge Web §6, Forge IDE §7, shared tokens §1–§5, alignment status §12). Never deviate on typography, gold, backgrounds.
+- **`Skia-FULL/design_bible.md` v4.4** — cross-product authority for forge-web parity with skia.ca Forge Hub pages (§14).
 - `docs/ENV_REFERENCE.md` — operator env vars, sovereign inference (Skia-Serve primary; continuity fallback operator-only — **§0.5**).
 - `docs/API_REFERENCE.md` — canonical HTTP route index; verify against `src/server.ts` if routes changed.
 - `local-dev/docs/forge-local-setup.md` — local vs production isolation (must not cross-contaminate).
 - `guides/FORGE_COPY_AUDIT.md` — customer-facing copy prohibitions (no internal repo names in public HTML/MD).
 
-**Deployment truth:** production host `forge.skia.ca`, port **4173** (`SKIA_PORT`). Upstream auth/brain default **`https://api.skia.ca`**. Private operator topology notes live outside this repo — never commit secrets.
+**Read when the task touches that area (Skia-FULL repo — gitignored operator files stay on disk, never commit):**
+
+| Task type | Also read |
+|-----------|-----------|
+| Deploy, env, ports, PATs, Northflank | **`Skia-FULL/northflank-services.md`** |
+| Continuity fallback / provider chain docs | **`Skia-FULL/docs/provider-fallback-truth-table.md`** + `northflank-services.md` |
+| Client fetch in `forgePlatformUi.ts`, `chatUi.ts`, browser bundles | **`Skia-FULL/docs/architecture/skia-routing-invariants.md`** (browser rules — **§7.1**) |
+| Forge-web CSS / hub HTML / typography | `design_bible.md` §12 alignment table |
+
+**Deployment truth:** production host `forge.skia.ca`, port **4173** (`SKIA_PORT`). Upstream auth/brain default **`https://api.skia.ca`**. Private operator topology notes live in **Skia-FULL** `northflank-services.md` — never commit secrets or `.nf-*.json`.
 
 ## 0.5 Sovereign integrated platform — agent law (non-negotiable)
 
@@ -49,7 +59,9 @@ SKIA builds integrated capabilities **in-house** — not third-party SaaS as the
 - **Locales:** 12 — `fr`, `en`, `zh`, `es`, `ar`, `pt`, `de`, `ja`, `ko`, `hi`, `tr`, `ru` (default: **`fr`** — keep in sync with skia.ca)
 - **Live HTTP modules** (`POST /api/forge/module/:module`): `context`, `agent`, `sdlc`, `production`, `healing`, `architecture`
 - **Primary LLM path:** Skia-Serve via `https://api.skia.ca` — **not** a local Ollama path in production
-- **Continuity fallback:** lives on Skia-FULL runtime only when sovereign engines are down — see **`§0.5`**; never document as Forge default
+- **Continuity fallback:** lives on Skia-FULL runtime only when sovereign engines are down — see **`§0.5`** and **`Skia-FULL/docs/provider-fallback-truth-table.md`**; never document as Forge default
+
+**When Forge copy/docs cite skia.ca product stats** (feature counts, workspaces, API routes): verify via **Skia-FULL** (`npm run docs:sync`, `python scripts/audit-feature-count.py`) — never hardcode stale numbers. If citing features, read **`Skia-FULL/frontend/components/featuresData/`** category files — not the stub `featuresData.ts`.
 
 Always confirm route/module lists against **`src/server.ts`** and **`src/forgeModuleExecutor.ts`** — not README alone.
 
@@ -67,6 +79,24 @@ If a change affects shared locale keys, `MOBILE_APP_APPROVED`, platform gates, d
 
 **Forge boundary:** Forge **calls** the SKIA API (`SkiaFullAdapter`, `/integration/skia-full/*`). It does **not** replace Skia-FULL as the product runtime. Do not add a production local-LLM bypass in Forge server code.
 
+### forge-web ↔ skia.ca user-facing parity (mandatory target)
+
+**forge.skia.ca** hub and doc pages must stay visually and typographically consistent with **skia.ca** Forge Hub equivalents:
+
+| forge.skia.ca | skia.ca mirror | Skia-FULL reference |
+|---------------|----------------|---------------------|
+| `/resources` | `/resources` | `frontend/pages/resources.tsx`, design_bible §14 |
+| `/security` | `/security` | `frontend/pages/security.tsx` |
+| `/contact` | `/contact` | `frontend/pages/contact.tsx` |
+| `/platform-downloads` | `/download` | `frontend/pages/download.tsx` |
+| `/docs/*.html` | `/docs/[doc]` | `DocEmbedShell.tsx` |
+
+**When updating hub nav, footer links, or forge marketing copy:** cross-check **`Skia-FULL/frontend/lib/sidebarNav.ts`** and the matching skia.ca page. Mirror label/key changes in **`public/locales/*`** and hub HTML sidebar.
+
+**Design target:** Skia-FULL `design_bible.md` v4.4 §1–§5 + Forge `design_bible.md` §12 (15–38px type scale, gold palette, Tier 1/2 cards, 8px scrollbars, 15px footer). Documented Forge-only layout gaps (fixed `.back-btn`, 820px `.wrap`) are in Forge `design_bible.md` §12.3 — close them on CSS alignment passes, do not treat as permanent without product sign-off.
+
+**Not applicable:** skia.ca workspace hubs, feature leaves, ECHO, mobile app — Forge does not ship those surfaces.
+
 ## 3. Audit before touching — read source, not snapshots
 
 Before editing any file:
@@ -80,6 +110,7 @@ Before editing any file:
 
 - Never touch hub page layout, colours, spacing, or component structure unless the user explicitly authorises UI changes.
 - Design bible is law: Agency FB **400/500 only** (600+ forbidden), Centaur **400** body, gold **`#d4af37` only**, black-based backgrounds, CSS tokens — no ad-hoc inline styles on marketing surfaces.
+- **Forge Web type bounds:** no user-facing text below **15px** or above **38px** (Skia-FULL v4.4 §2.0; Forge `design_bible.md` §2). **Forge IDE §7 is exempt** (dense chrome may use smaller sizes).
 - IDE Monaco/terminal surfaces may use monospace; still follow Forge gold/background tokens in chrome.
 
 ## 5. Platform parity — two Forge surfaces
@@ -269,7 +300,22 @@ Do **not** mark a copy/i18n task complete unless:
 
 Read `docs/API_REFERENCE.md` and `src/config/localBackend.ts` before env, auth, or upstream URL changes.
 
-### Prohibitions
+### 7.1 Client routing invariants (forge-web browser bundles)
+
+Applies to **`src/forgePlatformUi.ts`**, **`src/chatUi.ts`**, and any JS served to the browser on `forge.skia.ca`. Mirrors **Skia-FULL** `docs/architecture/skia-routing-invariants.md` (browser half).
+
+**Prohibitions:**
+
+1. **Same-origin only in the browser** — client code calls `/api/...`, `/integration/...`, `/providers/...`, `/rpc`, etc. on the Forge origin. **Never** hardcode `https://api.skia.ca` or other cross-origin URLs in browser bundles.
+2. **No internal engine hostnames in client bundles** — no `backend:4000`, `chat-engine:`, `skia-serve:`, `image-engine:`, `embedding-engine:`, `tts-service:` in code shipped to the browser.
+3. **Auth through Forge proxy** — session/auth uses **`/api/auth/*`** (server forwards to `SKIA_BACKEND_URL`). Do not add duplicate login flows in static HTML.
+4. **Production brain** — document Skia-Serve via SKIA API as primary; never Ollama or localhost as Forge production default in customer docs.
+
+**After client routing changes:** grep browser-served TS for `api.skia.ca`, `localhost`, and internal hostnames. Run **`npm run typecheck`** and affected tests.
+
+Server-side upstream fetch (`skiaFullAdapter.ts`, `skiaSessionProxy.ts`, `server.ts`) **may** call `https://api.skia.ca` — these rules apply to **browser** code only.
+
+### 7.2 Server integration prohibitions
 
 1. **No production local brain bypass** — do not route production LLM traffic to Ollama or localhost from Forge server code.
 2. **No customer-facing internal names** — no `Skia-FULL`, `Northflank`, `src/server.ts`, repo paths, or eval/CI jargon in `public/` or customer `docs/*.md` / `public/docs/*.html`.
@@ -280,22 +326,65 @@ Read `docs/API_REFERENCE.md` and `src/config/localBackend.ts` before env, auth, 
 
 If a requested change violates an invariant: **STOP**, name it, propose a compliant alternative.
 
-## 8. Local development vs production — strict isolation
+## 8. Forge local install vs product (production) — never mix
 
-**Default `npm run dev` uses production backends** (`https://api.skia.ca`).
+Forge has **two operator environments**. They share **application code** but use **different config, upstream URLs, secrets, and start scripts**. A change for one must **never** silently change the other.
 
-Local mode activates **only** when `LOCAL_SKIA_BACKEND_URL` is set in the **process environment** (via `local-dev/scripts/load-forge-local-env.ps1` or `start-forge-local.*`).
+| | **Forge local install** | **Forge product (production)** |
+|--|-------------------------|--------------------------------|
+| **Purpose** | Dev / test against local SKIA stack on your machine | Live **`skia-forge`** on Northflank → **`forge.skia.ca:4173`** |
+| **Source of truth** | `local-dev/docs/forge-local-setup.md`, `local-dev/run-forge-locally.md`, `src/config/localBackend.ts` | `docs/ENV_REFERENCE.md`, Northflank `skia-forge` runtime env (operator record in **Skia-FULL** `northflank-services.md`) |
+| **Start** | `local-dev/scripts/start-forge-local.ps1` / `.sh` (loads env first) | Northflank deploy of `AI-SKIA/SKIA-Forge` |
+| **Upstream brain** | `LOCAL_SKIA_BACKEND_URL` → default `http://localhost:3000` (Skia-FULL `local-dev/` stack) | `SKIA_BACKEND_URL` / `SKIA_FULL_API_URL` → **`https://api.skia.ca`** |
+| **Env files** | `local-dev/.env.forge.local`, optional `local-dev/forge.local.config.json` — **gitignored** | Northflank service env — **never committed** |
+| **Local mode trigger** | **`LOCAL_SKIA_BACKEND_URL` in process env only** (`localBackend.ts` — not inferred from committed JSON alone) | Must **not** set `LOCAL_*` on Northflank |
+| **`npm run dev` alone** | Uses **production** `https://api.skia.ca` unless local env was loaded first | N/A — production is the hosted service |
+| **Governance** | `LOCAL_FOUNDER_OVERRIDE`, `LOCAL_FORGE_SOVEREIGN_MODE` (autonomous when local) | Production governance — no local founder bypass |
+| **IDE sources** | Optional `apply-forge-ide-local-patch.ps1` + `local-dev/ide-overrides/` | Ship unpatched `skia-ide/` — `prebuild` runs `assert-no-local-ide-patch.mjs` |
+| **GitHub PAT** | Optional in gitignored `.env` for private-release testing | `GITHUB_TOKEN` on Northflank **`skia-forge`** only — rotate via **Skia-FULL** `scripts/nf-patch-skia-forge-github-token.mjs` |
 
-| Never in production / CI / release | Local only |
-|-------------------------------------|------------|
-| `LOCAL_SKIA_BACKEND_URL` in hosting env | `local-dev/.env.forge.local` (gitignored) |
-| `apply-forge-ide-local-patch.ps1` before build | `local-dev/ide-overrides/` overlay |
-| Founder override governance (`LOCAL_FOUNDER_OVERRIDE`) | Same, when local backend active |
-| Patched `skia-ide/` sources in installer | Revert: `revert-forge-ide-local-patch.ps1` |
+### Code contract (`src/config/localBackend.ts`)
 
-- **`NODE_ENV=production`** ignores `LOCAL_SKIA_BACKEND_URL` even if set.
-- **`skia-ide` `prebuild`** runs `scripts/assert-no-local-ide-patch.mjs` — fails if `.local-dev-ide-patch-applied` exists.
-- **Never commit** `local-dev/.env.forge.local`, `local-dev/forge.local.config.json`, or secrets.
+- **Production defaults (hardcoded):** `PRODUCTION_SKIA_BACKEND_URL` / `PRODUCTION_SKIA_FULL_API_URL` = `https://api.skia.ca`
+- **Local mode:** active only when `LOCAL_SKIA_BACKEND_URL` is set in **env** and `NODE_ENV !== 'production'`
+- **`NODE_ENV=production`** on Northflank **always** ignores `LOCAL_SKIA_BACKEND_URL` — even if mistakenly set in hosting env
+- **Never** add a production code path that reads `forge.local.config.json` without `LOCAL_SKIA_BACKEND_URL` in env
+
+### Dependency on Skia-FULL local stack
+
+Forge local install expects a running **Skia-FULL** local stack (`Skia-FULL/local-dev/`). See **`Skia-FULL/.cursor/rules/SKIA_RULES.md` §11.5** for the platform local vs product split — do not cross-contaminate Skia-FULL compose/Northflank when doing Forge-only work.
+
+### Agent prohibitions (non-negotiable)
+
+1. **Do not** set `LOCAL_SKIA_BACKEND_URL`, `LOCAL_FOUNDER_OVERRIDE`, or `localhost` upstream URLs on **Northflank `skia-forge`**.
+2. **Do not** run `apply-forge-ide-local-patch.ps1` before a production IDE build or release.
+3. **Do not** copy production secrets from Northflank / **`Skia-FULL/northflank-services.md`**, **`.nf-*.json`**, or PAT files into `local-dev/.env.forge.local` or committed files.
+4. **Do not** change `PRODUCTION_*` constants or default production URLs in `localBackend.ts` to localhost for convenience.
+5. **Do not** use **Skia-FULL** `nf-patch-skia-frontend-github-token.mjs` for Forge — frontend and forge use **different** Northflank services and **different** PATs.
+6. **Do not** route production LLM traffic to Ollama or localhost from Forge server code — Forge is a **downstream consumer** of the SKIA API only.
+7. **Shared code** (routes, modules, locales) may serve both environments — env resolution must stay in `localBackend.ts` / `process.env`, never hardcoded prod URLs in local-only scripts or vice versa.
+8. **Do not commit** `northflank-services.md`, `.nf-*.json`, production PATs, or JWT secrets — all belong in gitignored operator env only.
+
+### Before any env, deploy, token, or upstream URL task — classify first
+
+```
+Forge local   → local-dev/*, start-forge-local.*, load-forge-local-env.ps1, LOCAL_SKIA_BACKEND_URL
+Forge product → docs/ENV_REFERENCE.md, Northflank skia-forge, Skia-FULL nf-patch-skia-forge-github-token.mjs
+Both          → application source only; split env/deploy updates into two explicit steps
+```
+
+### Local-only artifacts (never in production / CI / release)
+
+| Artifact | Local only |
+|----------|------------|
+| `local-dev/.env.forge.local` | Copy from `.env.forge.local.example` |
+| `local-dev/forge.local.config.json` | Optional `LOCAL_*` defaults |
+| `local-dev/ide-overrides/` + IDE patch marker | Revert with `revert-forge-ide-local-patch.ps1` |
+| `JWT_SECRET` in local env | Must match local Skia-FULL login — not production JWT |
+
+### Task closure (local vs prod)
+
+State which environment was touched. If only one: confirm the other was **not** modified (no Northflank patch, no `LOCAL_*` in tracked defaults, no IDE patch left applied).
 
 ## 9. Governance and module execution
 
@@ -320,7 +409,9 @@ npm run test
 | TypeScript / routes / governance | `npm run lint` + `npm run test` |
 | Hub i18n JSON | `npm run locales:sync` + `node scripts/verify-forge-i18n-html.mjs` |
 | Corrupted product-name tokens | `npm run locales:restore-tokens` |
-| CSS / colours / fonts (marketing) | `node scripts/normalize-forge-colors.mjs` + `node scripts/normalize-forge-font-sizes.mjs` (check mode if available) |
+| CSS / colours / fonts (forge-web) | `node scripts/normalize-forge-colors.mjs --check` + `node scripts/normalize-forge-font-sizes.mjs --check` + `npm run fonts:check` |
+| Hub HTML / shared CSS links | `node scripts/apply-forge-hub-design.mjs --check` |
+| Client fetch in platform/chat UI | Grep for `api.skia.ca`, `localhost`, internal engine hostnames in browser bundles — **§7.1** |
 | IDE packaging | `cd skia-ide && npm run build` (runs `assert-no-local-ide-patch`) |
 | Public copy / docs | Re-grep per `guides/FORGE_COPY_AUDIT.md` appendix before release |
 
@@ -328,12 +419,15 @@ npm run test
 
 ## 11. Design bible is law (Forge profile)
 
-- Full spec: **`design_bible.md` v1.0** — shared tokens (§1–§5), **Forge Web** (§6), **Forge IDE as-is** (§7). Canonical cross-product source: **`Skia-FULL/design_bible.md` v3.3**.
-- Gold: `#d4af37` and the five approved rgba variants only.
+- **Forge spec:** `design_bible.md` **v2.1** — shared tokens (§1–§5), **Forge Web** (§6), **Forge IDE as-is** (§7), alignment status (§12).
+- **Cross-product authority:** **`Skia-FULL/design_bible.md` v4.4** — forge-web must match skia.ca Forge Hub (§14) on typography, palette, cards, footer, scrollbars.
+- **Type scale (forge-web):** **15px floor / 38px ceiling** — all `--skia-font-*` tokens must converge on Skia-FULL values (see Forge `design_bible.md` §12.2 for current CSS gaps).
+- Gold: `#d4af37` and the five approved rgba variants only — no `#ffd700`, `#ffcc33`, Tailwind yellows.
 - Background: Context A hub `#080400`; Context B tool/IDE `#0a0a0a`.
-- Fonts: **self-hosted only** — exact names `"Agency FB"` and `"Centaur"` (see `design_bible.md` §1); `npm run fonts:check`
-- Lucide-style stroke icons on static HTML (`public/forge-lucide-icons.css`) — no filled marketing icons.
+- Fonts: **self-hosted only** — exact names `"Agency FB"` and `"Centaur"` (see `design_bible.md` §1); `npm run fonts:check` after font/CSS changes.
+- Icons: Lucide stroke on static HTML (`public/forge-lucide-icons.css`); doc lists use gold dots or **12×12 SKIA Crest** when matching skia.ca — no filled marketing icons.
 - Do not retro-fit Forge IDE to web marketing patterns unless §7 is intentionally updated.
+- **`Skia-FULL/THE SINGLE STANDARD EVERY FILE MUST MEET.md`** applies to skia.ca generative feature pages only — not Forge module/agent internals unless a Forge surface ships customer-facing generative deliverables with brand/style injection (then align with Skia-FULL quality bar, do not copy Next.js-specific patterns verbatim).
 
 ## 12. PR checklist — Forge changes
 
@@ -344,7 +438,9 @@ Before opening a PR:
 3. **Local isolation:** no committed `.env.forge.local`, no IDE patch marker, no localhost URLs in production code paths?
 4. **Copy:** no forbidden internal vocabulary in customer layers?
 5. **Tests:** `npm run preflight` passes (lint + build + test)?
-6. **Cross-repo:** Skia-FULL / Skia-Status impact assessed?
+6. **Cross-repo:** Skia-FULL / Skia-Status impact assessed? Hub nav/footer parity with skia.ca if forge-web marketing changed?
+7. **forge-web layout (if CSS/HTML touched):** spot-check **390px, 768px, 1280px, 1920px** — mobile browser is a real surface (sidebar hides ≤680px).
+8. **Client routing (if `forgePlatformUi.ts` / `chatUi.ts` touched):** no cross-origin or internal-host fetches in browser bundles — **§7.1**.
 
 ## 13. Task closure checklist (agents)
 
@@ -355,6 +451,8 @@ Reply or hand off only when you can state:
 3. **Backend mode:** production vs local — confirm no accidental localhost in production paths.
 4. **Sovereign law:** no vendor API / Google suggestions in copy or docs edited — **`§0.5`**.
 5. **Scripts run:** at minimum `npm run typecheck` and `npm test`; `npm run locales:sync` when locales changed.
+6. **forge-web design (if CSS/fonts/HTML):** normalize `--check` scripts + `fonts:check`; alignment with Forge `design_bible.md` §12 considered.
+7. **Client routing (if browser UI changed):** confirm **§7.1** — same-origin fetches only in browser bundles.
 
 ## 14. On-demand procedures
 
@@ -365,3 +463,5 @@ Reply or hand off only when you can state:
 **"run copy grep"** — Before marketing release, grep customer layers for: `Skia-FULL`, `Northflank`, `eval-gated`, `routing invariant`, repo paths in HTML.
 
 **"local dev setup"** — Point user to `local-dev/docs/forge-local-setup.md`; never merge local env into production defaults in tracked files.
+
+**"deploy / northflank / env patch"** — Read **`Skia-FULL/northflank-services.md`** first; classify Forge local vs Forge product per **§8**; use **`Skia-FULL/scripts/nf-patch-skia-forge-github-token.mjs`** for Forge PAT only (not frontend patch script).
