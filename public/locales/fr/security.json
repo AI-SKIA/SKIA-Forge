@@ -52,7 +52,7 @@
   },
   "disclosure": {
     "title": "Divulgation responsable",
-    "body": "Vous avez trouvé une vulnérabilité dans SKIA Forge ? Nous prenons les rapports de sécurité au sérieux. Contactez-nous en privé et nous vous répondrons dans un délai d'un jour ouvrable.",
+    "body": "Vous avez trouvé une vulnérabilité dans SKIA Forge ?\nNous prenons les rapports de sécurité au sérieux.\nContactez-nous en privé et nous vous répondrons dans un délai d'un jour ouvrable.",
     "button": "Signaler une vulnérabilité"
   }
 }

@@ -642,11 +642,16 @@ a.doc-card:hover {
 .esc-item {
   display: flex;
   gap: 14px;
-  align-items: baseline;
+  align-items: flex-start;
   padding: 12px 16px;
   background: var(--forge-tier2-bg);
   border: 1px solid var(--forge-tier2-border);
   border-radius: 8px;
+}
+
+.practice-item,
+.esc-item {
+  gap: 12px;
 }
 
 .item-list,
@@ -701,6 +706,7 @@ a.doc-card:hover {
   color: var(--skia-gold-full);
   min-width: 22px;
   line-height: 1.55;
+  margin-top: 1px;
   flex-shrink: 0;
 }
 
@@ -713,6 +719,7 @@ a.doc-card:hover {
   min-width: 22px;
   line-height: 1.55;
   letter-spacing: 0.1em;
+  margin-top: 1px;
   flex-shrink: 0;
 }
 
@@ -1055,7 +1062,32 @@ a.doc-card:hover {
   font-size: var(--skia-font-body-size);
   color: var(--skia-text-soft);
   line-height: 1.6;
-  margin-bottom: 16px;
+  margin: 0 auto 16px;
+  max-width: 560px;
+  text-align: center;
+  white-space: pre-line;
+}
+
+.report-btn,
+.report-btn:visited {
+  display: inline-block;
+  padding: 10px 24px;
+  border: 1px solid var(--skia-gold-full);
+  border-radius: 6px;
+  color: var(--skia-gold-text);
+  text-decoration: none;
+  font-family: "Agency FB";
+  font-size: var(--skia-font-caption-size);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--skia-gold-subtle);
+  transition: background 0.15s, color 0.15s;
+}
+
+.report-btn:hover {
+  background: rgba(212, 175, 55, 0.18);
+  color: var(--skia-gold-hover);
 }
 
 /* Hub footer (extends forge-premium-ui) */

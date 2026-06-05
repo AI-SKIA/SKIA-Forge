@@ -52,7 +52,7 @@
   },
   "disclosure": {
     "title": "Responsible Disclosure",
-    "body": "Found a vulnerability in SKIA Forge? We take security reports seriously. Contact us privately and we will respond within one business day.",
+    "body": "Found a vulnerability in SKIA Forge?\nWe take security reports seriously.\nContact us privately and we will respond within one business day.",
     "button": "Report a Vulnerability"
   }
 }

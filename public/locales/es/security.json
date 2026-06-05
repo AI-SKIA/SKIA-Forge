@@ -52,7 +52,7 @@
   },
   "disclosure": {
     "title": "Divulgación responsable",
-    "body": "¿Encontró una vulnerabilidad en SKIA Forge? Nos tomamos en serio los informes de seguridad. Contáctenos de forma privada y le responderemos dentro de un día hábil.",
+    "body": "¿Encontró una vulnerabilidad en SKIA Forge?\nNos tomamos en serio los informes de seguridad.\nContáctenos de forma privada y le responderemos dentro de un día hábil.",
     "button": "Informar una vulnerabilidad"
   }
 }

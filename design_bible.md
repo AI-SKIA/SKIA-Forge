@@ -541,8 +541,8 @@ Doc pages share classes in `public/forge-hub-design.css` (linked from all `publi
 | `.code-block`, `.form-status` | **15px** via `--skia-font-caption-size` | **15px** caption | ✔ |
 | `.submit-btn`, `.feature-tab`, `.back-btn` | **15px** via `--skia-font-button-size` | **15px** button | ✔ |
 | `.item`, `.step`, `.check-item` | Tier 2 light cards | Tier 2 | ✔ |
-| `.step-num` / `.step-text` | **15px** Agency FB number + **15px** Centaur copy, `gap: 14px`, `align-items: baseline` | doc-embed parity | ✔ |
-| `.practice-num`, `.esc-num` | **15px** Agency FB, baseline-aligned with row text | contact/security parity | ✔ |
+| `.step-num` / `.step-text` | **15px** Agency FB number + **15px** Centaur copy, `gap: 14px`, `align-items: flex-start`, `margin-top: 1px` on number | doc-embed parity | ✔ |
+| `.practice-num`, `.esc-num` | **15px** Agency FB, `flex-start` + `margin-top: 1px` (multi-line rows stay top-aligned) | security/contact parity | ✔ |
 | `.doc-card`, `.card`, `.pkg-card` | Tier 1 heavy gradient | Tier 1 | ✔ |
 | Body background | `#080400` + radial | Context A | ✔ |
 | Mobile `.page-title` | 28px at ≤680px | Responsive shrink OK | ✔ intentional |

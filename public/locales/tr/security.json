@@ -52,7 +52,7 @@
   },
   "disclosure": {
     "title": "Sorumlu Açıklama",
-    "body": "SKIA Forge'de bir güvenlik açığı mı buldunuz? Güvenlik raporlarını ciddiye alıyoruz. Bizimle özel olarak iletişime geçin; bir iş günü içinde yanıt vereceğiz.",
+    "body": "SKIA Forge'de bir güvenlik açığı mı buldunuz?\nGüvenlik raporlarını ciddiye alıyoruz.\nBizimle özel olarak iletişime geçin; bir iş günü içinde yanıt vereceğiz.",
     "button": "Bir Güvenlik Açığı Bildirin"
   }
 }

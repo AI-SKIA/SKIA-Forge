@@ -52,7 +52,7 @@
   },
   "disclosure": {
     "title": "Verantwortungsvolle Offenlegung",
-    "body": "Haben Sie eine Schwachstelle in SKIA Forge gefunden? Wir nehmen Sicherheitsmeldungen ernst. Kontaktieren Sie uns privat und wir werden innerhalb eines Werktages antworten.",
+    "body": "Haben Sie eine Schwachstelle in SKIA Forge gefunden?\nWir nehmen Sicherheitsmeldungen ernst.\nKontaktieren Sie uns privat und wir werden innerhalb eines Werktages antworten.",
     "button": "Melden Sie eine Sicherheitslücke"
   }
 }
