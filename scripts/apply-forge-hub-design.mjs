@@ -6,6 +6,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { FORGE_SHELL_INLINE } from "./migrate-forge-shell-inline.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.join(__dirname, "..");
@@ -37,6 +38,29 @@ function collectHtmlFiles(dir, acc = []) {
     else if (entry.name.endsWith(".html")) acc.push(full);
   }
   return acc;
+}
+
+const SHELL_STYLE_RE = new RegExp(
+  `style="${FORGE_SHELL_INLINE.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}"`,
+);
+
+function ensureShellInline(html) {
+  let changed = false;
+  const out = html.replace(/<div class="wrap([^"]*)"([^>]*)>/gi, (match, extraClasses, rest) => {
+    if (SHELL_STYLE_RE.test(match)) return match;
+    changed = true;
+    const attrs = rest.replace(/\sstyle="[^"]*"/i, "").trim();
+    const spacer = attrs ? ` ${attrs}` : "";
+    return `<div class="wrap${extraClasses}" style="${FORGE_SHELL_INLINE}"${spacer}>`;
+  });
+  return { html: out, changed };
+}
+
+function ensureSkiaForgeHubShell(html) {
+  if (!html.includes('class="skia-forge-hub"') && html.includes('class="skia-forge-hub__')) {
+    return { html, changed: true, reason: "missing skia-forge-hub wrapper" };
+  }
+  return { html, changed: false };
 }
 
 function stripFirstStyleBlock(html) {
@@ -128,6 +152,12 @@ function migrateFile(filePath) {
   const withBack = moveBackBtnInColumn(html);
   if (withBack !== html) {
     html = withBack;
+    changed = true;
+  }
+
+  const withShell = ensureShellInline(html);
+  if (withShell.changed) {
+    html = withShell.html;
     changed = true;
   }
 

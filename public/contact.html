@@ -36,19 +36,20 @@
   </nav>
 </aside>
 
-<div class="wrap wrap--narrow">
+<div class="wrap wrap--narrow" style="padding:40px;max-width:800px;margin:0 auto;box-sizing:border-box;width:100%;">
         <button type="button" class="back-btn" onclick="history.back()" data-i18n="common.back.label"></button>
-  <header class="hub-header">
-  <img src="/sidebar-logo.png" alt="SKIA" class="page-logo" />
+  <div class="skia-forge-hub">
+<header class="skia-forge-hub__header">
+  <img src="/sidebar-logo.png" alt="SKIA" class="skia-forge-hub__logo" />
 
   <div class="page-header">
-    <h1 class="page-title" data-i18n="contact.hero.title"></h1>
-    <p class="page-subtitle" data-i18n="contact.hero.subtitle"></p>
+    <h1 class="skia-forge-hub__title" data-i18n="contact.hero.title"></h1>
+    <p class="skia-forge-hub__subtitle" data-i18n="contact.hero.subtitle"></p>
   </div>
   </header>
 
   <!-- Support Scope -->
-  <div class="section-label" data-i18n="contact.sections.scope"></div>
+  <div class="skia-forge-hub__section-label" data-i18n="contact.sections.scope"></div>
   <div class="scope-grid">
     <div class="scope-card"><div class="scope-icon skia-li skia-li--scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg></div><div class="scope-text" data-i18n="contact.scope.s1"></div></div>
     <div class="scope-card"><div class="scope-icon skia-li skia-li--scope" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg></div><div class="scope-text" data-i18n="contact.scope.s2"></div></div>
@@ -59,7 +60,7 @@
   </div>
 
   <!-- SLA -->
-  <div class="section-label" data-i18n="contact.sections.sla"></div>
+  <div class="skia-forge-hub__section-label" data-i18n="contact.sections.sla"></div>
   <div class="sla-list">
     <div class="sla-item">
       <div class="sla-tier p1">P1</div>
@@ -85,7 +86,7 @@
   </div>
 
   <!-- Triage Info -->
-  <div class="section-label" data-i18n="contact.sections.triage"></div>
+  <div class="skia-forge-hub__section-label" data-i18n="contact.sections.triage"></div>
   <div class="triage-grid">
     <div class="triage-item"><div class="triage-dot"></div><span data-i18n="contact.triage.t1"></span></div>
     <div class="triage-item"><div class="triage-dot"></div><span data-i18n="contact.triage.t2"></span></div>
@@ -97,7 +98,7 @@
   </div>
 
   <!-- Escalation path -->
-  <div class="section-label" data-i18n="contact.sections.escalation"></div>
+  <div class="skia-forge-hub__section-label" data-i18n="contact.sections.escalation"></div>
   <div class="escalation-list">
     <div class="esc-item"><div class="esc-num">1</div><div class="esc-text" data-i18n="contact.escalation.e1"></div></div>
     <div class="esc-item"><div class="esc-num">2</div><div class="esc-text" data-i18n="contact.escalation.e2"></div></div>
@@ -105,7 +106,7 @@
   </div>
 
   <!-- Contact Form -->
-  <div class="section-label" data-i18n="contact.sections.form"></div>
+  <div class="skia-forge-hub__section-label" data-i18n="contact.sections.form"></div>
   <div class="form-card">
     <div class="field">
       <input type="text" id="f-name" placeholder="" data-i18n-placeholder="contact.form.namePlaceholder" />
@@ -143,6 +144,7 @@
       <a href="/contact" data-i18n="common.footer.contactSupport"></a>
     </div>
   </footer>
+</div>
 </div>
 
 <script>

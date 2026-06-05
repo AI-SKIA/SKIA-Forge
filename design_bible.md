@@ -463,31 +463,38 @@ Doc slugs: `readme`, `quickstart`, `user-guide`, `developer-guide`, `operator-ma
 
 **Stylesheets (load order — every Context A HTML page):**
 
-1. `public/forge-premium-ui.css` — `@font-face`, type tokens, scrollbars, logo sizing, footer typography
+1. `public/forge-premium-ui.css` — `@font-face`, type tokens, scrollbars, footer typography
 2. `public/forge-lucide-icons.css` — stroke icons
-3. `public/forge-hub-design.css` — Context A layout, cards, forms, sidebar
-4. `public/forge-sidebar-locale.css` — globe locale switcher
-5. `public/forge-document-locale.js` + `public/forge-sidebar-locale.js` — i18n hydration
+3. `public/forge-crest-bullet.css` — SKIA Crest list bullets
+4. `public/forge-hub-design.css` — Context A layout, `.skia-forge-hub__*`, sidebar
+5. `public/forge-sidebar-locale.css` — globe locale switcher
+6. `public/forge-document-locale.js` + `public/forge-sidebar-locale.js` — i18n hydration
 
-**Content column (skia.ca parity target):**
+**Content column (skia.ca parity — Skia-FULL §6.1 inline shell):**
 
-| Property | skia.ca (`§6.1`) | Forge Web current | Target |
-|----------|------------------|-------------------|--------|
-| Max width | `800px` centered | `.wrap` **800px** ✔ | **800px** |
-| Padding | `40px` | `.wrap` **40px** top ✔ | skia.ca shell |
+| Property | skia.ca (`§6.1`) | Forge Web | Target |
+|----------|------------------|-----------|--------|
+| Shell delivery | `style={{ padding:"40px", maxWidth:"800px", margin:"0 auto", boxSizing:"border-box" }}` on `<main>` | **Same values inline on `.wrap`** ✔ | §6.1 shell inline |
+| Inner hub wrapper | `<div class="skia-forge-hub">` | `<div class="skia-forge-hub">` ✔ | Skia-FULL §14 |
+| Hub class family | `.skia-forge-hub__*` in `globals.css` | `.skia-forge-hub__*` in `forge-hub-design.css` ✔ | Shared BEM names |
+| Max width | `800px` centered | inline `max-width:800px` ✔ | **800px** |
+| Padding | `40px` | inline `padding:40px` ✔ | skia.ca shell |
 | Back control | In-column `PageShellBackButton` | `.back-btn` inside `.wrap` ✔ | In-column flow above logo |
+
+**Server routes (crest delivery):** `GET /forge-crest-bullet.css`, `GET /icons/*` in `src/server.ts`.
 
 **PC sidebar (`#pcSidebar`):**
 
 - Fixed left drawer, **260px** (Forge) — skia.ca PCSidebar is equivalent family
 - Logo: `/sidebar-logo.png` — **120px** wide via `.pc-sidebar-logo-img` ✔
-- Nav links: `.pc-sidebar-btn` — **15px** Agency FB uppercase ✔ (via `--skia-font-nav-size`)
+- Tagline: **`SKIA FORGE`** via `common.sidebar.tagline` (text, not baked into PNG)
+- Nav links: `.pc-sidebar-btn` — **15px** Agency FB uppercase, flex-centered ✔
 - Tab trigger: `.pc-sidebar-tab` — 36×72px gold-bordered pull tab with Lucide menu icon
 - Locale switcher: `.skia-lang-switcher` in sidebar footer — 12 langs
 
 **Hero logo:**
 
-- `.page-logo` / `.feature-page-logo` — **160px** wide (110px mobile), gold drop-shadow ✔ — matches skia.ca `.feature-page-logo`
+- `.skia-forge-hub__logo` — **120px** wide (matches skia.ca hub header; not 160px `.page-logo`)
 
 **Footer (`footer`, `.doc-footer`):**
 
@@ -780,7 +787,7 @@ Standalone help pages inside the app — Context B styling:
 | Scrollbars 8px gold on `html.skia-scrollbar-premium` | `forge-premium-ui.css` ✔ matches skia.ca |
 | Context B console Tier 3 panels | `forge-platform-console.css` |
 | Fonts self-hosted, no CDN | `forge-premium-ui.css` `@font-face` |
-| Static HTML external CSS only | `scripts/apply-forge-hub-design.mjs` |
+| Static HTML — §6.1 shell inline + `.skia-forge-hub__*` classes | `scripts/migrate-forge-shell-inline.mjs`, `scripts/migrate-forge-skia-hub-shell.mjs` ✔ |
 | List bullets — SKIA Crest SVG (12×12 / 18×18) | `public/forge-crest-bullet.css`, `public/icons/skia-crest-bullet.svg`, `scripts/check-forge-crest-bullets.mjs` ✔ |
 | **Forge IDE** | `skia-dark.css` — unchanged per §7 |
 
@@ -802,15 +809,18 @@ Enforcement: `node scripts/normalize-forge-font-sizes.mjs --check` (Forge Web on
 
 | Item | skia.ca | Forge Web |
 |------|---------|-----------|
-| Content max-width | 800px | `.wrap` **800px** ✔ |
-| Shell padding | `40px` | `.wrap` **40px** top ✔ |
+| Shell layout | §6.1 inline on `<main>` | §6.1 inline on `.wrap` ✔ |
+| Hub DOM | `.skia-forge-hub__*` | `.skia-forge-hub__*` ✔ |
+| Content max-width | 800px | inline `max-width:800px` ✔ |
+| Shell padding | `40px` | inline `padding:40px` ✔ |
 | Back button | In-column above content | `.back-btn` inside `.wrap` ✔ (`scripts/migrate-forge-back-btn.mjs`) |
 | Section labels on hub | `.skia-forge-hub__section-label` metadata 15px | `.section-label` 16px card title — acceptable or align to metadata uppercase |
 
 ### 12.4 Maintenance scripts
 
 - `node scripts/apply-forge-hub-design.mjs --check` — hub HTML links shared CSS + in-column back control
-- `node scripts/migrate-forge-back-btn.mjs --check` — back button inside `.wrap`
+- `node scripts/migrate-forge-shell-inline.mjs --check` — §6.1 shell inline on every `.wrap`
+- `node scripts/migrate-forge-skia-hub-shell.mjs --check` — `.skia-forge-hub__*` class parity
 - `npm run fonts:check` — only `"Agency FB"` / `"Centaur"` in Forge Web paths (IDE exempt)
 - `node scripts/normalize-forge-colors.mjs --check` — gold token drift in `public/`, `src/`
 - `node scripts/normalize-forge-font-sizes.mjs --check` — 15px floor / 38px ceiling on Forge Web
