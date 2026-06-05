@@ -22,12 +22,24 @@ const REQUIRED = [
   "public/icons/skia-crest-bullet.svg",
 ];
 
+const FORBIDDEN_IMPORT = [
+  { file: "public/forge-hub-design.css", pattern: /@import\s+url\(["']?\/forge-crest-bullet\.css["']?\)/ },
+];
+
 let failed = false;
 
 for (const rel of REQUIRED) {
   const full = path.join(root, rel);
   if (!fs.existsSync(full)) {
     console.error(`[check-forge-crest-bullets] missing required file: ${rel}`);
+    failed = true;
+  }
+}
+
+for (const { file, pattern } of FORBIDDEN_IMPORT) {
+  const full = path.join(root, file);
+  if (fs.existsSync(full) && pattern.test(fs.readFileSync(full, "utf8"))) {
+    console.error(`[check-forge-crest-bullets] use explicit <link> for crest CSS, not @import in ${file}`);
     failed = true;
   }
 }
@@ -45,7 +57,7 @@ for (const { file, pattern } of FORBIDDEN) {
 const crestCss = path.join(root, "public/forge-crest-bullet.css");
 if (fs.existsSync(crestCss)) {
   const text = fs.readFileSync(crestCss, "utf8");
-  if (!text.includes("SkiaCrestBulletIcon") || !text.includes("--skia-crest-bullet-svg")) {
+  if (!text.includes("skia-crest-bullet.svg") && !text.includes("SkiaCrestBulletIcon")) {
     console.error("[check-forge-crest-bullets] forge-crest-bullet.css missing crest SVG reference");
     failed = true;
   }

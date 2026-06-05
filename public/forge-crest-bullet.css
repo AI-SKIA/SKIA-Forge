@@ -1,6 +1,7 @@
 /**
  * SKIA Crest bullet — parity with Skia-FULL components/icons/SkiaCrestBulletIcon.tsx
- * Default 12×12; card-body copy rows 18×18 (Skia-FULL design_bible.md §4).
+ * Default 12×12; Tier 2 card-body rows 18×18 (Skia-FULL design_bible.md §4).
+ * Served at /forge-crest-bullet.css — must be linked from every Context A HTML page.
  */
 strong, b { font-weight: 400; }
 
@@ -8,7 +9,6 @@ strong, b { font-weight: 400; }
   --skia-crest-bullet-color: #d4af37;
   --skia-crest-bullet-size: 12px;
   --skia-crest-bullet-size-body: 18px;
-  --skia-crest-bullet-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M6 0.5 L10.5 2.5 V6.5 L6 11.5 L1.5 6.5 V2.5 Z' stroke='%23d4af37' stroke-width='1'/%3E%3Cpath d='M6 2.5 V9' stroke='%23d4af37' stroke-width='1'/%3E%3Crect x='5' y='5' width='2' height='2' fill='%23d4af37'/%3E%3C/svg%3E");
 }
 
 /* Explicit crest row — matches Skia-FULL .skia-crest-bullet-row */
@@ -46,14 +46,17 @@ strong, b { font-weight: 400; }
   flex-shrink: 0;
 }
 
-/* Legacy empty div markers → crest (locale HTML, hub pages) */
+/* Legacy empty div markers → crest SVG (locale HTML, hub pages) */
 .item-dot,
-.triage-dot,
 .kc-bullet,
-.check-box {
+.triage-dot,
+.check-box,
+.check-item .check-icon {
+  display: block;
   border-radius: 0;
+  border: none;
   background-color: transparent;
-  background-image: var(--skia-crest-bullet-svg);
+  background-image: url("/icons/skia-crest-bullet.svg");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center top;
@@ -66,29 +69,17 @@ strong, b { font-weight: 400; }
   margin-top: 3px;
 }
 
+/* Tier 2 doc/hub list rows — 18×18 card-body crest (Skia-FULL §4) */
+.item .item-dot,
 .kc-bullet,
 .triage-dot,
-.check-box {
-  width: var(--skia-crest-bullet-size-body);
-  height: var(--skia-crest-bullet-size-body);
-  margin-top: 3px;
-}
-
-/* Replace Lucide checklist icons with crest on security / doc checklists */
+.check-box,
 .check-item .check-icon {
   width: var(--skia-crest-bullet-size-body);
   height: var(--skia-crest-bullet-size-body);
   margin-top: 3px;
-  background-image: var(--skia-crest-bullet-svg);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center top;
 }
 
 .check-item .check-icon svg {
   display: none;
-}
-
-.check-box {
-  border: none;
 }

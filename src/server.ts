@@ -1329,6 +1329,11 @@ app.get("/forge-hub-design.css", (_req, res) => {
   res.sendFile(path.join(projectRoot, "public", "forge-hub-design.css"));
 });
 
+app.get("/forge-crest-bullet.css", (_req, res) => {
+  res.type("text/css");
+  res.sendFile(path.join(projectRoot, "public", "forge-crest-bullet.css"));
+});
+
 app.get("/forge-platform-console.css", (_req, res) => {
   res.type("text/css");
   res.sendFile(path.join(projectRoot, "public", "forge-platform-console.css"));
@@ -1366,6 +1371,7 @@ app.get("/forge-skia-sso.js", (_req, res) => {
 
 app.use("/locales", express.static(path.join(projectRoot, "public", "locales")));
 app.use("/fonts", express.static(path.join(projectRoot, "public", "fonts")));
+app.use("/icons", express.static(path.join(projectRoot, "public", "icons")));
 
 /** Hub + docs sidebar and hero logo (`public/*.html`, `public/docs/*.html`) */
 app.get("/sidebar-logo.png", (_req, res) => {

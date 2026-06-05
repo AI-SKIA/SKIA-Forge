@@ -1,9 +1,8 @@
 /**
  * SKIA Forge — Context A hub + documentation (design_bible.md §6).
  * Load after forge-premium-ui.css on all public/*.html and public/docs/*.html.
+ * Crest bullets: forge-crest-bullet.css (linked explicitly — not @import; server must serve the file).
  */
-@import url("/forge-crest-bullet.css");
-
 strong, b { font-weight: 400; }
 
 :root {
@@ -60,6 +59,8 @@ body[data-forge-i18n-page]:not([data-forge-i18n-page="forge-platform"]) {
   min-height: 100vh;
   letter-spacing: 0.01em;
   line-height: 1.6;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -130,12 +131,14 @@ button, .btn, .title, .heading, .label, .badge {
 
 .pc-sidebar-logo-tagline {
   font-family: "Agency FB";
-  font-size: var(--skia-font-metadata-size);
+  font-size: var(--skia-font-nav-size);
   font-weight: 400;
   color: var(--skia-gold-text);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   margin-top: 8px;
   text-transform: uppercase;
+  text-align: center;
+  width: 100%;
 }
 
 .pc-sidebar-divider {
@@ -147,13 +150,17 @@ button, .btn, .title, .heading, .label, .badge {
 .pc-sidebar-nav {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  padding: 8px 12px;
+  gap: 4px;
+  padding: 8px 20px;
+  align-items: stretch;
 }
 
 .pc-sidebar-btn {
-  display: block;
-  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 9px 20px;
   border-radius: 6px;
   color: var(--skia-gold-text);
   text-decoration: none;
@@ -162,8 +169,11 @@ button, .btn, .title, .heading, .label, .badge {
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  transition: background 0.15s, color 0.15s;
+  text-align: center;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
   border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
 }
 
 .pc-sidebar-btn:hover {
@@ -206,24 +216,43 @@ button.back-btn {
   cursor: pointer;
 }
 
-/* ── Layout ── */
+/* ── Layout — centered content column (Skia-FULL §14 / DocEmbedShell 800px) ── */
 .wrap {
+  width: 100%;
   max-width: 800px;
-  margin: 0 auto;
+  margin-inline: auto;
   padding: 40px 24px 80px;
+  box-sizing: border-box;
 }
 
-.wrap--wide { max-width: 1080px; }
-.wrap--medium { max-width: 860px; }
-.wrap--narrow { max-width: 760px; }
+.wrap--wide,
+.wrap--medium,
+.wrap--narrow {
+  max-width: 800px;
+}
 
 .page-header,
-.feature-page-header {
+.feature-page-header,
+.doc-header,
+.hub-header {
   text-align: center;
   margin-bottom: 36px;
 }
 
+.hub-header .page-header,
+.hub-header .feature-page-header {
+  margin-bottom: 0;
+}
+
 .feature-page-header { margin-top: 24px; margin-bottom: 8px; }
+
+.doc-header {
+  margin-bottom: 36px;
+}
+
+.doc-header .doc-divider {
+  margin-bottom: 0;
+}
 
 .page-title,
 .doc-title {
@@ -235,6 +264,8 @@ button.back-btn {
   color: var(--skia-gold-full);
   line-height: 1.15;
   margin-bottom: 12px;
+  text-align: center;
+  width: 100%;
 }
 
 .page-subtitle,
@@ -246,11 +277,15 @@ button.back-btn {
   letter-spacing: 0.05em;
   line-height: 1.7;
   max-width: 560px;
-  margin: 0 auto;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .doc-badge {
-  display: inline-block;
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  margin-inline: auto;
   font-family: "Agency FB";
   font-size: var(--skia-font-metadata-size);
   font-weight: 400;
@@ -261,13 +296,16 @@ button.back-btn {
   border-radius: 4px;
   padding: 3px 10px;
   margin-bottom: 18px;
+  text-align: center;
 }
 
 .doc-divider {
   height: 1px;
   background: linear-gradient(90deg, var(--skia-gold-full) 0%, transparent 100%);
-  margin-bottom: 36px;
+  margin: 24px auto 0;
   opacity: 0.35;
+  width: 100%;
+  max-width: 480px;
 }
 
 .section-label,
@@ -283,7 +321,7 @@ button.back-btn {
   border-bottom: 1px solid var(--skia-gold-border-strong);
 }
 
-.section { margin-bottom: 36px; }
+.section { margin-bottom: 36px; width: 100%; }
 
 .section-body {
   font-family: "Centaur";
@@ -291,6 +329,7 @@ button.back-btn {
   font-weight: 400;
   color: var(--skia-prose);
   line-height: 1.75;
+  width: 100%;
 }
 
 .section-block { margin-bottom: 40px; }

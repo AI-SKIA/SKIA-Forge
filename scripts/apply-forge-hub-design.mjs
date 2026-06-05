@@ -27,6 +27,7 @@ const WRAP_CLASS = {
 };
 
 const CSS_BLOCK = `  <link rel="stylesheet" href="/forge-premium-ui.css" />
+  <link rel="stylesheet" href="/forge-crest-bullet.css" />
   <link rel="stylesheet" href="/forge-hub-design.css" />`;
 
 function collectHtmlFiles(dir, acc = []) {
@@ -46,11 +47,19 @@ function ensureCssLinks(html) {
   let out = html;
   if (!out.includes("/forge-premium-ui.css")) {
     out = out.replace(/<\/head>/i, `${CSS_BLOCK}\n</head>`);
-  } else if (!out.includes("/forge-hub-design.css")) {
-    out = out.replace(
-      /(<link rel="stylesheet" href="\/forge-premium-ui\.css" \/>)/,
-      `$1\n  <link rel="stylesheet" href="/forge-hub-design.css" />`,
-    );
+  } else {
+    if (!out.includes("/forge-crest-bullet.css")) {
+      out = out.replace(
+        /(<link rel="stylesheet" href="\/forge-premium-ui\.css" \/>)/,
+        `$1\n  <link rel="stylesheet" href="/forge-crest-bullet.css" />`,
+      );
+    }
+    if (!out.includes("/forge-hub-design.css")) {
+      out = out.replace(
+        /(<link rel="stylesheet" href="\/forge-premium-ui\.css" \/>)/,
+        `$1\n  <link rel="stylesheet" href="/forge-hub-design.css" />`,
+      );
+    }
   }
   return out;
 }

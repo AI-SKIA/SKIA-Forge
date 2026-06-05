@@ -166,7 +166,7 @@ html {
 .download-web-text {
     display: block;
     width: 100%;
-    max-width: 980px;
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
     text-align: center !important;
@@ -175,7 +175,7 @@ html {
 .download-instructions,
 .download-instruction-row {
     width: 100%;
-    max-width: 980px;
+    max-width: 100%;
     margin-left: auto;
     margin-right: auto;
 }
