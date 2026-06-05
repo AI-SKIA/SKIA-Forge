@@ -35,6 +35,10 @@ const REPLACEMENT_REGEX = [
   { re: /<div\s+class\s*=\s*'kc-bullet'\s*>\s*<\/div>/g, to: CREST_MARKUP_18 },
 ];
 
+/** Security checklist — Lucide shield → SKIA Crest (design_bible.md §4) */
+const CHECK_ITEM_LUCIDE_RE =
+  /<div class="check-icon skia-li skia-li--check" aria-hidden="true"><svg[\s\S]*?<\/svg><\/div>/g;
+
 /** Upgrade legacy 12×12 .item-crest in Tier 2 rows → 18×18 card-body markup */
 const UPGRADE_ITEM_CREST_RES = [
   {
@@ -90,6 +94,11 @@ function patchText(text) {
       count += matches.length;
       out = out.replace(re, to);
     }
+  }
+  const lucideMatches = out.match(CHECK_ITEM_LUCIDE_RE);
+  if (lucideMatches) {
+    count += lucideMatches.length;
+    out = out.replace(CHECK_ITEM_LUCIDE_RE, CREST_MARKUP_18);
   }
   return { text: out, count };
 }

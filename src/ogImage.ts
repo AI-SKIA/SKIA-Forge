@@ -33,7 +33,7 @@ export function renderOgImageSvg(): string {
   <rect x="0" y="282" width="1200" height="1.5" fill="url(#line)"/>
 
   <text x="600" y="208" text-anchor="middle" fill="#d4af37" font-family="Centaur" font-size="76" font-weight="400" letter-spacing="8">SKIA FORGE</text>
-  <text x="600" y="256" text-anchor="middle" fill="#d4af37" font-family="Centaur" font-size="36" font-style="italic" filter="url(#softGlow)">She Knows It All</text>
+  <text x="600" y="256" text-anchor="middle" fill="#d4af37" font-family="Agency FB" font-size="32" font-weight="500" letter-spacing="4" filter="url(#softGlow)">SKIA FORGE IDE</text>
 
   <text x="600" y="352" text-anchor="middle" fill="#d4af37" font-family="Centaur" font-size="34" font-weight="400" letter-spacing="1.2">
     The Sovereign AI Coding Platform

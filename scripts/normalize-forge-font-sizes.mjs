@@ -28,7 +28,8 @@ const DESIGN_CSS_FILES = new Set([
   'public/forge-lucide-icons.css',
   'public/forge-crest-bullet.css',
 ]);
-const EXTS = new Set(['.css', '.tsx', '.ts', '.jsx', '.js', '.html']);
+const EXTS = new Set(['.css', '.tsx', '.ts', '.jsx', '.js', '.html', '.json']);
+const LOCALE_JSON_RE = /^public\/locales\/[^/]+\/docs\.json$/;
 
 const SIZE_RE = /font-size:\s*(\d+(?:\.\d+)?)px/g;
 const ICON_CONTEXT_RE = /globe-svg|skia-crest|item-dot|triage-dot|kc-bullet|check-box|pc-sidebar-tab-icon|skia-li|caret|opacity:\s*0\./i;
@@ -38,6 +39,7 @@ function shouldSkipFile(rel) {
   if (norm.includes('types/skia-reference')) return true;
   if (norm.includes('skia-ide/')) return true;
   if (DESIGN_CSS_FILES.has(norm)) return true;
+  if (norm.endsWith('.json') && !LOCALE_JSON_RE.test(norm)) return true;
   return SKIP_FILE_PATTERNS.some((p) => p.test(norm));
 }
 
@@ -91,6 +93,7 @@ if (CHECK) {
     changed.forEach((f) => console.error(`  - ${f}`));
     console.error('');
     console.error(`Fix locally: node scripts/normalize-forge-font-sizes.mjs`);
+    console.error(`Locale JSON HTML: node scripts/fix-forge-locale-font-sizes.mjs`);
     process.exit(1);
   }
   process.exit(0);

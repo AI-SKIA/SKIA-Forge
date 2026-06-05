@@ -844,7 +844,8 @@ Enforcement: `node scripts/normalize-forge-font-sizes.mjs --check` (Forge Web on
 - `npm run fonts:check` — only `"Agency FB"` / `"Centaur"` in Forge Web paths (IDE exempt)
 - `node scripts/normalize-forge-colors.mjs --check` — gold token drift in `public/`, `src/`
 - `node scripts/normalize-forge-font-sizes.mjs --check` — 15px floor / 38px ceiling on Forge Web
-- `node scripts/fix-forge-crest-bullets.mjs --check` — bullets use inline SKIA Crest SVG, not empty placeholders
+- `node scripts/fix-forge-locale-font-sizes.mjs --check` — 15px floor in locale `docs.json` HTML strings
+- `node scripts/fix-forge-crest-bullets.mjs --check` — bullets use inline SKIA Crest SVG, not empty placeholders or Lucide on `.check-item`
 - `node scripts/check-forge-crest-bullets.mjs` — crest CSS + no legacy gold-dot / empty bullet divs
 
 ---

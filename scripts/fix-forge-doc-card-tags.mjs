@@ -30,6 +30,7 @@ const DOC_SLUG_TO_CARD = {
 const FILENAME_BODY_RES = [
   /<div class=['"]card-body['"] style=['"]color:var\(--gold-muted\);font-size:11px;letter-spacing:0\.05em['"]>[A-Za-z_]+\.(?:html|md)<\/div>/gi,
   /<div class=['"]card-body['"] style=[\u201c\u201d"]color:var\(--gold-muted\);font-size:11px;letter-spacing:0\.05em[\u201c\u201d"]>[A-Za-z_]+\.(?:html|md)<\/div>/gi,
+  /<div class=['"]card-body['"] style=['"]color:var\(--gold-muted\);font-size:11px;letter-spacing:0\.05em['"]>[^<]+<\/div>/gi,
   /<div class=['"]card-body['"][^>]*>[A-Za-z_]+\.(?:html|md)<\/div>/gi,
 ];
 
@@ -136,7 +137,7 @@ if (checkOnly) {
     const docsPath = path.join(localesDir, locale, "docs.json");
     if (!fs.existsSync(docsPath)) continue;
     const text = fs.readFileSync(docsPath, "utf8");
-    if (/card-body[^>]*>[A-Za-z_]+\.(html|md)</.test(text)) {
+    if (/card-body[^>]*font-size:11px/.test(text)) {
       leak.push(locale);
     }
   }

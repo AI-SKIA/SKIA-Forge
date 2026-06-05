@@ -35,6 +35,7 @@ const FORBIDDEN_PLACEHOLDERS = [
 
 const FORBIDDEN_LEGACY_12_ITEM = /<span class="item-crest" aria-hidden="true"><svg width="12"/;
 const FORBIDDEN_LEGACY_12_ITEM_ESC = /<span class=\\"item-crest\\" aria-hidden=\\"true\\"><svg width=\\"12\\"/;
+const FORBIDDEN_CHECK_ITEM_LUCIDE = /<div class="check-item">[\s\S]*?<div class="check-icon skia-li/;
 
 const FORBIDDEN_PLACEHOLDER_RES = [
   /<div\s+class\s*=\s*["']item-dot["']\s*>\s*<\/div>/,
@@ -109,6 +110,10 @@ for (const filePath of collectFiles(path.join(root, "public"))) {
   }
   if (!failed && (FORBIDDEN_LEGACY_12_ITEM.test(text) || FORBIDDEN_LEGACY_12_ITEM_ESC.test(text))) {
     console.error(`[check-forge-crest-bullets] Tier 2 .item row still uses 12×12 crest — run fix-forge-crest-bullets.mjs (${path.relative(root, filePath)})`);
+    failed = true;
+  }
+  if (!failed && FORBIDDEN_CHECK_ITEM_LUCIDE.test(text)) {
+    console.error(`[check-forge-crest-bullets] .check-item uses Lucide icon — run fix-forge-crest-bullets.mjs (${path.relative(root, filePath)})`);
     failed = true;
   }
 }
