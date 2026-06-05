@@ -3,11 +3,11 @@
     "documentTitle": "SKIA FORGE"
   },
   "sidebar": {
-    "tagline": "SKIA FORGE"
+    "tagline": "SKIA FORGE IDE"
   },
   "nav": {
-    "forgeHome": "Forge الرئيسية",
-    "product": "Forge Web",
+    "forgeHome": "SKIA Forge Home",
+    "product": "SKIA Forge Web",
     "resources": "موارد",
     "security": "حماية",
     "contactSupport": "الاتصال والدعم",

@@ -416,9 +416,10 @@ Matches Skia-FULL `globals.css` lines 112–133. Implemented in `public/forge-pr
 
 ### Documentation bullets (Forge Web — Skia-FULL §4)
 
-- **Default list bullets:** SKIA Crest SVG (**12×12**, `#d4af37`) — `.item-dot` via `public/forge-crest-bullet.css` ✔
-- **Card-body crest rows** (**18×18**) — `.kc-bullet`, `.triage-dot`, `.check-box`, `.check-icon` + `.skia-crest-bullet-icon--body` ✔
-- **Canonical asset:** `public/icons/skia-crest-bullet.svg` (paths from Skia-FULL `SkiaCrestBulletIcon.tsx`)
+- **Default list bullets:** SKIA Crest SVG (**12×12**, `#d4af37`) — inline `.item-crest` SVG in locale HTML (matches skia.ca doc-embed) ✔
+- **Card-body crest rows** (**18×18**) — `.item-crest--body`, `.kc-bullet`→inline, `.triage-dot`→inline, `.check-box`→inline ✔
+- **Canonical asset:** `public/icons/skia-crest-bullet.svg` + inline paths from Skia-FULL `SkiaCrestBulletIcon.tsx`
+- **Migration:** `node scripts/fix-forge-crest-bullets.mjs` — replaces empty `.item-dot` placeholders with inline crest SVG
 - **Row layout:** `.skia-crest-bullet-row` grid (22px icon column) for new copy blocks
 - No emoji, no unicode bullets, no hyphens as bullets in customer-facing copy
 
@@ -487,7 +488,7 @@ Doc slugs: `readme`, `quickstart`, `user-guide`, `developer-guide`, `operator-ma
 
 - Fixed left drawer, **260px** (Forge) — skia.ca PCSidebar is equivalent family
 - Logo: `/sidebar-logo.png` — **120px** wide via `.pc-sidebar-logo-img` ✔
-- Tagline: **`SKIA FORGE`** via `common.sidebar.tagline` (text, not baked into PNG)
+- Tagline: **`SKIA FORGE IDE`** via `common.sidebar.tagline` (text, not baked into PNG)
 - Nav links: `.pc-sidebar-btn` — **15px** Agency FB uppercase, flex-centered ✔
 - Tab trigger: `.pc-sidebar-tab` — 36×72px gold-bordered pull tab with Lucide menu icon
 - Locale switcher: `.skia-lang-switcher` in sidebar footer — 12 langs
@@ -824,7 +825,8 @@ Enforcement: `node scripts/normalize-forge-font-sizes.mjs --check` (Forge Web on
 - `npm run fonts:check` — only `"Agency FB"` / `"Centaur"` in Forge Web paths (IDE exempt)
 - `node scripts/normalize-forge-colors.mjs --check` — gold token drift in `public/`, `src/`
 - `node scripts/normalize-forge-font-sizes.mjs --check` — 15px floor / 38px ceiling on Forge Web
-- `node scripts/check-forge-crest-bullets.mjs` — bullets use SKIA Crest SVG, not gold dots
+- `node scripts/fix-forge-crest-bullets.mjs --check` — bullets use inline SKIA Crest SVG, not empty placeholders
+- `node scripts/check-forge-crest-bullets.mjs` — crest CSS + no legacy gold-dot / empty bullet divs
 
 ---
 

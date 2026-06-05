@@ -26,6 +26,20 @@ const FORBIDDEN_IMPORT = [
   { file: "public/forge-hub-design.css", pattern: /@import\s+url\(["']?\/forge-crest-bullet\.css["']?\)/ },
 ];
 
+const FORBIDDEN_PLACEHOLDERS = [
+  '<div class="item-dot"></div>',
+  '<div class="check-box"></div>',
+  '<div class="triage-dot"></div>',
+  '<div class="kc-bullet"></div>',
+];
+
+const FORBIDDEN_PLACEHOLDER_RES = [
+  /<div\s+class\s*=\s*["']item-dot["']\s*>\s*<\/div>/,
+  /<div\s+class\s*=\s*["']check-box["']\s*>\s*<\/div>/,
+  /<div\s+class\s*=\s*["']triage-dot["']\s*>\s*<\/div>/,
+  /<div\s+class\s*=\s*["']kc-bullet["']\s*>\s*<\/div>/,
+];
+
 let failed = false;
 
 for (const rel of REQUIRED) {
@@ -57,9 +71,38 @@ for (const { file, pattern } of FORBIDDEN) {
 const crestCss = path.join(root, "public/forge-crest-bullet.css");
 if (fs.existsSync(crestCss)) {
   const text = fs.readFileSync(crestCss, "utf8");
-  if (!text.includes("skia-crest-bullet.svg") && !text.includes("SkiaCrestBulletIcon")) {
-    console.error("[check-forge-crest-bullets] forge-crest-bullet.css missing crest SVG reference");
+  if (!text.includes("item-crest") && !text.includes("skia-crest-bullet.svg")) {
+    console.error("[check-forge-crest-bullets] forge-crest-bullet.css missing crest rules");
     failed = true;
+  }
+}
+
+function collectFiles(dir, acc = []) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) collectFiles(full, acc);
+    else if (entry.name.endsWith(".html") || entry.name === "docs.json") acc.push(full);
+  }
+  return acc;
+}
+
+for (const filePath of collectFiles(path.join(root, "public"))) {
+  const text = fs.readFileSync(filePath, "utf8");
+  for (const placeholder of FORBIDDEN_PLACEHOLDERS) {
+    if (text.includes(placeholder)) {
+      console.error(`[check-forge-crest-bullets] empty bullet placeholder in ${path.relative(root, filePath)}`);
+      failed = true;
+      break;
+    }
+  }
+  if (!failed) {
+    for (const re of FORBIDDEN_PLACEHOLDER_RES) {
+      if (re.test(text)) {
+        console.error(`[check-forge-crest-bullets] empty bullet placeholder in ${path.relative(root, filePath)}`);
+        failed = true;
+        break;
+      }
+    }
   }
 }
 

@@ -3,11 +3,11 @@
     "documentTitle": "SKIA FORGE"
   },
   "sidebar": {
-    "tagline": "SKIA FORGE"
+    "tagline": "SKIA FORGE IDE"
   },
   "nav": {
-    "forgeHome": "Início Forge",
-    "product": "Forge Web",
+    "forgeHome": "SKIA Forge Home",
+    "product": "SKIA Forge Web",
     "resources": "Recursos",
     "security": "Segurança",
     "contactSupport": "Contato e suporte",

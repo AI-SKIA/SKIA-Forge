@@ -1,7 +1,6 @@
 /**
- * SKIA Crest bullet — parity with Skia-FULL components/icons/SkiaCrestBulletIcon.tsx
- * Default 12×12; Tier 2 card-body rows 18×18 (Skia-FULL design_bible.md §4).
- * Served at /forge-crest-bullet.css — must be linked from every Context A HTML page.
+ * SKIA Crest bullet — parity with Skia-FULL SkiaCrestBulletIcon.tsx + doc-embed .item-crest inline SVG.
+ * Default 12×12 list rows; Tier 2 card-body rows 18×18 (Skia-FULL design_bible.md §4).
  */
 strong, b { font-weight: 400; }
 
@@ -9,6 +8,23 @@ strong, b { font-weight: 400; }
   --skia-crest-bullet-color: #d4af37;
   --skia-crest-bullet-size: 12px;
   --skia-crest-bullet-size-body: 18px;
+}
+
+/* Inline SVG crest — canonical (matches skia.ca doc-embed) */
+.item-crest {
+  flex-shrink: 0;
+  margin-top: 2px;
+  line-height: 0;
+  display: inline-flex;
+  align-items: flex-start;
+}
+
+.item-crest svg {
+  display: block;
+}
+
+.item-crest--body {
+  margin-top: 3px;
 }
 
 /* Explicit crest row — matches Skia-FULL .skia-crest-bullet-row */
@@ -46,12 +62,12 @@ strong, b { font-weight: 400; }
   flex-shrink: 0;
 }
 
-/* Legacy empty div markers → crest SVG (locale HTML, hub pages) */
+/* Legacy empty div markers — background fallback if any remain */
 .item-dot,
 .kc-bullet,
 .triage-dot,
 .check-box,
-.check-item .check-icon {
+.check-item .check-icon:empty {
   display: block;
   border-radius: 0;
   border: none;
@@ -69,12 +85,10 @@ strong, b { font-weight: 400; }
   margin-top: 3px;
 }
 
-/* Tier 2 doc/hub list rows — 18×18 card-body crest (Skia-FULL §4) */
 .item .item-dot,
 .kc-bullet,
 .triage-dot,
-.check-box,
-.check-item .check-icon {
+.check-box {
   width: var(--skia-crest-bullet-size-body);
   height: var(--skia-crest-bullet-size-body);
   margin-top: 3px;
