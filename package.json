@@ -17,6 +17,7 @@
     "locales:maintain": "node scripts/apply-maintainer-translations.mjs",
     "locales:sync": "npm run locales:restore-tokens && npm run locales:propagate && npm run locales:maintain && npm run locales:validate",
     "fonts:check": "node scripts/normalize-forge-font-families.mjs --check",
+    "hub-shell:check": "node scripts/check-forge-hub-shell.mjs",
     "prepare": "husky"
   },
   "repository": {

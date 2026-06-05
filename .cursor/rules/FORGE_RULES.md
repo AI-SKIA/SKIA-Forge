@@ -442,7 +442,7 @@ Before opening a PR:
 4. **Copy:** no forbidden internal vocabulary in customer layers?
 5. **Tests:** `npm run preflight` passes (lint + build + test)?
 6. **Cross-repo:** Skia-FULL / Skia-Status impact assessed? Hub nav/footer parity with skia.ca if forge-web marketing changed?
-7. **forge-web layout (if CSS/HTML touched):** spot-check **390px, 768px, 1280px, 1920px** — mobile browser is a real surface (sidebar hides ≤680px).
+7. **forge-web layout (if CSS/HTML touched):** spot-check **1280px and 1920px** desktop viewports — Forge Web has **no mobile layout track** (see `design_bible.md` §3); download CTA hide on mobile UA is script-only.
 8. **Client routing (if `forgePlatformUi.ts` / `chatUi.ts` touched):** no cross-origin or internal-host fetches in browser bundles — **§7.1**.
 
 ## 13. Task closure checklist (agents)

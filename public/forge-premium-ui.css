@@ -2,8 +2,7 @@ strong, b { font-weight: 400; }
 /**
  * SKIA Forge — gold scrollbars + shared hub logo sizing.
  * Scrollbars match SKIA platform globals (.skia-scrollbar-premium).
- * Hero logos match SKIA dashboard / feature pages (.feature-page-logo in app.css;
- * mobile overrides in mobile.css).
+ * Hero logos — 170px (matches skia.ca §3 page logos; sidebar logo stays 120px).
  */
 
 /* Brand fonts (self-hosted; served at /fonts/*) — matches Skia-FULL styles/skia-brand-fonts.css */
@@ -115,7 +114,7 @@ html.skia-scrollbar-premium::-webkit-scrollbar-thumb:hover {
     background: rgba(212, 175, 55, 0.85);
 }
 
-/* Sidebar logo — show full logo, no circle crop */
+/* Sidebar logo — nav drawer only; do not change when hub hero logos update */
 .pc-sidebar-logo-img {
     width: 120px;
     height: auto;
@@ -128,24 +127,13 @@ html.skia-scrollbar-premium::-webkit-scrollbar-thumb:hover {
 .page-logo,
 .feature-page-logo {
     display: block;
-    width: 160px;
-    max-width: min(160px, 92vw);
+    width: 170px;
     height: auto;
     object-fit: contain;
     border-radius: 0;
     filter: drop-shadow(0 0 24px rgba(212, 175, 55, 0.4)) drop-shadow(0 0 48px rgba(212, 175, 55, 0.15));
     margin: 0 auto 16px;
     flex-shrink: 0;
-}
-
-@media (max-width: 768px) {
-    .page-logo,
-    .feature-page-logo {
-        width: 110px;
-        max-width: min(110px, 88vw);
-        margin: 0 auto 12px;
-        filter: drop-shadow(0 0 16px rgba(212, 175, 55, 0.4));
-    }
 }
 
 /* ── Forge web layout (all 17 HTML pages, every locale) ───────────────────── */

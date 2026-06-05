@@ -51,7 +51,9 @@ html { scroll-behavior: smooth; }
 
 body.forge-context-a,
 body[data-forge-i18n-page]:not([data-forge-i18n-page="forge-platform"]) {
-  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255, 180, 0, 0.07) 0%, transparent 65%), var(--skia-page-bg);
+  /* Outer frame — warm lighter brown (matches skia.ca .skia-hub-shell) */
+  background-color: #120c08;
+  background-image: linear-gradient(180deg, rgba(255, 180, 0, 0.05) 0%, transparent 42%);
   color: var(--skia-gold-full);
   font-family: "Centaur";
   font-size: var(--skia-font-body-size);
@@ -61,6 +63,17 @@ body[data-forge-i18n-page]:not([data-forge-i18n-page="forge-platform"]) {
   line-height: 1.6;
   width: 100%;
   overflow-x: hidden;
+  position: relative;
+}
+
+body.forge-context-a::before,
+body[data-forge-i18n-page]:not([data-forge-i18n-page="forge-platform"])::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse 82% 62% at 50% 0%, rgba(255, 180, 0, 0.07) 0%, transparent 72%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -220,8 +233,15 @@ button.back-btn {
    style="padding:40px;max-width:800px;margin:0 auto;box-sizing:border-box;width:100%;"
    enforced by scripts/migrate-forge-shell-inline.mjs */
 .wrap {
+  position: relative;
+  z-index: 1;
   width: 100%;
   padding-bottom: 48px;
+  /* Inner content column — darker manuscript surface (matches skia.ca .hub-feature-main) */
+  background: linear-gradient(180deg, #040302 0%, #080400 42%, #050301 100%);
+  box-shadow:
+    inset 1px 0 0 rgba(212, 175, 55, 0.14),
+    inset -1px 0 0 rgba(212, 175, 55, 0.14);
 }
 
 .wrap--wide,
@@ -251,8 +271,7 @@ button.back-btn {
 
 .skia-forge-hub__logo {
   display: block;
-  width: 120px;
-  max-width: min(120px, 92vw);
+  width: 170px;
   height: auto;
   object-fit: contain;
   border-radius: 0;
@@ -1167,16 +1186,3 @@ footer,
 
 .footer-links .sep,
 .doc-footer .links .sep { color: var(--skia-gold-text); }
-
-@media (max-width: 680px) {
-  .wrap { padding: 32px 16px 48px; }
-  .page-title,
-  .doc-title { font-size: 28px; }
-  .check-grid,
-  .checklist,
-  .pkg-grid,
-  .triage-grid { grid-template-columns: 1fr; }
-  .pc-sidebar,
-  .pc-sidebar-tab,
-  .pc-sidebar-backdrop { display: none !important; }
-}

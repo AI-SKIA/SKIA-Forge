@@ -1,6 +1,6 @@
 # SKIA FORGE DESIGN BIBLE — ROOT AUTHORITY
 
-**Version 2.2 — Sovereign Forge spec — 2026-06-05**
+**Version 2.3 — Hub shell + logo parity with skia.ca — 2026-06-05**
 
 This file is the **sole design law** for **SKIA-Forge** (`forge.skia.ca`, Forge IDE).
 
@@ -35,8 +35,8 @@ Forge ships **two user-facing surfaces**. Every UI change must declare which sur
 
 **Platform notes (Forge Web only):**
 
-- **Desktop browser:** hub sidebar, locale switcher, **DOWNLOAD APP** CTA visible where applicable.
-- **Mobile browser:** same pages; **DOWNLOAD APP hidden** (user is already on web). No native mobile Forge app in this repo.
+- **Desktop browser:** sole layout target for Forge Web CSS and this bible — **no `mobile.css` / mobile shell variant** (unlike skia.ca). Hub shell, logos, and backgrounds are one desktop spec.
+- **DOWNLOAD APP** CTA: visible on desktop forge-web; hidden via client script when UA is mobile or surface is Forge IDE (behavior only — not a separate mobile design track).
 - **Forge IDE:** no download CTAs (user already has the app).
 
 **Equivalent hub routes (same brand shell, different domains):**
@@ -250,15 +250,51 @@ Forbidden: `#ffd700`, `#ffcc33`, `#f1c232`, `#e6b800`, `#F59E0B`, any Tailwind y
 
 #### Context A — Hub / Content Pages (Forge Web)
 
-Warm dark brown. Open layout, hero elements, browsable content, documentation.
+Warm dark brown — **Resources two-layer shell** (matches skia.ca §14 hub shell). Open layout, hero elements, browsable content, documentation.
 
-| Value | Token | Forge Web pages |
-|-------|-------|-----------------|
-| `#080400` | `--skia-page-bg` | `platform-downloads.html`, `resources.html`, `security.html`, `contact.html`, all `public/docs/*.html` (14 doc slugs) |
+| Value | Token | Role |
+|-------|-------|------|
+| `#120c08` | — | **Outer frame** — body background beside sidebar / side margins |
+| `#080400` | `--skia-page-bg` | **Inner column** — manuscript surface inside `.wrap` |
+| `#040302` → `#050301` | — | Inner column gradient endpoints (`forge-hub-design.css`) |
 
-Optional ambient radial highlight on body (current implementation):
+| Forge Web pages | Context |
+|-----------------|---------|
+| `platform-downloads.html`, `resources.html`, `security.html`, `contact.html`, all `public/docs/*.html` (14 doc slugs) | A two-layer |
 
-`radial-gradient(ellipse 80% 50% at 50% 0%, rgba(255,180,0,0.07) 0%, transparent 65%)` over `#080400`.
+#### Hub shell — two-layer background (canonical Context A — matches skia.ca §3 / §14)
+
+**Canonical reference:** `public/resources.html` + `public/forge-hub-design.css`.  
+**skia.ca equivalent:** `Skia-FULL/design_bible.md` §3 hub shell + §14; `frontend/app.css` `.skia-hub-shell`.
+
+Every Context A Forge Web page uses the **Resources two-layer look** — not a single flat `#080400` fill on `body`.
+
+| Layer | Selector | Spec | Purpose |
+|-------|----------|------|---------|
+| **Outer frame** | `body.forge-context-a` | `background-color: #120c08`; `linear-gradient(180deg, rgba(255,180,0,0.05) 0%, transparent 42%)` | Warm lighter brown in side margins |
+| **Outer vignette** | `body.forge-context-a::before` | `radial-gradient(ellipse 82% 62% at 50% 0%, rgba(255,180,0,0.07) 0%, transparent 72%)` | Fixed gold wash — `pointer-events: none` |
+| **Inner column** | `.wrap` (§6.1 inline shell) | `linear-gradient(180deg, #040302 0%, #080400 42%, #050301 100%)`; gold inset side shadows; inline `max-width: 800px` | Scroll + content column |
+| **Hub content** | `.skia-forge-hub` | `max-width: 860px`; BEM doc/hub blocks | Same class family as skia.ca |
+
+**Required DOM (Context A HTML):**
+
+```
+body.forge-context-a
+├── #pcSidebar … (drawer — does not affect column background)
+└── div.wrap  style="padding:40px;max-width:800px;margin:0 auto;box-sizing:border-box;width:100%;"
+    ├── .back-btn (in-column)
+    └── div.skia-forge-hub
+        ├── header.skia-forge-hub__header → img.skia-forge-hub__logo
+        └── [doc cards, footer, …]
+```
+
+**Exempt (Context B flat `#0a0a0a`):** `/forge/platform`, entire Forge IDE (§7).
+
+**No mobile layout track:** Forge Web does not ship a mobile shell, mobile logo sizes, or skia.ca-style hub flatten. One desktop CSS stack (`forge-hub-design.css`, `forge-premium-ui.css`) applies at all viewport widths.
+
+**Scroll bottom inset:** `.wrap` uses **`padding-bottom: 48px`** — no oversized dead runway past footer.
+
+**Do not regress to:** flat `body { background: #080400 + radial only }` without outer `#120c08` frame; 200px bottom padding on content column.
 
 #### Context B — Tool / Task Pages
 
@@ -372,6 +408,26 @@ Whenever a page uses **Context A background (`#080400`)**, ALL dropdowns, collap
 | Info row border | Gold Border `rgba(212,175,55,0.2)` |
 
 **Forbidden on new Forge Web surfaces:** `#7eb8f7`, legacy info blue.
+
+---
+
+### Page logos — sizing (canonical 2026-06-05 — matches skia.ca §3)
+
+Asset: `/sidebar-logo.png` on all Forge Web heroes and sidebar.
+
+**Rule:** Column hero logos and sidebar nav logos are **independent** — hero bumps must **never** change `.pc-sidebar-logo-img`.
+
+| Context | Class | Width | Where defined |
+|---------|-------|-------|---------------|
+| **Hub / doc hero** — resources, security, contact, downloads, all docs | `.skia-forge-hub__logo`, `.page-logo`, `.feature-page-logo` | **170px** | `forge-hub-design.css`, `forge-premium-ui.css` |
+| **PC sidebar drawer** (nav only) | `.pc-sidebar-logo-img` | **120px** (unchanged) | `forge-premium-ui.css` |
+| **Forge IDE sidebar** | `#skia-sidebar-logo` | **80px** (unchanged — §7) | `skia-dark.css` |
+
+**Drop shadow (hub heroes):** `drop-shadow(0 0 20px rgba(212,175,55,0.25))` on `.skia-forge-hub__logo`; stronger shadow on `.page-logo` / `.feature-page-logo` matches skia.ca `.feature-page-logo`.
+
+**skia.ca-only (not Forge Web):** Generator card logos (`SkiaLogo` **113px** on login/register/image/video) — `Skia-FULL/design_bible.md` §3 + §12. Forge has no generator shell pages.
+
+**Do not regress:** 120px hub heroes (pre-2026-06-05); scaling sidebar logos when hero logos change.
 
 ---
 
@@ -492,6 +548,7 @@ Doc slugs: `readme`, `quickstart`, `user-guide`, `developer-guide`, `operator-ma
 
 | Property | Brand standard | Forge Web | Status |
 |----------|----------------|-----------|--------|
+| Two-layer background | Outer `#120c08` + inner manuscript `.wrap` | `body.forge-context-a` + `.wrap` ✔ | §3 hub shell |
 | Shell delivery | `padding:40px; max-width:800px; margin:0 auto; box-sizing:border-box` on main column | **Same values inline on `.wrap`** ✔ | §6 shell inline |
 | Inner hub wrapper | `<div class="skia-forge-hub">` | `<div class="skia-forge-hub">` ✔ | ✔ |
 | Hub class family | `.skia-forge-hub__*` | `.skia-forge-hub__*` in `forge-hub-design.css` ✔ | Same BEM names |
@@ -504,15 +561,16 @@ Doc slugs: `readme`, `quickstart`, `user-guide`, `developer-guide`, `operator-ma
 **PC sidebar (`#pcSidebar`):**
 
 - Fixed left drawer, **260px** (Forge) — skia.ca PCSidebar is equivalent family
-- Logo: `/sidebar-logo.png` — **120px** wide via `.pc-sidebar-logo-img` ✔
+- Logo: `/sidebar-logo.png` — **120px** wide via `.pc-sidebar-logo-img` ✔ (sidebar nav only — §3 page logos)
 - Tagline: **`SKIA FORGE IDE`** via `common.sidebar.tagline` (text, not baked into PNG)
 - Nav links: `.pc-sidebar-btn` — **15px** Agency FB uppercase, flex-centered ✔
 - Tab trigger: `.pc-sidebar-tab` — 36×72px gold-bordered pull tab with Lucide menu icon
 - Locale switcher: `.skia-lang-switcher` in sidebar footer — 12 langs
 
-**Hero logo:**
+**Hero logo (column — not sidebar):**
 
-- `.skia-forge-hub__logo` — **120px** wide (matches skia.ca hub header; not 160px `.page-logo`)
+- `.skia-forge-hub__logo`, `.page-logo`, `.feature-page-logo` — **170px** wide (matches skia.ca hub heroes §3 page logos)
+- Sidebar drawer logo stays **120px** via `.pc-sidebar-logo-img` — do not change with hero size
 
 **Footer (`footer`, `.doc-footer`):**
 
@@ -523,7 +581,7 @@ Doc slugs: `readme`, `quickstart`, `user-guide`, `developer-guide`, `operator-ma
 **DOWNLOAD APP button:**
 
 - Visible on **desktop browser only** — gated by `src/utils/forgeDownloadMarkup.ts` + client script
-- Hidden on mobile browser and hidden entirely in Forge IDE
+- Hidden on mobile UA (client script) and hidden entirely in Forge IDE — not a mobile layout variant
 
 ### 6.3 Context A — documentation layout
 
@@ -544,8 +602,8 @@ Doc pages share classes in `public/forge-hub-design.css` (linked from all `publi
 | `.step-num` / `.step-text` | **15px** Agency FB number + **15px** Centaur copy, `gap: 14px`, `align-items: flex-start`, `margin-top: 1px` on number | doc-embed parity | ✔ |
 | `.practice-num`, `.esc-num` | **15px** Agency FB, `flex-start` + `margin-top: 1px` (multi-line rows stay top-aligned) | security/contact parity | ✔ |
 | `.doc-card`, `.card`, `.pkg-card` | Tier 1 heavy gradient | Tier 1 | ✔ |
-| Body background | `#080400` + radial | Context A | ✔ |
-| Mobile `.page-title` | 28px at ≤680px | Responsive shrink OK | ✔ intentional |
+| Body / column background | Two-layer hub shell (§3) | `body` `#120c08` + `.wrap` manuscript gradient | ✔ |
+| Hub hero logo | 170px | `.skia-forge-hub__logo` 170px | ✔ |
 
 **Code blocks:** `.code-block` — dark fill, gold border, Centaur at caption token (raise to 15px on alignment pass).
 
@@ -761,7 +819,8 @@ Standalone help pages inside the app — Context B styling:
 - ✔ Context B Forge Web + entire IDE: cold flat cards (Tier 3)
 - ✔ Locale changes: edit JSON in `public/locales/` + run `npm run locales:sync`
 - ✔ IDE design changes must update §7 in this file when intentional
-- ✔ Hub/doc pages must follow §6 shell — layout, footer, cards, and type scale (brand standard matches skia.ca hub pages)
+- ✔ Hub/doc pages must follow §6 shell — layout, footer, cards, type scale, **two-layer background**, **170px hero logos** (matches skia.ca §14 + §3)
+- ✔ **Hub hero logos 170px; sidebar `.pc-sidebar-logo-img` 120px unchanged** (§3 page logos)
 
 ---
 
@@ -780,7 +839,7 @@ Standalone help pages inside the app — Context B styling:
 
 **Page background:**
 
-- Marketing, docs, downloads, resources? → **Context A `#080400`**
+- Marketing, docs, downloads, resources? → **Context A two-layer hub shell** (outer `#120c08` + inner `.wrap` manuscript column — §3)
 - Execution console, IDE shell? → **Context B `#0a0a0a`**
 
 **Card type:**
@@ -800,7 +859,8 @@ Standalone help pages inside the app — Context B styling:
 | Area | Evidence |
 |------|----------|
 | Context A hub + doc cards (Tier 1 / Tier 2) | `public/forge-hub-design.css` |
-| Context A background `#080400` + radial | `body.forge-context-a` |
+| Context A two-layer hub shell | `body.forge-context-a` + `.wrap` in `forge-hub-design.css` |
+| Hub hero logo 170px | `.skia-forge-hub__logo` in `forge-hub-design.css`; `.page-logo` in `forge-premium-ui.css` |
 | Footer 15px Gold Text + copyright 0.62 | `public/forge-premium-ui.css` lines 182–214 |
 | Page title 34px, body 15px, card titles 16px | `forge-hub-design.css` via tokens + classes |
 | Sidebar nav 15px | `--skia-font-nav-size` + `.pc-sidebar-btn` |
@@ -833,6 +893,9 @@ Enforcement: `node scripts/normalize-forge-font-sizes.mjs --check` (Forge Web on
 | Hub DOM | `.skia-forge-hub__*` | `.skia-forge-hub__*` ✔ |
 | Content max-width | 800px | inline `max-width:800px` ✔ |
 | Shell padding | `40px` | inline `padding:40px` ✔ |
+| Shell bottom inset | `48px` | `.wrap { padding-bottom: 48px }` ✔ |
+| Two-layer background | §3 hub shell | `body` + `.wrap` ✔ |
+| Hub hero logo | 170px | `.skia-forge-hub__logo` ✔ |
 | Back button | In-column above content | `.back-btn` inside `.wrap` ✔ (`scripts/migrate-forge-back-btn.mjs`) |
 | Section labels on hub | `.skia-forge-hub__section-label` metadata 15px | `.section-label` 16px card title — acceptable or align to metadata uppercase |
 
@@ -861,8 +924,12 @@ Forge and skia.ca are **separate codebases** with **separate design bibles**. Br
 | Fonts | §1 | §1 | `forge-premium-ui.css` |
 | Type scale | §2 | §2 | `forge-premium-ui.css`, `forge-hub-design.css`, `forge-platform-console.css` |
 | Palette + scrollbar | §3 | §3 | all `public/forge-*.css` |
+| Hub two-layer background | §3 hub shell | §3 / §14 `.skia-hub-shell` | `body.forge-context-a` + `.wrap` in `forge-hub-design.css` |
+| Hub hero logo 170px | §3 page logos | §3 page logos | `.skia-forge-hub__logo`, `.page-logo` |
+| Sidebar logo (unchanged) | §3 page logos | §11 ECHO / PCSidebar | `.pc-sidebar-logo-img` 120px |
+| Generator logos 113px | — (N/A) | §12 login/register/image/video | skia.ca only |
 | Crest bullets | §4 | §4 | `forge-crest-bullet.css`, locale HTML |
-| Forge Hub shell | §6 | §14 (skia.ca hub pages) | `forge-hub-design.css`, `public/` HTML |
+| Forge Hub shell DOM | §6 | §14 | `forge-hub-design.css`, `public/` HTML |
 | Forge IDE | §7 | — (IDE not in Skia-FULL) | `skia-ide/` only |
 
 **When creating or updating Forge pages:** follow **this file only** — do not treat Skia-FULL source as law for Forge. Use the sibling bible when syncing token changes or verifying intentional brand parity.
