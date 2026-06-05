@@ -76,11 +76,24 @@ const persistSetCookieHeaders = async (baseUrl: string, headers: string[]): Prom
     }
 };
 
-export const performSkiaAuthRequest = async (
-    backendUrl: string,
+const FALLBACK_AUTH_ORIGINS = ["https://api.skia.ca", "https://skia.ca"];
+
+const isRetryableAuthStatus = (status: number): boolean =>
+    status === 0 || status === 502 || status === 503 || status === 504;
+
+const isDefinitiveAuthStatus = (status: number): boolean =>
+    status === 400 || status === 401 || status === 403 || status === 422;
+
+const buildAuthOriginCandidates = (primary: string): string[] => {
+    const normalized = primary.trim().replace(/\/+$/, "");
+    const ordered = [normalized, ...FALLBACK_AUTH_ORIGINS];
+    return [...new Set(ordered.filter(Boolean))];
+};
+
+const performSkiaAuthRequestOnce = async (
+    base: string,
     input: SkiaAuthRequestInput
 ): Promise<SkiaAuthRequestResult> => {
-    const base = backendUrl.trim().replace(/\/+$/, "");
     const path = input.path.startsWith("/") ? input.path : `/${input.path}`;
     const url = `${base}${path}`;
 
@@ -119,7 +132,50 @@ export const performSkiaAuthRequest = async (
 
         const text = await response.text();
         return { ok: response.ok, status: response.status, text };
+    } catch (error) {
+        const message = error instanceof Error ? error.message : "Auth request failed";
+        return {
+            ok: false,
+            status: 0,
+            text: JSON.stringify({ error: message }),
+        };
     } finally {
         clearTimeout(timer);
     }
+};
+
+export const performSkiaAuthRequest = async (
+    backendUrl: string,
+    input: SkiaAuthRequestInput
+): Promise<SkiaAuthRequestResult> => {
+    const candidates = buildAuthOriginCandidates(backendUrl);
+    let last: SkiaAuthRequestResult = {
+        ok: false,
+        status: 0,
+        text: JSON.stringify({ error: "Auth service unreachable" }),
+    };
+
+    for (const base of candidates) {
+        for (let attempt = 0; attempt < 2; attempt += 1) {
+            last = await performSkiaAuthRequestOnce(base, input);
+            if (last.ok) return last;
+            if (isDefinitiveAuthStatus(last.status)) return last;
+            if (!isRetryableAuthStatus(last.status)) return last;
+            await new Promise((resolve) => setTimeout(resolve, 350 * (attempt + 1)));
+        }
+    }
+
+    if (isRetryableAuthStatus(last.status)) {
+        return {
+            ok: false,
+            status: last.status || 503,
+            text: JSON.stringify({
+                error: "AUTH_SERVICE_UNAVAILABLE",
+                message:
+                    "SKIA sign-in is temporarily unavailable. Wait a moment and try again, or confirm you can sign in at skia.ca in your browser.",
+            }),
+        };
+    }
+
+    return last;
 };

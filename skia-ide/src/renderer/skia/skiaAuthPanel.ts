@@ -159,6 +159,11 @@ const extractError = async (response: Response): Promise<string> => {
         const err = payload.error;
         if (typeof err === "string") {
             if (err === "FORGE_PLAN_REQUIRED") return FORGE_PLAN_REQUIRED_MESSAGE;
+            if (err === "AUTH_SERVICE_UNAVAILABLE") {
+                return typeof payload.message === "string" && payload.message.trim()
+                    ? payload.message
+                    : "SKIA sign-in is temporarily unavailable. Try again shortly or sign in at skia.ca in your browser first.";
+            }
             return err;
         }
         if (err && typeof err === "object") {
@@ -166,6 +171,12 @@ const extractError = async (response: Response): Promise<string> => {
             if (typeof msg === "string") return msg;
         }
     } catch { /* ignore */ }
+    if (response.status === 503 || response.status === 502 || response.status === 504) {
+        return "SKIA sign-in is temporarily unavailable (server busy or restarting). Wait a moment and try again.";
+    }
+    if (response.status === 401) {
+        return "Invalid email or password. Use the same credentials as skia.ca.";
+    }
     return `Request failed (${response.status})`;
 };
 
