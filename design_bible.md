@@ -1,6 +1,6 @@
 # SKIA FORGE DESIGN BIBLE — ROOT AUTHORITY
 
-**Version 2.3 — Sovereign Forge spec — 2026-06-10**
+**Version 2.4 — Sovereign Forge spec — 2026-06-10**
 
 This file is the **sole design law** for **SKIA-Forge** (`forge.skia.ca`, Forge IDE).
 
@@ -828,6 +828,8 @@ Standalone help pages inside the app — Context B styling:
 | Fonts self-hosted, no CDN | `forge-premium-ui.css` `@font-face` |
 | Static HTML — §6.1 shell inline + `.skia-forge-hub__*` classes | `scripts/migrate-forge-shell-inline.mjs`, `scripts/migrate-forge-skia-hub-shell.mjs` ✔ |
 | List bullets — SKIA Crest SVG (12×12 / 18×18) | `public/forge-crest-bullet.css`, `public/icons/skia-crest-bullet.svg`, `scripts/check-forge-crest-bullets.mjs` ✔ |
+| Footer viewport pin (short pages) | `forge-hub-design.css` — body flex column, wrap flex:1, footer margin-top:auto |
+| Section labels — `.skia-forge-hub__section-label` + `.download-web-text` | Agency FB 500 26px #ffffff — `forge-hub-design.css` ✔ |
 | **Forge IDE** | `skia-dark.css` — unchanged per §7 |
 
 ### 12.2 Token alignment ✔ (2026-06-05 pass)
@@ -853,7 +855,8 @@ Enforcement: `node scripts/normalize-forge-font-sizes.mjs --check` (Forge Web on
 | Content max-width | 800px | inline `max-width:800px` ✔ |
 | Shell padding | `padding-top:0.75rem`; horizontal/bottom unchanged (`40px`) | inline `padding: 0.75rem 40px 40px 40px` ✔ |
 | Back button | Viewport-fixed: desktop `top:1rem left:48px z-index:150`; mobile `top:calc(52px + safe-area) left:1rem` | `.back-btn` viewport-fixed in `forge-hub-design.css` ✔ (`scripts/migrate-forge-back-btn.mjs` — DOM inside `.wrap`) |
-| Section labels on hub | `.skia-forge-hub__section-label` metadata 15px | `.section-label` 16px card title — acceptable or align to metadata uppercase |
+| Section labels on hub | `.skia-forge-hub__section-label` + `.download-web-text` — Agency FB 500, 26px (`--skia-font-section-title-size`), `#ffffff`, `letter-spacing: 0.08em` | `forge-hub-design.css` ✔ (2026-06-10) |
+| Footer viewport pin | `body` flex column + `.wrap { flex: 1 }` + `footer { margin-top: auto }` | `forge-hub-design.css` ✔ (2026-06-10) — Context A pages only; `/forge/platform` (Context B) unaffected |
 
 ### 12.4 Maintenance scripts
 
