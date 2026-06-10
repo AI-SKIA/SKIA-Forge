@@ -57,6 +57,8 @@ body[data-forge-i18n-page]:not([data-forge-i18n-page="forge-platform"]) {
   font-size: var(--skia-font-body-size);
   font-weight: 400;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   letter-spacing: 0.01em;
   line-height: 1.6;
   width: 100%;
@@ -225,6 +227,9 @@ button.back-btn {
    style="padding: 0.75rem 40px 40px 40px;max-width:800px;margin:0 auto;box-sizing:border-box;width:100%;"
    enforced by scripts/migrate-forge-shell-inline.mjs */
 .wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   padding-top: 0.75rem;
   padding-bottom: 48px;
@@ -238,6 +243,7 @@ button.back-btn {
 
 /* skia.ca hub shell — mirrors Skia-FULL globals.css .skia-forge-hub__* */
 .skia-forge-hub {
+  flex: 1;
   width: 100%;
   max-width: 860px;
   margin: 0 auto;
@@ -325,11 +331,11 @@ button.back-btn {
 
 .skia-forge-hub__section-label {
   font-family: "Agency FB";
-  font-size: var(--skia-font-caption-size);
+  font-size: var(--skia-font-section-title-size);
   font-weight: 500;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--skia-gold-text);
+  color: #ffffff;
   margin: 0 0 16px;
   padding-bottom: 8px;
   border-bottom: 1px solid rgba(212, 175, 55, 0.3);
@@ -913,8 +919,12 @@ a.doc-card:hover {
 
 .download-web-text {
   margin: 0;
-  color: var(--skia-text-soft);
-  font-size: var(--skia-font-body-size);
+  font-family: "Agency FB";
+  font-size: var(--skia-font-section-title-size);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ffffff;
   text-align: center;
 }
 
@@ -1125,7 +1135,7 @@ a.doc-card:hover {
 /* Hub footer (extends forge-premium-ui) */
 footer,
 .doc-footer {
-  margin-top: 2rem;
+  margin-top: auto;
   font-family: "Centaur";
   font-size: var(--skia-font-body-size);
   line-height: 1.8;
