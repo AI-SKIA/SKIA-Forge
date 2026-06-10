@@ -1,6 +1,6 @@
 # SKIA FORGE DESIGN BIBLE — ROOT AUTHORITY
 
-**Version 2.4 — Sovereign Forge spec — 2026-06-10**
+**Version 2.5 — Sovereign Forge spec — 2026-06-10**
 
 This file is the **sole design law** for **SKIA-Forge** (`forge.skia.ca`, Forge IDE).
 
@@ -590,6 +590,8 @@ Uses `forge-premium-ui.css` + `forge-platform-console.css` (no inline styles in 
 
 **Authority:** This section documents the **current shipped IDE design**. When Forge Web is aligned to §1–§5, **do not change the IDE** unless explicitly requested. The IDE is Context B; it intentionally differs from marketing pages in density, uppercase chrome, and monospace terminal.
 
+**Boundary:** `/forge/platform` (Forge Web execution console) is NOT part of the Forge IDE (§7). It is a Context B web surface in `forge-platform-console.css`. §7 covers `skia-ide/` only.
+
 **Source files:** `skia-ide/src/renderer/styles/skia-dark.css`, `skia-ide/src/renderer/index.html`, `skia-ide/src/renderer/editor/monacoSetup.ts`.
 
 ### 7.1 Shell layout
@@ -830,6 +832,8 @@ Standalone help pages inside the app — Context B styling:
 | List bullets — SKIA Crest SVG (12×12 / 18×18) | `public/forge-crest-bullet.css`, `public/icons/skia-crest-bullet.svg`, `scripts/check-forge-crest-bullets.mjs` ✔ |
 | Footer viewport pin (short pages) | `forge-hub-design.css` — body flex column, wrap flex:1, footer margin-top:auto |
 | Section labels — `.skia-forge-hub__section-label` + `.download-web-text` | Agency FB 500 26px #ffffff — `forge-hub-design.css` ✔ |
+| `/forge/platform` headings — Agency FB 500 | Module headings 26px (`--skia-font-section-title-size`); labels ("PROMPT" etc.) 15px uppercase (`--skia-font-caption-size`); `letter-spacing: 0.08em` — `forge-platform-console.css` ✔ (2026-06-10) |
+| `/forge/platform` sidebar active state | `rgba(212,175,55,0.08)` fill + `border-left: 2px solid #d4af37` + `color: #d4af37`; no solid gold box — `forge-platform-console.css` ✔ (2026-06-10) |
 | **Forge IDE** | `skia-dark.css` — unchanged per §7 |
 
 ### 12.2 Token alignment ✔ (2026-06-05 pass)
