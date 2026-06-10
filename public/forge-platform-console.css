@@ -4,6 +4,23 @@
  */
 strong, b { font-weight: 400; }
 
+/* Self-hosted brand fonts (also in forge-premium-ui.css — duplicated for Context B) */
+@font-face {
+  font-family: "Agency FB";
+  src: url("/fonts/agency-fb/AgencyFB-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Agency FB";
+  src: url("/fonts/agency-fb/AgencyFB-Regular.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --skia-page-bg-context-b: #0a0a0a;
   --skia-gold-full: #d4af37;
@@ -188,9 +205,9 @@ body.forge-context-b.forge-platform-shell {
   padding: 12px;
   border-bottom: 1px solid var(--line);
   font-family: "Agency FB";
-  font-size: var(--skia-font-metadata-size);
+  font-size: var(--skia-font-caption-size);
   font-weight: 500;
-  letter-spacing: var(--tracking-heading-display);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -212,11 +229,17 @@ body.forge-context-b.forge-platform-shell {
   text-transform: uppercase;
 }
 
-.forge-platform-shell .mod-btn:hover,
+.forge-platform-shell .mod-btn:hover:not(.active) {
+  color: var(--skia-gold-hover);
+  border-color: rgba(212, 175, 55, 0.35);
+  background: transparent;
+}
+
 .forge-platform-shell .mod-btn.active {
-  color: var(--gold);
-  border-color: var(--gold);
-  background: var(--skia-gold-subtle);
+  color: #d4af37;
+  background: rgba(212, 175, 55, 0.08);
+  border-color: rgba(212, 175, 55, 0.16);
+  border-left: 2px solid #d4af37;
 }
 
 .forge-platform-shell a.mod-btn {
@@ -243,7 +266,8 @@ body.forge-context-b.forge-platform-shell {
   font-size: var(--skia-font-section-title-size);
   font-weight: 500;
   color: var(--gold);
-  letter-spacing: var(--tracking-heading-display);
+  letter-spacing: 0.08em;
+  line-height: 1.15;
   text-transform: uppercase;
 }
 
@@ -268,10 +292,11 @@ body.forge-context-b.forge-platform-shell {
 .forge-platform-shell .label {
   color: var(--skia-gold-text);
   font-family: "Agency FB";
-  font-size: var(--skia-font-button-size);
+  font-size: var(--skia-font-caption-size);
   font-weight: 500;
-  letter-spacing: var(--tracking-heading-display);
+  letter-spacing: 0.08em;
   text-transform: uppercase;
+  line-height: 1.15;
 }
 
 .forge-platform-shell .textarea {
