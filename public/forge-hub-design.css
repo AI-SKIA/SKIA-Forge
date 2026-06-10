@@ -232,7 +232,8 @@ button.back-btn {
   flex-direction: column;
   width: 100%;
   padding-top: 0.75rem;
-  padding-bottom: 48px;
+  /* Bottom shell padding lives on inline .wrap style — zeroed below so footer can pin flush */
+  padding-bottom: 0;
 }
 
 .wrap--wide,
@@ -247,13 +248,14 @@ button.back-btn {
   width: 100%;
   max-width: 860px;
   margin: 0 auto;
-  padding: 0 0 48px;
+  padding: 0;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: stretch;
   position: relative;
   z-index: 2;
+  min-height: 0;
 }
 
 .skia-forge-hub__header {
@@ -1132,19 +1134,26 @@ a.doc-card:hover {
   color: var(--skia-gold-hover);
 }
 
-/* Hub footer (extends forge-premium-ui) */
+/* Hub footer (extends forge-premium-ui) — margin-top: auto pins to viewport bottom when content is short */
 footer,
 .doc-footer {
   margin-top: auto;
+  flex-shrink: 0;
   font-family: "Centaur";
   font-size: var(--skia-font-body-size);
   line-height: 1.8;
 }
 
-/* Last content block before footer — drop trailing margin (sections, doc grids, etc.) */
+/* Breathing room before footer — keep sibling trailing margin (2–3rem from doc-grid / section rules) */
 .skia-forge-hub > *:has(+ footer),
 .skia-forge-hub > *:has(+ .doc-footer) {
-  margin-bottom: 0;
+  margin-bottom: 2.5rem;
+}
+
+/* Override inline shell bottom padding (40px) so no dead space appears below footer */
+body.forge-context-a .wrap,
+body[data-forge-i18n-page]:not([data-forge-i18n-page="forge-platform"]) .wrap {
+  padding-bottom: 0 !important;
 }
 
 .doc-footer {

@@ -1,6 +1,6 @@
 # SKIA FORGE DESIGN BIBLE — ROOT AUTHORITY
 
-**Version 2.5 — Sovereign Forge spec — 2026-06-10**
+**Version 2.6 — Sovereign Forge spec — 2026-06-10**
 
 This file is the **sole design law** for **SKIA-Forge** (`forge.skia.ca`, Forge IDE).
 
@@ -50,7 +50,7 @@ Forge ships **two user-facing surfaces**. Every UI change must declare which sur
 | `/docs/*` | `/docs/[doc]` | §6.2 doc header + body |
 | `/forge/platform` | — (Forge-only) | Context B tool shell |
 
-**Documented Forge-only layout differences (not drift):** sidebar width 260px (Forge) vs 280px (ECHO on skia.ca); `.back-btn` static HTML class (Forge) vs `PageShellBackButton` React component (skia.ca) — both viewport-fixed per §6.2. Same 800px centered column.
+**Documented Forge-only layout differences (not drift):** sidebar width 260px (Forge) vs 280px (ECHO on skia.ca); `.back-btn` static HTML class (Forge) vs `PageShellBackButton` React component (skia.ca) — both viewport-fixed per §6.2; **platform console topbar 58px** (Forge `/forge/platform`) vs **52px** mobile shell (skia.ca); **hub hero logo 170px** (Forge `.skia-forge-hub__logo`, `.page-logo`) vs **180px** (skia.ca hub heroes). Same 800px centered column.
 
 ---
 
@@ -177,6 +177,7 @@ Canonical copy: `public/forge-premium-ui.css` (also sets `html, body { font-fami
 | Tokens | `--skia-font-*` in `public/forge-premium-ui.css` + `public/forge-hub-design.css` (must match table below) |
 | Forbidden (floor) | Hardcoded `font-size` below 15px on Forge Web user-facing copy |
 | Allowed exception | Icon/dot dimensions only (crest SVG 12×12 / 18×18, Lucide SVG sizing) — not user-facing text |
+| Locale caret | `.skia-lang-switcher__caret` — **10px** — exempt as non-readable icon chrome (dropdown indicator glyph, not user-facing copy); same class of exception as icon/dot dimensions |
 | IDE exception | §7 may use 10–14px on explorer, status bar, terminal — documented IDE chrome only |
 
 | Role | Size | Font | Weight | Color |
@@ -186,7 +187,8 @@ Canonical copy: `public/forge-premium-ui.css` (also sets `html, body { font-fami
 | Section title | 26px | Agency FB | 500 | `#ffffff` |
 | Section number (`.step-num`, `.esc-num`) | 20px | Agency FB | 500 | `#d4af37` |
 | Section subtitle (`.page-subtitle`, `.doc-desc`) | 18px | Centaur | 400 | `rgba(255,255,255,0.65)` or soft white `0.68` |
-| Section / card label (`.section-label`, `.doc-card-title`) | 16px | Agency FB | 500 | Gold Text |
+| Section / card label — **doc pages** (`.section-label`, `.doc-card-title`) | 16px | Agency FB | 500 | Gold Text — `--skia-font-card-title-size` |
+| Hub section label — **hub pages** (`.skia-forge-hub__section-label`) | 26px | Agency FB | 500 | `#ffffff` — `--skia-font-section-title-size`; separate selector from doc `.section-label` |
 | Body text | 15px | Centaur | 400 | `#ffffff` / prose `rgba(232,228,220,0.82)` |
 | Forge footer — tagline & links (`footer`, `.doc-footer`) | 15px | Centaur | 400 | Gold Text; copyright `rgba(212,175,55,0.62)` |
 | Context A long-form body (`.section-body`, doc prose) | 15px | Centaur | 400 | `rgba(232,228,220,0.82)` |

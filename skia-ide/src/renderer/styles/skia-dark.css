@@ -873,7 +873,7 @@ button {
     padding: 24px;
     box-sizing: border-box;
     background: rgba(8, 8, 6, 0.96);
-    font-family: "Centaur", serif;
+    font-family: "Centaur";
     text-transform: none;
     letter-spacing: normal;
 }

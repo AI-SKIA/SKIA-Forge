@@ -2,7 +2,7 @@ strong, b { font-weight: 400; }
 /**
  * SKIA Forge — gold scrollbars + shared hub logo sizing.
  * Scrollbars match SKIA platform globals (.skia-scrollbar-premium).
- * Hero logos — 170px (matches skia.ca §3 page logos; sidebar logo stays 120px).
+ * Hero logos — 170px (Forge hub hero — see §0 for skia.ca difference; sidebar logo stays 120px).
  */
 
 /* Brand fonts (self-hosted; served at /fonts/*) — matches Skia-FULL styles/skia-brand-fonts.css */

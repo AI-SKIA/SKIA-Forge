@@ -226,7 +226,7 @@ const showBootstrapFailure = (message: string): void => {
         host.style.cssText = [
             "position:fixed", "inset:0", "z-index:20000", "display:grid", "place-items:center",
             "padding:24px", "background:rgba(8,4,0,0.94)", "color:#d4af37",
-            'font-family:"Centaur","Centaur MT",serif'
+            'font-family:"Centaur"'
         ].join(";");
         document.body.appendChild(host);
     }
