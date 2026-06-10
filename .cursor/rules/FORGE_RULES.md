@@ -11,7 +11,7 @@ Before any edit, read these files in full. They override stale docs and audit sn
 
 - **`docs/architecture/SOVEREIGN_PLATFORM.md`** — **agent law:** SKIA owns translations, fonts, TTS, Skia-Serve, IDE; never suggest vendor APIs or Google except continuity fallback when sovereign engines are down.
 - **`.cursor/rules/FORGE_RULES.md` §6** — any task that adds/changes user-visible text (mandatory translation playbook).
-- **`design_bible.md`** — **sole Forge design law** v2.2 (brand tokens §1–§5, Forge Web §6, Forge IDE §7, CSS status §12). Never deviate on typography, gold, backgrounds. When changing §1–§5 brand tokens, also update **`Skia-FULL/design_bible.md`** §1–§5 per Forge bible §13.
+- **`design_bible.md`** — **sole Forge design law (always read current version)** (brand tokens §1–§5, Forge Web §6, Forge IDE §7, CSS status §12). Never deviate on typography, gold, backgrounds. When changing §1–§5 brand tokens, also update **`Skia-FULL/design_bible.md`** §1–§5 per Forge bible §13.
 - `docs/ENV_REFERENCE.md` — operator env vars, sovereign inference (Skia-Serve primary; continuity fallback operator-only — **§0.5**).
 - `docs/API_REFERENCE.md` — canonical HTTP route index; verify against `src/server.ts` if routes changed.
 - `local-dev/docs/forge-local-setup.md` — local vs production isolation (must not cross-contaminate).
@@ -422,7 +422,7 @@ npm run test
 
 ## 11. Design bible is law (Forge profile)
 
-- **Forge spec:** `design_bible.md` **v2.2** — **sole design law for this repo**: brand tokens (§1–§5), **Forge Web** (§6), **Forge IDE as-is** (§7), CSS implementation status (§12).
+- **Forge spec:** `design_bible.md` (current version) — **sole design law for this repo**: brand tokens (§1–§5), **Forge Web** (§6), **Forge IDE as-is** (§7), CSS implementation status (§12).
 - **Cross-product consistency:** skia.ca uses **`Skia-FULL/design_bible.md`** as its sole law. Same brand tokens; **neither bible is upstream**. Sync §1–§5 when brand tokens change — Forge bible §13.
 - **Type scale (forge-web):** **15px floor / 38px ceiling** — all `--skia-font-*` tokens per Forge `design_bible.md` §2 (see §12.2 for CSS verification).
 - Gold: `#d4af37` and the five approved rgba variants only — no `#ffd700`, `#ffcc33`, Tailwind yellows.
