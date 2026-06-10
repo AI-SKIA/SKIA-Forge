@@ -50,7 +50,7 @@ Forge ships **two user-facing surfaces**. Every UI change must declare which sur
 | `/docs/*` | `/docs/[doc]` | §6.2 doc header + body |
 | `/forge/platform` | — (Forge-only) | Context B tool shell |
 
-**Documented Forge-only layout differences (not drift):** sidebar width 260px (Forge) vs 280px (ECHO on skia.ca); `.back-btn` in Forge HTML vs `PageShellBackButton` in skia.ca React. Same 800px centered column — §6.2.
+**Documented Forge-only layout differences (not drift):** sidebar width 260px (Forge) vs 280px (ECHO on skia.ca); `.back-btn` static HTML class (Forge) vs `PageShellBackButton` React component (skia.ca) — both viewport-fixed per §6.2. Same 800px centered column.
 
 ---
 
