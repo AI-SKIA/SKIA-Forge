@@ -14,10 +14,11 @@ const checkOnly = process.argv.includes("--check");
 
 /** Canonical — Skia-FULL design_bible.md §6.1 / DocEmbedShell.tsx */
 export const FORGE_SHELL_INLINE =
-  "padding:40px;max-width:800px;margin:0 auto;box-sizing:border-box;width:100%;";
+  "padding: 0.75rem 40px 40px 40px;max-width:800px;margin:0 auto;box-sizing:border-box;width:100%;";
 
 const WRAP_OPEN_RE = /<div class="wrap([^"]*)"([^>]*)>/gi;
-const SHELL_STYLE_RE = /style="padding:40px;max-width:800px;margin:0 auto;box-sizing:border-box;width:100%;"/;
+const SHELL_STYLE_RE =
+  /style="padding: 0\.75rem 40px 40px 40px;max-width:800px;margin:0 auto;box-sizing:border-box;width:100%;"/;
 
 function collectHtmlFiles(dir, acc = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {

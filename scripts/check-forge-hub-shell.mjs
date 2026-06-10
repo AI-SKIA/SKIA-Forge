@@ -58,7 +58,11 @@ for (const filePath of htmlFiles) {
   if (!html.includes('class="skia-forge-hub"')) {
     errors.push(`${rel}: missing .skia-forge-hub wrapper`);
   }
-  if (!html.includes("padding:40px;max-width:800px;margin:0 auto;box-sizing:border-box;width:100%")) {
+  if (
+    !html.includes(
+      "padding: 0.75rem 40px 40px 40px;max-width:800px;margin:0 auto;box-sizing:border-box;width:100%",
+    )
+  ) {
     errors.push(`${rel}: missing §6.1 inline shell on .wrap`);
   }
 }

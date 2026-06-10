@@ -1,6 +1,6 @@
 # SKIA FORGE DESIGN BIBLE — ROOT AUTHORITY
 
-**Version 2.2 — Sovereign Forge spec — 2026-06-05**
+**Version 2.3 — Sovereign Forge spec — 2026-06-10**
 
 This file is the **sole design law** for **SKIA-Forge** (`forge.skia.ca`, Forge IDE).
 
@@ -510,12 +510,12 @@ Doc slugs: `readme`, `quickstart`, `user-guide`, `developer-guide`, `operator-ma
 
 | Property | Brand standard | Forge Web | Status |
 |----------|----------------|-----------|--------|
-| Shell delivery | `padding:40px; max-width:800px; margin:0 auto; box-sizing:border-box` on main column | **Same values inline on `.wrap`** ✔ | §6 shell inline |
+| Shell delivery | `padding-top:0.75rem`; horizontal/bottom `40px`; `max-width:800px; margin:0 auto; box-sizing:border-box` on main column | **Same values inline on `.wrap`** ✔ | §6 shell inline |
 | Inner hub wrapper | `<div class="skia-forge-hub">` | `<div class="skia-forge-hub">` ✔ | ✔ |
 | Hub class family | `.skia-forge-hub__*` | `.skia-forge-hub__*` in `forge-hub-design.css` ✔ | Same BEM names |
 | Max width | `800px` centered | inline `max-width:800px` ✔ | **800px** |
-| Padding | `40px` | inline `padding:40px` ✔ | ✔ |
-| Back control | In-column above content | `.back-btn` inside `.wrap` ✔ | In-column flow above logo |
+| Padding | `padding-top: 0.75rem`; sides/bottom `40px` | inline `padding: 0.75rem 40px 40px 40px` ✔ | ✔ (2026-06-10) |
+| Back control | Viewport-fixed (skia.ca §6.1 parity) | `.back-btn` in DOM inside `.wrap`; CSS `position: fixed` ✔ | Desktop `top:1rem left:48px z-index:150`; mobile `top:calc(52px + safe-area) left:1rem` |
 
 **Server routes (crest delivery):** `GET /forge-crest-bullet.css`, `GET /icons/*` in `src/server.ts`.
 
@@ -851,13 +851,13 @@ Enforcement: `node scripts/normalize-forge-font-sizes.mjs --check` (Forge Web on
 | Shell layout | §6.1 inline on `<main>` | §6.1 inline on `.wrap` ✔ |
 | Hub DOM | `.skia-forge-hub__*` | `.skia-forge-hub__*` ✔ |
 | Content max-width | 800px | inline `max-width:800px` ✔ |
-| Shell padding | `40px` | inline `padding:40px` ✔ |
-| Back button | In-column above content | `.back-btn` inside `.wrap` ✔ (`scripts/migrate-forge-back-btn.mjs`) |
+| Shell padding | `padding-top:0.75rem`; horizontal/bottom unchanged (`40px`) | inline `padding: 0.75rem 40px 40px 40px` ✔ |
+| Back button | Viewport-fixed: desktop `top:1rem left:48px z-index:150`; mobile `top:calc(52px + safe-area) left:1rem` | `.back-btn` viewport-fixed in `forge-hub-design.css` ✔ (`scripts/migrate-forge-back-btn.mjs` — DOM inside `.wrap`) |
 | Section labels on hub | `.skia-forge-hub__section-label` metadata 15px | `.section-label` 16px card title — acceptable or align to metadata uppercase |
 
 ### 12.4 Maintenance scripts
 
-- `node scripts/apply-forge-hub-design.mjs --check` — hub HTML links Forge CSS + in-column back control
+- `node scripts/apply-forge-hub-design.mjs --check` — hub HTML links Forge CSS + viewport-fixed `.back-btn`
 - `node scripts/migrate-forge-shell-inline.mjs --check` — §6.1 shell inline on every `.wrap`
 - `node scripts/migrate-forge-skia-hub-shell.mjs --check` — `.skia-forge-hub__*` class parity
 - `npm run fonts:check` — only `"Agency FB"` / `"Centaur"` in Forge Web paths (IDE exempt)

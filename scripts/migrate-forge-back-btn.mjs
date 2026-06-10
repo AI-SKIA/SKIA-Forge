@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Move .back-btn inside .wrap (design_bible.md §6.2 in-column back control).
+ * Move .back-btn inside .wrap in DOM order (design_bible.md §6.2 — viewport-fixed via CSS).
  * Run: node scripts/migrate-forge-back-btn.mjs [--check]
  */
 import fs from "node:fs";
@@ -13,7 +13,7 @@ const publicDir = path.join(root, "public");
 const checkOnly = process.argv.includes("--check");
 
 const BACK_RE = /<button\s+type="button"\s+class="back-btn"[^>]*><\/button>\s*/i;
-const IN_WRAP_RE = /<div class="wrap[^"]*">\s*<button[^>]*class="back-btn"/i;
+const IN_WRAP_RE = /<div class="wrap[^"]*"[^>]*>\s*<button[^>]*class="back-btn"/i;
 
 function collectHtmlFiles(dir, acc = []) {
   for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
@@ -30,7 +30,7 @@ function migrate(html) {
   if (!match) return html;
   const btn = match[0].trim();
   let out = html.replace(BACK_RE, "");
-  out = out.replace(/(<div class="wrap[^"]*">)/i, (_, open) => `${open}\n        ${btn}`);
+  out = out.replace(/(<div class="wrap[^"]*"[^>]*>)/i, (_, open) => `${open}\n        ${btn}`);
   return out;
 }
 
@@ -50,7 +50,7 @@ if (checkOnly) {
     changed.forEach((f) => console.error(`  ${f}`));
     process.exit(1);
   }
-  console.log("[migrate-forge-back-btn] OK — all HTML pages use in-column back control");
+  console.log("[migrate-forge-back-btn] OK — all HTML pages have .back-btn inside .wrap");
   process.exit(0);
 }
 
