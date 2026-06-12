@@ -202,9 +202,10 @@ button, .btn, .title, .heading, .label, .badge {
   color: var(--skia-gold-full);
   text-decoration: none;
   font-family: "Agency FB";
-  font-size: var(--skia-font-button-size);
+  font-size: var(--skia-font-caption-size);
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
+  line-height: 1;
   text-transform: uppercase;
   border: 1px solid var(--skia-gold-border-strong);
   border-radius: 6px;
@@ -218,9 +219,9 @@ button, .btn, .title, .heading, .label, .badge {
 button.back-btn {
   appearance: none;
   -webkit-appearance: none;
-  font: inherit;
   color: inherit;
   cursor: pointer;
+  line-height: 1;
 }
 
 /* ── Layout — shell inline on .wrap (Skia-FULL §6.1 parity) ──
@@ -351,7 +352,7 @@ button.back-btn {
 
 .skia-forge-hub__doc-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
   width: 100%;
   margin-bottom: 48px;
@@ -621,8 +622,8 @@ a.doc-card:hover {
   margin-bottom: 24px;
 }
 
-.doc-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
-.card-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+.doc-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.card-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .pkg-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
 .scope-grid,
 .controls-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
@@ -1203,4 +1204,11 @@ body[data-forge-i18n-page]:not([data-forge-i18n-page="forge-platform"]) .wrap {
     top: calc(52px + env(safe-area-inset-top, 0px));
     left: 1rem;
   }
+
+  .skia-forge-hub__doc-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+
+  .doc-grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); }
+  .card-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
 }
