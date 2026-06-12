@@ -22,8 +22,10 @@
   "footer": {
     "tagline": "Одна экосистема. Одна вселенная. Все SKIA.",
     "copyright": "© 2026 SKIA Singularity Continuum. Будущее – это преуменьшение.",
+    "whoIsSkia": "Кто такой SKIA?",
+    "privacyPolicy": "Политика конфиденциальности",
+    "contactSupport": "Контакты и поддержка",
     "resources": "Ресурсы",
-    "security": "Безопасность",
-    "contactSupport": "Контакты и поддержка"
+    "security": "Безопасность"
   }
 }

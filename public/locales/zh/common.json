@@ -22,8 +22,10 @@
   "footer": {
     "tagline": "一个生态系统。 一个宇宙。 全部为 SKIA。",
     "copyright": "© 2026 SKIA Singularity Continuum。未来是轻描淡写的。",
+    "whoIsSkia": "什么是 SKIA？",
+    "privacyPolicy": "隐私政策",
+    "contactSupport": "联系与支持",
     "resources": "资源",
-    "security": "安全",
-    "contactSupport": "联系与支持"
+    "security": "安全"
   }
 }

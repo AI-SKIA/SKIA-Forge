@@ -22,8 +22,10 @@
   "footer": {
     "tagline": "一つの生態系。 一つの宇宙。 すべてSKIA。",
     "copyright": "© 2026 SKIA Singularity Continuum.未来というのは控えめな表現だ。",
+    "whoIsSkia": "SKIAとは？",
+    "privacyPolicy": "プライバシーポリシー",
+    "contactSupport": "お問い合わせとサポート",
     "resources": "リソース",
-    "security": "安全",
-    "contactSupport": "お問い合わせとサポート"
+    "security": "安全"
   }
 }

@@ -22,8 +22,10 @@
   "footer": {
     "tagline": "Ein Ökosystem. Ein Universum. Alle SKIA.",
     "copyright": "© 2026 SKIA Singularity Continuum. Die Zukunft ist eine Untertreibung.",
+    "whoIsSkia": "Wer ist SKIA?",
+    "privacyPolicy": "Datenschutzrichtlinie",
+    "contactSupport": "Kontakt & Support",
     "resources": "Ressourcen",
-    "security": "Sicherheit",
-    "contactSupport": "Kontakt & Support"
+    "security": "Sicherheit"
   }
 }

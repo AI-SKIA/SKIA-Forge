@@ -22,8 +22,10 @@
   "footer": {
     "tagline": "하나의 생태계. 하나의 우주. 모든 SKIA.",
     "copyright": "© 2026 SKIA Singularity Continuum. 미래는 절제된 표현입니다.",
+    "whoIsSkia": "SKIA란?",
+    "privacyPolicy": "개인정보 처리방침",
+    "contactSupport": "연락처 및 지원",
     "resources": "자원",
-    "security": "보안",
-    "contactSupport": "연락처 및 지원"
+    "security": "보안"
   }
 }

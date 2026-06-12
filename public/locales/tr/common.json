@@ -22,8 +22,10 @@
   "footer": {
     "tagline": "Tek ekosistem. Tek evren. Hepsi SKIA.",
     "copyright": "© 2026 SKIA Singularity Continuum. Gelecek yetersiz bir ifadedir.",
+    "whoIsSkia": "SKIA kimdir?",
+    "privacyPolicy": "Gizlilik Politikası",
+    "contactSupport": "İletişim ve Destek",
     "resources": "Kaynaklar",
-    "security": "Güvenlik",
-    "contactSupport": "İletişim ve Destek"
+    "security": "Güvenlik"
   }
 }

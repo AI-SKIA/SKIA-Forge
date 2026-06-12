@@ -22,8 +22,10 @@
   "footer": {
     "tagline": "نظام بيئي واحد. كون واحد. جميع \"SKIA\".",
     "copyright": "© 2026 SKIA Singularity Continuum. المستقبل هو بخس.",
+    "whoIsSkia": "من SKIA؟",
+    "privacyPolicy": "سياسة الخصوصية",
+    "contactSupport": "الاتصال والدعم",
     "resources": "موارد",
-    "security": "حماية",
-    "contactSupport": "الاتصال والدعم"
+    "security": "حماية"
   }
 }
