@@ -1,6 +1,6 @@
 # SKIA FORGE DESIGN BIBLE — ROOT AUTHORITY
 
-**Version 2.7 — Sovereign Forge spec — 2026-06-12**
+**Version 2.9 — Sovereign Forge spec — 2026-06-12**
 
 This file is the **sole design law** for **SKIA-Forge** (`forge.skia.ca`, Forge IDE).
 
@@ -35,8 +35,8 @@ Forge ships **two user-facing surfaces**. Every UI change must declare which sur
 
 **Platform notes (Forge Web only):**
 
-- **Desktop browser:** hub sidebar, locale switcher, **DOWNLOAD APP** CTA visible where applicable.
-- **Mobile browser:** same pages; **DOWNLOAD APP hidden** (user is already on web). No native mobile Forge app in this repo.
+- **Desktop browser:** hub sidebar, locale switcher, **DOWNLOAD APP** CTA on server-rendered surfaces (`/forge/platform`, `/chat`) where applicable
+- **Mobile browser:** same pages; **DOWNLOAD APP** hidden on server-rendered surfaces via `forgeDownloadClientGateScript()`; static hub sidebar still links to `/platform-downloads`. No native mobile Forge app in this repo.
 - **Forge IDE:** no download CTAs (user already has the app).
 
 **Equivalent hub routes (same brand shell, different domains):**
@@ -194,7 +194,8 @@ Canonical copy: `public/forge-premium-ui.css` (also sets `html, body { font-fami
 | Context A long-form body (`.section-body`, doc prose) | 15px | Centaur | 400 | `rgba(232,228,220,0.82)` |
 | Sidebar nav (`.pc-sidebar-btn`) | 15px | Agency FB | 500 | Gold Text; active `#d4af37` |
 | Sidebar tagline (`.pc-sidebar-logo-tagline`) | 15px | Agency FB | 400 | Gold Text |
-| Button text (`.submit-btn`, `.feature-tab`, `.back-btn`) | **15px** | Agency FB | 500 | Gold Text |
+| Button text (`.submit-btn`, `.feature-tab`) | **15px** | Agency FB | 500 | Gold Text — `--skia-font-button-size` |
+| Back control (`.back-btn`) | **15px** | Agency FB | 500 | Gold Text `rgba(212,175,55,0.7)` — `--skia-font-caption-size`; `letter-spacing: 0.08em`; `line-height: 1`; padding `8px 14px`; computed **80×33px** (skia.ca) — §12.3 |
 | Metadata / labels (`.doc-badge`, `.field label`, `.sla-label`) | **15px** | Agency FB | 400 | `rgba(255,255,255,0.65)` |
 | Caption / footnote (`.form-status`, code in `.code-block`) | **15px** | Centaur | 400 | `rgba(255,255,255,0.45)` |
 | Placeholder / disabled | **15px** | — | — | `rgba(255,255,255,0.35)` |
@@ -377,7 +378,7 @@ Whenever a page uses **Context A background (`#080400`)**, ALL dropdowns, collap
 
 ---
 
-### Page logos — sizing (canonical 2026-06-05 — matches skia.ca §3)
+### Page logos — sizing (canonical 2026-06-05 — Forge Web)
 
 Asset: `/sidebar-logo.png` on all Forge Web heroes and sidebar.
 
@@ -385,7 +386,7 @@ Asset: `/sidebar-logo.png` on all Forge Web heroes and sidebar.
 
 | Context | Class | Width | Where defined |
 |---------|-------|-------|---------------|
-| **Hub / doc hero** — resources, security, contact, downloads, all docs | `.skia-forge-hub__logo`, `.page-logo`, `.feature-page-logo` | **170px** | `forge-hub-design.css`, `forge-premium-ui.css` |
+| **Hub / doc hero** — resources, security, contact, downloads, all docs | `.skia-forge-hub__logo`, `.page-logo`, `.feature-page-logo` | **170px** (Forge hub hero — intentional 10px delta vs skia.ca 180px; see §0 documented product differences) | `forge-hub-design.css`, `forge-premium-ui.css` |
 | **PC sidebar drawer** (nav only) | `.pc-sidebar-logo-img` | **120px** (unchanged) | `forge-premium-ui.css` |
 | **Forge IDE sidebar** | `#skia-sidebar-logo` | **80px** (unchanged — §7) | `skia-dark.css` |
 
@@ -534,19 +535,33 @@ Doc slugs: `readme`, `quickstart`, `user-guide`, `developer-guide`, `operator-ma
 
 **Hero logo (column — not sidebar):**
 
-- `.skia-forge-hub__logo`, `.page-logo`, `.feature-page-logo` — **170px** wide (matches skia.ca hub heroes §3 page logos)
+- `.skia-forge-hub__logo`, `.page-logo`, `.feature-page-logo` — **170px** wide (Forge hub hero — intentional 10px delta vs skia.ca 180px; see §0 documented product differences)
 - Sidebar drawer logo stays **120px** via `.pc-sidebar-logo-img` — do not change with hero size
 
 **Footer (`footer`, `.doc-footer`):**
 
 - Tagline + links: Gold Text, **15px Centaur 400** ✔ — matches `SkiaLegalFooter` / skia.ca `.skia-forge-footer__*`
 - Copyright: `rgba(212,175,55,0.62)` ✔
-- Nav row: Who is SKIA, Privacy, Contact, Resources, Security — mirror skia.ca footer links
+- **Nav row (order — matches skia.ca; implemented 2026-06-12 on all 17 Context A pages):**
+
+| # | Label (en) | i18n key | href | Target |
+|---|------------|----------|------|--------|
+| 1 | Who is SKIA? | `common.footer.whoIsSkia` | `https://skia.ca/en/sovereign-core/who-is-skia` | skia.ca — `target="_blank"` `rel="noopener noreferrer"` |
+| 2 | Privacy Policy | `common.footer.privacyPolicy` | `https://skia.ca/en/privacy` | skia.ca — `target="_blank"` `rel="noopener noreferrer"` |
+| 3 | Contact & Support | `common.footer.contactSupport` | `/contact` | Forge internal (locale-routed) |
+| 4 | Resources | `common.footer.resources` | `/resources` | Forge internal |
+| 5 | Security | `common.footer.security` | `/security` | Forge internal |
+
+- Hub pages: `<footer>` → `.footer-links` + `| ` separators (`.sep`)
+- Doc pages: `.doc-footer` → `.links` + same five-link markup
+- Copy in **`public/locales/*/common.json`** — 12 langs; run `npm run locales:validate` after edits
+- External skia.ca URLs use fixed `/en/` paths; link **labels** localize via i18n
 
 **DOWNLOAD APP button:**
 
-- Visible on **desktop browser only** — gated by `src/utils/forgeDownloadMarkup.ts` + client script
-- Hidden on mobile browser and hidden entirely in Forge IDE
+- **Server-rendered surfaces** (`/forge/platform`, `/chat`): `.download-btn` / `.ide-download-app` via `src/utils/forgeDownloadMarkup.ts` — `data-skia-forge-download` + `forgeDownloadClientGateScript()` hides on mobile browser and Forge IDE
+- **Static Context A HTML:** sidebar nav includes **Download SKIA Forge** (`.pc-sidebar-btn` → `/platform-downloads`) — always visible; not gated (navigation to downloads hub, not the skia.ca hero chip)
+- **`/platform-downloads`:** installer CTAs remain visible on all viewports (user is on the download page)
 
 ### 6.3 Context A — documentation layout
 
@@ -787,7 +802,7 @@ Standalone help pages inside the app — Context B styling:
 - ✔ Context B Forge Web + entire IDE: cold flat cards (Tier 3)
 - ✔ Locale changes: edit JSON in `public/locales/` + run `npm run locales:sync`
 - ✔ IDE design changes must update §7 in this file when intentional
-- ✔ Hub/doc pages must follow §6 shell — layout, footer, cards, and type scale (brand standard matches skia.ca hub pages)
+- ✔ Hub/doc pages must follow §6 shell — layout, footer (five-link nav §6.2), cards, and type scale (brand standard matches skia.ca hub pages)
 
 ---
 
@@ -828,6 +843,7 @@ Standalone help pages inside the app — Context B styling:
 | Context A hub + doc cards (Tier 1 / Tier 2) | `public/forge-hub-design.css` |
 | Context A background `#080400` + radial | `body.forge-context-a` |
 | Footer 15px Gold Text + copyright 0.62 | `public/forge-premium-ui.css` lines 182–214 |
+| Footer nav — five links, skia.ca order | All 17 Context A HTML pages + `public/locales/*/common.json` ✔ (2026-06-12) |
 | Page title 34px, body 15px, card titles 16px | `forge-hub-design.css` via tokens + classes |
 | Sidebar nav 15px | `--skia-font-nav-size` + `.pc-sidebar-btn` |
 | Scrollbars 8px gold on `html.skia-scrollbar-premium` | `forge-premium-ui.css` ✔ matches skia.ca |
@@ -855,13 +871,26 @@ Standalone help pages inside the app — Context B styling:
 
 Enforcement: `node scripts/normalize-forge-font-sizes.mjs --check` (Forge Web only; IDE exempt).
 
-### 12.3 Layout alignment ✔ (2026-06-05 pass; **2026-06-12** back button + card grid)
+### 12.3 Layout alignment ✔ (2026-06-05 pass; **2026-06-12** back button, card grid, footer nav)
+
+#### Footer nav — skia.ca parity (2026-06-12)
+
+| Property | Spec |
+|----------|------|
+| Link order | Who is SKIA? → Privacy Policy → Contact & Support → Resources → Security |
+| External (1–2) | `https://skia.ca/en/sovereign-core/who-is-skia`, `https://skia.ca/en/privacy` — new tab, `rel="noopener noreferrer"` |
+| Internal (3–5) | `/contact`, `/resources`, `/security` — Forge routes (locale prefix applied by router) |
+| i18n keys | `common.footer.whoIsSkia`, `.privacyPolicy`, `.contactSupport`, `.resources`, `.security` |
+| Pages | 4 hub (`contact`, `platform-downloads`, `resources`, `security`) + 13 `public/docs/*.html` |
+| Hub markup | `<div class="footer-links">` inside `<footer>` |
+| Doc markup | `<div class="links">` inside `.doc-footer` |
 
 #### Back button (`.back-btn`) — skia.ca parity
 
 | Property | Spec |
 |----------|------|
 | `font-size` | `var(--skia-font-caption-size)` (was `--skia-font-button-size`) |
+| `color` | Gold Text `rgba(212,175,55,0.7)` (skia.ca `.skia-back-btn` parity) |
 | `letter-spacing` | `0.08em` (was `0.1em`) |
 | `line-height` | `1` |
 | `padding` | `8px 14px` |
@@ -889,13 +918,16 @@ Viewport-fixed placement unchanged: desktop `top:1rem left:48px z-index:150`; mo
 | Hub card grids | Three columns on desktop where content fits | `.skia-forge-hub__doc-grid` / `.doc-grid` / `.card-grid` ✔ (2026-06-12) |
 | Section labels on hub | `.skia-forge-hub__section-label` + `.download-web-text` — Agency FB 500, 26px (`--skia-font-section-title-size`), `#ffffff`, `letter-spacing: 0.08em` | `forge-hub-design.css` ✔ (2026-06-10) |
 | Footer viewport pin | `body` flex column + `.wrap { flex: 1 }` + `footer { margin-top: auto }` | `forge-hub-design.css` ✔ (2026-06-10) — Context A pages only; `/forge/platform` (Context B) unaffected |
+| Footer nav five-link row | skia.ca order + external Who is SKIA / Privacy | all 17 Context A HTML ✔ (2026-06-12) |
 
 ### 12.4 Maintenance scripts
 
-- `node scripts/apply-forge-hub-design.mjs --check` — hub HTML links Forge CSS + viewport-fixed `.back-btn`
 - `node scripts/migrate-forge-shell-inline.mjs --check` — §6.1 shell inline on every `.wrap`
 - `node scripts/migrate-forge-skia-hub-shell.mjs --check` — `.skia-forge-hub__*` class parity
+- `npm run hub-shell:check` — Context A background, 170px hero, §6.1 shell on all public HTML
+- `node scripts/apply-forge-hub-design.mjs --check` — hub HTML links core Forge CSS + viewport-fixed `.back-btn` (**note:** script `CSS_BLOCK` omits `forge-lucide-icons.css` and `forge-sidebar-locale.css` — live pages include all six §6.2 stylesheets; update script if regenerating pages)
 - `npm run fonts:check` — only `"Agency FB"` / `"Centaur"` in Forge Web paths (IDE exempt)
+- `npm run locales:validate` — locale key parity across 12 langs (required after footer/i18n edits)
 - `node scripts/normalize-forge-colors.mjs --check` — gold token drift in `public/`, `src/`
 - `node scripts/normalize-forge-font-sizes.mjs --check` — 15px floor / 38px ceiling on Forge Web
 - `node scripts/fix-forge-locale-font-sizes.mjs --check` — 15px floor in locale `docs.json` HTML strings

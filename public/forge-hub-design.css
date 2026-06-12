@@ -199,7 +199,7 @@ button, .btn, .title, .heading, .label, .badge {
   align-items: center;
   gap: 8px;
   margin: 0;
-  color: var(--skia-gold-full);
+  color: rgba(212, 175, 55, 0.7);
   text-decoration: none;
   font-family: "Agency FB";
   font-size: var(--skia-font-caption-size);
