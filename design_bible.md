@@ -1,6 +1,6 @@
 # SKIA FORGE DESIGN BIBLE — ROOT AUTHORITY
 
-**Version 2.6 — Sovereign Forge spec — 2026-06-10**
+**Version 2.7 — Sovereign Forge spec — 2026-06-12**
 
 This file is the **sole design law** for **SKIA-Forge** (`forge.skia.ca`, Forge IDE).
 
@@ -519,6 +519,8 @@ Doc slugs: `readme`, `quickstart`, `user-guide`, `developer-guide`, `operator-ma
 | Padding | `padding-top: 0.75rem`; sides/bottom `40px` | inline `padding: 0.75rem 40px 40px 40px` ✔ | ✔ (2026-06-10) |
 | Back control | Viewport-fixed (skia.ca §6.1 parity) | `.back-btn` in DOM inside `.wrap`; CSS `position: fixed` ✔ | Desktop `top:1rem left:48px z-index:150`; mobile `top:calc(52px + safe-area) left:1rem` |
 
+**Card grids (`forge-hub-design.css`):** Desktop **≥769px** — `.skia-forge-hub__doc-grid`, `.doc-grid`, and `.card-grid` use `grid-template-columns: repeat(3, minmax(0, 1fr))` (three columns in the 800px column). **≤768px** — same classes revert to `repeat(auto-fill, minmax(240px, 1fr))` / `minmax(220px, 1fr)` (unchanged). `.triage-grid` — fixed **2 columns** (contact page; intentional). `.pkg-grid` — `repeat(auto-fill, minmax(200px, 1fr))` (renders three at desktop but left flexible due to long pricing copy). `.controls-grid` and `.scope-grid` — `auto-fill` unchanged. Full spec §12.3.
+
 **Server routes (crest delivery):** `GET /forge-crest-bullet.css`, `GET /icons/*` in `src/server.ts`.
 
 **PC sidebar (`#pcSidebar`):**
@@ -560,7 +562,8 @@ Doc pages share classes in `public/forge-hub-design.css` (linked from all `publi
 | `.doc-card-desc`, `.item-text` | 15px Centaur | 15px body | ✔ |
 | `.doc-badge`, `.field label`, `.sla-label` | **15px** via `--skia-font-metadata-size` | **15px** metadata | ✔ |
 | `.code-block`, `.form-status` | **15px** via `--skia-font-caption-size` | **15px** caption | ✔ |
-| `.submit-btn`, `.feature-tab`, `.back-btn` | **15px** via `--skia-font-button-size` | **15px** button | ✔ |
+| `.submit-btn`, `.feature-tab` | **15px** via `--skia-font-button-size` | **15px** button | ✔ |
+| `.back-btn` | **15px** via `--skia-font-caption-size`; `letter-spacing: 0.08em`; `line-height: 1`; padding `8px 14px`; computed **80×33px** (skia.ca) | skia.ca `.skia-back-btn` | ✔ (2026-06-12) |
 | `.item`, `.step`, `.check-item` | Tier 2 light cards | Tier 2 | ✔ |
 | `.step-num` / `.step-text` | **15px** Agency FB number + **15px** Centaur copy, `gap: 14px`, `align-items: flex-start`, `margin-top: 1px` on number | doc-embed parity | ✔ |
 | `.practice-num`, `.esc-num` | **15px** Agency FB, `flex-start` + `margin-top: 1px` (multi-line rows stay top-aligned) | security/contact parity | ✔ |
@@ -852,7 +855,29 @@ Standalone help pages inside the app — Context B styling:
 
 Enforcement: `node scripts/normalize-forge-font-sizes.mjs --check` (Forge Web only; IDE exempt).
 
-### 12.3 Layout alignment ✔ (2026-06-05 pass)
+### 12.3 Layout alignment ✔ (2026-06-05 pass; **2026-06-12** back button + card grid)
+
+#### Back button (`.back-btn`) — skia.ca parity
+
+| Property | Spec |
+|----------|------|
+| `font-size` | `var(--skia-font-caption-size)` (was `--skia-font-button-size`) |
+| `letter-spacing` | `0.08em` (was `0.1em`) |
+| `line-height` | `1` |
+| `padding` | `8px 14px` |
+| Computed size | **80×33px** — matches skia.ca back button exactly (Playwright `@ 1280×900`) |
+| `button.back-btn` | Do **not** use `font: inherit` — it pulls body `line-height: 1.6` and `letter-spacing: 0.01em`, oversizing the control. Set explicit inherits + `line-height: 1` only. |
+
+Viewport-fixed placement unchanged: desktop `top:1rem left:48px z-index:150`; mobile `top:calc(52px + safe-area) left:1rem`. DOM inside `.wrap` per `scripts/migrate-forge-back-btn.mjs`.
+
+#### Card grids — desktop three-column
+
+| Class | Desktop (≥769px) | ≤768px |
+|-------|------------------|--------|
+| `.skia-forge-hub__doc-grid`, `.doc-grid`, `.card-grid` | `repeat(3, minmax(0, 1fr))` | `repeat(auto-fill, minmax(240px, 1fr))` / `minmax(220px, 1fr)` (unchanged) |
+| `.triage-grid` | Fixed **2 columns** (contact page — intentional) | Same |
+| `.pkg-grid` | `repeat(auto-fill, minmax(200px, 1fr))` — renders 3 at desktop; left flexible (long pricing copy) | Same |
+| `.controls-grid`, `.scope-grid` | `repeat(auto-fill, minmax(200px, 1fr))` (unchanged) | Same |
 
 | Item | Brand standard | Forge Web |
 |------|----------------|-----------|
@@ -860,7 +885,8 @@ Enforcement: `node scripts/normalize-forge-font-sizes.mjs --check` (Forge Web on
 | Hub DOM | `.skia-forge-hub__*` | `.skia-forge-hub__*` ✔ |
 | Content max-width | 800px | inline `max-width:800px` ✔ |
 | Shell padding | `padding-top:0.75rem`; horizontal/bottom unchanged (`40px`) | inline `padding: 0.75rem 40px 40px 40px` ✔ |
-| Back button | Viewport-fixed: desktop `top:1rem left:48px z-index:150`; mobile `top:calc(52px + safe-area) left:1rem` | `.back-btn` viewport-fixed in `forge-hub-design.css` ✔ (`scripts/migrate-forge-back-btn.mjs` — DOM inside `.wrap`) |
+| Back button | Viewport-fixed + typography above | `.back-btn` in `forge-hub-design.css` ✔ |
+| Hub card grids | Three columns on desktop where content fits | `.skia-forge-hub__doc-grid` / `.doc-grid` / `.card-grid` ✔ (2026-06-12) |
 | Section labels on hub | `.skia-forge-hub__section-label` + `.download-web-text` — Agency FB 500, 26px (`--skia-font-section-title-size`), `#ffffff`, `letter-spacing: 0.08em` | `forge-hub-design.css` ✔ (2026-06-10) |
 | Footer viewport pin | `body` flex column + `.wrap { flex: 1 }` + `footer { margin-top: auto }` | `forge-hub-design.css` ✔ (2026-06-10) — Context A pages only; `/forge/platform` (Context B) unaffected |
 
