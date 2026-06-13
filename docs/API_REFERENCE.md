@@ -1,4 +1,4 @@
-ï»¿# SKIA Forge API Reference
+# SKIA Forge API Reference
 
 ## Scope
 
@@ -8,7 +8,7 @@ The canonical route list is the Forge server implementation; this document is th
 
 **Package version:** `1.0.0` (root `package.json`).
 
-**Authentication:** All routes under **`/api/forge/*`** require authenticated clients. Auth proxy routes **`/api/auth/*`** forward to the configured SKIA backend (default `https://api.skia.ca`). Integration and diagnostic routes may have different access policies â€” follow your deploymentâ€™s security configuration.
+**Authentication:** All routes under **`/api/forge/*`** require authenticated clients. Auth proxy routes **`/api/auth/*`** forward to the configured SKIA backend (default `https://api.skia.ca`). Integration and diagnostic routes may have different access policies — follow your deployment’s security configuration.
 
 ---
 
@@ -40,7 +40,7 @@ These routes serve HTML, redirects, or static assets for the Forge site and IDE 
 | GET | `/version` | Service version (`npm_package_version` or dev fallback). |
 | GET | `/api/app/version-check` | Desktop update signal (`SKIA_FORGE_LATEST_VERSION` or GitHub release tag). |
 | GET | `/api/app/release-assets` | Published installer filenames + asset URLs for the download UI. |
-| GET | `/api/app/download` | User-agent pick â†’ redirect to `/api/app/download/:platform`. |
+| GET | `/api/app/download` | User-agent pick ? redirect to `/api/app/download/:platform`. |
 | GET | `/api/app/download/:platform` | Redirect to GitHub release asset (`windows`, `mac-intel`, `mac-arm`, `linux-appimage`). |
 
 Platform installer filenames expected by the download UI are defined in the SKIA platform (`Skia-Forge-*`).
@@ -122,9 +122,9 @@ The adapter may probe upstream paths such as `/api/health` **on the SKIA API hos
 
 ## Mounted routers
 
-- `app.use("/api/forge/production", â€¦)` â€” production module router.
-- `app.use("/api/forge/healing", â€¦)` â€” healing router.
-- `app.use("/api/forge/architecture", â€¦)` â€” architecture diagnostics router.
+- `app.use("/api/forge/production", …)` — production module router.
+- `app.use("/api/forge/healing", …)` — healing router.
+- `app.use("/api/forge/architecture", …)` — architecture diagnostics router.
 
 ---
 
@@ -149,12 +149,12 @@ The adapter may probe upstream paths such as `/api/health` **on the SKIA API hos
 
 ## Other notable surfaces
 
-- `POST /rpc` â€” Internal RPC / streaming bridge (rate limited).
-- `POST /sovereign-core` â€” Sovereign core passthrough to the SKIA API.
-- `GET /stream/:method` â€” SSE streaming for SKIA methods (rate limited).
-- `GET /providers/status` â€” Provider routing status snapshot.
+- `POST /rpc` — Internal RPC / streaming bridge (rate limited).
+- `POST /sovereign-core` — Sovereign core passthrough to the SKIA API.
+- `GET /stream/:method` — SSE streaming for SKIA methods (rate limited).
+- `GET /providers/status` — Provider routing status snapshot.
 - Index, search, and agent audit: `GET /index`, `GET /search`, `GET /agent/audit-log`, `POST /agent/log`, `POST /agent/validate-command`.
-- `POST /diff/preview` â€” Text diff preview.
+- `POST /diff/preview` — Text diff preview.
 
 ---
 

@@ -254,7 +254,7 @@
         },
         "runtime-health-issues": {
           "title": "Çalışma Zamanı Sağlık Sorunları",
-          "html": "<div class = \"steps\"><div class = \"step\"><div class = \"step-num\">01</div><div class = \"step-text\"><code>/health</code> ve <code>/live</code> uç noktalarını doğrulayın.</div></div><div class = \"step\"><div class = \"step-num\">02</div><div class = \"step-text\">Başarısız modül adları için günlükleri kontrol edin ve istek kimlikleri.</div></div><div class = \"step\"><div class = \"step-num\">03</div><div class = \"step-text\">Sorunun yerel bir Forge modülü mü, yoksa bir yukarı akış sözleşmesi hatası mı olduğunu belirleyin.</div></div><div class = \"step\"><div class = \"step-num\">04</div><div class = \"step-text\">Çözülmezse, <a yoluyla iletin İstek kimliği ve günlüklerle href='/contact' style='color:var(--gold)'>İletişim ve Destek</a>.</div></div></div></div>"
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><code>/health</code> ve <code>/live</code> uç noktalarını doğrulayın.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Başarısız modül adları için günlükleri kontrol edin ve istek kimlikleri.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Sorunun yerel bir Forge modülü mü, yoksa bir yukarı akış sözleşmesi hatası mı olduğunu belirleyin.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Çözülmezse, <a href='/contact' style='color:var(--gold)'>İletişim ve Destek</a> üzerinden istek kimliği ve günlüklerle iletin.</div></div></div></div>"
         }
       }
     },

@@ -24,7 +24,7 @@
       "sections": {
         "step-by-step": {
           "title": "一步一步",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">从<a href=\"https://FORGE_HOST/platform-downloads\" style=\"color:var(--gold)\">FORGE_HOST/platform-downloads</a>下载SKIA_FORGEFORGE_HOST/platform-downloads</a>以供您操作 </div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">安装应用程序，然后从应用程序菜单或桌面快捷方式打开<strong>SKIA _FORGE </strong>。</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">使用您的 SKIA 帐户登录或创建一个帐户 提示 — 身份验证在应用程序内部进行。</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">打开或导入项目、提交工作、查看治理输出，并在准备好后应用更改。</div></div><div class=\"step\"><div class=\"step-num\">05</div><div class=\"step-text\">当您需要更多信息时，可以通过以下链接探索更深入的指南 详细信息。</div></div></div></div>"
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">从 <a href=\"https://forge.skia.ca/platform-downloads\" style=\"color:var(--gold)\">forge.skia.ca/platform-downloads</a> 下载 SKIA Forge，供您操作系统使用。</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">安装应用程序，然后从应用程序菜单或桌面快捷方式打开<strong>SKIA Forge</strong>。</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">使用您的 SKIA 帐户登录或创建一个帐户 提示 — 身份验证在应用程序内部进行。</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">打开或导入项目、提交工作、查看治理输出，并在准备好后应用更改。</div></div><div class=\"step\"><div class=\"step-num\">05</div><div class=\"step-text\">当您需要更多信息时，可以通过以下链接探索更深入的指南 详细信息。</div></div></div></div>"
         },
         "next-steps": {
           "title": "下一步",
@@ -152,7 +152,7 @@
         },
         "deployment-baseline": {
           "title": "部署基线",
-          "html": "<p class=\"doc-note doc-note--lead\">生产主机名：<code>FORGE_HOST </code>。 发布基线 Forge <code>1.0.0</code> 和 SKIA Forge IDE <code>1.0.0</code>。</p><div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><div class=\"code-block\">npm run build</div></div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\"><div class=\"code-block\">npm run dev</div>（或您的生产过程命令）</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">监听<code>SKIA_PORT</code>（默认<code>4173</code>）。 验证 <code>/health</code>、<code>/live</code>、<code>/ready</code>、<code>/version</code></div></div></div><p class=\"doc-note doc-note--after\">用于签名和 GitHub 集成的其他环境变量记录在您的入门包中。</p></div>"
+          "html": "<p class=\"doc-note doc-note--lead\">生产主机名：<code>forge.skia.ca</code>。 发布基线 Forge <code>1.0.0</code> 和 SKIA Forge IDE <code>1.0.0</code>。</p><div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><div class=\"code-block\">npm run build</div></div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\"><div class=\"code-block\">npm run dev</div>（或您的生产过程命令）</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">监听<code>SKIA_PORT</code>（默认<code>4173</code>）。 验证 <code>/health</code>、<code>/live</code>、<code>/ready</code>、<code>/version</code></div></div></div><p class=\"doc-note doc-note--after\">用于签名和 GitHub 集成的其他环境变量记录在您的入门包中。</p></div>"
         },
         "environment-secrets": {
           "title": "环境与秘密",
@@ -182,7 +182,7 @@
         },
         "delivery-surfaces": {
           "title": "交货面",
-          "html": "公共下载和文档位于 <strong>FORGE_HOST </strong>，包括 <code>/platform-downloads</code>、<code>/resources</code>、<code>/security</code>、<code>/contact</code> 和 <code>/docs/*</code>。 构建 IDE 捆绑包后，可以在 <code>/forge/app</code> 中使用 Web IDE。 帐户登录和注册发生在 <strong>SKIA _FORGE_IDE </strong> 或其他支持的客户端中，而不是在静态营销页面上。 桌面安装程序通过 <code>/api/app/download</code> 路线提供。</div>"
+          "html": "公共下载和文档位于 <strong>forge.skia.ca</strong>，包括 <code>/platform-downloads</code>、<code>/resources</code>、<code>/security</code>、<code>/contact</code> 和 <code>/docs/*</code>。 构建 IDE 捆绑包后，可以在 <code>/forge/app</code> 中使用 Web IDE。 帐户登录和注册发生在 <strong>SKIA Forge IDE</strong> 或其他支持的客户端中，而不是在静态营销页面上。 桌面安装程序通过 <code>/api/app/download</code> 路线提供。</div>"
         },
         "who-it-is-for": {
           "title": "它适合谁",

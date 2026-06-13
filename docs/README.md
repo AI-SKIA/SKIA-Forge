@@ -1,4 +1,4 @@
-﻿# SKIA Forge Documentation
+# SKIA Forge Documentation
 
 Welcome to the SKIA Forge documentation. These pages describe the product, how to use the IDE, and how to integrate with Forge APIs.
 

@@ -1,4 +1,4 @@
-﻿# SKIA Forge Quickstart
+# SKIA Forge Quickstart
 
 Get started with SKIA Forge in a few minutes using the desktop IDE.
 

@@ -254,7 +254,7 @@
         },
         "runtime-health-issues": {
           "title": "実行時の健全性の問題",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><code>/health</code> および <code>/live</code> エンドポイントを検証します。</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">失敗したモジュール名とリクエストのログを確認します。 ID。</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">問題がローカルの Forge モジュールであるか、上流の契約の失敗であるかを切り分けます。</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">未解決の場合は、<a href='/contact' 経由でエスカレーションします。 style='color:var(--gold)'>お問い合わせとサポート</a>にリクエスト ID とログを記載してください。</div></div></div></div>"
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><code>/health</code> および <code>/live</code> エンドポイントを検証します。</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">失敗したモジュール名とリクエストのログを確認します。 ID。</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">問題がローカルの Forge モジュールであるか、上流の契約の失敗であるかを切り分けます。</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">未解決の場合は、<a href='/contact' style='color:var(--gold)'>お問い合わせとサポート</a>経由でリクエスト ID とログを記載してエスカレーションしてください。</div></div></div></div>"
         }
       }
     },

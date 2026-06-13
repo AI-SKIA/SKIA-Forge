@@ -254,7 +254,7 @@
         },
         "runtime-health-issues": {
           "title": "런타임 상태 문제",
-          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><code>/health</code> 및 <code>/live</code> 엔드포인트를 검증합니다.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">실패하는 모듈 이름 및 요청에 대한 로그를 확인하세요. ID.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">문제가 로컬 Forge 모듈인지 업스트림 계약 실패인지 확인하세요.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">해결되지 않은 경우 <a href='/contact'를 통해 에스컬레이션하세요. style='color:var(--gold)'>문의 및 지원</a>에 요청 ID 및 로그가 포함됩니다.</div></div></div></div>"
+          "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\"><code>/health</code> 및 <code>/live</code> 엔드포인트를 검증합니다.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">실패하는 모듈 이름 및 요청에 대한 로그를 확인하세요. ID.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">문제가 로컬 Forge 모듈인지 업스트림 계약 실패인지 확인하세요.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">해결되지 않은 경우 <a href='/contact' style='color:var(--gold)'>문의 및 지원</a>을 통해 요청 ID 및 로그와 함께 에스컬레이션하세요.</div></div></div></div>"
         }
       }
     },

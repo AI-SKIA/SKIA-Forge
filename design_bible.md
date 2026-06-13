@@ -547,7 +547,7 @@ Doc slugs: `readme`, `quickstart`, `user-guide`, `developer-guide`, `operator-ma
 | # | Label (en) | i18n key | href | Target |
 |---|------------|----------|------|--------|
 | 1 | Who is SKIA? | `common.footer.whoIsSkia` | `https://skia.ca/en/sovereign-core/who-is-skia` | skia.ca — `target="_blank"` `rel="noopener noreferrer"` |
-| 2 | Privacy Policy | `common.footer.privacyPolicy` | `https://skia.ca/en/privacy` | skia.ca — `target="_blank"` `rel="noopener noreferrer"` |
+| 2 | Privacy Policy | `common.footer.privacyPolicy` | `https://skia.ca/en/document-legal/privacy` | skia.ca — `target="_blank"` `rel="noopener noreferrer"` |
 | 3 | Contact & Support | `common.footer.contactSupport` | `/contact` | Forge internal (locale-routed) |
 | 4 | Resources | `common.footer.resources` | `/resources` | Forge internal |
 | 5 | Security | `common.footer.security` | `/security` | Forge internal |
@@ -878,7 +878,7 @@ Enforcement: `node scripts/normalize-forge-font-sizes.mjs --check` (Forge Web on
 | Property | Spec |
 |----------|------|
 | Link order | Who is SKIA? → Privacy Policy → Contact & Support → Resources → Security |
-| External (1–2) | `https://skia.ca/en/sovereign-core/who-is-skia`, `https://skia.ca/en/privacy` — new tab, `rel="noopener noreferrer"` |
+| External (1–2) | `https://skia.ca/en/sovereign-core/who-is-skia`, `https://skia.ca/en/document-legal/privacy` — new tab, `rel="noopener noreferrer"` |
 | Internal (3–5) | `/contact`, `/resources`, `/security` — Forge routes (locale prefix applied by router) |
 | i18n keys | `common.footer.whoIsSkia`, `.privacyPolicy`, `.contactSupport`, `.resources`, `.security` |
 | Pages | 4 hub (`contact`, `platform-downloads`, `resources`, `security`) + 13 `public/docs/*.html` |

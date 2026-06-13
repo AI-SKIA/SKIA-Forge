@@ -1,4 +1,4 @@
-﻿# SKIA Forge Security Guide
+# SKIA Forge Security Guide
 
 ## Security scope
 
@@ -16,7 +16,7 @@ SKIA Forge applies layered controls:
 ## Authentication and accounts
 
 - All Forge API routes require authentication. Sign in via the SKIA Forge IDE or your API client.
-- Forge exposes **`POST /api/auth/login`**, **`POST /api/auth/register`**, and **`GET /api/auth/session`** for the **SKIA Forge IDE**, automation, and API clients — not for anonymous public marketing pages.
+- Forge exposes **`POST /api/auth/login`**, **`POST /api/auth/register`**, and **`GET /api/auth/session`** for the **SKIA Forge IDE**, automation, and API clients � not for anonymous public marketing pages.
 - **Static Forge pages** (`/resources`, `/security`, `/contact`, `/docs/*`) and the canonical download surface at **`https://forge.skia.ca/platform-downloads`** intentionally omit **Sign in** and **Register** web CTAs; end users **create accounts and sign in inside the desktop IDE** (or other trusted clients).
 
 ## Key Security Components

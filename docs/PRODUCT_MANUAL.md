@@ -1,10 +1,10 @@
-ï»¿# SKIA Forge Product Manual
+# SKIA Forge Product Manual
 
-**Versions:** Forge server **`1.0.0`** Â· SKIA Forge IDE **`1.0.0`**.
+**Versions:** Forge server **`1.0.0`** · SKIA Forge IDE **`1.0.0`**.
 
 ## What SKIA Forge Is
 
-SKIA Forge is the governance and orchestration control plane for AI-native software development in the SKIA ecosystem. It coordinates planning, execution safety, architecture checks, and remediation guidance around AI-assisted workflows. SKIA Forge connects to the SKIA intelligence APIs to power its orchestration flows â€” it does **not** replace the full SKIA product runtime where customer features live.
+SKIA Forge is the governance and orchestration control plane for AI-native software development in the SKIA ecosystem. It coordinates planning, execution safety, architecture checks, and remediation guidance around AI-assisted workflows. SKIA Forge connects to the SKIA intelligence APIs to power its orchestration flows — it does **not** replace the full SKIA product runtime where customer features live.
 
 ## Who It Is For
 
@@ -32,7 +32,7 @@ SKIA Forge is a control and orchestration layer. It coordinates how AI-assisted 
 
 ## Delivery surfaces (current)
 
-- **Forge web host** â€” public download and documentation at **`https://forge.skia.ca`**, including **`/platform-downloads`**, **`/resources`**, **`/security`**, **`/contact`**, and **`/docs/*`**. Account **sign-in and registration** are not promoted on static marketing pages; users authenticate in the **SKIA Forge IDE** or other supported clients.
-- **Web IDE shell** â€” **`/forge/app`** serves the SKIA Forge IDE in the browser with a compatibility layer for users who do not install the desktop app.
-- **Desktop IDE** â€” **SKIA Forge** (desktop) is the primary interactive surface for developers working on local repositories.
-- **Installers** â€” **`GET /api/app/download`** and **`GET /api/app/download/:platform`** redirect to published release assets for each supported platform.
+- **Forge web host** — public download and documentation at **`https://forge.skia.ca`**, including **`/platform-downloads`**, **`/resources`**, **`/security`**, **`/contact`**, and **`/docs/*`**. Account **sign-in and registration** are not promoted on static marketing pages; users authenticate in the **SKIA Forge IDE** or other supported clients.
+- **Web IDE shell** — **`/forge/app`** serves the SKIA Forge IDE in the browser with a compatibility layer for users who do not install the desktop app.
+- **Desktop IDE** — **SKIA Forge** (desktop) is the primary interactive surface for developers working on local repositories.
+- **Installers** — **`GET /api/app/download`** and **`GET /api/app/download/:platform`** redirect to published release assets for each supported platform.

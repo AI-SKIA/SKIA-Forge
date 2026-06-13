@@ -46,7 +46,7 @@
         },
         "get-the-desktop-ide": {
           "title": "Загрузите IDE для рабочего стола",
-          "html": "Загрузите установщики с сайта <a href=\"https://forge.skia.ca/platform-downloads» style=\"color:var(--gold)\">forge.skia.ca/platform-downloads</a> и установите <strong>SKIA Forge</strong> для вашей платформы.</div>"
+          "html": "Загрузите установщики с сайта <a href=\"https://forge.skia.ca/platform-downloads\" style=\"color:var(--gold)\">forge.skia.ca/platform-downloads</a> и установите <strong>SKIA Forge</strong> для вашей платформы.</div>"
         },
         "signing-in": {
           "title": "Вход в систему",

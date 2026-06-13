@@ -1,4 +1,4 @@
-ï»¿# SKIA Forge Developer Guide
+# SKIA Forge Developer Guide
 
 ## Ecosystem boundaries
 
@@ -14,15 +14,15 @@
 
 ## Project Structure (Core)
 
-- the Forge server â€” runtime entrypoint (binds **`SKIA_PORT`**, default **4173**)
-- `src/forge/modules/` â€” module domains wired into the server execution path (for example context-engine, agent-planner, agent-executor, production, healing, architecture, skiarules, security, sdlc, tools)
-- SKIA Forge IDE â€” Electron + renderer (**`1.0.0`**); run `npm run build` in that package before `/forge/app` can load in the browser
-- `public/docs/` â€” branded HTML documentation served at `/docs/*.html` (takes precedence over `docs/*.md`)
+- the Forge server — runtime entrypoint (binds **`SKIA_PORT`**, default **4173**)
+- `src/forge/modules/` — module domains wired into the server execution path (for example context-engine, agent-planner, agent-executor, production, healing, architecture, skiarules, security, sdlc, tools)
+- SKIA Forge IDE — Electron + renderer (**`1.0.0`**); run `npm run build` in that package before `/forge/app` can load in the browser
+- `public/docs/` — branded HTML documentation served at `/docs/*.html` (takes precedence over `docs/*.md`)
 
 ## HTTP surfaces (quick)
 
-- `/`, `/forge`, `/download` â†’ redirect **`https://forge.skia.ca/platform-downloads`** (download UI on the SKIA platform)
-- `/api/app/download`, `/api/app/download/:platform` â†’ desktop installer redirects (GitHub releases; default repo `AI-SKIA/SKIA-Forge`)
+- `/`, `/forge`, `/download` ? redirect **`https://forge.skia.ca/platform-downloads`** (download UI on the SKIA platform)
+- `/api/app/download`, `/api/app/download/:platform` ? desktop installer redirects (GitHub releases; default repo `AI-SKIA/SKIA-Forge`)
 - `/forge/app` - web IDE (requires built SKIA Forge IDE renderer bundle)
 - `/api/forge/*` - control plane (**authenticated**; see `API_REFERENCE.md`)
 - `/integration/skia-full/*` - adapter probes and passthroughs

@@ -1,4 +1,4 @@
-ï»¿# SKIA FORGE
+# SKIA FORGE
 
 Standalone Electron + Monaco desktop IDE shell for SKIA-Forge integration.
 
@@ -6,7 +6,7 @@ Standalone Electron + Monaco desktop IDE shell for SKIA-Forge integration.
 
 ## Scope
 
-This IDE shell targets Forge control-plane workflows. Product runtime features continue to execute in the SKIA product stack; public status publication remains in Skia-Status. The IDE talks to **`https://api.skia.ca`** (and related SKIA API routes) â€” not a replacement runtime.
+This IDE shell targets Forge control-plane workflows. Product runtime features continue to execute in the SKIA product stack; public status publication remains in Skia-Status. The IDE talks to **`https://api.skia.ca`** (and related SKIA API routes) — not a replacement runtime.
 
 ## Authentication
 
@@ -15,9 +15,9 @@ Sign-in and account creation run **inside this application** against the configu
 ## Commands
 
 - `npm install`
-- `npm run build` â€” required for `/forge/app` web shell on the Forge server to load assets from `skia-ide/dist/renderer`
-- `npm start` â€” launch Electron desktop IDE
-- `npm run dist:win` / `dist:mac` / `dist:linux` / `dist:all` â€” local packaging (Windows NSIS, macOS DMG x64+arm64, Linux AppImage per `package.json` `build`)
+- `npm run build` — required for `/forge/app` web shell on the Forge server to load assets from `skia-ide/dist/renderer`
+- `npm start` — launch Electron desktop IDE
+- `npm run dist:win` / `dist:mac` / `dist:linux` / `dist:all` — local packaging (Windows NSIS, macOS DMG x64+arm64, Linux AppImage per `package.json` `build`)
 
 ## Configuration
 
@@ -27,12 +27,12 @@ See `src/renderer/skia/skiaConfig.ts` for backend URL (**default `https://api.sk
 
 | Panel | API path | Purpose |
 |-------|----------|---------|
-| **Agent** (AGENT view) | `forgeUrl` â†’ `POST /api/forge/agent/plan`, `/decompose`, `/execute` | Structured plan, 8-tool executor, diff preview with APPLY/REJECT |
-| **Chat** (side panel) | `https://skia.ca/api/skia/forge-agent` (SSE) | Conversational stream; edits parsed from model text â€” not the Forge tool registry |
+| **Agent** (AGENT view) | `forgeUrl` ? `POST /api/forge/agent/plan`, `/decompose`, `/execute` | Structured plan, 8-tool executor, diff preview with APPLY/REJECT |
+| **Chat** (side panel) | `https://skia.ca/api/skia/forge-agent` (SSE) | Conversational stream; edits parsed from model text — not the Forge tool registry |
 
 Use **Agent** for repo changes with governance and explicit approvals. Use **Chat** for Q&A and narrative assistance.
 
-Inline tab completion uses the Forge server WebSocket (`/inline-completion`) with SKIA code mode + repo context â€” not the chat stream.
+Inline tab completion uses the Forge server WebSocket (`/inline-completion`) with SKIA code mode + repo context — not the chat stream.
 
 ## Distribution
 
@@ -40,10 +40,10 @@ Published installers are consumed via Forge **`GET /api/app/download`** and **`G
 
 ## Local development (SKIA-Forge repo)
 
-Local Forge + IDE against a laptop SKIA stack lives under **`../local-dev/`** â€” not this packageâ€™s production defaults.
+Local Forge + IDE against a laptop SKIA stack lives under **`../local-dev/`** — not this package’s production defaults.
 
 - Start: `../local-dev/scripts/start-forge-local.ps1` (loads `local-dev/.env.forge.local`, may apply IDE overrides).
-- Overrides: `../local-dev/ide-overrides/` â†’ copied into `skia-ide/` only by the patch script; **do not** ship or build releases after patching without reverting.
+- Overrides: `../local-dev/ide-overrides/` ? copied into `skia-ide/` only by the patch script; **do not** ship or build releases after patching without reverting.
 - Revert IDE to repo source: `../local-dev/scripts/revert-forge-ide-local-patch.ps1`
 
 Production builds use **`npm run build`** on unpatched `skia-ide/` with default `skiaConfig.ts` URLs (`api.skia.ca`, `forge.skia.ca`).
