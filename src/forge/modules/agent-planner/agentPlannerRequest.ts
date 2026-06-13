@@ -195,7 +195,11 @@ export function extractJsonObjectString(raw: string): string | null {
   return candidate.slice(start, end + 1);
 }
 
-const FORGE_PLANNER_STRUCTURED_TOOLS = [
+const FORGE_PLANNER_STRUCTURED_TOOLS: Array<{
+  name: string;
+  description: string;
+  parameters: Array<{ name: string; type?: string; description?: string; required?: boolean }>;
+}> = [
   {
     name: "submit_agent_task_plan",
     description: "Submit a validated agent task plan JSON object",
@@ -207,7 +211,7 @@ const FORGE_PLANNER_STRUCTURED_TOOLS = [
       { name: "risks", type: "array", description: "Risks" }
     ]
   }
-] as const;
+];
 
 function useStructuredPlannerOutput(): boolean {
   return (
