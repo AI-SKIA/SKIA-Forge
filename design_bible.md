@@ -36,7 +36,7 @@ Forge ships **two user-facing surfaces**. Every UI change must declare which sur
 **Platform notes (Forge Web only):**
 
 - **Desktop browser:** hub sidebar, locale switcher, **DOWNLOAD APP** CTA on server-rendered surfaces (`/forge/platform`, `/chat`) where applicable
-- **Mobile browser:** same pages; **DOWNLOAD APP** hidden on server-rendered surfaces via `forgeDownloadClientGateScript()`; static hub sidebar still links to `/platform-downloads`. No native mobile Forge app in this repo.
+- **Mobile browser:** same pages; **DOWNLOAD APP** hidden on server-rendered surfaces via `forgeDownloadClientGateScript()`; static hub sidebar **Download SKIA Forge** links to `/api/app/download` (installer). No native mobile Forge app in this repo.
 - **Forge IDE:** no download CTAs (user already has the app).
 
 **Equivalent hub routes (same brand shell, different domains):**
@@ -560,7 +560,7 @@ Doc slugs: `readme`, `quickstart`, `user-guide`, `developer-guide`, `operator-ma
 **DOWNLOAD APP button:**
 
 - **Server-rendered surfaces** (`/forge/platform`, `/chat`): `.download-btn` / `.ide-download-app` via `src/utils/forgeDownloadMarkup.ts` — `data-skia-forge-download` + `forgeDownloadClientGateScript()` hides on mobile browser and Forge IDE
-- **Static Context A HTML:** sidebar nav includes **Download SKIA Forge** (`.pc-sidebar-btn` → `/platform-downloads`) — always visible; not gated (navigation to downloads hub, not the skia.ca hero chip)
+- **Static Context A HTML:** sidebar nav includes **Download SKIA Forge** (`.pc-sidebar-btn` → `/api/app/download`) — always visible; triggers platform-matched installer download (user-agent redirect), distinct from **SKIA Forge Home** (`/platform-downloads`)
 - **`/platform-downloads`:** installer CTAs remain visible on all viewports (user is on the download page)
 
 ### 6.3 Context A — documentation layout
