@@ -47,6 +47,8 @@ export interface SkiaFullChatResponse {
   safetyRedirect?: boolean;
   category?: string;
   blocked?: boolean;
+  /** From Skia-FULL `X-SKIA-Confidence-Band` when EPAAS v2 output entanglement is enabled. */
+  confidenceBand?: 'high' | 'medium' | 'low' | 'ungrounded' | string;
   [key: string]: unknown;
 }
 

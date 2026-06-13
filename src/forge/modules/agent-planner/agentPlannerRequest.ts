@@ -154,6 +154,13 @@ You MUST reply with a single JSON object only — no markdown fences, no comment
 Rules: step ids are unique slugs; dependsOn lists other step ids that must complete first; keep steps ordered for execution.`;
 
 export function extractTextFromSkiaChatResponse(r: Record<string, unknown>): string {
+  const toolCalls = r["toolsCalled"] ?? r["tool_calls"];
+  if (Array.isArray(toolCalls) && toolCalls.length) {
+    const first = toolCalls[0] as { arguments?: Record<string, unknown> };
+    if (first?.arguments && typeof first.arguments === "object") {
+      return JSON.stringify(first.arguments);
+    }
+  }
   for (const k of ["message", "response", "text", "content", "answer", "output", "body"]) {
     const v = r[k];
     if (typeof v === "string" && v.trim().length) {
@@ -186,6 +193,27 @@ export function extractJsonObjectString(raw: string): string | null {
     return null;
   }
   return candidate.slice(start, end + 1);
+}
+
+const FORGE_PLANNER_STRUCTURED_TOOLS = [
+  {
+    name: "submit_agent_task_plan",
+    description: "Submit a validated agent task plan JSON object",
+    parameters: [
+      { name: "title", type: "string", required: true, description: "Plan title" },
+      { name: "goalRestatement", type: "string", description: "Restated goal" },
+      { name: "steps", type: "array", required: true, description: "Plan steps" },
+      { name: "assumptions", type: "array", description: "Assumptions" },
+      { name: "risks", type: "array", description: "Risks" }
+    ]
+  }
+] as const;
+
+function useStructuredPlannerOutput(): boolean {
+  return (
+    (process.env.SKIA_STRUCTURED_OUTPUT_ENABLED || process.env.FORGE_STRUCTURED_PLANNER || "false")
+      .toLowerCase() === "true"
+  );
 }
 
 /**
@@ -514,7 +542,10 @@ export async function runAgentPlannerRequest(
     rawText = JSON.stringify(workPlanV2);
   } else {
     try {
-      upstream = await skia.intelligence(message, "agent", passthroughHeaders);
+      upstream = await skia.intelligence(message, "agent", passthroughHeaders, {
+        structuredOutput: useStructuredPlannerOutput(),
+        tools: useStructuredPlannerOutput() ? [...FORGE_PLANNER_STRUCTURED_TOOLS] : undefined
+      });
     } catch (e) {
       await emitPlannerRun("failure", e instanceof Error ? e.message : "Planner chat call failed");
       return {

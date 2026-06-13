@@ -22,7 +22,14 @@ type EpaasAdversaryEvent = {
     | "honey_trigger"
     | "alias_misuse"
     | "token_misuse"
-    | "suspicious_traversal";
+    | "suspicious_traversal"
+    | "prompt_dna_topology"
+    | "behavioral_deviation"
+    | "semantic_poison"
+    | "output_entanglement"
+    | "adversarial_gradient"
+    | "temporal_contradiction"
+    | "shadow_intent_delta";
   riskBandAtEvent: "low" | "medium" | "high" | "critical";
   detail: Record<string, unknown>;
   timestamp: Date;

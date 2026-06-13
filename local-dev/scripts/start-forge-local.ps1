@@ -1,5 +1,5 @@
 # Start Forge server + Electron IDE against local Skia-FULL (not production).
-# Prereqs: Skia-FULL backend :4000, frontend :3000, Ollama :11434, Postgres.
+# Prereqs: Skia-FULL backend :4000, frontend :3000, Skia-Serve :11500, Postgres.
 #
 # Usage (PowerShell):
 #   cd C:\SKIA-Forge

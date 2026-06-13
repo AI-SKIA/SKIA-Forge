@@ -57,7 +57,7 @@ SKIA builds integrated capabilities **in-house** — not third-party SaaS as the
 - **SKIA Forge IDE:** `1.0.0` (`skia-ide/package.json`)
 - **Locales:** 12 — `fr`, `en`, `zh`, `es`, `ar`, `pt`, `de`, `ja`, `ko`, `hi`, `tr`, `ru` (default: **`fr`** — keep in sync with skia.ca)
 - **Live HTTP modules** (`POST /api/forge/module/:module`): `context`, `agent`, `sdlc`, `production`, `healing`, `architecture`
-- **Primary LLM path:** Skia-Serve via `https://api.skia.ca` — **not** a local Ollama path in production
+- **Primary LLM path:** Skia-Serve via `https://api.skia.ca` — **not** a local legacy runtime in production
 - **Continuity fallback:** lives on Skia-FULL runtime only when sovereign engines are down — see **`§0.5`** and **`Skia-FULL/docs/provider-fallback-truth-table.md`**; never document as Forge default
 
 **When Forge copy/docs cite skia.ca product stats** (feature counts, workspaces, API routes): verify via **Skia-FULL** (`npm run docs:sync`, `python scripts/audit-feature-count.py`) — never hardcode stale numbers. If citing features, read **`Skia-FULL/frontend/components/featuresData/`** category files — not the stub `featuresData.ts`.
@@ -312,7 +312,7 @@ Applies to **`src/forgePlatformUi.ts`**, **`src/chatUi.ts`**, and any JS served 
 1. **Same-origin only in the browser** — client code calls `/api/...`, `/integration/...`, `/providers/...`, `/rpc`, etc. on the Forge origin. **Never** hardcode `https://api.skia.ca` or other cross-origin URLs in browser bundles.
 2. **No internal engine hostnames in client bundles** — no `backend:4000`, `chat-engine:`, `skia-serve:`, `image-engine:`, `embedding-engine:`, `tts-service:` in code shipped to the browser.
 3. **Auth through Forge proxy** — session/auth uses **`/api/auth/*`** (server forwards to `SKIA_BACKEND_URL`). Do not add duplicate login flows in static HTML.
-4. **Production brain** — document Skia-Serve via SKIA API as primary; never Ollama or localhost as Forge production default in customer docs.
+4. **Production brain** — document Skia-Serve via SKIA API as primary; never a localhost legacy runtime as Forge production default in customer docs.
 
 **After client routing changes:** grep browser-served TS for `api.skia.ca`, `localhost`, and internal hostnames. Run **`npm run typecheck`** and affected tests.
 
@@ -320,7 +320,7 @@ Server-side upstream fetch (`skiaFullAdapter.ts`, `skiaSessionProxy.ts`, `server
 
 ### 7.2 Server integration prohibitions
 
-1. **No production local brain bypass** — do not route production LLM traffic to Ollama or localhost from Forge server code.
+1. **No production local brain bypass** — do not route production LLM traffic to localhost legacy runtimes from Forge server code.
 2. **No customer-facing internal names** — no `Skia-FULL`, `Northflank`, `src/server.ts`, repo paths, or eval/CI jargon in `public/` or customer `docs/*.md` / `public/docs/*.html`.
 3. **Auth proxy** — IDE and clients use **`/api/auth/*`** → `SKIA_BACKEND_URL` (default `https://api.skia.ca`). Marketing HTML does not duplicate login buttons.
 4. **`/api/forge/*`** requires authenticated sessions — do not weaken `requireAuth` without explicit security review.
@@ -364,7 +364,7 @@ Forge local install expects a running **Skia-FULL** local stack (`Skia-FULL/loca
 3. **Do not** copy production secrets from Northflank / **`Skia-FULL/northflank-services.md`**, **`.nf-*.json`**, or PAT files into `local-dev/.env.forge.local` or committed files.
 4. **Do not** change `PRODUCTION_*` constants or default production URLs in `localBackend.ts` to localhost for convenience.
 5. **Do not** use **Skia-FULL** `nf-patch-skia-frontend-github-token.mjs` for Forge — frontend and forge use **different** Northflank services and **different** PATs.
-6. **Do not** route production LLM traffic to Ollama or localhost from Forge server code — Forge is a **downstream consumer** of the SKIA API only.
+6. **Do not** route production LLM traffic to localhost legacy runtimes from Forge server code — Forge is a **downstream consumer** of the SKIA API only.
 7. **Shared code** (routes, modules, locales) may serve both environments — env resolution must stay in `localBackend.ts` / `process.env`, never hardcoded prod URLs in local-only scripts or vice versa.
 8. **Do not commit** `northflank-services.md`, `.nf-*.json`, production PATs, or JWT secrets — all belong in gitignored operator env only.
 

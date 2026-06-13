@@ -70,7 +70,15 @@ export class SkiaFullAdapter {
   async intelligence(
     query: string,
     category?: string,
-    passthroughHeaders?: Record<string, string>
+    passthroughHeaders?: Record<string, string>,
+    options?: {
+      structuredOutput?: boolean;
+      tools?: Array<{
+        name: string;
+        description?: string;
+        parameters?: Array<{ name: string; type?: string; description?: string; required?: boolean }>;
+      }>;
+    }
   ): Promise<SkiaFullChatResponse> {
     // Primary evolved brain path from SKIA-FULL runtime.
     return this.postJson<SkiaFullChatResponse>(
@@ -78,7 +86,9 @@ export class SkiaFullAdapter {
       {
         messages: [{ role: "user", content: query }],
         mode: category ?? "general",
-        source: "skia-forge"
+        source: "skia-forge",
+        ...(options?.structuredOutput ? { structuredOutput: true } : {}),
+        ...(options?.tools?.length ? { tools: options.tools } : {})
       },
       passthroughHeaders
     );
@@ -332,6 +342,10 @@ export class SkiaFullAdapter {
         signal: controller.signal
       });
       const data = (await res.json()) as Record<string, unknown>;
+      const confidenceBand = res.headers.get('X-SKIA-Confidence-Band');
+      if (confidenceBand) {
+        data.confidenceBand = confidenceBand;
+      }
       if (!res.ok) {
         throw new Error(
           `Embedding upstream error ${res.status}: ${
@@ -363,6 +377,10 @@ export class SkiaFullAdapter {
         signal: controller.signal
       });
       const data = (await res.json()) as Record<string, unknown>;
+      const confidenceBand = res.headers.get('X-SKIA-Confidence-Band');
+      if (confidenceBand) {
+        data.confidenceBand = confidenceBand;
+      }
       if (!res.ok) {
         throw new Error(
           `SKIA-FULL upstream error ${res.status}: ${

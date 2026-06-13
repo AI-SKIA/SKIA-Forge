@@ -783,7 +783,7 @@ Standalone help pages inside the app — Context B styling:
 - ❌ No page without an explicit Context A or Context B assignment (`body.forge-context-a` / `body.forge-context-b`)
 - ❌ No browser “Translate page” — Forge ships 12 locale JSON folders
 - ❌ No DOWNLOAD APP CTA in Forge IDE
-- ❌ No routing production LLM traffic to local Ollama from Forge server (see FORGE_RULES §7)
+- ❌ No routing production LLM traffic to local legacy runtimes from Forge server (see FORGE_RULES §7)
 - ❌ No legacy Forge type tokens (`42px` display, `12–14px` secondary roles) on **new** Forge Web CSS after alignment pass
 
 ---
