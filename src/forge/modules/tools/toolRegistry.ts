@@ -7,6 +7,7 @@ import { searchTextTool } from "./searchTextTool.js";
 import { runTerminalTool } from "./runTerminalTool.js";
 import { gitOperationsTool } from "./gitOperationsTool.js";
 import { listFilesTool } from "./listFilesTool.js";
+import { runSemgrepTool } from "./runSemgrepTool.js";
 
 const DEFAULT_TOOLS: ForgeTool[] = [
   readFileTool,
@@ -16,7 +17,9 @@ const DEFAULT_TOOLS: ForgeTool[] = [
   searchTextTool,
   runTerminalTool,
   gitOperationsTool,
-  listFilesTool
+  listFilesTool,
+  // B3: 9th tool — Semgrep SAST as an agent capability.
+  runSemgrepTool
 ];
 
 /**

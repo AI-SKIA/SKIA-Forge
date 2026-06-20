@@ -8,7 +8,8 @@ export type SensitiveIntentName =
   | "forge.approval_token.issue"
   | "forge.governance.reload"
   | "forge.index.rebuild"
-  | "forge.skia.review";
+  | "forge.skia.review"
+  | "forge.security.full_audit";
 
 export type IntentVerificationResult =
   | { ok: true; reason: "verified" | "disabled" }

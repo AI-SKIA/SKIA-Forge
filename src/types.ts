@@ -72,12 +72,36 @@ export type IndexChunk = {
     updatedAt: string;
 };
 
+/**
+ * A single dependency vulnerability record (Phase A2).
+ * Mirrors the SecurityFinding field shape (severity/message/file/line) plus
+ * dependency-specific fields. Produced by the security DependencyAuditTool and
+ * persisted into the project index under `dependencyVulnerabilities`.
+ */
+export type DependencyVulnerabilityRecord = {
+    type: "vulnerable-dependency";
+    severity: "low" | "medium" | "high";
+    message: string;
+    file?: string;
+    line?: number;
+    package: string;
+    advisoryId: string;
+    cveIds: string[];
+    fixAvailable: boolean;
+};
+
 /** The full persisted project index (written to .skia/index.json). */
 export type ProjectIndex = {
     generatedAt: string;
     rootPath: string;
     files: FileManifestEntry[];
     chunks: IndexChunk[];
+    /**
+     * A2: dependency-audit findings merged in after the index is built.
+     * Optional so previously-persisted indexes (and all existing consumers)
+     * remain valid without it.
+     */
+    dependencyVulnerabilities?: DependencyVulnerabilityRecord[];
 };
 
 /** A ranked search result from ContextEngine.search(). */
