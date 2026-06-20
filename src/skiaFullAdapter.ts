@@ -194,6 +194,18 @@ export class SkiaFullAdapter {
     return data as unknown as DiffResponse;
   }
 
+  /** Phase D2 — multi-tool security orchestration on the Skia-FULL brain. */
+  async runFullSecurityAudit(
+    payload: { repoPath: string; webUrl?: string },
+    passthroughHeaders?: Record<string, string>
+  ): Promise<Record<string, unknown>> {
+    return this.postJson(
+      "/api/security/full-audit",
+      payload as unknown as Record<string, unknown>,
+      passthroughHeaders
+    );
+  }
+
   async traceExplain(
     traceId: string,
     passthroughHeaders?: Record<string, string>

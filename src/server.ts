@@ -554,6 +554,43 @@ app.get("/api/forge/architecture/health", async (_req, res) => {
   });
 });
 
+/** D2 — Full Security Audit via Skia-FULL brain (SecurityOrchestrator). */
+app.post("/api/forge/security/full-audit", async (req, res) => {
+  if (!verifySensitiveIntent(req, res, "forge.security.full_audit")) return;
+  try {
+    const webUrl = typeof req.body?.webUrl === "string" ? req.body.webUrl : undefined;
+    const result = await securityAnalysisService.runFullAuditFromBrain(
+      projectRoot,
+      skiaFullAdapter,
+      pickSkiaHeaders(req),
+      webUrl
+    );
+    return res.json({
+      command: "full-security-audit",
+      ...result,
+      highFindings: result.findings.filter((x) => x.severity === "high").length,
+      findings: result.findings.slice(0, 50),
+    });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "full-audit failed";
+    if (message.includes("SOVEREIGN_ONLY_ROUTE")) {
+      try {
+        const parsed = JSON.parse(message) as { error?: string; message?: string };
+        if (parsed.error === "SOVEREIGN_ONLY_ROUTE") {
+          return res.status(503).json(parsed);
+        }
+      } catch {
+        // fall through
+      }
+      return res.status(503).json({
+        error: "SOVEREIGN_ONLY_ROUTE",
+        message: "Skia-Serve unavailable. Scan aborted — no fallback permitted for security routes.",
+      });
+    }
+    return res.status(502).json({ error: message });
+  }
+});
+
 app.post("/api/forge/skia-review", async (req, res) => {
   if (!verifySensitiveIntent(req, res, "forge.skia.review")) return;
   try {

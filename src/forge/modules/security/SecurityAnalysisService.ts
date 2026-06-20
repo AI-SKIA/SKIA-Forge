@@ -1,8 +1,11 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { runSemgrepTool } from '../tools/runSemgrepTool.js';
 
 export type SecurityFinding = {
-  type: 'hardcoded-secrets' | 'sql-injection' | 'xss' | 'unsafe-eval' | 'insecure-deserialization' | 'ssrf';
+  // 'sast' (B3) is the bucket for Semgrep findings that do not map onto one of
+  // the six regex categories below.
+  type: 'hardcoded-secrets' | 'sql-injection' | 'xss' | 'unsafe-eval' | 'insecure-deserialization' | 'ssrf' | 'sast';
   severity: 'low' | 'medium' | 'high';
   message: string;
   file?: string;
@@ -48,12 +51,73 @@ export class SecurityAnalysisService {
       'unsafe-eval': 'Replace eval/new Function with explicit parser or whitelist dispatcher.',
       'insecure-deserialization': 'Use strict schema validation before deserializing payloads.',
       ssrf: 'Validate outbound URLs against allow-list and block internal/private ranges.',
+      sast: 'Review the Semgrep rule finding and apply the rule-specific remediation guidance.',
     };
     return { patchHint: `${suggestions[finding.type]} (${finding.message})` };
   }
 
   async scan_on_save(file: string): Promise<SecurityReport> {
     return this.scan(file);
+  }
+
+  /**
+   * B3: run Semgrep on a project root and merge its findings with the existing
+   * regex scan results, de-duplicating by (file, line, type). When Semgrep is
+   * unavailable the tool returns a structured error and this method falls back
+   * to the regex findings only (no throw). Existing scan()/scan_repo()
+   * signatures are unchanged.
+   */
+  async runSemgrepScan(projectRoot: string): Promise<SecurityFinding[]> {
+    const regex = await this.scan_repo(projectRoot);
+
+    let semgrepFindings: SecurityFinding[] = [];
+    try {
+      const res = await runSemgrepTool.execute({ projectRoot }, {});
+      if (res.success) {
+        semgrepFindings = (res.data as { findings: SecurityFinding[] }).findings ?? [];
+      }
+    } catch {
+      // Defensive: never let a scanner failure break the merged scan.
+      semgrepFindings = [];
+    }
+
+    const seen = new Set<string>();
+    const merged: SecurityFinding[] = [];
+    for (const f of [...regex.findings, ...semgrepFindings]) {
+      const key = `${f.file ?? ''}:${f.line ?? ''}:${f.type}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      merged.push(f);
+    }
+    return merged;
+  }
+
+  /**
+   * D2: Full Security Audit via Skia-FULL brain orchestrator. Surfaces unified
+   * findings through the existing SecurityFinding shape for Forge consumers.
+   */
+  async runFullAuditFromBrain(
+    projectRoot: string,
+    adapter: { runFullSecurityAudit: (p: { repoPath: string; webUrl?: string }, h?: Record<string, string>) => Promise<Record<string, unknown>> },
+    passthroughHeaders?: Record<string, string>,
+    webUrl?: string
+  ): Promise<{ summary: string; findings: SecurityFinding[]; scanId?: string; errors?: Array<{ tool: string; error: string }> }> {
+    const upstream = await adapter.runFullSecurityAudit({ repoPath: projectRoot, webUrl }, passthroughHeaders);
+    const report = (upstream.report ?? upstream) as Record<string, unknown>;
+    const rawFindings = Array.isArray(report.findings) ? (report.findings as Array<Record<string, unknown>>) : [];
+    const findings: SecurityFinding[] = rawFindings.map((f) => ({
+      type: 'sast',
+      severity: f.severity === 'critical' || f.severity === 'high' ? 'high' : f.severity === 'medium' ? 'medium' : 'low',
+      message: String(f.detail ?? f.title ?? 'finding'),
+      file: typeof f.filePath === 'string' ? f.filePath : undefined,
+      line: typeof f.line === 'number' ? f.line : undefined,
+    }));
+    return {
+      summary: String(report.summary ?? 'Full audit complete'),
+      findings,
+      scanId: typeof report.scanId === 'string' ? report.scanId : undefined,
+      errors: Array.isArray(report.errors) ? (report.errors as Array<{ tool: string; error: string }>) : undefined,
+    };
   }
 
   private detectFindings(content: string, file: string): SecurityFinding[] {
