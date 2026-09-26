@@ -4,29 +4,29 @@
   },
   "hero": {
     "title": "SKIA Forge",
-    "subtitle": "Intelligence gouvernée pour une véritable livraison de logiciels — conçue pour les opérateurs, les développeurs et les équipes de production",
+    "subtitle": "Un espace de code pour écrire et relire du code — pour les opérateurs, les développeurs et les équipes de production",
     "downloadButton": "Télécharger SKIA Forge"
   },
   "cards": {
     "frontier": {
       "title": "Couche de renseignement prête pour les frontières",
       "brand": "SKIA Forge",
-      "body": "SKIA Forge est construit sur une pile d'intelligence renforcée validée à travers le codage, l'utilisation des outils, le raisonnement, le contexte long, la vision et les flux de travail multimodaux."
+      "body": "SKIA Forge est l’espace de code. Utilisez-le dans le navigateur, ou installez l’application de bureau."
     },
     "reliability": {
       "title": "Fiabilité vérifiée",
       "brand": "SKIA Forge",
-      "body": "Chaque version est vérifiée avant d'être expédiée. La qualité est protégée de bout en bout afin que vous obteniez à chaque fois des résultats stables et fiables."
+      "body": "Les installeurs apparaissent ici après leur publication."
     },
     "operations": {
       "title": "Opérations de production",
       "brand": "SKIA Forge",
-      "body": "Forge est livré avec des contrôles de santé, une télémétrie de gouvernance, des surfaces d'état et des contrôles de routage déterministes conçus pour la confiance opérationnelle."
+      "body": "Forge comprend des contrôles de santé et une vue d’état. Ce qui tourne dépend encore de la configuration du service."
     },
     "surfaces": {
       "title": "Une intelligence sur toutes les surfaces",
       "brand": "SKIA Forge",
-      "body": "Utilisez Forge sur le Web pour une exécution alimentée par API, ou installez le bureau pour un système de fichiers local complet et des flux de travail de terminal."
+      "body": "Utilisez Forge dans le navigateur, ou installez l’application de bureau pour les fichiers locaux et un terminal."
     }
   },
   "docLinks": {
@@ -120,13 +120,13 @@
   "howItWorks": {
     "heading": "Comment fonctionne Forge + SKIA",
     "step1": "Utilisez Forge sur le Web pour un accès immédiat ou installez le bureau pour un contrôle total du flux de travail local.",
-    "step2": "Choisissez le bon chemin d'exécution : contexte, agent, SDLC, production, guérison et architecture.",
-    "step3": "Obtenez des résultats structurés conçus pour une utilisation réelle, et non pour un brouillon de texte générique."
+    "step2": "Les actions sensibles attendent une approbation.",
+    "step3": "Un résultat structuré et une étape suivante en cas d’échec ne sont pas encore sur chaque écran."
   },
   "whyTeams": {
     "heading": "Pourquoi les équipes choisissent SKIA Forge",
-    "a": "Qualité alignée sur des références sur vos dimensions critiques : codage, outils, raisonnement, contexte long, vision et TTS.",
-    "b": "Maturité au niveau du système au-delà de la sortie brute : observabilité, contrôles de santé et gouvernance d'intégration conçues pour les environnements de production.",
-    "c": "Distribution des versions basée sur la vérité : seuls les installateurs publiés sont affichés au téléchargement."
+    "a": "Forge sert à écrire et relire du code. Ce n’est pas une fenêtre de chat séparée.",
+    "b": "Les contrôles de santé et l’état font partie du produit. Ce qui tourne dépend encore de la configuration du service.",
+    "c": "Seuls les installeurs publiés sont listés ici."
   }
 }

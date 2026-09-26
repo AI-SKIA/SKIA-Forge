@@ -4,29 +4,29 @@
   },
   "hero": {
     "title": "SKIA Forge",
-    "subtitle": "Operatörler, geliştiriciler ve üretim ekipleri için geliştirilmiş, gerçek yazılım sunumuna yönelik yönetilen zeka",
+    "subtitle": "Kod yazmak ve incelemek için bir çalışma alanı — operatörler, geliştiriciler ve üretim ekipleri için",
     "downloadButton": "SKIA Forge'yi indirin"
   },
   "cards": {
     "frontier": {
       "title": "Sınırlara Hazır İstihbarat Katmanı",
       "brand": "SKIA Forge",
-      "body": "SKIA Forge kodlama, araç kullanımı, muhakeme, uzun bağlam, vizyon ve çok modlu iş akışları genelinde doğrulanmış sağlamlaştırılmış bir zeka yığını üzerine kurulmuştur."
+      "body": "SKIA Forge kodlama çalışma alanıdır. Tarayıcıda kullanın veya masaüstü uygulamasını kurun."
     },
     "reliability": {
       "title": "Doğrulanmış Güvenilirlik",
       "brand": "SKIA Forge",
-      "body": "Her sürüm gönderilmeden önce doğrulanır. Kalite uçtan uca korunur, böylece her zaman istikrarlı, güvenilir çıktılar elde edersiniz."
+      "body": "Yükleyiciler yayımlandıktan sonra burada görünür."
     },
     "operations": {
       "title": "Üretim Düzeyinde Operasyonlar",
       "brand": "SKIA Forge",
-      "body": "Operasyonel güven için tasarlanmış sağlık kontrolleri, yönetişim telemetrisi, durum yüzeyleri ve deterministik yönlendirme kontrolleri ile gemiler oluşturun."
+      "body": "Forge sağlık kontrolleri ve bir durum görünümü içerir. Ne çalıştığı hâlâ hizmetin nasıl ayarlandığına bağlıdır."
     },
     "surfaces": {
       "title": "Yüzeylerde Tek Zeka",
       "brand": "SKIA Forge",
-      "body": "API destekli yürütme için web üzerinde Forge'u kullanın veya tam yerel dosya sistemi ve terminal iş akışları için masaüstünü yükleyin."
+      "body": "Forge’u tarayıcıda kullanın veya yerel dosyalar ve bir terminal için masaüstü uygulamasını kurun."
     }
   },
   "docLinks": {
@@ -120,13 +120,13 @@
   "howItWorks": {
     "heading": "Forge + SKIA nasıl çalışır?",
     "step1": "Anında erişim için web üzerinde Forge'u kullanın veya tam yerel iş akışı kontrolü için masaüstünü yükleyin.",
-    "step2": "Doğru yürütme yolunu seçin: bağlam, aracı, SDLC, üretim, iyileştirme ve mimari.",
-    "step3": "Genel taslak metinler için değil, gerçek kullanım için tasarlanmış yapılandırılmış çıktılar alın."
+    "step2": "Hassas eylemler onay bekler.",
+    "step3": "Yapılandırılmış bir sonuç ve bir şey başarısız olunca sonraki adım henüz her ekranda yok."
   },
   "whyTeams": {
     "heading": "Ekipler neden SKIA Forge'yi seçiyor?",
-    "a": "Kritik boyutlarınızda karşılaştırmalı kalite: kodlama, araçlar, akıl yürütme, uzun bağlam, vizyon ve ?TTS.",
-    "b": "Ham çıktının ötesinde sistem düzeyinde olgunluk: üretim ortamları için oluşturulmuş gözlemlenebilirlik, durum denetimleri ve entegrasyon yönetimi.",
-    "c": "Gerçeğe dayalı sürüm dağıtımı: yalnızca yayınlanan yükleyiciler indirilmek üzere gösterilir."
+    "a": "Forge kod yazmak ve incelemek içindir. Ayrı bir sohbet penceresi değildir.",
+    "b": "Sağlık kontrolleri ve durum ürünün parçasıdır. Ne çalıştığı hâlâ hizmetin nasıl ayarlandığına bağlıdır.",
+    "c": "Burada yalnızca yayımlanmış yükleyiciler listelenir."
   }
 }

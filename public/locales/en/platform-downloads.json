@@ -4,29 +4,29 @@
   },
   "hero": {
     "title": "SKIA Forge",
-    "subtitle": "Governed intelligence for real software delivery — built for operators, developers, and production teams",
+    "subtitle": "A coding workspace for writing and reviewing code — for operators, developers, and production teams",
     "downloadButton": "Download SKIA Forge"
   },
   "cards": {
     "frontier": {
       "title": "Frontier-Ready Intelligence Layer",
       "brand": "SKIA Forge",
-      "body": "SKIA Forge is built on a hardened intelligence stack validated across coding, tool use, reasoning, long context, vision, and multimodal workflows."
+      "body": "SKIA Forge is the coding workspace. Use it in the browser, or install the desktop app."
     },
     "reliability": {
       "title": "Verified Reliability",
       "brand": "SKIA Forge",
-      "body": "Every release is verified before it ships. Quality is protected end-to-end so you get stable, trustworthy outputs every time."
+      "body": "Installers are listed here after they are published."
     },
     "operations": {
       "title": "Production-Grade Operations",
       "brand": "SKIA Forge",
-      "body": "Forge ships with health checks, governance telemetry, status surfaces, and deterministic routing controls designed for operational trust."
+      "body": "Forge includes health checks and a status view. What runs still depends on how the service is configured."
     },
     "surfaces": {
       "title": "One Intelligence Across Surfaces",
       "brand": "SKIA Forge",
-      "body": "Use Forge on the web for API-powered execution, or install desktop for full local filesystem and terminal workflows."
+      "body": "Use Forge in the browser, or install the desktop app for local files and a terminal."
     }
   },
   "docLinks": {
@@ -120,13 +120,13 @@
   "howItWorks": {
     "heading": "How Forge + SKIA works",
     "step1": "Use Forge on the web for immediate access, or install desktop for full local workflow control.",
-    "step2": "Choose the right execution path: context, agent, SDLC, production, healing, and architecture.",
-    "step3": "Get structured outputs designed for real use, not generic draft text."
+    "step2": "Sensitive actions wait for approval.",
+    "step3": "A structured result and a next step when something fails are not on every screen yet."
   },
   "whyTeams": {
     "heading": "Why teams choose SKIA Forge",
-    "a": "Benchmark-aligned quality on your critical dimensions: coding, tools, reasoning, long context, vision, and TTS.",
-    "b": "System-level maturity beyond raw output: observability, health checks, and integration governance built for production environments.",
-    "c": "Truth-based release distribution: only published installers are shown for download."
+    "a": "Forge is for writing and reviewing code. It is not a separate chat window.",
+    "b": "Health checks and status are part of the product. What runs still depends on how the service is configured.",
+    "c": "Only installers that have been published are listed here."
   }
 }

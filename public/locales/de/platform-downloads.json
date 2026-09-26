@@ -4,29 +4,29 @@
   },
   "hero": {
     "title": "SKIA Forge",
-    "subtitle": "Kontrollierte Intelligenz für echte Softwarebereitstellung – entwickelt für Bediener, Entwickler und Produktionsteams",
+    "subtitle": "Ein Coding-Arbeitsbereich zum Schreiben und Prüfen von Code — für Betreiber, Entwickler und Produktionsteams",
     "downloadButton": "Laden Sie SKIA Forge herunter"
   },
   "cards": {
     "frontier": {
       "title": "Grenztaugliche Informationsschicht",
       "brand": "SKIA Forge",
-      "body": "SKIA Forge basiert auf einem gehärteten Intelligenz-Stack, der in Bezug auf Codierung, Werkzeugnutzung, Argumentation, langen Kontext, Vision und multimodale Arbeitsabläufe validiert ist."
+      "body": "SKIA Forge ist der Coding-Arbeitsbereich. Nutzen Sie ihn im Browser oder installieren Sie die Desktop-App."
     },
     "reliability": {
       "title": "Geprüfte Zuverlässigkeit",
       "brand": "SKIA Forge",
-      "body": "Jede Veröffentlichung wird vor der Auslieferung überprüft. Die Qualität ist durchgängig geschützt, sodass Sie jederzeit stabile, vertrauenswürdige Ergebnisse erhalten."
+      "body": "Installer erscheinen hier, nachdem sie veröffentlicht wurden."
     },
     "operations": {
       "title": "Produktionsbetriebe",
       "brand": "SKIA Forge",
-      "body": "Forge wird mit Integritätsprüfungen, Governance-Telemetrie, Statusoberflächen und deterministischen Routing-Kontrollen geliefert, die für betriebliches Vertrauen konzipiert sind."
+      "body": "Forge enthält Gesundheitsprüfungen und eine Statusansicht. Was läuft, hängt weiter davon ab, wie der Dienst eingerichtet ist."
     },
     "surfaces": {
       "title": "Eine Intelligenz auf allen Oberflächen",
       "brand": "SKIA Forge",
-      "body": "Verwenden Sie Forge im Web für eine API-gestützte Ausführung oder installieren Sie den Desktop für vollständige lokale Dateisystem- und Terminal-Workflows."
+      "body": "Nutzen Sie Forge im Browser oder installieren Sie die Desktop-App für lokale Dateien und ein Terminal."
     }
   },
   "docLinks": {
@@ -120,13 +120,13 @@
   "howItWorks": {
     "heading": "So funktioniert Forge + SKIA",
     "step1": "Nutzen Sie Forge im Web für sofortigen Zugriff oder installieren Sie den Desktop für eine vollständige lokale Workflow-Kontrolle.",
-    "step2": "Wählen Sie den richtigen Ausführungspfad: Kontext, Agent, SDLC, Produktion, Heilung und Architektur.",
-    "step3": "Erhalten Sie strukturierte Ausgaben, die für den tatsächlichen Gebrauch konzipiert sind, und nicht für generische Entwurfstexte."
+    "step2": "Sensible Aktionen warten auf Freigabe.",
+    "step3": "Ein strukturiertes Ergebnis und ein nächster Schritt, wenn etwas fehlschlägt, sind noch nicht auf jedem Bildschirm."
   },
   "whyTeams": {
     "heading": "Warum Teams sich für SKIA Forge entscheiden",
-    "a": "Benchmark-orientierte Qualität für Ihre kritischen Dimensionen: Codierung, Tools, Argumentation, langer Kontext, Vision und TTS.",
-    "b": "Reifegrad auf Systemebene, der über die Rohausgabe hinausgeht: Beobachtbarkeit, Zustandsprüfungen und Integrations-Governance für Produktionsumgebungen.",
-    "c": "Wahrheitsbasierte Release-Verteilung: Es werden nur veröffentlichte Installationsprogramme zum Download angezeigt."
+    "a": "Forge ist zum Schreiben und Prüfen von Code. Es ist kein getrenntes Chatfenster.",
+    "b": "Gesundheitsprüfungen und Status gehören zum Produkt. Was läuft, hängt weiter davon ab, wie der Dienst eingerichtet ist.",
+    "c": "Hier stehen nur Installer, die veröffentlicht wurden."
   }
 }
