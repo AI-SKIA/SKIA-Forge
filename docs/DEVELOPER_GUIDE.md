@@ -14,10 +14,10 @@
 
 ## Project Structure (Core)
 
-- the Forge server — runtime entrypoint (binds **`SKIA_PORT`**, default **4173**)
-- `src/forge/modules/` — module domains wired into the server execution path (for example context-engine, agent-planner, agent-executor, production, healing, architecture, skiarules, security, sdlc, tools)
-- SKIA Forge IDE — Electron + renderer (**`1.0.0`**); run `npm run build` in that package before `/forge/app` can load in the browser
-- `public/docs/` — branded HTML documentation served at `/docs/*.html` (takes precedence over `docs/*.md`)
+- the Forge server ï¿½ runtime entrypoint (binds **`SKIA_PORT`**, default **4173**)
+- `src/forge/modules/` ï¿½ module domains wired into the server execution path (for example context-engine, agent-planner, agent-executor, production, healing, architecture, skiarules, security, sdlc, tools)
+- SKIA Forge IDE ï¿½ Electron + renderer (**`1.0.0`**); run `npm run build` in that package before `/forge/app` can load in the browser
+- `public/docs/` ï¿½ branded HTML documentation served at `/docs/*.html` (takes precedence over `docs/*.md`)
 
 ## HTTP surfaces (quick)
 

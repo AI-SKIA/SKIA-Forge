@@ -8,7 +8,7 @@ The canonical route list is the Forge server implementation; this document is th
 
 **Package version:** `1.0.0` (root `package.json`).
 
-**Authentication:** All routes under **`/api/forge/*`** require authenticated clients. Auth proxy routes **`/api/auth/*`** forward to the configured SKIA backend (default `https://api.skia.ca`). Integration and diagnostic routes may have different access policies — follow your deployment’s security configuration.
+**Authentication:** All routes under **`/api/forge/*`** require authenticated clients. Auth proxy routes **`/api/auth/*`** forward to the configured SKIA backend (default `https://api.skia.ca`). Integration and diagnostic routes may have different access policies ï¿½ follow your deploymentï¿½s security configuration.
 
 ---
 
@@ -122,9 +122,9 @@ The adapter may probe upstream paths such as `/api/health` **on the SKIA API hos
 
 ## Mounted routers
 
-- `app.use("/api/forge/production", …)` — production module router.
-- `app.use("/api/forge/healing", …)` — healing router.
-- `app.use("/api/forge/architecture", …)` — architecture diagnostics router.
+- `app.use("/api/forge/production", ï¿½)` ï¿½ production module router.
+- `app.use("/api/forge/healing", ï¿½)` ï¿½ healing router.
+- `app.use("/api/forge/architecture", ï¿½)` ï¿½ architecture diagnostics router.
 
 ---
 
@@ -149,12 +149,12 @@ The adapter may probe upstream paths such as `/api/health` **on the SKIA API hos
 
 ## Other notable surfaces
 
-- `POST /rpc` — Internal RPC / streaming bridge (rate limited).
-- `POST /sovereign-core` — Sovereign core passthrough to the SKIA API.
-- `GET /stream/:method` — SSE streaming for SKIA methods (rate limited).
-- `GET /providers/status` — Provider routing status snapshot.
+- `POST /rpc` ï¿½ Internal RPC / streaming bridge (rate limited).
+- `POST /sovereign-core` ï¿½ Sovereign core passthrough to the SKIA API.
+- `GET /stream/:method` ï¿½ SSE streaming for SKIA methods (rate limited).
+- `GET /providers/status` ï¿½ Provider routing status snapshot.
 - Index, search, and agent audit: `GET /index`, `GET /search`, `GET /agent/audit-log`, `POST /agent/log`, `POST /agent/validate-command`.
-- `POST /diff/preview` — Text diff preview.
+- `POST /diff/preview` ï¿½ Text diff preview.
 
 ---
 

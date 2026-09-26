@@ -17,6 +17,7 @@ import {
     type LspSkiarulesDiagnosticsBundleV1
 } from "./forge/modules/skiarules/lspDiagnosticsShape.js";
 import { buildSdlcTimeline, type SdlcTimelineV1 } from "./forge/modules/sdlc/sdlcTimeline.js";
+import { runDependencyAudit } from "./forge/modules/security/DependencyAuditTool.js";
 import {
     cosineLikeScore,
     detectLanguage,
@@ -199,7 +200,30 @@ export class ContextEngine {
         };
 
         await this.persistIndex(this.index);
+
+        // A2: merge real dependency-audit findings into the index (additive
+        // top-level key). Never allowed to break indexing — failures are logged
+        // and the index without the key is still valid.
+        await this.attachDependencyVulnerabilities(this.index);
+
         return this.index;
+    }
+
+    /**
+     * A2: runs npm/pip dependency audit on the opened (trusted) project root and
+     * merges the findings under `index.dependencyVulnerabilities`, then
+     * re-persists. Does not touch any existing index key or the chunking logic.
+     */
+    private async attachDependencyVulnerabilities(index: ProjectIndex): Promise<void> {
+        try {
+            const audit = await runDependencyAudit(this.projectRoot, { untrusted: false });
+            if (audit.findings.length > 0) {
+                index.dependencyVulnerabilities = audit.findings;
+                await this.persistIndex(index);
+            }
+        } catch (e) {
+            console.warn(`[contextEngine] dependency audit skipped: ${(e as Error).message}`);
+        }
     }
 
     async getIndex(): Promise<ProjectIndex> {

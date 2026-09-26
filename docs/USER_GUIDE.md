@@ -14,17 +14,17 @@ Open the app and **sign in** or **create a SKIA account** when prompted. Account
 
 ## Daily usage
 
-- **Submit work** — open your project and describe what you want to accomplish (refactor, feature, review, etc.).
-- **Review governance output** — read policy messages, previews, and any blocks before you apply changes.
-- **Apply remediation** — when Forge suggests fixes or a safer path, follow the in-app guidance and re-run checks until you are unblocked.
+- **Submit work** ï¿½ open your project and describe what you want to accomplish (refactor, feature, review, etc.).
+- **Review governance output** ï¿½ read policy messages, previews, and any blocks before you apply changes.
+- **Apply remediation** ï¿½ when Forge suggests fixes or a safer path, follow the in-app guidance and re-run checks until you are unblocked.
 
 ## Governance modes (plain language)
 
 Your organisation may set how much automation runs without extra confirmation:
 
-- **Strict** — safest default: more steps require explicit approval before changes land.
-- **Adaptive** — balanced: routine work can flow faster while higher-risk actions still surface for review.
-- **Autonomous** — fastest path: where enabled, more automation can proceed in one pass; use only when your team accepts the trade-offs.
+- **Strict** ï¿½ safest default: more steps require explicit approval before changes land.
+- **Adaptive** ï¿½ balanced: routine work can flow faster while higher-risk actions still surface for review.
+- **Autonomous** ï¿½ fastest path: where enabled, more automation can proceed in one pass; use only when your team accepts the trade-offs.
 
 Exact labels in the product may vary; ask your admin which mode applies to your workspace.
 

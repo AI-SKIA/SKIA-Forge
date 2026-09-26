@@ -29,6 +29,8 @@ export type ProviderHealth = {
     latencyMs: number;
     checkedAt: string;
     failures: number;
+    /** Set when the upstream health fetch failed or the row is not healthy. */
+    error?: string;
 };
 
 // ─── Server / status ──────────────────────────────────────────────────────────

@@ -360,7 +360,7 @@ Branded HTML versions of the above — **same classification as MD**: public cus
 | `public/docs/TROUBLESHOOTING.html` | 142 | SKIA-Full | Section **SKIA-Full Integration Unavailable** |
 | `public/docs/API_REFERENCE.html`, `README.html`, `DEVELOPER_GUIDE.html` | 140–142 | src/ | References to **`src/server.ts`** and repo paths in intro/table |
 
-**Patterns with no matches in `*.html`:** `Gemini`, `OpenAI`, `GPT`, `Claude`, `Ollama`, `ComfyUI`, `Skia-PC`, `SHA256` / `SHA256SUMS`, `DESKTOP_RELEASE_RUNBOOK`, `skia-routing`, explicit **`.env`**, word **`LLM`**, **`chatbot`**, **`AI assistant`**, **`frontend/`** (as literal substring in HTML grep — MD still contains `frontend/`).
+**Patterns with no matches in `*.html`:** `Gemini`, `OpenAI`, `GPT`, `Claude`, the retired local chat-engine product name, `ComfyUI`, `Skia-PC`, `SHA256` / `SHA256SUMS`, `DESKTOP_RELEASE_RUNBOOK`, `skia-routing`, explicit **`.env`**, word **`LLM`**, **`chatbot`**, **`AI assistant`**, **`frontend/`** (as literal substring in HTML grep — MD still contains `frontend/`).
 
 **Additional branding hits (not in automated forbidden list but flagged for consistency):** Footer **`SKIA Singularity Continuum`** appears across most branded pages; **`SKIA-FORGE SITE`** repeated on `platform-downloads.html` doc cards.
 

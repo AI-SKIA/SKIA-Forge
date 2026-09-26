@@ -30,6 +30,8 @@ import { attachRequestContext, buildRequestLog, RequestWithContext } from "./req
 import { enforceTextSize, RateLimiter, rateLimitMiddleware } from "./guardrails.js";
 import { SkiaFullAdapter } from "./skiaFullAdapter.js";
 import { registerForgeCodeIntelRoutes } from "./forgeCodeIntelRoutes.js";
+import { registerLowRiskForgeOrchestratorRoutes } from "./routes/forgeOrchestratorRoutes.js";
+import { MultiAgentCoordinator } from "./forge/modules/agent-executor/MultiAgentCoordinator.js";
 import { buildProbeReport } from "./integrationReport.js";
 import { runForgeOrchestration } from "./forgeOrchestrator.js";
 import { renderForgePlatformHtml } from "./forgePlatformUi.js";
@@ -135,6 +137,8 @@ const projectRoot = process.env.SKIA_PROJECT_ROOT
   : process.cwd();
 const contextEngine = new ContextEngine(projectRoot);
 const providerRouter = new ProviderRouter();
+providerRouter.startUpstreamHealthProbe();
+const multiAgentCoordinator = new MultiAgentCoordinator();
 const telemetry = new TelemetryStore();
 const skiaFullAdapter = new SkiaFullAdapter({
   enabled: String(process.env.SKIA_FULL_ENABLED ?? "true") !== "false",
@@ -1815,6 +1819,16 @@ app.post("/api/forge/agent/execute", async (req, res) => {
     }
   );
   return res.status(status).json(body);
+});
+
+registerLowRiskForgeOrchestratorRoutes(app, {
+  projectRoot,
+  coordinator: multiAgentCoordinator,
+  startSelfImprovementOnce: async (root, options) => {
+    const { startSelfImprovementOnce } = await import("./forge/modules/auto/autoEntryPoints.js");
+    return startSelfImprovementOnce(root, options);
+  },
+  enforceForgeModuleAccess
 });
 
 app.post("/api/forge/sdlc", async (req, res) => {
