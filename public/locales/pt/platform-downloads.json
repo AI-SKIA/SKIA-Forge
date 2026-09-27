@@ -19,7 +19,7 @@
       "body": "Os instaladores aparecem aqui depois de serem publicados."
     },
     "operations": {
-      "title": "Operações de nível de produção",
+      "title": "Métricas operacionais",
       "brand": "SKIA Forge",
       "body": "O Forge inclui verificações de saúde e uma vista de estado. O que corre continua a depender de como o serviço está configurado."
     },

@@ -19,7 +19,7 @@
       "body": "Installers are listed here after they are published."
     },
     "operations": {
-      "title": "Production-Grade Operations",
+      "title": "Operational Metrics",
       "brand": "SKIA Forge",
       "body": "Forge includes health checks and a status view. What runs still depends on how the service is configured."
     },

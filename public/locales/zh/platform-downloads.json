@@ -19,7 +19,7 @@
       "body": "安装包在发布之后才会列在这里。"
     },
     "operations": {
-      "title": "生产级运营",
+      "title": "运营指标",
       "brand": "SKIA Forge",
       "body": "Forge 包含健康检查和状态视图。实际运行仍取决于服务如何配置。"
     },

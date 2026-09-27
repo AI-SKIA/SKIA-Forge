@@ -19,7 +19,7 @@
       "body": "Les installeurs apparaissent ici après leur publication."
     },
     "operations": {
-      "title": "Opérations de production",
+      "title": "Indicateurs opérationnels",
       "brand": "SKIA Forge",
       "body": "Forge comprend des contrôles de santé et une vue d’état. Ce qui tourne dépend encore de la configuration du service."
     },

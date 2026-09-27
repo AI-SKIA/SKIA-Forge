@@ -19,7 +19,7 @@
       "body": "Yükleyiciler yayımlandıktan sonra burada görünür."
     },
     "operations": {
-      "title": "Üretim Düzeyinde Operasyonlar",
+      "title": "Operasyonel metrikler",
       "brand": "SKIA Forge",
       "body": "Forge sağlık kontrolleri ve bir durum görünümü içerir. Ne çalıştığı hâlâ hizmetin nasıl ayarlandığına bağlıdır."
     },
