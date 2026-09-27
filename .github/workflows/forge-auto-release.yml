@@ -17,7 +17,10 @@ concurrency:
 
 jobs:
   build-and-release-windows:
-    runs-on: windows-latest
+    # windows-latest is the win25-vs2026 image. node-pty's node-gyp 10 treats
+    # Visual Studio 18 as unknown, so npm ci fails before the installer build.
+    # windows-2022 still provides Visual Studio 2022, which that node-gyp accepts.
+    runs-on: windows-2022
     steps:
       - name: Checkout
         uses: actions/checkout@v4
