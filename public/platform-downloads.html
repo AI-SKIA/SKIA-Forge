@@ -66,6 +66,7 @@
       <div class="skia-forge-hub__doc-title" data-i18n="platform-downloads.cards.operations.title"></div>
       <div class="doc-card-sub" data-i18n="platform-downloads.cards.operations.brand"></div>
       <div class="skia-forge-hub__doc-desc" data-i18n="platform-downloads.cards.operations.body"></div>
+      <div id="forge-ops-metrics" class="skia-forge-hub__doc-desc">Loading aggregated rates…</div>
     </article>
     <article class="skia-forge-hub__doc-card skia-forge-hub__doc-card--panel">
       <div class="skia-forge-hub__doc-title" data-i18n="platform-downloads.cards.surfaces.title"></div>
@@ -144,32 +145,50 @@
   <div class="download-web-option" style="margin-top:28px;">
     <p class="download-web-text" data-i18n="platform-downloads.installers.heading"></p>
   </div>
-  <div class="skia-forge-hub__doc-grid">
-    <a href="/api/app/download/windows" class="skia-forge-hub__doc-card" data-i18n-aria-label="platform-downloads.installers.windowsAria">
+  <div class="download-web-option" style="margin-top:18px;">
+    <p class="download-web-text" data-i18n="platform-downloads.installers.verifyHeading"></p>
+  </div>
+  <div class="download-instructions">
+    <div class="download-instruction-row"><span class="download-step">1</span><span data-i18n="platform-downloads.installers.verifyStep1"></span></div>
+    <div class="download-instruction-row"><span class="download-step">2</span><span data-i18n="platform-downloads.installers.verifyStep2"></span></div>
+    <div class="download-instruction-row"><span class="download-step">3</span><span data-i18n="platform-downloads.installers.verifyStep3"></span></div>
+    <div class="download-instruction-row"><span class="download-step">4</span><span data-i18n="platform-downloads.installers.verifyStep4"></span></div>
+  </div>
+  <p id="forge-installers-empty" class="download-web-text" hidden data-i18n="platform-downloads.installers.noneVerified"></p>
+  <div class="skia-forge-hub__doc-grid" id="forge-installer-grid">
+    <a href="/api/app/download/windows" class="skia-forge-hub__doc-card forge-installer" data-platform="windows" data-verified="0" data-i18n-aria-label="platform-downloads.installers.windowsAria">
       <div class="skia-forge-hub__doc-title" data-i18n="platform-downloads.installers.windows.title"></div>
       <div class="doc-card-sub" data-i18n="platform-downloads.installers.windows.sub"></div>
       <div class="skia-forge-hub__doc-desc" data-i18n="platform-downloads.installers.windows.desc"></div>
+      <code class="forge-installer-sha"></code>
       <div class="doc-card-arrow skia-li skia-li--arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
     </a>
-    <a href="/api/app/download/mac-intel" class="skia-forge-hub__doc-card" data-i18n-aria-label="platform-downloads.installers.macIntelAria">
+    <a href="/api/app/download/mac-intel" class="skia-forge-hub__doc-card forge-installer" data-platform="mac-intel" data-verified="0" data-i18n-aria-label="platform-downloads.installers.macIntelAria">
       <div class="skia-forge-hub__doc-title" data-i18n="platform-downloads.installers.macIntel.title"></div>
       <div class="doc-card-sub" data-i18n="platform-downloads.installers.macIntel.sub"></div>
       <div class="skia-forge-hub__doc-desc" data-i18n="platform-downloads.installers.macIntel.desc"></div>
+      <code class="forge-installer-sha"></code>
       <div class="doc-card-arrow skia-li skia-li--arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
     </a>
-    <a href="/api/app/download/mac-arm" class="skia-forge-hub__doc-card" data-i18n-aria-label="platform-downloads.installers.macArmAria">
+    <a href="/api/app/download/mac-arm" class="skia-forge-hub__doc-card forge-installer" data-platform="mac-arm" data-verified="0" data-i18n-aria-label="platform-downloads.installers.macArmAria">
       <div class="skia-forge-hub__doc-title" data-i18n="platform-downloads.installers.macArm.title"></div>
       <div class="doc-card-sub" data-i18n="platform-downloads.installers.macArm.sub"></div>
       <div class="skia-forge-hub__doc-desc" data-i18n="platform-downloads.installers.macArm.desc"></div>
+      <code class="forge-installer-sha"></code>
       <div class="doc-card-arrow skia-li skia-li--arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
     </a>
-    <a href="/api/app/download/linux-appimage" class="skia-forge-hub__doc-card" data-i18n-aria-label="platform-downloads.installers.linuxAria">
+    <a href="/api/app/download/linux-appimage" class="skia-forge-hub__doc-card forge-installer" data-platform="linux-appimage" data-verified="0" data-i18n-aria-label="platform-downloads.installers.linuxAria">
       <div class="skia-forge-hub__doc-title" data-i18n="platform-downloads.installers.linux.title"></div>
       <div class="doc-card-sub" data-i18n="platform-downloads.installers.linux.sub"></div>
       <div class="skia-forge-hub__doc-desc" data-i18n="platform-downloads.installers.linux.desc"></div>
+      <code class="forge-installer-sha"></code>
       <div class="doc-card-arrow skia-li skia-li--arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></div>
     </a>
   </div>
+  <style>
+    .forge-installer[data-verified="0"] { display: none !important; }
+    .forge-installer-sha { display: block; margin-top: 8px; font-size: 15px; line-height: 1.4; word-break: break-all; color: rgba(212,175,55,0.9); }
+  </style>
 
   <div class="download-web-option" style="margin-top:28px;">
     <p class="download-web-text" data-i18n="platform-downloads.howItWorks.heading"></p>
@@ -218,6 +237,49 @@
     tab.addEventListener('click',open);
     backdrop.addEventListener('click',close);
     sidebar.addEventListener('click',e=>{if(e.target.tagName==='A')close();});
+  })();
+  (function(){
+    var empty = document.getElementById('forge-installers-empty');
+    fetch('/api/app/release-verification', { cache: 'no-store' })
+      .then(function(res){ if(!res.ok) throw new Error(String(res.status)); return res.json(); })
+      .then(function(data){
+        var rows = Array.isArray(data && data.installers) ? data.installers : [];
+        var shown = 0;
+        rows.forEach(function(row){
+          if(!row || !row.platform || !row.sha512) return;
+          var card = document.querySelector('.forge-installer[data-platform="'+row.platform+'"]');
+          if(!card) return;
+          var code = card.querySelector('.forge-installer-sha');
+          if(code) code.textContent = 'SHA-512 '+row.sha512;
+          if(row.downloadPath) card.setAttribute('href', row.downloadPath);
+          card.setAttribute('data-verified','1');
+          shown += 1;
+        });
+        if(empty) empty.hidden = shown > 0;
+      })
+      .catch(function(){ if(empty) empty.hidden = false; });
+
+    var metrics = document.getElementById('forge-ops-metrics');
+    if(!metrics) return;
+    var unavailable = 'Operational metrics unavailable (proxy or sampling off).';
+    fetch('/api/public/status-metrics', { cache: 'no-store' })
+      .then(function(res){
+        if(!res.ok) throw new Error(String(res.status));
+        return res.json();
+      })
+      .then(function(data){
+        if(!data || data.available === false) throw new Error('unavailable');
+        var embed = data.embeddingVector || {};
+        var embedText = (embed.provisionedOnNorthflank ? 'provisioned' : 'not provisioned') + (embed.embeddingEngineConfigured ? ' · env URL set' : '');
+        metrics.style.whiteSpace = 'pre-line';
+        metrics.textContent = [
+          'Sovereign fallback: ' + (data.sovereignFallbackRatePct != null ? data.sovereignFallbackRatePct : '—') + '%',
+          'Output refusal: ' + (data.outputRefusalRatePct != null ? data.outputRefusalRatePct : '—') + '%',
+          'Challenger fail: ' + (data.adversarialChallengerFailRatePct != null ? data.adversarialChallengerFailRatePct : '—') + '%',
+          'Embedding / vector: ' + embedText
+        ].join('\n');
+      })
+      .catch(function(){ metrics.textContent = unavailable; });
   })();
 </script>
   <script src="/forge-skia-sso.js"></script>

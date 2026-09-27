@@ -16,7 +16,7 @@
     "reliability": {
       "title": "Fiabilité vérifiée",
       "brand": "SKIA Forge",
-      "body": "Les installeurs apparaissent ici après leur publication."
+      "body": "Un installeur n'apparaît que lorsque le manifeste de version publie son SHA-512. Comparez ce hash au fichier téléchargé avant de l'installer."
     },
     "operations": {
       "title": "Indicateurs opérationnels",
@@ -115,7 +115,14 @@
     "windowsAria": "Téléchargez SKIA Forge pour Windows",
     "macIntelAria": "Téléchargez SKIA Forge pour macOS Intel",
     "macArmAria": "Téléchargez SKIA Forge pour Apple Silicon",
-    "linuxAria": "Téléchargez SKIA Forge pour Linux"
+    "linuxAria": "Téléchargez SKIA Forge pour Linux",
+    "shaLabel": "SHA-512",
+    "noneVerified": "Aucun installeur n'est listé. Cette version ne publie pas de SHA-512 pour ces plateformes.",
+    "verifyHeading": "Comment vérifier",
+    "verifyStep1": "Téléchargez l'installeur de votre plateforme dans les cartes ci-dessous. Une plateforme n'apparaît que si son SHA-512 est publié.",
+    "verifyStep2": "Copiez le SHA-512 affiché sur cette carte. C’est l’empreinte base64 du manifeste de version.",
+    "verifyStep3": "Calculez le SHA-512 du fichier téléchargé et comparez-le à la valeur de la carte. Windows PowerShell : [Convert]::ToBase64String([System.Security.Cryptography.SHA512]::Create().ComputeHash([System.IO.File]::ReadAllBytes(\"installer\"))). macOS ou Linux : openssl dgst -sha512 -binary installer | openssl base64 -A",
+    "verifyStep4": "Si les valeurs diffèrent, n'installez pas le fichier. Signalez-le via Contact et support."
   },
   "howItWorks": {
     "heading": "Comment fonctionne Forge + SKIA",
@@ -127,6 +134,6 @@
     "heading": "Pourquoi les équipes choisissent SKIA Forge",
     "a": "Forge sert à écrire et relire du code. Ce n’est pas une fenêtre de chat séparée.",
     "b": "Les contrôles de santé et l’état font partie du produit. Ce qui tourne dépend encore de la configuration du service.",
-    "c": "Seuls les installeurs publiés sont listés ici."
+    "c": "Seuls les installeurs dont le SHA-512 est publié sont listés ici."
   }
 }

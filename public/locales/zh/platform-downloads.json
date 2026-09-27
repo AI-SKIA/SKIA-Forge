@@ -16,7 +16,7 @@
     "reliability": {
       "title": "经验证的可靠性",
       "brand": "SKIA Forge",
-      "body": "安装包在发布之后才会列在这里。"
+      "body": "只有当发布清单公布了 SHA-512 时，才会列出安装包。安装前请把该哈希与下载的文件比对。"
     },
     "operations": {
       "title": "运营指标",
@@ -115,7 +115,14 @@
     "windowsAria": "下载 Windows 版 SKIA Forge",
     "macIntelAria": "下载 SKIA ForgemacOSIntel",
     "macArmAria": "下载适用于 Apple Silicon 的 SKIA _FORGE",
-    "linuxAria": "下载 Linux 版 SKIA Forge"
+    "linuxAria": "下载 Linux 版 SKIA Forge",
+    "shaLabel": "SHA-512",
+    "noneVerified": "没有列出安装包。此版本没有为这些平台公布 SHA-512。",
+    "verifyHeading": "如何核对",
+    "verifyStep1": "从下方卡片下载你的平台安装包。只有公布了 SHA-512 的平台会显示。",
+    "verifyStep2": "复制该卡片上的 SHA-512。它是发布清单中的 base64 摘要。",
+    "verifyStep3": "计算所下载文件的 SHA-512，并与卡片上的值比对。Windows PowerShell：[Convert]::ToBase64String([System.Security.Cryptography.SHA512]::Create().ComputeHash([System.IO.File]::ReadAllBytes(\"installer\")))。macOS 或 Linux：openssl dgst -sha512 -binary installer | openssl base64 -A",
+    "verifyStep4": "如果两个值不一致，请不要安装该文件。通过联系与支持报告。"
   },
   "howItWorks": {
     "heading": "Forge + SKIA 的工作原理",
@@ -127,6 +134,6 @@
     "heading": "为什么团队选择 SKIA Forge",
     "a": "Forge 用于编写和审阅代码。它不是单独的聊天窗口。",
     "b": "健康检查和状态是产品的一部分。实际运行仍取决于服务如何配置。",
-    "c": "这里只列出已经发布的安装包。"
+    "c": "这里只列出已公布 SHA-512 的安装包。"
   }
 }

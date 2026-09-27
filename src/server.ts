@@ -48,6 +48,7 @@ import {
   compareSemver,
   fetchLatestForgeReleaseTag,
   normalizeSemver,
+  listVerifiedInstallers,
   resolveForgeReleaseCatalog,
   resolvePlatformDownloadUrl,
   type DownloadPlatformId
@@ -207,7 +208,7 @@ function renderInstallerUnavailableHtml(platform: DownloadPlatformId, catalog: A
     : "";
   return `<!doctype html><html><head><style>@font-face{font-family:"Centaur";src:url("/fonts/centaur/Centaur-Regular.ttf") format("truetype");font-weight:400;font-display:swap}</style></head><body style="font-family:'Centaur';background:#080400;color:#d4af37;padding:24px">
       <h2 style="margin-top:0">Forge installer unavailable</h2>
-      <p>The ${platform} desktop installer is not published yet for this release.</p>
+      <p>The ${platform} installer is not listed. This release has no published SHA-512 for it.</p>
       ${windowsLink}
       <p><a href="/forge/app/?resetOnboarding=1" style="color:#d4af37">Open Forge Web IDE</a></p>
       <p><a href="/platform-downloads" style="color:#d4af37">Back to downloads</a></p>
@@ -447,6 +448,31 @@ app.get("/api/auth/handoff", async (req, res) => {
     (req.protocol === "https" ? "https" : "http");
   const returnTo = `${proto}://${host}${returnPath}`;
   return res.redirect(302, buildSkiaLoginRedirect(req, returnTo));
+});
+
+app.get("/api/app/release-verification", async (_req, res) => {
+  const catalog = await resolveForgeReleaseCatalog(forgeReleaseConfig());
+  res.setHeader("Cache-Control", "no-store");
+  res.json({ installers: listVerifiedInstallers(catalog, RELEASE_REPO) });
+});
+
+app.get("/api/public/status-metrics", async (_req, res) => {
+  const unavailable = "Operational metrics unavailable (proxy or sampling off).";
+  const base = resolveSkiaFullApiUrl().replace(/\/+$/, "");
+  try {
+    const response = await fetch(`${base}/api/public/status-metrics`, {
+      method: "GET",
+      headers: { Accept: "application/json" },
+      signal: AbortSignal.timeout(4000)
+    });
+    if (!response.ok) {
+      return res.status(503).json({ available: false, error: unavailable });
+    }
+    const data = (await response.json()) as Record<string, unknown>;
+    return res.json({ available: true, ...data });
+  } catch {
+    return res.status(503).json({ available: false, error: unavailable });
+  }
 });
 
 app.get("/api/app/download/:platform", async (req, res) => {

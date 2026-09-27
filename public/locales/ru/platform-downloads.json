@@ -16,7 +16,7 @@
     "reliability": {
       "title": "Проверенная надежность",
       "brand": "SKIA Forge",
-      "body": "Установщики появляются здесь после публикации."
+      "body": "Установщик показывается только если манифест релиза публикует его SHA-512. Сравните этот хеш с загруженным файлом перед установкой."
     },
     "operations": {
       "title": "Операционные показатели",
@@ -115,7 +115,14 @@
     "windowsAria": "Скачать SKIA Forge для Windows",
     "macIntelAria": "Скачать SKIA Forge для macOS Intel",
     "macArmAria": "Загрузите SKIA Forge для Apple Silicon",
-    "linuxAria": "Загрузите SKIA Forge для Linux"
+    "linuxAria": "Загрузите SKIA Forge для Linux",
+    "shaLabel": "SHA-512",
+    "noneVerified": "Установщики не показаны. В этом релизе нет опубликованного SHA-512 для этих платформ.",
+    "verifyHeading": "Как проверить",
+    "verifyStep1": "Скачайте установщик своей платформы на карточках ниже. Платформа видна только если опубликован её SHA-512.",
+    "verifyStep2": "Скопируйте SHA-512 с карточки. Это base64-дайджест из манифеста релиза.",
+    "verifyStep3": "Посчитайте SHA-512 скачанного файла и сравните со значением на карточке. Windows PowerShell: [Convert]::ToBase64String([System.Security.Cryptography.SHA512]::Create().ComputeHash([System.IO.File]::ReadAllBytes(\"installer\"))). macOS или Linux: openssl dgst -sha512 -binary installer | openssl base64 -A",
+    "verifyStep4": "Если значения не совпали, не устанавливайте файл. Сообщите через Контакты и поддержку."
   },
   "howItWorks": {
     "heading": "Как работает Forge + SKIA",
@@ -127,6 +134,6 @@
     "heading": "Почему команды выбирают SKIA Forge",
     "a": "Forge нужен, чтобы писать и проверять код. Это не отдельное окно чата.",
     "b": "Проверки состояния и статус — часть продукта. Что работает, по-прежнему зависит от настройки службы.",
-    "c": "Здесь перечислены только опубликованные установщики."
+    "c": "Здесь перечислены только установщики с опубликованным SHA-512."
   }
 }

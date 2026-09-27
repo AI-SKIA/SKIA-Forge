@@ -18,12 +18,33 @@ path: SKIA-FORGE-Setup-1.0.49-win-x64.exe
 sha512: abc
 `;
 
-test("parseElectronLatestYml extracts version and installer path", () => {
+test("parseElectronLatestYml extracts version, installer path, and sha512", () => {
   const parsed = parseElectronLatestYml(SAMPLE_YML);
   assert.deepEqual(parsed, {
     version: "1.0.49",
-    path: "SKIA-FORGE-Setup-1.0.49-win-x64.exe"
+    path: "SKIA-FORGE-Setup-1.0.49-win-x64.exe",
+    sha512: "abc",
+    files: []
   });
+});
+
+test("parseElectronLatestYml keeps a sha512 on each file entry", () => {
+  const parsed = parseElectronLatestYml(`version: 2.0.0
+files:
+  - url: SKIA-FORGE-2.0.0-mac-x64.dmg
+    sha512: intelHash==
+    size: 10
+  - url: SKIA-FORGE-2.0.0-mac-arm64.dmg
+    sha512: armHash==
+    size: 11
+path: SKIA-FORGE-2.0.0-mac-arm64.dmg
+sha512: armHash==
+`);
+  assert.equal(parsed?.sha512, "armHash==");
+  assert.deepEqual(parsed?.files, [
+    { url: "SKIA-FORGE-2.0.0-mac-x64.dmg", sha512: "intelHash==" },
+    { url: "SKIA-FORGE-2.0.0-mac-arm64.dmg", sha512: "armHash==" }
+  ]);
 });
 
 test("artifactFileNameForPlatform matches electron-builder artifactName templates", () => {
@@ -52,7 +73,8 @@ test("resolvePlatformDownloadUrl uses releases/latest for published Windows inst
     assets: [
       {
         name: "SKIA-FORGE-Setup-1.0.49-win-x64.exe",
-        url: "https://github.com/AI-SKIA/SKIA-Forge/releases/latest/download/SKIA-FORGE-Setup-1.0.49-win-x64.exe"
+        url: "https://github.com/AI-SKIA/SKIA-Forge/releases/latest/download/SKIA-FORGE-Setup-1.0.49-win-x64.exe",
+        sha512: "abc"
       }
     ],
     source: "electron-latest-yml"
@@ -89,6 +111,22 @@ test("resolveForgeReleaseCatalog uses latest.yml when GitHub API is unavailable"
     buildGithubLatestDownloadUrl("AI-SKIA/SKIA-Forge", "SKIA-FORGE-Setup-1.0.49-win-x64.exe")
   );
   clearForgeReleaseCatalogCache();
+});
+
+test("resolvePlatformDownloadUrl omits an installer that has no published sha512", () => {
+  const catalog: ForgeReleaseCatalog = {
+    latestVersion: "1.0.49",
+    latestTag: "v1.0.49",
+    files: ["SKIA-FORGE-Setup-1.0.49-win-x64.exe"],
+    assets: [
+      {
+        name: "SKIA-FORGE-Setup-1.0.49-win-x64.exe",
+        url: "https://example.com/setup.exe"
+      }
+    ],
+    source: "github-api"
+  };
+  assert.equal(resolvePlatformDownloadUrl(catalog, "windows", "AI-SKIA/SKIA-Forge"), null);
 });
 
 test("resolvePlatformDownloadUrl returns null for mac when no dmg assets exist", () => {

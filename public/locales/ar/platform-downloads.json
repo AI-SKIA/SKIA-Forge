@@ -16,7 +16,7 @@
     "reliability": {
       "title": "الموثوقية التي تم التحقق منها",
       "brand": "SKIA Forge",
-      "body": "تظهر أدوات التثبيت هنا بعد نشرها."
+      "body": "يظهر المُثبّت فقط عندما ينشر بيان الإصدار تجزئة SHA-512 الخاصة به. قارن هذه التجزئة بالملف الذي نزّلته قبل التثبيت."
     },
     "operations": {
       "title": "مؤشرات التشغيل",
@@ -115,7 +115,14 @@
     "windowsAria": "تنزيل SKIA Forge لنظام التشغيل Windows",
     "macIntelAria": "تنزيل SKIA Forge لنظام التشغيل MacOS Intel",
     "macArmAria": "قم بتنزيل SKIA Forge لجهاز Apple Silicon",
-    "linuxAria": "تنزيل SKIA Forge لنظام التشغيل Linux"
+    "linuxAria": "تنزيل SKIA Forge لنظام التشغيل Linux",
+    "shaLabel": "SHA-512",
+    "noneVerified": "لا يظهر أي مُثبّت. هذا الإصدار لا ينشر SHA-512 لهذه المنصات.",
+    "verifyHeading": "كيفية التحقق",
+    "verifyStep1": "نزّل مُثبّت منصتك من البطاقات أدناه. تظهر المنصة فقط إذا كان SHA-512 منشورًا.",
+    "verifyStep2": "انسخ SHA-512 الظاهر على البطاقة. إنه ملخص base64 من بيان الإصدار.",
+    "verifyStep3": "احسب SHA-512 للملف الذي نزّلته وقارنه بالقيمة على البطاقة. Windows PowerShell: [Convert]::ToBase64String([System.Security.Cryptography.SHA512]::Create().ComputeHash([System.IO.File]::ReadAllBytes(\"installer\"))). macOS أو Linux: openssl dgst -sha512 -binary installer | openssl base64 -A",
+    "verifyStep4": "إذا لم تتطابق القيم، لا تثبّت الملف. أبلغ عن ذلك عبر الاتصال والدعم."
   },
   "howItWorks": {
     "heading": "كيف يعمل + SKIA",
@@ -127,6 +134,6 @@
     "heading": "لماذا تختار الفرق SKIA Forge؟",
     "a": "Forge لكتابة التعليمات البرمجية ومراجعتها. ليس نافذة دردشة منفصلة.",
     "b": "فحوصات الصحة والحالة جزء من المنتج. ما يعمل ما زال يعتمد على كيفية إعداد الخدمة.",
-    "c": "تُدرج هنا فقط أدوات التثبيت التي نُشرت."
+    "c": "تُدرج هنا فقط المُثبّتات التي لها SHA-512 منشور."
   }
 }

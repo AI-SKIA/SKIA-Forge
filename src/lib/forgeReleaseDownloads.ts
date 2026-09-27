@@ -1,6 +1,15 @@
 export type DownloadPlatformId = "windows" | "mac-intel" | "mac-arm" | "linux-appimage";
 
-export type ForgeReleaseAsset = { name: string; url: string };
+export type ForgeReleaseAsset = { name: string; url: string; sha512?: string };
+
+export type ElectronManifestFile = { url: string; sha512: string };
+
+export type ElectronLatestManifest = {
+  version: string;
+  path: string;
+  sha512: string | null;
+  files: ElectronManifestFile[];
+};
 
 export type ForgeReleaseCatalog = {
   latestVersion: string | null;
@@ -62,16 +71,51 @@ export function githubApiHeaders(token?: string): Record<string, string> {
   return headers;
 }
 
-/** Parse electron-builder `latest.yml` (Windows update manifest published on each release). */
-export function parseElectronLatestYml(text: string): { version: string; path: string } | null {
+const UPDATE_MANIFEST_NAMES = ["latest.yml", "latest-mac.yml", "latest-linux.yml"] as const;
+
+function unquoteYamlScalar(value: string): string {
+  return value.trim().replace(/^['"]|['"]$/g, "");
+}
+
+/** Parse electron-builder `latest.yml` / `latest-mac.yml` / `latest-linux.yml`, including per-file sha512. */
+export function parseElectronLatestYml(text: string): ElectronLatestManifest | null {
   const versionMatch = text.match(/^version:\s*([^\s#]+)/m);
   const pathMatch = text.match(/^path:\s*([^\s#]+)/m);
   const version = versionMatch?.[1]?.trim() ?? "";
-  const assetPath = pathMatch?.[1]?.trim() ?? "";
+  const assetPath = unquoteYamlScalar(pathMatch?.[1] ?? "");
   if (!version || !assetPath) {
     return null;
   }
-  return { version, path: assetPath };
+
+  const files: ElectronManifestFile[] = [];
+  const lines = text.split(/\r?\n/);
+  for (let i = 0; i < lines.length; i += 1) {
+    const urlMatch = lines[i].match(/^\s+-\s+url:\s*(\S+)/);
+    if (!urlMatch) continue;
+    let sha512 = "";
+    for (let j = i + 1; j < Math.min(i + 8, lines.length); j += 1) {
+      if (/^\s+-\s+url:/.test(lines[j]) || /^[A-Za-z]/.test(lines[j])) break;
+      const shaMatch = lines[j].match(/^\s+sha512:\s*(\S+)/);
+      if (shaMatch) {
+        sha512 = unquoteYamlScalar(shaMatch[1]);
+        break;
+      }
+    }
+    const url = unquoteYamlScalar(urlMatch[1]);
+    if (url && sha512) files.push({ url, sha512 });
+  }
+
+  const topLevelSha = text.match(/^sha512:\s*(\S+)/m)?.[1] ?? "";
+  const pathSha =
+    files.find((file) => file.url === assetPath || file.url.endsWith(`/${assetPath}`))?.sha512 ??
+    (topLevelSha ? unquoteYamlScalar(topLevelSha) : "");
+
+  return {
+    version,
+    path: assetPath,
+    sha512: pathSha || null,
+    files
+  };
 }
 
 export function buildGithubLatestDownloadUrl(repo: string, fileName: string): string {
@@ -145,6 +189,10 @@ export function pickReleaseAssetUrlForPlatform(
   return null;
 }
 
+function assetHasSha512(asset: ForgeReleaseAsset | undefined): asset is ForgeReleaseAsset & { sha512: string } {
+  return Boolean(asset?.sha512?.trim());
+}
+
 export function resolvePlatformDownloadUrl(
   catalog: ForgeReleaseCatalog,
   platform: DownloadPlatformId,
@@ -152,7 +200,8 @@ export function resolvePlatformDownloadUrl(
 ): string | null {
   const fromAssets = pickReleaseAssetUrlForPlatform(platform, catalog.assets);
   if (fromAssets) {
-    return fromAssets;
+    const asset = catalog.assets.find((item) => item.url === fromAssets);
+    return assetHasSha512(asset) ? fromAssets : null;
   }
 
   const version = catalog.latestVersion;
@@ -161,9 +210,8 @@ export function resolvePlatformDownloadUrl(
   }
 
   const fileName = artifactFileNameForPlatform(platform, version);
-  const published =
-    catalog.files.includes(fileName) || catalog.assets.some((asset) => asset.name === fileName);
-  if (!published) {
+  const asset = catalog.assets.find((item) => item.name === fileName);
+  if (!assetHasSha512(asset)) {
     return null;
   }
 
@@ -173,6 +221,33 @@ export function resolvePlatformDownloadUrl(
 
   const tag = catalog.latestTag ?? toReleaseTag(version);
   return buildGithubTaggedDownloadUrl(repo, tag, fileName);
+}
+
+export type VerifiedInstaller = {
+  platform: DownloadPlatformId;
+  fileName: string;
+  sha512: string;
+  downloadPath: string;
+};
+
+export function listVerifiedInstallers(catalog: ForgeReleaseCatalog, repo: string): VerifiedInstaller[] {
+  const platforms: DownloadPlatformId[] = ["windows", "mac-intel", "mac-arm", "linux-appimage"];
+  const listed: VerifiedInstaller[] = [];
+  for (const platform of platforms) {
+    const url = resolvePlatformDownloadUrl(catalog, platform, repo);
+    if (!url) continue;
+    const asset =
+      catalog.assets.find((item) => item.url === url && item.sha512) ??
+      catalog.assets.find((item) => item.sha512 && url.includes(encodeURIComponent(item.name)));
+    if (!asset?.sha512) continue;
+    listed.push({
+      platform,
+      fileName: asset.name,
+      sha512: asset.sha512,
+      downloadPath: `/api/app/download/${platform}`
+    });
+  }
+  return listed;
 }
 
 async function fetchText(
@@ -221,9 +296,69 @@ async function fetchElectronLatestYmlCatalog(
     latestVersion: parsed.version,
     latestTag: tag,
     files: [parsed.path],
-    assets: [{ name: parsed.path, url }],
+    assets: [{ name: parsed.path, url, ...(parsed.sha512 ? { sha512: parsed.sha512 } : {}) }],
     source: "electron-latest-yml"
   };
+}
+
+function manifestFileName(url: string): string {
+  const leaf = url.split("/").pop() ?? url;
+  try {
+    return decodeURIComponent(leaf);
+  } catch {
+    return leaf;
+  }
+}
+
+export function applyManifestHashes(
+  catalog: ForgeReleaseCatalog,
+  manifests: Array<ElectronLatestManifest | null>,
+  repo: string
+): ForgeReleaseCatalog {
+  const byName = new Map<string, string>();
+  for (const manifest of manifests) {
+    if (!manifest) continue;
+    if (manifest.path && manifest.sha512) byName.set(manifest.path, manifest.sha512);
+    for (const file of manifest.files) {
+      const name = manifestFileName(file.url);
+      if (name && file.sha512) byName.set(name, file.sha512);
+    }
+  }
+
+  const assets: ForgeReleaseAsset[] = catalog.assets.map((asset) => {
+    const sha512 = asset.sha512 || byName.get(asset.name);
+    return sha512 ? { ...asset, sha512 } : asset;
+  });
+  for (const [name, sha512] of byName) {
+    if (!assets.some((asset) => asset.name === name)) {
+      assets.push({ name, url: buildGithubLatestDownloadUrl(repo, name), sha512 });
+    }
+  }
+  return {
+    ...catalog,
+    files: assets.map((asset) => asset.name),
+    assets
+  };
+}
+
+async function fetchUpdateManifests(
+  repo: string,
+  timeoutMs: number,
+  fetchFn: typeof fetch
+): Promise<ElectronLatestManifest[]> {
+  const manifests = await Promise.all(
+    UPDATE_MANIFEST_NAMES.map(async (fileName) => {
+      const text = await fetchText(
+        buildGithubLatestDownloadUrl(repo, fileName),
+        { headers: { "User-Agent": "skia-forge-release-assets" } },
+        timeoutMs,
+        fetchFn
+      );
+      if (!text) return null;
+      return parseElectronLatestYml(text);
+    })
+  );
+  return manifests.filter((manifest): manifest is ElectronLatestManifest => manifest !== null);
 }
 
 async function fetchGithubApiLatestCatalog(
@@ -334,7 +469,12 @@ function mergeCatalogs(primary: ForgeReleaseCatalog, secondary: ForgeReleaseCata
   }
   const assetByName = new Map<string, ForgeReleaseAsset>();
   for (const asset of [...primary.assets, ...secondary.assets]) {
-    assetByName.set(asset.name, asset);
+    const existing = assetByName.get(asset.name);
+    assetByName.set(asset.name, {
+      name: asset.name,
+      url: asset.url || existing?.url || "",
+      ...(asset.sha512 || existing?.sha512 ? { sha512: asset.sha512 || existing?.sha512 } : {})
+    });
   }
   const assets = [...assetByName.values()];
   return {
@@ -380,8 +520,9 @@ export async function resolveForgeReleaseCatalog(config: ForgeReleaseConfig): Pr
       assets,
       source: "env"
     };
-    catalogCache = { atMs: now, catalog };
-    return catalog;
+    const stamped = applyManifestHashes(catalog, await fetchUpdateManifests(repo, timeoutMs, fetchFn), repo);
+    catalogCache = { atMs: now, catalog: stamped };
+    return stamped;
   }
 
   const ymlCatalog = await fetchElectronLatestYmlCatalog(repo, timeoutMs, fetchFn);
@@ -409,6 +550,7 @@ export async function resolveForgeReleaseCatalog(config: ForgeReleaseConfig): Pr
     catalog = ymlCatalog;
   }
 
+  catalog = applyManifestHashes(catalog, await fetchUpdateManifests(repo, timeoutMs, fetchFn), repo);
   catalogCache = { atMs: now, catalog };
   return catalog;
 }
