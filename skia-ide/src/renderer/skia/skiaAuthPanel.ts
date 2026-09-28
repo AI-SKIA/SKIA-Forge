@@ -15,11 +15,10 @@
  */
 
 import { getBackendUrl, getTimeout } from "./skiaConfig";
-import {
-    FORGE_PLAN_REQUIRED_MESSAGE,
-    userHasForgePlanAccess,
-    type ForgeAccessUser,
-} from "./forgePlanAccess";
+import { readForgeEntitlement, type ForgeEntitlementView } from "../../../../src/auth/forgeEntitlement";
+
+const FORGE_PLAN_REQUIRED_MESSAGE =
+    "SKIA Forge IDE requires a subscription plan (Pro, Team, Business, or Enterprise). Credits and pay-as-you-go top-ups do not include Forge access.";
 
 declare global {
     interface Window {
@@ -27,7 +26,7 @@ declare global {
     }
 }
 
-function showPlanRequiredMessage(overlay: HTMLElement, email: string): void {
+function showPlanRequiredMessage(overlay: HTMLElement, email: string, reasonCode: string): void {
     const card = overlay.querySelector(".skia-auth-card") as HTMLElement;
     if (!card) return;
     card.innerHTML = `
@@ -46,6 +45,7 @@ function showPlanRequiredMessage(overlay: HTMLElement, email: string): void {
       <p style="color:rgba(255,255,255,0.55); font-size: 14px; font-weight:400;
                 line-height:1.6; margin-bottom:24px;">
         ${FORGE_PLAN_REQUIRED_MESSAGE}
+        <br/>${reasonCode}
       </p>
       <a href="https://skia.ca/settings"
          style="display:block; background:#1a1a1a; border:1px solid #d4af37;
@@ -321,17 +321,25 @@ const removeOverlay = (): void => {
     }
 };
 
-const denyForgeAccess = (user: AuthUser): boolean => {
+const denyForgeAccess = (user: AuthUser, entitlement: ForgeEntitlementView | null): boolean => {
     showLoginOverlay();
     const overlay = document.getElementById(OVERLAY_ID);
-    if (overlay) showPlanRequiredMessage(overlay as HTMLElement, user.email || "");
-    clearAuth();
+    if (overlay) {
+        showPlanRequiredMessage(
+            overlay as HTMLElement,
+            user.email || "",
+            entitlement?.reasonCode || "PLAN_REQUIRED",
+        );
+    }
+    authenticated = false;
+    cachedUser = user;
     return false;
 };
 
-const setAuthenticated = (user: AuthUser): boolean => {
-    if (!userHasForgePlanAccess(user as ForgeAccessUser)) {
-        return denyForgeAccess(user);
+const setAuthenticated = (user: AuthUser, payload?: unknown): boolean => {
+    const entitlement = readForgeEntitlement(payload);
+    if (!entitlement?.entitled) {
+        return denyForgeAccess(user, entitlement);
     }
 
     authenticated = true;
@@ -379,7 +387,7 @@ const finalizeAuthenticatedUser = async (
     if (!getStoredToken()) {
         await refetchForgeDesktopSessionToken();
     }
-    return setAuthenticated(user);
+    return setAuthenticated(user, sessionPayload);
 };
 
 const clearAuth = (): void => {
@@ -392,7 +400,7 @@ const clearAuth = (): void => {
 
 // ─── Session verification ─────────────────────────────────────────────────────
 
-const verifySession = async (token: string): Promise<boolean> => {
+const verifySession = async (token: string): Promise<"ok" | "locked" | "invalid"> => {
     const response = await authFetch(`${getApiOrigin()}/api/auth/session`, {
         method: "GET",
         credentials: "include",
@@ -402,11 +410,11 @@ const verifySession = async (token: string): Promise<boolean> => {
             "x-skia-client": "forge-desktop",
         },
     });
-    if (!response.ok) return false;
+    if (!response.ok) return "invalid";
     const payload = (await response.json()) as unknown;
     const user = extractUser(payload);
-    if (!user) return false;
-    return finalizeAuthenticatedUser(user, payload);
+    if (!user) return "invalid";
+    return (await finalizeAuthenticatedUser(user, payload)) ? "ok" : "locked";
 };
 
 // ─── Post-login token acquisition ─────────────────────────────────────────────
@@ -729,6 +737,14 @@ export const initializeAuthPanel = (): void => {
     }
     initialized = true;
 
+    window.addEventListener("focus", () => {
+        const stored = getStoredToken();
+        if (!stored) return;
+        void verifySession(stored).then((state) => {
+            if (state === "invalid") clearAuth();
+        });
+    });
+
     const token = getStoredToken();
     if (!token) {
         // Token may not be cached yet in Electron, but cookie session can still be valid.
@@ -766,8 +782,8 @@ export const initializeAuthPanel = (): void => {
     }
 
     void verifySession(token)
-        .then((valid) => {
-            if (!valid) {
+        .then((state) => {
+            if (state === "invalid") {
                 clearAuth();
             }
         })

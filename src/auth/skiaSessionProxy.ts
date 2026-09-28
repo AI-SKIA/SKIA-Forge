@@ -7,6 +7,7 @@ export type SkiaSessionResult = {
   status: number;
   token: string | null;
   user: unknown;
+  forgeEntitlement: unknown;
   setCookies: string[];
   error?: string;
 };
@@ -64,6 +65,7 @@ export async function fetchSkiaSessionFromRequest(
         status: 502,
         token: null,
         user: null,
+        forgeEntitlement: null,
         setCookies,
         error: "Invalid session response from auth service"
       };
@@ -75,6 +77,7 @@ export async function fetchSkiaSessionFromRequest(
         status: upstream.status,
         token: null,
         user: data.user ?? null,
+        forgeEntitlement: data.forgeEntitlement ?? null,
         setCookies,
         error: typeof data.error === "string" ? data.error : "Unauthorized"
       };
@@ -88,12 +91,20 @@ export async function fetchSkiaSessionFromRequest(
         status: 401,
         token: null,
         user: null,
+        forgeEntitlement: data.forgeEntitlement ?? null,
         setCookies,
         error: "Unauthorized"
       };
     }
 
-    return { ok: true, status: 200, token, user, setCookies };
+    return {
+      ok: true,
+      status: 200,
+      token,
+      user,
+      forgeEntitlement: data.forgeEntitlement ?? null,
+      setCookies
+    };
   } catch (error) {
     const message = error instanceof Error ? error.message : "Session service unavailable";
     return {
@@ -101,6 +112,7 @@ export async function fetchSkiaSessionFromRequest(
       status: 500,
       token: null,
       user: null,
+      forgeEntitlement: null,
       setCookies: [],
       error: message
     };

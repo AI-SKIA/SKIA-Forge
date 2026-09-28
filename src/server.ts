@@ -94,6 +94,7 @@ import { createEmbedIncrementalOnSaveHandler } from "./forge/modules/context-eng
 import { createEmbeddingVectorStore } from "./forge/modules/context-engine/embeddingVectorStoreFactory.js";
 import { SKIA_FULL_EMBEDDING_PATH_DEFAULT } from "./skiaFullEmbeddingContract.js";
 import { requireAuth } from "./middleware/requireAuth.js";
+import { requirePaidForgePlan } from "./auth/requireForgePlan.js";
 import { forgeLocaleMiddleware } from "./middleware/forgeLocaleMiddleware.js";
 import {
   resolveSkiaBackendUrl,
@@ -424,6 +425,7 @@ app.get("/api/auth/session", async (req, res) => {
   return res.json({
     token: session.token,
     user: session.user,
+    forgeEntitlement: session.forgeEntitlement ?? null,
     ...(session.token ? {} : { error: "No token in session response" })
   });
 });
@@ -558,6 +560,7 @@ app.get("/integration/skia-full/probe/report", requireAuth, async (req, res) => 
 // Per-route `requireAuth` gates /rules, /rpc, /state/runtime, /telemetry/summary, /providers/status, /live, /ready,
 // and /integration/skia-full/* plus related POSTs. Admin mutations use `requireSkiaAdminSecret` then `requireAuth`.
 app.use("/api/forge", requireAuth);
+app.use("/api/forge", requirePaidForgePlan);
 
 app.get("/api/forge/modules/status", async (req, res) => {
   try {

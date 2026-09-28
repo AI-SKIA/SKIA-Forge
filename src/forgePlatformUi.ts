@@ -63,6 +63,7 @@ export function renderForgePlatformHtml(): string {
     const moduleButtons = Array.from(document.querySelectorAll(".mod-btn"));
     let activeModule = "agent";
     let _forgeToken = null;
+    let _forgeEntitled = false;
     let fpMessages = null;
 
     function fp(path) {
@@ -227,6 +228,7 @@ export function renderForgePlatformHtml(): string {
     }
 
     async function bootstrapForgeSession() {
+      _forgeEntitled = false;
       const urlToken = readTokenFromUrl();
       if (urlToken) {
         persistForgeToken(urlToken);
@@ -299,6 +301,13 @@ export function renderForgePlatformHtml(): string {
           showAuthError(fp("runtime.noToken") || "No token returned. Please log in at skia.ca first.");
           return;
         }
+        const ent = data && data.forgeEntitlement;
+        _forgeEntitled = !!(ent && ent.entitled === true);
+        const reason = ent && typeof ent.reasonCode === "string" ? ent.reasonCode : "PLAN_REQUIRED";
+        if (!_forgeEntitled) {
+          showAuthError("Forge access: " + reason);
+          return;
+        }
         if (authBanner) {
           authBanner.classList.remove("visible");
           authBanner.textContent = "";
@@ -360,7 +369,11 @@ export function renderForgePlatformHtml(): string {
     }
 
     function requireAuthForAction() {
-      if (_forgeToken) return true;
+      if (_forgeToken && _forgeEntitled) return true;
+      if (_forgeToken && !_forgeEntitled) {
+        mainOutput.textContent = "Forge access is not active on this account.";
+        return false;
+      }
       mainOutput.textContent = fp("runtime.notAuthenticated") || "Not authenticated. Log in at skia.ca and reload this page.";
       return false;
     }
@@ -460,14 +473,14 @@ export function renderForgePlatformHtml(): string {
       wireForgeHomeLink();
       setActiveModule(activeModule);
       await bootstrapForgeSession();
-      if (!_forgeToken) return;
+      if (!_forgeToken || !_forgeEntitled) return;
       await refreshIntegration();
     }
 
     document.addEventListener("visibilitychange", () => {
-      if (document.visibilityState !== "visible" || _forgeToken) return;
+      if (document.visibilityState !== "visible") return;
       void bootstrapForgeSession().then(() => {
-        if (_forgeToken) void refreshIntegration();
+        if (_forgeToken && _forgeEntitled) void refreshIntegration();
       });
     });
 
