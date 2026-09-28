@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { readForgeEntitlement } from "./forgeEntitlement.ts";
+import { readForgeEntitlement } from "./forgeEntitlement.js";
 
 test("reads the server entitlement and ignores a client claim", () => {
   const parsed = readForgeEntitlement({

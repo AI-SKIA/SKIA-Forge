@@ -9,7 +9,7 @@ import {
   isPaidForgeRequest,
   loadForgeEntitlementForToken,
   resetForgePlanCacheForTests
-} from "./requireForgePlan.ts";
+} from "./requireForgePlan.js";
 
 function session(entitled: boolean, reasonCode: string): Response {
   return new Response(

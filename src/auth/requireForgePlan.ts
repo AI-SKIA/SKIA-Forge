@@ -1,4 +1,4 @@
-import type { NextFunction, Request, Response } from "express";
+import type { NextFunction, Request, Response as ExpressResponse } from "express";
 import { resolveSkiaFullApiUrl } from "../config/localBackend.js";
 import { readForgeEntitlement, type ForgeEntitlementView } from "./forgeEntitlement.js";
 
@@ -100,7 +100,7 @@ export async function loadForgeEntitlementForToken(
   }
 
   const base = apiBase.replace(/\/+$/, "");
-  let response: Response;
+  let response: Awaited<ReturnType<typeof fetch>>;
   try {
     response = await fetchImpl(`${base}/api/auth/session`, {
       method: "GET",
@@ -136,7 +136,7 @@ export async function loadForgeEntitlementForToken(
   return { status: 200, view };
 }
 
-export function requirePaidForgePlan(req: Request, res: Response, next: NextFunction): void {
+export function requirePaidForgePlan(req: Request, res: ExpressResponse, next: NextFunction): void {
   if (isForgeOpenRoute(req.method, requestPath(req))) {
     next();
     return;
