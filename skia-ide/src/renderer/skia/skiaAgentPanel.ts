@@ -294,3 +294,35 @@ export const cancelAgentTask = (): void => {
     activeAgentController = null;
     pendingPreviews.clear();
 };
+
+/**
+ * Append Full Security Audit results into the existing agent panel log host
+ * (`#agent-log` in skiaAgentPanel) — no new components.
+ */
+export const appendFullSecurityAuditToAgentLog = (payload: {
+    summary?: string;
+    findings?: Array<{ severity?: string; message?: string; file?: string; line?: number }>;
+    errors?: Array<{ tool: string; error: string }>;
+    scanId?: string;
+}): void => {
+    const logHost = document.getElementById("agent-log") as HTMLDivElement | null;
+    if (!logHost) return;
+    appendLogRow(logHost, {
+        type: "thought",
+        payload: `Full Security Audit${payload.scanId ? ` (${payload.scanId})` : ""}: ${payload.summary || "complete"}`
+    });
+    for (const f of payload.findings ?? []) {
+        appendLogRow(logHost, {
+            type: "tool_end",
+            tool: "security",
+            payload: `[${f.severity || "info"}] ${f.file || "?"}:${f.line ?? "-"} ${f.message || ""}`,
+            status: f.severity === "high" ? "failed" : "ok"
+        });
+    }
+    for (const e of payload.errors ?? []) {
+        appendLogRow(logHost, {
+            type: "error",
+            payload: `${e.tool}: ${e.error}`
+        });
+    }
+};

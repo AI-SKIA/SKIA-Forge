@@ -7,7 +7,7 @@ import { getEditor, initializeMonaco } from "./editor/monacoSetup";
 import { loadConfig, getBackendUrl, getLocalBackendMode, getLocalEngineConfig, getLocalFounderOverride, getSkiaOwnerEmail } from "./skia/skiaConfig";
 import { initializeLocalHealthPanel } from "./skia/localHealthPanel";
 import { initializeChatPanel } from "./skia/skiaChatPanel";
-import { cancelAgentTask, initializeAgentPanel } from "./skia/skiaAgentPanel";
+import { appendFullSecurityAuditToAgentLog, cancelAgentTask, initializeAgentPanel } from "./skia/skiaAgentPanel";
 import { initializeStatusBar } from "./skia/skiaStatusBar";
 import { initializeOnboarding } from "./skia/skiaOnboarding";
 import {
@@ -29,6 +29,7 @@ import {
     getMode,
     getGovernance,
     getModulesStatus,
+    runFullSecurityAudit,
     SkiaOfflineError,
 } from "./skia/skiaApiClient";
 
@@ -389,6 +390,10 @@ const loadForgeStatus = async (): Promise<void> => {
                     <span class="forge-value">${JSON.stringify(modules, null, 2)}</span>
                 </div>`;
         }
+
+        // Server env FORGE_FULL_SECURITY_AUDIT_UI only — never localStorage / import.meta.
+        const auditUi = Boolean((modules as { fullSecurityAuditUi?: boolean }).fullSecurityAuditUi);
+        void window.skiaElectron.setFullSecurityAuditMenu?.(auditUi);
     } catch (error) {
         const msg = error instanceof Error ? error.message : "";
         if (error instanceof SkiaOfflineError) {
@@ -1023,6 +1028,38 @@ const registerMenuIpcHandlers = (): void => {
     window.skiaElectron.onMenuAction("run-agent-task", () => {
         setView("agent");
         focusAgentInput();
+    });
+    window.skiaElectron.onMenuAction("run-full-security-audit", () => {
+        setView("agent");
+        void (async () => {
+            try {
+                setStatus("SKIA: FULL SECURITY AUDIT RUNNING");
+                const result = await runFullSecurityAudit();
+                appendFullSecurityAuditToAgentLog({
+                    summary: typeof result.summary === "string" ? result.summary : "complete",
+                    findings: Array.isArray(result.findings)
+                        ? (result.findings as Array<{
+                              severity?: string;
+                              message?: string;
+                              file?: string;
+                              line?: number;
+                          }>)
+                        : [],
+                    errors: Array.isArray(result.errors)
+                        ? (result.errors as Array<{ tool: string; error: string }>)
+                        : [],
+                    scanId: typeof result.scanId === "string" ? result.scanId : undefined
+                });
+                setStatus("SKIA: FULL SECURITY AUDIT COMPLETE");
+            } catch (error) {
+                const msg = error instanceof Error ? error.message : String(error);
+                appendFullSecurityAuditToAgentLog({
+                    summary: "failed",
+                    errors: [{ tool: "full-security-audit", error: msg }]
+                });
+                setStatus("SKIA: FULL SECURITY AUDIT FAILED");
+            }
+        })();
     });
     window.skiaElectron.onMenuAction("run-cancel-task", () => {
         cancelAgentTask();

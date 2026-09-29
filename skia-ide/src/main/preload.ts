@@ -8,6 +8,8 @@ let updateErrorWrap: ((_event: Electron.IpcRendererEvent, data: { message: strin
 contextBridge.exposeInMainWorld("skiaElectron", {
     // ── Existing APIs (unchanged) ────────────────────────────────────────────
     getConfig: () => ipcRenderer.invoke("skia:getConfig"),
+    setFullSecurityAuditMenu: (enabled: boolean) =>
+        ipcRenderer.invoke("skia:setFullSecurityAuditMenu", enabled),
     getAppVersion: () => ipcRenderer.sendSync("get-app-version") as string,
     openFolder: () => ipcRenderer.invoke("skia:openFolder"),
     openFile: () => ipcRenderer.invoke("skia:openFile"),

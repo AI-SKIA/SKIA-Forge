@@ -24,6 +24,8 @@ declare global {
         localFounderOverride?: boolean;
         skiaOwnerEmail?: string;
       }>;
+      /** Sync Run→Full Security Audit menu visibility from server modules/status (not localStorage). */
+      setFullSecurityAuditMenu: (enabled: boolean) => Promise<void>;
       getAppVersion: () => string;
       openFolder: () => Promise<string | null>;
       openFile: () => Promise<string | null>;

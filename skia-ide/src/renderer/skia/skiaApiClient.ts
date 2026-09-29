@@ -124,6 +124,13 @@ export const getModulesStatus = async (): Promise<Json | null> => {
     }
 };
 
+/** D2 — local project Full Security Audit (no webUrl). Results via SecurityAnalysisService on server. */
+export const runFullSecurityAudit = (): Promise<Json> =>
+    fetchJsonWithRetry("/api/forge/security/full-audit", {
+        method: "POST",
+        body: JSON.stringify({})
+    });
+
 export const getArchitectureHealth = async (): Promise<Json | null> => {
     try {
         return await fetchJsonWithRetry(`${forgeUrl}/api/forge/architecture/health`, { method: "GET" });

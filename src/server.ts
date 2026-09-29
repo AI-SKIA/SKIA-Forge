@@ -58,6 +58,7 @@ import {
 const PLATFORM_DOWNLOADS_PATH = "/platform-downloads";
 import { renderOgImageSvg } from "./ogImage.js";
 import { buildForgeModuleHealth } from "./forgeModuleHealth.js";
+import { isFullSecurityAuditUiEnabled } from "./fullSecurityAuditUiFlag.js";
 import { ForgeModuleName, isForgeModuleName, runForgeModule } from "./forgeModuleExecutor.js";
 import { evaluateForgeModuleAccess, SovereignExecutionMode } from "./forgeGovernance.js";
 import { buildGovernancePolicy, ForgeGovernancePolicy } from "./forgePolicy.js";
@@ -156,6 +157,7 @@ const skiaFullAdapter = new SkiaFullAdapter({
   embeddingPath: process.env.SKIA_FULL_EMBEDDING_PATH ?? SKIA_FULL_EMBEDDING_PATH_DEFAULT,
   embedModel: process.env.SKIA_FULL_EMBED_MODEL
 });
+contextEngine.bindSkiaFullAdapter(skiaFullAdapter);
 const embedIndexQueue = getEmbedIndexQueue(projectRoot, process.env);
 function isEmbedIncrementalOnSaveEnabled(): boolean {
   const v = (process.env.EMBED_INCREMENTAL_ON_SAVE ?? "").toLowerCase();
@@ -568,7 +570,9 @@ app.get("/api/forge/modules/status", async (req, res) => {
     const modules = buildForgeModuleHealth(rows);
     res.json({
       updatedAt: new Date().toISOString(),
-      modules
+      modules,
+      /** D2 IDE menu — server env only; default false (dark). */
+      fullSecurityAuditUi: isFullSecurityAuditUiEnabled()
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Forge module status failed";
@@ -591,12 +595,12 @@ app.get("/api/forge/architecture/health", async (_req, res) => {
 app.post("/api/forge/security/full-audit", async (req, res) => {
   if (!verifySensitiveIntent(req, res, "forge.security.full_audit")) return;
   try {
-    const webUrl = typeof req.body?.webUrl === "string" ? req.body.webUrl : undefined;
+    // v1: local project audit only — webUrl intentionally ignored (no third-party scan from IDE).
     const result = await securityAnalysisService.runFullAuditFromBrain(
       projectRoot,
       skiaFullAdapter,
       pickSkiaHeaders(req),
-      webUrl
+      undefined
     );
     return res.json({
       command: "full-security-audit",

@@ -50,6 +50,8 @@ let mainWindow: BrowserWindow | null = null;
 let autoSaveEnabled = false;
 /** Mirrors renderer skia-ui-locale; updated via locale-changed IPC. */
 let menuLocale: MenuLocale = "fr";
+/** Synced from forge GET /api/forge/modules/status (server env FORGE_FULL_SECURITY_AUDIT_UI). */
+let fullSecurityAuditUiEnabled = false;
 /** Last update check result — re-sent when renderer signals ready (startup check can finish before UI listeners attach). */
 let cachedUpdateCheckResult: UpdateCheckResult | null = null;
 
@@ -835,6 +837,16 @@ const buildApplicationMenu = (win: BrowserWindow): void => {
             }
         })
     );
+    if (fullSecurityAuditUiEnabled) {
+        runMenu.append(
+            new MenuItem({
+                label: L.fullSecurityAudit,
+                click: () => {
+                    mainWindow?.webContents.send("run-full-security-audit");
+                }
+            })
+        );
+    }
     runMenu.append(
         new MenuItem({
             label: L.cancelTask,
@@ -1111,6 +1123,11 @@ const createWindow = (): void => {
         mainWindow = null;
     });
 };
+
+ipcMain.handle("skia:setFullSecurityAuditMenu", (_event, enabled: boolean): void => {
+    fullSecurityAuditUiEnabled = Boolean(enabled);
+    reapplyApplicationMenu();
+});
 
 ipcMain.handle("skia:getConfig", (): SkiaConfig => {
     const isProduction = (process.env.NODE_ENV ?? "").trim().toLowerCase() === "production";

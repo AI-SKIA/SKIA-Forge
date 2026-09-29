@@ -69,6 +69,7 @@ export type MenuLabels = {
   toggleFullScreen: string;
   toggleDevTools: string;
   runAgentTask: string;
+  fullSecurityAudit: string;
   cancelTask: string;
   openTerminal: string;
   minimize: string;
@@ -137,6 +138,7 @@ const en: MenuLabels = {
   toggleFullScreen: "Toggle Full Screen",
   toggleDevTools: "Toggle Developer Tools",
   runAgentTask: "Run Agent Task",
+  fullSecurityAudit: "Full Security Audit",
   cancelTask: "Cancel Task",
   openTerminal: "Open Terminal",
   minimize: "Minimize",
@@ -207,6 +209,7 @@ export const menuLabels: Record<MenuLocale, MenuLabels> = {
     toggleFullScreen: "Plein écran",
     toggleDevTools: "Outils de développement",
     runAgentTask: "Exécuter la tâche agent",
+    fullSecurityAudit: "Audit de sécurité complet",
     cancelTask: "Annuler la tâche",
     openTerminal: "Ouvrir le terminal",
     minimize: "Réduire",
@@ -274,6 +277,7 @@ export const menuLabels: Record<MenuLocale, MenuLabels> = {
     toggleFullScreen: "Pantalla completa",
     toggleDevTools: "Herramientas de desarrollo",
     runAgentTask: "Ejecutar tarea del agente",
+    fullSecurityAudit: "Auditoría de seguridad completa",
     cancelTask: "Cancelar tarea",
     openTerminal: "Abrir terminal",
     minimize: "Minimizar",
@@ -341,6 +345,7 @@ export const menuLabels: Record<MenuLocale, MenuLabels> = {
     toggleFullScreen: "ملء الشاشة",
     toggleDevTools: "أدوات المطور",
     runAgentTask: "تشغيل مهمة الوكيل",
+    fullSecurityAudit: "التدقيق الأمني الكامل",
     cancelTask: "إلغاء المهمة",
     openTerminal: "فتح الطرفية",
     minimize: "تصغير",
@@ -408,6 +413,7 @@ export const menuLabels: Record<MenuLocale, MenuLabels> = {
     toggleFullScreen: "切换全屏",
     toggleDevTools: "切换开发者工具",
     runAgentTask: "运行代理任务",
+    fullSecurityAudit: "完整安全审计",
     cancelTask: "取消任务",
     openTerminal: "打开终端",
     minimize: "最小化",
@@ -475,6 +481,7 @@ export const menuLabels: Record<MenuLocale, MenuLabels> = {
     toggleFullScreen: "Tela cheia",
     toggleDevTools: "Ferramentas do desenvolvedor",
     runAgentTask: "Executar tarefa do agente",
+    fullSecurityAudit: "Auditoria de segurança completa",
     cancelTask: "Cancelar tarefa",
     openTerminal: "Abrir terminal",
     minimize: "Minimizar",
@@ -542,6 +549,7 @@ export const menuLabels: Record<MenuLocale, MenuLabels> = {
     toggleFullScreen: "Vollbild umschalten",
     toggleDevTools: "Entwicklertools umschalten",
     runAgentTask: "Agentenaufgabe ausführen",
+    fullSecurityAudit: "Vollständige Sicherheitsprüfung",
     cancelTask: "Aufgabe abbrechen",
     openTerminal: "Terminal öffnen",
     minimize: "Minimieren",
@@ -609,6 +617,7 @@ export const menuLabels: Record<MenuLocale, MenuLabels> = {
     toggleFullScreen: "全画面表示の切り替え",
     toggleDevTools: "開発者ツールの切り替え",
     runAgentTask: "エージェントタスクを実行",
+    fullSecurityAudit: "フルセキュリティ監査",
     cancelTask: "タスクをキャンセル",
     openTerminal: "ターミナルを開く",
     minimize: "最小化",
@@ -676,6 +685,7 @@ export const menuLabels: Record<MenuLocale, MenuLabels> = {
     toggleFullScreen: "전체 화면 전환",
     toggleDevTools: "개발자 도구 전환",
     runAgentTask: "에이전트 작업 실행",
+    fullSecurityAudit: "전체 보안 감사",
     cancelTask: "작업 취소",
     openTerminal: "터미널 열기",
     minimize: "최소화",
@@ -743,6 +753,7 @@ export const menuLabels: Record<MenuLocale, MenuLabels> = {
     toggleFullScreen: "पूर्ण स्क्रीन टॉगल",
     toggleDevTools: "डेवलपर टूल्स टॉगल",
     runAgentTask: "एजेंट कार्य चलाएँ",
+    fullSecurityAudit: "पूर्ण सुरक्षा ऑडिट",
     cancelTask: "कार्य रद्द करें",
     openTerminal: "टर्मिनल खोलें",
     minimize: "छोटा करें",
@@ -810,6 +821,7 @@ export const menuLabels: Record<MenuLocale, MenuLabels> = {
     toggleFullScreen: "Tam ekran",
     toggleDevTools: "Geliştirici araçları",
     runAgentTask: "Aracı görevini çalıştır",
+    fullSecurityAudit: "Tam güvenlik denetimi",
     cancelTask: "Görevi iptal et",
     openTerminal: "Terminali aç",
     minimize: "Simge durumuna küçült",
@@ -877,6 +889,7 @@ export const menuLabels: Record<MenuLocale, MenuLabels> = {
     toggleFullScreen: "Полный экран",
     toggleDevTools: "Инструменты разработчика",
     runAgentTask: "Запустить задачу агента",
+    fullSecurityAudit: "Полный аудит безопасности",
     cancelTask: "Отменить задачу",
     openTerminal: "Открыть терминал",
     minimize: "Свернуть",
