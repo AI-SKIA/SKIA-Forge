@@ -6,10 +6,10 @@ import path from "node:path";
 import { createDefaultToolRegistry } from "./toolRegistry.js";
 import type { ToolContext } from "./types.js";
 
-test("default registry exposes all eight D1-09 tool names", () => {
+test("default registry exposes D1-09 tools plus run_semgrep (B3)", () => {
   const r = createDefaultToolRegistry();
   const names = r.listNames();
-  assert.equal(names.length, 8);
+  assert.equal(names.length, 9);
   for (const n of [
     "read_file",
     "write_file",
@@ -18,7 +18,8 @@ test("default registry exposes all eight D1-09 tool names", () => {
     "search_text",
     "run_terminal",
     "git_operations",
-    "list_files"
+    "list_files",
+    "run_semgrep"
   ]) {
     assert.ok(r.get(n), `missing ${n}`);
   }

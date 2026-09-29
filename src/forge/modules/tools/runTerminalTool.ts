@@ -17,6 +17,10 @@ import { promisify } from "node:util";
 import os from "node:os";
 import { z } from "zod";
 import { evaluateCommandSafety } from "../../../agentSafety.js";
+import {
+    assertForgeSandboxProvisioned,
+    forgeRoundtripSandboxClient
+} from "../../../services/ForgeRoundtripSandboxClient.js";
 import type { ForgeTool, ToolContext, ToolExecuteResult } from "./types.js";
 import { assertSafeFilePath } from "./toolPath.js";
 
@@ -46,7 +50,10 @@ const schema = z.object({
      * D1-10: set by the agent executor after explicit user approval of a
      * high-risk agent command.
      */
-    approved: z.literal(true).optional()
+    approved: z.literal(true).optional(),
+
+    /** C2: when true, run only via skia-sandbox — never host exec. */
+    untrustedTarget: z.boolean().optional()
 });
 
 type ToolInput = z.infer<typeof schema>;
@@ -125,8 +132,40 @@ export const runTerminalTool: ForgeTool = {
             cwd: sub,
             timeoutMs = 300_000,
             source = "agent",
-            approved
+            approved,
+            untrustedTarget = false
         } = v.data as ToolInput;
+
+        if (untrustedTarget) {
+            try {
+                assertForgeSandboxProvisioned();
+            } catch (e) {
+                const message = e instanceof Error ? e.message : String(e);
+                return { success: false, error: message, code: "SANDBOX" };
+            }
+            try {
+                const isolated = await forgeRoundtripSandboxClient.runIsolated(
+                    command,
+                    undefined,
+                    timeoutMs
+                );
+                const result = {
+                    stdout: isolated.stdout,
+                    stderr: isolated.stderr,
+                    exitCode: isolated.exitCode
+                };
+                ctx.emitEvent?.("terminal:commandResult", {
+                    command,
+                    cwd: "(skia-sandbox)",
+                    source,
+                    ...result
+                });
+                return { success: true, data: result };
+            } catch (e) {
+                const message = e instanceof Error ? e.message : String(e);
+                return { success: false, error: message, code: "SANDBOX" };
+            }
+        }
 
         // ── Safety gate ──────────────────────────────────────────
         // User-sourced commands bypass the agent safety policy.
