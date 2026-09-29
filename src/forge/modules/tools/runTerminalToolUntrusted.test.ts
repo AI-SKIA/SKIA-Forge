@@ -59,7 +59,7 @@ test("runTerminalTool untrustedTarget fails closed when sandbox unset", async ()
   if (prevToken !== undefined) process.env.SKIA_SANDBOX_TOKEN = prevToken;
 
   assert.equal(result.success, false);
-  assert.match(String(result.error), /SKIA_SANDBOX_NOT_PROVISIONED/);
+  assert.equal(String(result.error), SANDBOX_MSG);
 });
 
 test("runTerminalTool default path unchanged (no untrustedTarget)", async () => {

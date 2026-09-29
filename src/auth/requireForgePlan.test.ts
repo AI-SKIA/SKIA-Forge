@@ -63,6 +63,22 @@ test("a client claim on the session body is not the entitlement object", async (
   assert.equal(result.view?.reasonCode, "PLAN_REQUIRED");
 });
 
+test("session JSON body still drives entitlement after data-init lint fix", async () => {
+  resetForgePlanCacheForTests();
+  const fetchImpl = (async () => session(true, "OK")) as typeof fetch;
+  const ok = await loadForgeEntitlementForToken("tok-json-ok", 20, fetchImpl, "https://api.skia.ca");
+  assert.equal(ok.status, 200);
+  assert.equal(ok.view?.entitled, true);
+  assert.equal(ok.view?.planId, "freelancer");
+
+  resetForgePlanCacheForTests();
+  const badJson = (async () =>
+    new Response("not-json", { status: 200, headers: { "content-type": "application/json" } })) as typeof fetch;
+  const fail = await loadForgeEntitlementForToken("tok-json-bad", 20, badJson, "https://api.skia.ca");
+  assert.equal(fail.status, 503);
+  assert.equal(fail.view, null);
+});
+
 test("every /api/forge route is allowlisted or registered after the plan guard", () => {
   const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
   const serverPath = path.join(root, "src", "server.ts");

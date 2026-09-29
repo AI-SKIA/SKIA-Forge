@@ -117,7 +117,7 @@ export async function loadForgeEntitlementForToken(
   if (response.status === 401) return { status: 401, view: null };
   if (!response.ok) return { status: 503, view: null };
 
-  let data: unknown = null;
+  let data: unknown;
   try {
     data = await response.json();
   } catch {
