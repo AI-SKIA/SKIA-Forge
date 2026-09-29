@@ -1,0 +1,79 @@
+# SKIA Semgrep rules — SPDX-License-Identifier: MIT
+# Copyright (c) 2026 SKIA / AI-SKIA
+#
+# These rules are authored by SKIA for use in the hosted SKIA security service.
+# Do NOT vendor Semgrep Registry / semgrep-rules content here: Semgrep Rules
+# License v.1.0 restricts Semgrep-maintained rules to internal (non-SaaS) use.
+# Engine: Semgrep CE (LGPL-2.1) is fine; rules must be SKIA-authored or
+# permissively licensed third-party rules only.
+
+rules:
+  - id: skia.javascript.dangerously-set-inner-html
+    languages: [javascript, typescript]
+    severity: WARNING
+    message: "Potential XSS via dangerouslySetInnerHTML"
+    metadata:
+      cwe: "CWE-79"
+      license: MIT
+      author: SKIA
+    patterns:
+      - pattern: dangerouslySetInnerHTML={...}
+
+  - id: skia.javascript.eval-call
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: "Use of eval() can lead to code injection"
+    metadata:
+      cwe: "CWE-95"
+      license: MIT
+      author: SKIA
+    patterns:
+      - pattern: eval(...)
+
+  - id: skia.javascript.child-process-exec
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: "child_process.exec with dynamic input can enable command injection"
+    metadata:
+      cwe: "CWE-78"
+      license: MIT
+      author: SKIA
+    patterns:
+      - pattern: |
+          $CP.exec($CMD, ...)
+      - metavariable-regex:
+          metavariable: $CMD
+          regex: ^(?!['"`]).+
+
+  - id: skia.python.os-system
+    languages: [python]
+    severity: ERROR
+    message: "os.system with dynamic input can enable command injection"
+    metadata:
+      cwe: "CWE-78"
+      license: MIT
+      author: SKIA
+    patterns:
+      - pattern: os.system(...)
+
+  - id: skia.python.pickle-loads
+    languages: [python]
+    severity: ERROR
+    message: "pickle.loads on untrusted data can enable RCE"
+    metadata:
+      cwe: "CWE-502"
+      license: MIT
+      author: SKIA
+    patterns:
+      - pattern: pickle.loads(...)
+
+  - id: skia.generic.hardcoded-aws-key
+    languages: [javascript, typescript, python, go, java]
+    severity: ERROR
+    message: "Possible hardcoded AWS access key id"
+    metadata:
+      cwe: "CWE-798"
+      license: MIT
+      author: SKIA
+    patterns:
+      - pattern-regex: AKIA[0-9A-Z]{16}

@@ -3,11 +3,8 @@
  *
  * Phase B3 of SECURITY_IMPLEMENTATION.md. The 9th agent tool ("run_semgrep").
  *
- * Wraps the existing runTerminalTool to invoke:
- *     semgrep --config=auto --json .
- * in the opened project root (cwd = ctx.projectRoot, so the path is not
- * interpolated — no injection surface). Findings are parsed into the existing
- * SecurityAnalysisService `SecurityFinding[]` shape.
+ * Uses MIT SKIA-authored rules at config/semgrep/skia-rules.yaml with
+ * `--metrics=off`. Does **not** use `--config=auto` (Semgrep Registry).
  *
  * Safety (RULE 6):
  *  - Commands pass through agentSafety.evaluateCommandSafety before execution
@@ -17,6 +14,9 @@
  *    throw) so the agent loop can handle them gracefully.
  */
 
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import { z } from "zod";
 import { runTerminalTool } from "./runTerminalTool.js";
 import { evaluateCommandSafety } from "../../../agentSafety.js";
@@ -37,6 +37,36 @@ const CWE_TYPE: Record<string, SecurityFinding["type"]> = {
     "918": "ssrf",
     "798": "hardcoded-secrets"
 };
+
+/** Absolute path to MIT skia-rules.yaml (image: /app/config/semgrep/…). */
+export function resolveForgeSemgrepRulesPath(
+    env: NodeJS.ProcessEnv = process.env,
+    cwd: string = process.cwd()
+): string {
+    const fromEnv = (env.SKIA_SEMGREP_RULES_PATH || "").trim();
+    if (fromEnv) return path.resolve(fromEnv);
+    const fromCwd = path.resolve(cwd, "config", "semgrep", "skia-rules.yaml");
+    if (fs.existsSync(fromCwd)) return fromCwd;
+    // Dist layout: dist/forge/modules/tools → repo root ../../../../
+    try {
+        const here = path.dirname(fileURLToPath(import.meta.url));
+        const fromModule = path.resolve(here, "../../../../config/semgrep/skia-rules.yaml");
+        if (fs.existsSync(fromModule)) return fromModule;
+    } catch {
+        /* ignore */
+    }
+    return fromCwd;
+}
+
+/** Exported for parity tests. Never includes `--config=auto`. */
+export function buildForgeSemgrepCommand(rulesPath: string): string {
+    if (!rulesPath || rulesPath.includes("auto")) {
+        throw new Error("SEMGREP_SOVEREIGNTY_VIOLATION — --config=auto is forbidden");
+    }
+    // Quote path for shells; scan target is always "." under projectRoot cwd.
+    const q = JSON.stringify(rulesPath);
+    return `semgrep --config ${q} --metrics=off --json .`;
+}
 
 function mapType(cweId?: string): SecurityFinding["type"] {
     if (cweId) {
@@ -85,7 +115,7 @@ function parseSemgrepJson(stdout: string): SecurityFinding[] {
 export const runSemgrepTool: ForgeTool = {
     name: "run_semgrep",
     description:
-        "Run Semgrep SAST (--config=auto) on the open project and return structured security findings. " +
+        "Run Semgrep SAST (local MIT skia-rules.yaml, --metrics=off) on the open project and return structured security findings. " +
         "Returns a structured error result (does not throw) when semgrep is missing or a sandbox is required.",
 
     inputSchema: schema,
@@ -99,7 +129,7 @@ export const runSemgrepTool: ForgeTool = {
     async execute(
         ctx: ToolContext,
         input: unknown
-    ): Promise<ToolExecuteResult<{ findings: SecurityFinding[] }>> {
+    ): Promise<ToolExecuteResult<{ findings: SecurityFinding[]; coverageNote?: string }>> {
         const parsed = schema.safeParse(input ?? {});
         const untrusted = parsed.success ? Boolean(parsed.data.untrusted) : false;
 
@@ -132,8 +162,33 @@ export const runSemgrepTool: ForgeTool = {
             };
         }
 
-        // ── Run the scan (cwd = ctx.projectRoot; path not interpolated) ──
-        const scanCmd = "semgrep --config=auto --json .";
+        const rulesPath = resolveForgeSemgrepRulesPath();
+        if (!fs.existsSync(rulesPath)) {
+            return {
+                success: false,
+                error: `SEMGREP_RULES_MISSING — expected rules at ${rulesPath}`,
+                code: "SEMGREP_RULES"
+            };
+        }
+
+        let scanCmd: string;
+        try {
+            scanCmd = buildForgeSemgrepCommand(rulesPath);
+        } catch (e) {
+            return {
+                success: false,
+                error: e instanceof Error ? e.message : String(e),
+                code: "SEMGREP_SOVEREIGNTY"
+            };
+        }
+        if (scanCmd.includes("--config=auto") || /\sauto(\s|$)/.test(scanCmd)) {
+            return {
+                success: false,
+                error: "SEMGREP_SOVEREIGNTY_VIOLATION — --config=auto is forbidden",
+                code: "SEMGREP_SOVEREIGNTY"
+            };
+        }
+
         const scanSafety = evaluateCommandSafety(scanCmd);
         if (!scanSafety.allowed) {
             return { success: false, error: `Command not allowed: ${scanSafety.reason}`, code: "SAFETY" };
@@ -147,8 +202,14 @@ export const runSemgrepTool: ForgeTool = {
             return { success: false, error: scanRes.error, code: scanRes.code ?? "SEMGREP_FAILED" };
         }
 
+        const coverageNote =
+            "Using local config/semgrep/skia-rules.yaml (curated MIT rules) instead of --config=auto. " +
+            "Coverage is intentionally reduced vs Semgrep Registry auto packs; metrics disabled (--metrics=off).";
+        // Plain coverage log for operators / audit scrapers.
+        console.info(`[run_semgrep] ${coverageNote}`);
+
         const stdout = (scanRes.data as { stdout?: string }).stdout ?? "";
-        return { success: true, data: { findings: parseSemgrepJson(stdout) } };
+        return { success: true, data: { findings: parseSemgrepJson(stdout), coverageNote } };
     },
 
     async rollback() {
