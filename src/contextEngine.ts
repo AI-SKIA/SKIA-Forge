@@ -18,6 +18,8 @@ import {
 } from "./forge/modules/skiarules/lspDiagnosticsShape.js";
 import { buildSdlcTimeline, type SdlcTimelineV1 } from "./forge/modules/sdlc/sdlcTimeline.js";
 import { runDependencyAudit } from "./forge/modules/security/DependencyAuditTool.js";
+import { runHybridEmbedSearch } from "./forge/modules/context-engine/hybridEmbedSearch.js";
+import type { SkiaFullAdapter } from "./skiaFullAdapter.js";
 import {
     cosineLikeScore,
     detectLanguage,
@@ -46,6 +48,7 @@ export class ContextEngine {
     private activeIgnore: IgnoreLike | null = null;
     private skiarules: SkiarulesConfig | null = null;
     private skiaRulesWatcher: { close: () => Promise<void> } | null = null;
+    private skiaFullAdapter: SkiaFullAdapter | null = null;
 
     constructor(private readonly projectRoot: string) {
         void this.loadSkiarulesInitial();
@@ -235,9 +238,12 @@ export class ContextEngine {
         return loaded;
     }
 
-    async search(query: string, topK = 10): Promise<SearchResult[]> {
-        const index = await this.getIndex();
+    /** C1: required when SKIA_EMBEDDING_VECTOR_PROVISIONED=true for vector search. */
+    bindSkiaFullAdapter(adapter: SkiaFullAdapter): void {
+        this.skiaFullAdapter = adapter;
+    }
 
+    private lexicalSearch(query: string, topK: number, index: ProjectIndex): SearchResult[] {
         return index.chunks
             .map((chunk: IndexChunk) => ({
                 chunk,
@@ -251,6 +257,56 @@ export class ContextEngine {
                 ) => b.score - a.score
             )
             .slice(0, topK);
+    }
+
+    async search(query: string, topK = 10): Promise<SearchResult[]> {
+        const index = await this.getIndex();
+        const vectorOn =
+            (process.env.SKIA_EMBEDDING_VECTOR_PROVISIONED || "false").toLowerCase() === "true";
+
+        if (vectorOn && this.skiaFullAdapter) {
+            try {
+                const hybrid = await runHybridEmbedSearch(
+                    this.projectRoot,
+                    query,
+                    topK,
+                    {},
+                    this.skiaFullAdapter,
+                    process.env
+                );
+                if (hybrid.kind === "ok" && hybrid.hits.length > 0) {
+                    return hybrid.hits.map((h) => {
+                        const matched =
+                            index.chunks.find(
+                                (c) =>
+                                    c.filePath === h.filePath &&
+                                    c.startLine === h.startLine &&
+                                    c.symbolName === h.name
+                            ) ??
+                            ({
+                                id: `embed:${h.filePath}:${h.startLine}`,
+                                filePath: h.filePath,
+                                language: "unknown",
+                                symbolName: h.name,
+                                symbolType: "unknown",
+                                startLine: h.startLine,
+                                endLine: h.endLine,
+                                tokenCount: 0,
+                                content: h.preview,
+                                checksum: "",
+                                updatedAt: index.generatedAt
+                            } satisfies IndexChunk);
+                        return { chunk: matched, score: h.score };
+                    });
+                }
+            } catch (e) {
+                console.warn(
+                    `[contextEngine] vector search fallback to lexical: ${(e as Error).message}`
+                );
+            }
+        }
+
+        return this.lexicalSearch(query, topK, index);
     }
 
     async startIncrementalWatcher(

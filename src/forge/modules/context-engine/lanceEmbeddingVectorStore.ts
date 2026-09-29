@@ -1,3 +1,8 @@
+/**
+ * Northflank prerequisite: embedding-engine (:5003) and vector-db (:5004) are live on the
+ * SKIA fleet. Set SKIA_EMBEDDING_VECTOR_PROVISIONED=true on the skia-forge service (login/backend
+ * may already have the flag). Forge context search uses hybrid vector retrieval when that env is true.
+ */
 import path from "node:path";
 import * as lancedb from "@lancedb/lancedb";
 import type { Connection, Table } from "@lancedb/lancedb";
