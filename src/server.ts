@@ -77,6 +77,7 @@ import { buildSovereignPosture } from "./sovereignPosture.js";
 import { runForgeContextStructure } from "./forge/modules/context-engine/contextStructureRequest.js";
 import { runForgeContextSemanticChunks } from "./forge/modules/context-engine/semanticChunksRequest.js";
 import { runEmbedIndexRequest } from "./forge/modules/context-engine/embedIndexRequest.js";
+import { pathsForEmbedBootstrap } from "./forge/modules/context-engine/embedBootstrapAfterIndex.js";
 import { runEmbedSearchRequest } from "./forge/modules/context-engine/embedSearchRequest.js";
 import { runForgeContextRetrieval } from "./forge/modules/context-engine/contextRetrievalRequest.js";
 import {
@@ -278,8 +279,18 @@ void loadSkiaRules(projectRoot)
 
 void contextEngine
   .buildIndex()
-  .then(() => {
+  .then(async (index) => {
     runtimeState.ready = true;
+    const paths = pathsForEmbedBootstrap(index.files ?? [], process.env);
+    if (paths.length > 0) {
+      void runEmbedIndexRequest(
+        projectRoot,
+        { paths, async: true },
+        skiaFullAdapter,
+        embedIndexQueue,
+        process.env
+      );
+    }
   })
   .catch(() => {
     runtimeState.ready = false;
