@@ -1,4 +1,5 @@
 import { exec } from "node:child_process";
+import { scrubbedChildEnv } from "../tools/childEnv.js";
 import { promisify } from "node:util";
 import path from "node:path";
 import fs from "node:fs/promises";
@@ -116,7 +117,7 @@ export async function runPackageValidation(
         cwd: projectRoot,
         maxBuffer: 2 * 1024 * 1024,
         timeout: 10 * 60_000,
-        env: { ...process.env, CI: "1" },
+        env: scrubbedChildEnv({ CI: "1" }),
         windowsHide: true
       });
       stdout = String(o.stdout ?? "");

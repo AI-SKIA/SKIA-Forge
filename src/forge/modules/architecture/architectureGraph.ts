@@ -1,10 +1,11 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { exec } from "node:child_process";
+import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { extractImportSpecifiers } from "../skiarules/importExtract.js";
+import { scrubbedChildEnv } from "../tools/childEnv.js";
 
-const pexec = promisify(exec);
+const pexecFile = promisify(execFile);
 
 export type ArchitectureEdgeV1 = {
   from: string;
@@ -34,10 +35,12 @@ function resolveRelativeImport(relPath: string, spec: string): string | null {
 
 async function getChangeFrequency(projectRoot: string, relPath: string): Promise<number> {
   try {
-    const { stdout } = await pexec(`git log --pretty=format: --name-only -- "${relPath}"`, {
+    // Argument array, no shell: file names come from the (possibly untrusted) project.
+    const { stdout } = await pexecFile("git", ["log", "--pretty=format:", "--name-only", "--", relPath], {
       cwd: projectRoot,
       windowsHide: true,
-      timeout: 15_000
+      timeout: 15_000,
+      env: scrubbedChildEnv()
     });
     return stdout
       .split(/\r?\n/)

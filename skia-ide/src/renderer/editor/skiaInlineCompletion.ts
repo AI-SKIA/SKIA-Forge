@@ -1,5 +1,6 @@
 import { forgeUrl } from "../skia/skiaConfig";
 import { getActiveFile } from "../skia/skiaSessionStore";
+import { getAuthToken } from "../skia/skiaAuthPanel";
 
 type InlineWsMessage =
     | { type: "completion"; text: string; provider: string }
@@ -24,8 +25,10 @@ function ensureSocket(): Promise<WebSocket> {
         return Promise.resolve(socket);
     }
     if (socketReady) return socketReady;
+    const token = getAuthToken();
+    if (!token) return Promise.reject(new Error("Sign in to use inline completion"));
     socketReady = new Promise((resolve, reject) => {
-        const ws = new WebSocket(inlineWsUrl());
+        const ws = new WebSocket(inlineWsUrl(), ["skia.bearer", token]);
         const timer = setTimeout(() => {
             ws.close();
             reject(new Error("Inline completion WebSocket timeout"));
