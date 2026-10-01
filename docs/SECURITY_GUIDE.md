@@ -25,6 +25,12 @@ SKIA Forge applies layered controls:
 - governance layer for strict/adaptive/autonomous control
 - safety modules for route and action-level constraints
 
+## Agent Terminal Commands
+
+- Agent commands containing `rm`, `del`, `format`, `shutdown`, `drop` or `truncate` are held until you approve them.
+- Agent commands must be a single line and run inside the open project folder.
+- Every terminal command is recorded in `.skia/agent-log.json` (action `tool.run_terminal`) with its source, outcome, exit code and duration. Command output is not stored.
+
 ## Operational Security Practices
 
 - Keep secrets out of repository and logs
