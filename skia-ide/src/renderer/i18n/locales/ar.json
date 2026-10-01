@@ -17,7 +17,7 @@
     "searchPlaceholder": "Search files and symbols...",
     "agent": "AGENT",
     "agentHint": "لوحة Agent: خطة → منفّذ أدوات على forge.skia.ca (APPLY/REJECT). الدردشة الجانبية تستخدم تدفق المحادثة — وليس سجل الأدوات المحلي.",
-    "agentPlaceholder": "Describe a task for SKIA...",
+    "agentPlaceholder": "State an objective - SKIA plans it and proposes diffs for your approval...",
     "agentRun": "RUN TASK",
     "agentCancel": "CANCEL",
     "forge": "FORGE CONTROL PLANE"
@@ -58,7 +58,7 @@
   "chat": {
     "brand": "SKIA",
     "newChat": "+ محادثة جديدة",
-    "placeholder": "اسأل SKIA أي شيء...",
+    "placeholder": "اسأل SKIA عن مساحة العمل هذه...",
     "clear": "تاريخ واضح",
     "cancel": "CANCEL",
     "attach": "ATTACH",

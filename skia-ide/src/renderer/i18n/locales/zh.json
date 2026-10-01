@@ -17,7 +17,7 @@
     "searchPlaceholder": "Search files and symbols...",
     "agent": "AGENT",
     "agentHint": "Agent：计划 → forge.skia.ca 工具执行（APPLY/REJECT）。侧栏聊天为对话流 — 非本地工具注册表。",
-    "agentPlaceholder": "Describe a task for SKIA...",
+    "agentPlaceholder": "State an objective - SKIA plans it and proposes diffs for your approval...",
     "agentRun": "RUN TASK",
     "agentCancel": "CANCEL",
     "forge": "FORGE CONTROL PLANE"
@@ -58,7 +58,7 @@
   "chat": {
     "brand": "SKIA",
     "newChat": "+ 新对话",
-    "placeholder": "询问SKIA任何事情......",
+    "placeholder": "向 SKIA 询问此工作区...",
     "clear": "清晰的历史记录",
     "cancel": "CANCEL",
     "attach": "ATTACH",

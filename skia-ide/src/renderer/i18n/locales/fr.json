@@ -17,7 +17,7 @@
     "searchPlaceholder": "Rechercher des fichiers et symboles...",
     "agent": "AGENT",
     "agentHint": "Panneau Agent : plan → exécuteur d'outils sur forge.skia.ca (APPLY/REJECT). Le chat latéral utilise le flux conversationnel — pas le registre d'outils local.",
-    "agentPlaceholder": "Describe a task for SKIA...",
+    "agentPlaceholder": "State an objective - SKIA plans it and proposes diffs for your approval...",
     "agentRun": "RUN TASK",
     "agentCancel": "CANCEL",
     "forge": "FORGE CONTROL PLANE"
@@ -58,7 +58,7 @@
   "chat": {
     "brand": "SKIA",
     "newChat": "+ NOUVELLE CONVERSATION",
-    "placeholder": "Demandez n'importe quoi à SKIA...",
+    "placeholder": "Interrogez SKIA sur cet espace de travail...",
     "clear": "HISTOIRE CLAIRE",
     "cancel": "CANCEL",
     "attach": "ATTACH",

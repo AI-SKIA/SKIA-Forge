@@ -17,7 +17,7 @@
     "searchPlaceholder": "Search files and symbols...",
     "agent": "AGENT",
     "agentHint": "Agent: plan → forge.skia.ca 도구 실행(APPLY/REJECT). 사이드 채팅은 대화 스트림 — 로컬 도구 레지스트리가 아닙니다.",
-    "agentPlaceholder": "Describe a task for SKIA...",
+    "agentPlaceholder": "State an objective - SKIA plans it and proposes diffs for your approval...",
     "agentRun": "RUN TASK",
     "agentCancel": "CANCEL",
     "forge": "FORGE CONTROL PLANE"
@@ -58,7 +58,7 @@
   "chat": {
     "brand": "SKIA",
     "newChat": "+ 새로운 대화",
-    "placeholder": "SKIA에게 무엇이든 물어보세요...",
+    "placeholder": "이 작업 공간에 대해 SKIA에게 질문하세요...",
     "clear": "기록 지우기",
     "cancel": "CANCEL",
     "attach": "ATTACH",
