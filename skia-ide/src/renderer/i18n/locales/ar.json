@@ -58,7 +58,7 @@
   "chat": {
     "brand": "SKIA",
     "newChat": "+ محادثة جديدة",
-    "placeholder": "اسأل SKIA عن مساحة العمل هذه...",
+    "placeholder": "اسأل SKIA عن مساحة العمل هذه... (@file:path · @folder:path · @codebase)",
     "clear": "تاريخ واضح",
     "cancel": "إلغاء",
     "attach": "إرفاق",

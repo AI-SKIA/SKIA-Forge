@@ -58,7 +58,7 @@
   "chat": {
     "brand": "SKIA",
     "newChat": "+ НОВЫЙ РАЗГОВОР",
-    "placeholder": "Спросите SKIA об этом рабочем пространстве...",
+    "placeholder": "Спросите SKIA об этом рабочем пространстве... (@file:path · @folder:path · @codebase)",
     "clear": "ЧИСТАЯ ИСТОРИЯ",
     "cancel": "ОТМЕНА",
     "attach": "ПРИКРЕПИТЬ",

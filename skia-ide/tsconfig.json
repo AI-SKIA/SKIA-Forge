@@ -12,5 +12,5 @@
     "jsxImportSource": "react",
     "types": ["node"]
   },
-  "include": ["src/renderer/**/*", "../src/lib/acceptForgeDecomposeResponse.ts", "../src/lib/agentWorkspaceCheckpoint.ts"]
+  "include": ["src/renderer/**/*", "../src/lib/acceptForgeDecomposeResponse.ts", "../src/lib/agentWorkspaceCheckpoint.ts", "../src/lib/ideMentions.ts"]
 }

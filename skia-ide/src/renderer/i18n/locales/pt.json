@@ -58,7 +58,7 @@
   "chat": {
     "brand": "SKIA",
     "newChat": "+ NOVA CONVERSA",
-    "placeholder": "Pergunte ao SKIA sobre este espaço de trabalho...",
+    "placeholder": "Pergunte ao SKIA sobre este espaço de trabalho... (@file:path · @folder:path · @codebase)",
     "clear": "LIMPAR HISTÓRICO",
     "cancel": "CANCELAR",
     "attach": "ANEXAR",

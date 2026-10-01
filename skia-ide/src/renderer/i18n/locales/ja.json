@@ -58,7 +58,7 @@
   "chat": {
     "brand": "SKIA",
     "newChat": "+ 新しい会話",
-    "placeholder": "このワークスペースについてSKIAに質問...",
+    "placeholder": "このワークスペースについてSKIAに質問... (@file:path · @folder:path · @codebase)",
     "clear": "履歴をクリアする",
     "cancel": "キャンセル",
     "attach": "添付",

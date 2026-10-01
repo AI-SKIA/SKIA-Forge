@@ -58,7 +58,7 @@
   "chat": {
     "brand": "SKIA",
     "newChat": "+ 새로운 대화",
-    "placeholder": "이 작업 공간에 대해 SKIA에게 질문하세요...",
+    "placeholder": "이 작업 공간에 대해 SKIA에게 질문하세요... (@file:path · @folder:path · @codebase)",
     "clear": "기록 지우기",
     "cancel": "취소",
     "attach": "첨부",

@@ -58,7 +58,7 @@
   "chat": {
     "brand": "SKIA",
     "newChat": "+ YENİ KONUŞMA",
-    "placeholder": "Bu çalışma alanı hakkında SKIA'ya sorun...",
+    "placeholder": "Bu çalışma alanı hakkında SKIA'ya sorun... (@file:path · @folder:path · @codebase)",
     "clear": "GEÇMİŞİ TEMİZLE",
     "cancel": "İPTAL",
     "attach": "EKLE",
