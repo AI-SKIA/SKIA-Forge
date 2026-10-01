@@ -23,6 +23,7 @@ import {
 } from "../../../services/ForgeRoundtripSandboxClient.js";
 import type { ForgeTool, ToolContext, ToolExecuteResult } from "./types.js";
 import { assertSafeFilePath } from "./toolPath.js";
+import { scrubbedChildEnv } from "./childEnv.js";
 
 const pexec = promisify(exec);
 
@@ -40,9 +41,8 @@ const schema = z.object({
     timeoutMs: z.number().int().min(1_000).max(600_000).optional(),
 
     /**
-     * When `source === "user"` the safety gate is bypassed — the human
-     * is explicitly running the command themselves in the terminal.
-     * When omitted or `"agent"`, evaluateCommandSafety is enforced.
+     * Label for telemetry only. The safety gate is skipped solely when the host
+     * sets `ctx.userInitiated` for a command the human typed; this field grants nothing.
      */
     source: z.enum(["user", "agent"]).optional(),
 
@@ -89,12 +89,15 @@ function platformShell(): string {
 // Tool definition
 // ─────────────────────────────────────────────────────────────
 
+function isMultiLine(command: string): boolean {
+    return /[\r\n]/.test(command.trim());
+}
+
 export const runTerminalTool: ForgeTool = {
     name: "run_terminal",
     description:
         "Run a shell command inside the user's open project folder. " +
-        "When source='user' the command runs unrestricted (the user typed it). " +
-        "When source='agent' (default) the safety policy applies. " +
+        "Commands must be a single line and pass the safety policy. " +
         "Output is streamed to the SKIA brain context so SKIA can observe the session.",
 
     inputSchema: schema,
@@ -104,16 +107,8 @@ export const runTerminalTool: ForgeTool = {
         if (!p.success) {
             return { ok: false, error: p.error.message };
         }
-        // Only block true multi-line scripts from the agent; users can do whatever.
-        if (
-            p.data.source !== "user" &&
-            p.data.command.includes("\n") &&
-            p.data.command.trim().split("\n").length > 1
-        ) {
-            return {
-                ok: false,
-                error: "Agent commands must be a single line. Use source='user' for multi-line user input."
-            };
+        if (isMultiLine(p.data.command)) {
+            return { ok: false, error: "Agent commands must be a single line." };
         }
         return { ok: true, data: p.data };
     },
@@ -168,9 +163,11 @@ export const runTerminalTool: ForgeTool = {
         }
 
         // ── Safety gate ──────────────────────────────────────────
-        // User-sourced commands bypass the agent safety policy.
-        // Agent-sourced commands must pass evaluateCommandSafety.
-        if (source !== "user") {
+        // Only host-flagged human commands bypass the policy; tool input cannot claim it.
+        if (ctx.userInitiated !== true) {
+            if (isMultiLine(command)) {
+                return { success: false, error: "Agent commands must be a single line.", code: "SAFETY" };
+            }
             const safety = evaluateCommandSafety(command);
             if (!safety.allowed) {
                 if (safety.approvalRequired && approved === true) {
@@ -200,11 +197,10 @@ export const runTerminalTool: ForgeTool = {
                 maxBuffer: 4 * 1024 * 1024,   // 4 MB
                 timeout: timeoutMs,
                 windowsHide: true,
-                env: {
-                    ...process.env,
+                env: scrubbedChildEnv({
                     SKIA_FORGE: "1",
                     SKIA_PROJECT_ROOT: ctx.projectRoot
-                }
+                })
             });
 
             const result = {

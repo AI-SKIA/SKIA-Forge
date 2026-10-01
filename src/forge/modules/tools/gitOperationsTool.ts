@@ -3,6 +3,7 @@ import { promisify } from "node:util";
 import { z } from "zod";
 import type { ForgeTool, ToolContext, ToolExecuteResult } from "./types.js";
 import { assertSafeFilePath } from "./toolPath.js";
+import { scrubbedChildEnv } from "./childEnv.js";
 
 const pex = promisify(execFile);
 
@@ -25,7 +26,7 @@ const schema = z.discriminatedUnion("operation", [
 const GIT = "git" as const;
 
 function gitBase(ctx: ToolContext) {
-  return { cwd: ctx.projectRoot, maxBuffer: 4 * 1024 * 1024, timeout: 60_000, windowsHide: true };
+  return { cwd: ctx.projectRoot, maxBuffer: 4 * 1024 * 1024, timeout: 60_000, windowsHide: true, env: scrubbedChildEnv() };
 }
 
 export const gitOperationsTool: ForgeTool = {

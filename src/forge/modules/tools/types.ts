@@ -5,6 +5,11 @@ import { z } from "zod";
  */
 export type ToolContext = {
   projectRoot: string;
+  /**
+   * True only when host code runs a command the human typed. Never derived from
+   * tool input, so model-generated calls cannot claim user authority.
+   */
+  userInitiated?: boolean;
   /** Optional hook for session/telemetry wiring; most callers omit this. */
   emitEvent?: (event: string, payload: Record<string, unknown>) => void;
 };

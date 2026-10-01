@@ -1,6 +1,5 @@
 import fs from "node:fs/promises";
-import path from "node:path";
-import type { Server } from "node:http";
+import type { IncomingMessage, Server } from "node:http";
 import { WebSocketServer } from "ws";
 import { InlineCompletionMessage, SkiaStatus } from "./types.js";
 import { ProviderRouter } from "./providerRouter.js";
@@ -8,6 +7,8 @@ import type { SkiaFullAdapter } from "./skiaFullAdapter.js";
 import type { ContextEngine } from "./contextEngine.js";
 import type { TelemetryStore } from "./telemetry.js";
 import { extractTextFromSkiaChatResponse } from "./forge/modules/agent-planner/agentPlannerRequest.js";
+import { assertSafeFilePath } from "./forge/modules/tools/toolPath.js";
+import { verifyBearerToken } from "./middleware/requireAuth.js";
 
 export type InlineCompletionDeps = {
   providerRouter: ProviderRouter;
@@ -23,10 +24,41 @@ const MAX_PREFIX_CHARS = 4_000;
 const MAX_CONTEXT_CHARS = 2_000;
 const MAX_COMPLETION_CHARS = 800;
 
-export function attachInlineCompletionServer(server: Server, deps: InlineCompletionDeps): void {
-  const wss = new WebSocketServer({ server, path: "/inline-completion" });
+/** Browsers cannot set headers on a WebSocket, so the JWT may ride in the subprotocol list. */
+export const INLINE_WS_BEARER_PROTOCOL = "skia.bearer";
 
-  wss.on("connection", (socket) => {
+function tokenFromUpgrade(req: IncomingMessage): string | undefined {
+  const auth = req.headers.authorization?.trim();
+  if (auth?.toLowerCase().startsWith("bearer ")) return auth.slice(7).trim();
+  const protocols = String(req.headers["sec-websocket-protocol"] ?? "")
+    .split(",")
+    .map((p) => p.trim())
+    .filter(Boolean);
+  const i = protocols.indexOf(INLINE_WS_BEARER_PROTOCOL);
+  return i >= 0 ? protocols[i + 1] : undefined;
+}
+
+export function attachInlineCompletionServer(server: Server, deps: InlineCompletionDeps): void {
+  const tokens = new WeakMap<IncomingMessage, string>();
+  const wss = new WebSocketServer({
+    server,
+    path: "/inline-completion",
+    verifyClient: ({ req }, done) => {
+      const token = tokenFromUpgrade(req);
+      if (!verifyBearerToken(token)) {
+        done(false, 401, "Unauthorized");
+        return;
+      }
+      tokens.set(req, token as string);
+      done(true);
+    },
+    handleProtocols: (protocols) =>
+      protocols.has(INLINE_WS_BEARER_PROTOCOL) ? INLINE_WS_BEARER_PROTOCOL : false
+  });
+
+  wss.on("connection", (socket, req) => {
+    const token = tokens.get(req);
+    const upstreamHeaders: Record<string, string> = token ? { authorization: `Bearer ${token}` } : {};
     socket.send(
       JSON.stringify({
         type: "status",
@@ -45,7 +77,7 @@ export function attachInlineCompletionServer(server: Server, deps: InlineComplet
           };
           const prefix = String(incoming.prefix ?? "");
           const provider = deps.providerRouter.routeForTask("completion");
-          const completion = await buildLlmCompletion(prefix, incoming, deps);
+          const completion = await buildLlmCompletion(prefix, incoming, deps, upstreamHeaders);
           deps.telemetry?.record("inline_completion_latency_ms", Date.now() - started);
           socket.send(
             JSON.stringify({
@@ -73,10 +105,10 @@ async function readFileContextSnippet(
   relPath: string,
   maxChars: number
 ): Promise<string> {
-  const rel = relPath.replace(/\\/g, "/").replace(/^\//, "");
-  const abs = path.join(projectRoot, rel);
+  const safe = assertSafeFilePath(projectRoot, relPath.replace(/\\/g, "/"));
+  if (!safe.ok) return "";
   try {
-    const text = await fs.readFile(abs, "utf8");
+    const text = await fs.readFile(safe.absPath, "utf8");
     if (text.length <= maxChars) return text;
     return text.slice(-maxChars);
   } catch {
@@ -87,7 +119,8 @@ async function readFileContextSnippet(
 async function buildLlmCompletion(
   prefix: string,
   incoming: { filePath?: string; language?: string },
-  deps: InlineCompletionDeps
+  deps: InlineCompletionDeps,
+  upstreamHeaders: Record<string, string>
 ): Promise<string> {
   const trimmed = prefix.trim();
   if (!trimmed) {
@@ -128,7 +161,7 @@ async function buildLlmCompletion(
   ].join("\n");
 
   try {
-    const upstream = await deps.skia.intelligence(prompt, "code", deps.pickHeaders?.());
+    const upstream = await deps.skia.intelligence(prompt, "code", { ...deps.pickHeaders?.(), ...upstreamHeaders });
     const text = extractTextFromSkiaChatResponse(upstream as Record<string, unknown>).trim();
     if (!text) return heuristicCompletion(prefixSlice);
     const cleaned = stripCompletionArtifacts(text, prefixSlice);

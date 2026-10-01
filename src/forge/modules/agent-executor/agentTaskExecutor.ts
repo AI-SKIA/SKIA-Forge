@@ -579,10 +579,14 @@ export async function runAgentTaskExecution(
         );
         continue;
       }
+      // Approval and user authority come only from the executor, never from model output.
+      const modelInput: Record<string, unknown> = { ...((input ?? {}) as Record<string, unknown>) };
+      delete modelInput.approved;
+      delete modelInput.source;
       const toRun =
         (highRisk && (options.highRiskCommandApprovals[stepId] || skipGates))
-          ? { ...(input as object), approved: true as const }
-          : input;
+          ? { ...modelInput, approved: true as const, source: "agent" as const }
+          : { ...modelInput, source: "agent" as const };
       const ex = await tool.execute(ctx, toRun);
       if (!isToolSuccess(ex)) {
         const r0: StepResultRecord = { stepId, tool: a.tool, status: "failed", error: ex.error };
