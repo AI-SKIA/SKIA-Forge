@@ -17,7 +17,7 @@
     "searchPlaceholder": "Search files and symbols...",
     "agent": "AGENT",
     "agentHint": "Agent: plan → forge.skia.ca araç yürütücü (APPLY/REJECT). Yan sohbet konuşma akışı — yerel araç kaydı değil.",
-    "agentPlaceholder": "Describe a task for SKIA...",
+    "agentPlaceholder": "State an objective - SKIA plans it and proposes diffs for your approval...",
     "agentRun": "RUN TASK",
     "agentCancel": "CANCEL",
     "forge": "FORGE CONTROL PLANE"
@@ -58,7 +58,7 @@
   "chat": {
     "brand": "SKIA",
     "newChat": "+ YENİ KONUŞMA",
-    "placeholder": "SKIA'e herhangi bir şey sorun...",
+    "placeholder": "Bu çalışma alanı hakkında SKIA'ya sorun...",
     "clear": "GEÇMİŞİ TEMİZLE",
     "cancel": "CANCEL",
     "attach": "ATTACH",

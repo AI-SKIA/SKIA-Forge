@@ -17,7 +17,7 @@
     "searchPlaceholder": "Search files and symbols...",
     "agent": "AGENT",
     "agentHint": "Agent: план → исполнитель на forge.skia.ca (APPLY/REJECT). Боковой чат — поток диалога, не локальный реестр инструментов.",
-    "agentPlaceholder": "Describe a task for SKIA...",
+    "agentPlaceholder": "State an objective - SKIA plans it and proposes diffs for your approval...",
     "agentRun": "RUN TASK",
     "agentCancel": "CANCEL",
     "forge": "FORGE CONTROL PLANE"
@@ -58,7 +58,7 @@
   "chat": {
     "brand": "SKIA",
     "newChat": "+ НОВЫЙ РАЗГОВОР",
-    "placeholder": "Спросите SKIA что угодно...",
+    "placeholder": "Спросите SKIA об этом рабочем пространстве...",
     "clear": "ЧИСТАЯ ИСТОРИЯ",
     "cancel": "CANCEL",
     "attach": "ATTACH",

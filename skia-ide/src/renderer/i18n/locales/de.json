@@ -17,7 +17,7 @@
     "searchPlaceholder": "Search files and symbols...",
     "agent": "AGENT",
     "agentHint": "Agent-Panel: Plan → Tool-Executor auf forge.skia.ca (APPLY/REJECT). Seiten-Chat nutzt den Konversationsstream — nicht die lokale Tool-Registry.",
-    "agentPlaceholder": "Describe a task for SKIA...",
+    "agentPlaceholder": "State an objective - SKIA plans it and proposes diffs for your approval...",
     "agentRun": "RUN TASK",
     "agentCancel": "CANCEL",
     "forge": "FORGE CONTROL PLANE"
@@ -58,7 +58,7 @@
   "chat": {
     "brand": "SKIA",
     "newChat": "+ NEUES GESPRÄCH",
-    "placeholder": "Fragen Sie SKIA etwas ...",
+    "placeholder": "Fragen Sie SKIA zu diesem Arbeitsbereich...",
     "clear": "Klare Geschichte",
     "cancel": "CANCEL",
     "attach": "ATTACH",

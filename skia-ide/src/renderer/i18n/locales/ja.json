@@ -17,7 +17,7 @@
     "searchPlaceholder": "Search files and symbols...",
     "agent": "AGENT",
     "agentHint": "Agent：計画 → forge.skia.ca のツール実行（APPLY/REJECT）。サイドチャットは会話ストリーム — ローカルツールレジストリではありません。",
-    "agentPlaceholder": "Describe a task for SKIA...",
+    "agentPlaceholder": "State an objective - SKIA plans it and proposes diffs for your approval...",
     "agentRun": "RUN TASK",
     "agentCancel": "CANCEL",
     "forge": "FORGE CONTROL PLANE"
@@ -58,7 +58,7 @@
   "chat": {
     "brand": "SKIA",
     "newChat": "+ 新しい会話",
-    "placeholder": "SKIAに何でも聞いてください...",
+    "placeholder": "このワークスペースについてSKIAに質問...",
     "clear": "履歴をクリアする",
     "cancel": "CANCEL",
     "attach": "ATTACH",
