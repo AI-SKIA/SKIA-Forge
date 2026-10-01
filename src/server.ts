@@ -1478,7 +1478,7 @@ app.get("/forge/sign-in", (_req, res) => {
 // Internal contract artifacts must not be served from /docs (see guides/FORGE_COPY_AUDIT.md)
 app.use("/docs", (req, res, next) => {
   const p = req.path.replace(/\\/g, "/");
-  if (p === "/contracts" || p.startsWith("/contracts/")) {
+  if (/^\/(contracts|architecture)(\/|$)/.test(p)) {
     res.status(404).end();
     return;
   }

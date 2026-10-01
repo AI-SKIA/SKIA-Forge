@@ -34,7 +34,7 @@ Use this guide for Forge **service** and **integration** issues. Product-runtime
 
 ## Web IDE shows “assets not built”
 
-- Run `npm run build` inside `skia-ide/` so `skia-ide/dist/renderer/` exists, then restart Forge and open `/forge/app`.
+- Build the Forge IDE web bundle (`npm run build` in the IDE package), then restart Forge and open `/forge/app`.
 
 ## Download redirects fail
 
