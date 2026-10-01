@@ -16,7 +16,12 @@ function publicDocFiles(): string[] {
     .readdirSync(path.join(root, "public", "docs"))
     .filter((n) => n.endsWith(".html"))
     .map((n) => path.join(root, "public", "docs", n));
-  return [...md, ...html];
+  const localeDocs = fs
+    .readdirSync(path.join(root, "public", "locales"), { withFileTypes: true })
+    .filter((e) => e.isDirectory())
+    .map((e) => path.join(root, "public", "locales", e.name, "docs.json"))
+    .filter((p) => fs.existsSync(p));
+  return [...md, ...html, ...localeDocs];
 }
 
 test("customer docs served at /docs carry no internal repo, provider-key or build-path references", () => {
