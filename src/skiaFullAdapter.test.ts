@@ -49,3 +49,14 @@ test("search calls SKIA-FULL /api/skia/search and never substitutes meta routing
     globalThis.fetch = realFetch;
   }
 });
+
+test("adapter exposes no uncalled emergent-goal poller", () => {
+  const adapter = new SkiaFullAdapter({
+    enabled: true,
+    baseUrl: "https://api.skia.ca",
+    timeoutMs: 5000,
+    allowLocalFallback: false,
+    brainOnly: true
+  });
+  assert.equal("getEmergentGoals" in adapter, false);
+});
