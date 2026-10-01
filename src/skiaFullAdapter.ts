@@ -40,7 +40,7 @@ export type SkiaFullAdapterConfig = {
   embedModel?: string;
 };
 
-export type SkiaFullSearchResult = SkiaFullSearchResponse | SkiaFullMetaRouteResponse;
+export type SkiaFullSearchResult = SkiaFullSearchResponse;
 export type SkiaBrainProbeRow = {
   name: string;
   method: "GET" | "POST";
@@ -94,18 +94,9 @@ export class SkiaFullAdapter {
     );
   }
 
+  /** Live web search via SKIA-FULL `POST /api/skia/search`; errors propagate so callers can use local search. */
   async search(query: string, passthroughHeaders?: Record<string, string>): Promise<SkiaFullSearchResult> {
-    // Keep compatibility with search-specific API where available,
-    // while falling back to meta routing if search contract drifts.
-    try {
-      return await this.postJson<SkiaFullSearchResponse>("/api/skia/search", { query }, passthroughHeaders);
-    } catch {
-      return this.postJson<SkiaFullMetaRouteResponse>("/api/meta/route", {
-        query,
-        intent: "search",
-        source: "skia-forge"
-      }, passthroughHeaders);
-    }
+    return this.postJson<SkiaFullSearchResponse>("/api/skia/search", { query }, passthroughHeaders);
   }
 
   async sovereignCore(
