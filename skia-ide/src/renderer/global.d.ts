@@ -31,6 +31,7 @@ declare global {
       openFile: () => Promise<string | null>;
       saveFile: (filePath: string, content: string) => Promise<boolean>;
       saveFileAs: (content: string) => Promise<string | null>;
+      deleteFile: (filePath: string) => Promise<boolean>;
       readFileText: (filePath: string) => Promise<string>;
       readDirectoryTree: (folderPath: string) => Promise<SkiaDirectoryNode[]>;
       onMenuAction: (channel: string, listener: () => void) => () => void;

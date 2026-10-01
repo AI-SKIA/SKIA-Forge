@@ -1332,6 +1332,9 @@ async function sendForgeAppHtml(res: express.Response) {
         fireBackendLog("WEB MODE: downloaded " + basename(filePath) + ".");
         return true;
       },
+      deleteFile: async function (filePath) {
+        return fileStore.delete(String(filePath));
+      },
       saveFileAs: async function (content) {
         var name = window.prompt("Save as filename", "skia-file.txt");
         if (!name) return null;

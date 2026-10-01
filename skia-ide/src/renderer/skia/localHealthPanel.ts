@@ -1,5 +1,5 @@
 /**
- * IDE Local Health Panel (renderer) — mirrors src/routes/localHealth.tsx probes.
+ * IDE Local Health Panel (renderer) — uses the SKIA backend /api/local/services when local mode is on, else probes each service directly.
  */
 
 export type LocalHealthServiceRow = {
