@@ -165,6 +165,10 @@
         "incident-handling": {
           "title": "Tratamento de Incidentes",
           "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Capturar endpoint de falha e metadados de carga útil.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Revisar recomendações de plano de controle de <code>/api/forge/control-plane</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Aplique a correção e execute novamente a solicitação com falha.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Encaminhe com registros e solicite IDs se não for resolvido - entre em contato com o suporte.</div></div></div></div>"
+        },
+        "upgrade-rollback-backup": {
+          "title": "Atualização, reversão e backup",
+          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">Fazer backup do estado</div><div class=\"card-body\">Todo o estado de execução fica na pasta .skia/ da raiz do projeto. Copie-a antes de cada atualização e pelo menos diariamente; sem um volume persistente, uma nova implantação do contêiner começa vazia.</div></div><div class=\"card\"><div class=\"card-title\">Atualizar</div><div class=\"card-body\">Faça backup de .skia/, anote GET /version, implante a nova versão e confirme /health, /ready, /version e que o modo e o bloqueio do plano de controle não mudaram.</div></div><div class=\"card\"><div class=\"card-title\">Reverter</div><div class=\"card-body\">Implante novamente a versão anterior e restaure o backup de .skia/ anterior à atualização se a nova versão o alterou.</div></div><div class=\"card\"><div class=\"card-title\">Restaurar</div><div class=\"card-body\">Pare o Forge, substitua .skia/ pelo backup, inicie-o e verifique o modo do plano de controle e o número de linhas do registro de auditoria.</div></div></div>"
         }
       }
     },

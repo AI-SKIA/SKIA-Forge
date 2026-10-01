@@ -165,6 +165,10 @@
         "incident-handling": {
           "title": "インシデント処理",
           "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">障害エンドポイントとペイロードのメタデータをキャプチャします。</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">コントロール プレーンの推奨事項を確認します。 <code>/api/forge/control-plane</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">修復を適用し、失敗したリクエストを再実行します。</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">ログとリクエストをエスカレーションします。 ID が解決されない場合は、サポートにお問い合わせください。</div></div></div></div>"
+        },
+        "upgrade-rollback-backup": {
+          "title": "アップグレード、ロールバック、バックアップ",
+          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">状態のバックアップ</div><div class=\"card-body\">すべての実行時状態はプロジェクトルートの .skia/ フォルダーにあります。アップグレードの前と、少なくとも毎日コピーしてください。永続ボリュームがない場合、コンテナーを再デプロイすると空の状態から始まります。</div></div><div class=\"card\"><div class=\"card-title\">アップグレード</div><div class=\"card-body\">.skia/ をバックアップし、GET /version を記録してから新しいリリースをデプロイし、/health、/ready、/version と、コントロールプレーンのモードとロックダウンが変わっていないことを確認します。</div></div><div class=\"card\"><div class=\"card-title\">ロールバック</div><div class=\"card-body\">以前のリリースを再デプロイし、新しいバージョンが .skia/ を変更した場合はアップグレード前のバックアップを復元します。</div></div><div class=\"card\"><div class=\"card-title\">復元</div><div class=\"card-body\">Forge を停止し、.skia/ をバックアップで置き換えてから起動し、コントロールプレーンのモードと監査ログの行数を確認します。</div></div></div>"
         }
       }
     },

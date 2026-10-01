@@ -165,6 +165,10 @@
         "incident-handling": {
           "title": "Olay Yönetimi",
           "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Başarısızlık uç noktasını ve yük meta verilerini yakalayın.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Şu adresteki kontrol düzlemi önerilerini inceleyin: <code>/api/forge/control-plane</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Düzeltmeyi uygulayın ve başarısız olan isteği yeniden çalıştırın.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Günlükler ve istekle üst kademeye iletin Kimlikler çözülmezse destek ekibiyle iletişime geçin.</div></div></div></div>"
+        },
+        "upgrade-rollback-backup": {
+          "title": "Yükseltme, geri alma ve yedekleme",
+          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">Durumu yedekleyin</div><div class=\"card-body\">Tüm çalışma zamanı durumu proje kökündeki .skia/ klasöründe bulunur. Her yükseltmeden önce ve en az günde bir kez kopyalayın; kalıcı birim yoksa kapsayıcının yeniden dağıtımı boş başlar.</div></div><div class=\"card\"><div class=\"card-title\">Yükseltme</div><div class=\"card-body\">.skia/ klasörünü yedekleyin, GET /version değerini not edin, yeni sürümü dağıtın, ardından /health, /ready, /version ile kontrol düzlemi modunun ve kilidinin değişmediğini doğrulayın.</div></div><div class=\"card\"><div class=\"card-title\">Geri alma</div><div class=\"card-body\">Önceki sürümü yeniden dağıtın; yeni sürüm .skia/ klasörünü değiştirdiyse yükseltme öncesi yedeği geri yükleyin.</div></div><div class=\"card\"><div class=\"card-title\">Geri yükleme</div><div class=\"card-body\">Forge'u durdurun, .skia/ klasörünü yedekle değiştirin, başlatın ve kontrol düzlemi modunu ile denetim kaydı satır sayısını kontrol edin.</div></div></div>"
         }
       }
     },

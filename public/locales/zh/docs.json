@@ -165,6 +165,10 @@
         "incident-handling": {
           "title": "事件处理",
           "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">捕获故障端点和负载元数据。</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">查看来自 <code>/api/forge/control-plane</code> 的控制平面建议。</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">应用补救措施并重新运行失败的请求。</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">如果未解决，请使用日志和请求 ID 进行升级。</div></div></div></div>"
+        },
+        "upgrade-rollback-backup": {
+          "title": "升级、回滚与备份",
+          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">备份状态</div><div class=\"card-body\">所有运行时状态都位于项目根目录的 .skia/ 文件夹中。请在每次升级前以及至少每天复制一次；没有持久卷时，容器重新部署会从空状态开始。</div></div><div class=\"card\"><div class=\"card-title\">升级</div><div class=\"card-body\">备份 .skia/，记下 GET /version，部署新版本，然后确认 /health、/ready、/version，以及控制平面的模式和锁定状态未变。</div></div><div class=\"card\"><div class=\"card-title\">回滚</div><div class=\"card-body\">重新部署上一个版本；如果新版本修改了 .skia/，请恢复升级前的备份。</div></div><div class=\"card\"><div class=\"card-title\">恢复</div><div class=\"card-body\">停止 Forge，用备份替换 .skia/，启动后检查控制平面模式和审计日志行数。</div></div></div>"
         }
       }
     },

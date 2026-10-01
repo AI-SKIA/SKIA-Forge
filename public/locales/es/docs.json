@@ -165,6 +165,10 @@
         "incident-handling": {
           "title": "Manejo de incidentes",
           "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Capture el punto final de falla y los metadatos de carga útil.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Revise las recomendaciones del plano de control de <code>/api/forge/control-plane</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Aplicar la corrección y volver a ejecutar la solicitud fallida.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Escalar con registros e ID de solicitud si no se resuelve; comuníquese con el soporte.</div></div></div></div>"
+        },
+        "upgrade-rollback-backup": {
+          "title": "Actualización, reversión y copia de seguridad",
+          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">Copia de seguridad del estado</div><div class=\"card-body\">Todo el estado de ejecución está en la carpeta .skia/ de la raíz del proyecto. Cópiela antes de cada actualización y al menos una vez al día; sin un volumen persistente, un nuevo despliegue del contenedor empieza vacío.</div></div><div class=\"card\"><div class=\"card-title\">Actualizar</div><div class=\"card-body\">Haga una copia de .skia/, anote GET /version, despliegue la nueva versión y luego confirme /health, /ready, /version y que el modo y el bloqueo del plano de control no cambiaron.</div></div><div class=\"card\"><div class=\"card-title\">Revertir</div><div class=\"card-body\">Vuelva a desplegar la versión anterior y restaure la copia de .skia/ previa a la actualización si la nueva versión la modificó.</div></div><div class=\"card\"><div class=\"card-title\">Restaurar</div><div class=\"card-body\">Detenga Forge, reemplace .skia/ por la copia de seguridad, inícielo y compruebe el modo del plano de control y el número de filas del registro de auditoría.</div></div></div>"
         }
       }
     },

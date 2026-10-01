@@ -165,6 +165,10 @@
         "incident-handling": {
           "title": "사고 처리",
           "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">실패 엔드포인트 및 페이로드 메타데이터를 캡처합니다.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">제어 플레인 권장 사항을 검토하세요. <code>/api/forge/control-plane</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">수정을 적용하고 실패한 요청을 다시 실행하세요.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">다음과 같은 경우 로그 및 요청 ID로 에스컬레이션하세요. 해결되지 않은 문제 — 지원팀에 문의하세요.</div></div></div></div>"
+        },
+        "upgrade-rollback-backup": {
+          "title": "업그레이드, 롤백 및 백업",
+          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">상태 백업</div><div class=\"card-body\">모든 런타임 상태는 프로젝트 루트의 .skia/ 폴더에 있습니다. 업그레이드 전마다, 그리고 최소 하루에 한 번 복사하세요. 영구 볼륨이 없으면 컨테이너를 다시 배포할 때 빈 상태로 시작합니다.</div></div><div class=\"card\"><div class=\"card-title\">업그레이드</div><div class=\"card-body\">.skia/를 백업하고 GET /version을 기록한 뒤 새 릴리스를 배포하고 /health, /ready, /version과 제어 플레인 모드 및 잠금 상태가 그대로인지 확인합니다.</div></div><div class=\"card\"><div class=\"card-title\">롤백</div><div class=\"card-body\">이전 릴리스를 다시 배포하고, 새 버전이 .skia/를 변경했다면 업그레이드 전 백업을 복원합니다.</div></div><div class=\"card\"><div class=\"card-title\">복원</div><div class=\"card-body\">Forge를 중지하고 .skia/를 백업으로 바꾼 뒤 시작하여 제어 플레인 모드와 감사 로그 행 수를 확인합니다.</div></div></div>"
         }
       }
     },

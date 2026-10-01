@@ -165,6 +165,10 @@
         "incident-handling": {
           "title": "Umgang mit Vorfällen",
           "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Fehlerendpunkt- und Nutzlastmetadaten erfassen.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Control-Plane-Empfehlungen von <code>/api/forge/control-plane</code> überprüfen.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Wenden Sie die Korrektur an und führen Sie die fehlgeschlagene Anfrage erneut aus.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Eskalieren Sie mit Protokollen und Anfrage-IDs, wenn das Problem nicht gelöst wird. Wenden Sie sich an den Support.</div></div></div></div>"
+        },
+        "upgrade-rollback-backup": {
+          "title": "Upgrade, Rollback und Sicherung",
+          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">Zustand sichern</div><div class=\"card-body\">Der gesamte Laufzeitzustand liegt im Ordner .skia/ im Projektstamm. Kopieren Sie ihn vor jedem Upgrade und mindestens täglich; ohne persistentes Volume startet eine Container-Neubereitstellung leer.</div></div><div class=\"card\"><div class=\"card-title\">Upgrade</div><div class=\"card-body\">Sichern Sie .skia/, notieren Sie GET /version, stellen Sie das neue Release bereit und prüfen Sie dann /health, /ready, /version sowie unveränderten Modus und Sperre der Steuerungsebene.</div></div><div class=\"card\"><div class=\"card-title\">Rollback</div><div class=\"card-body\">Stellen Sie das vorherige Release erneut bereit und spielen Sie die .skia/-Sicherung von vor dem Upgrade zurück, falls die neue Version sie geändert hat.</div></div><div class=\"card\"><div class=\"card-title\">Wiederherstellen</div><div class=\"card-body\">Stoppen Sie Forge, ersetzen Sie .skia/ durch die Sicherung, starten Sie Forge und prüfen Sie den Modus der Steuerungsebene und die Zeilenzahl des Audit-Protokolls.</div></div></div>"
         }
       }
     },

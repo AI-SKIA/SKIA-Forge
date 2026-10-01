@@ -165,6 +165,10 @@
         "incident-handling": {
           "title": "التعامل مع الحوادث",
           "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">التقاط البيانات الوصفية لنقطة نهاية الفشل والحمولة النافعة.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">راجع توصيات مستوى التحكم من <code>/api/forge/control-plane</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">طبق المعالجة وأعد تشغيل الطلب الفاشل.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">التصعيد باستخدام السجلات والطلب المعرفات إذا لم يتم حلها - اتصل بالدعم.</div></div></div></div>"
+        },
+        "upgrade-rollback-backup": {
+          "title": "الترقية والتراجع والنسخ الاحتياطي",
+          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">نسخ الحالة احتياطيًا</div><div class=\"card-body\">توجد حالة التشغيل كاملة في المجلد .skia/ في جذر المشروع. انسخه قبل كل ترقية ومرة يوميًا على الأقل؛ فبدون وحدة تخزين دائمة تبدأ إعادة نشر الحاوية فارغة.</div></div><div class=\"card\"><div class=\"card-title\">الترقية</div><div class=\"card-body\">انسخ .skia/ احتياطيًا، وسجّل GET /version، وانشر الإصدار الجديد، ثم تحقّق من /health و/ready و/version ومن عدم تغيّر وضع لوحة التحكم وحالة القفل.</div></div><div class=\"card\"><div class=\"card-title\">التراجع</div><div class=\"card-body\">أعد نشر الإصدار السابق واستعد نسخة .skia/ الاحتياطية السابقة للترقية إذا غيّرها الإصدار الجديد.</div></div><div class=\"card\"><div class=\"card-title\">الاستعادة</div><div class=\"card-body\">أوقف Forge، واستبدل .skia/ بالنسخة الاحتياطية، ثم شغّله وتحقّق من وضع لوحة التحكم وعدد صفوف سجل التدقيق.</div></div></div>"
         }
       }
     },

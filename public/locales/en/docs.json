@@ -165,6 +165,10 @@
         "incident-handling": {
           "title": "Incident Handling",
           "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Capture failure endpoint and payload metadata.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Review control-plane recommendations from <code>/api/forge/control-plane</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Apply remediation and re-run the failed request.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Escalate with logs and request IDs if unresolved — contact support.</div></div></div></div>"
+        },
+        "upgrade-rollback-backup": {
+          "title": "Upgrade, Rollback & Backup",
+          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">Back Up State</div><div class=\"card-body\">All runtime state lives in the .skia/ folder of the project root. Copy it before every upgrade and at least daily; without a persistent volume, a container redeploy starts empty.</div></div><div class=\"card\"><div class=\"card-title\">Upgrade</div><div class=\"card-body\">Back up .skia/, note GET /version, deploy the new release, then confirm /health, /ready, /version and an unchanged control-plane mode and lockdown.</div></div><div class=\"card\"><div class=\"card-title\">Roll Back</div><div class=\"card-body\">Redeploy the previous release and restore the pre-upgrade .skia/ backup if the new version changed it.</div></div><div class=\"card\"><div class=\"card-title\">Restore</div><div class=\"card-body\">Stop Forge, replace .skia/ with the backup, start it, and check the control-plane mode and the audit-log row count.</div></div></div>"
         }
       }
     },

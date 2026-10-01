@@ -60,6 +60,61 @@ Additional environment variables for signing and GitHub integration are document
 3. Apply remediation and re-run.
 4. Escalate with logs and payload shapes if unresolved.
 
+## Upgrade, rollback, and backup
+
+### State Forge keeps
+
+Forge has no database. All runtime state is files under **`<project root>/.skia/`**; the project root is `SKIA_PROJECT_ROOT` or the working directory (`/app` in the container image, so `/app/.skia`).
+
+| File / folder | Contents | Rebuildable? |
+|---------------|----------|--------------|
+| `runtime-state.json` | Provider routing, telemetry, governance mode and lockdown | No |
+| `agent-log.json` | Audit trail (agent runs, terminal commands, production and architecture actions) | No |
+| `architecture-baseline-v1.json` | Architecture drift baseline | No (re-created by `POST /api/forge/architecture/analyze`, losing drift history) |
+| `checkpoints/`, `work-items/`, `sdlc-events/`, `auto/` | Planner checkpoints, work items, SDLC events, self-improvement memory | No |
+| `index.json` | Code index | Yes: `POST /index/rebuild` |
+| `embeddings-v1.json` or `lance-embeddings/` | Embedding store | Yes: `POST /api/forge/context/embed/index` |
+
+The container filesystem is ephemeral: without a persistent volume mounted at `/app/.skia`, every redeploy starts from empty state.
+
+### Back up
+
+1. Copy the whole `.skia/` directory, for example `tar czf forge-state-YYYY-MM-DD.tgz .skia`.
+2. Do this before every upgrade, and at least daily if you rely on the audit trail.
+3. Check the archive opens and contains `runtime-state.json` and `agent-log.json`.
+
+### Upgrade
+
+1. Back up `.skia/`.
+2. Record the running version: `GET /version`.
+3. Deploy the new release:
+   - from source: `npm ci`, `npm run build`, then `npm install` and `npm run build` in the IDE package, then `npm start`;
+   - or build the container image from the repository `Dockerfile`, which runs both builds and health-checks `GET /health`.
+4. Validate:
+   - `GET /health` returns 200, `GET /ready` returns 200 (Bearer JWT), and `GET /version` shows the new version;
+   - `GET /api/forge/control-plane` shows the same mode and lockdown as before;
+   - `/forge/app` loads (a `503` means the IDE bundle was not built).
+
+### Roll back
+
+1. Redeploy the previous release (the previous git tag or container image).
+2. If the new version changed files in `.skia/`, restore the pre-upgrade backup (see Restore).
+3. Run the same validation as for an upgrade, and confirm `GET /version` shows the previous version.
+
+### Restore
+
+1. Stop Forge.
+2. Replace `.skia/` with the backup.
+3. Start Forge and check that `GET /api/forge/control-plane` shows the expected mode and lockdown and `GET /agent/audit-log` returns the expected row count.
+
+If Forge fails at startup with a JSON parse error, `runtime-state.json` is damaged: restore it from backup, or move it aside to start with default routing, mode and telemetry.
+
+### Desktop IDE releases
+
+- Installers are published as GitHub releases (`SKIA_FORGE_RELEASE_REPO`, `SKIA_FORGE_RELEASE_TAG`).
+- `GET /api/app/version-check` drives the IDE update prompt; set `SKIA_FORGE_LATEST_VERSION` to control the advertised version.
+- To roll back a desktop release, point `SKIA_FORGE_RELEASE_TAG` and `SKIA_FORGE_LATEST_VERSION` at the previous tag.
+
 ## Desktop distribution
 
 - Installers are reached via **`GET /api/app/download`** and **`GET /api/app/download/:platform`** (Windows, macOS Intel/Apple Silicon, Linux AppImage — see the SKIA Forge IDE package build configuration).

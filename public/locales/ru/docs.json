@@ -165,6 +165,10 @@
         "incident-handling": {
           "title": "Обработка инцидентов",
           "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">Захват конечной точки сбоя и метаданных полезной нагрузки.</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">Изучите рекомендации по плоскости управления от <code>/api/forge/control-plane</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">Примените исправление и повторно запустите неудачный запрос.</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">Эскалируйте с помощью журналов и запроса Если идентификаторы не решены, обратитесь в службу поддержки.</div></div></div></div>"
+        },
+        "upgrade-rollback-backup": {
+          "title": "Обновление, откат и резервное копирование",
+          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">Резервная копия состояния</div><div class=\"card-body\">Всё состояние выполнения хранится в папке .skia/ в корне проекта. Копируйте её перед каждым обновлением и не реже раза в день; без постоянного тома повторное развёртывание контейнера начинается с пустого состояния.</div></div><div class=\"card\"><div class=\"card-title\">Обновление</div><div class=\"card-body\">Сделайте копию .skia/, запишите GET /version, разверните новый выпуск, затем проверьте /health, /ready, /version и неизменность режима и блокировки панели управления.</div></div><div class=\"card\"><div class=\"card-title\">Откат</div><div class=\"card-body\">Повторно разверните предыдущий выпуск и восстановите копию .skia/ до обновления, если новая версия её изменила.</div></div><div class=\"card\"><div class=\"card-title\">Восстановление</div><div class=\"card-body\">Остановите Forge, замените .skia/ резервной копией, запустите его и проверьте режим панели управления и число строк журнала аудита.</div></div></div>"
         }
       }
     },

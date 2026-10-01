@@ -165,6 +165,10 @@
         "incident-handling": {
           "title": "घटना से निपटना",
           "html": "<div class='steps'><div class='step'><div class='step-num'>01</div><div class='step-text'>विफलता समापन बिंदु और पेलोड मेटाडेटा कैप्चर करें।</div></div><div class='step'><div class='step-num'>02</div><div class='step-text'>नियंत्रण-विमान अनुशंसाओं की समीक्षा करें <code>/api/forge/control-plane</code>.</div></div><div class='step'><div class='step-num'>03</div><div class='step-text'>समाधान लागू करें और विफल अनुरोध को फिर से चलाएँ।</div></div><div class='step'><div class='step-num'>04</div><div class='step-text'>लॉग और अनुरोध आईडी के साथ आगे बढ़ें यदि समाधान न हो तो सहायता से संपर्क करें।</div></div></div></div>"
+        },
+        "upgrade-rollback-backup": {
+          "title": "अपग्रेड, रोलबैक और बैकअप",
+          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">स्थिति का बैकअप</div><div class=\"card-body\">पूरी रनटाइम स्थिति प्रोजेक्ट रूट के .skia/ फ़ोल्डर में रहती है। हर अपग्रेड से पहले और कम से कम रोज़ इसकी कॉपी लें; स्थायी वॉल्यूम के बिना, कंटेनर का दोबारा डिप्लॉय खाली स्थिति से शुरू होता है।</div></div><div class=\"card\"><div class=\"card-title\">अपग्रेड</div><div class=\"card-body\">.skia/ का बैकअप लें, GET /version नोट करें, नया रिलीज़ डिप्लॉय करें, फिर /health, /ready, /version और कंट्रोल प्लेन के अपरिवर्तित मोड व लॉकडाउन की पुष्टि करें।</div></div><div class=\"card\"><div class=\"card-title\">रोलबैक</div><div class=\"card-body\">पिछला रिलीज़ दोबारा डिप्लॉय करें और यदि नए संस्करण ने .skia/ बदला हो तो अपग्रेड से पहले का बैकअप बहाल करें।</div></div><div class=\"card\"><div class=\"card-title\">बहाली</div><div class=\"card-body\">Forge रोकें, .skia/ को बैकअप से बदलें, उसे शुरू करें, और कंट्रोल प्लेन मोड व ऑडिट लॉग की पंक्तियों की संख्या जाँचें।</div></div></div>"
         }
       }
     },
