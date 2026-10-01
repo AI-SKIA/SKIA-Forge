@@ -151,10 +151,10 @@ The adapter may probe upstream paths such as `/api/health` **on the SKIA API hos
 
 - `POST /rpc` � Internal RPC / streaming bridge (rate limited).
 - `POST /sovereign-core` � Sovereign core passthrough to the SKIA API.
-- `GET /stream/:method` � SSE streaming for SKIA methods (rate limited).
 - `GET /providers/status` � Provider routing status snapshot.
 - Index, search, and agent audit: `GET /index`, `GET /search`, `GET /agent/audit-log`, `POST /agent/log`, `POST /agent/validate-command`.
-- `POST /diff/preview` � Text diff preview.
+- `POST /diff/preview` � Text diff preview (Bearer JWT).
+- `GET /api/local/health`, `GET /api/local/services`, `GET /api/local/engines` � Local-mode probes; open to loopback callers only, Bearer JWT otherwise.
 
 ---
 
