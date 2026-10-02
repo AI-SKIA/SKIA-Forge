@@ -12,9 +12,18 @@ import {
     contentFromDiffPayload,
     type ForgeIdeAgentStreamEvent
 } from "./skiaForgeAgentStream";
+import { AgentWorkspaceCheckpoint } from "../../../../src/lib/agentWorkspaceCheckpoint";
 
 let activeAgentController: AbortController | null = null;
 const pendingPreviews = new Map<string, FileMutationPreview>();
+let runCheckpoint: AgentWorkspaceCheckpoint | null = null;
+
+const newRunCheckpoint = (): AgentWorkspaceCheckpoint =>
+    new AgentWorkspaceCheckpoint(String(Date.now()), {
+        readFile: (p) => window.skiaElectron.readFileText(p),
+        saveFile: (p, c) => window.skiaElectron.saveFile(p, c),
+        deleteFile: (p) => window.skiaElectron.deleteFile(p)
+    });
 
 const resolveFilePath = (relPath: string): string => {
     const root = (localStorage.getItem("skia_workspace_path") || "").trim().replace(/\\/g, "/").replace(/\/$/, "");
@@ -56,7 +65,7 @@ const appendLogRow = (
         applyBtn.textContent = "APPLY";
         applyBtn.addEventListener("click", () => {
             if (preview && onPreviewAction) onPreviewAction(preview, "apply");
-            else void applyAgentEdit(event.path!, event.payload);
+            else void applyAgentEdit(event.path!, event.payload).then(() => showRestoreCheckpointRow(logHost));
         });
         const rejectBtn = document.createElement("button");
         rejectBtn.type = "button";
@@ -80,7 +89,7 @@ const appendLogRow = (
         applyBtn.type = "button";
         applyBtn.textContent = "APPLY";
         applyBtn.addEventListener("click", () => {
-            void applyAgentEdit(event.path!, event.payload);
+            void applyAgentEdit(event.path!, event.payload).then(() => showRestoreCheckpointRow(logHost));
         });
         const openBtn = document.createElement("button");
         openBtn.type = "button";
@@ -120,6 +129,8 @@ async function applyAgentEdit(relPath: string, diffPayload: string, afterOverrid
     } catch {
         /* new file */
     }
+    runCheckpoint ??= newRunCheckpoint();
+    await runCheckpoint.captureBeforeWrite(abs);
     const ok = await window.skiaElectron.saveFile(abs, nextContent);
     if (ok) {
         const editor = getEditor() as { setValue?: (v: string) => void } | null;
@@ -130,6 +141,41 @@ async function applyAgentEdit(relPath: string, diffPayload: string, afterOverrid
     }
 }
 
+const showRestoreCheckpointRow = (logHost: HTMLElement): void => {
+    const checkpoint = runCheckpoint;
+    if (!checkpoint || checkpoint.size === 0 || logHost.querySelector(".agent-log-restore")) return;
+    const row = document.createElement("div");
+    row.className = "agent-log-row agent-log-thought agent-log-restore";
+    const body = document.createElement("div");
+    body.className = "agent-log-body";
+    body.textContent = "Checkpoint saved before the agent's first write.";
+    const actions = document.createElement("div");
+    actions.className = "agent-log-actions";
+    const restoreBtn = document.createElement("button");
+    restoreBtn.type = "button";
+    restoreBtn.textContent = "RESTORE PRE-AGENT STATE";
+    restoreBtn.addEventListener("click", () => {
+        restoreBtn.disabled = true;
+        void checkpoint.restore().then((result) => {
+            row.remove();
+            const parts = [`Restored ${result.restored.length} file(s)`];
+            if (result.deleted.length) parts.push(`removed ${result.deleted.length} new file(s)`);
+            appendLogRow(logHost, {
+                type: result.failed.length ? "error" : "tool_end",
+                payload: result.failed.length
+                    ? `${parts.join(", ")}; could not restore: ${result.failed.map((f) => `${f.absPath} (${f.error})`).join(", ")}`
+                    : `${parts.join(", ")}.`,
+                status: result.failed.length ? undefined : "ok"
+            });
+            if (result.failed.length) showRestoreCheckpointRow(logHost);
+        });
+    });
+    actions.appendChild(restoreBtn);
+    row.append(body, actions);
+    logHost.appendChild(row);
+    logHost.scrollTop = logHost.scrollHeight;
+};
+
 const runAgentTask = async (goal: string, logHost: HTMLElement, summaryEl: HTMLElement | null): Promise<void> => {
     const token = getAuthToken();
     if (!token) {
@@ -139,6 +185,7 @@ const runAgentTask = async (goal: string, logHost: HTMLElement, summaryEl: HTMLE
 
     logHost.innerHTML = "";
     pendingPreviews.clear();
+    runCheckpoint = newRunCheckpoint();
     if (summaryEl) summaryEl.textContent = "";
 
     activeAgentController = new AbortController();
@@ -218,6 +265,7 @@ const runAgentTask = async (goal: string, logHost: HTMLElement, summaryEl: HTMLE
                 payload: applied.result.error || applied.result.stopReason || "Apply failed."
             });
         }
+        showRestoreCheckpointRow(logHost);
     };
 
     for (const p of preview.previews) {

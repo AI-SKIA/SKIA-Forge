@@ -5,7 +5,7 @@ import express from "express";
 import { appendAuditLog, readAuditLog } from "./auditLog.js";
 import { ContextEngine } from "./contextEngine.js";
 import { loadSkiaRules } from "./rules.js";
-import { handleRpcRequest, streamSkiaMethod } from "./rpc.js";
+import { handleRpcRequest } from "./rpc.js";
 import { ProviderRouter } from "./providerRouter.js";
 import { renderChatHtml } from "./chatUi.js";
 import { attachInlineCompletionServer } from "./inlineCompletion.js";
@@ -96,6 +96,7 @@ import { createEmbedIncrementalOnSaveHandler } from "./forge/modules/context-eng
 import { createEmbeddingVectorStore } from "./forge/modules/context-engine/embeddingVectorStoreFactory.js";
 import { SKIA_FULL_EMBEDDING_PATH_DEFAULT } from "./skiaFullEmbeddingContract.js";
 import { requireAuth } from "./middleware/requireAuth.js";
+import { loopbackOrAuth } from "./middleware/loopbackOrAuth.js";
 import { requirePaidForgePlan } from "./auth/requireForgePlan.js";
 import { forgeLocaleMiddleware } from "./middleware/forgeLocaleMiddleware.js";
 import {
@@ -174,7 +175,6 @@ const embedSaveHook = isEmbedIncrementalOnSaveEnabled()
     })
   : undefined;
 const rpcLimiter = new RateLimiter(40, 60_000);
-const streamLimiter = new RateLimiter(30, 60_000);
 const productionAdapter = new ProductionAdapterV1({ apiUrl: process.env.PRODUCTION_API_URL });
 const healingExecutor = new HealingExecutorV1(projectRoot);
 const approvalTokens = new ApprovalTokenStore(5 * 60_000);
@@ -305,7 +305,7 @@ app.get("/health", (_req, res) => {
   });
 });
 
-app.use("/api/local", localHealthRoutes);
+app.use("/api/local", loopbackOrAuth, localHealthRoutes);
 
 app.get("/live", requireAuth, (_req, res) => {
   res.json(
@@ -1332,6 +1332,9 @@ async function sendForgeAppHtml(res: express.Response) {
         fireBackendLog("WEB MODE: downloaded " + basename(filePath) + ".");
         return true;
       },
+      deleteFile: async function (filePath) {
+        return fileStore.delete(String(filePath));
+      },
       saveFileAs: async function (content) {
         var name = window.prompt("Save as filename", "skia-file.txt");
         if (!name) return null;
@@ -1478,7 +1481,7 @@ app.get("/forge/sign-in", (_req, res) => {
 // Internal contract artifacts must not be served from /docs (see guides/FORGE_COPY_AUDIT.md)
 app.use("/docs", (req, res, next) => {
   const p = req.path.replace(/\\/g, "/");
-  if (p === "/contracts" || p.startsWith("/contracts/")) {
+  if (/^\/(contracts|architecture)(\/|$)/.test(p)) {
     res.status(404).end();
     return;
   }
@@ -1505,7 +1508,7 @@ app.get("/platform-downloads", (_req, res) => {
   res.sendFile(path.join(projectRoot, "public", "platform-downloads.html"));
 });
 
-app.post("/diff/preview", (req, res) => {
+app.post("/diff/preview", requireAuth, (req, res) => {
   const oldText = String(req.body?.oldText ?? "");
   const newText = String(req.body?.newText ?? "");
   const oldSize = enforceTextSize(oldText, 150_000);
@@ -2091,42 +2094,6 @@ function verifySensitiveIntent(
   res.status(401).json({ status: "blocked", error: verdict.reason });
   return false;
 }
-
-app.get("/stream/:method", rateLimitMiddleware(streamLimiter), (req, res) => {
-  const method = String(req.params.method || "");
-  const serializedParams = String(req.query.params ?? "{}");
-  const size = enforceTextSize(serializedParams, 75_000);
-  if (!size.ok) {
-    return res.status(413).json({ error: size.error });
-  }
-  let params: Record<string, unknown> = {};
-  try {
-    params = JSON.parse(serializedParams) as Record<string, unknown>;
-  } catch {
-    // Keep defaults if params are malformed.
-  }
-
-  res.setHeader("Content-Type", "text/event-stream");
-  res.setHeader("Cache-Control", "no-cache");
-  res.setHeader("Connection", "keep-alive");
-
-  const chunks = streamSkiaMethod(method, params);
-  let index = 0;
-  const interval = setInterval(() => {
-    if (index >= chunks.length) {
-      res.write("event: done\ndata: [DONE]\n\n");
-      clearInterval(interval);
-      res.end();
-      return;
-    }
-    res.write(`event: token\ndata: ${JSON.stringify({ token: chunks[index] })}\n\n`);
-    index += 1;
-  }, 120);
-
-  req.on("close", () => {
-    clearInterval(interval);
-  });
-});
 
 app.use((error: unknown, req: express.Request, res: express.Response, _next: express.NextFunction) => {
   const message = error instanceof Error ? error.message : "Unknown error";

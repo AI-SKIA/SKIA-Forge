@@ -1187,6 +1187,20 @@ ipcMain.handle("skia:saveFile", async (_event, filePath: string, content: string
     }
 });
 
+ipcMain.handle("skia:deleteFile", async (_event, filePath: string): Promise<boolean> => {
+    if (!currentProjectRoot || typeof filePath !== "string" || !filePath) return false;
+    const root = path.resolve(currentProjectRoot);
+    const target = path.resolve(filePath);
+    if (target === root || !target.startsWith(root + path.sep)) return false;
+    try {
+        await fs.rm(target, { force: true });
+        return true;
+    } catch (error) {
+        console.error("SKIA: failed to delete file", error);
+        return false;
+    }
+});
+
 ipcMain.handle("skia:saveFileAs", async (_event, content: string): Promise<string | null> => {
     const targetWindow = BrowserWindow.getFocusedWindow() ?? mainWindow;
     const saveDialogOptions = {

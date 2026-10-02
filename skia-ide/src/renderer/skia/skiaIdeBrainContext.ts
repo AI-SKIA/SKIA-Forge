@@ -2,6 +2,7 @@ import { getEditor } from "../editor/monacoSetup";
 import { getActiveFile, getWorkspacePath } from "./skiaSessionStore";
 import { getTerminalContextForSkia } from "./skiaTerminalCapture";
 import { getLocalBackendMode } from "./skiaConfig";
+import { buildMentionContext } from "../../../../src/lib/ideMentions";
 
 /** Keep payloads bounded — upstream chat routes enforce their own limits too. */
 const MAX_BUFFER_CHARS = 120_000;
@@ -154,9 +155,24 @@ export async function collectWorkspaceFilesPack(
  * Bundles workspace tree snapshot, Monaco buffer, selection, and paths so SKIA reasons over real IDE state.
  * Only the last user turn is wrapped; earlier turns stay verbatim.
  */
+async function resolveMentions(userMessage: string, workspaceRoot: string): Promise<string> {
+    const api = window.skiaElectron;
+    if (!api?.readFileText || !api.readDirectoryTree) return "";
+    const { block } = await buildMentionContext(userMessage, workspaceRoot, {
+        readFile: async (p) => {
+            const text = await api.readFileText(p);
+            if (/\0/.test(text.slice(0, 4096))) throw new Error("binary file");
+            return text;
+        },
+        listFiles: async (dir) => flattenFilePaths(await api.readDirectoryTree(dir)).filter(shouldIndexFile)
+    });
+    return block;
+}
+
 export async function buildIdeBrainEnvelope(userMessage: string): Promise<string> {
+    const mentionBlock = await resolveMentions(userMessage, getWorkspacePath().trim());
     if (getLocalBackendMode()) {
-        return userMessage.trim();
+        return mentionBlock ? `${mentionBlock}\n### USER_MESSAGE\n\n${userMessage.trim()}` : userMessage.trim();
     }
 
     const workspace = getWorkspacePath().trim() || "(no workspace folder recorded — use Open Project)";
@@ -217,6 +233,7 @@ export async function buildIdeBrainEnvelope(userMessage: string): Promise<string
         "You are assisting inside the SKIA Forge desktop IDE. Treat paths and file contents below as live workspace truth for coding, refactors, debugging, and reasoning.\n\n" +
         `workspace_root: ${workspace}\n` +
         `active_file_path: ${activeFile}\n\n` +
+        mentionBlock +
         snapshotBlock +
         terminalBlock +
         langLine +

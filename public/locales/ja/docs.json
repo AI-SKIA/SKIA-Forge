@@ -165,6 +165,10 @@
         "incident-handling": {
           "title": "インシデント処理",
           "html": "<div class=\"steps\"><div class=\"step\"><div class=\"step-num\">01</div><div class=\"step-text\">障害エンドポイントとペイロードのメタデータをキャプチャします。</div></div><div class=\"step\"><div class=\"step-num\">02</div><div class=\"step-text\">コントロール プレーンの推奨事項を確認します。 <code>/api/forge/control-plane</code>.</div></div><div class=\"step\"><div class=\"step-num\">03</div><div class=\"step-text\">修復を適用し、失敗したリクエストを再実行します。</div></div><div class=\"step\"><div class=\"step-num\">04</div><div class=\"step-text\">ログとリクエストをエスカレーションします。 ID が解決されない場合は、サポートにお問い合わせください。</div></div></div></div>"
+        },
+        "upgrade-rollback-backup": {
+          "title": "アップグレード、ロールバック、バックアップ",
+          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">状態のバックアップ</div><div class=\"card-body\">すべての実行時状態はプロジェクトルートの .skia/ フォルダーにあります。アップグレードの前と、少なくとも毎日コピーしてください。永続ボリュームがない場合、コンテナーを再デプロイすると空の状態から始まります。</div></div><div class=\"card\"><div class=\"card-title\">アップグレード</div><div class=\"card-body\">.skia/ をバックアップし、GET /version を記録してから新しいリリースをデプロイし、/health、/ready、/version と、コントロールプレーンのモードとロックダウンが変わっていないことを確認します。</div></div><div class=\"card\"><div class=\"card-title\">ロールバック</div><div class=\"card-body\">以前のリリースを再デプロイし、新しいバージョンが .skia/ を変更した場合はアップグレード前のバックアップを復元します。</div></div><div class=\"card\"><div class=\"card-title\">復元</div><div class=\"card-body\">Forge を停止し、.skia/ をバックアップで置き換えてから起動し、コントロールプレーンのモードと監査ログの行数を確認します。</div></div></div>"
         }
       }
     },
@@ -221,6 +225,10 @@
         "key-security-components": {
           "title": "主要なセキュリティコンポーネント",
           "html": "<div class=\"item-list\"><div class=\"item\"><span class=\"item-crest item-crest--body\" aria-hidden=\"true\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 12 12\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6 0.5 L10.5 2.5 V6.5 L6 11.5 L1.5 6.5 V2.5 Z\" stroke=\"#d4af37\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"/><path d=\"M6 2.5 V9\" stroke=\"#d4af37\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"/><rect x=\"5\" y=\"5\" width=\"2\" height=\"2\" fill=\"#d4af37\"/></svg></span><div class=\"item-text\"><code>SecurityAnalysisService</code> — コードとエージェント出力のスキャンおよび保存時間チェック</div></div><div class=\"item\"><span class=\"item-crest item-crest--body\" aria-hidden=\"true\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 12 12\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6 0.5 L10.5 2.5 V6.5 L6 11.5 L1.5 6.5 V2.5 Z\" stroke=\"#d4af37\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"/><path d=\"M6 2.5 V9\" stroke=\"#d4af37\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"/><rect x=\"5\" y=\"5\" width=\"2\" height=\"2\" fill=\"#d4af37\"/></svg></span><div class=\"item-text\">ガバナンス意思決定エンジン — 厳密 / 適応 / 監査証跡による自律制御</div></div><div class=\"item\"><span class=\"item-crest item-crest--body\" aria-hidden=\"true\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 12 12\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M6 0.5 L10.5 2.5 V6.5 L6 11.5 L1.5 6.5 V2.5 Z\" stroke=\"#d4af37\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"/><path d=\"M6 2.5 V9\" stroke=\"#d4af37\" stroke-width=\"1\" vector-effect=\"non-scaling-stroke\"/><rect x=\"5\" y=\"5\" width=\"2\" height=\"2\" fill=\"#d4af37\"/></svg></span><div class=\"item-text\">ルートおよびアクションレベルの安全モジュール - バイパスできないサーフェスごとの制約</div></div></div></div>"
+        },
+        "agent-terminal-commands": {
+          "title": "エージェントのターミナルコマンド",
+          "html": "<div class=\"card-grid\"><div class=\"card\"><div class=\"card-title\">破壊的コマンドの承認</div><div class=\"card-body\">rm、del、format、shutdown、drop、truncate を含むエージェントのコマンドは、承認されるまで保留されます。</div></div><div class=\"card\"><div class=\"card-title\">単一行のコマンド</div><div class=\"card-body\">エージェントのコマンドは 1 行である必要があり、開いているプロジェクトフォルダー内で実行されます。</div></div><div class=\"card\"><div class=\"card-title\">監査ログ</div><div class=\"card-body\">すべてのターミナルコマンドは、実行元、結果、終了コード、所要時間とともに .skia/agent-log.json に記録されます。コマンドの出力は保存されません。</div></div></div>"
         },
         "operational-security-practices": {
           "title": "運用上のセキュリティ慣行",

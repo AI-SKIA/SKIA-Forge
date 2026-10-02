@@ -17,6 +17,7 @@ import { promisify } from "node:util";
 import os from "node:os";
 import { z } from "zod";
 import { evaluateCommandSafety } from "../../../agentSafety.js";
+import { appendAuditLog } from "../../../auditLog.js";
 import {
     assertForgeSandboxProvisioned,
     forgeRoundtripSandboxClient
@@ -93,6 +94,189 @@ function isMultiLine(command: string): boolean {
     return /[\r\n]/.test(command.trim());
 }
 
+async function executeTerminal(
+    ctx: ToolContext,
+    input: unknown
+): Promise<ToolExecuteResult<{ stdout: string; stderr: string; exitCode?: number }>> {
+    const v = schema.safeParse(input);
+    if (!v.success) {
+        return { success: false, error: v.error.message, code: "VALIDATION" };
+    }
+
+    const {
+        command,
+        cwd: sub,
+        timeoutMs = 300_000,
+        source = "agent",
+        approved,
+        untrustedTarget = false
+    } = v.data as ToolInput;
+
+    if (untrustedTarget) {
+        try {
+            assertForgeSandboxProvisioned();
+        } catch (e) {
+            const message = e instanceof Error ? e.message : String(e);
+            return { success: false, error: message, code: "SANDBOX" };
+        }
+        try {
+            const isolated = await forgeRoundtripSandboxClient.runIsolated(
+                command,
+                undefined,
+                timeoutMs
+            );
+            const result = {
+                stdout: isolated.stdout,
+                stderr: isolated.stderr,
+                exitCode: isolated.exitCode
+            };
+            ctx.emitEvent?.("terminal:commandResult", {
+                command,
+                cwd: "(skia-sandbox)",
+                source,
+                ...result
+            });
+            return { success: true, data: result };
+        } catch (e) {
+            const message = e instanceof Error ? e.message : String(e);
+            return { success: false, error: message, code: "SANDBOX" };
+        }
+    }
+
+    // ── Safety gate ──────────────────────────────────────────
+    // Only host-flagged human commands bypass the policy; tool input cannot claim it.
+    if (ctx.userInitiated !== true) {
+        if (isMultiLine(command)) {
+            return { success: false, error: "Agent commands must be a single line.", code: "SAFETY" };
+        }
+        const safety = evaluateCommandSafety(command);
+        if (!safety.allowed) {
+            if (safety.approvalRequired && approved === true) {
+                // Executor has recorded explicit user approval — proceed.
+            } else {
+                return {
+                    success: false,
+                    error: `Command not allowed: ${safety.reason}`,
+                    code: "SAFETY"
+                };
+            }
+        }
+    }
+
+    // ── Resolve working directory ────────────────────────────
+    // ctx.projectRoot is the folder the user opened — never hardcoded.
+    const c = resolveShellCwd(ctx.projectRoot, sub);
+    if (!c.ok) {
+        return { success: false, error: c.error, code: "PATH" };
+    }
+
+    // ── Execute ──────────────────────────────────────────────
+    try {
+        const { stdout, stderr } = await pexec(command, {
+            cwd: c.abs,
+            shell: platformShell(),
+            maxBuffer: 4 * 1024 * 1024,   // 4 MB
+            timeout: timeoutMs,
+            windowsHide: true,
+            env: scrubbedChildEnv({
+                SKIA_FORGE: "1",
+                SKIA_PROJECT_ROOT: ctx.projectRoot
+            })
+        });
+
+        const result = {
+            stdout: String(stdout),
+            stderr: String(stderr),
+            exitCode: 0
+        };
+
+        // ── Notify SKIA brain ────────────────────────────────
+        // ctx.emitEvent is the standard SKIA event bus; the brain
+        // subscribes to "terminal:commandResult" to track the session.
+        ctx.emitEvent?.("terminal:commandResult", {
+            command,
+            cwd: c.abs,
+            source,
+            ...result
+        });
+
+        return { success: true, data: result };
+    } catch (e: unknown) {
+        const ex = e as {
+            stdout?: string;
+            stderr?: string;
+            code?: number;
+            message?: string;
+            killed?: boolean;
+        };
+
+        if (ex.killed) {
+            return {
+                success: false,
+                error: `Command timed out after ${timeoutMs}ms.`,
+                code: "TIMEOUT"
+            };
+        }
+
+        // Non-zero exit is still a valid result (not a tool crash).
+        const result = {
+            stdout: String(ex.stdout ?? ""),
+            stderr: String(ex.stderr ?? ex.message ?? String(e)),
+            exitCode: ex.code
+        };
+
+        ctx.emitEvent?.("terminal:commandResult", {
+            command,
+            cwd: c.abs,
+            source,
+            ...result
+        });
+
+        return { success: true, data: result };
+    }
+}
+
+type TerminalResult = ToolExecuteResult<{ stdout: string; stderr: string; exitCode?: number }>;
+
+/** Outcome bucket for the audit trail; stdout/stderr are never logged. */
+export function terminalAuditOutcome(result: TerminalResult): "success" | "failure" | "blocked" {
+    if (!result.success) {
+        return result.code === "SAFETY" || result.code === "PATH" ? "blocked" : "failure";
+    }
+    return result.data.exitCode === 0 ? "success" : "failure";
+}
+
+async function auditTerminalRun(
+    ctx: ToolContext,
+    input: unknown,
+    result: TerminalResult,
+    durationMs: number
+): Promise<void> {
+    const raw = (input && typeof input === "object" ? input : {}) as Record<string, unknown>;
+    const command = typeof raw.command === "string" ? raw.command.slice(0, 2_000) : "";
+    try {
+        await appendAuditLog(ctx.projectRoot, {
+            timestamp: new Date().toISOString(),
+            action: "tool.run_terminal",
+            parameters: {
+                command,
+                cwd: typeof raw.cwd === "string" ? raw.cwd : "",
+                source: raw.source === "user" ? "user" : "agent",
+                userInitiated: ctx.userInitiated === true,
+                approved: raw.approved === true,
+                sandbox: raw.untrustedTarget === true,
+                exitCode: result.success ? (result.data.exitCode ?? null) : null,
+                errorCode: result.success ? null : (result.code ?? null),
+                durationMs
+            },
+            result: terminalAuditOutcome(result),
+            ...(result.success ? {} : { details: result.error })
+        });
+    } catch (e) {
+        console.warn("run_terminal audit write failed", e instanceof Error ? e.message : e);
+    }
+}
+
 export const runTerminalTool: ForgeTool = {
     name: "run_terminal",
     description:
@@ -113,146 +297,11 @@ export const runTerminalTool: ForgeTool = {
         return { ok: true, data: p.data };
     },
 
-    async execute(
-        ctx: ToolContext,
-        input: unknown
-    ): Promise<ToolExecuteResult<{ stdout: string; stderr: string; exitCode?: number }>> {
-        const v = schema.safeParse(input);
-        if (!v.success) {
-            return { success: false, error: v.error.message, code: "VALIDATION" };
-        }
-
-        const {
-            command,
-            cwd: sub,
-            timeoutMs = 300_000,
-            source = "agent",
-            approved,
-            untrustedTarget = false
-        } = v.data as ToolInput;
-
-        if (untrustedTarget) {
-            try {
-                assertForgeSandboxProvisioned();
-            } catch (e) {
-                const message = e instanceof Error ? e.message : String(e);
-                return { success: false, error: message, code: "SANDBOX" };
-            }
-            try {
-                const isolated = await forgeRoundtripSandboxClient.runIsolated(
-                    command,
-                    undefined,
-                    timeoutMs
-                );
-                const result = {
-                    stdout: isolated.stdout,
-                    stderr: isolated.stderr,
-                    exitCode: isolated.exitCode
-                };
-                ctx.emitEvent?.("terminal:commandResult", {
-                    command,
-                    cwd: "(skia-sandbox)",
-                    source,
-                    ...result
-                });
-                return { success: true, data: result };
-            } catch (e) {
-                const message = e instanceof Error ? e.message : String(e);
-                return { success: false, error: message, code: "SANDBOX" };
-            }
-        }
-
-        // ── Safety gate ──────────────────────────────────────────
-        // Only host-flagged human commands bypass the policy; tool input cannot claim it.
-        if (ctx.userInitiated !== true) {
-            if (isMultiLine(command)) {
-                return { success: false, error: "Agent commands must be a single line.", code: "SAFETY" };
-            }
-            const safety = evaluateCommandSafety(command);
-            if (!safety.allowed) {
-                if (safety.approvalRequired && approved === true) {
-                    // Executor has recorded explicit user approval — proceed.
-                } else {
-                    return {
-                        success: false,
-                        error: `Command not allowed: ${safety.reason}`,
-                        code: "SAFETY"
-                    };
-                }
-            }
-        }
-
-        // ── Resolve working directory ────────────────────────────
-        // ctx.projectRoot is the folder the user opened — never hardcoded.
-        const c = resolveShellCwd(ctx.projectRoot, sub);
-        if (!c.ok) {
-            return { success: false, error: c.error, code: "PATH" };
-        }
-
-        // ── Execute ──────────────────────────────────────────────
-        try {
-            const { stdout, stderr } = await pexec(command, {
-                cwd: c.abs,
-                shell: platformShell(),
-                maxBuffer: 4 * 1024 * 1024,   // 4 MB
-                timeout: timeoutMs,
-                windowsHide: true,
-                env: scrubbedChildEnv({
-                    SKIA_FORGE: "1",
-                    SKIA_PROJECT_ROOT: ctx.projectRoot
-                })
-            });
-
-            const result = {
-                stdout: String(stdout),
-                stderr: String(stderr),
-                exitCode: 0
-            };
-
-            // ── Notify SKIA brain ────────────────────────────────
-            // ctx.emitEvent is the standard SKIA event bus; the brain
-            // subscribes to "terminal:commandResult" to track the session.
-            ctx.emitEvent?.("terminal:commandResult", {
-                command,
-                cwd: c.abs,
-                source,
-                ...result
-            });
-
-            return { success: true, data: result };
-        } catch (e: unknown) {
-            const ex = e as {
-                stdout?: string;
-                stderr?: string;
-                code?: number;
-                message?: string;
-                killed?: boolean;
-            };
-
-            if (ex.killed) {
-                return {
-                    success: false,
-                    error: `Command timed out after ${timeoutMs}ms.`,
-                    code: "TIMEOUT"
-                };
-            }
-
-            // Non-zero exit is still a valid result (not a tool crash).
-            const result = {
-                stdout: String(ex.stdout ?? ""),
-                stderr: String(ex.stderr ?? ex.message ?? String(e)),
-                exitCode: ex.code
-            };
-
-            ctx.emitEvent?.("terminal:commandResult", {
-                command,
-                cwd: c.abs,
-                source,
-                ...result
-            });
-
-            return { success: true, data: result };
-        }
+    async execute(ctx: ToolContext, input: unknown) {
+        const t0 = Date.now();
+        const result = await executeTerminal(ctx, input);
+        await auditTerminalRun(ctx, input, result, Date.now() - t0);
+        return result;
     },
 
     async rollback() {

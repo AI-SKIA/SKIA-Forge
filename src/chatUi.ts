@@ -31,8 +31,19 @@ export function renderChatHtml(_releaseBase = "https://skia.ca/download"): strin
   <script>
     const messages = document.getElementById("messages");
     const statusNode = document.getElementById("status");
+    function authHeaders(extra) {
+      let token = null;
+      try {
+        token = sessionStorage.getItem("skia_session_token") || localStorage.getItem("skia_session_token");
+      } catch {}
+      return token ? { ...extra, Authorization: "Bearer " + token } : { ...extra };
+    }
     async function refreshStatus() {
-      const res = await fetch("/providers/status");
+      const res = await fetch("/providers/status", { headers: authHeaders({}) });
+      if (res.status === 401) {
+        statusNode.textContent = "Sign in to SKIA Forge to use the console.";
+        return;
+      }
       const data = await res.json();
       statusNode.textContent = data.status + " (" + data.activeProvider + ")";
     }
@@ -47,7 +58,7 @@ export function renderChatHtml(_releaseBase = "https://skia.ca/download"): strin
       const prompt = document.getElementById("prompt").value;
       addMessage("You", prompt);
       const body = { jsonrpc: "2.0", id: Date.now(), method: "skia/explain", params: { code: prompt } };
-      const res = await fetch("/rpc", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) });
+      const res = await fetch("/rpc", { method: "POST", headers: authHeaders({ "content-type": "application/json" }), body: JSON.stringify(body) });
       const data = await res.json();
       addMessage("SKIA", JSON.stringify(data.result ?? data.error, null, 2));
       await refreshStatus();
@@ -57,10 +68,14 @@ export function renderChatHtml(_releaseBase = "https://skia.ca/download"): strin
       const newText = document.getElementById("newText").value;
       const res = await fetch("/diff/preview", {
         method: "POST",
-        headers: { "content-type": "application/json" },
+        headers: authHeaders({ "content-type": "application/json" }),
         body: JSON.stringify({ oldText, newText })
       });
       const data = await res.json();
+      if (!res.ok) {
+        document.getElementById("diff").textContent = data.error ?? "Request failed";
+        return;
+      }
       const out = data.lines.map((line) => {
         if (line.type === "add") return "+ " + line.text;
         if (line.type === "remove") return "- " + line.text;

@@ -426,13 +426,6 @@ export class SkiaFullAdapter {
     }
   }
 
-  /** Platform emergent goals from Skia-FULL Phase 17C (poll for Forge self-improvement targets). */
-  async getEmergentGoals(
-    passthroughHeaders?: Record<string, string>
-  ): Promise<{ data?: { goals?: unknown[] }; goals?: unknown[] }> {
-    return this.getJson("/api/intelligence/goals", passthroughHeaders);
-  }
-
   private buildHeaders(passthroughHeaders?: Record<string, string>): Record<string, string> {
     const headers: Record<string, string> = {
       "content-type": "application/json"

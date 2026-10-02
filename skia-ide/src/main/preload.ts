@@ -15,6 +15,7 @@ contextBridge.exposeInMainWorld("skiaElectron", {
     openFile: () => ipcRenderer.invoke("skia:openFile"),
     saveFile: (filePath: string, content: string) => ipcRenderer.invoke("skia:saveFile", filePath, content),
     saveFileAs: (content: string) => ipcRenderer.invoke("skia:saveFileAs", content),
+    deleteFile: (filePath: string) => ipcRenderer.invoke("skia:deleteFile", filePath),
     readFileText: (filePath: string) => ipcRenderer.invoke("skia:readFileText", filePath),
     readDirectoryTree: (folderPath: string) => ipcRenderer.invoke("skia:readDirectoryTree", folderPath),
     onMenuAction: (channel: string, listener: () => void) => {

@@ -152,28 +152,6 @@ export async function handleRpcRequest(
   }
 }
 
-export function streamSkiaMethod(method: string, params: Record<string, unknown>): string[] {
-  switch (method) {
-    case "skia/explain": {
-      const code = String(params.code ?? "");
-      const lines = code.split(/\r?\n/).filter(Boolean);
-      return [
-        "Starting explanation stream.",
-        `Detected ${lines.length} non-empty lines.`,
-        "Explanation stream complete."
-      ];
-    }
-    case "skia/review":
-      return [
-        "Starting review stream.",
-        "Scanning for anti-patterns.",
-        "Review stream complete."
-      ];
-    default:
-      return [`Unsupported stream method: ${method}`];
-  }
-}
-
 function jsonRpcResult(id: string | number | null, result: unknown): JsonRpcSuccess {
   return {
     jsonrpc: "2.0",

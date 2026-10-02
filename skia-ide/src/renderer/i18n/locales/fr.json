@@ -17,10 +17,10 @@
     "searchPlaceholder": "Rechercher des fichiers et symboles...",
     "agent": "AGENT",
     "agentHint": "Panneau Agent : plan → exécuteur d'outils sur forge.skia.ca (APPLY/REJECT). Le chat latéral utilise le flux conversationnel — pas le registre d'outils local.",
-    "agentPlaceholder": "State an objective - SKIA plans it and proposes diffs for your approval...",
-    "agentRun": "RUN TASK",
-    "agentCancel": "CANCEL",
-    "forge": "FORGE CONTROL PLANE"
+    "agentPlaceholder": "Indiquez un objectif - SKIA le planifie et propose des modifications à approuver...",
+    "agentRun": "LANCER LA TÂCHE",
+    "agentCancel": "ANNULER",
+    "forge": "PLAN DE CONTRÔLE FORGE"
   },
   "settings": {
     "title": "PARAMÈTRES",
@@ -29,9 +29,9 @@
     "uiLanguageHint": "Partagé avec skia.ca (même clé de stockage navigateur).",
     "appearance": "APPARENCE",
     "theme": "Thème",
-    "themeValue": "SKIA Dark (Default)",
+    "themeValue": "SKIA Sombre (par défaut)",
     "fontSize": "Taille de police",
-    "minimap": "Minimap",
+    "minimap": "Minicarte",
     "wordWrap": "Retour à la ligne",
     "editor": "ÉDITEUR",
     "tabSize": "Taille de tabulation",
@@ -40,8 +40,8 @@
     "autoSave": "Enregistrement automatique",
     "application": "APPLICATION",
     "status": "Statut",
-    "disconnected": "Disconnected",
-    "connected": "Connected",
+    "disconnected": "Déconnecté",
+    "connected": "Connecté",
     "signIn": "SE CONNECTER",
     "signOut": "SE DÉCONNECTER",
     "signedOut": "DÉCONNECTÉ",
@@ -50,34 +50,34 @@
     "openDocs": "OUVRIR LA DOCUMENTATION",
     "about": "À PROPOS",
     "version": "Version",
-    "build": "Build",
-    "buildValue": "Sovereign Intelligence",
-    "toggleOn": "ON",
-    "toggleOff": "OFF"
+    "build": "Compilation",
+    "buildValue": "Intelligence souveraine",
+    "toggleOn": "ACTIVÉ",
+    "toggleOff": "DÉSACTIVÉ"
   },
   "chat": {
     "brand": "SKIA",
     "newChat": "+ NOUVELLE CONVERSATION",
-    "placeholder": "Interrogez SKIA sur cet espace de travail...",
+    "placeholder": "Interrogez SKIA sur cet espace de travail... (@file:path · @folder:path · @codebase)",
     "clear": "HISTOIRE CLAIRE",
-    "cancel": "CANCEL",
-    "attach": "ATTACH",
-    "attachQueued": "ATTACH ({n})",
+    "cancel": "ANNULER",
+    "attach": "JOINDRE",
+    "attachQueued": "JOINDRE ({n})",
     "send": "ENVOYER",
-    "tagline": "One ecosystem. One universe. All SKIA.",
+    "tagline": "Un écosystème. Un univers. Tout SKIA.",
     "initialMessage": "Je suis SKIA — une plateforme d'intelligence gouvernée conçue pour la création, l'exécution et le raisonnement. Sur quoi aimeriez-vous travailler ?",
-    "signInRequired": "Please sign in to use SKIA",
+    "signInRequired": "Connectez-vous pour utiliser SKIA",
     "download": "TÉLÉCHARGER",
     "downloadTitle": "Téléchargez la réponse de SKIA sous forme de fichier texte",
-    "removeAttachment": "Remove attachment",
-    "removeAttachmentAria": "Remove {name}",
-    "attachTitle": "Attach documents for SKIA",
-    "attachTitleQueued": "{n} file(s) queued — click to add more (or drop files here)",
-    "attachAria": "Attach files",
-    "attachAriaQueued": "{n} files attached",
+    "removeAttachment": "Retirer la pièce jointe",
+    "removeAttachmentAria": "Retirer {name}",
+    "attachTitle": "Joindre des documents pour SKIA",
+    "attachTitleQueued": "{n} fichier(s) en attente — cliquez pour en ajouter (ou déposez des fichiers ici)",
+    "attachAria": "Joindre des fichiers",
+    "attachAriaQueued": "{n} fichiers joints",
     "nationality": "NATIONALITÉ",
     "voiceNationality": "Nationalité vocale",
-    "nationalityTitle": "Nationality: {label}",
+    "nationalityTitle": "Nationalité : {label}",
     "errors": {
       "sessionExpired": "Votre séance s'est terminée pendant votre absence. Reconnectez-vous et nous reprendrons instantanément.",
       "noCredits": "Vous avez atteint zéro crédit. Ajoutez-en plus à tout moment et SKIA continuera.",
@@ -85,17 +85,17 @@
       "unexpected": "SKIA est tombé sur quelque chose d'inattendu. Une nouvelle tentative rapide devrait l'effacer.",
       "reset": "Très bien, petit problème de mon côté.\nLes systèmes de SKIA effectuent une réinitialisation rapide.\n\nVous n’avez rien fait – juste un chaos de routine dans les coulisses.\nDonnez-moi un moment et je serai de nouveau en ligne.",
       "fallbackReply": "SKIA n'a pas pu générer de réponse cette fois. Un essai supplémentaire devrait suffire.",
-      "verifyEmail": "Quick heads-up — your 10-day window to verify your email ran out.\nNo worries — you didn't break anything.\n\nTo keep chatting with me, just verify your email.\n\nTakes about 10 seconds and you're right back in.\nI'll be waiting on the other side."
+      "verifyEmail": "Petit rappel — votre délai de 10 jours pour vérifier votre e-mail est écoulé.\nPas d'inquiétude — vous n'avez rien cassé.\n\nPour continuer à discuter avec moi, vérifiez simplement votre e-mail.\n\nCela prend environ 10 secondes et vous revenez aussitôt.\nJe vous attends de l'autre côté."
     }
   },
   "statusBar": {
-    "sovereign": "⬡ SKIA: SOVEREIGN",
-    "connected": "⬡ SKIA: CONNECTED",
-    "arch": "ARCH:"
+    "sovereign": "⬡ SKIA : SOUVERAIN",
+    "connected": "⬡ SKIA : CONNECTÉ",
+    "arch": "ARCHITECTURE :"
   },
   "updates": {
-    "noUpdateTitle": "No Update",
-    "noUpdateBody": "You are on the latest version ({version}).",
-    "failedTitle": "Update Check Failed"
+    "noUpdateTitle": "Aucune mise à jour",
+    "noUpdateBody": "Vous utilisez la dernière version ({version}).",
+    "failedTitle": "Échec de la vérification des mises à jour"
   }
 }
