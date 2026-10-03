@@ -162,3 +162,7 @@ local-dev/.env.*
 !local-dev/.env.forge.local.example
 !local-dev/forge.local.config.example.json
 *.local.env
+
+# Empty/local export dumps (do not commit)
+exports/
+
