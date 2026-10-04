@@ -28,14 +28,16 @@ It provides:
 - `/forge/app` serves the IDE renderer when `skia-ide/dist/renderer` is built.
 - `/resources`, `/security`, `/contact` serve `public/*.html`
 - `/docs/*` serves `public/docs/` first, then repo `docs/`
+- **`/api/forge/*`** requires a Bearer JWT; model and embedding routes also require a paid Forge plan
 - Full API index: **`docs/API_REFERENCE.md`**
 
 ## Local development
 
 ### Prerequisites
 
-- Node.js 20+
+- Node.js **`>=20.18.0 <21`** (see `package.json` `engines` / `.nvmrc` `20.18.0`)
 - npm
+- **`JWT_SECRET`** environment variable (≥32 characters) — required when the server process loads
 
 ### Install
 

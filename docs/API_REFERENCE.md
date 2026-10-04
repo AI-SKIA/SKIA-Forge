@@ -14,7 +14,7 @@ The canonical route list is the Forge server implementation; this document is th
 - **`/index`**, **`/search`**, **`/agent/*`**, **`/rpc`**, **`/sovereign-core`**, **`/integration/skia-full/*`**, **`/providers/*`**, **`/telemetry/*`**, **`/state/runtime`**, **`/rules`**, **`/live`**, **`/ready`** and **`/diff/preview`** require a Bearer JWT.
 - **`POST /providers/health`**, **`POST /providers/force`** and **`POST /telemetry/record`** additionally require the deployment admin secret.
 - **`/api/local/*`** is open to same-machine (loopback) callers only; anyone else needs a Bearer JWT.
-- Auth proxy routes **`/api/auth/*`** forward to the configured SKIA backend (default `https://api.skia.ca`).
+- Auth proxy routes **`/api/auth/*`** forward to the SKIA backend resolved by `resolveSkiaBackendUrl()`: **`LOCAL_SKIA_BACKEND_URL`** when set (non-production), otherwise the production default **`https://api.skia.ca`**. The Forge HTTP server does **not** read `SKIA_BACKEND_URL` (that variable is used by the desktop IDE process).
 - Public: `/health`, `/version`, `/api/app/*`, `/api/public/status-metrics` and the browser pages below.
 
 ---
@@ -45,8 +45,8 @@ These routes serve HTML, redirects, or static assets for the Forge site and IDE 
 | Method | Path | Description |
 |--------|------|-------------|
 | GET | `/health` | Simple JSON ok + project metadata. |
-| GET | `/live` | Liveness (runtime + provider snapshot). |
-| GET | `/ready` | Readiness; `503` when not ready. |
+| GET | `/live` | Liveness (runtime + provider snapshot). **Requires Bearer JWT.** |
+| GET | `/ready` | Readiness; `503` when not ready. **Requires Bearer JWT.** |
 | GET | `/version` | Service version (`npm_package_version` or dev fallback). |
 | GET | `/api/app/version-check` | Desktop update signal (`SKIA_FORGE_LATEST_VERSION` or GitHub release tag). |
 | GET | `/api/app/release-assets` | Published installer filenames + asset URLs for the download UI. |
@@ -62,7 +62,7 @@ Platform installer filenames expected by the download UI are defined in the SKIA
 
 ## Auth proxy (IDE and API clients)
 
-Forge forwards auth to the configured SKIA backend (`SKIA_BACKEND_URL`, default `https://api.skia.ca`). Marketing HTML pages do **not** expose sign-in or register links; the **SKIA Forge IDE** performs sign-in / registration against these routes when needed.
+Forge forwards auth to the SKIA backend from `resolveSkiaBackendUrl()` (`LOCAL_SKIA_BACKEND_URL` when set outside production; otherwise `https://api.skia.ca`). Marketing HTML pages do **not** expose sign-in or register links; the **SKIA Forge IDE** performs sign-in / registration against these routes when needed.
 
 | Method | Path | Notes |
 |--------|------|-------|

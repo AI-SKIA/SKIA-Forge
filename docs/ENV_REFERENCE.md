@@ -1,6 +1,6 @@
 # SKIA Forge environment reference
 
-<!-- last-reviewed: 2026-06-03 -->
+<!-- last-reviewed: 2026-10-03 -->
 
 Operator-facing variables for **`skia-forge`** (production host `forge.skia.ca`, port **4173**). Values are set in your hosting provider's secret injection — never commit secrets.
 
@@ -16,12 +16,20 @@ Operator-facing variables for **`skia-forge`** (production host `forge.skia.ca`,
 
 | Variable | Default / example | Purpose |
 |----------|-------------------|---------|
-| `SKIA_BACKEND_URL` | `https://api.skia.ca` | Auth proxy target |
 | `SKIA_FULL_API_URL` | `https://api.skia.ca` | SkiaFullAdapter base URL (chat, routing, health — not embeddings) |
 | `SKIA_FULL_TIMEOUT_MS` | `15000` | Upstream timeout |
 | `SKIA_FULL_ENABLED` | `true` | Disable adapter when `false` |
 | `SKIA_FULL_AUTH_BEARER` | (secret) | Bearer for upstream |
 | `SKIA_FULL_API_KEY` | (secret) | API key for upstream |
+
+### Auth proxy target (Forge HTTP server)
+
+The Forge HTTP server resolves the auth-proxy base with `resolveSkiaBackendUrl()` in `src/config/localBackend.ts`:
+
+- If **`LOCAL_SKIA_BACKEND_URL`** is set in the process environment and `NODE_ENV` is not `production`, use that URL.
+- Otherwise use the hardcoded production default **`https://api.skia.ca`**.
+
+The Forge **server does not read** `process.env.SKIA_BACKEND_URL`. That variable is consumed by the **desktop IDE** main process (`skia-ide`). Do not document `SKIA_BACKEND_URL` as the Forge HTTP auth-proxy knob.
 
 ## Sovereign inference (primary)
 
@@ -41,14 +49,14 @@ Vector indexing uses the **embedding-engine** service, not `api.skia.ca`.
 |----------|-------------------|---------|
 | `EMBEDDING_ENGINE_URL` | `http://embedding-engine:5003` | Production embedding-engine base URL |
 | `LOCAL_EMBEDDING_ENGINE_URL` | `http://localhost:5003` | Local embedding-engine |
-| `SKIA_FULL_EMBEDDING_PATH` | `/embed` | HTTP path on embedding-engine (not the main SKIA API host) |
+| `SKIA_FULL_EMBEDDING_PATH` | `/embed` | HTTP path on embedding-engine (default `/embed`; not a filesystem storage path) |
 
 ## Security / admin
 
 | Variable | Purpose |
 |----------|---------|
 | `SKIA_ADMIN_SECRET` | Guards sensitive Forge mutation routes when enabled |
-| `JWT_SECRET` | Must match login service when validating sessions |
+| `JWT_SECRET` | Must be ≥32 characters and match login service when validating sessions |
 
 ## Releases
 
@@ -62,7 +70,8 @@ Vector indexing uses the **embedding-engine** service, not `api.skia.ca`.
 
 | Variable | Purpose |
 |----------|---------|
-| `LOCAL_SKIA_BACKEND_URL` | Point Forge at local login — **must be set in process env** (via `local-dev/scripts/load-forge-local-env.ps1` or `.env.forge.local`). Ignored when `NODE_ENV=production`. |
+| `LOCAL_SKIA_BACKEND_URL` | Point Forge auth proxy / adapter at local login — **must be set in process env** (via `local-dev/scripts/load-forge-local-env.ps1` or `.env.forge.local`). Ignored when `NODE_ENV=production`. |
+| `SKIA_FULL_ALLOW_LOCAL_FALLBACK` | When `true`, RPC methods that fail upstream (`skia/explain`, `skia/generate`, `skia/architect`, `skia/review`, `skia/search`) may return local stub responses instead of erroring. Default `false`. Intended for local/dev when the SKIA API is unavailable — do not enable in production customer deployments. |
 
 See `local-dev/docs/forge-local-setup.md`. Optional defaults: copy `local-dev/forge.local.config.example.json` → `local-dev/forge.local.config.json` (gitignored).
 
