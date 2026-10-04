@@ -46,3 +46,87 @@ test("/docs refuses internal contracts and architecture folders", () => {
   }
   assert.equal(re.test("/README.md"), false);
 });
+
+/** HTML shells under public/docs are i18n templates; body copy lives in en/docs.json. */
+const HTML_MD_MIRRORS: Array<{
+  file: string;
+  slug: string;
+  mustInclude: string[];
+  mustNotInclude: string[];
+}> = [
+  {
+    file: "SECURITY_GUIDE",
+    slug: "security-guide",
+    mustInclude: ["/health", "/version", "/api/app/", "/api/auth/", "/live", "/ready", "Bearer"],
+    mustNotInclude: ["All Forge API routes require authentication"],
+  },
+  {
+    file: "API_REFERENCE",
+    slug: "api-reference",
+    mustInclude: ["LOCAL_SKIA_BACKEND_URL", "https://api.skia.ca", "Bearer JWT"],
+    mustNotInclude: ["Proxied to `SKIA_BACKEND_URL`", "Proxied to <code>SKIA_BACKEND_URL</code>"],
+  },
+  {
+    file: "TROUBLESHOOTING",
+    slug: "troubleshooting",
+    mustInclude: ["Bearer JWT", "/live", "/ready"],
+    mustNotInclude: ["proxied to **`SKIA_BACKEND_URL`**", "Proxied to <code>SKIA_BACKEND_URL</code>"],
+  },
+  {
+    file: "OPERATOR_MANUAL",
+    slug: "operator-manual",
+    mustInclude: ["4173", "Bearer JWT", "/embed"],
+    mustNotInclude: ["SKIA_FULL_ALLOW_LOCAL_FALLBACK", "Embedding storage path"],
+  },
+  {
+    file: "DEVELOPER_GUIDE",
+    slug: "developer-guide",
+    mustInclude: ["20.18.0", "/platform-downloads", "JWT_SECRET"],
+    mustNotInclude: ["https://forge.skia.ca/platform-downloads"],
+  },
+];
+
+function pageHtmlBlob(slug: string): string {
+  const locale = JSON.parse(fs.readFileSync(path.join(root, "public", "locales", "en", "docs.json"), "utf8")) as {
+    pages?: Record<string, { sections?: Record<string, { html?: string }> }>;
+  };
+  const sections = locale.pages?.[slug]?.sections ?? {};
+  return Object.values(sections)
+    .map((s) => s.html ?? "")
+    .join("\n");
+}
+
+test("every public/docs HTML shell has a matching docs/*.md source", () => {
+  for (const name of fs.readdirSync(path.join(root, "public", "docs")).filter((n) => n.endsWith(".html"))) {
+    const md = path.join(root, "docs", name.replace(/\.html$/, ".md"));
+    assert.ok(fs.existsSync(md), `missing ${path.relative(root, md)} for public/docs/${name}`);
+  }
+});
+
+test("public/docs HTML shells reference en/docs.json slugs that exist", () => {
+  const locale = JSON.parse(fs.readFileSync(path.join(root, "public", "locales", "en", "docs.json"), "utf8")) as {
+    pages?: Record<string, unknown>;
+  };
+  for (const name of fs.readdirSync(path.join(root, "public", "docs")).filter((n) => n.endsWith(".html"))) {
+    const html = fs.readFileSync(path.join(root, "public", "docs", name), "utf8");
+    const slug = html.match(/data-forge-i18n-slug="([^"]+)"/)?.[1];
+    assert.ok(slug, `${name} missing data-forge-i18n-slug`);
+    assert.ok(locale.pages?.[slug!], `en/docs.json missing pages.${slug} for ${name}`);
+  }
+});
+
+test("customer MD and en/docs.json (HTML body source) stay aligned on Batch F1 claims", () => {
+  for (const doc of HTML_MD_MIRRORS) {
+    const md = fs.readFileSync(path.join(root, "docs", `${doc.file}.md`), "utf8");
+    const htmlBody = pageHtmlBlob(doc.slug);
+    assert.ok(htmlBody.length > 0, `empty en/docs.json body for ${doc.slug}`);
+    for (const needle of doc.mustInclude) {
+      assert.ok(md.includes(needle), `${doc.file}.md missing ${needle}`);
+      assert.ok(htmlBody.includes(needle), `en/docs.json pages.${doc.slug} missing ${needle}`);
+    }
+    for (const needle of doc.mustNotInclude) {
+      assert.ok(!md.includes(needle), `${doc.file}.md still has ${needle}`);
+      assert.ok(!htmlBody.includes(needle), `en/docs.json pages.${doc.slug} still has ${needle}`);
+    }
+  }
+});

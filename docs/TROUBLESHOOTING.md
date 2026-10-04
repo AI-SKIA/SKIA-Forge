@@ -28,7 +28,8 @@ Use this guide for Forge **service** and **integration** issues. Product-runtime
 
 ## Runtime Health Issues
 
-- Validate **`GET /health`**, **`GET /live`**, **`GET /ready`**, and **`GET /version`** on the Forge process.
+- Validate **`GET /health`** and **`GET /version`** (public).
+- Validate **`GET /live`** and **`GET /ready`** with a **Bearer JWT** — both routes require authentication and return **401** without it.
 - Check logs for failing module names and request IDs.
 - Isolate whether the issue is a local Forge module vs upstream SKIA API contracts.
 
@@ -43,6 +44,6 @@ Use this guide for Forge **service** and **integration** issues. Product-runtime
 
 ## Auth from IDE or API client
 
-- Auth requests go to **`POST /api/auth/login`**, **`POST /api/auth/register`**, **`GET /api/auth/session`** — proxied to **`SKIA_BACKEND_URL`** (default `https://api.skia.ca`).
-- **`/api/forge/*`** returns **401** without a valid authenticated session/token (**`requireAuth`**).
+- Auth requests go to **`POST /api/auth/login`**, **`POST /api/auth/register`**, **`GET /api/auth/session`** — proxied by the Forge HTTP server via `resolveSkiaBackendUrl()` (`LOCAL_SKIA_BACKEND_URL` when set outside production; otherwise `https://api.skia.ca`). The Forge server does not read `SKIA_BACKEND_URL`; the desktop IDE process does.
+- **`/api/forge/*`** returns **401** without a valid authenticated session/token, and model/embedding routes also require a paid Forge plan.
 - Static HTML pages intentionally omit marketing sign-in/register buttons; use the **Forge IDE** or API clients.

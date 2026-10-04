@@ -12,11 +12,12 @@ SKIA Forge operates as an orchestration and governance **HTTP service** that aug
 - Start: `npm run dev` (development) or `node dist/server.js` after build (production shape)
 - Listen address: **`SKIA_PORT`** (default **4173**)
 - After startup, validate:
-  - `GET /health`, `GET /live`, `GET /ready`, `GET /version`
+  - `GET /health`, `GET /version` (public)
+  - `GET /live`, `GET /ready` with a **Bearer JWT** (both require authentication)
 
 ## Environment variables (primary)
 
-Values below are **representative** — see the Forge server for the full set.
+Values below are **representative** — see **`docs/ENV_REFERENCE.md`** for the full hosting-environment list and local-only knobs.
 
 | Variable | Purpose |
 |----------|---------|
@@ -25,12 +26,10 @@ Values below are **representative** — see the Forge server for the full set.
 | `SKIA_FULL_ENABLED` | Set `false` to disable SKIA adapter integration. |
 | `SKIA_FULL_API_URL` | Upstream API base (default `https://api.skia.ca`). |
 | `SKIA_FULL_TIMEOUT_MS` | Request timeout (default `15000`). |
-| `SKIA_FULL_ALLOW_LOCAL_FALLBACK` | Allow local fallback paths when upstream unavailable. |
 | `SKIA_FULL_AUTH_BEARER` | Bearer token for upstream calls. |
 | `SKIA_FULL_API_KEY` | API key for upstream calls. |
-| `SKIA_FULL_EMBEDDING_PATH` | Embedding storage path override. |
+| `SKIA_FULL_EMBEDDING_PATH` | HTTP path on the embedding engine (default `/embed`). |
 | `SKIA_FULL_EMBED_MODEL` | Embedding model hint. |
-| `SKIA_BACKEND_URL` | Auth proxy target (default `https://api.skia.ca`). |
 | `EMBED_INCREMENTAL_ON_SAVE` | Enable incremental embed indexing on save. |
 | `EMBED_VECTOR_STORE` | Vector store backend hint (e.g. `file`). |
 | `PRODUCTION_API_URL` | Production module adapter URL. |
@@ -40,15 +39,15 @@ Values below are **representative** — see the Forge server for the full set.
 | `SKIA_IDE_RELEASE_BASE_URL` | Base URL for chat UI download links. |
 | `SKIA_ENABLE_WATCHER` | File watcher behavior (`1` enables). |
 | `SKIA_ADMIN_SECRET` | Guards Forge mutation/admin endpoints when enabled in your deployment. |
-| `JWT_SECRET` | Session validation when Forge verifies tokens locally (must match login service in integrated deployments). |
+| `JWT_SECRET` | Session validation when Forge verifies tokens locally (must be ≥32 characters and match the login service in integrated deployments). |
 
-See **`docs/ENV_REFERENCE.md`** for the full hosting-environment variable list.
+Auth proxy target for the Forge HTTP server is resolved by `resolveSkiaBackendUrl()`: set **`LOCAL_SKIA_BACKEND_URL`** for local stacks; otherwise the production default is **`https://api.skia.ca`**. The server does not read `SKIA_BACKEND_URL` (see ENV_REFERENCE / desktop IDE docs).
 
 Additional environment variables for signing and GitHub integration are documented in your onboarding package.
 
 ## Operational checks
 
-- Health endpoints pass
+- Health endpoints pass (`/health` public; `/live` and `/ready` with Bearer JWT)
 - Control-plane snapshot (`GET /api/forge/control-plane`) shows expected mode and lockdown
 - Governance telemetry and audit logs are produced for sensitive actions
 - Integration probes reflect your environment’s SKIA connectivity
@@ -91,7 +90,7 @@ The container filesystem is ephemeral: without a persistent volume mounted at `/
    - from source: `npm ci`, `npm run build`, then `npm install` and `npm run build` in the IDE package, then `npm start`;
    - or build the container image from the repository `Dockerfile`, which runs both builds and health-checks `GET /health`.
 4. Validate:
-   - `GET /health` returns 200, `GET /ready` returns 200 (Bearer JWT), and `GET /version` shows the new version;
+   - `GET /health` returns 200, `GET /ready` returns 200 (**Bearer JWT**), and `GET /version` shows the new version;
    - `GET /api/forge/control-plane` shows the same mode and lockdown as before;
    - `/forge/app` loads (a `503` means the IDE bundle was not built).
 
