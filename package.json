@@ -1,7 +1,7 @@
 {
   "name": "skia-forge",
   "version": "1.0.0",
-  "description": "Sovereign AI-native development environment. SKIA is not an assistant — it's your co-architect. Deep codebase intelligence, autonomous agents, provider fallback, and mythic precision. Forged in intelligence.",
+  "description": "Sovereign AI-native development environment. SKIA is not an assistant — it's your co-architect. Deep codebase intelligence, autonomous agents, governed routing, and mythic precision. Forged in intelligence.",
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx src/server.ts",

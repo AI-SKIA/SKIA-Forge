@@ -272,8 +272,10 @@
         var embed = data.embeddingVector || {};
         var embedText = (embed.provisionedOnNorthflank ? 'provisioned' : 'not provisioned') + (embed.embeddingEngineConfigured ? ' · env URL set' : '');
         metrics.style.whiteSpace = 'pre-line';
+        // sovereignFallbackRatePct is not shown: OpsMetricsService uses a lifetime chat
+        // denominator with Math.max(chatRequests,1), so zero traffic reads as 0%
+        // (false 100% “availability”). Not a sovereign-path health signal.
         metrics.textContent = [
-          'Sovereign fallback: ' + (data.sovereignFallbackRatePct != null ? data.sovereignFallbackRatePct : '—') + '%',
           'Output refusal: ' + (data.outputRefusalRatePct != null ? data.outputRefusalRatePct : '—') + '%',
           'Challenger fail: ' + (data.adversarialChallengerFailRatePct != null ? data.adversarialChallengerFailRatePct : '—') + '%',
           'Embedding / vector: ' + embedText
