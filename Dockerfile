@@ -22,7 +22,7 @@ COPY . .
 COPY config/semgrep/ /app/config/semgrep/
 
 # Semgrep CE on Debian (glibc) — used by run_semgrep agent tool.
-RUN pip3 install --no-cache-dir --break-system-packages semgrep==1.137.0 \
+RUN pip3 install --no-cache-dir --break-system-packages semgrep==1.137.0 pydantic==2.13.5 \
     && semgrep --version \
     && test -f /app/config/semgrep/skia-rules.yaml
 
